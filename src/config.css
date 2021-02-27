@@ -1,0 +1,9 @@
+.react-chatbot-kit-chat-container {
+    position: relative;
+    width: 375px;
+}
+.react-chatbot-kit-chat-message-container {
+    height: 650px;
+}
+.react-chatbot-kit-chat-inner-container {
+    height: 700px;}
