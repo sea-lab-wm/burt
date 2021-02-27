@@ -1,13 +1,16 @@
 import React , { Component }  from "react";
 import ImagePicker from 'react-image-picker'
-import "./LearningOptions.css";
+import "./SelectOneScreenOption.css";
 import img1 from "../../assets/images/s1.png"
 import img2 from "../../assets/images/s2.png"
 import img3 from "../../assets/images/s3.png"
+import 'react-image-picker/dist/index.css'
+
 
 const imageList = [img1, img2, img3]
 
-class ScreenOptions extends Component{
+class SelectOneScreen extends Component{
+
     constructor(props) {
         super(props)
         this.state = {
@@ -16,60 +19,37 @@ class ScreenOptions extends Component{
             max_images: [],
             max_message: ''
         }
+        this.onPickOneImage = this.onPickOneImage.bind(this)
     }
     onPickOneImage(image) {
-        this.setState({image})
+        this.setState({image});
+        this.handleOneScreen();
+
+    }
+    handleOneScreen(){
+        this.props.actionProvider.handleOneScreenOption();
     }
 
-    onPickMultipleImages(images) {
-        this.setState({images})
-    }
-
-    onPickImagesWithLimit(max_images) {
-        this.setState({max_images})
-    }
-
-    onPickMaxImages(last_image) {
-        let image = JSON.stringify(last_image)
-        let max_message = `Max images reached. ${image}`
-
-        this.setState({max_message})
-    }
 
     render() {
         return (
             <div>
-                <h1>React Image Picker</h1>
-                <h3>Single Select</h3>
                 <ImagePicker
                     images={imageList.map((image, i) => ({src: image, value: i}))}
-                    onPick={this.onPickOneImage.bind(this)}
+                    onPick={this.onPickOneImage}
+                    // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
                 />
-                <textarea rows="4" cols="100" value={this.state.image && JSON.stringify(this.state.image)} disabled/>
 
-                <h3>Multiple Select</h3>
-                <ImagePicker
-                    images={imageList.map((image, i) => ({src: image, value: i}))}
-                    onPick={this.onPickMultipleImages.bind(this)}
-                    multiple
-                />
-                <textarea rows="4" cols="100" value={this.state.images && JSON.stringify(this.state.images)} disabled/>
+                <button type="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button>
 
-                <h3>Multiple Select with Limit</h3>
-                <ImagePicker
-                    images={imageList.map((image, i) => ({src: image, value: i}))}
-                    onPick={this.onPickImagesWithLimit.bind(this)}
-                    maxPicks={2}
-                    onMaxPicks={this.onPickMaxImages.bind(this)}
-                    multiple
-                />
-                <textarea rows="4" cols="100" value={this.state.max_images && JSON.stringify(this.state.max_images)} disabled/>
-                <textarea rows="4" cols="100" value={this.state.max_message && JSON.stringify(this.state.max_message)} disabled/>
+
             </div>
         )
     }
 }
-// export default ScreenOptions;
+// eslint-disable-next-line no-undef
+
+export default SelectOneScreen;
 // eslint-disable-next-line no-undef
 //render(<ScreenOptions/>, document.querySelector('#root'))
 

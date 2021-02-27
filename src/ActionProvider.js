@@ -1,8 +1,9 @@
 // ActionProvider starter code
-class ActionProvider {
+class ActionProvider{
     constructor(createChatBotMessage, setStateFunc) {
         this.createChatBotMessage = createChatBotMessage;
         this.setState = setStateFunc;
+
     }
 
     greet() {
@@ -10,12 +11,28 @@ class ActionProvider {
         this.updateChatbotState(greetingMessage)
     }
 
-    handleScreenList = () => {
+    handleOneScreenOption = () => {
         const message = this.createChatBotMessage(
-            "Okay. Can you please tell me how the app is supposed to work instead?",
-            // {
-            //     widget: "javascriptLinks",
-            // }
+            "Okay. please choose more than one screen",
+            {
+                widget: "MultipleScreensOptions",
+            }
+        );
+
+        this.updateChatbotState(message);
+    };
+    handleNoneOfAboveScreensOption = () => {
+        const message = this.createChatBotMessage(
+            "Okay. I got it",
+
+        );
+
+        this.updateChatbotState(message);
+    };
+    handleMultipleScreensOption = () => {
+        const message = this.createChatBotMessage(
+            "Okay. you choose more than one screen",
+
         );
 
         this.updateChatbotState(message);
@@ -33,6 +50,6 @@ class ActionProvider {
         }))
     }
 }
-
-
 export default ActionProvider;
+
+
