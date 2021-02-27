@@ -7,3 +7,7 @@
 }
 .react-chatbot-kit-chat-inner-container {
     height: 700px;}
+.react-chatbot-kit-chat-bot-message {
+    margin-left: initial;
+    text-align: initial;
+}

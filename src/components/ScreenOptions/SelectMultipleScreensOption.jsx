@@ -1,6 +1,6 @@
 import React , { Component }  from "react";
 import ImagePicker from 'react-image-picker'
-import "./SelectOneScreenOption.css";
+import "./SelectScreenOption.css";
 import img1 from "../../assets/images/s1.png"
 import img2 from "../../assets/images/s2.png"
 import img3 from "../../assets/images/s3.png"
@@ -42,8 +42,11 @@ class SelectMultipleScreens extends Component{
                     onPick={this.onPickMultipleImages}
                     multiple
                 />
-                <button type="button" onClick={() => this.props.actionProvider.handleMultipleScreensOption()}>done</button>
-                <button type="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button>
+                {/* eslint-disable-next-line react/style-prop-object */}
+
+                <center><button type="button" class="button" onClick={() => this.props.actionProvider.handleMultipleScreensOption()}>done</button></center>
+
+                <center><button type="button" class="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button></center>
                 {/*<textarea rows="4" cols="100" value={this.state.images && JSON.stringify(this.state.images)} disabled/>*/}
 
             </div>

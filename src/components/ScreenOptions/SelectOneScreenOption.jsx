@@ -1,6 +1,6 @@
 import React , { Component }  from "react";
 import ImagePicker from 'react-image-picker'
-import "./SelectOneScreenOption.css";
+import "./SelectScreenOption.css";
 import img1 from "../../assets/images/s1.png"
 import img2 from "../../assets/images/s2.png"
 import img3 from "../../assets/images/s3.png"
@@ -40,7 +40,7 @@ class SelectOneScreen extends Component{
                     // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
                 />
 
-                <button type="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button>
+                <center><button type="button" class="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button></center>
 
 
             </div>
