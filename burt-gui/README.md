@@ -5,7 +5,7 @@ node.js v10+
 
 ```
 # download the repository
-git clone git@github.com:sea-lab-wm/chatbot.git
+git clone [repo url]
 
 # open the chatbot folder
 cd burt-gui
