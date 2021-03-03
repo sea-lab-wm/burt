@@ -1,11 +1,14 @@
-## Creating an app
+## Requirements
+node.js v10+
+
+## Running the app
 
 ```
 # download the repository
 git clone git@github.com:sea-lab-wm/chatbot.git
 
 # open the chatbot folder
-cd chatbot
+cd burt-gui
 
 # install packages(yarn is faster, it is not recommended to use npm and yarn together)
 yarn install
