@@ -44,9 +44,9 @@ class SelectMultipleScreens extends Component{
                 />
                 {/* eslint-disable-next-line react/style-prop-object */}
 
-                <center><button type="button" class="button" onClick={() => this.props.actionProvider.handleMultipleScreensOption()}>done</button></center>
+                <center><button type="button" className="button" onClick={() => this.props.actionProvider.handleMultipleScreensOption()}>done</button></center>
 
-                <center><button type="button" class="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button></center>
+                <center><button type="button" className="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button></center>
                 {/*<textarea rows="4" cols="100" value={this.state.images && JSON.stringify(this.state.images)} disabled/>*/}
 
             </div>

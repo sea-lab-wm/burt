@@ -7,9 +7,11 @@ import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 const config = {
     initialMessages: [
-        createChatBotMessage("Got it. Just to confirm, can you select the screen that is having the problem?", {
-            widget: "OneScreenOption",
-        }),
+        createChatBotMessage("Got it. Just to confirm, can you select the screen that is having the problem?",
+        //     {
+        //     widget: "OneScreenOption",
+        // }
+        ),
     ],
     widgets: [
         {

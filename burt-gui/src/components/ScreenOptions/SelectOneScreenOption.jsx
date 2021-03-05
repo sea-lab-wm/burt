@@ -40,7 +40,7 @@ class SelectOneScreen extends Component{
                     // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
                 />
 
-                <center><button type="button" class="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button></center>
+                <center><button type="button" className="button" onClick={() => this.props.actionProvider.handleNoneOfAboveScreensOption()}>none of above</button></center>
 
 
             </div>
