@@ -6,11 +6,14 @@ import SelectMultipleScreens from "./components/ScreenOptions/SelectMultipleScre
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 const config = {
+    serverEndpoint: "http://localhost:8081",
+    saveMessagesService: "/saveMessages",
+    loadMessagesService: "/loadMessages",
     initialMessages: [
         createChatBotMessage("Got it. Just to confirm, can you select the screen that is having the problem?",
-        //     {
-        //     widget: "OneScreenOption",
-        // }
+            {
+            widget: "OneScreenOption",
+        }
         ),
     ],
     widgets: [

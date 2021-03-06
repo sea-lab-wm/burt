@@ -1,5 +1,3 @@
-import App from "./App"
-
 // MessageParser starter code
 class MessageParser {
     constructor(actionProvider, state) {
@@ -12,7 +10,7 @@ class MessageParser {
         // App.save
 
         // this.actionProvider.saveMessages(this.state);
-        this.actionProvider.saveSingleMessage(messageObj)
+        //this.actionProvider.saveSingleMessage(messageObj)
 
         const message = messageObj.message
 

@@ -32,8 +32,6 @@ const Chatbot = ({
     );
   }
 
-  console.log("Session id in framework", sessionId)
-
   const propsErrors = validateProps(config, messageParser);
 
   if (propsErrors.length) {
@@ -63,11 +61,26 @@ const Chatbot = ({
 
   useEffect(() => {
     if (messageHistory && Array.isArray(messageHistory)) {
-      console.log("Setting message history: ", messageHistory)
+      console.log("Loading messages: ", messageHistory)
       setState((prevState) => ({ ...prevState, messages: messageHistory }));
-    }else{
-      console.log("Couldn't set the message history: ", messageHistory,  Array.isArray(messageHistory), typeof messageHistory)
     }
+
+    //--------------------------------
+    //alert the user if she/he wants to leave and save the messages
+
+    const onunload = () => saveMessages(messagesRef.current);
+    window.onbeforeunload =  onunload
+    window.onunload = onunload
+
+    window.addEventListener("beforeunload", function (e) {
+      var confirmationMessage = 'It looks like your conversation has not been saved.';
+      confirmationMessage += 'Do you want to continue?';
+
+      (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+      return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+    });
+
+    //-----------------------------------------
 
     return () => {
       if (saveMessages && typeof saveMessages === "function") {
@@ -84,7 +97,7 @@ const Chatbot = ({
     createChatBotMessage,
     setState,
     createClientMessage,
-      sessionId
+    sessionId
   );
   const widgetRegistry = new WidgetRegistry(setState, actionProv);
   const messagePars = new messageParser(actionProv, state);

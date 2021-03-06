@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-console.log("Index.js is executed!")
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

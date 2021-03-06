@@ -57,7 +57,7 @@ public class ConversationController {
 
     @RequestMapping("/loadMessages")
     public List<MessageObj> loadMessages(@RequestBody RequestMessage req) {
-        String msg = "Return the messages in the server...";
+        String msg = "Returning the messages in the server...";
         LOGGER.debug(msg);
         return messages.get(req.getSessionId());
     }

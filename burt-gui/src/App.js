@@ -1,131 +1,123 @@
-import React, { useState } from "react";
+import React from "react";
 import './App.css';
 import Chatbot from "react-chatbot-kit";
 import config from './config';
 import actionProvider from "./ActionProvider.js";
 import messageParser from "./MessageParser.js";
-import sessions from "./session/Session";
 import Cookies from 'universal-cookie';
 import {v4 as uuid} from 'uuid';
 
 //const request = require('request');
 
+const axios = require('axios')
 
-const cookies =new Cookies();
-
-let counter = 2;
-let sessionId = null
 
 function App() {
 
+    const cookies = new Cookies();
+    let sessionId = null
+
+    //creating the session
     if (cookies.get("userID") === undefined) {
         sessionId = uuid()
-        // sessionId = "454545"
-        cookies.set('userID', sessionId, {path: '/'});
-    }else {
+        cookies.set('userID', sessionId, {path: '/', secure: false, sameSite: "lax"});
+    } else {
         sessionId = cookies.get("userID")
     }
 
-    console.log("Session id is", sessionId)
+    console.log("Current session id: ", sessionId)
 
-    // const [appState, toggleBot] = useState(false);
+    function saveMessages(messages) {
+        console.log("Saving messages for ", sessionId, ": ", messages)
 
-    //actionProvider.setSession(sessionId)
-
-    function loadMessages(){
-        console.log("loading messages...")
-
-        // const msgs = sessions.get(counter);
-        // if (typeof msgs !== 'undefined')
-        //     console.log("Messages for "+ counter, msgs)
-        // else
-        //     console.log("Couldn't find msgs for "+ counter)
-
-        //const messagesLS = JSON.parse(localStorage.getItem("chat_messages"));
-
-        // let response = axios
-        //     .post('http://localhost:8081/loadMessages', {
-        //         sessionId: sessionId,
-        //         messages : null
-        //     }).then(res => {
-        //         console.log(`Done loading`)
-        //         if(res.data !== "") {
-        //             // console.log(res.data)
-        //             let messagesFromServer = res.data;
-        //             console.log("Msgs from server", messagesFromServer)
-        //             console.log("Msgs from local storage", messagesLS)
-        //             // return JSON.parse(datum);
-        //             // return messagesFromServer;
-        //             return messagesLS;
-        //         }
-        //         console.log("Returning null!!! warning!")
-        //         return null;
-        //     })
-        //     .catch(error => {
-        //         console.error(error)
-        //         return null;
-        //     })
-
-        var request = new XMLHttpRequest();
-        request.open('POST', 'http://localhost:8081/loadMessages', false);  // `false` makes the request synchronous
-        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-        const req = {
-                    sessionId: sessionId,
-                    messages : null
-                }
-
-        request.send(JSON.stringify(req));
-
-        let response = null;
-
-        if (request.status === 200) {
-            const messagesFromServer =request.responseText;
-
-            console.log("Msgs from server", messagesFromServer)
-            if(messagesFromServer !== "")
-                response = JSON.parse(messagesFromServer)
-                //response = messagesFromServer
-        }else{
-            console.error("There was an error")
-        }
-
-        console.log("After post!", response)
-
-
-        return response;
-        //retrieve the messages in a DB
+        //calling the API asynchronously
+        axios
+            .post(config.serverEndpoint + config.saveMessagesService, {
+                sessionId: sessionId,
+                messages: messages
+            })
+            .then(res => {
+                console.log(`Messages were saved sucessfully`)
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
 
-    const chatbot =  <Chatbot
+    function loadMessagesSync() {
+        console.log("Fetching messages...")
+        let messages = null;
+
+        try {
+            let request = new XMLHttpRequest();
+            const url = config.serverEndpoint + config.loadMessagesService;
+            request.open('POST', url, false);
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            const requestBody = {
+                sessionId: sessionId,
+                messages: null
+            }
+
+            request.send(JSON.stringify(requestBody));
+
+
+            if (request.status === 200) {
+                const messagesFromServer = request.responseText;
+
+                if (messagesFromServer !== "") {
+                    messages = JSON.parse(messagesFromServer)
+                }
+            } else {
+                console.error(`There was an error retrieving the messages: ${request.status} - ${request.statusText}`)
+            }
+        } catch (e) {
+            console.error(`Unexpected error: ${e}`)
+        }
+
+        return messages;
+    }
+
+    //FIXME: this function does not work with the framework
+    function loadMessagesAsync(setState) {
+        console.log("Fetching messages (async)...")
+        const url = config.serverEndpoint + config.loadMessagesService;
+
+        axios
+            .post(url, {
+                sessionId: sessionId,
+                messages : null
+            }).then(res => {
+                // console.log(res)
+                if(res.data !== "") {
+                    // console.log(res.data)
+                    const messages = res.data
+                    console.log("Loading messages (async): ", messages)
+                    setState((prevState) => ({ ...prevState, messages: messages }));
+                }
+            })
+            .catch(error => {
+                console.error(`There was an error retrieving the messages: ${error}`)
+            })
+
+    }
+
+    const chatbot = <Chatbot
         config={config}
         actionProvider={actionProvider}
-        messageHistory={loadMessages()}
+        messageHistory={loadMessagesSync()}
         messageParser={messageParser}
         sessionId={sessionId}
-        // saveMessages={saveMessages}
+        saveMessages={saveMessages}
     />;
-
-   // actionProvider.setChatbot(chatbot)
 
     return (
         <div className="App">
             {
                 chatbot
             }
-            {/*<button onClick={() => toggleBot((prev) => !prev)}>Bot</button>*/}
         </div>
     );
 }
-//
-//
-// function App() {
-//     return (
-//         <div className="App">
-//             <header className="App-header">
-//                 <Chatbot config={config} actionProvider={ActionProvider} messageParser={MessageParser} />
-//             </header>
-//         </div>
-//     );
-// }
+
 export default App;
