@@ -5,14 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import sealab.burt.server.ActionFolder.ChatbotAction;
-
-import java.text.MessageFormat;
-import java.util.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SpringBootApplication
@@ -38,7 +37,7 @@ public class ConversationController {
 //
 
     public static void main(String[] args) {
-        ApplicationContext ctx =  SpringApplication.run(ConversationController.class, args);
+        ApplicationContext ctx = SpringApplication.run(ConversationController.class, args);
     }
 
 //    @PostMapping("/processMessage")
@@ -86,26 +85,20 @@ public class ConversationController {
     @PostMapping("/echo")
     public ConversationResponse echo() {
         LOGGER.debug("Echoing");
-        return new ConversationResponse("BURT is running", 0);
+        return ConversationResponse.createResponse("BURT is running");
     }
 
-    @PostMapping("/status")
-    public ConversationResponse isConversationStarted(@RequestParam(value = "id") String conversationId) {
-        LOGGER.debug(MessageFormat.format("Checking conversation {0}", conversationId));
-        return new ConversationResponse(String.valueOf(conversations.containsKey(conversationId)), 0);
-    }
-
-    @PostMapping( "/start")
-    public ConversationResponse startConversation() {
-        String conversationId = UUID.randomUUID().toString();
-        conversations.putIfAbsent(conversationId, new Conversation(conversationId));
-        return new ConversationResponse(conversationId, 0);
+    @PostMapping("/start")
+    public String startConversation() {
+        String sessionId = UUID.randomUUID().toString();
+        conversations.putIfAbsent(sessionId, new Conversation(sessionId));
+        return sessionId;
     }
 
     @PostMapping("/end")
-    public ConversationResponse endConversation(@RequestParam(value = "id") String conversationId) {
+    public String endConversation(@RequestParam(value = "id") String conversationId) {
         Object obj = conversations.remove(conversationId);
-        return new ConversationResponse(obj != null ? "true" : "false" , 0);
+        return obj != null ? "true" : "false";
     }
 
 }
