@@ -1,4 +1,3 @@
-
 // import Chatbot from "react-chatbot-kit";
 
 import {createChatBotMessage} from "react-chatbot-kit";
@@ -12,10 +11,7 @@ class ActionProvider{
     constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj) {
         this.createChatBotMessage = createChatBotMessage;
         this.setState = setStateFunc;
-        // this.state = stateObj.current
         this.sessionId = sessionIdObj
-        //console.log("Constructing action provider ", this.sessionId)
-        // this.chatbot = null
     }
 
     saveSingleMessage(messageObj){
@@ -64,6 +60,7 @@ class ActionProvider{
             })
         this.updateChatbotState(msg)
     }
+
     handleSave(){
         const msg = this.createChatBotMessage("I am saving...")
         this.updateChatbotState(msg)

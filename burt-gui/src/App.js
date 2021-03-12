@@ -4,31 +4,29 @@ import Chatbot from "react-chatbot-kit";
 import config from './config';
 import actionProvider from "./ActionProvider.js";
 import messageParser from "./MessageParser.js";
-import Cookies from 'universal-cookie';
-import {v4 as uuid} from 'uuid';
-
-//const request = require('request');
+import ApiClient from "./ApiClient";
+import SessionManager from "./SessionManager";
 
 const axios = require('axios')
-const context = "";
-localStorage.setItem("context", "");
-localStorage.setItem("OB", "false");
-localStorage.setItem("EB", "false")
-localStorage.setItem("SR", "false")
-
 
 function App() {
 
-    const cookies = new Cookies();
     let sessionId = null
-
-    //creating the session
-    if (cookies.get("userID") === undefined) {
-        sessionId = uuid()
-        cookies.set('userID', sessionId, {path: '/', secure: false, sameSite: "lax"});
-    } else {
-        sessionId = cookies.get("userID")
+    try {
+        //creating the session
+        if (SessionManager.noSession()) {
+            sessionId = ApiClient.startConversation()
+            SessionManager.setSessionId(sessionId)
+        } else {
+            sessionId = SessionManager.getSessionId()
+        }
+    } catch (e) {
+        console.error("Unexpected error when creating the session: ", e)
+        SessionManager.endSession()
     }
+
+
+    //--------------------------------
 
     console.log("Current session id: ", sessionId)
 
@@ -48,6 +46,8 @@ function App() {
                 console.error(error)
             })
     }
+
+    //--------------------------------
 
     function loadMessagesSync() {
         console.log("Fetching messages...")
@@ -82,46 +82,55 @@ function App() {
         return messages;
     }
 
-    //FIXME: this function does not work with the framework
-    function loadMessagesAsync(setState) {
-        console.log("Fetching messages (async)...")
-        const url = config.serverEndpoint + config.loadMessagesService;
+    //--------------------------------
 
-        axios
-            .post(url, {
-                sessionId: sessionId,
-                messages : null
-            }).then(res => {
-                // console.log(res)
-                if(res.data !== "") {
-                    // console.log(res.data)
-                    const messages = res.data
-                    console.log("Loading messages (async): ", messages)
-                    setState((prevState) => ({ ...prevState, messages: messages }));
+    if (sessionId != null && sessionId != undefined)
+        return (
+            <div className="App">
+                {
+                    <Chatbot
+                        config={config}
+                        actionProvider={actionProvider}
+                        messageHistory={loadMessagesSync()}
+                        messageParser={messageParser}
+                        sessionId={sessionId}
+                        saveMessages={saveMessages}
+                    />
                 }
-            })
-            .catch(error => {
-                console.error(`There was an error retrieving the messages: ${error}`)
-            })
-
-    }
-
-    const chatbot = <Chatbot
-        config={config}
-        actionProvider={actionProvider}
-        messageHistory={loadMessagesSync()}
-        messageParser={messageParser}
-        sessionId={sessionId}
-        saveMessages={saveMessages}
-    />;
-
-    return (
-        <div className="App">
-            {
-                chatbot
-            }
-        </div>
-    );
+            </div>
+        );
+    else
+        return (
+            <div>I am sorry, BURT cannot be loaded</div>
+        );
 }
+
+//--------------------------------
+
+/*
+//FIXME: this function does not work with the framework
+function loadMessagesAsync(setState) {
+    console.log("Fetching messages (async)...")
+    const url = config.serverEndpoint + config.loadMessagesService;
+
+    axios
+        .post(url, {
+            sessionId: sessionId,
+            messages : null
+        }).then(res => {
+        // console.log(res)
+        if(res.data !== "") {
+            // console.log(res.data)
+            const messages = res.data
+            console.log("Loading messages (async): ", messages)
+            setState((prevState) => ({ ...prevState, messages: messages }));
+        }
+    })
+        .catch(error => {
+            console.error(`There was an error retrieving the messages: ${error}`)
+        })
+
+}
+*/
 
 export default App;
