@@ -23,11 +23,11 @@ class SelectOneScreen extends Component{
     }
     onPickOneImage(image) {
         this.setState({image});
-        this.handleOneScreen();
+        this.handleOneScreen(image);
 
     }
-    handleOneScreen(){
-        this.props.actionProvider.handleOneScreenOption();
+    handleOneScreen(image){
+        this.props.actionProvider.answerSelectedOneScreen(image);
     }
 
 

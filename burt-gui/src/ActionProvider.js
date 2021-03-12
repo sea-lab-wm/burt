@@ -6,7 +6,7 @@ import {createChatBotMessage} from "react-chatbot-kit";
 const axios = require('axios')
 // ActionProvider starter code
 // import sessions from "./session/Session";
-
+const context = "";
 class ActionProvider{
 
     constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj) {
@@ -15,16 +15,7 @@ class ActionProvider{
         // this.state = stateObj.current
         this.sessionId = sessionIdObj
         //console.log("Constructing action provider ", this.sessionId)
-
         // this.chatbot = null
-    }
-
-    createInitialMessage(){
-        const message = createChatBotMessage("Got it. Just to confirm, can you select the screen that is having the" +
-            " problem?", {
-            widget: "OneScreenOption",
-        })
-        this.updateChatbotState(message)
     }
 
     saveSingleMessage(messageObj){
@@ -44,11 +35,35 @@ class ActionProvider{
             })
     }
 
-    greet() {
-        const greetingMessage = this.createChatBotMessage("Hi, friend.")
-        this.updateChatbotState(greetingMessage)
+    selectApp(){
+        const msg = this.createChatBotMessage(
+            "Sure. To start, please select the app that is having the problem",
+            {
+                widget: "OneScreenOption",
+            })
+        this.updateChatbotState(msg)
     }
 
+
+    answerSelectedOneScreen(image){
+        const msg = this.createChatBotMessage("you selected" + image + ", shall we continue?")
+        this.updateChatbotState(msg)
+    }
+
+    //should embed the app name in the message
+    askForOB(){
+        const msg = this.createChatBotMessage("Ok, can you please tell me the incorrect behavior of Chikki that you observed")
+        this.updateChatbotState(msg)
+    }
+
+    confirmOB(){
+        const msg = this.createChatBotMessage(
+         " Got it. Just to confirm, can you select the Chikii screen that is having the problem? " + "Please hit the “Done” button when you are done.",
+            {
+                widget: "OneScreenOption"
+            })
+        this.updateChatbotState(msg)
+    }
     handleSave(){
         const msg = this.createChatBotMessage("I am saving...")
         this.updateChatbotState(msg)

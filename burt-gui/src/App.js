@@ -10,6 +10,11 @@ import {v4 as uuid} from 'uuid';
 //const request = require('request');
 
 const axios = require('axios')
+const context = "";
+localStorage.setItem("context", "");
+localStorage.setItem("OB", "false");
+localStorage.setItem("EB", "false")
+localStorage.setItem("SR", "false")
 
 
 function App() {
@@ -60,7 +65,6 @@ function App() {
             }
 
             request.send(JSON.stringify(requestBody));
-
 
             if (request.status === 200) {
                 const messagesFromServer = request.responseText;

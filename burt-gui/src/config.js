@@ -10,11 +10,8 @@ const config = {
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
     initialMessages: [
-        createChatBotMessage("Got it. Just to confirm, can you select the screen that is having the problem?",
-            {
-            widget: "OneScreenOption",
-        }
-        ),
+        createChatBotMessage("Hello"),
+        createChatBotMessage("This is BURT. I am going to assist you in reporting the problem you are having"),
     ],
     widgets: [
         {
