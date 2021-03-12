@@ -9,9 +9,10 @@ const config = {
     serverEndpoint: "http://localhost:8081",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
+    startService: "/start",
     initialMessages: [
-        createChatBotMessage("Hello"),
-        createChatBotMessage("This is BURT. I am going to assist you in reporting the problem you are having"),
+        createChatBotMessage("Hi there"),
+        createChatBotMessage("This is BURT. I am going to assist you in reporting the problem with your app."),
     ],
     widgets: [
         {
