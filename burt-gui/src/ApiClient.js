@@ -7,7 +7,7 @@ class ApiClient {
 
     static startConversation() {
         let response = ApiClient.sendRequestSync(config.startService, null);
-        return response.message
+        return response
     }
 
     static processUserMessage(userMsg) {
@@ -16,6 +16,7 @@ class ApiClient {
         //     sessionId: sessionId,
         //     messages: messages
         // }
+        // setTimeout(function(){ alert("Hello"); }, 3000);
         const response = {
             message: "This is a test"
         }
@@ -49,7 +50,11 @@ class ApiClient {
             const messagesFromServer = request.responseText;
 
             if (messagesFromServer !== "") {
-                return JSON.parse(messagesFromServer)
+                try {
+                    return JSON.parse(messagesFromServer)
+                } catch (e) {
+                    return messagesFromServer
+                }
             }
         } else {
             throw `There was an error: ${request.status} - ${request.statusText}`
