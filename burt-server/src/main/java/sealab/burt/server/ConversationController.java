@@ -22,8 +22,21 @@ public class ConversationController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
     ConcurrentHashMap<String, Object> conversations = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, Object> conversationStates = new ConcurrentHashMap<>();
+    HashMap<String, ChatbotAction> actions =
+        {
+            SELECT_APP: new SelectAppAction(),
+            CONFIRM_APP: new ConfirmAppAction()
+        };
+    HashMap<String, StateChecker> intentsActions =
+        {
+            "GREETING": new NoStateChecker("SELECT_APP"),
+            "APP_SELECTED": new NoStateChecker("CONFIRM_APP"),
+            "AFFIRMATIVE_ANSWER": new AffirmativeAnswerStateChecker(null)
+        };
 
-    public static void main(String[] args) {
+
+public static void main(String[] args) {
         SpringApplication.run(ConversationController.class, args);
     }
 
@@ -38,6 +51,15 @@ public class ConversationController {
             }
         };
     }
+
+    @RequestMapping("processSingleMessage")
+    public void processMessage(String msg){
+        intent = MessageParser.getIntent(msg);
+        intentAction = intentsActions.get(intent);
+        result = actions.get(intentAction.nextAction()).execute();
+        return result;
+    }
+
 
     @RequestMapping("/saveSingleMessage")
     public void saveSingleMessage(@RequestBody RequestMessage req) {
