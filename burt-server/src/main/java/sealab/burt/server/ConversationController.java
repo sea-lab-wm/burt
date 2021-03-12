@@ -9,12 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import sealab.burt.server.ActionFolder.ChatbotAction;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SpringBootApplication
@@ -25,22 +23,35 @@ public class ConversationController {
     ConcurrentHashMap<String, Object> conversations = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, Object> conversationStates = new ConcurrentHashMap<>();
-    HashMap<String, ChatbotAction> actions =
-        {
-            SELECT_APP: new SelectAppAction(),
-            CONFIRM_APP: new ConfirmAppAction()
-        };
-    HashMap<String, StateChecker> intentsActions =
-        {
-            "GREETING": new NoStateChecker("SELECT_APP"),
-            "APP_SELECTED": new NoStateChecker("CONFIRM_APP"),
-            "AFFIRMATIVE_ANSWER": new AffirmativeAnswerStateChecker(null)
-        };
 
+//    HashMap<String, ChatbotAction> actions =
+//        {
+//            SELECT_APP: new SelectAppAction(),
+//            CONFIRM_APP: new ConfirmAppAction()
+//        };
+//    HashMap<String, StateChecker> intentsActions =
+//        {
+//            "GREETING": new NoStateChecker("SELECT_APP"),
+//            "APP_SELECTED": new NoStateChecker("CONFIRM_APP"),
+//            "AFFIRMATIVE_ANSWER": new AffirmativeAnswerStateChecker(null)
+//        };
+//
 
     public static void main(String[] args) {
         ApplicationContext ctx =  SpringApplication.run(ConversationController.class, args);
     }
+
+//    @PostMapping("/processMessage")
+//    void processMessage(@RequestBody RequestMessage req){
+//        MessageObj responseMessageObj = req.messages.get(0);
+//        String sessionId = req.sessionId;
+//
+//        intent = MessageParser.getIntent(msg);
+//        intentAction = intentsActions.get(intent);
+//        result = actions.get(intentAction.nextAction()).execute();
+//        return result;
+//    }
+
 
     @PostMapping("/saveSingleMessage")
     public void saveSingleMessage(@RequestBody RequestMessage req) {
