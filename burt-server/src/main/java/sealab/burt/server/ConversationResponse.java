@@ -6,16 +6,16 @@ import lombok.Data;
 public @Data
 class ConversationResponse {
 
-    private MessageObj message;
+    private ChatbotMessage message;
     private Integer code;
 
 
-    public ConversationResponse(MessageObj message, Integer code) {
+    public ConversationResponse(ChatbotMessage message, Integer code) {
         this.message = message;
         this.code = code;
     }
 
     static ConversationResponse createResponse(String message){
-        return new ConversationResponse(new MessageObj(message), 0);
+        return new ConversationResponse(new ChatbotMessage(new MessageObj(message)), 0);
     }
 }

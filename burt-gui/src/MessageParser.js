@@ -16,12 +16,12 @@ class MessageParser {
 
             try {
                 if (response.code === -1)
-                    throw response.data.message.message
+                    throw response.data.message.messageObj.message
 
                 console.log(response)
 
                 const message = this.actionProvider.createChatBotMessage(
-                    response.data.message.message
+                    response.data.message.messageObj.message
                 );
 
                 this.actionProvider.updateChatbotState(message)

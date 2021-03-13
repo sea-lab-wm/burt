@@ -6,6 +6,6 @@ import java.util.List;
 
 public @Data class RequestMessage {
 
-    String sessionId;
-    List<MessageObj> messages;
+    private String sessionId;
+    private List<MessageObj> messages;
 }

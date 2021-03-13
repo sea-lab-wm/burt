@@ -5,11 +5,11 @@ import lombok.Data;
 public @Data
 class MessageObj {
 
-    String message;
-    String type;
-    double id;
-    String widget;
-    Boolean loading;
+    private String message;
+    private String type;
+    private double id;
+    private String widget;
+    private Boolean loading;
 
     public MessageObj(String message) {
         this.message = message;
