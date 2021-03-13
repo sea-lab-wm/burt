@@ -10,16 +10,33 @@ class MessageParser {
 
         const userMsg = messageObj.message
 
-        const response = ApiClient.processUserMessage(userMsg)
+        const responsePromise = ApiClient.processUserMessage(userMsg)
 
-        const message = this.actionProvider.createChatBotMessage(
-            response.message
+        responsePromise.then(response => {
 
-        );
+            try {
+                if (response.code === -1)
+                    throw response.data.message.message
 
-        this.actionProvider.updateChatbotState(message)
+                console.log(response)
+
+                const message = this.actionProvider.createChatBotMessage(
+                    response.data.message.message
+                );
+
+                this.actionProvider.updateChatbotState(message)
+            } catch (errorMsg) {
+                console.error(`There was an error from the server: ${errorMsg}`);
+            }
+        }).catch(error => {
+            console.error(`There was an error: ${error}`);
+        })
+
+
 
     }
+
+
 }
 
 export default MessageParser;

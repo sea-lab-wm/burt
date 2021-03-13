@@ -6,21 +6,21 @@ const axios = require('axios')
 class ApiClient {
 
     static startConversation() {
-        let response = ApiClient.sendRequestSync(config.startService, null);
-        return response
+        return ApiClient.sendRequestSync(config.startService, null)
     }
 
-    static processUserMessage(userMsg) {
+    static processUserMessage(messageObj) {
         const sessionId = SessionManager.getSessionId();
-        // const data = {
-        //     sessionId: sessionId,
-        //     messages: messages
-        // }
-        // setTimeout(function(){ alert("Hello"); }, 3000);
-        const response = {
-            message: "This is a test"
+
+        const data = {
+            sessionId: sessionId,
+            messages: [messageObj]
         }
-        return response;
+
+        const promise = axios
+            .post(config.serverEndpoint + config.processMessageService, data)
+
+        return promise;
     }
 
     static sendRequestAsync(service, data) {

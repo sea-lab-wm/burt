@@ -10,6 +10,7 @@ const config = {
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
     startService: "/start",
+    processMessageService: "/testResponse",
     initialMessages: [
         createChatBotMessage("Hi there"),
         createChatBotMessage("This is BURT. I am going to assist you in reporting the problem with your app."),
