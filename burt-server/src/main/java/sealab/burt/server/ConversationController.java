@@ -1,5 +1,6 @@
 package sealab.burt.server;
 
+import jdk.dynalink.linker.ConversionComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +23,7 @@ public class ConversationController {
     ConcurrentHashMap<String, Object> conversations = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, Object> conversationStates = new ConcurrentHashMap<>();
-
+//    HashMap<String,
 //    HashMap<String, ChatbotAction> actions =
 //        {
 //            SELECT_APP: new SelectAppAction(),
@@ -66,6 +67,12 @@ public class ConversationController {
         String msg = "Saving the messages in the server...";
         LOGGER.debug(msg);
         messages.put(req.getSessionId(), req.getMessages());
+    }
+
+    @PostMapping("/testResponse")
+    public void testResponse(@RequestBody ConversationResponse res) {
+        ConversationResponse.createResponse("test_message");
+
     }
 
     @PostMapping("/loadMessages")
