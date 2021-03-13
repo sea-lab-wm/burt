@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sealab.burt.server.actions.ChatbotAction;
-import sealab.burt.server.actions.ConfirmAppAction;
-import sealab.burt.server.actions.ProvideOBAction;
-import sealab.burt.server.actions.SelectAppAction;
+import sealab.burt.server.actions.*;
+import sealab.burt.server.statecheckers.OBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.AffirmativeAnswerStateChecker;
 import sealab.burt.server.statecheckers.NoStateChecker;
 import sealab.burt.server.statecheckers.StateChecker;
@@ -36,6 +34,8 @@ public class ConversationController {
             put("CONFIRM_APP", new ConfirmAppAction());
             put("PROVIDE_OB", new ProvideOBAction());
 //            CONFIRM_APP: new ConfirmAppAction()
+            put("REPHRASE_OB", new RephraseOBAction());
+            put("SELECT_OB_SCREEN", new SelectOBScreenAction());
         }
     };
     ConcurrentHashMap<String, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
@@ -45,6 +45,7 @@ public class ConversationController {
 //                "GREETING": new NoStateChecker("SELECT_APP"),
 //            "APP_SELECTED": new NoStateChecker("CONFIRM_APP"),
 //            "AFFIRMATIVE_ANSWER": new AffirmativeAnswerStateChecker(null)
+        put("OB_DESCRIPTION", new OBDescriptionStateChecker(null));
     }};
 
 
@@ -57,7 +58,9 @@ public class ConversationController {
     public ConversationResponse processMessage(@RequestBody RequestMessage req) {
         MessageObj message = req.getMessages().get(0);
         String sessionId = req.getSessionId();
+
         ConcurrentHashMap<String, Object> state = conversationStates.get(sessionId);
+        state.put("CURRENT_MESSAGE", message);
 
         String intent = MessageParser.getIntent(message, state);
         if (intent == null)
@@ -66,12 +69,12 @@ public class ConversationController {
 
         StateChecker stateChecker = stateCheckers.get(intent);
         if (stateChecker == null)
-            return ConversationResponse.createResponse("Sorry, I do not know how to respond in these case");
+            return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
 
         ChatbotAction nextAction = actions.get(stateChecker.nextAction(state));
 
         if (nextAction == null)
-            return ConversationResponse.createResponse("Sorry, I do not know what to do  in these case");
+            return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
 
         String nextIntent = nextAction.nextExpectedIntent();
         MessageObj nextMessage = nextAction.execute();

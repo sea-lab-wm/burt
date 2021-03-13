@@ -1,6 +1,5 @@
 package sealab.burt.server;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 public @Data
