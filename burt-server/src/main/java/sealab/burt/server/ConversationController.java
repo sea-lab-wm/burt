@@ -70,8 +70,9 @@ public class ConversationController {
     }
 
     @PostMapping("/testResponse")
-    public void testResponse(@RequestBody ConversationResponse res) {
-        ConversationResponse.createResponse("test_message");
+    public ConversationResponse testResponse(@RequestBody RequestMessage req) {
+        MessageObj responseMessageObj = req.messages.get(0);
+        return ConversationResponse.createResponse(responseMessageObj.message);
 
     }
 
