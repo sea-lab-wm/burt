@@ -10,14 +10,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SpringBootApplication
 @RestController
 public class ConversationController {
+
+    static ConcurrentHashMap<String, String> intentTokens;
+    static {
+        intentTokens = new ConcurrentHashMap<>();
+
+        addIntentTokens("GREETING", Arrays.asList("t1", "t2", "t3"));
+        addIntentTokens("AFFIRMATIVE_ANSWER", Arrays.asList("t1", "t2", "t3"));
+        //....
+    }
+
+    public static void addIntentTokens(String intent, List<String> tokens){
+        for (String token : tokens) {
+            intentTokens.put(token, intent);
+        }
+    }
+
+    public String getIntent(String msg){
+        Set<Map.Entry<String, String>> entries = intentTokens.entrySet();
+        for (Map.Entry<String, String> entry : entries) {
+            if(msg.contains(entry.getKey())) return entry.getValue();
+        }
+        return null;
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
     ConcurrentHashMap<String, Object> conversations = new ConcurrentHashMap<>();
