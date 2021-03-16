@@ -32,7 +32,6 @@ public class ConversationController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
     ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> conversationStates = new ConcurrentHashMap<>();
-    //    HashMap<String,
     ConcurrentHashMap<String, ChatbotAction> actions = new ConcurrentHashMap<>() {
         {
             put("SELECT_APP", new SelectAppAction());
@@ -67,9 +66,6 @@ public class ConversationController {
         put("GREETING", new NStateChecker("SELECT_APP"));
         put("APP_SELECTED", new NStateChecker("CONFIRM_APP"));
         put("AFFIRMATIVE_ANSWER", new AffirmativeAnswerStateChecker(null));
-//                "GREETING": new NoStateChecker("SELECT_APP"),
-//            "APP_SELECTED": new NoStateChecker("CONFIRM_APP"),
-//            "AFFIRMATIVE_ANSWER": new AffirmativeAnswerStateChecker(null)
 
         //--------OB---------------//
         put("OB_DESCRIPTION", new OBDescriptionStateChecker(null));
@@ -116,11 +112,11 @@ public class ConversationController {
             return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
 
         String nextIntent = nextAction.nextExpectedIntent();
-        MessageObj nextMessage = nextAction.execute(state);
+        ChatbotMessage nextMessage = nextAction.execute(state);
 
         state.put("NEXT_INTENT", nextIntent);
 
-        return new ConversationResponse(new ChatbotMessage(nextMessage), 0);
+        return new ConversationResponse(nextMessage, 0);
     }
 
 
@@ -170,7 +166,8 @@ public class ConversationController {
     @PostMapping("/start")
     public String startConversation() {
         String sessionId = UUID.randomUUID().toString();
-        conversationStates.putIfAbsent(sessionId, new ConcurrentHashMap<>());
+        ConcurrentHashMap<String, Object> state = new ConcurrentHashMap<>();
+        conversationStates.putIfAbsent(sessionId, state);
         return sessionId;
     }
 

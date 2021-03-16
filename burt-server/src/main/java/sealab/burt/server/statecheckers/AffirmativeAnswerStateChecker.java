@@ -1,5 +1,7 @@
 package sealab.burt.server.statecheckers;
 
+import sealab.burt.qualitychecker.OBChecker;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 public class AffirmativeAnswerStateChecker extends StateChecker {
@@ -12,6 +14,8 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
         String nextAction = null;
 
         if (state.get("CONVERSATION_STATE").equals("APP_ASKED")) {
+            //create the OB checker
+            state.put("OB_CHECKER", new OBChecker(state.get("APP").toString()));
             state.put("CONVERSATION_STATE", "COLLECTING_OB");
             nextAction = "PROVIDE_OB";
         }
