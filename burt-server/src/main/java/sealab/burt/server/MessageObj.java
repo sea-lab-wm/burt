@@ -8,7 +8,7 @@ class MessageObj {
     private String message;
     private String type;
     private double id;
-    private String widget = "OneOption";
+    private String widget;
     private Boolean loading;
 
     public MessageObj(String message) {

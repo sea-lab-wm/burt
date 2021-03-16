@@ -20,6 +20,7 @@ import sealab.burt.server.actions.observedbehavior.SelectOBScreenAction;
 import sealab.burt.server.actions.step2reproduce.*;
 import sealab.burt.server.statecheckers.*;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -66,6 +67,7 @@ public class ConversationController {
         put("GREETING", new NStateChecker("SELECT_APP"));
         put("APP_SELECTED", new NStateChecker("CONFIRM_APP"));
         put("AFFIRMATIVE_ANSWER", new AffirmativeAnswerStateChecker(null));
+        put("NEGATIVE_ANSWER", new NegativeAnswerStateChecker(null));
 
         //--------OB---------------//
         put("OB_DESCRIPTION", new OBDescriptionStateChecker(null));
@@ -87,41 +89,50 @@ public class ConversationController {
 
 
     @PostMapping("/processMessage")
-    public ConversationResponse processMessage(@RequestBody RequestMessage req) {
-        MessageObj message = req.getMessages().get(0);
-        String sessionId = req.getSessionId();
+    public ConversationResponse processMessage(@RequestBody UserMessage userResponse) {
 
-        ConcurrentHashMap<String, Object> state = conversationStates.get(sessionId);
-        state.put("CURRENT_MESSAGE", message);
+        if(userResponse!=null)
+            LOGGER.debug("User response: " + userResponse);
+        else
+            LOGGER.debug("User response is null");
 
-        System.out.println(state.get("CONVERSATION_STATE"));
-        String intent = MessageParser.getIntent(message, state);
+
+        String sessionId = userResponse.getSessionId();
+
+        ConcurrentHashMap<String, Object> conversationState = conversationStates.get(sessionId);
+
+        if(conversationState == null)
+            LOGGER.error("The session does not exist: " + sessionId);
+
+        conversationState.put("CURRENT_MESSAGE", userResponse);
+
+//        LOGGER.debug(MessageFormat.format("Past conversation state {0}"));
+        String intent = MessageParser.getIntent(userResponse, conversationState);
 
         if (intent == null)
             return ConversationResponse.createResponse("Sorry, I did not get that!");
-
 
         StateChecker stateChecker = stateCheckers.get(intent);
         if (stateChecker == null)
             return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
 
-        ChatbotAction nextAction = actions.get(stateChecker.nextAction(state));
-        System.out.println(state.get("CONVERSATION_STATE"));
+        ChatbotAction nextAction = actions.get(stateChecker.nextAction(conversationState));
+//        LOGGER.debug(conversationState.get("CONVERSATION_STATE").toString());
 
         if (nextAction == null)
             return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
 
         String nextIntent = nextAction.nextExpectedIntent();
-        ChatbotMessage nextMessage = nextAction.execute(state);
+        ChatbotMessage nextMessage = nextAction.execute(conversationState);
 
-        state.put("NEXT_INTENT", nextIntent);
+        conversationState.put("NEXT_INTENT", nextIntent);
 
         return new ConversationResponse(nextMessage, 0);
     }
 
 
     @PostMapping("/saveSingleMessage")
-    public void saveSingleMessage(@RequestBody RequestMessage req) {
+    public void saveSingleMessage(@RequestBody UserMessage req) {
         String msg = "Saving the messages in the server...";
         LOGGER.debug(msg);
         List<MessageObj> sessionMsgs = messages.getOrDefault(req.getSessionId(), new ArrayList<>());
@@ -130,21 +141,21 @@ public class ConversationController {
     }
 
     @PostMapping("/saveMessages")
-    public void saveMessages(@RequestBody RequestMessage req) {
+    public void saveMessages(@RequestBody UserMessage req) {
         String msg = "Saving the messages in the server...";
         LOGGER.debug(msg);
         messages.put(req.getSessionId(), req.getMessages());
     }
 
     @PostMapping("/testResponse")
-    public ConversationResponse testResponse(@RequestBody RequestMessage req) {
+    public ConversationResponse testResponse(@RequestBody UserMessage req) {
         MessageObj responseMessageObj = req.getMessages().get(0);
         return ConversationResponse.createResponse(responseMessageObj.getMessage());
 
     }
 
     @PostMapping("/loadMessages")
-    public List<MessageObj> loadMessages(@RequestBody RequestMessage req) {
+    public List<MessageObj> loadMessages(@RequestBody UserMessage req) {
         String msg = "Returning the messages in the server...";
         LOGGER.debug(msg);
         return messages.get(req.getSessionId());

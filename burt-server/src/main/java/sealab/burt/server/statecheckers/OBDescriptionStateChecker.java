@@ -3,6 +3,7 @@ package sealab.burt.server.statecheckers;
 import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.MessageObj;
+import sealab.burt.server.UserMessage;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,9 +21,9 @@ public class OBDescriptionStateChecker extends StateChecker {
 
     @Override
     public String nextAction(ConcurrentHashMap<String, Object> state) {
-        MessageObj message = (MessageObj) state.get("CURRENT_MESSAGE");
+        UserMessage userMessage = (UserMessage) state.get("CURRENT_MESSAGE");
         OBChecker obChecker = (OBChecker) state.get("OB_CHECKER");
-        QualityResult result = obChecker.checkOb(message.getMessage());
+        QualityResult result = obChecker.checkOb(userMessage.getMessages().get(0).getMessage());
         state.put("OB_QUALITY_RESULT", result);
         return nextActions.get(result.getResult().name());
     }

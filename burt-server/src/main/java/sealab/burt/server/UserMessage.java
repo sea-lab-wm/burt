@@ -4,8 +4,9 @@ import lombok.Data;
 
 import java.util.List;
 
-public @Data class RequestMessage {
+public @Data class UserMessage {
 
     private String sessionId;
     private List<MessageObj> messages;
+    private List<String> selectedValues;
 }

@@ -19,6 +19,7 @@ const config = {
         {
             widgetName: "OneScreenOption",
             widgetFunc: (props) => <SelectOneScreen {...props} />,
+            mapStateToProps: ["app_list", "app_values"]
         },
         {
             widgetName: "MultipleScreensOptions",

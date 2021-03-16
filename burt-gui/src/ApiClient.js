@@ -9,18 +9,24 @@ class ApiClient {
         return ApiClient.sendRequestSync(config.startService, null)
     }
 
-    static processUserMessage(messageObj) {
+    /*
+     * Receives a message object (for text-based user answers) and selected values (for one of multiple-option user
+     *  answers).
+     *
+     * messageObj should be an object as used in the chatbot framework
+     * selectedValuesshould be an array
+     */
+    static processUserMessage(messageObj, selectedValues) {
         const sessionId = SessionManager.getSessionId();
 
         const data = {
             sessionId: sessionId,
-            messages: [messageObj]
+            messages: [messageObj],
+            selectedValues: selectedValues
         }
 
-        const promise = axios
-            .post(config.serverEndpoint + config.processMessageService, data)
-
-        return promise;
+        return axios
+            .post(config.serverEndpoint + config.processMessageService, data);
     }
 
     static sendRequestAsync(service, data) {

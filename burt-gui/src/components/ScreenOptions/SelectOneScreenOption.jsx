@@ -1,10 +1,10 @@
 import React , { Component }  from "react";
-import ImagePicker from 'react-image-picker'
+import ImagePicker from './../ImagePicker/ImagePicker'
 import "./SelectScreenOption.css";
 import img1 from "../../assets/images/s1.png"
 import img2 from "../../assets/images/s2.png"
 import img3 from "../../assets/images/s3.png"
-import 'react-image-picker/dist/index.css'
+//import './../ImagePicker/index.css'
 
 
 const imageList = [img1, img2, img3]
@@ -30,8 +30,14 @@ class SelectOneScreen extends Component{
         this.props.actionProvider.answerSelectedOneScreen(image);
     }
 
-
     render() {
+        const applist = this.props.app_list
+
+
+        //
+        // console.log("Printing app lists: ")
+        // console.log(this.props)
+        // console.log(applist)
         return (
             <div>
                 <ImagePicker

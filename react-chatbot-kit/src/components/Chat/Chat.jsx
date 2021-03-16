@@ -62,6 +62,8 @@ const Chat = ({
           />
         );
 
+      //after this point, we are dealing with a chatbot message
+
       let withAvatar;
       if (messageObject.withAvatar) {
         withAvatar = messageObject.withAvatar;

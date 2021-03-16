@@ -6,16 +6,18 @@ import sealab.burt.server.actions.ChatbotAction;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SelectAppAction extends ChatbotAction {
 
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
-        state.put("CONVERSATION_STATE", "APP_ASKED");
+        state.put("APP_ASKED", true);
         MessageObj messageObj = new MessageObj("Sure. To start, please select the app that is having the problem", "OneScreenOption");
-        ChatbotMessage message = new ChatbotMessage(messageObj, Arrays.asList("path/to/app1.png","path/to/app2.png",
-                "path/to/app3.png"), Arrays.asList("app1", "app2", "app3"));
+        List<String> paths = Arrays.asList("path/to/app1.png", "path/to/app2.png",                 "path/to/app3.png");
+        List<String> values = Arrays.asList("app1", "app2", "app3");
+        ChatbotMessage message = new ChatbotMessage(messageObj, paths, values);
         return message;
     }
 

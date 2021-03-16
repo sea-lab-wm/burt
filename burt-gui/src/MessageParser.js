@@ -11,7 +11,11 @@ class MessageParser {
 
         const userMsg = messageObj.message
 
-        const responsePromise = ApiClient.processUserMessage(userMsg)
+
+        console.log("This is the user message: ")
+        console.log(userMsg)
+
+        const responsePromise = ApiClient.processUserMessage(userMsg, [])
 
         responsePromise.then(response => {
 
@@ -21,11 +25,24 @@ class MessageParser {
 
                 console.log(response)
 
-                const message = this.actionProvider.createChatBotMessage(
-                    response.data.message.messageObj.message
-                );
+                if(response.data.message.messageObj.widget){
 
-                this.actionProvider.updateChatbotState(message)
+                    const paths =  response.data.message.paths
+                    const values = response.data.message.values
+
+                    console.log("Processing a widget msg: ")
+                    console.log( response.data.message.messageObj)
+
+                    this.actionProvider.updateChatbotState2(response.data.message.messageObj, paths, values)
+
+                } else {
+
+                    const message = this.actionProvider.createChatBotMessage(
+                        response.data.message.messageObj.message
+                    );
+
+                    this.actionProvider.updateChatbotState(message)
+                }
             } catch (errorMsg) {
                 console.error(`There was an error from the server: ${errorMsg}`);
             }

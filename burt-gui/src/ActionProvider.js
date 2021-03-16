@@ -93,6 +93,28 @@ class ActionProvider{
         this.updateChatbotState(message);
     };
 
+    updateChatbotState2(message, values, values2) {
+        const messageObj = this.createChatBotMessage(
+            message.message,
+            {
+                widget: message.widget,
+            }
+        );
+
+        // const messageObj2 = this.createChatBotMessage(
+        //     " Got it. Just to confirm, can you select the Chikii screen that is having the problem? " + "Please hit the “Done” button when you are done.",
+        //     {
+        //         widget: "OneScreenOption"
+        //     })
+
+        console.log("Printing message obj before setting the state: ")
+        console.log(messageObj)
+        // console.log(messageObj2)
+
+        this.setState(prevState => ({ ...prevState, messages: [...prevState.messages, messageObj], app_list: values, app_values: values2 }))
+
+    }
+
     updateChatbotState(message) {
 
         console.log("Updating chatbot state from action provider")

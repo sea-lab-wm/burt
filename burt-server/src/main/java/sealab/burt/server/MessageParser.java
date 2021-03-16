@@ -24,20 +24,25 @@ class MessageParser {
         }
     }
 
-    public static String getIntent(MessageObj message, ConcurrentHashMap<String, Object> state) {
+    public static String getIntent(UserMessage userMessage, ConcurrentHashMap<String, Object> state) {
 
         //get the next intent
         Object intent = state.get("NEXT_INTENT");
-        if (intent !=null && !"NO_EXPECTED_INTENT".equals(intent))
+        if (intent != null && !"NO_EXPECTED_INTENT".equals(intent))
             return intent.toString();
 
         //------------------------
 
+        if (userMessage.getMessages() == null) return null;
+
+        MessageObj message = userMessage.getMessages().get(0);
+
+        if (message == null) return null;
         //determine the intent based on tokens
 
         Set<Map.Entry<String, String>> entries = intentTokens.entrySet();
         for (Map.Entry<String, String> entry : entries) {
-            if (message.getMessage().contains(entry.getKey())) return entry.getValue();
+            if (message.getMessage().toLowerCase().contains(entry.getKey())) return entry.getValue();
         }
 
         return null;
