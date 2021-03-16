@@ -107,18 +107,23 @@ const Chat = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     let userMsg = createChatMessage(input, "user");
+
+    if (validator && typeof validator === "function") {
+      if (validator(input)) {
+        handleValidMessage(userMsg);
+        messageParser.parse(userMsg);
+      }
+    } else {
+      handleValidMessage(userMsg);
+      messageParser.parse(userMsg);
+    }
+  };
+
+  const handleValidMessage = (userMsg) => {
     setState((state) => ({
       ...state,
       messages: [...state.messages, userMsg],
     }));
-
-    if (validator && typeof validator === "function") {
-      if (validator()) {
-        messageParser.parse(userMsg);
-      }
-    } else {
-      messageParser.parse(userMsg);
-    }
 
     scrollIntoView();
     setInputValue("");

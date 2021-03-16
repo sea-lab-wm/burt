@@ -103,7 +103,9 @@ const Chatbot = ({
   const messagePars = new messageParser(actionProv, state);
 
   const widgets = getWidgets(config);
-  widgets.forEach((widget) => widgetRegistry.addWidget(widget));
+  widgets.forEach((widget) => widgetRegistry.addWidget(widget))
+
+  console.log("Running a modified version of the framework")
 
   return (
     <Chat
