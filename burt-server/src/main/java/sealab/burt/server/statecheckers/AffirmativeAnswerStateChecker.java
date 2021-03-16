@@ -11,10 +11,27 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
     public String nextAction(ConcurrentHashMap<String, Object> state) {
         String nextAction = null;
 
-//        if (state.isEmpty()) {
+        if (state.get("CONVERSATION_STATE").equals("APP_ASKED")) {
+            state.put("CONVERSATION_STATE", "COLLECTING_OB");
             nextAction = "PROVIDE_OB";
-            state.putIfAbsent("COLLECTING_OB", true);
-//        }
+        }
+        else if (state.get("CONVERSATION_STATE").equals("COLLECTING_OB")) {
+            nextAction = "PROVIDE_EB";
+            state.put("CONVERSATION_STATE", "COLLECTING_EB");
+        }
+        else if (state.get("CONVERSATION_STATE").equals("COLLECTING_EB")){
+            nextAction = "PROVIDE_S2R_FIRST";
+            state.put("CONVERSATION_STATE", "COLLECTING_S2R");
+        }
+        else if (state.get("CONVERSATION_STATE").equals("DISAMBIGUATE_S2R")) {
+            nextAction = "PROVIDE_S2R";
+        }
+        else if (state.get("CONVERSATION_STATE").equals("CONFIRM_LAST_STEP")) {
+            // CHECK LAST STEP HERE
+            nextAction = "REPORT_SUMMARY";
+            state.put("S2R_COLLECTED", true);
+            state.putIfAbsent("CONVERSATION_STATE", "REPORTING_SUMMARY");
+        }
 
         return nextAction;
     }

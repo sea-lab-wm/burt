@@ -6,6 +6,7 @@
     height: 650px;
 }
 .react-chatbot-kit-chat-inner-container {
+    position: center;
     height: 700px;}
 .react-chatbot-kit-chat-bot-message {
     margin-left: initial;
