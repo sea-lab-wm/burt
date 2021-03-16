@@ -6,6 +6,7 @@ class MessageParser {
         this.state = state
     }
 
+    //this is only for text messages, not for pic selection
     parse(messageObj) {
 
         const userMsg = messageObj.message
@@ -31,8 +32,6 @@ class MessageParser {
         }).catch(error => {
             console.error(`There was an error: ${error}`);
         })
-
-
 
     }
 
