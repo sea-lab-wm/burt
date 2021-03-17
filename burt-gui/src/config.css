@@ -1,13 +1,14 @@
 .react-chatbot-kit-chat-container {
     position: relative;
-    width: 375px;
+    width: 500px;
 }
 .react-chatbot-kit-chat-message-container {
-    height: 650px;
+    height: 750px;
 }
 .react-chatbot-kit-chat-inner-container {
     position: center;
-    height: 700px;}
+    height: 800px;
+}
 .react-chatbot-kit-chat-bot-message {
     margin-left: initial;
     text-align: initial;

@@ -1,4 +1,5 @@
 import ApiClient from "./ApiClient";
+import SessionManager from "./SessionManager";
 
 class MessageParser {
     constructor(actionProvider, state) {
@@ -20,10 +21,25 @@ class MessageParser {
         responsePromise.then(response => {
 
             try {
-                if (response.code === -1)
+                console.log("Response from the server: ")
+                console.log(response)
+
+                if (response.data.code === -1)
                     throw response.data.message.messageObj.message
 
-                console.log(response)
+                if(response.data.code === 100){
+
+                    const message = this.actionProvider.createChatBotMessage(
+                        response.data.message.messageObj.message
+                    );
+
+                    this.actionProvider.updateChatbotState(message)
+
+                    SessionManager.endSession();
+
+                    window.location.reload(false)
+                    return
+                }
 
                 if(response.data.message.messageObj.widget){
 

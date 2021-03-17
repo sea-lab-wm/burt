@@ -20,7 +20,6 @@ import sealab.burt.server.actions.observedbehavior.SelectOBScreenAction;
 import sealab.burt.server.actions.step2reproduce.*;
 import sealab.burt.server.statecheckers.*;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -91,18 +90,21 @@ public class ConversationController {
     @PostMapping("/processMessage")
     public ConversationResponse processMessage(@RequestBody UserMessage userResponse) {
 
-        if(userResponse!=null)
+        if (userResponse != null)
             LOGGER.debug("User response: " + userResponse);
-        else
+        else {
             LOGGER.debug("User response is null");
-
+            throw new RuntimeException("The message cannot be null");
+        }
 
         String sessionId = userResponse.getSessionId();
 
         ConcurrentHashMap<String, Object> conversationState = conversationStates.get(sessionId);
 
-        if(conversationState == null)
+        if (conversationState == null) {
             LOGGER.error("The session does not exist: " + sessionId);
+            throw new RuntimeException("No session");
+        }
 
         conversationState.put("CURRENT_MESSAGE", userResponse);
 
@@ -111,6 +113,12 @@ public class ConversationController {
 
         if (intent == null)
             return ConversationResponse.createResponse("Sorry, I did not get that!");
+
+        if("END_CONVERSATION".equals(intent)){
+            endConversation(sessionId);
+            return ConversationResponse.createResponse("Thank you for using BURT", 100);
+        }
+
 
         StateChecker stateChecker = stateCheckers.get(intent);
         if (stateChecker == null)
@@ -183,8 +191,9 @@ public class ConversationController {
     }
 
     @PostMapping("/end")
-    public String endConversation(@RequestParam(value = "id") String conversationId) {
-        Object obj = conversationStates.remove(conversationId);
+    public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
+        Object obj = conversationStates.remove(sessionId);
+        messages.remove(sessionId);
         return obj != null ? "true" : "false";
     }
 

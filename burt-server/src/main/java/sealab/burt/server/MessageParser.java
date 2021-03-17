@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 class MessageParser {
 
@@ -13,8 +14,8 @@ class MessageParser {
     static {
         intentTokens = new ConcurrentHashMap<>();
 
-        addIntentTokens("GREETING", Arrays.asList("hi", "hello", "yo", "hey"));
         addIntentTokens("AFFIRMATIVE_ANSWER", Arrays.asList("sure", "yes"));
+        addIntentTokens("GREETING", Arrays.asList("hi", "hello", "yo", "hey"));
         //....
     }
 
@@ -25,6 +26,20 @@ class MessageParser {
     }
 
     public static String getIntent(UserMessage userMessage, ConcurrentHashMap<String, Object> state) {
+
+        //------------------------
+
+        if (userMessage.getMessages() != null && userMessage.getMessages().get(0) != null) {
+
+            MessageObj message = userMessage.getMessages().get(0);
+
+            if (Stream.of("bye", "good bye").anyMatch(token -> message.getMessage().toLowerCase().contains(token)))
+                return "END_CONVERSATION";
+
+        }
+
+
+        //------------------------
 
         //get the next intent
         Object intent = state.get("NEXT_INTENT");

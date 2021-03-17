@@ -1,6 +1,6 @@
 import React , { Component }  from "react";
 import ImagePicker from 'react-image-picker'
-import "./SelectScreenOption.css";
+import "./AppSelector.css";
 import img1 from "../../assets/images/s1.png"
 import img2 from "../../assets/images/s2.png"
 import img3 from "../../assets/images/s3.png"

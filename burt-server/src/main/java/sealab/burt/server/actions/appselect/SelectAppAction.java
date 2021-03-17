@@ -14,11 +14,11 @@ public class SelectAppAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         state.put("APP_ASKED", true);
-        MessageObj messageObj = new MessageObj("Sure. To start, please select the app that is having the problem", "OneScreenOption");
-        List<String> paths = Arrays.asList("path/to/app1.png", "path/to/app2.png",                 "path/to/app3.png");
-        List<String> values = Arrays.asList("app1", "app2", "app3");
-        ChatbotMessage message = new ChatbotMessage(messageObj, paths, values);
-        return message;
+        MessageObj messageObj = new MessageObj("To start, please select the app that is having the problem",
+                "AppSelector");
+        List<String> paths = Arrays.asList("droidweight.webp", "gnucash.png", "milage.webp");
+        List<String> values = Arrays.asList("Droid Weight", "GnuCash", "Mileage");
+        return new ChatbotMessage(messageObj, paths, values);
     }
 
     @Override

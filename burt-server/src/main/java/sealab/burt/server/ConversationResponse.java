@@ -14,6 +14,10 @@ class ConversationResponse {
         this.code = code;
     }
 
+    static ConversationResponse createResponse(String message, Integer code){
+        return new ConversationResponse(new ChatbotMessage(new MessageObj(message)), code);
+    }
+
     static ConversationResponse createResponse(String message){
         return new ConversationResponse(new ChatbotMessage(new MessageObj(message)), 0);
     }

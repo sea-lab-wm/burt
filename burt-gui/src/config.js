@@ -1,11 +1,13 @@
 import React from "react";
 // Config starter code
 import { createChatBotMessage } from "react-chatbot-kit";
-import SelectOneScreen from "./components/ScreenOptions/SelectOneScreenOption";
+import AppSelector from "./components/ScreenOptions/AppSelector";
 import SelectMultipleScreens from "./components/ScreenOptions/SelectMultipleScreensOption";
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
+
 const config = {
+    botName: "BURT",
     serverEndpoint: "http://localhost:8081",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
@@ -17,8 +19,8 @@ const config = {
     ],
     widgets: [
         {
-            widgetName: "OneScreenOption",
-            widgetFunc: (props) => <SelectOneScreen {...props} />,
+            widgetName: "AppSelector",
+            widgetFunc: (props) => <AppSelector {...props} />,
             mapStateToProps: ["app_list", "app_values"]
         },
         {
