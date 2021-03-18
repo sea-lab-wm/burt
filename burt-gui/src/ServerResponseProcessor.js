@@ -34,7 +34,7 @@ const processResponse = (responsePromise, actionProvider) =>{
                 console.log("Processing a widget msg: ")
                 console.log(responseData.message)
 
-                const message =actionProvider.createChatBotMessage(
+                const message = actionProvider.createChatBotMessage(
                     responseData.message.messageObj.message, {
                         allValues: valuesData,
                         selectedValues: null,

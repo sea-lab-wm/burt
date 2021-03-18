@@ -9,13 +9,13 @@ let logos = require.context('../../../../data/app_logos', true);
 const AppSelector = (props) => {
 
     const [image, setImage] = useState([]);
-    const [imageChanged, setImageChanged] = useState(false);
+    // const [imageChanged, setImageChanged] = useState(false);
 
 
     const pickImageHandler = (image) => {
         setImage({image});
-        console.log("Image selected: ")
-        console.log(image)
+        // console.log("Image selected: ")
+        // console.log(image)
 
         setTimeout(() => {
             let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [image.value]});

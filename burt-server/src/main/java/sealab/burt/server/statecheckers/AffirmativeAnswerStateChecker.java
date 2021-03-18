@@ -16,7 +16,6 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
         if (state.containsKey("APP_ASKED")) {
             //create the OB checker
             state.remove("APP_ASKED");
-            state.put("OB_CHECKER", new OBChecker(state.get("APP").toString()));
             nextAction = "PROVIDE_OB";
         } else if (state.containsKey("COLLECTING_OB") || state.containsKey("OB_SCREEN_SELECTED")) {
             state.remove("COLLECTING_OB");
