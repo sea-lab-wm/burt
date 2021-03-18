@@ -13,8 +13,9 @@ public class ConfirmAppAction extends ChatbotAction {
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         UserMessage msg = (UserMessage) state.get("CURRENT_MESSAGE");
         String app = "Dummy App";
-        if (!msg.getSelectedValues().isEmpty())
-            app = msg.getSelectedValues().get(0);
+//
+        if (!msg.getMessages().isEmpty())
+            app = msg.getMessages().get(0).getSelectedValues().get(0);
         state.put("APP", app);
         return new ChatbotMessage(MessageFormat.format("You selected {0}, shall we continue?", app));
     }

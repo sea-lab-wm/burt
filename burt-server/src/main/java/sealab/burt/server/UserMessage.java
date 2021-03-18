@@ -8,5 +8,4 @@ public @Data class UserMessage {
 
     private String sessionId;
     private List<MessageObj> messages;
-    private List<String> selectedValues;
 }

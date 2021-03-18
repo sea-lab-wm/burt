@@ -9,10 +9,7 @@ import java.util.List;
 public @Data @AllArgsConstructor
 class ChatbotMessage {
     MessageObj messageObj;
-    List<String> paths;
-    List<String> values;
-
-    //path to screenshots...
+    List<KeyValue> values;
 
     public ChatbotMessage(String message){
         this.messageObj = new MessageObj((message));

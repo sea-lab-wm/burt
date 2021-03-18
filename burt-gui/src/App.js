@@ -37,7 +37,7 @@ function App() {
         axios
             .post(config.serverEndpoint + config.saveMessagesService, {
                 sessionId: sessionId,
-                messages: messages
+                messages: messages,
             })
             .then(res => {
                 console.log(`Messages were saved sucessfully`)
@@ -78,6 +78,8 @@ function App() {
         } catch (e) {
             console.error(`Unexpected error: ${e}`)
         }
+
+        console.log(messages)
 
         return messages;
     }

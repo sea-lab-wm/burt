@@ -44,24 +44,27 @@ class ImagePicker extends Component {
         }
     }
 
-    renderImage(image, i, style) {
+    renderImage(image, i, style, selected) {
 
         return (
-            <Image
-                src={image.src}
-                isSelected={this.state.picked.has(image.value)}
-                onImageClick={() => this.handleImageClick(image)}
-                key={i}
-                style={style}
-            />
+            <div key={image.value}>
+                <Image
+                    src={image.src}
+                    isSelected={this.state.picked.has(image.value) || (selected !=null && selected.includes(image.value))}
+                    onImageClick={() => this.handleImageClick(image)}
+                    key={i}
+                    style={style}
+                />
+                <p>{image.value}</p>
+            </div>
         )
     }
 
     render() {
-        const { images, style } = this.props
+        const { images, style, selected } = this.props
         return (
             <div className="image_picker">
-                { images.map( (image, i) => this.renderImage(image, i, style)) }
+                { images.map( (image, i) => this.renderImage(image, i, style, selected)) }
                 <div className="clear"/>
             </div>
         )

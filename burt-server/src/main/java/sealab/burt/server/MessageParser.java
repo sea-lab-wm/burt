@@ -14,8 +14,8 @@ class MessageParser {
     static {
         intentTokens = new ConcurrentHashMap<>();
 
-        addIntentTokens("AFFIRMATIVE_ANSWER", Arrays.asList("sure", "yes"));
-        addIntentTokens("GREETING", Arrays.asList("hi", "hello", "yo", "hey"));
+        addIntentTokens("AFFIRMATIVE_ANSWER", Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah"));
+        addIntentTokens("GREETING", Arrays.asList("hi", "hello", "yo", "hey", "hello"));
         //....
     }
 
@@ -29,11 +29,11 @@ class MessageParser {
 
         //------------------------
 
-        if (userMessage.getMessages() != null && userMessage.getMessages().get(0) != null) {
+        if (userMessage.getMessages().get(0) != null) {
 
             MessageObj message = userMessage.getMessages().get(0);
 
-            if (Stream.of("bye", "good bye").anyMatch(token -> message.getMessage().toLowerCase().contains(token)))
+            if (message.getMessage()!= null && Stream.of("bye", "good bye").anyMatch(token -> message.getMessage().toLowerCase().contains(token)))
                 return "END_CONVERSATION";
 
         }

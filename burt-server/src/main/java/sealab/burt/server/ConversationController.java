@@ -20,6 +20,7 @@ import sealab.burt.server.actions.observedbehavior.SelectOBScreenAction;
 import sealab.burt.server.actions.step2reproduce.*;
 import sealab.burt.server.statecheckers.*;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -90,52 +91,63 @@ public class ConversationController {
     @PostMapping("/processMessage")
     public ConversationResponse processMessage(@RequestBody UserMessage userResponse) {
 
-        if (userResponse != null)
-            LOGGER.debug("User response: " + userResponse);
-        else {
-            LOGGER.debug("User response is null");
-            throw new RuntimeException("The message cannot be null");
-        }
+        try {
+            if (userResponse != null)
+                LOGGER.debug("User response: " + userResponse);
+            else {
+                LOGGER.debug("User response is null");
+                throw new RuntimeException("The message cannot be null");
+            }
 
-        String sessionId = userResponse.getSessionId();
+            String sessionId = userResponse.getSessionId();
 
-        ConcurrentHashMap<String, Object> conversationState = conversationStates.get(sessionId);
+            ConcurrentHashMap<String, Object> conversationState = conversationStates.get(sessionId);
 
-        if (conversationState == null) {
-            LOGGER.error("The session does not exist: " + sessionId);
-            throw new RuntimeException("No session");
-        }
+            if (conversationState == null) {
+                LOGGER.error("The session does not exist: " + sessionId);
+                return ConversationResponse.createResponse("Thank you for using BURT", 100);
+            }
 
-        conversationState.put("CURRENT_MESSAGE", userResponse);
+            conversationState.put("CURRENT_MESSAGE", userResponse);
 
 //        LOGGER.debug(MessageFormat.format("Past conversation state {0}"));
-        String intent = MessageParser.getIntent(userResponse, conversationState);
+            String intent = MessageParser.getIntent(userResponse, conversationState);
 
-        if (intent == null)
-            return ConversationResponse.createResponse("Sorry, I did not get that!");
+            if (intent == null)
+                return ConversationResponse.createResponse("Sorry, I did not get that!");
 
-        if("END_CONVERSATION".equals(intent)){
-            endConversation(sessionId);
-            return ConversationResponse.createResponse("Thank you for using BURT", 100);
-        }
+            LOGGER.debug("Identified intent: "+ intent);
+
+            if("END_CONVERSATION".equals(intent)){
+                endConversation(sessionId);
+                return ConversationResponse.createResponse("Thank you for using BURT", 100);
+            }
 
 
-        StateChecker stateChecker = stateCheckers.get(intent);
-        if (stateChecker == null)
-            return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
+            StateChecker stateChecker = stateCheckers.get(intent);
+            if (stateChecker == null)
+                return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
 
-        ChatbotAction nextAction = actions.get(stateChecker.nextAction(conversationState));
+            String action = stateChecker.nextAction(conversationState);
+
+            LOGGER.debug("Identified next action: "+ action);
+            ChatbotAction nextAction = actions.get(action);
 //        LOGGER.debug(conversationState.get("CONVERSATION_STATE").toString());
 
-        if (nextAction == null)
-            return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
+            if (nextAction == null)
+                return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
 
-        String nextIntent = nextAction.nextExpectedIntent();
-        ChatbotMessage nextMessage = nextAction.execute(conversationState);
+            String nextIntent = nextAction.nextExpectedIntent();
+            ChatbotMessage nextMessage = nextAction.execute(conversationState);
 
-        conversationState.put("NEXT_INTENT", nextIntent);
+            conversationState.put("NEXT_INTENT", nextIntent);
 
-        return new ConversationResponse(nextMessage, 0);
+            return new ConversationResponse(nextMessage, 0);
+        } catch (Exception e) {
+            LOGGER.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
+            return  ConversationResponse.createResponse(e.getMessage(), -1);
+        }
+
     }
 
 

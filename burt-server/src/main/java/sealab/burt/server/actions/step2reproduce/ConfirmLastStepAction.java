@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConfirmLastStepAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
-        state.put("CONVERSATION_STATE", "CONFIRM_LAST_STEP");
+        state.put("CONFIRM_LAST_STEP", true);
         return new ChatbotMessage("It seems this is the last step that you performed. Is this correct?");
     }
 }

@@ -10,7 +10,7 @@ public class ProvideEBAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         state.put("OB_COLLECTED", true);
-        state.put("CONVERSATION_STATE", "COLLECTING_EB");
+        state.put("COLLECTING_EB", true);
         return new ChatbotMessage("ok, can you please tell me how the app is supposed to work instead?");
     }
 

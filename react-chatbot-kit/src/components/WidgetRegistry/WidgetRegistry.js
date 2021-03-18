@@ -25,6 +25,7 @@ class WidgetRegistry {
       ...this.mapStateToProps(widgetObject.mapStateToProps, state),
       setState: this.setState,
       actionProvider: this.actionProvider,
+      ...state
     };
 
     return widgetObject.widget(props); //calling the function that creates the widget

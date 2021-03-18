@@ -16,13 +16,12 @@ class ApiClient {
      * messageObj should be an object as used in the chatbot framework
      * selectedValuesshould be an array
      */
-    static processUserMessage(messageObj, selectedValues) {
+    static processUserMessage(messageObj) {
         const sessionId = SessionManager.getSessionId();
 
         const data = {
             sessionId: sessionId,
-            messages: [messageObj],
-            selectedValues: selectedValues
+            messages: [messageObj]
         }
 
         return axios

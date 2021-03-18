@@ -17,25 +17,21 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
             //create the OB checker
             state.remove("APP_ASKED");
             state.put("OB_CHECKER", new OBChecker(state.get("APP").toString()));
-            state.put("CONVERSATION_STATE", "COLLECTING_OB");
             nextAction = "PROVIDE_OB";
-        }
-        else if (state.containsKey("COLLECTING_OB")) {
+        } else if (state.containsKey("COLLECTING_OB") || state.containsKey("OB_SCREEN_SELECTED")) {
+            state.remove("COLLECTING_OB");
+            state.remove("OB_SCREEN_SELECTED");
             nextAction = "PROVIDE_EB";
-            state.put("CONVERSATION_STATE", "COLLECTING_EB");
-        }
-        else if (state.containsKey("COLLECTING_EB")){
+        } else if (state.containsKey("COLLECTING_EB")) {
+            state.remove("COLLECTING_EB");
             nextAction = "PROVIDE_S2R_FIRST";
-            state.put("CONVERSATION_STATE", "COLLECTING_S2R");
-        }
-        else if (state.containsKey("DISAMBIGUATE_S2R")) {
+        } else if (state.containsKey("DISAMBIGUATE_S2R")) {
+            state.remove("DISAMBIGUATE_S2R");
             nextAction = "PROVIDE_S2R";
-        }
-        else if (state.containsKey("CONFIRM_LAST_STEP")) {
+        } else if (state.containsKey("CONFIRM_LAST_STEP")) {
+            state.remove("CONFIRM_LAST_STEP");
             // CHECK LAST STEP HERE
             nextAction = "REPORT_SUMMARY";
-            state.put("S2R_COLLECTED", true);
-            state.putIfAbsent("CONVERSATION_STATE", "REPORTING_SUMMARY");
         }
 
         return nextAction;

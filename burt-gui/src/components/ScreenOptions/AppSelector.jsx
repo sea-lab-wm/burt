@@ -1,31 +1,35 @@
-import React , { useState }  from "react";
+import React , { useState, useEffect }  from "react";
 import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
+import ApiClient from "../../ApiClient";
+import processResponse from "../../ServerResponseProcessor";
 
-let logos = require.context('../../app_logos', true);
+let logos = require.context('../../../../data/app_logos', true);
 
-const AppSelector = (props) =>{
+const AppSelector = (props) => {
 
     const [image, setImage] = useState([]);
+    const [imageChanged, setImageChanged] = useState(false);
 
-    const applist = props.app_list
-    const appValues = props.app_values
 
-    const pickImageHandler = (image) =>{
+    const pickImageHandler = (image) => {
         setImage({image});
         console.log("Image selected: ")
         console.log(image)
 
-        //TODO: handle the selected image
+        setTimeout(() => {
+            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [image.value]});
+
+            const responsePromise = ApiClient.processUserMessage(message)
+            processResponse(responsePromise, props.actionProvider)
+
+            const idx = props.messages.findIndex(x => x.id === props.id)
+            props.messages[idx].selectedValues = [image.value]
+
+        }, 1000)
     }
 
-    const nonePickedHandler = () =>{
-        console.log("None were selected")
-    }
-
-    console.log(props)
-
-    const ImageStyle = (width, height) => {
+    const getImageStyle = (width, height) => {
         return {
             width,
             height,
@@ -33,13 +37,20 @@ const AppSelector = (props) =>{
         }
     }
 
+    // console.log("All properties: ")
+    // console.log(props)
+
+    const dataValues = props.allValues;
+    const selectedValues = props.selectedValues
+
     return (
         <div>
             <ImagePicker
                 //images={imageList.map((image, i) => ({src: image, value: i}))}
-               images={applist.map((image, i) => ({src: logos( "./" + image).default, value: appValues[i]}))}
+               images={dataValues.map((image, i) => ({src: logos( "./" + image.value).default, value:image.key}))}
                onPick={pickImageHandler}
-               style={ImageStyle(100 ,100)}
+               style={getImageStyle(100 ,100)}
+               selected={selectedValues}
             />
             {/*<button type="button" className="button" onClick={nonePickedHandler}>none of above</button>*/}
         </div>

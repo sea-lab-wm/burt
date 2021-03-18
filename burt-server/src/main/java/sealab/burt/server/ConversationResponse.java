@@ -1,9 +1,12 @@
 package sealab.burt.server;
 
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public @Data
 class ConversationResponse {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConversationResponse.class);
 
     private ChatbotMessage message;
     private Integer code;
@@ -15,10 +18,16 @@ class ConversationResponse {
     }
 
     static ConversationResponse createResponse(String message, Integer code){
-        return new ConversationResponse(new ChatbotMessage(new MessageObj(message)), code);
+        ConversationResponse conversationResponse =
+                new ConversationResponse(new ChatbotMessage(new MessageObj(message)), code);
+        LOGGER.debug("Response created: " + conversationResponse);
+        return conversationResponse;
     }
 
     static ConversationResponse createResponse(String message){
-        return new ConversationResponse(new ChatbotMessage(new MessageObj(message)), 0);
+        ConversationResponse conversationResponse =
+                new ConversationResponse(new ChatbotMessage(new MessageObj(message)), 0);
+        LOGGER.debug("Response created: " + conversationResponse);
+        return conversationResponse;
     }
 }

@@ -23,10 +23,10 @@ const config = {
             widgetFunc: (props) => <AppSelector {...props} />,
             mapStateToProps: ["app_list", "app_values"]
         },
-        {
-            widgetName: "MultipleScreensOptions",
-            widgetFunc: (props) => <SelectMultipleScreens {...props} />,
-        },
+        // {
+        //     widgetName: "MultipleScreensOptions",
+        //     widgetFunc: (props) => <SelectMultipleScreens {...props} />,
+        // },
         {
             widgetName: "javascriptLinks",
             widgetFunc: (props) => <LinkList {...props} />,

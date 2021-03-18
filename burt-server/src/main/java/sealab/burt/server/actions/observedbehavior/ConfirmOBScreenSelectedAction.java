@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConfirmOBScreenSelectedAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
+        state.put("OB_SCREEN_SELECTED", true);
         return new ChatbotMessage("you selected Screen 2, shall we continue?");
     }
 

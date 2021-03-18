@@ -27,6 +27,7 @@ const ChatbotMessageWithWidget = ({
       <ConditionallyRender
         ifTrue={!passDownProps.loading}
         show={widgetRegistry.getWidget(passDownProps.widget, {
+            ...passDownProps,
           ...state,
           scrollIntoView,
         })}

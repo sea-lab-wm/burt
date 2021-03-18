@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DisambiguateS2RAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
-        state.put("CONVERSATION_STATE", "DISAMBIGUATE_S2R");
+        state.put("DISAMBIGUATE_S2R", true);
         return new ChatbotMessage("Ok, which of the following you mean by “I opened this game”?");
         //Provide screenshots here
     }

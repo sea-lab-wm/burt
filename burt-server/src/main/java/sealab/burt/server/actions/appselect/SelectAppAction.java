@@ -1,6 +1,7 @@
 package sealab.burt.server.actions.appselect;
 
 import sealab.burt.server.ChatbotMessage;
+import sealab.burt.server.KeyValue;
 import sealab.burt.server.MessageObj;
 import sealab.burt.server.actions.ChatbotAction;
 
@@ -16,9 +17,11 @@ public class SelectAppAction extends ChatbotAction {
         state.put("APP_ASKED", true);
         MessageObj messageObj = new MessageObj("To start, please select the app that is having the problem",
                 "AppSelector");
-        List<String> paths = Arrays.asList("droidweight.webp", "gnucash.png", "milage.webp");
-        List<String> values = Arrays.asList("Droid Weight", "GnuCash", "Mileage");
-        return new ChatbotMessage(messageObj, paths, values);
+        List<KeyValue> allApps = Arrays.asList(new KeyValue("Droid Weight","droidweight.webp"),
+                new KeyValue("GnuCash","gnucash.png"),
+                new KeyValue("Mileage","milage.webp")
+                );
+        return new ChatbotMessage(messageObj, allApps);
     }
 
     @Override

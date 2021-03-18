@@ -1,8 +1,15 @@
 package sealab.burt.server;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public @Data
+@AllArgsConstructor
 class MessageObj {
 
     private String message;
@@ -10,6 +17,11 @@ class MessageObj {
     private double id;
     private String widget;
     private Boolean loading;
+    private List<KeyValue> allValues;
+    private List<String> selectedValues;
+
+    public MessageObj(){
+    }
 
     public MessageObj(String message) {
         this.message = message;
@@ -24,5 +36,13 @@ class MessageObj {
         this.message = message;
         this.type = type;
         this.id = id;
+    }
+
+    public MessageObj(String message, String type, double id, Boolean loading, List<String> selectedValues) {
+        this.message = message;
+        this.type = type;
+        this.id = id;
+        this.loading = loading;
+        this.selectedValues = selectedValues;
     }
 }
