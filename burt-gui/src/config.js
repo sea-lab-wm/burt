@@ -5,7 +5,8 @@ import AppSelector from "./components/ScreenOptions/AppSelector";
 import SelectMultipleScreens from "./components/ScreenOptions/SelectMultipleScreensOption";
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
-
+import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
+import EBScreenSelector from "./components/ScreenOptions/EBScreenSelector";
 const config = {
     botName: "BURT",
     serverEndpoint: "http://localhost:8081",
@@ -22,6 +23,16 @@ const config = {
             widgetName: "AppSelector",
             widgetFunc: (props) => <AppSelector {...props} />,
             mapStateToProps: ["app_list", "app_values"]
+        },
+        {
+            widgetName: "OBScreenSelector",
+            widgetFunc: (props) => <OBScreenSelector {...props} />,
+            mapStateToProps: []
+        },
+        {
+            widgetName: "EBScreenSelector",
+            widgetFunc: (props) => <EBScreenSelector {...props} />,
+            mapStateToProps: []
         },
         // {
         //     widgetName: "MultipleScreensOptions",

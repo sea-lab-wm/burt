@@ -18,7 +18,6 @@ class ImagePicker extends Component {
     handleImageClick(image) {
 
         let {multiple, onPick, maxPicks, onMaxPicks} = this.props
-        multiple = false;
         if (multiple) {
             let newerPickedImage;
             const pickedImage = this.state.picked;
@@ -106,7 +105,7 @@ class ImagePicker extends Component {
     }
 
     render() {
-        const { images, style, selected } = this.props
+        const { images, style, selected, multiple } = this.props
         return (
             <div className="image_picker">
                 { images.map( (image, i) => this.renderImage(image, i, style, selected)) }
