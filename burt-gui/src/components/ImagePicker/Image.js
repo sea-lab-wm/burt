@@ -6,6 +6,8 @@ export default class Image extends Component {
         super(props)
     }
 
+
+
     render() {
         const { src, isSelected, onImageClick, style } = this.props
         return (

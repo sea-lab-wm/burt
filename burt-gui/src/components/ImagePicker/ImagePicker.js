@@ -16,34 +16,79 @@ class ImagePicker extends Component {
     }
 
     handleImageClick(image) {
-        const { multiple, onPick, maxPicks, onMaxPicks } = this.props
-        const pickedImage = multiple ? this.state.picked : Map()
-        let newerPickedImage
 
-        if (pickedImage.has(image.value)) {
-            newerPickedImage = pickedImage.delete(image.value)
-        } else {
-            if (typeof maxPicks === 'undefined') {
-                newerPickedImage = pickedImage.set(image.value, image.src)
+        let {multiple, onPick, maxPicks, onMaxPicks} = this.props
+        multiple = false;
+        if (multiple) {
+            let newerPickedImage;
+            const pickedImage = this.state.picked;
+
+            if (pickedImage.has(image.value)) {
+                newerPickedImage = pickedImage.delete(image.value);
+
             } else {
-                if (pickedImage.size < maxPicks) {
-                    newerPickedImage = pickedImage.set(image.value, image.src)
-                } else {
-                    onMaxPicks(image)
-                }
+                newerPickedImage = pickedImage.set(image.value, image.src);
             }
+            if (newerPickedImage) {
+
+                this.setState({picked: newerPickedImage}, function () {
+                    const pickedImageToArray = []
+
+                    this.state.picked.map((image, i) => pickedImageToArray.push({src: image.src, value: i}))
+                    console.log(pickedImageToArray)
+                    onPick(pickedImageToArray)
+                });
+            }
+        } else {
+            let newerPickedImage;
+            // pick single image
+            let pickedImage = this.state.picked;
+            if (pickedImage.has(image.value)) {
+                pickedImage.delete(image.value);
+                newerPickedImage = pickedImage;
+
+            } else {
+                pickedImage.clear();
+                newerPickedImage = pickedImage.set(image.value, image.src);
+            }
+            this.setState({picked: newerPickedImage}, function () {
+                const pickedImageToArray = []
+
+                this.state.picked.map((image, i) => pickedImageToArray.push({src: image.src, value: i}))
+                console.log(pickedImageToArray)
+                onPick(pickedImageToArray[0])
+            });
         }
 
-        if (newerPickedImage) {
-            this.setState({picked: newerPickedImage})
 
-            const pickedImageToArray = []
-            newerPickedImage.map((image, i) => pickedImageToArray.push({src: image, value: i}))
 
-            onPick(multiple ? pickedImageToArray : pickedImageToArray[0])
-        }
+        // const pickedImage = multiple ? this.state.picked : Map()
+        // let newerPickedImage
+        //
+        // if (pickedImage.has(image.value)) {
+        //     newerPickedImage = pickedImage.delete(image.value)
+        // } else {
+        //     if (typeof maxPicks === 'undefined') {
+        //         newerPickedImage = pickedImage.set(image.value, image.src)
+        //     } else {
+        //         if (pickedImage.size < maxPicks) {
+        //             newerPickedImage = pickedImage.set(image.value, image.src)
+        //         } else {
+        //             onMaxPicks(image)
+        //         }
+        //     }
+        // }
+        //
+        // if (newerPickedImage) {
+        //     this.setState({picked: newerPickedImage})
+        //
+        //     const pickedImageToArray = []
+        //     newerPickedImage.map((image, i) => pickedImageToArray.push({src: image, value: i}))
+        //
+        //     onPick(multiple ? pickedImageToArray : pickedImageToArray[0])
+        // }
+
     }
-
     renderImage(image, i, style, selected) {
 
         return (
