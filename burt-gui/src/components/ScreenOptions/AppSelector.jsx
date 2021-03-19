@@ -1,5 +1,5 @@
 import React , { useState, useEffect }  from "react";
-import SingleImagePicker from './../ImagePicker/ImagePicker'
+import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
 import ApiClient from "../../ApiClient";
 import processResponse from "../../ServerResponseProcessor";
@@ -57,7 +57,7 @@ const AppSelector = (props) => {
 
     return (
         <div>
-            <SingleImagePicker
+            <ImagePicker
                 //images={imageList.map((image, i) => ({src: image, value: i}))}
                 images={dataValues.map((image, i) => ({src: logos("./" + image.value).default, value: image.key}))}
                 onPick={pickImageHandler}
