@@ -19,6 +19,7 @@ import sealab.burt.server.actions.observedbehavior.RephraseOBAction;
 import sealab.burt.server.actions.observedbehavior.SelectOBScreenAction;
 import sealab.burt.server.actions.step2reproduce.*;
 import sealab.burt.server.statecheckers.*;
+import seers.textanalyzer.TextProcessor;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -84,6 +85,8 @@ public class ConversationController {
 
 
     public static void main(String[] args) {
+        //this call is required to load the stanford corenlp library since the start of the server:
+        TextProcessor.processTextFullPipeline("start", false);
         SpringApplication.run(ConversationController.class, args);
     }
 
