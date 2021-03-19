@@ -1,0 +1,25 @@
+S_SR_COND_OBS;ConditionalObservedBehaviorPM 165
+S_SR_IMPERATIVE_SEQUENCE;ImperativeSequencePM 148
+S_SR_SIMPLE_PAST;SimplePastPM 144
+S_SR_TRY;TrySentencePM 77
+S_SR_ACTIONS_SEPARATOR;ActionsSeparatorPM 87
+
+S_OB_NEG_AUX_VERB;NegativeAuxVerbPM 30
+S_OB_COND_NEG;ConditionalNegativePM 40
+S_OB_BUT_NEG;ButNegativePM 34
+S_OB_VERB_ERROR;VerbErrorPM 33
+S_OB_NEG_VERB;NegativeVerbPM 32
+S_OB_NEG_ADV_ADJ;NegativeAdjOrAdvPM 31
+S_OB_COND_POS;ConditionalPositivePM 91
+S_OB_OBS_BEHAVIOR;ObsBehaviorLiteralStncePM 41
+S_OB_BUT;ButPM 59
+S_OB_ERROR_AS_SUBJECT;ErrorTermSubjectPM 51
+S_OB_WORKS_FINE;WorksFinePM 114
+S_OB_NEG_COND;NegativeConditionalPM 52
+S_OB_INSTEAD_OF;InsteadOfOBPM 45
+S_OB_SEEMS;SeemsPM 44
+S_OB_OUTPUT_VERB;OutputVerbPM 92
+S_OB_ERROR_NOUN_PHRASE;ErrorNounPhrasePM 50
+S_OB_PASSIVE_VOICE;PassiveVoicePM 137
+S_OB_ACTION_SUBJECT;ActionSubjectPM 57
+S_OB_NEG_AFTER;NegativeAfterPM 63

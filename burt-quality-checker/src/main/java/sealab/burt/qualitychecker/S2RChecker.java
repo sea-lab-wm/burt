@@ -1,23 +1,26 @@
 package sealab.burt.qualitychecker;
 
-import java.awt.*;
-import java.util.ArrayList;
+import sealab.burt.nlparser.euler.actions.nl.NLAction;
+
 import java.util.List;
 
-import static sealab.burt.qualitychecker.QualityResult.Result.MISSING_STEPS;
-import static sealab.burt.qualitychecker.QualityResult.Result.AMBIGUOUS;
-import static sealab.burt.qualitychecker.QualityResult.Result.IS_OK;
-import static sealab.burt.qualitychecker.QualityResult.Result.LACK_INPUT;
+import static sealab.burt.qualitychecker.QualityResult.Result.MULTIPLE_MATCH;
+import static sealab.burt.qualitychecker.QualityResult.Result.NO_MATCH;
 
 public class S2RChecker {
-    public static QualityResult checkS2R(String S2RDescription){
-        List<QualityResult.Result> choices =  new ArrayList<>();
-        choices.add(MISSING_STEPS);
-        choices.add(AMBIGUOUS);
-        choices.add(IS_OK);
-        choices.add(LACK_INPUT);
-        int index = (int) (Math.random()* choices.size());
+    private String app;
 
-        return new QualityResult(choices.get(index));
+    public S2RChecker(String app) {
+        this.app = app;
+    }
+
+    public QualityResult checkS2R(String S2RDescription) throws Exception {
+        List<NLAction> nlActions = NLParser.parseText(app, S2RDescription);
+        if (nlActions.isEmpty()) return new QualityResult(NO_MATCH);
+        return matchActions(nlActions);
+    }
+
+    private QualityResult matchActions(List<NLAction> nlActions) {
+        return new QualityResult(MULTIPLE_MATCH);
     }
 }
