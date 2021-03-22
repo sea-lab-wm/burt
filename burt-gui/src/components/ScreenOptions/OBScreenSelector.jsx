@@ -16,13 +16,11 @@ const OBScreenSelector = (props) => {
         setScreen(image);
 
     }
-    const handleConfirmButton= () => {
+    const handleConfirmButton= (answer) => {
 
         setTimeout(() => {
-            console.log(screen[0].value);
-            console.log(screen);
 
-            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [screen[0].value]});
+            let message = props.actionProvider.createChatBotMessage(answer, {selectedValues: [screen[0].value]});
 
             const responsePromise = ApiClient.processUserMessage(message)
             processResponse(responsePromise, props.actionProvider)
@@ -49,13 +47,16 @@ const OBScreenSelector = (props) => {
             <div>
                 <ImagePicker
                     images={dataValues.map((image, i) => ({src: logos("./" + image.value).default, value: image.key}))}
-                    style={getImageStyle(100, 200)}
+                    style={getImageStyle(150, 300)}
                     selected={selectedValues}
                     onPick={pickImageHandler}
                     multiple = {true}
                     // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
                 />
-                <center><button type="button" class="button" onClick={() => handleConfirmButton()}>done</button></center>
+                <center>
+                    <button type="button" class="button" onClick={() => handleConfirmButton("done")}>done</button>
+                    <button type="button" className="button" onClick={() => handleConfirmButton("none of above")}>none of above</button>
+                </center>
 
 
             </div>

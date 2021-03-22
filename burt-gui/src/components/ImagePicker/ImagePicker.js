@@ -40,6 +40,7 @@ class ImagePicker extends Component {
             }
         } else {
             let newerPickedImage;
+            console.log('testing');
             // pick single image
             let pickedImage = this.state.picked;
             if (pickedImage.has(image.value)) {
@@ -47,7 +48,7 @@ class ImagePicker extends Component {
                 newerPickedImage = pickedImage;
 
             } else {
-                pickedImage.clear();
+                pickedImage = Map();
                 newerPickedImage = pickedImage.set(image.value, image.src);
             }
             this.setState({picked: newerPickedImage}, function () {

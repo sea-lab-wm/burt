@@ -12,9 +12,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ClarifyEBAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
-        // return new ChatbotMessage("Is this the screen that should work fine?");
         //provide EB screenshot here
-        MessageObj messageObj = new MessageObj("Is this the screen that should work fine?",  "EBScreenSelector");
+        MessageObj messageObj = new MessageObj("Is this the screen that should work fine?");
         List<KeyValue> EBScreen = Arrays.asList(new KeyValue("EBScreen","EBScreen.png"));
         return new ChatbotMessage(messageObj, EBScreen);
     }

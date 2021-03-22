@@ -8,35 +8,24 @@ let logos = require.context('../../../../data/app_logos', true);
 
 const AppSelector = (props) => {
 
-    const [image, setImage] = useState([]);
+    const [screen, setScreen] = useState({});
     // const [imageChanged, setImageChanged] = useState(false);
 
-    // useEffect(() => {
-    //
-    //         let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [image.value]});
-    //
-    //         const responsePromise = ApiClient.processUserMessage(message)
-    //         processResponse(responsePromise, props.actionProvider)
-    //
-    //         const idx = props.messages.findIndex(x => x.id === props.id)
-    //         props.messages[idx].selectedValues = [image.value]
-    //
-    // }, [image]);
-
     const pickImageHandler = (image) => {
-        setImage({image});
+        setScreen(image);
+    }
 
-        console.log("Image selected: ")
-        console.log(image.value)
+    const handleConfirmButton =() => {
 
         setTimeout(() => {
-            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [image.value]});
+
+            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [screen.value]});
 
             const responsePromise = ApiClient.processUserMessage(message)
             processResponse(responsePromise, props.actionProvider)
 
             const idx = props.messages.findIndex(x => x.id === props.id)
-            props.messages[idx].selectedValues = [image.value]
+            props.messages[idx].selectedValues = [screen.value]
 
         }, 1000)
     }
@@ -65,7 +54,7 @@ const AppSelector = (props) => {
                 selected={selectedValues}
 
             />
-            {/*<button type="button" className="button" onClick={nonePickedHandler}>none of above</button>*/}
+            <button type="button" className="button" onClick={handleConfirmButton}>done</button>
         </div>
     )
 }
