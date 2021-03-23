@@ -13,13 +13,10 @@ public class ClarifyEBAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         //provide EB screenshot here
-        MessageObj messageObj = new MessageObj("Is this the screen that should work fine?");
+        MessageObj messageObj = new MessageObj("So, is this the screen that should work fine?", "EBScreenSelector");
         List<KeyValue> EBScreen = Arrays.asList(new KeyValue("EBScreen","EBScreen.png"));
         return new ChatbotMessage(messageObj, EBScreen);
     }
 
-    @Override
-    public String nextExpectedIntent() {
-        return "";
-    }
+
 }

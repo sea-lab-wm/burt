@@ -140,9 +140,9 @@ public class ConversationController {
             if (nextAction == null)
                 return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
 
-            String nextIntent = nextAction.nextExpectedIntent();
-            ChatbotMessage nextMessage = nextAction.execute(conversationState);
 
+            ChatbotMessage nextMessage = nextAction.execute(conversationState);
+            String nextIntent = nextAction.nextExpectedIntent();
             conversationState.put("NEXT_INTENT", nextIntent);
 
             return new ConversationResponse(nextMessage, 0);

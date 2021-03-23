@@ -8,6 +8,7 @@ let logos = require.context('../../../../data/app_logos', true);
 const EBScreenSelector = (props) => {
 
     const dataValues = props.allValues; // only one screenshot
+    console.log(dataValues);
 
 
     return (

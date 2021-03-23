@@ -17,6 +17,8 @@ public class NegativeAnswerStateChecker extends StateChecker {
             state.putIfAbsent("CONVERSATION_STATE", "COLLECTING_S2R");
         } else if(state.get("CONVERSATION_STATE").equals("APP_ASKED")){
             nextAction = "SELECT_APP";
+        } else if (state.containsKey("COLLECTING_EB")){
+            nextAction = "CLARIFY_EB";
         }
         return nextAction;
 
