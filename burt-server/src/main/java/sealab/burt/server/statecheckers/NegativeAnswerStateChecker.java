@@ -12,10 +12,10 @@ public class NegativeAnswerStateChecker extends StateChecker {
     public String nextAction(ConcurrentHashMap<String, Object> state) {
         String nextAction = null;
 
-        if (state.get("CONVERSATION_STATE").equals("CONFIRM_LAST_STEP")) {
+        if (state.containsKey("CONFIRM_LAST_STEP")) {
             nextAction = "PROVIDE_S2R";
             state.putIfAbsent("CONVERSATION_STATE", "COLLECTING_S2R");
-        } else if(state.get("CONVERSATION_STATE").equals("APP_ASKED")){
+        } else if(state.containsKey("APP_ASKED")){
             nextAction = "SELECT_APP";
         } else if (state.containsKey("COLLECTING_EB")){
             nextAction = "CLARIFY_EB";

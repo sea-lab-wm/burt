@@ -40,7 +40,7 @@ class ImagePicker extends Component {
             }
         } else {
             let newerPickedImage;
-            console.log('testing');
+
             // pick single image
             let pickedImage = this.state.picked;
             if (pickedImage.has(image.value)) {
