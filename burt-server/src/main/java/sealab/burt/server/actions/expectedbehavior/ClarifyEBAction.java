@@ -18,5 +18,4 @@ public class ClarifyEBAction extends ChatbotAction {
         return new ChatbotMessage(messageObj, EBScreen);
     }
 
-
 }

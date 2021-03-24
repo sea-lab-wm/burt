@@ -1,11 +1,16 @@
 package sealab.burt.server;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -13,6 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class ConversationTest extends AbstractTest {
 
     private static final String END_POINT = "http://localhost:8081";
+    private static String APP;
+    private static String OB_SCREEN;
+    private static UserMessage MESSAGE;
+    private static String SESSION_ID;
 
     @Override
     @Before
@@ -21,32 +30,107 @@ public class ConversationTest extends AbstractTest {
     }
 
     @org.junit.Test
-    public void regularConversationTest() throws Exception {
-        MvcResult mvcResult1 = sendRequest();
-        String sessionId = mvcResult1.getResponse().getContentAsString();
+     public void test1() throws Exception {
+        MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/start")
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
-        System.out.println(sessionId);
+        int status = mvcResult1.getResponse().getStatus();
+        assertEquals(200, status);
 
-        //----------------------------------
+        SESSION_ID = mvcResult1.getResponse().getContentAsString();
+        MESSAGE = new UserMessage();
+        MESSAGE.setSessionId(SESSION_ID);
+    }
+    @org.junit.Test
+    @DisplayName("send greeting message")
+    public void test2() throws Exception {
+        System.out.println(MESSAGE);
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj("Hi")));
 
-        UserMessage message = new UserMessage();
-        message.setMessages(Collections.singletonList(new MessageObj("Hi")));
-        message.setSessionId(sessionId);
-
-        MvcResult mvcResult3 = sendRequest(message);
+        MvcResult mvcResult3 = sendRequest(MESSAGE);
         String response3 = mvcResult3.getResponse().getContentAsString();
 
         ConversationResponse obj = mapFromJson(response3, ConversationResponse.class);
-
-        System.out.println(obj);
-        System.out.println(obj.getMessage().getMessageObj().getMessage());
+        APP = obj.getMessage().getValues().get(0).getKey();
 
         assertNotEquals(-1, obj.getCode());
+    }
+    @org.junit.Test
+    @DisplayName("send selected app")
+    public void test3() throws Exception {
 
-        //----------------------------------
+        List<String> selectedValuesSelectedApp = new ArrayList<>() {{ add(APP);}};
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj(null, selectedValuesSelectedApp)));
+        MvcResult mvcResultSelectedApp = sendRequest(MESSAGE);
+        String responseSelectedApp = mvcResultSelectedApp.getResponse().getContentAsString();
+        ConversationResponse objSelectedApp = mapFromJson(responseSelectedApp, ConversationResponse.class);
+        System.out.println(objSelectedApp.getMessage().getMessageObj().getMessage());
 
+    }
+    @org.junit.Test
+    @DisplayName("confirm app selection")
+    public void test4() throws Exception {
+       int code = sendAffirmativeAnswer();
+       assertNotEquals(-1,code);
+    }
+
+    @org.junit.Test
+    @DisplayName("answer OB")
+    public void test5() throws Exception {
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj("the app crashed")));
+        MvcResult mvcResultAnswerOB= sendRequest(MESSAGE);
+        String responseAnswerOB = mvcResultAnswerOB.getResponse().getContentAsString();
+
+        ConversationResponse objAnswerOB= mapFromJson(responseAnswerOB, ConversationResponse.class);
+        System.out.println(objAnswerOB.getMessage().getMessageObj().getMessage());
+        OB_SCREEN = objAnswerOB.getMessage().getValues().get(0).getKey();
+        assertNotEquals(-1, objAnswerOB.getCode());
+    }
+
+    @org.junit.Test
+    @DisplayName("answer OB")
+    public void test6() throws Exception {
+        List<String> selectedValuesOBScreen = new ArrayList<>() {{ add(OB_SCREEN);}};
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj("done", selectedValuesOBScreen)));
+        MvcResult mvcResultSelectedOBScreen= sendRequest(MESSAGE);
+        String responseSelectedOBScreen = mvcResultSelectedOBScreen.getResponse().getContentAsString();
+
+        ConversationResponse objSelectedOBScreen = mapFromJson(responseSelectedOBScreen, ConversationResponse.class);
+        System.out.println(objSelectedOBScreen.getMessage().getMessageObj().getMessage());
+
+        assertNotEquals(-1, objSelectedOBScreen.getCode());
+
+    }
+
+    @org.junit.Test
+    @DisplayName("confirm OB screen selection")
+    public void test7() throws Exception {
+        int code = sendAffirmativeAnswer();
+        assertNotEquals(-1,code);
+    }
+
+    @org.junit.Test
+    @DisplayName("answer EB")
+    public void test8() throws Exception {
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj("the app should not crash")));
+        MvcResult mvcResultAnswerEB= sendRequest(MESSAGE);
+        String responseAnswerEB = mvcResultAnswerEB.getResponse().getContentAsString();
+
+        ConversationResponse objAnswerEB= mapFromJson(responseAnswerEB, ConversationResponse.class);
+        System.out.println(objAnswerEB.getMessage().getMessageObj().getMessage());
+        assertNotEquals(-1, objAnswerEB.getCode());
+    }
+    @org.junit.Test
+    @DisplayName("confirm EB screen")
+    public void test9() throws Exception {
+        int code = sendAffirmativeAnswer();
+        assertNotEquals(-1,code);
+    }
+
+    @org.junit.Test
+    public void test10() throws Exception{
         MvcResult mvcResult2 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/end").param("sessionId",
-                sessionId).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+                SESSION_ID).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
         int status2 = mvcResult2.getResponse().getStatus();
         assertEquals(200, status2);
@@ -54,6 +138,7 @@ public class ConversationTest extends AbstractTest {
 
         System.out.println(response);
     }
+
 
     private MvcResult sendRequest(UserMessage message) throws Exception {
         MvcResult mvcResult3 =
@@ -66,12 +151,16 @@ public class ConversationTest extends AbstractTest {
         return mvcResult3;
     }
 
-    private MvcResult sendRequest() throws Exception {
-        MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/start")
-                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+    private int sendAffirmativeAnswer()throws Exception {
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj("yes")));
+        MvcResult mvcResultAffirmativeAnswer= sendRequest(MESSAGE);
+        String responseAffirmativeAnswer= mvcResultAffirmativeAnswer.getResponse().getContentAsString();
 
-        int status = mvcResult1.getResponse().getStatus();
-        assertEquals(200, status);
-        return mvcResult1;
+        ConversationResponse objAffirmativeAnswer = mapFromJson(responseAffirmativeAnswer, ConversationResponse.class);
+        System.out.println(objAffirmativeAnswer.getMessage().getMessageObj().getMessage());
+        return objAffirmativeAnswer.getCode();
+
+
     }
+
 }

@@ -1,8 +1,8 @@
 
 set CUR_DIR=%CD%
 
-set REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
-rem set REPOSITORIES_PATH=D:\Projects
+rem set REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
+set REPOSITORIES_PATH=D:\Projects
 
 set APPCORE_REPO_PATH=%REPOSITORIES_PATH%\appcore
 set TXT_ANALYZER_REPO_PATH=%REPOSITORIES_PATH%\text-analyzer
@@ -14,7 +14,7 @@ REM repo update
 cd "%APPCORE_REPO_PATH%" && git pull
 cd "%TXT_ANALYZER_REPO_PATH%" && git pull
 cd "%BUG_REPORT_COMPLETION_REPO_PATH%" && git pull
-cd "%ANDROID_CORE_REPO_PATH%" && git pull origin burt-jdk8plus
+rem cd "%ANDROID_CORE_REPO_PATH%" && git pull origin burt-jdk8plus
 
 
 REM project building

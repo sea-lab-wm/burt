@@ -20,7 +20,7 @@ import java.io.IOException;
 @WebAppConfiguration
 public abstract class AbstractTest {
 
-    protected MockMvc mvc;
+    protected  MockMvc mvc;
     @Autowired
     WebApplicationContext webApplicationContext;
 

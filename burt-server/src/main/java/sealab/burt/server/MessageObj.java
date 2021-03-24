@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,10 @@ class MessageObj {
         this.message = message;
         this.type = type;
         this.id = id;
+    }
+    public MessageObj(String message, List<String> selectedValues){
+        this.message = message;
+        this.selectedValues = selectedValues;
     }
 
     public MessageObj(String message, String type, double id, Boolean loading, List<String> selectedValues) {
