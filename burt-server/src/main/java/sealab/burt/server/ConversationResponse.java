@@ -11,6 +11,9 @@ class ConversationResponse {
     private ChatbotMessage message;
     private Integer code;
 
+    ConversationResponse(){
+    }
+
 
     public ConversationResponse(ChatbotMessage message, Integer code) {
         this.message = message;
