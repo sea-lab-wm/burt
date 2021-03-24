@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<bug>
+  <id>35</id>
+  <title>crash on restore</title>
+  <description>when trying to restore a backup, the app crashes with "Unfortunately, A Time Tracker has stopped."
+this happens directly after selecting the menu item.
+</description>
+</bug>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.pop').on('click', function() {
+                var divElement = $(this);
+                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('#imagemodal').modal('show');
+                $('#modal_title').html(divElement.text());
+            });
+        });
+    </script>
+
+    <style type="text/css">
+ul.my-list-group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.my-item {
+    float: left;
+}
+
+.my-badge {
+    float: initial !important; 
+}
+
+.label-grey {
+    background-color: #6c757d !important;
+}
+.list-margin-remove {
+    margin-bottom: 0;
+}
+
+.step{
+    color: #07C;
+    cursor: pointer;
+}
+    </style>
+    <title>EULER's Quality Report for Mileage #64</title>
+  </head>
+  <body>
+    <div class="container">
+      <div style="display: table-cell;">
+        <h3>
+          <strong>EULER's Quality Report</strong>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">1</span>&nbsp;Bug Report Information
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label class="">Application:</label> Mileage v. 3.1.1
+          <label class="">Bug report id:</label> #64
+          <br/>
+          <label class="">Bug summary:</label>
+          Economy is displayed as 0.00 km/L
+          <br/>
+          <label class="">Bug description:</label>
+
+          ```</br>What steps will reproduce the problem?</br>1. Entered all the fillup data and goto History Tab</br>2. Click on one of the Fillup history</br>3. Stats section --> Economy is shown as 0.0 km/L</br></br>Expected behavior: should have displayed the mileage/economy by taking previous </br>entry as start and current entry as finish / volume? </br></br>Actual behavior:</br></br>Mileage version: 3.1.1</br>Android version: 4.3</br>Device: Sony Xperia Z1</br></br>Please provide any additional information below.</br>Please see the screen shot</br>```</br></br>Original issue reported on code.google.com by `raghaven...@gmail.com` on 26 Jan 2014 at 5:16</br></br>Attachments:</br>- [Screenshot_2014-01-26-10-40-34.jpg](https://storage.googleapis.com/google-code-attachments/android-mileage/issue-64/comment-0/Screenshot_2014-01-26-10-40-34.jpg)
+
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">2</span>&nbsp;Quality Assessment of the Bug Report
+          </h3>
+        </div>
+        <div class="panel-body">
+          <strong>Legend for the Quality Annotations</strong>
+          <ul class="list-group my-list-group">
+            <li class="list-group-item my-item">
+              Exact Match: <span class="label label-success">EM</span>&nbsp;&nbsp;
+              Ambiguous Step: <span class=" label label-primary my-badge">AS</span>&nbsp;&nbsp;
+              Vocabulary Mismatch: <span class="label label-info my-badge">VM</span>&nbsp;&nbsp;
+              Incorrect Input Value: <span class="label label-grey my-badge">IV</span>&nbsp;&nbsp;
+              Missing Steps: <span class="label label-warning">MS</span>
+            </li>
+          </ul>
+
+          <table class="table table-bordered">
+            <thead class="panel-footer">
+              <tr>
+                <th>#</th>
+                <th style="width: 250px;">Identified Step to Reproduce (S2R)</th>
+                <th>Quality Annotations for the S2R</th>
+              </tr>
+            </thead>
+            <tbody>
+                            <tr>
+                <td>1</td>
+                <td>Enter fillup data </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="AS" class="label label-primary my-badge">AS</span>&nbsp;This S2R matches multiple GUI components (e.g., the "text 1 (Extra data)" text view or the "text 1 (Fillup information)" text view).
+                      <ol>
+                        
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>2</td>
+                <td>Click one of Fillup history </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="VM" class="label label-info my-badge">VM</span>&nbsp;The term "one of Fillup history" does not match a GUI component from the app.
+                      <ol>
+                        
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>      
+    </div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">   
+       <div class="modal-header">
+        <span id="modal_title">Step</span>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>           
+        <div class="modal-body">
+        <img src="" class="imagepreview" style="width: 100%;" >
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

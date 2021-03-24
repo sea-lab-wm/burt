@@ -1,0 +1,7 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"open";"Mileage Tracker";;;"ImperativeSequencePP";"Open Mileage Tracker";"1.3";""
+"1";"SR";"2";"user";"";"negotiate";""Service Intervals" screen";;;"ImperativeSequencePP";"Negotiate to the "Service Intervals" screen";"1.4";""
+"1";"SR";"3";"user";"";"add";"Service Interval";;;"ImperativeSequencePP";"Add Service Interval";"1.5";""
+"1";"SR";"4";"user";"";"enter";"second one";;;"ConditionalObsBehaviorPP";"But, when I entered the second one, it erased the first one.";"3.7";""
+"1";"OB";"5";"app";"";"erase";"first one";;;"NegativeVerbPP";"But, when I entered the second one, it erased the first one.";"3.7";""
+"1";"OB";"6";"app";"";"erase";"first one";;;"NegativeConditionalPP";"But, when I entered the second one, it erased the first one.";"3.7";""

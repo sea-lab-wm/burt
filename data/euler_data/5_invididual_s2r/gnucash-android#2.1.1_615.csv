@@ -1,0 +1,3 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"create";"new book";;;"ImperativeSequencePP";"Create a new book.";"1.2";""
+"1";"SR";"2";"user";"";"manage";"books";;;"ImperativeSequencePP";"Manage books...";"1.3";""

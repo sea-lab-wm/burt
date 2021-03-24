@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug no-bug="" comments="">
+    <id>25</id>
+    <title ob="" eb="" sr="">not export correctly</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">```</st>
+            <st ob="" eb="" sr="" id="1.2">What steps will reproduce the problem?</st>
+            <st ob="" eb="" sr="x" id="1.3">1. Export of data</st>
+            <st ob="" eb="" sr="" id="1.4">2. open in Excel</st>
+            <st ob="" eb="" sr="" id="1.5">3.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">What is the expected output?</st>
+            <st ob="" eb="" sr="" id="2.2">What do you see instead?</st>
+            <st ob="x" eb="" sr="" id="2.3">Weights are displayed incorrectly, for example wrong: 86.500.015 correct: 86.5 wrong: 8.680.001 correct: 86.8</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">What version of the product are you using?</st>
+            <st ob="" eb="" sr="" id="3.2">On what operating system?</st>
+            <st ob="" eb="" sr="" id="3.3">Galaxy S2, Version 4.04</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Please provide any additional information below.</st>
+            <st ob="x" eb="" sr="" id="4.2">Incorrect subsequent manual input, but new entries incorrectly</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">```</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Original issue reported on code.google.com by `Ger.Kie...@gmail.com` on 11 Feb 2013 at 10:49</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Attachments:</st>
+            <st ob="" eb="" sr="" id="7.2">- [data.csv](https://storage.googleapis.com/google-code-attachments/droidweight/issue-25/comment-0/data.csv)</st>
+        </parg>
+    </desc>
+</bug>

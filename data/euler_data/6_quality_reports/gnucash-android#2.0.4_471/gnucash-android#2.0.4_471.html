@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.pop').on('click', function() {
+                var divElement = $(this);
+                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('#imagemodal').modal('show');
+                $('#modal_title').html(divElement.text());
+            });
+        });
+    </script>
+
+    <style type="text/css">
+ul.my-list-group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.my-item {
+    float: left;
+}
+
+.my-badge {
+    float: initial !important; 
+}
+
+.label-grey {
+    background-color: #6c757d !important;
+}
+.list-margin-remove {
+    margin-bottom: 0;
+}
+
+.step{
+    color: #07C;
+    cursor: pointer;
+}
+    </style>
+    <title>EULER's Quality Report for GnuCash #471</title>
+  </head>
+  <body>
+    <div class="container">
+      <div style="display: table-cell;">
+        <h3>
+          <strong>EULER's Quality Report</strong>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">1</span>&nbsp;Bug Report Information
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label class="">Application:</label> GnuCash v. 2.0.4
+          <label class="">Bug report id:</label> #471
+          <br/>
+          <label class="">Bug summary:</label>
+          After use the small plus to add a new record this symbol is gone
+          <br/>
+          <label class="">Bug description:</label>
+
+          In the account there is a small + to add a new record. After press this one time, doesn't mater if you safe the record or cancel it, this symbol is gone. It show up again, when you leave the account and open it again. I made two screenshots. This is, when you open the account:</br>![screenshot_2016-01-23-14-41-18](https://cloud.githubusercontent.com/assets/7298934/12530543/2d15b1e4-c1e2-11e5-8348-bb5d1b4c581d.png)</br></br>This is after press the + one time. The plus symbol is gone.</br>![screenshot_2016-01-23-14-41-26](https://cloud.githubusercontent.com/assets/7298934/12530545/30ab6d1c-c1e2-11e5-90b6-0f7c5141b9f9.png)
+
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">2</span>&nbsp;Quality Assessment of the Bug Report
+          </h3>
+        </div>
+        <div class="panel-body">
+          <strong>Legend for the Quality Annotations</strong>
+          <ul class="list-group my-list-group">
+            <li class="list-group-item my-item">
+              Exact Match: <span class="label label-success">EM</span>&nbsp;&nbsp;
+              Ambiguous Step: <span class=" label label-primary my-badge">AS</span>&nbsp;&nbsp;
+              Vocabulary Mismatch: <span class="label label-info my-badge">VM</span>&nbsp;&nbsp;
+              Incorrect Input Value: <span class="label label-grey my-badge">IV</span>&nbsp;&nbsp;
+              Missing Steps: <span class="label label-warning">MS</span>
+            </li>
+          </ul>
+
+          <table class="table table-bordered">
+            <thead class="panel-footer">
+              <tr>
+                <th>#</th>
+                <th style="width: 250px;">Identified Step to Reproduce (S2R)</th>
+                <th>Quality Annotations for the S2R</th>
+              </tr>
+            </thead>
+            <tbody>
+                            <tr>
+                <td>1</td>
+                <td>Press + </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" class="pop step" href="" step="7" data ="html_imgs\org.gnucash.android.Bottom_Up.Unexpected.Disabled.1.org.gnucash.android_2.0.4_gnucash7_augmented.png" step="1">Tap the "fab create account" image view</div>
+</li>
+
+                      </ol>
+                    </li>                    <li>
+                      <span feed_type="MS" class="label label-warning my-badge">MS</span>&nbsp;There are app interactions that are missing in the bug report and should be executed before this S2R:
+                      <ol>
+                        <li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="2" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.0.4_2_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="28" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.0.4_28_augmented.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="24" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.0.4_24_augmented.png" step="1">Tap the "text 1 (USD)" checked text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="38" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.0.4_38_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="20" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.0.4_20_augmented.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="21" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.0.4_21_augmented.png" step="1">Tap the "text 1 (Create default accounts)" checked text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="58" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.0.4_58_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="27" data ="html_imgs\org.gnucash.android.Top_Down.Expected.Disabled.1.org.gnucash.android_2.0.4_27_augmented.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="28" data ="html_imgs\org.gnucash.android.Top_Down.Expected.Disabled.1.org.gnucash.android_2.0.4_28_augmented.png" step="1">Tap the "text 1 (Automatically send crash reports)" checked text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="5" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.0.org.gnucash.android_2.0.4_gnucash5_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="17" data ="html_imgs\1549044230593_17_augm.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="6" data ="html_imgs\org.gnucash.android.Bottom_Up.Unexpected.Disabled.0.org.gnucash.android_2.0.4_gnucash6_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>2</td>
+                <td>Safe record </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="VM" class="label label-info my-badge">VM</span>&nbsp;The term "safe" does not match an action performed on the app.
+                      <ol>
+                        
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>3</td>
+                <td>Cancel it </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="VM" class="label label-info my-badge">VM</span>&nbsp;The term "cancel" does not match an action performed on the app.
+                      <ol>
+                        
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>4</td>
+                <td>Leave account </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" step="4">Tap the back button</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>5</td>
+                <td>Open it </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="VM" class="label label-info my-badge">VM</span>&nbsp;The term "it" does not match a GUI component from the app.
+                      <ol>
+                        
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>      
+    </div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">   
+       <div class="modal-header">
+        <span id="modal_title">Step</span>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>           
+        <div class="modal-body">
+        <img src="" class="imagepreview" style="width: 100%;" >
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

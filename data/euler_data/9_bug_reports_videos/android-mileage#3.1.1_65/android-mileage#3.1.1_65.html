@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.pop').on('click', function() {
+                var divElement = $(this);
+                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('#imagemodal').modal('show');
+                $('#modal_title').html(divElement.text());
+            });
+        });
+    </script>
+
+    <style type="text/css">
+ul.my-list-group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.my-item {
+    float: left;
+}
+
+.my-badge {
+    float: initial !important; 
+}
+
+.label-grey {
+    background-color: #6c757d !important;
+}
+.list-margin-remove {
+    margin-bottom: 0;
+}
+
+.step{
+    color: #07C;
+    cursor: pointer;
+}
+    </style>
+    <title>Mileage 65</title>
+  </head>
+  <body>
+    <div class="container">
+      <div style="display: table-cell;">
+        <h3>
+          <strong>Bug report, video, and video transcript</strong>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">1</span>&nbsp;Original Bug Report
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label class="">Bug report id:</label> #65
+          <label class="">Application:</label> Mileage v. 3.1.1
+          <br/>
+          <label class="">Bug Report:</label>
+          <br/>
+
+          <div><img src="android-mileage%233.1.1_65.png" style="width: 850px;border: 1px solid black;"></div>
+
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">2</span>&nbsp;Video
+          </h3>
+        </div>
+        <div class="panel-body">
+          <iframe width="850" height="615" src="https://www.youtube.com/embed/yZDtruM3poQ" frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">3</span>&nbsp;Video transcript
+          </h3>
+        </div>
+        <div style="padding: 10px;">
+        <table class="table table-bordered">
+          <thead class="panel-footer">
+          <tr>
+            <th >#</th>
+            <th >App Interaction</th>
+            <th >Step to Reproduce (S2R) from the Bug Report</th>
+          </tr>
+          </thead>
+          <tbody>
+             <col class=xl63 width=264 style='mso-width-source:userset;mso-width-alt:8448;
+ width:198pt'>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl65 width=87 style='height:16.0pt;width:65pt'>1</td>
+  <td class=xl64 width=261 style='border-left:none;width:196pt'>Open the
+  application</td>
+  <td class=xl64 width=264 style='border-left:none;width:198pt'>Open Mileage
+  Tracker</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 style='height:29.0pt;border-top:none'>2</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Tap
+  on the &quot;...&quot; button at the bottom right half of the screen</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;Negotiate
+  to the &quot;Service Intervals&quot; screen</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl65 style='height:16.0pt;border-top:none'>3</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Tap
+  on the &quot;Service Intervals&quot; button</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl65 style='height:16.0pt;border-top:none'>4</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Click
+  “add service intervals”</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&quot;Add
+  Service Interval&quot;</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl65 style='height:16.0pt;border-top:none'>5</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Tap
+  on the &quot;Odometer&quot; Text Field</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl65 style='height:16.0pt;border-top:none'>6</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Type
+  &quot;100&quot; into the Odometer Field</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 style='height:29.0pt;border-top:none'>7</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Tap
+  on the &quot;Add Service Interval&quot; button</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td rowspan=2 height=42 class=xl65 style='height:32.0pt;border-top:none'>8</td>
+  <td rowspan=2 class=xl64 width=261 style='border-top:none;width:196pt'>Tap on
+  the &quot;...&quot; button at the bottom right half of the screen</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;I
+  added a second&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl64 width=264 style='height:16.0pt;border-top:none;
+  border-left:none;width:198pt'>service... my yearly State Inspection.</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 style='height:29.0pt;border-top:none'>9</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Tap
+  on the &quot;Add Service Interval&quot; button</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl65 style='height:16.0pt;border-top:none'>10</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Tap
+  on the &quot;Odometer&quot; Text Field</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl65 style='height:16.0pt;border-top:none'>11</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Enter
+  “100” in Odometer Field</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 style='height:29.0pt;border-top:none'>12</td>
+  <td class=xl64 width=261 style='border-top:none;border-left:none;width:196pt'>Tap
+  on the &quot;Add Service Interval&quot; button</td>
+  <td class=xl64 width=264 style='border-top:none;border-left:none;width:198pt'>&nbsp;</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=87 style='width:65pt'></td>
+  <td width=261 style='width:196pt'></td>
+  <td width=264 style='width:198pt'></td>
+ </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">   
+       <div class="modal-header">
+        <span id="modal_title">Step</span>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>           
+        <div class="modal-body">
+        <img src="" class="imagepreview" style="width: 100%;" >
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

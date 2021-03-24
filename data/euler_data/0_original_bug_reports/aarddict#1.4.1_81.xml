@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<bug>
+  <id>81</id>
+  <title>Window leak detected in aarddict 1.4.1</title>
+  <description>Window leak on orientation change when a selected Dictionary is being verified. 
+Action sequence: (Dictionary already loaded) Start app -&gt; MENU -&gt; Click on Dictionaries -&gt; Long click on any dictionary -&gt; change orientation when dictionary is being verified i.e popup window is still visible 
+
+logcat stack trace:
+
+E/WindowManager(919): android.view.WindowLeaked: Activity aarddict.android.DictionariesActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView@411814d0 that was originally added here
+E/WindowManager(919): at android.view.ViewRootImpl.&lt;init&gt;(ViewRootImpl.java:343)
+E/WindowManager(919): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:245)
+E/WindowManager(919): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:193)
+E/WindowManager(919): at android.view.WindowManagerImpl$CompatModeWrapper.addView(WindowManagerImpl.java:118)
+E/WindowManager(919): at android.view.Window$LocalWindowManager.addView(Window.java:537)
+E/WindowManager(919): at android.app.Dialog.show(Dialog.java:274)
+E/WindowManager(919): at aarddict.android.DictionariesActivity$DictListAdapter.verify(DictionariesActivity.java:383)
+E/WindowManager(919): at aarddict.android.DictionariesActivity$DictListAdapter.onItemLongClick(DictionariesActivity.java:336)
+E/WindowManager(919): at android.widget.AbsListView.performLongPress(AbsListView.java:2580)
+E/WindowManager(919): at android.widget.AbsListView$CheckForLongPress.run(AbsListView.java:2530)
+E/WindowManager(919): at android.os.Handler.handleCallback(Handler.java:605)
+E/WindowManager(919): at android.os.Handler.dispatchMessage(Handler.java:92)
+E/WindowManager(919): at android.os.Looper.loop(Looper.java:137)
+E/WindowManager(919): at android.app.ActivityThread.main(ActivityThread.java:4340)
+E/WindowManager(919): at java.lang.reflect.Method.invokeNative(Native Method)
+E/WindowManager(919): at java.lang.reflect.Method.invoke(Method.java:511)
+E/WindowManager(919): at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+E/WindowManager(919): at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+E/WindowManager(919): at dalvik.system.NativeStart.main(Native Method)
+</description>
+</bug>

@@ -1,0 +1,784 @@
+{
+  "token": "1548990200934",
+  "bugReport": {
+    "id": "46",
+    "title": "Dialog Disappears on Device Rotation 3",
+    "description": "When I perform this sequence of events:\n1. Click on OK\n2. Click on \"...\" (More Options...)\n3. Click on Add Task\n4. Insert text \"testtask\"\n5. Click on Add Task\n6. Long Click on Element in List\n7. Click on Edit Task\n8. Orientation Change\n The dialog on screen disappears.\n"
+  },
+  "appName": "A Time Tracker",
+  "appVersion": "0.20",
+  "s2RQualityFeedback": [
+    {
+      "action": {
+        "sq": 1,
+        "sub": "user",
+        "act": "click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "OK",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Click on OK",
+        "sentenceId": "1.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 7274,
+              "action": 0,
+              "sequence": 5,
+              "execution": 213,
+              "component": {
+                "dbId": 230171,
+                "type": "android.widget.Button",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 108,
+                "width": 1096,
+                "idXml": "android:id/button1",
+                "x": 52,
+                "y": 1464,
+                "relativeLocation": "Bottom",
+                "text": "OK",
+                "screenId": 7128
+              },
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.No_Text.Disabled.1.com.markuspage.android.atimetracker_0.20_5_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 7443,
+              "action": 0,
+              "sequence": 1,
+              "execution": 216,
+              "component": {
+                "dbId": 234924,
+                "type": "android.widget.TextView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 764,
+                "width": 1076,
+                "idXml": "com.markuspage.android.atimetracker:id/usage",
+                "x": 62,
+                "y": 452,
+                "relativeLocation": "Center",
+                "text": " Detailed instructions are at https://github.com/netmackan/ATimeTracker\n\n • Create some tasks using the menu\n • Tap a task to start timing; tap it again to stop timing\n • Use the context menu for a task to list times\n • Change configuration options with the menu\n • View a weekly report with the menu\n \n Tapping a different task switches timing to the other task.\n \n The task context menu allows you to edit tasks (change their names), delete tasks (including all of the time history for that task!), or view the time log for that task.\n \n Time Log view\n \n The time log for a task is filtered on the same range that you selected for the main task view, so if you filtered the task view for This Week and you open the time log, then you\u0027ll only see times for this week. Use the Add Time menu item to manually insert times into the time log. Use the context menu for a time to delete or edit a time range.\n \n Note that TimeTracker will not prevent you from creating times that overlap with times in other (or the same) task. ",
+                "currentWindow": "ACTIVITY:com.markuspage.android.atimetracker.Tasks",
+                "screenId": 7308
+              },
+              "text": "",
+              "exception": "E/AudioManagerAndroid(24140): BLUETOOTH permission is missing!\nE/OpenGLRenderer(24140): Getting MAX_TEXTURE_SIZE from GradienCache\nE/OpenGLRenderer(24140): MAX_TEXTURE_SIZE: 16384\nE/OpenGLRenderer(24140): Getting MAX_TEXTURE_SIZE from Caches::initConstraints()\nE/OpenGLRenderer(24140): MAX_TEXTURE_SIZE: 16384",
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.Unexpected.Disabled.1.com.markuspage.android.atimetracker_0.20_1_augmented.png"
+            },
+            {
+              "id": 7444,
+              "action": 1,
+              "sequence": 2,
+              "execution": 216,
+              "component": {
+                "dbId": 234925,
+                "type": "android.widget.TextView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 764,
+                "width": 1076,
+                "idXml": "com.markuspage.android.atimetracker:id/usage",
+                "x": 62,
+                "y": 452,
+                "relativeLocation": "Center",
+                "text": " Detailed instructions are at https://github.com/netmackan/ATimeTracker\n\n • Create some tasks using the menu\n • Tap a task to start timing; tap it again to stop timing\n • Use the context menu for a task to list times\n • Change configuration options with the menu\n • View a weekly report with the menu\n \n Tapping a different task switches timing to the other task.\n \n The task context menu allows you to edit tasks (change their names), delete tasks (including all of the time history for that task!), or view the time log for that task.\n \n Time Log view\n \n The time log for a task is filtered on the same range that you selected for the main task view, so if you filtered the task view for This Week and you open the time log, then you\u0027ll only see times for this week. Use the Add Time menu item to manually insert times into the time log. Use the context menu for a time to delete or edit a time range.\n \n Note that TimeTracker will not prevent you from creating times that overlap with times in other (or the same) task. ",
+                "currentWindow": "ACTIVITY:com.markuspage.android.atimetracker.Tasks",
+                "screenId": 7309
+              },
+              "text": "",
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.Unexpected.Disabled.1.com.markuspage.android.atimetracker_0.20_2_augmented.png"
+            },
+            {
+              "id": 7441,
+              "action": 1,
+              "sequence": 4,
+              "execution": 216,
+              "component": {
+                "dbId": 234922,
+                "type": "android.widget.TextView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 246,
+                "width": 1076,
+                "idXml": "com.markuspage.android.atimetracker:id/credits",
+                "x": 62,
+                "y": 1216,
+                "relativeLocation": "Center",
+                "text": "Credits\n \n Based on TimeTracker+ by Sean E. Russell.\n Application icon from Tango Project (tango.freedesktop.org).\n Russian translation by Denis Gladkiy\n French translation by Wilfried Kopp\n Spanish and Italian translation by Carlos Manzo ",
+                "currentWindow": "ACTIVITY:com.markuspage.android.atimetracker.Tasks",
+                "screenId": 7327
+              },
+              "text": "",
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.Unexpected.Disabled.1.com.markuspage.android.atimetracker_0.20_4_augmented.png"
+            },
+            {
+              "id": 7462,
+              "action": 0,
+              "sequence": 3,
+              "execution": 216,
+              "component": {
+                "dbId": 234942,
+                "type": "android.widget.TextView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 246,
+                "width": 1076,
+                "idXml": "com.markuspage.android.atimetracker:id/credits",
+                "x": 62,
+                "y": 1216,
+                "relativeLocation": "Center",
+                "text": "Credits\n \n Based on TimeTracker+ by Sean E. Russell.\n Application icon from Tango Project (tango.freedesktop.org).\n Russian translation by Denis Gladkiy\n French translation by Wilfried Kopp\n Spanish and Italian translation by Carlos Manzo ",
+                "currentWindow": "ACTIVITY:com.markuspage.android.atimetracker.Tasks",
+                "screenId": 7321
+              },
+              "text": "",
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.Unexpected.Disabled.1.com.markuspage.android.atimetracker_0.20_3_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 2,
+        "sub": "user",
+        "act": "click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "\"...\" (More Options...)",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Click on \"...\" (More Options...)",
+        "sentenceId": "1.3",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17490,
+              "action": 0,
+              "sequence": 7,
+              "component": {
+                "dbId": 575655,
+                "type": "android.widget.ImageButton",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "More options",
+                "height": 112,
+                "width": 128,
+                "idXml": "",
+                "x": 1072,
+                "y": 50,
+                "relativeLocation": "Top right",
+                "text": "",
+                "screenId": 16514
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548990200934\\1548990200934_7_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 3,
+        "sub": "user",
+        "act": "click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "\"Add Task\"",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Click on Add Task",
+        "sentenceId": "1.4",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17491,
+              "action": 0,
+              "sequence": 8,
+              "component": {
+                "dbId": 230252,
+                "type": "android.widget.TextView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 49,
+                "width": 328,
+                "idXml": "android:id/title",
+                "x": 824,
+                "y": 185,
+                "relativeLocation": "Top right",
+                "text": "Add task",
+                "screenId": 7133
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548990200934\\1548990200934_8_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 4,
+        "sub": "user",
+        "act": "insert",
+        "obj": "text \"testtask\"",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Insert text \"testtask\"",
+        "sentenceId": "1.5",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17492,
+              "action": 5,
+              "sequence": 10,
+              "component": {
+                "dbId": 575684,
+                "type": "android.widget.EditText",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 79,
+                "width": 859,
+                "idXml": "com.markuspage.android.atimetracker:id/task_edit_name_edit",
+                "x": 269,
+                "y": 884,
+                "relativeLocation": "Center right",
+                "text": "",
+                "screenId": 16516
+              },
+              "text": "testtask",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548990200934\\1548990200934_10_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 5,
+        "sub": "user",
+        "act": "click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "\"Add Task\"",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Click on Add Task",
+        "sentenceId": "1.6",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17473,
+              "action": 0,
+              "sequence": 32,
+              "execution": 318,
+              "component": {
+                "dbId": 575692,
+                "type": "android.widget.Button",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 108,
+                "width": 547,
+                "idXml": "android:id/button1",
+                "x": 601,
+                "y": 1014,
+                "relativeLocation": "Center right",
+                "text": "Add task",
+                "screenId": 16516
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548989829602\\1548989829602_32_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "action": 0,
+              "component": {
+                "dbId": 575684,
+                "type": "android.widget.EditText",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 79,
+                "width": 859,
+                "idXml": "com.markuspage.android.atimetracker:id/task_edit_name_edit",
+                "x": 269,
+                "y": 884,
+                "relativeLocation": "Center right",
+                "text": "",
+                "screenId": 16516
+              }
+            },
+            {
+              "id": 17492,
+              "action": 5,
+              "sequence": 10,
+              "execution": 319,
+              "component": {
+                "dbId": 575684,
+                "type": "android.widget.EditText",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 79,
+                "width": 859,
+                "idXml": "com.markuspage.android.atimetracker:id/task_edit_name_edit",
+                "x": 269,
+                "y": 884,
+                "relativeLocation": "Center right",
+                "text": "",
+                "screenId": 16516
+              },
+              "text": "1",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548990200934\\1548990200934_10_augm.png"
+            },
+            {
+              "id": 17494,
+              "action": 0,
+              "sequence": 11,
+              "execution": 319,
+              "component": {
+                "dbId": 575684,
+                "type": "android.widget.EditText",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 79,
+                "width": 859,
+                "idXml": "com.markuspage.android.atimetracker:id/task_edit_name_edit",
+                "x": 269,
+                "y": 884,
+                "relativeLocation": "Center right",
+                "text": "",
+                "screenId": 16516
+              },
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548990200934\\1548990200934_11_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 6,
+        "sub": "user",
+        "act": "long click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "Element",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Long Click on Element in List",
+        "sentenceId": "1.7",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "LOW_Q_VOCAB_MISMATCH",
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": true
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 7,
+        "sub": "user",
+        "act": "click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "Edit Task",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Click on Edit Task",
+        "sentenceId": "1.8",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17491,
+              "action": 0,
+              "sequence": 8,
+              "execution": 319,
+              "component": {
+                "dbId": 230252,
+                "type": "android.widget.TextView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 49,
+                "width": 328,
+                "idXml": "android:id/title",
+                "x": 824,
+                "y": 185,
+                "relativeLocation": "Top right",
+                "text": "Add task",
+                "screenId": 7133
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548990200934\\1548990200934_8_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 17467,
+              "action": 0,
+              "sequence": 16,
+              "execution": 318,
+              "component": {
+                "dbId": 575781,
+                "type": "android.view.View",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 1824,
+                "width": 1200,
+                "idXml": "android:id/action_bar_overlay_layout",
+                "x": 0,
+                "y": 0,
+                "relativeLocation": "Center",
+                "text": "",
+                "screenId": 16522
+              },
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548989829602\\1548989829602_16_augm.png"
+            },
+            {
+              "id": 17463,
+              "action": 0,
+              "sequence": 12,
+              "execution": 318,
+              "component": {
+                "dbId": 575714,
+                "type": "android.view.View",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 112,
+                "width": 1200,
+                "idXml": "android:id/action_bar",
+                "x": 0,
+                "y": 50,
+                "relativeLocation": "Top",
+                "text": "",
+                "screenId": 16518
+              },
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548989829602\\1548989829602_12_augm.png"
+            },
+            {
+              "id": 17468,
+              "action": 0,
+              "sequence": 17,
+              "execution": 318,
+              "component": {
+                "dbId": 575803,
+                "type": "android.widget.ImageView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 96,
+                "width": 96,
+                "idXml": "android:id/home",
+                "x": 25,
+                "y": 58,
+                "relativeLocation": "Top left",
+                "text": "",
+                "screenId": 16523
+              },
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548989829602\\1548989829602_17_augm.png"
+            },
+            {
+              "id": 17464,
+              "action": 0,
+              "sequence": 13,
+              "execution": 318,
+              "component": {
+                "dbId": 575734,
+                "type": "android.widget.TextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 49,
+                "width": 473,
+                "idXml": "android:id/action_bar_title",
+                "x": 129,
+                "y": 81,
+                "relativeLocation": "Top left",
+                "text": "A Time Tracker (Today) 00:00",
+                "screenId": 16519
+              },
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548989829602\\1548989829602_13_augm.png"
+            },
+            {
+              "id": 17499,
+              "action": 11,
+              "sequence": 16,
+              "execution": 319,
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1548990200934\\1548990200934_16.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.pop').on('click', function() {
+                var divElement = $(this);
+                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('#imagemodal').modal('show');
+                $('#modal_title').html(divElement.text());
+            });
+        });
+    </script>
+
+    <style type="text/css">
+ul.my-list-group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.my-item {
+    float: left;
+}
+
+.my-badge {
+    float: initial !important; 
+}
+
+.label-grey {
+    background-color: #6c757d !important;
+}
+.list-margin-remove {
+    margin-bottom: 0;
+}
+
+.step{
+    color: #07C;
+    cursor: pointer;
+}
+    </style>
+    <title>EULER's Quality Report for GnuCash #701</title>
+  </head>
+  <body>
+    <div class="container">
+      <div style="display: table-cell;">
+        <h3>
+          <strong>EULER's Quality Report</strong>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">1</span>&nbsp;Bug Report Information
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label class="">Application:</label> GnuCash v. 2.2.0
+          <label class="">Bug report id:</label> #701
+          <br/>
+          <label class="">Bug summary:</label>
+          Split memos disappear
+          <br/>
+          <label class="">Bug description:</label>
+
+          #### Steps to reproduce the behaviour</br>1. Click on transaction</br>1. Click on edit FAB button</br>1. Click on split icon</br>1. Add memo to 1 or more splits</br>1. Click "save"</br>1. Click "save" again</br>1. Click on edit FAB button</br>1. Click on split icon</br></br>#### Expected behaviour</br>Splits have their memos.</br></br>#### Actual behaviour</br>Split do not have their memos anymore.</br></br>#### Software specifications</br>* GnuCash Android version: 2.2.0</br>* System Android version: 6.0</br>* Device type: Any
+
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">2</span>&nbsp;Quality Assessment of the Bug Report
+          </h3>
+        </div>
+        <div class="panel-body">
+          <strong>Legend for the Quality Annotations</strong>
+          <ul class="list-group my-list-group">
+            <li class="list-group-item my-item">
+              Exact Match: <span class="label label-success">EM</span>&nbsp;&nbsp;
+              Ambiguous Step: <span class=" label label-primary my-badge">AS</span>&nbsp;&nbsp;
+              Vocabulary Mismatch: <span class="label label-info my-badge">VM</span>&nbsp;&nbsp;
+              Incorrect Input Value: <span class="label label-grey my-badge">IV</span>&nbsp;&nbsp;
+              Missing Steps: <span class="label label-warning">MS</span>
+            </li>
+          </ul>
+
+          <table class="table table-bordered">
+            <thead class="panel-footer">
+              <tr>
+                <th>#</th>
+                <th style="width: 250px;">Identified Step to Reproduce (S2R)</th>
+                <th>Quality Annotations for the S2R</th>
+              </tr>
+            </thead>
+            <tbody>
+                            <tr>
+                <td>1</td>
+                <td>Click on transaction </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" class="pop step" href="" step="18" data ="html_imgs\1549159120104_18_augm.png" step="1">Tap the "Transactions" text view</div>
+</li>
+
+                      </ol>
+                    </li>                    <li>
+                      <span feed_type="MS" class="label label-warning my-badge">MS</span>&nbsp;There are app interactions that are missing in the bug report and should be executed before this S2R:
+                      <ol>
+                        <li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="1" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_1_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="2" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_2_augmented.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="10" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_10_augmented.png" step="1">Tap the "text 1 (USD)" checked text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="3" data ="html_imgs\org.gnucash.android.Bottom_Up.Expected.Disabled.1.org.gnucash.android_2.2.0_3_augmented.png" step="1">Tap the "btn cancel (Back)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="2" data ="html_imgs\org.gnucash.android.Bottom_Up.Expected.Disabled.1.org.gnucash.android_2.2.0_2_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="18" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_18_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="19" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_19_augmented.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="20" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_20_augmented.png" step="1">Tap the "text 1 (Create default accounts)" checked text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="3" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_3_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="26" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.2.0_26_augmented.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="27" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.2.0_27_augmented.png" step="1">Tap the "text 1 (Automatically send crash reports)" checked text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="31" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.2.0_31_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="32" data ="html_imgs\org.gnucash.android.Top_Down.Unexpected.Disabled.1.org.gnucash.android_2.2.0_32_augmented.png" step="1">Tap the "list" list view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="6" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.0.org.gnucash.android_2.2.0_gnucash6_augmented.png" step="1">Tap the "btn save (Next)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="7" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash7_augmented.png" step="1">Tap the "button 1 (Dismiss)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="8" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash8_augmented.png" step="1">Tap the "Navigation drawer opened" image button</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>2</td>
+                <td>Click on edit FAB button </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" class="pop step" href="" step="18" data ="html_imgs\1549159120104_18_augm.png" step="2">Tap the "Transactions" text view</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>3</td>
+                <td>Click on split icon </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="VM" class="label label-info my-badge">VM</span>&nbsp;The term "on split icon" does not match a GUI component from the app.
+                      <ol>
+                        
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>4</td>
+                <td>Add memo to splits </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="AS" class="label label-primary my-badge">AS</span>&nbsp;This S2R matches multiple actions (e.g., "click" or "type").
+                      <ol>
+                        
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>5</td>
+                <td>Click "save" </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" class="pop step" href="" step="110" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash110_augmented.png" step="5">Tap the "btn save (Delete)" button</div>
+</li>
+
+                      </ol>
+                    </li>                    <li>
+                      <span feed_type="MS" class="label label-warning my-badge">MS</span>&nbsp;There are app interactions that are missing in the bug report and should be executed before this S2R:
+                      <ol>
+                        <li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="84" data ="html_imgs\1549159120104_84_augm.png" step="5">Tap the view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="80" data ="html_imgs\1549159120104_80_augm.png" step="5">Tap the "Preferences" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="9" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash9_augmented.png" step="5">Tap the "drawer title (GnuCash)" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="111" data ="html_imgs\1549159120104_111_augm.png" step="5">Tap the "toolbar" view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="24" data ="html_imgs\1549159120104_24_augm.png" step="5">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="22" data ="html_imgs\1549159120104_22_augm.png" step="5">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="21" data ="html_imgs\1549159120104_21_augm.png" step="5">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="23" data ="html_imgs\1549159120104_23_augm.png" step="5">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="108" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash108_augmented.png" step="5">Tap the "options menu" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="109" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash109_augmented.png" step="5">Tap the "Delete" view</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>6</td>
+                <td>Click "save" </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" class="pop step" href="" step="110" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash110_augmented.png" step="6">Tap the "btn save (Delete)" button</div>
+</li>
+
+                      </ol>
+                    </li>                    <li>
+                      <span feed_type="MS" class="label label-warning my-badge">MS</span>&nbsp;There are app interactions that are missing in the bug report and should be executed before this S2R:
+                      <ol>
+                        <li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="111" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash111_augmented.png" step="6">Tap the "options menu" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="112" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash112_augmented.png" step="6">Tap the "Delete" view</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>7</td>
+                <td>Click on edit FAB button </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" class="pop step" href="" step="18" data ="html_imgs\1549159120104_18_augm.png" step="7">Tap the "Transactions" text view</div>
+</li>
+
+                      </ol>
+                    </li>                    <li>
+                      <span feed_type="MS" class="label label-warning my-badge">MS</span>&nbsp;There are app interactions that are missing in the bug report and should be executed before this S2R:
+                      <ol>
+                        <li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="114" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash114_augmented.png" step="7">Tap the "options menu" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="115" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash115_augmented.png" step="7">Tap the "Delete" view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="122" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash122_augmented.png" step="7">Tap the "btn save (Delete)" button</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="13" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash13_augmented.png" step="7">Long tap the "menu search (Search)" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="125" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash125_augmented.png" step="7">Tap the action bar $ tab</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="124" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash124_augmented.png" step="7">Tap the action bar $ tab</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="123" data ="html_imgs\org.gnucash.android.Bottom_Up.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash123_augmented.png" step="7">Tap the action bar $ tab</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="14" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash14_augmented.png" step="7">Tap the action bar $ tab</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="111" data ="html_imgs\1549159120104_111_augm.png" step="7">Tap the "toolbar" view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="24" data ="html_imgs\1549159120104_24_augm.png" step="7">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="22" data ="html_imgs\1549159120104_22_augm.png" step="7">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="8" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash8_augmented.png" step="7">Tap the "Navigation drawer opened" image button</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>              <tr>
+                <td>8</td>
+                <td>Click on split icon </td>
+                <td>
+                  <ul class="list-unstyled list-margin-remove">
+                                        <li>
+                      <span feed_type="EM" class="label label-success my-badge">EM</span>&nbsp;This S2R matches the following app interaction:
+                      <ol>
+                        <li step_type="EM">
+<div step_type="EM" class="pop step" href="" step="174" data ="html_imgs\1549159120104_174_augm.png" step="8">Tap the "btn split editor (Open split editor)" image view</div>
+</li>
+
+                      </ol>
+                    </li>                    <li>
+                      <span feed_type="MS" class="label label-warning my-badge">MS</span>&nbsp;There are app interactions that are missing in the bug report and should be executed before this S2R:
+                      <ol>
+                        <li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="335" data ="html_imgs\1549159120104_335_augm.png" step="8">Tap the "tab layout" horizontal scroll view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="52" data ="html_imgs\1549159120104_52_augm.png" step="8">Tap the "title (Book 1)" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="81" data ="html_imgs\1549159120104_81_augm.png" step="8">Tap the view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="18" data ="html_imgs\1549159120104_18_augm.png" step="8">Tap the "Transactions" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="84" data ="html_imgs\1549159120104_84_augm.png" step="8">Tap the view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="80" data ="html_imgs\1549159120104_80_augm.png" step="8">Tap the "Preferences" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="9" data ="html_imgs\org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.2.0_gnucash9_augmented.png" step="8">Tap the "drawer title (GnuCash)" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="111" data ="html_imgs\1549159120104_111_augm.png" step="8">Tap the "toolbar" view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="24" data ="html_imgs\1549159120104_24_augm.png" step="8">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="22" data ="html_imgs\1549159120104_22_augm.png" step="8">Tap the "favorite status" image view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="54" data ="html_imgs\1549159120104_54_augm.png" step="8">Tap the "secondary text (5 sub-accounts)" text view</div>
+</li>
+<li step_type="MS">
+<div step_type="MS" class="pop step" href="" step="171" data ="html_imgs\1549159120104_171_augm.png" step="8">Tap the "create transaction" image view</div>
+</li>
+
+                      </ol>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>      
+    </div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">   
+       <div class="modal-header">
+        <span id="modal_title">Step</span>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>           
+        <div class="modal-body">
+        <img src="" class="imagepreview" style="width: 100%;" >
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

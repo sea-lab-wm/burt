@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<bug>
+  <id>12</id>
+  <title>"pd" is not the abbreviation for "pounds". it is "lb"</title>
+  <description>```
+select Menu &gt; Preferences &gt; Units &gt; Imperial
+
+The abbreviation for the unit "pounds" next to the displayed weight should read 
+"lb". Instead it reads "pd".
+https://en.wikipedia.org/wiki/Pound_(mass)
+
+droidweight version 1.3.3
+
+The attached file is an export of the fix for this bug
+```
+
+Original issue reported on code.google.com by `twellman@gmail.com` on 11 Jun 2012 at 3:47
+
+Attachments:
+- [droidweight-lb.patch](https://storage.googleapis.com/google-code-attachments/droidweight/issue-12/comment-0/droidweight-lb.patch)
+</description>
+</bug>

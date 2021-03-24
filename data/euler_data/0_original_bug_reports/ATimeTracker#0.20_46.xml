@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<bug>
+  <id>46</id>
+  <title>Dialog Disappears on Device Rotation 3</title>
+  <description>When I perform this sequence of events:
+1. Click on OK
+2. Click on "..." (More Options...)
+3. Click on Add Task
+4. Insert text "testtask"
+5. Click on Add Task
+6. Long Click on Element in List
+7. Click on Edit Task
+8. Orientation Change
+ The dialog on screen disappears.
+</description>
+</bug>

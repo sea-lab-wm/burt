@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug no-bug="" comments="">
+    <id>81</id>
+    <title ob="" eb="" sr="">Window leak detected in aarddict 1.4.1</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Window leak on orientation change when a selected Dictionary is being verified.</st>
+            <st ob="x" eb="" sr="x" id="1.2">Action sequence: (Dictionary already loaded) Start app -&gt; MENU -&gt; Click on Dictionaries -&gt; Long click on any dictionary -&gt; change orientation when dictionary is being verified i.e popup window is still visible</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">logcat stack trace:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">E/WindowManager(919): android.view.WindowLeaked: Activity aarddict.android.DictionariesActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView@411814d0 that was originally added here</st>
+            <st ob="" eb="" sr="" id="3.2">E/WindowManager(919): at android.view.ViewRootImpl.&lt;init&gt;(ViewRootImpl.java:343)</st>
+            <st ob="" eb="" sr="" id="3.3">E/WindowManager(919): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:245)</st>
+            <st ob="" eb="" sr="" id="3.4">E/WindowManager(919): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:193)</st>
+            <st ob="" eb="" sr="" id="3.5">E/WindowManager(919): at android.view.WindowManagerImpl$CompatModeWrapper.addView(WindowManagerImpl.java:118)</st>
+            <st ob="" eb="" sr="" id="3.6">E/WindowManager(919): at android.view.Window$LocalWindowManager.addView(Window.java:537)</st>
+            <st ob="" eb="" sr="" id="3.7">E/WindowManager(919): at android.app.Dialog.show(Dialog.java:274)</st>
+            <st ob="" eb="" sr="" id="3.8">E/WindowManager(919): at aarddict.android.DictionariesActivity$DictListAdapter.verify(DictionariesActivity.java:383)</st>
+            <st ob="" eb="" sr="" id="3.9">E/WindowManager(919): at aarddict.android.DictionariesActivity$DictListAdapter.onItemLongClick(DictionariesActivity.java:336)</st>
+            <st ob="" eb="" sr="" id="3.10">E/WindowManager(919): at android.widget.AbsListView.performLongPress(AbsListView.java:2580)</st>
+            <st ob="" eb="" sr="" id="3.11">E/WindowManager(919): at android.widget.AbsListView$CheckForLongPress.run(AbsListView.java:2530)</st>
+            <st ob="" eb="" sr="" id="3.12">E/WindowManager(919): at android.os.Handler.handleCallback(Handler.java:605)</st>
+            <st ob="" eb="" sr="" id="3.13">E/WindowManager(919): at android.os.Handler.dispatchMessage(Handler.java:92)</st>
+            <st ob="" eb="" sr="" id="3.14">E/WindowManager(919): at android.os.Looper.loop(Looper.java:137)</st>
+            <st ob="" eb="" sr="" id="3.15">E/WindowManager(919): at android.app.ActivityThread.main(ActivityThread.java:4340)</st>
+            <st ob="" eb="" sr="" id="3.16">E/WindowManager(919): at java.lang.reflect.Method.invokeNative(Native Method)</st>
+            <st ob="" eb="" sr="" id="3.17">E/WindowManager(919): at java.lang.reflect.Method.invoke(Method.java:511)</st>
+            <st ob="" eb="" sr="" id="3.18">E/WindowManager(919): at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)</st>
+            <st ob="" eb="" sr="" id="3.19">E/WindowManager(919): at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)</st>
+            <st ob="" eb="" sr="" id="3.20">E/WindowManager(919): at dalvik.system.NativeStart.main(Native Method)</st>
+        </parg>
+    </desc>
+</bug>

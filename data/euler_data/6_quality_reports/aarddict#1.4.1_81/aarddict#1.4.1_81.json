@@ -1,0 +1,454 @@
+{
+  "token": "1549416121295",
+  "bugReport": {
+    "id": "81",
+    "title": "Window leak detected in aarddict 1.4.1",
+    "description": "Window leak on orientation change when a selected Dictionary is being verified. \nAction sequence: (Dictionary already loaded) Start app -\u003e MENU -\u003e Click on Dictionaries -\u003e Long click on any dictionary -\u003e change orientation when dictionary is being verified i.e popup window is still visible \n\nlogcat stack trace:\n\nE/WindowManager(919): android.view.WindowLeaked: Activity aarddict.android.DictionariesActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView@411814d0 that was originally added here\nE/WindowManager(919): at android.view.ViewRootImpl.\u003cinit\u003e(ViewRootImpl.java:343)\nE/WindowManager(919): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:245)\nE/WindowManager(919): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:193)\nE/WindowManager(919): at android.view.WindowManagerImpl$CompatModeWrapper.addView(WindowManagerImpl.java:118)\nE/WindowManager(919): at android.view.Window$LocalWindowManager.addView(Window.java:537)\nE/WindowManager(919): at android.app.Dialog.show(Dialog.java:274)\nE/WindowManager(919): at aarddict.android.DictionariesActivity$DictListAdapter.verify(DictionariesActivity.java:383)\nE/WindowManager(919): at aarddict.android.DictionariesActivity$DictListAdapter.onItemLongClick(DictionariesActivity.java:336)\nE/WindowManager(919): at android.widget.AbsListView.performLongPress(AbsListView.java:2580)\nE/WindowManager(919): at android.widget.AbsListView$CheckForLongPress.run(AbsListView.java:2530)\nE/WindowManager(919): at android.os.Handler.handleCallback(Handler.java:605)\nE/WindowManager(919): at android.os.Handler.dispatchMessage(Handler.java:92)\nE/WindowManager(919): at android.os.Looper.loop(Looper.java:137)\nE/WindowManager(919): at android.app.ActivityThread.main(ActivityThread.java:4340)\nE/WindowManager(919): at java.lang.reflect.Method.invokeNative(Native Method)\nE/WindowManager(919): at java.lang.reflect.Method.invoke(Method.java:511)\nE/WindowManager(919): at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)\nE/WindowManager(919): at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)\nE/WindowManager(919): at dalvik.system.NativeStart.main(Native Method)\n"
+  },
+  "appName": "Aard Dictionary",
+  "appVersion": "1.4.1",
+  "s2RQualityFeedback": [
+    {
+      "action": {
+        "sq": 1,
+        "sub": "user",
+        "act": "click",
+        "obj": "menu",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ActionsSeparatorPP",
+        "originalSentence": "Action sequence: (Dictionary already loaded) Start app -\u003e MENU -\u003e Click on Dictionaries -\u003e Long click on any dictionary -\u003e change orientation when dictionary is being verified i.e popup window is still visible",
+        "sentenceId": "1.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 9659,
+              "action": 11,
+              "sequence": 9,
+              "execution": 246,
+              "component": {
+                "dbId": 303173,
+                "type": "MENU-BUTTON",
+                "activity": "aarddict.android.LookupActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": false,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0,
+                "currentWindow": "ALERT:ACTIVITY:aarddict.android.LookupActivityAard Dictionary - 2 dictionaries",
+                "screenId": 9520
+              },
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_9_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 9652,
+              "action": 0,
+              "sequence": 1,
+              "execution": 246,
+              "component": {
+                "dbId": 303166,
+                "type": "android.widget.TextView",
+                "activity": "aarddict.android.DictionariesActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 188,
+                "width": 1200,
+                "idXml": "aarddict.android:id/dictionariesMessageView",
+                "x": 0,
+                "y": 802,
+                "relativeLocation": "Center",
+                "text": "No dictionaries\n\nGet dictionaries at http://aarddict.org\n\n",
+                "currentWindow": "ALERT:ACTIVITY:aarddict.android.DictionariesActivityAard Dictionary - Dictionaries",
+                "screenId": 9510
+              },
+              "text": "",
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_1_augmented.png"
+            },
+            {
+              "id": 9665,
+              "action": 1,
+              "sequence": 2,
+              "execution": 246,
+              "component": {
+                "dbId": 303178,
+                "type": "android.widget.TextView",
+                "activity": "aarddict.android.DictionariesActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 188,
+                "width": 1200,
+                "idXml": "aarddict.android:id/dictionariesMessageView",
+                "x": 0,
+                "y": 802,
+                "relativeLocation": "Center",
+                "text": "No dictionaries\n\nGet dictionaries at http://aarddict.org\n\n",
+                "currentWindow": "ALERT:ACTIVITY:aarddict.android.DictionariesActivityAard Dictionary - Dictionaries",
+                "screenId": 9509
+              },
+              "text": "",
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_2_augmented.png"
+            },
+            {
+              "id": 9657,
+              "action": 0,
+              "sequence": 3,
+              "execution": 246,
+              "component": {
+                "dbId": 303171,
+                "type": "android.widget.Button",
+                "activity": "aarddict.android.DictionariesActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 132,
+                "width": 295,
+                "idXml": "aarddict.android:id/scanSDButton",
+                "x": 452,
+                "y": 990,
+                "relativeLocation": "Center",
+                "text": "Scan Device",
+                "currentWindow": "ALERT:ACTIVITY:aarddict.android.DictionariesActivityAard Dictionary - Dictionaries",
+                "screenId": 9514
+              },
+              "text": "",
+              "exception": "E/dalvikvm(15461): Could not find class \u0027org.joda.time.DateTime\u0027, referenced from method org.codehaus.jackson.map.ext.JodaDeserializers$DateTimeDeserializer.\u003cinit\u003e\nE/dalvikvm(15461): Could not find class \u0027org.joda.time.DateTime\u0027, referenced from method org.codehaus.jackson.map.ext.JodaDeserializers$DateTimeDeserializer.deserialize\nE/dalvikvm(15461): Could not find class \u0027org.joda.time.DateTime\u0027, referenced from method org.codehaus.jackson.map.ext.JodaDeserializers$DateTimeDeserializer.deserialize\nE/dalvikvm(15461): Could not find class \u0027org.joda.time.DateTime\u0027, referenced from method org.codehaus.jackson.map.ext.JodaSerializers.\u003cclinit\u003e",
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_3_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 2,
+        "sub": "user",
+        "act": "click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "Dictionaries",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ActionsSeparatorPP",
+        "originalSentence": "Action sequence: (Dictionary already loaded) Start app -\u003e MENU -\u003e Click on Dictionaries -\u003e Long click on any dictionary -\u003e change orientation when dictionary is being verified i.e popup window is still visible",
+        "sentenceId": "1.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 9654,
+              "action": 0,
+              "sequence": 10,
+              "execution": 246,
+              "component": {
+                "dbId": 303342,
+                "type": "android.widget.TextView",
+                "activity": "aarddict.android.LookupActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 132,
+                "width": 595,
+                "idXml": "android:id/title",
+                "x": 4,
+                "y": 1692,
+                "relativeLocation": "Bottom left",
+                "text": "Dictionaries",
+                "screenId": 9504
+              },
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_10_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 3,
+        "sub": "user",
+        "act": "long click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "dictionary",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ActionsSeparatorPP",
+        "originalSentence": "Action sequence: (Dictionary already loaded) Start app -\u003e MENU -\u003e Click on Dictionaries -\u003e Long click on any dictionary -\u003e change orientation when dictionary is being verified i.e popup window is still visible",
+        "sentenceId": "1.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 9651,
+              "action": 1,
+              "sequence": 12,
+              "execution": 246,
+              "component": {
+                "dbId": 303285,
+                "type": "android.widget.ListView",
+                "activity": "aarddict.android.DictionariesActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 1724,
+                "width": 1200,
+                "idXml": "aarddict.android:id/dictionariesList",
+                "x": 0,
+                "y": 100,
+                "relativeLocation": "Center",
+                "text": "",
+                "screenId": 9515
+              },
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_12_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 9653,
+              "action": 0,
+              "sequence": 11,
+              "execution": 246,
+              "component": {
+                "dbId": 303167,
+                "type": "android.widget.ListView",
+                "activity": "aarddict.android.DictionariesActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 1724,
+                "width": 1200,
+                "idXml": "aarddict.android:id/dictionariesList",
+                "x": 0,
+                "y": 100,
+                "relativeLocation": "Center",
+                "text": "",
+                "currentWindow": "ALERT:ACTIVITY:aarddict.android.DictionariesActivityAard Dictionary - Dictionaries",
+                "screenId": 9515
+              },
+              "text": "",
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_11_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 4,
+        "sub": "user",
+        "act": "change",
+        "obj": "orientation",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ActionsSeparatorPP",
+        "originalSentence": "Action sequence: (Dictionary already loaded) Start app -\u003e MENU -\u003e Click on Dictionaries -\u003e Long click on any dictionary -\u003e change orientation when dictionary is being verified i.e popup window is still visible",
+        "sentenceId": "1.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17616,
+              "action": 7,
+              "sequence": 11,
+              "execution": 326,
+              "component": {
+                "dbId": 0,
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": false,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0
+              },
+              "text": "landscape"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 9661,
+              "action": 0,
+              "sequence": 13,
+              "execution": 246,
+              "component": {
+                "dbId": 303175,
+                "type": "android.widget.TwoLineListItem",
+                "activity": "aarddict.android.DictionariesActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 2,
+                "contentDescription": "",
+                "height": 146,
+                "width": 1200,
+                "idXml": "",
+                "x": 0,
+                "y": 100,
+                "relativeLocation": "Top",
+                "text": "",
+                "currentWindow": "ALERT:ACTIVITY:aarddict.android.DictionariesActivityAard Dictionary - Dictionaries",
+                "screenId": 9508
+              },
+              "text": "",
+              "screenshotFile": "aarddict.android.Top_Down.Unexpected.Disabled.1.aarddict.android_1.4.1_13_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 5,
+        "sub": "user",
+        "act": "verify",
+        "obj": "dictionary",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ConditionalObsBehaviorPP",
+        "originalSentence": "Action sequence: (Dictionary already loaded) Start app -\u003e MENU -\u003e Click on Dictionaries -\u003e Long click on any dictionary -\u003e change orientation when dictionary is being verified i.e popup window is still visible",
+        "sentenceId": "1.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "LOW_Q_VOCAB_MISMATCH",
+          "verbVocabMismatch": true,
+          "objsVocabMismatch": false
+        }
+      ]
+    }
+  ]
+}

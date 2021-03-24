@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug no-bug="" comments="">
+    <id>471</id>
+    <title ob="x" eb="" sr="">After use the small plus to add a new record this symbol is gone</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="x" id="1.1">In the account there is a small + to add a new record.</st>
+            <st ob="x" eb="" sr="x" id="1.2">After press this one time, doesn't mater if you safe the record or cancel it, this symbol is gone.</st>
+            <st ob="x" eb="" sr="x" id="1.3">It show up again, when you leave the account and open it again.</st>
+            <st ob="" eb="" sr="" id="1.4">I made two screenshots.</st>
+            <st ob="" eb="" sr="" id="1.5">This is, when you open the account:</st>
+            <st ob="" eb="" sr="" id="1.6">!</st>
+            <st ob="" eb="" sr="" id="1.7">[screenshot_2016-01-23-14-41-18](https://cloud.githubusercontent.com/assets/7298934/12530543/2d15b1e4-c1e2-11e5-8348-bb5d1b4c581d.png)</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">This is after press the + one time.</st>
+            <st ob="x" eb="" sr="" id="2.2">The plus symbol is gone.</st>
+            <st ob="" eb="" sr="" id="2.3">!</st>
+            <st ob="" eb="" sr="" id="2.4">[screenshot_2016-01-23-14-41-26](https://cloud.githubusercontent.com/assets/7298934/12530545/30ab6d1c-c1e2-11e5-90b6-0f7c5141b9f9.png)</st>
+        </parg>
+    </desc>
+</bug>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<bug>
+  <id>618</id>
+  <title>Transactions shouldn't be deleted if there's some error when exporting</title>
+  <description>#### Steps to reproduce the behaviour
+Export with:
+ - format: QIF or OFX
+ - target: DropBox, Google Drive or ownCloud
+ - check _Delete transactions after export_ option
+
+#### Expected behaviour
+If there's an error exporting the file to the selected target, no transactions are deleted.
+
+#### Actual behaviour
+Transactions are deleted even when the file hasn't made to the target.
+
+#### Software specifications
+* GnuCash Android version: 2.1.3</description>
+</bug>

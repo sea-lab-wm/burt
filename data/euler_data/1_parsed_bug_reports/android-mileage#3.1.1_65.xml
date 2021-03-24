@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>65</id>
+    <title>No More Than 1 Service Interval at a Time???</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">```</sentence>
+            <sentence id="1.2">What steps will reproduce the problem?</sentence>
+            <sentence id="1.3">1. Open Mileage Tracker</sentence>
+            <sentence id="1.4">2. Negotiate to the "Service Intervals" screen</sentence>
+            <sentence id="1.5">3. "Add Service Interval"</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">Expected behavior:</sentence>
+            <sentence id="2.2">I expect to be able to enter all of my upcoming services, like the next oil change AND the next State Inspection.</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">Actual behavior:</sentence>
+            <sentence id="3.2">Hello.</sentence>
+            <sentence id="3.3">I just installed your app, and it is very nice.</sentence>
+            <sentence id="3.4">To begin, I entered the information for my next oil change.</sentence>
+            <sentence id="3.5">No problem.</sentence>
+            <sentence id="3.6">Then I added a second service... my yearly State Inspection.</sentence>
+            <sentence id="3.7">But, when I entered the second one, it erased the first one.</sentence>
+            <sentence id="3.8">Any ideas???</sentence>
+        </paragraph>
+        <paragraph id="4">
+            <sentence id="4.1">Mileage version: Mileage 3.1.1</sentence>
+            <sentence id="4.2">Android version: 4.1.2</sentence>
+            <sentence id="4.3">Device: Droid Razar M</sentence>
+        </paragraph>
+        <paragraph id="5">
+            <sentence id="5.1">Please provide any additional information below.</sentence>
+        </paragraph>
+        <paragraph id="6">
+            <sentence id="6.1">```</sentence>
+        </paragraph>
+        <paragraph id="7">
+            <sentence id="7.1">Original issue reported on code.google.com by `david.ga...@gmail.com` on 15 May 2014 at 10:56</sentence>
+        </paragraph>
+    </description>
+</bug>

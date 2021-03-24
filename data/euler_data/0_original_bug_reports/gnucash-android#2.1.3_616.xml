@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<bug>
+  <id>616</id>
+  <title>Export to Google Drive silently fails</title>
+  <description>Not sure if this is an issue related to 2.1.3, or if Google changed their API, but export to Google Drive seems to be silently failing.
+
+#### Steps to reproduce the behaviour
+1. Select "Export..." from left tray
+2. Select export to "Google Drive", format QIF, default value for "Since"
+3. Check "Delete transactions after export"
+4. Tap "EXPORT"
+
+#### Expected behaviour
+Transactions to be deleted
+Message "Exported to: Google Drive -&gt; GnuCash"
+QIF file to be in appropriate directory in Google Drive
+
+#### Actual behaviour
+Transactions are deleted (!)
+Message "Exported to: Google Drive -&gt; GnuCash"
+No new file anywhere in Google Drive
+
+#### Software specifications
+* GnuCash Android version: 2.1.3
+* System Android version: 6.0
+* Device type: Moto X Pure Edition
+</description>
+</bug>

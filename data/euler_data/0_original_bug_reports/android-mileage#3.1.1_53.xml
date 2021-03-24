@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<bug>
+  <id>53</id>
+  <title>Fuel economy stats not calculated when all fillups was "not to the top"</title>
+  <description>```
+What steps will reproduce the problem?
+1. enter few fillups, each mark as partial
+2. go to stats
+
+Expected behavior:
+got calculated "Fuel economy" stats
+
+Actual behavior:
+got:
+Average NaN L/100 km
+Worst -10000,00 L/100 km
+best 10000,0 L/100 km
+
+also "Cost per distance" is somewhat strange
+Average: infinity
+
+
+Mileage version: 3.1.1
+Android version: cm7.2
+Device: sgs2
+```
+
+Original issue reported on code.google.com by `sszym...@gmail.com` on 18 Jun 2012 at 5:05
+</description>
+</bug>

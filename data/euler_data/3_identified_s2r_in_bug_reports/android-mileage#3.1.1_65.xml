@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug no-bug="" comments="">
+    <id>65</id>
+    <title ob="" eb="" sr="">No More Than 1 Service Interval at a Time???</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">```</st>
+            <st ob="" eb="" sr="" id="1.2">What steps will reproduce the problem?</st>
+            <st ob="" eb="" sr="x" id="1.3">1. Open Mileage Tracker</st>
+            <st ob="" eb="" sr="x" id="1.4">2. Negotiate to the "Service Intervals" screen</st>
+            <st ob="" eb="" sr="x" id="1.5">3. "Add Service Interval"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">Expected behavior:</st>
+            <st ob="" eb="x" sr="" id="2.2">I expect to be able to enter all of my upcoming services, like the next oil change AND the next State Inspection.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Actual behavior:</st>
+            <st ob="" eb="" sr="" id="3.2">Hello.</st>
+            <st ob="" eb="" sr="" id="3.3">I just installed your app, and it is very nice.</st>
+            <st ob="" eb="" sr="" id="3.4">To begin, I entered the information for my next oil change.</st>
+            <st ob="x" eb="" sr="" id="3.5">No problem.</st>
+            <st ob="x" eb="" sr="" id="3.6">Then I added a second service... my yearly State Inspection.</st>
+            <st ob="x" eb="" sr="x" id="3.7">But, when I entered the second one, it erased the first one.</st>
+            <st ob="" eb="" sr="" id="3.8">Any ideas???</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Mileage version: Mileage 3.1.1</st>
+            <st ob="" eb="" sr="" id="4.2">Android version: 4.1.2</st>
+            <st ob="" eb="" sr="" id="4.3">Device: Droid Razar M</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Please provide any additional information below.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">```</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Original issue reported on code.google.com by `david.ga...@gmail.com` on 15 May 2014 at 10:56</st>
+        </parg>
+    </desc>
+</bug>

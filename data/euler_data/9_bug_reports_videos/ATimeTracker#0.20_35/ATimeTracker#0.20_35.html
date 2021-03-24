@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.pop').on('click', function() {
+                var divElement = $(this);
+                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('#imagemodal').modal('show');
+                $('#modal_title').html(divElement.text());
+            });
+        });
+    </script>
+
+    <style type="text/css">
+ul.my-list-group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.my-item {
+    float: left;
+}
+
+.my-badge {
+    float: initial !important; 
+}
+
+.label-grey {
+    background-color: #6c757d !important;
+}
+.list-margin-remove {
+    margin-bottom: 0;
+}
+
+.step{
+    color: #07C;
+    cursor: pointer;
+}
+    </style>
+    <title>Time Tracker 35</title>
+  </head>
+  <body>
+    <div class="container">
+      <div style="display: table-cell;">
+        <h3>
+          <strong>Bug report, video, and video transcript</strong>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">1</span>&nbsp;Original Bug Report
+          </h3>
+        </div>
+        <div class="panel-body">
+          <label class="">Bug report id:</label> #35
+          <label class="">Application:</label> Time Tracker v. 0.20
+          <br/>
+          <label class="">Bug Report:</label>
+          <br/>
+
+          <div><img src="ATimeTracker%230.20_35.png" style="width: 850px;border: 1px solid black;"></div>
+
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">2</span>&nbsp;Video
+          </h3>
+        </div>
+        <div class="panel-body">
+          <iframe width="850" height="615" src="https://www.youtube.com/embed/IfV2boxB_4c" frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <span class="label label-primary">3</span>&nbsp;Video transcript
+          </h3>
+        </div>
+        <div style="padding: 10px;">
+        <table class="table table-bordered">
+          <thead class="panel-footer">
+          <tr>
+            <th >#</th>
+            <th >App Interaction</th>
+            <th >Step to Reproduce (S2R) from the Bug Report</th>
+          </tr>
+          </thead>
+          <tbody>
+             <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 class=xl70 width=67 style='height:15.75pt;width:50pt'>1</td>
+  <td class=xl66 width=292 style='width:219pt'>Open the application</td>
+  <td class=xl63 width=268 style='border-left:none;width:201pt'>&nbsp;</td>
+ </tr>
+ <tr height=40 style='mso-height-source:userset;height:30.0pt'>
+  <td height=40 class=xl70 style='height:30.0pt;border-top:none'>2</td>
+  <td class=xl69 width=292 style='border-top:none;width:219pt'>Tap on the
+  &quot;OK button located on the initial popup window</td>
+  <td class=xl65 width=268 style='border-top:none;border-left:none;width:201pt'>&nbsp;</td>
+ </tr>
+ <tr height=43 style='mso-height-source:userset;height:32.0pt'>
+  <td height=43 class=xl70 style='height:32.0pt;border-top:none'>3</td>
+  <td class=xl69 width=292 style='border-top:none;width:219pt'>Tap on the
+  &quot;...&quot; button at the bottom right of the screen</td>
+  <td class=xl68 style='border-left:none'>&nbsp;</td>
+ </tr>
+ <tr height=35 style='mso-height-source:userset;height:26.0pt'>
+  <td height=35 class=xl70 style='height:26.0pt;border-top:none'>4</td>
+  <td class=xl66 width=292 style='border-top:none;width:219pt'>Tap on the
+  &quot;More…&quot; button</td>
+  <td class=xl67 width=268 style='border-left:none;width:201pt'>&nbsp;</td>
+ </tr>
+ <tr height=28 style='mso-height-source:userset;height:21.0pt'>
+  <td height=28 class=xl70 style='height:21.0pt;border-top:none'>5</td>
+  <td class=xl66 width=292 style='border-top:none;width:219pt'>Tap on the
+  &quot;Restore from backup&quot; list item</td>
+  <td class=xl64 width=268 style='border-top:none;border-left:none;width:201pt'>When
+  trying to restore a backup</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=67 style='width:50pt'></td>
+  <td width=292 style='width:219pt'></td>
+  <td width=268 style='width:201pt'></td>
+ </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">   
+       <div class="modal-header">
+        <span id="modal_title">Step</span>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>           
+        <div class="modal-body">
+        <img src="" class="imagepreview" style="width: 100%;" >
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

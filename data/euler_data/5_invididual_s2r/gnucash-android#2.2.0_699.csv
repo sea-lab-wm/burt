@@ -1,0 +1,8 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"OB";"1";"Transaction details screen footer";"";"disappear";;;;"NegativeVerbPP";"Transaction details screen footer disappears";"0";""
+"1";"SR";"2";"user";"";"click";;"on";"existing transaction";"ImperativeSequencePP";"Click on existing transaction";"1.2";""
+"1";"SR";"3";"user";"";"click";;"on";"edit transaction FAB";"ImperativeSequencePP";"Click on edit transaction FAB";"1.3";""
+"1";"SR";"4";"user";"";"click";;"on";"splits icon";"ImperativeSequencePP";"Click on splits icon";"1.4";""
+"1";"SR";"5";"user";"";"add";"split";;;"ImperativeSequencePP";"Add a split";"1.5";""
+"1";"SR";"6";"user";"";"click";""save"";;;"ImperativeSequencePP";"Click "save"";"1.6";""
+"1";"SR";"7";"user";"";"click";""save"";;;"ImperativeSequencePP";"Click "save" again";"1.7";""

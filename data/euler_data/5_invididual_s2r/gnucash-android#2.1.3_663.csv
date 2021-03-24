@@ -1,0 +1,6 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"create";"account";"with";"BYN currency";"ConditionalObsBehaviorPP";"App crashes after creating account with BYN currency";"0";""
+"1";"OB";"2";"App";"";"crash";;;;"NegativeVerbPP";"App crashes after creating account with BYN currency";"0";""
+"1";"SR";"4";"user";"";"hit";"Save";;;"ImperativeSequencePP";"Hit Save.";"1.3";""
+"1";"OB";"5";"app";"";"crash";;;;"ErrorNounPhrasePP";"App crashes";"3.2";""
+"1";"OB";"6";"App";"";"crash";;;;"NegativeVerbPP";"App crashes";"3.2";""

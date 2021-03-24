@@ -1,0 +1,6 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"perform";"sequences";"of";"events";"ConditionalObsBehaviorPP";"When I perform these sequences of events, the context menu on screen disappears:";"1.1";""
+"1";"OB";"2";"context menu";"";"disappear";;;;"NegativeVerbPP";"When I perform these sequences of events, the context menu on screen disappears:";"1.1";""
+"1";"OB";"3";"context menu";"";"disappear";;;;"NegativeConditionalPP";"When I perform these sequences of events, the context menu on screen disappears:";"1.1";""
+"1";"SR";"4";"user";"";"long click";;"on";"item";"ImperativeSequencePP";"Long Click on item in list";"3.1";""
+"1";"SR";"5";"user";"";"change";"orientation";;;"ImperativeSequencePP";"2\. Orientation change";"3.2";""

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>10</id>
+    <title>Force Close if press Back in Preferences screen</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">If I press the Back button while viewing the Preferences, the app will Force Quit.</sentence>
+        </paragraph>
+    </description>
+</bug>

@@ -1,0 +1,3 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"restore";"backup";;;"ConditionalObsBehaviorPP";"when trying to restore a backup, the app crashes with "Unfortunately, A Time Tracker has stopped." this happens directly after selecting the menu item.";"1.1";""
+"1";"SR";"2";"user";"";"select";"menu item";;;"ConditionalObsBehaviorPP";"when trying to restore a backup, the app crashes with "Unfortunately, A Time Tracker has stopped." this happens directly after selecting the menu item.";"1.1";""

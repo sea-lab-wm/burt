@@ -1,0 +1,255 @@
+{
+  "token": "1549516558058",
+  "bugReport": {
+    "id": "169",
+    "title": "Context Menus Disappear on device rotation",
+    "description": "When I perform these sequences of events, the context menu on screen disappears:\n\nSequence 1:\n\n1. Long Click on item in list\n2. Orientation change"
+  },
+  "appName": "Schedule/Camp 2015",
+  "appVersion": "1.32.2",
+  "s2RQualityFeedback": [
+    {
+      "action": {
+        "sq": 1,
+        "sub": "user",
+        "act": "perform",
+        "obj": "sequences",
+        "prep": "of",
+        "obj2": "events",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ConditionalObsBehaviorPP",
+        "originalSentence": "When I perform these sequences of events, the context menu on screen disappears:",
+        "sentenceId": "1.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "LOW_Q_VOCAB_MISMATCH",
+          "verbVocabMismatch": true,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 4,
+        "sub": "user",
+        "act": "long click",
+        "obj": "",
+        "prep": "on",
+        "obj2": "item",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Long Click on item in list",
+        "sentenceId": "3.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 6037,
+              "action": 1,
+              "sequence": 37,
+              "execution": 191,
+              "component": {
+                "dbId": 186276,
+                "type": "android.widget.TextView",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "Refresh",
+                "height": 96,
+                "width": 96,
+                "idXml": "nerd.tuxmobil.fahrplan.camp:id/item_refresh",
+                "x": 912,
+                "y": 66,
+                "relativeLocation": "Top right",
+                "text": "",
+                "screenId": 5793
+              },
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.No_Text.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_37_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 6440,
+              "action": 0,
+              "sequence": 1,
+              "execution": 202,
+              "component": {
+                "dbId": 201388,
+                "type": "android.widget.ImageButton",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 112,
+                "width": 112,
+                "idXml": "",
+                "x": 16,
+                "y": 58,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6350
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.Expected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_1_augmented.png"
+            },
+            {
+              "id": 6469,
+              "action": 0,
+              "sequence": 2,
+              "execution": 202,
+              "component": {
+                "dbId": 201417,
+                "type": "android.widget.Spinner",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": true,
+                "selected": false,
+                "index": 2,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 96,
+                "width": 165,
+                "idXml": "",
+                "x": 310,
+                "y": 66,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6330
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.Expected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_2_augmented.png"
+            },
+            {
+              "id": 6497,
+              "action": 0,
+              "sequence": 3,
+              "execution": 202,
+              "component": {
+                "dbId": 201444,
+                "type": "android.widget.ListView",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 480,
+                "width": 151,
+                "idXml": "",
+                "x": 310,
+                "y": 66,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "POPUP:ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6312
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.Expected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_3_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 5,
+        "sub": "user",
+        "act": "change",
+        "obj": "orientation",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "2\\. Orientation change",
+        "sentenceId": "3.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17613,
+              "action": 7,
+              "sequence": 6,
+              "component": {
+                "dbId": 0,
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": false,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0
+              },
+              "text": "landscape"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    }
+  ]
+}

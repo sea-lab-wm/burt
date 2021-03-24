@@ -1,0 +1,6 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"OB";"1";"Export";"";"fail";;;;"NegativeVerbPP";"Export to Google Drive silently fails";"0";""
+"1";"SR";"2";"user";"";"select";""Export..."";"from";"left tray";"ImperativeSequencePP";"Select "Export..." from left tray";"2.2";""
+"1";"SR";"3";"user";"";"select";"export";"to";""Google Drive"";"ImperativeSequencePP";"Select export to "Google Drive", format QIF, default value for "Since"";"2.3";""
+"1";"SR";"4";"user";"";"check";""Delete transactions after export"";;;"ImperativeSequencePP";"Check "Delete transactions after export"";"2.4";""
+"1";"SR";"6";"user";"";"tap";""EXPORT"";;;"ImperativeSequencePP";"Tap "EXPORT"";"2.5";""

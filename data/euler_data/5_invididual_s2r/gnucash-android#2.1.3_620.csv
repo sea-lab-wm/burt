@@ -1,0 +1,5 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"OB";"1";"app";"";"lose";"color";;;"NegativeConditionalPP";"When an account is edited, its color is lost";"0";""
+"1";"SR";"2";"user";"";"set";"color";"of";"account";"ImperativeSequencePP";"Set the color of an account";"1.2";""
+"1";"SR";"3";"user";"";"edit";"account";;;"ImperativeSequencePP";"Edit the account.";"1.3";""
+"1";"SR";"4";"user";"";"press";"save";;;"ImperativeSequencePP";"Press save";"1.4";""

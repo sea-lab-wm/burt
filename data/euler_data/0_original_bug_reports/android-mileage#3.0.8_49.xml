@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<bug>
+  <id>49</id>
+  <title>Maximum Fillup cost under statistics displaying incorrectly</title>
+  <description>```
+What steps will reproduce the problem?
+1. Enter incorrect price per km in a fillup (I entered 102.9 rather than 1.029)
+2. switch to statistics view and see calculations
+3. Find the incorrect entry in history and fix the price.
+
+Expected behavior:
+After fixing the price in History the statistics should recalculate and show 
+the proper Maximum cost.
+
+Actual behavior:
+Maximum cost still shows the skewed value based on the old price.
+
+Mileage version: 3.0.8
+Android version: 2.3.4
+Device: First on HTC Magic still persists on HTC EVO 3D
+
+Please provide any additional information below.
+Tried hitting recalculate in the statistics page but it still comes up with the 
+incorrect Maximum Cost.
+```
+
+Original issue reported on code.google.com by `Randal.P...@gmail.com` on 9 Dec 2011 at 11:11
+</description>
+</bug>

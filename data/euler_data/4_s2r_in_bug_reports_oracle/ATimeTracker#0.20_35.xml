@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug no-bug="" comments="">
+    <id>35</id>
+    <title ob="" eb="" sr="">crash on restore</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="x" eb="" sr="x" id="1.1">when trying to restore a backup, the app crashes with "Unfortunately, A Time Tracker has stopped." this happens directly after selecting the menu item.</st>
+        </parg>
+    </desc>
+</bug>

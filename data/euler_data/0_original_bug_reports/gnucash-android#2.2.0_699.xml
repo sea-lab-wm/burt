@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<bug>
+  <id>699</id>
+  <title>Transaction details screen footer disappears</title>
+  <description>#### Steps to reproduce the behaviour
+1. Click on existing transaction
+1. Click on edit transaction FAB
+1. Click on splits icon
+1. Add a split
+1. Click "save"
+1. Click "save" again
+
+#### Expected behaviour
+Footer visible.
+
+#### Actual behaviour
+Footer removed (balance and date).
+
+#### Software specifications
+* GnuCash Android version: 2.2.0
+* System Android version: 6.0
+* Device type: Any
+</description>
+</bug>

@@ -1,0 +1,295 @@
+{
+  "token": "1549417383700",
+  "bugReport": {
+    "id": "10",
+    "title": "Force Close if press Back in Preferences screen",
+    "description": "If I press the Back button while viewing the Preferences, the app will Force Quit.\n"
+  },
+  "appName": "A Time Tracker",
+  "appVersion": "0.15",
+  "s2RQualityFeedback": [
+    {
+      "action": {
+        "sq": 1,
+        "sub": "user",
+        "act": "press",
+        "obj": "Back button",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ConditionalObsBehaviorPP",
+        "originalSentence": "If I press the Back button while viewing the Preferences, the app will Force Quit.",
+        "sentenceId": "1.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17460,
+              "action": 4,
+              "sequence": 2,
+              "component": {
+                "dbId": 0,
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": false,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549417383700\\1549417383700_2.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 2,
+        "sub": "user",
+        "act": "view",
+        "obj": "Preferences",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ConditionalObsBehaviorPP",
+        "originalSentence": "If I press the Back button while viewing the Preferences, the app will Force Quit.",
+        "sentenceId": "1.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17490,
+              "action": 0,
+              "sequence": 32,
+              "component": {
+                "dbId": 575862,
+                "type": "android.widget.TextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 4,
+                "totalIndex": 6,
+                "contentDescription": "",
+                "height": 240,
+                "width": 1095,
+                "idXml": "android:id/text1",
+                "x": 56,
+                "y": 1185,
+                "relativeLocation": "Center",
+                "text": "Preferences",
+                "screenId": 16529
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549417383700\\1549417383700_32_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 17461,
+              "action": 0,
+              "sequence": 3,
+              "execution": 320,
+              "component": {
+                "dbId": 575710,
+                "type": "android.widget.TextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 83,
+                "width": 1155,
+                "idXml": "android:id/title",
+                "x": 22,
+                "y": 56,
+                "relativeLocation": "Top",
+                "text": "A Time Tracker (Today) 00:00",
+                "screenId": 16518
+              },
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549417383700\\1549417383700_3_augm.png"
+            },
+            {
+              "id": 7219,
+              "action": 1,
+              "sequence": 15,
+              "execution": 211,
+              "component": {
+                "dbId": 224886,
+                "type": "android.widget.ListView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 1678,
+                "width": 1200,
+                "idXml": "android:id/list",
+                "x": 0,
+                "y": 146,
+                "relativeLocation": "Center",
+                "text": "",
+                "currentWindow": "ACTIVITY:com.markuspage.android.atimetracker.TasksA Time Tracker (Today) 00:01",
+                "screenId": 7030
+              },
+              "text": "",
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.No_Text.Disabled.1.com.markuspage.android.atimetracker_0.15_15_augmented.png"
+            },
+            {
+              "id": 7138,
+              "action": 0,
+              "sequence": 14,
+              "execution": 211,
+              "component": {
+                "dbId": 224806,
+                "type": "android.widget.ListView",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 1678,
+                "width": 1200,
+                "idXml": "android:id/list",
+                "x": 0,
+                "y": 146,
+                "relativeLocation": "Center",
+                "text": "",
+                "currentWindow": "ACTIVITY:com.markuspage.android.atimetracker.TasksA Time Tracker (Today) 00:01",
+                "screenId": 7008
+              },
+              "text": "",
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.No_Text.Disabled.1.com.markuspage.android.atimetracker_0.15_14_augmented.png"
+            },
+            {
+              "id": 7106,
+              "action": 11,
+              "sequence": 16,
+              "execution": 211,
+              "component": {
+                "dbId": 224774,
+                "type": "MENU-BUTTON",
+                "activity": "com.markuspage.android.atimetracker.Tasks",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": false,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0,
+                "currentWindow": "ACTIVITY:com.markuspage.android.atimetracker.TasksA Time Tracker (Today) 00:01",
+                "screenId": 7036
+              },
+              "text": "",
+              "screenshotFile": "com.markuspage.android.atimetracker.Top_Down.No_Text.Disabled.1.com.markuspage.android.atimetracker_0.15_16_augmented.png"
+            },
+            {
+              "id": 17472,
+              "action": 0,
+              "sequence": 14,
+              "execution": 320,
+              "component": {
+                "dbId": 575849,
+                "type": "android.widget.TextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 2,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 246,
+                "width": 393,
+                "idXml": "android:id/title",
+                "x": 799,
+                "y": 1578,
+                "relativeLocation": "Bottom right",
+                "text": "More…",
+                "screenId": 16528
+              },
+              "text": "",
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549417383700\\1549417383700_14_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    }
+  ]
+}

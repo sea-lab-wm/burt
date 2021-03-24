@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>169</id>
+    <title>Context Menus Disappear on device rotation</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">When I perform these sequences of events, the context menu on screen disappears:</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">Sequence 1:</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">1. Long Click on item in list</sentence>
+            <sentence id="3.2">2. Orientation change</sentence>
+        </paragraph>
+    </description>
+</bug>

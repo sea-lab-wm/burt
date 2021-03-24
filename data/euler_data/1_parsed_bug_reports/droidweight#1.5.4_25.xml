@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>25</id>
+    <title>not export correctly</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">```</sentence>
+            <sentence id="1.2">What steps will reproduce the problem?</sentence>
+            <sentence id="1.3">1. Export of data</sentence>
+            <sentence id="1.4">2. open in Excel</sentence>
+            <sentence id="1.5">3.</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">What is the expected output?</sentence>
+            <sentence id="2.2">What do you see instead?</sentence>
+            <sentence id="2.3">Weights are displayed incorrectly, for example wrong: 86.500.015 correct: 86.5 wrong: 8.680.001 correct: 86.8</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">What version of the product are you using?</sentence>
+            <sentence id="3.2">On what operating system?</sentence>
+            <sentence id="3.3">Galaxy S2, Version 4.04</sentence>
+        </paragraph>
+        <paragraph id="4">
+            <sentence id="4.1">Please provide any additional information below.</sentence>
+            <sentence id="4.2">Incorrect subsequent manual input, but new entries incorrectly</sentence>
+        </paragraph>
+        <paragraph id="5">
+            <sentence id="5.1">```</sentence>
+        </paragraph>
+        <paragraph id="6">
+            <sentence id="6.1">Original issue reported on code.google.com by `Ger.Kie...@gmail.com` on 11 Feb 2013 at 10:49</sentence>
+        </paragraph>
+        <paragraph id="7">
+            <sentence id="7.1">Attachments:</sentence>
+            <sentence id="7.2">- [data.csv](https://storage.googleapis.com/google-code-attachments/droidweight/issue-25/comment-0/data.csv)</sentence>
+        </paragraph>
+    </description>
+</bug>

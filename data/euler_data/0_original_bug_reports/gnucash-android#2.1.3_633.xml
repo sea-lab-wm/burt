@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<bug>
+  <id>633</id>
+  <title>App crashes when changing orientation while viewing reports</title>
+  <description>#### Steps to reproduce the behaviour
+1. Open one of the reports (pie chart, line chart, bar chart or sheet).
+2. Turn the phone to change the screen orientation.
+
+#### Expected behaviour
+Report shows in the new screen orientation.
+
+#### Actual behaviour
+App crashes.
+
+#### Software specifications
+* GnuCash Android version: 2.1.3
+* System Android version: Android 6.0.1, CyanogenMod 13.0
+* Device type: Nexus 4
+</description>
+</bug>

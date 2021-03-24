@@ -1,0 +1,7 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"enter";"incorrect price";"per";"km";"ImperativeSequencePP";"Enter incorrect price per km in a fillup (I entered 102.9 rather than 1.029)";"1.3";""
+"1";"SR";"3";"user";"";"switch";"statistics";;;"ImperativeSequencePP";"switch to statistics view and see calculations";"1.4";""
+"1";"SR";"4";"user";"";"find";"incorrect entry";"in";"history";"ImperativeSequencePP";"Find the incorrect entry in history and fix the price.";"1.5";""
+"1";"SR";"5";"user";"";"fix";"price";;;"ImperativeSequencePP";"Find the incorrect entry in history and fix the price.";"1.5";""
+"1";"OB";"8";"Maximum cost";"";"show";"skewed value";"based on";"old price";"OutputVerbPP";"Maximum cost still shows the skewed value based on the old price.";"3.2";""
+"1";"OB";"9";"Maximum cost";"";"show";"skewed value";"based on";"old price";"NegativeAdjOrAdvPP";"Maximum cost still shows the skewed value based on the old price.";"3.2";""

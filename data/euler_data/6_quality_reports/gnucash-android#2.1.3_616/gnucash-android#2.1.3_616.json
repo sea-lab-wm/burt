@@ -1,0 +1,448 @@
+{
+  "token": "1549071204022",
+  "bugReport": {
+    "id": "616",
+    "title": "Export to Google Drive silently fails",
+    "description": "Not sure if this is an issue related to 2.1.3, or if Google changed their API, but export to Google Drive seems to be silently failing.\n\n#### Steps to reproduce the behaviour\n1. Select \"Export...\" from left tray\n2. Select export to \"Google Drive\", format QIF, default value for \"Since\"\n3. Check \"Delete transactions after export\"\n4. Tap \"EXPORT\"\n\n#### Expected behaviour\nTransactions to be deleted\nMessage \"Exported to: Google Drive -\u003e GnuCash\"\nQIF file to be in appropriate directory in Google Drive\n\n#### Actual behaviour\nTransactions are deleted (!)\nMessage \"Exported to: Google Drive -\u003e GnuCash\"\nNo new file anywhere in Google Drive\n\n#### Software specifications\n* GnuCash Android version: 2.1.3\n* System Android version: 6.0\n* Device type: Moto X Pure Edition\n"
+  },
+  "appName": "GnuCash",
+  "appVersion": "2.1.3",
+  "s2RQualityFeedback": [
+    {
+      "action": {
+        "sq": 2,
+        "sub": "user",
+        "act": "select",
+        "obj": "\"Export...\"",
+        "prep": "from",
+        "obj2": "left tray",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Select \"Export...\" from left tray",
+        "sentenceId": "2.2",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17460,
+              "action": 0,
+              "sequence": 9,
+              "component": {
+                "dbId": 508035,
+                "type": "android.widget.CheckedTextView",
+                "activity": "org.gnucash.android.ui.account.AccountsActivity",
+                "checkable": true,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 96,
+                "width": 544,
+                "idXml": "org.gnucash.android:id/design_menu_item_text",
+                "x": 48,
+                "y": 878,
+                "relativeLocation": "Center left",
+                "text": "Export…",
+                "screenId": 14831
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549071204022\\1549071204022_9_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 15386,
+              "action": 0,
+              "sequence": 1,
+              "execution": 304,
+              "component": {
+                "dbId": 503749,
+                "type": "android.widget.Button",
+                "activity": "org.gnucash.android.ui.wizard.FirstRunWizardActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "height": 96,
+                "width": 600,
+                "idXml": "org.gnucash.android:id/btn_save",
+                "x": 600,
+                "y": 1728,
+                "relativeLocation": "Bottom-Right",
+                "text": "Next",
+                "screenId": 14820
+              },
+              "text": "",
+              "exception": "E/CommoditiesDbAdapter( 7088): Commodity not found in the database: USD\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: EUR\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: GBP\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: CHF\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: CAD\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: JPY\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: AUD\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: USD\nE/OpenGLRenderer( 7088): Getting MAX_TEXTURE_SIZE from GradienCache\nE/OpenGLRenderer( 7088): MAX_TEXTURE_SIZE: 16384\nE/OpenGLRenderer( 7088): Getting MAX_TEXTURE_SIZE from Caches::initConstraints()\nE/OpenGLRenderer( 7088): MAX_TEXTURE_SIZE: 16384\nE/WindowManager( 7088): \nE/WindowManager( 7088): android.view.WindowLeaked: Activity org.gnucash.android.ui.account.AccountsActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{528cac30 V.E..... R.....ID 0,0-1160,608} that was originally added here\nE/WindowManager( 7088): \tat android.view.ViewRootImpl.\u003cinit\u003e(ViewRootImpl.java:346)\nE/WindowManager( 7088): \tat android.view.WindowManagerGlobal.addView(WindowManagerGlobal.java:248)\nE/WindowManager( 7088): \tat android.view.WindowManagerImpl.addView(WindowManagerImpl.java:69)\nE/WindowManager( 7088): \tat android.app.Dialog.show(Dialog.java:286)\nE/WindowManager( 7088): \tat android.app.AlertDialog$Builder.show(AlertDialog.java:951)\nE/WindowManager( 7088): \tat org.gnucash.android.ui.account.AccountsActivity.showWhatsNewDialog(AccountsActivity.java:449)\nE/WindowManager( 7088): \tat org.gnucash.android.ui.account.AccountsActivity.init(AccountsActivity.java:393)\nE/WindowManager( 7088): \tat org.gnucash.android.ui.account.AccountsActivity.onCreate(AccountsActivity.java:234)\nE/WindowManager( 7088): \tat android.app.Activity.performCreate(Activity.java:5231)\nE/WindowManager( 7088): \tat android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1087)\nE/WindowManager( 7088): \tat android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2148)\nE/WindowManager( 7088): \tat android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2233)\nE/WindowManager( 7088): \tat android.app.ActivityThread.access$800(ActivityThread.java:135)\nE/WindowManager( 7088): \tat android.app.ActivityThread$H.handleMessage(ActivityThread.java:1196)\nE/WindowManager( 7088): \tat android.os.Handler.dispatchMessage(Handler.java:102)\nE/WindowManager( 7088): \tat android.os.Looper.loop(Looper.java:136)\nE/WindowManager( 7088): \tat android.app.ActivityThread.main(ActivityThread.java:5001)\nE/WindowManager( 7088): \tat java.lang.reflect.Method.invokeNative(Native Method)\nE/WindowManager( 7088): \tat java.lang.reflect.Method.invoke(Method.java:515)\nE/WindowManager( 7088): \tat com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:785)\nE/WindowManager( 7088): \tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:601)\nE/WindowManager( 7088): \tat dalvik.system.NativeStart.main(Native Method)",
+              "screenshotFile": "org.gnucash.android.Top_Down.No_Text.Disabled.0.org.gnucash.android_2.1.3_gnucash1_augmented.png"
+            },
+            {
+              "id": 15484,
+              "action": 0,
+              "sequence": 2,
+              "execution": 304,
+              "component": {
+                "dbId": 503846,
+                "type": "android.widget.Button",
+                "activity": "org.gnucash.android.ui.wizard.FirstRunWizardActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "height": 96,
+                "width": 600,
+                "idXml": "org.gnucash.android:id/btn_save",
+                "x": 600,
+                "y": 1728,
+                "relativeLocation": "Bottom-Right",
+                "text": "Next",
+                "screenId": 14805
+              },
+              "text": "",
+              "screenshotFile": "org.gnucash.android.Top_Down.No_Text.Disabled.0.org.gnucash.android_2.1.3_gnucash2_augmented.png"
+            },
+            {
+              "id": 15378,
+              "action": 0,
+              "sequence": 3,
+              "execution": 304,
+              "component": {
+                "dbId": 503741,
+                "type": "android.widget.Button",
+                "activity": "org.gnucash.android.ui.wizard.FirstRunWizardActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "height": 96,
+                "width": 600,
+                "idXml": "org.gnucash.android:id/btn_save",
+                "x": 600,
+                "y": 1728,
+                "relativeLocation": "Bottom-Right",
+                "text": "Next",
+                "screenId": 14818
+              },
+              "text": "",
+              "screenshotFile": "org.gnucash.android.Top_Down.No_Text.Disabled.0.org.gnucash.android_2.1.3_gnucash3_augmented.png"
+            },
+            {
+              "id": 15464,
+              "action": 0,
+              "sequence": 4,
+              "execution": 304,
+              "component": {
+                "dbId": 503827,
+                "type": "android.widget.CheckedTextView",
+                "activity": "org.gnucash.android.ui.wizard.FirstRunWizardActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "height": 96,
+                "width": 1116,
+                "idXml": "android:id/text1",
+                "x": 32,
+                "y": 443,
+                "relativeLocation": "Top",
+                "text": "Disable crash reports",
+                "screenId": 14722
+              },
+              "text": "",
+              "screenshotFile": "org.gnucash.android.Top_Down.No_Text.Disabled.0.org.gnucash.android_2.1.3_gnucash4_augmented.png"
+            },
+            {
+              "id": 15508,
+              "action": 0,
+              "sequence": 5,
+              "execution": 304,
+              "component": {
+                "dbId": 503870,
+                "type": "android.widget.Button",
+                "activity": "org.gnucash.android.ui.wizard.FirstRunWizardActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "height": 96,
+                "width": 600,
+                "idXml": "org.gnucash.android:id/btn_save",
+                "x": 600,
+                "y": 1728,
+                "relativeLocation": "Bottom-Right",
+                "text": "Next",
+                "screenId": 14721
+              },
+              "text": "",
+              "screenshotFile": "org.gnucash.android.Top_Down.No_Text.Disabled.0.org.gnucash.android_2.1.3_gnucash5_augmented.png"
+            },
+            {
+              "id": 15380,
+              "action": 0,
+              "sequence": 6,
+              "execution": 304,
+              "component": {
+                "dbId": 503743,
+                "type": "android.widget.Button",
+                "activity": "org.gnucash.android.ui.wizard.FirstRunWizardActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "height": 96,
+                "width": 600,
+                "idXml": "org.gnucash.android:id/btn_save",
+                "x": 600,
+                "y": 1728,
+                "relativeLocation": "Bottom-Right",
+                "text": "Next",
+                "screenId": 14726
+              },
+              "text": "",
+              "exception": "E/CommoditiesDbAdapter( 7088): Commodity not found in the database: USD\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: EUR\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: GBP\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: CHF\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: CAD\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: JPY\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: AUD\nE/CommoditiesDbAdapter( 7088): Commodity not found in the database: USD",
+              "screenshotFile": "org.gnucash.android.Top_Down.No_Text.Disabled.0.org.gnucash.android_2.1.3_gnucash6_augmented.png"
+            },
+            {
+              "id": 15472,
+              "action": 0,
+              "sequence": 7,
+              "execution": 304,
+              "component": {
+                "dbId": 503835,
+                "type": "android.widget.ImageButton",
+                "activity": "org.gnucash.android.ui.account.AccountsActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "Navigation drawer opened",
+                "height": 128,
+                "width": 112,
+                "idXml": "",
+                "x": 16,
+                "y": 50,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "FRAGMENT:AccountsListFragment",
+                "screenId": 14724
+              },
+              "text": "",
+              "screenshotFile": "org.gnucash.android.Top_Down.No_Text.Disabled.1.org.gnucash.android_2.1.3_gnucash7_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 3,
+        "sub": "user",
+        "act": "select",
+        "obj": "export",
+        "prep": "to",
+        "obj2": "\"Google Drive\"",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Select export to \"Google Drive\", format QIF, default value for \"Since\"",
+        "sentenceId": "2.3",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "LOW_Q_VOCAB_MISMATCH",
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": true
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 4,
+        "sub": "user",
+        "act": "check",
+        "obj": "\"Delete transactions after export\"",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Check \"Delete transactions after export\"",
+        "sentenceId": "2.4",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17461,
+              "action": 0,
+              "sequence": 10,
+              "component": {
+                "dbId": 575664,
+                "type": "android.widget.CheckBox",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": true,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 4,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 64,
+                "width": 570,
+                "idXml": "org.gnucash.android:id/checkbox_post_export_delete",
+                "x": 20,
+                "y": 645,
+                "relativeLocation": "Center left",
+                "text": "Delete transactions after export",
+                "screenId": 16514
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549071204022\\1549071204022_10_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 5,
+        "sub": "user",
+        "act": "tap",
+        "obj": "\"EXPORT\"",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Tap \"EXPORT\"",
+        "sentenceId": "2.5",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17462,
+              "action": 0,
+              "sequence": 11,
+              "component": {
+                "dbId": 575668,
+                "type": "android.widget.TextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "Export",
+                "height": 96,
+                "width": 152,
+                "idXml": "org.gnucash.android:id/menu_save",
+                "x": 1032,
+                "y": 66,
+                "relativeLocation": "Top right",
+                "text": "Export",
+                "screenId": 16514
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549071204022\\1549071204022_11_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    }
+  ]
+}

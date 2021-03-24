@@ -1,0 +1,6 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"OB";"1";""pd"";"not";"be";"abbreviation";"for";""pounds"";"NegativeAuxVerbPP";""pd" is not the abbreviation for "pounds".";"0";""
+"1";"SR";"2";"user";"";"select";"Menu";;;"ImperativeSequencePP";"``` select Menu > Preferences > Units > Imperial";"1.1";""
+"1";"SR";"4";"user";"";"click";"Preferences";;;"ActionsSeparatorPP";"``` select Menu > Preferences > Units > Imperial";"1.1";""
+"1";"SR";"5";"user";"";"click";"Units";;;"ActionsSeparatorPP";"``` select Menu > Preferences > Units > Imperial";"1.1";""
+"1";"SR";"6";"user";"";"click";"Imperial";;;"ActionsSeparatorPP";"``` select Menu > Preferences > Units > Imperial";"1.1";""

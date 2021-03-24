@@ -1,0 +1,7 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"export";;;;"ImperativeSequencePP";"Export with:";"1.2";""
+"1";"SR";"2";"user";"";"check";""Delete transactions after export" option";;;"ImperativeSequencePP";"- check "Delete transactions after export" option";"1.5";""
+"1";"OB";"3";"app";"";"delete";"no transactions";;;"NegativeConditionalPP";"If there's an error exporting the file to the selected target, no transactions are deleted.";"2.2";""
+"1";"SR";"4";"user";"";"make";"file";"to";"target";"ConditionalObsBehaviorPP";"Transactions are deleted even when the file hasn't made to the target.";"3.2";""
+"1";"OB";"5";"app";"";"delete";"Transactions";;;"NegativeConditionalPP";"Transactions are deleted even when the file hasn't made to the target.";"3.2";""
+"1";"OB";"6";"app";"";"delete";"Transactions";;;"NegativeConditionalPP";"Transactions are deleted even when the file hasn't made to the target.";"3.2";""

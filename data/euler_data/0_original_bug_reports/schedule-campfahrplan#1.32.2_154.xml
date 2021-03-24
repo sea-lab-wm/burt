@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<bug>
+  <id>154</id>
+  <title>Favorites not updated</title>
+  <description>The list of favorites does not (always) show the current state of favorites.
+Issue reported by Serge Simard.
+### How to reproduce (on a phone)
+1. Add some favorites
+2. Go into favorites
+3. Select an event
+4. In the event details screen: Remove the event from the favorites
+5. Hit BACK button to return to favorites
+### Expected behavior
+- The event should no longer be displayed in the favorites list.
+### Actual behavior
+- The event is still being displayed in the favorites list.
+</description>
+</bug>

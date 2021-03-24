@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<bug>
+  <id>1</id>
+  <title>Report Activity forgets current week when paused</title>
+  <description>When displaying the Report Activity, if the screen saver gets on and the Report is later resumed the currently displayed week is switched back to the current week.
+
+Change so the week being displayed before the pause is restored.
+</description>
+</bug>

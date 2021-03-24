@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>663</id>
+    <title>App crashes after creating account with BYN currency</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">#### Steps to reproduce the behaviour</sentence>
+            <sentence id="1.2">1. Create an account with BYN currency.</sentence>
+            <sentence id="1.3">2. Hit Save.</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">#### Expected behaviour</sentence>
+            <sentence id="2.2">3. Account created and account list shown</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">#### Actual behaviour</sentence>
+            <sentence id="3.2">3. App crashes</sentence>
+            <sentence id="3.3">4. Any further attempts to start the app cause crashes</sentence>
+        </paragraph>
+        <paragraph id="4">
+            <sentence id="4.1">#### Software specifications</sentence>
+            <sentence id="4.2">* GnuCash Android version: 2.1.4</sentence>
+            <sentence id="4.3">* System Android version: 6.0.1</sentence>
+            <sentence id="4.4">* Device type: All</sentence>
+        </paragraph>
+    </description>
+</bug>

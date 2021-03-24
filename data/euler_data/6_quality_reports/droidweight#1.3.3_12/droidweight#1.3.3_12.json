@@ -1,0 +1,214 @@
+{
+  "token": "1549514041950",
+  "bugReport": {
+    "id": "12",
+    "title": "\"pd\" is not the abbreviation for \"pounds\". it is \"lb\"",
+    "description": "```\nselect Menu \u003e Preferences \u003e Units \u003e Imperial\n\nThe abbreviation for the unit \"pounds\" next to the displayed weight should read \n\"lb\". Instead it reads \"pd\".\nhttps://en.wikipedia.org/wiki/Pound_(mass)\n\ndroidweight version 1.3.3\n\nThe attached file is an export of the fix for this bug\n```\n\nOriginal issue reported on code.google.com by `twellman@gmail.com` on 11 Jun 2012 at 3:47\n\nAttachments:\n- [droidweight-lb.patch](https://storage.googleapis.com/google-code-attachments/droidweight/issue-12/comment-0/droidweight-lb.patch)\n"
+  },
+  "appName": "DroidWeight",
+  "appVersion": "1.3.3",
+  "s2RQualityFeedback": [
+    {
+      "action": {
+        "sq": 2,
+        "sub": "user",
+        "act": "select",
+        "obj": "Menu",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "``` select Menu \u003e Preferences \u003e Units \u003e Imperial",
+        "sentenceId": "1.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17482,
+              "action": 11,
+              "sequence": 2,
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549514041950\\1549514041950_2.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 3,
+        "sub": "user",
+        "act": "click",
+        "obj": "Preferences",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ActionsSeparatorPP",
+        "originalSentence": "``` select Menu \u003e Preferences \u003e Units \u003e Imperial",
+        "sentenceId": "1.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17483,
+              "action": 0,
+              "sequence": 3,
+              "component": {
+                "dbId": 575877,
+                "type": "android.widget.TextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 2,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 132,
+                "width": 397,
+                "idXml": "android:id/title",
+                "x": 799,
+                "y": 1559,
+                "relativeLocation": "Bottom right",
+                "text": "Preferences",
+                "screenId": 16531
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549514041950\\1549514041950_3_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 4,
+        "sub": "user",
+        "act": "click",
+        "obj": "Units",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ActionsSeparatorPP",
+        "originalSentence": "``` select Menu \u003e Preferences \u003e Units \u003e Imperial",
+        "sentenceId": "1.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17484,
+              "action": 0,
+              "sequence": 4,
+              "component": {
+                "dbId": 575906,
+                "type": "android.widget.TextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 59,
+                "width": 100,
+                "idXml": "android:id/title",
+                "x": 94,
+                "y": 506,
+                "relativeLocation": "Top left",
+                "text": "Units",
+                "screenId": 16532
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549514041950\\1549514041950_4_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 5,
+        "sub": "user",
+        "act": "click",
+        "obj": "Imperial",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ActionsSeparatorPP",
+        "originalSentence": "``` select Menu \u003e Preferences \u003e Units \u003e Imperial",
+        "sentenceId": "1.1",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17485,
+              "action": 0,
+              "sequence": 5,
+              "component": {
+                "dbId": 575949,
+                "type": "android.widget.CheckedTextView",
+                "activity": "com.android.launcher2.Launcher",
+                "checkable": true,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 2,
+                "contentDescription": "",
+                "height": 128,
+                "width": 1102,
+                "idXml": "android:id/text1",
+                "x": 51,
+                "y": 935,
+                "relativeLocation": "Center",
+                "text": "Imperial (pd, in)",
+                "screenId": 16533
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549514041950\\1549514041950_5_augm.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    }
+  ]
+}

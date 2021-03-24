@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug no-bug="" comments="">
+    <id>616</id>
+    <title ob="x" eb="" sr="">Export to Google Drive silently fails</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Not sure if this is an issue related to 2.1.3, or if Google changed their API, but export to Google Drive seems to be silently failing.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">#### Steps to reproduce the behaviour</st>
+            <st ob="" eb="" sr="x" id="2.2">1. Select "Export..." from left tray</st>
+            <st ob="" eb="" sr="x" id="2.3">2. Select export to "Google Drive", format QIF, default value for "Since"</st>
+            <st ob="" eb="" sr="x" id="2.4">3. Check "Delete transactions after export"</st>
+            <st ob="" eb="" sr="x" id="2.5">4. Tap "EXPORT"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">#### Expected behaviour</st>
+            <st ob="" eb="x" sr="" id="3.2">Transactions to be deleted</st>
+            <st ob="" eb="x" sr="" id="3.3">Message "Exported to: Google Drive -&gt; GnuCash"</st>
+            <st ob="" eb="x" sr="" id="3.4">QIF file to be in appropriate directory in Google Drive</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">#### Actual behaviour</st>
+            <st ob="x" eb="" sr="" id="4.2">Transactions are deleted (!)</st>
+            <st ob="x" eb="" sr="" id="4.3">Message "Exported to: Google Drive -&gt; GnuCash"</st>
+            <st ob="x" eb="" sr="" id="4.4">No new file anywhere in Google Drive</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">#### Software specifications</st>
+            <st ob="" eb="" sr="" id="5.2">* GnuCash Android version: 2.1.3</st>
+            <st ob="" eb="" sr="" id="5.3">* System Android version: 6.0</st>
+            <st ob="" eb="" sr="" id="5.4">* Device type: Moto X Pure Edition</st>
+        </parg>
+    </desc>
+</bug>

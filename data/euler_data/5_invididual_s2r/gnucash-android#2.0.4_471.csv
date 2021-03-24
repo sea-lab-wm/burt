@@ -1,0 +1,8 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"press";"+";;;"ConditionalObsBehaviorPP";"After I press this one time, doesn't mater if you safe the record or cancel it, this symbol is gone.";"1.2";""
+"1";"SR";"2";"user";"";"safe";"record";;;"ConditionalObsBehaviorPP";"After I press this one time, doesn't mater if you safe the record or cancel it, this symbol is gone.";"1.2";""
+"1";"SR";"3";"user";"";"cancel";"it";;;"ConditionalObsBehaviorPP";"After I press this one time, doesn't mater if you safe the record or cancel it, this symbol is gone.";"1.2";""
+"1";"OB";"4";"app";"";"go";"symbol";;;"NegativeConditionalPP";"After I press this one time, doesn't mater if you safe the record or cancel it, this symbol is gone.";"1.2";""
+"1";"SR";"6";"user";"";"leave";"account";;;"ConditionalObsBehaviorPP";"It show up again, when you leave the account and open it again.";"1.3";""
+"1";"SR";"7";"user";"";"open";"it";;;"ConditionalObsBehaviorPP";"It show up again, when you leave the account and open it again.";"1.3";""
+"1";"OB";"11";"app";"";"show up";;;;"ConditionalPositivePP";"It show up again, when you leave the account and open it again.";"1.3";""

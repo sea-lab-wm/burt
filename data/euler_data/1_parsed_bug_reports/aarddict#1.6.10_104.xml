@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>104</id>
+    <title>Links within Wikipedia don't work any more</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">I have installed the most recent release of aard on my Samsung Galaxy Note together with the current version of the German Wikipedia.</sentence>
+            <sentence id="1.2">I use the recent nightlies of the Omnirom custom ROM (Android 4.4.3).</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">When I tap on a link to another Wikipedia article, aard displays an empty (blank) page thereafter instead of the other article.</sentence>
+        </paragraph>
+    </description>
+</bug>

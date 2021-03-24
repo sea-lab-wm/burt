@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<bug>
+  <id>65</id>
+  <title>No More Than 1 Service Interval at a Time???</title>
+  <description>```
+What steps will reproduce the problem?
+1. Open Mileage Tracker
+2. Negotiate to the "Service Intervals" screen
+3. "Add Service Interval"
+
+Expected behavior:
+I expect to be able to enter all of my upcoming services, like the next oil 
+change AND the next State Inspection.
+
+Actual behavior:
+Hello. I just installed your app, and it is very nice. To begin, I entered the 
+information for my next oil change. No problem. Then I added a second 
+service... my yearly State Inspection. But, when I entered the second one, it 
+erased the first one. Any ideas???
+
+Mileage version: Mileage 3.1.1
+Android version: 4.1.2
+Device: Droid Razar M
+
+Please provide any additional information below.
+
+```
+
+Original issue reported on code.google.com by `david.ga...@gmail.com` on 15 May 2014 at 10:56
+</description>
+</bug>

@@ -1,0 +1,455 @@
+{
+  "token": "1549515865570",
+  "bugReport": {
+    "id": "154",
+    "title": "Favorites not updated",
+    "description": "The list of favorites does not (always) show the current state of favorites.\nIssue reported by Serge Simard.\n### How to reproduce (on a phone)\n1. Add some favorites\n2. Go into favorites\n3. Select an event\n4. In the event details screen: Remove the event from the favorites\n5. Hit BACK button to return to favorites\n### Expected behavior\n- The event should no longer be displayed in the favorites list.\n### Actual behavior\n- The event is still being displayed in the favorites list.\n"
+  },
+  "appName": "Schedule/Camp 2015",
+  "appVersion": "1.32.2",
+  "s2RQualityFeedback": [
+    {
+      "action": {
+        "sq": 3,
+        "sub": "user",
+        "act": "add",
+        "obj": "favorites",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Add some favorites",
+        "sentenceId": "1.4",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 6519,
+              "action": 0,
+              "sequence": 38,
+              "execution": 203,
+              "component": {
+                "dbId": 205018,
+                "type": "android.widget.TextView",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.EventDetail",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "Add to favorites",
+                "height": 96,
+                "width": 96,
+                "idXml": "nerd.tuxmobil.fahrplan.camp:id/item_fav",
+                "x": 704,
+                "y": 66,
+                "relativeLocation": "Top right",
+                "text": "",
+                "screenId": 6379
+              },
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Bottom_Up.Unexpected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_38_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 6361,
+              "action": 0,
+              "sequence": 1,
+              "execution": 200,
+              "component": {
+                "dbId": 198372,
+                "type": "android.widget.ImageButton",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 112,
+                "width": 112,
+                "idXml": "",
+                "x": 16,
+                "y": 58,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6222
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.Unexpected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_1_augmented.png"
+            },
+            {
+              "id": 6626,
+              "action": 0,
+              "sequence": 25,
+              "execution": 205,
+              "component": {
+                "dbId": 207620,
+                "type": "android.widget.LinearLayout",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 324,
+                "width": 375,
+                "idXml": "",
+                "x": 74,
+                "y": 221,
+                "relativeLocation": "Top left",
+                "text": "Chaos Communication Camp Opening",
+                "currentWindow": "ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6487
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Bottom_Up.Expected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_25_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 4,
+        "sub": "user",
+        "act": "go",
+        "obj": "",
+        "prep": "into",
+        "obj2": "favorites",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Go into favorites",
+        "sentenceId": "1.5",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 6059,
+              "action": 0,
+              "sequence": 38,
+              "execution": 191,
+              "component": {
+                "dbId": 186896,
+                "type": "android.widget.TextView",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": true,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 1,
+                "totalIndex": 0,
+                "contentDescription": "Show favorites",
+                "height": 96,
+                "width": 96,
+                "idXml": "nerd.tuxmobil.fahrplan.camp:id/item_starred_list",
+                "x": 1008,
+                "y": 66,
+                "relativeLocation": "Top right",
+                "text": "",
+                "screenId": 5809
+              },
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.No_Text.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_38_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        },
+        {
+          "category": "MISSING",
+          "inferredSteps": [
+            {
+              "id": 6628,
+              "action": 0,
+              "sequence": 40,
+              "execution": 205,
+              "component": {
+                "dbId": 207622,
+                "type": "android.widget.ImageButton",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.EventDetail",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "Navigate up",
+                "height": 112,
+                "width": 112,
+                "idXml": "",
+                "x": 16,
+                "y": 58,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "ALERT:ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.EventDetailChaos Communication Camp Opening",
+                "screenId": 6526
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Bottom_Up.Expected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_40_augmented.png"
+            },
+            {
+              "id": 6361,
+              "action": 0,
+              "sequence": 1,
+              "execution": 200,
+              "component": {
+                "dbId": 198372,
+                "type": "android.widget.ImageButton",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 112,
+                "width": 112,
+                "idXml": "",
+                "x": 16,
+                "y": 58,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6222
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.Unexpected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_1_augmented.png"
+            },
+            {
+              "id": 6382,
+              "action": 0,
+              "sequence": 2,
+              "execution": 200,
+              "component": {
+                "dbId": 198393,
+                "type": "android.widget.Spinner",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": false,
+                "password": false,
+                "scrollable": true,
+                "selected": false,
+                "index": 2,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 96,
+                "width": 165,
+                "idXml": "",
+                "x": 310,
+                "y": 66,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6277
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.Unexpected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_2_augmented.png"
+            },
+            {
+              "id": 6392,
+              "action": 0,
+              "sequence": 3,
+              "execution": 200,
+              "component": {
+                "dbId": 198403,
+                "type": "android.widget.ListView",
+                "activity": "nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "checkable": false,
+                "checked": false,
+                "clickable": true,
+                "longClickable": false,
+                "enabled": true,
+                "focusable": true,
+                "focused": true,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "contentDescription": "",
+                "height": 480,
+                "width": 151,
+                "idXml": "",
+                "x": 310,
+                "y": 66,
+                "relativeLocation": "Top left",
+                "text": "",
+                "currentWindow": "POPUP:ACTIVITY:nerd.tuxmobil.fahrplan.campnerd.tuxmobil.fahrplan.congress.MainActivity",
+                "screenId": 6239
+              },
+              "text": "",
+              "screenshotFile": "nerd.tuxmobil.fahrplan.camp.Top_Down.Unexpected.Disabled.1.nerd.tuxmobil.fahrplan.camp_1.32.2_3_augmented.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 5,
+        "sub": "user",
+        "act": "select",
+        "obj": "event",
+        "prep": "",
+        "obj2": "",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Select an event",
+        "sentenceId": "1.6",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "LOW_Q_AMBIGUOUS",
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false,
+          "ambiguousCases": [
+            "[LONG_CLICK, CLICK]"
+          ],
+          "ambiguousActions": [
+            "long click",
+            " click"
+          ]
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 6,
+        "sub": "user",
+        "act": "remove",
+        "obj": "event",
+        "prep": "in",
+        "obj2": "event details screen",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "In the event details screen: Remove the event from the favorites",
+        "sentenceId": "1.7",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "LOW_Q_VOCAB_MISMATCH",
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": true
+        }
+      ]
+    },
+    {
+      "action": {
+        "sq": 7,
+        "sub": "user",
+        "act": "hit",
+        "obj": "BACK button",
+        "prep": "to",
+        "obj2": "return",
+        "neg": false,
+        "ty": "SR",
+        "parsingClass": "ImperativeSequencePP",
+        "originalSentence": "Hit BACK button to return to favorites",
+        "sentenceId": "1.8",
+        "scenarioId": 0
+      },
+      "qualityAssessments": [
+        {
+          "category": "HIGH_QUALITY",
+          "matchedSteps": [
+            {
+              "id": 17607,
+              "action": 4,
+              "sequence": 10,
+              "component": {
+                "dbId": 0,
+                "checkable": false,
+                "checked": false,
+                "clickable": false,
+                "longClickable": false,
+                "enabled": false,
+                "focusable": false,
+                "focused": false,
+                "password": false,
+                "scrollable": false,
+                "selected": false,
+                "index": 0,
+                "totalIndex": 0,
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0
+              },
+              "screenshotFile": "C:\\Users\\ojcch\\Documents\\Projects\\Amadeus\\screenshots\\1549515865570\\1549515865570_10.png"
+            }
+          ],
+          "verbVocabMismatch": false,
+          "objsVocabMismatch": false
+        }
+      ]
+    }
+  ]
+}

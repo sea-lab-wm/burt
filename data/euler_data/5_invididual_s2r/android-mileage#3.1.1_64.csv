@@ -1,0 +1,7 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"OB";"1";"app";"";"display";"Economy";"as";"0.00 km/L";"OutputVerbPP";"Economy is displayed as 0.00 km/L";"0";""
+"1";"OB";"2";"app";"";"display";"Economy";"as";"0.00 km/L";"PassiveVoicePP";"Economy is displayed as 0.00 km/L";"0";""
+"1";"SR";"3";"user";"";"enter";"fillup data";;;"SimplePastPP";"I entered all the fillup data and goto History Tab";"1.3";""
+"1";"SR";"3";"user";"";"click";"one";"of";"Fillup history";"ImperativeSequencePP";"Click on one of the Fillup history";"1.4";""
+"1";"OB";"4";"app";"";"show";"Stats section";"as";"0.0 km/L";"OutputVerbPP";"Stats section --> Economy is shown as 0.0 km/L";"1.5";""
+"1";"OB";"5";"app";"";"show";"Stats section";"as";"0.0 km/L";"PassiveVoicePP";"Stats section --> Economy is shown as 0.0 km/L";"1.5";""

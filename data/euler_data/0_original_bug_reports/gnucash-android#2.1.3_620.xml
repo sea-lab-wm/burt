@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<bug>
+  <id>620</id>
+  <title>When an account is edited, its color is lost</title>
+  <description>#### Steps to reproduce the behaviour
+1. Set the color of an account
+2. Edit the account.
+3. Press save
+
+#### Expected behaviour
+The color of the account remains the same.
+
+#### Actual behaviour
+The color is unset.
+
+#### Software specifications
+* GnuCash Android version: 2.1.3
+* System Android version: 5.0
+* Device type: bq Aquaris E4
+</description>
+</bug>

@@ -1,0 +1,7 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"OB";"2";"Report Activity";"";"forget";;;;"NegativeVerbPP";"Report Activity forgets current week when paused";"0";""
+"1";"SR";"4";"user";"";"display";"Report Activity";;;"ConditionalObsBehaviorPP";"When displaying the Report Activity, if the screen saver gets on and the Report is later resumed the currently displayed week is switched back to the current week.";"1.1";""
+"1";"SR";"5";"user";"";"get on";"screen saver";;;"ConditionalObsBehaviorPP";"When displaying the Report Activity, if the screen saver gets on and the Report is later resumed the currently displayed week is switched back to the current week.";"1.1";""
+"1";"SR";"6";"user";"";"resume";"Report";;;"ConditionalObsBehaviorPP";"When displaying the Report Activity, if the screen saver gets on and the Report is later resumed the currently displayed week is switched back to the current week.";"1.1";""
+"1";"OB";"10";"app";"";"switch";;"to";"current week";"ConditionalPositivePP";"When displaying the Report Activity, if the screen saver gets on and the Report is later resumed the currently displayed week is switched back to the current week.";"1.1";""
+"1";"SR";"11";"user";"";"change";;"so";"week";"ImperativeSequencePP";"Change so the week being displayed before the pause is restored.";"2.1";""

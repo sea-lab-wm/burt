@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<bug>
+  <id>25</id>
+  <title>changing device orientation does not show "success" dialog messages </title>
+  <description>Open Time Tracker 
+Tap Menu 
+Tap more option
+select any option that results in "Success" dialog
+For example: Select "Export view to csv"
+success dialog is shown with text "Successfully exported csv to memory card as timetracker.db" 
+Tap ok to close success dialog
+Now change device orientation as landscape
+Now again Select "Export view to csv"
+
+Expected : success dialog should be shown with text "Successfully exported csv to memory card as timetracker.db" 
+
+Actual:success dialog was shown without any text.
+</description>
+</bug>
