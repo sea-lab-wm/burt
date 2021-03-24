@@ -31,11 +31,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
             S2RChecker checker = (S2RChecker) state.get("S2R_CHECKER");
             QualityResult result = checker.checkS2R(userMessage.getMessages().get(0).getMessage());
             state.put("S2R_QUALITY_RESULT", result);
-//        if (result.getResult().name().equals("IS_OK")) {
-//            if (S2RLastStepChecker.checkIfLastStep(message.getMessage())) {
-//                return "CONFIRM_LAST_STEP";
-//            }
-//        }
+
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
