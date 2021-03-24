@@ -17,7 +17,7 @@ const AppSelector = (props) => {
 
     const handleConfirmButton =() => {
 
-        setTimeout(() => {
+        // setTimeout(() => {
 
             let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [screen.value]});
 
@@ -27,7 +27,7 @@ const AppSelector = (props) => {
             const idx = props.messages.findIndex(x => x.id === props.id)
             props.messages[idx].selectedValues = [screen.value]
 
-        }, 1000)
+        // }, 1000)
     }
 
     const getImageStyle = (width, height) => {

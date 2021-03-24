@@ -31,7 +31,7 @@ public class OBDescriptionStateChecker extends StateChecker {
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
-            return null;
+            return "UNEXPECTED_ERROR";
         }
     }
 }

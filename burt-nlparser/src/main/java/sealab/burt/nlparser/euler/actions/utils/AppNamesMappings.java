@@ -64,12 +64,11 @@ public class AppNamesMappings {
         Optional<LinkedHashSet<String>> appNameSet = APP_NAMES.stream().filter(aps -> aps.contains(appName))
                 .findFirst();
 
-        if (!appNameSet.isPresent()) {
+        if (appNameSet.isEmpty()) {
             return null;
         }
 
-        LinkedHashSet<String> appNames = appNameSet.get();
-        return appNames;
+        return appNameSet.get();
     }
 
     //-----------------------------------------------
@@ -92,11 +91,13 @@ public class AppNamesMappings {
 
         APP_NAMES_PACKAGES.put("document-viewer", Arrays.asList("org.sufficientlysecure.viewer"));
         APP_NAMES_PACKAGES.put("droid-comic-viewer", Arrays.asList("net.androidcomics.acv"));
+
         APP_NAMES_PACKAGES.put("droidweight", Arrays.asList("de.delusions.measure"));
 
         APP_NAMES_PACKAGES.put("eyeCam", Arrays.asList("ch.hsr.eyecam"));
 
         APP_NAMES_PACKAGES.put("gnucash-android", Arrays.asList("org.gnucash.android"));
+        APP_NAMES_PACKAGES.put("gnucash", Arrays.asList("org.gnucash.android"));
 
         APP_NAMES_PACKAGES.put("mileage", Arrays.asList("com.evancharlton.mileage"));
         APP_NAMES_PACKAGES.put("android-mileage", Arrays.asList("com.evancharlton.mileage"));
@@ -109,6 +110,10 @@ public class AppNamesMappings {
 
         APP_NAMES_PACKAGES.put("schedule-campfahrplan",
                 Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
+    }
+
+    public static List<String> getPackageNames(String appName){
+       return APP_NAMES_PACKAGES.get(appName);
     }
 
     /*public static App getApp(String appName, String appVersion, EntityManager em) throws SQLException {

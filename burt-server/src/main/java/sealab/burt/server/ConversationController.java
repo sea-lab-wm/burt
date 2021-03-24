@@ -60,6 +60,7 @@ public class ConversationController {
             put("CONFIRM_SELECTED_AMBIGUOUS_S2R", new ConfirmSelectedAmbiguousAction());
             put("CONFIRM_LAST_STEP", new ConfirmLastStepAction());
             put("REPORT_SUMMARY", new ProvideReportSummary());
+            put("UNEXPECTED_ERROR", new UnexpectedErrorAction());
 
 
         }

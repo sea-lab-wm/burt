@@ -22,7 +22,7 @@ public class AppGraphInfo implements Serializable {
 
     private List<AppStep> steps = new ArrayList<>();
     private AppGraph<GraphState, GraphTransition> graph;
-    private App app;
+    private Appl appl;
 
     /**
      * @return the steps
@@ -143,11 +143,11 @@ public class AppGraphInfo implements Serializable {
         return graph.vertexSet();
     }
 
-    public App getApp() {
-        return app;
+    public Appl getApp() {
+        return appl;
     }
 
-    public void setApp(App app) {
-        this.app = app;
+    public void setApp(Appl appl) {
+        this.appl = appl;
     }
 }

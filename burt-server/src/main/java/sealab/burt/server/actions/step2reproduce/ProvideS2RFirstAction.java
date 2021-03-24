@@ -11,8 +11,9 @@ public class ProvideS2RFirstAction extends ChatbotAction {
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         state.put("COLLECTED_EB", true);
         state.put("COLLECTING_S2R", true);
-        String app = state.get("APP").toString();
-        if (!state.containsKey("S2R_CHECKER")) state.put("S2R_CHECKER", new S2RChecker(app));
+        String appName = state.get("APP").toString();
+        String appVersion = state.get("APP_VERSION").toString();
+        if (!state.containsKey("S2R_CHECKER")) state.put("S2R_CHECKER", new S2RChecker(appName, appVersion));
         return new ChatbotMessage(" Okay. Now I need to know the steps that you performed and caused the problem. Can" +
                 " you please tell me the first step that you performed?");
 

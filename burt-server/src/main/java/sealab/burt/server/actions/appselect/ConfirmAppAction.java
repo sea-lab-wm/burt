@@ -1,7 +1,6 @@
 package sealab.burt.server.actions.appselect;
 
 import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.MessageObj;
 import sealab.burt.server.UserMessage;
 import sealab.burt.server.actions.ChatbotAction;
 
@@ -12,12 +11,14 @@ public class ConfirmAppAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         UserMessage msg = (UserMessage) state.get("CURRENT_MESSAGE");
-        String app = "Dummy App";
+        String appNameVersion = "Dummy App v. 2.1";
 //
         if (!msg.getMessages().isEmpty())
-            app = msg.getMessages().get(0).getSelectedValues().get(0);
-        state.put("APP", app);
-        return new ChatbotMessage(MessageFormat.format("You selected {0}, shall we continue?", app));
+            appNameVersion = msg.getMessages().get(0).getSelectedValues().get(0);
+        String[] tokens = appNameVersion.split("v\\.");
+        state.put("APP", tokens[0].trim());
+        state.put("APP_VERSION", tokens[1].trim());
+        return new ChatbotMessage(MessageFormat.format("You selected {0}, shall we continue?", appNameVersion));
     }
 
 }

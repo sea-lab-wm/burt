@@ -62,7 +62,7 @@ const S2RScreenSelector = (props) => {
                 // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
             />
             <center>
-                <button type="button" class="button" onClick={() => handleConfirmButton("done")}>done</button>
+                <button type="button" className="button" onClick={() => handleConfirmButton("done")}>done</button>
                 <button type="button" className="button" onClick={() => handleNegativeButton("none of above")}>none of above</button>
             </center>
 
