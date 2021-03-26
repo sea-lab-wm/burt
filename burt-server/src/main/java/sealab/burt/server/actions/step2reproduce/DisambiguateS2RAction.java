@@ -1,10 +1,14 @@
 package sealab.burt.server.actions.step2reproduce;
 
 import sealab.burt.server.ChatbotMessage;
+import sealab.burt.server.KeyValue;
+import sealab.burt.server.MessageObj;
 import sealab.burt.server.UserMessage;
 import sealab.burt.server.actions.ChatbotAction;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DisambiguateS2RAction extends ChatbotAction {
@@ -13,9 +17,14 @@ public class DisambiguateS2RAction extends ChatbotAction {
         state.put("DISAMBIGUATE_S2R", true);
 
         UserMessage userMessage = (UserMessage) state.get("CURRENT_MESSAGE");
-        return new ChatbotMessage(MessageFormat.format("Okay, which of the following do you mean by \"{0}\"?",
-                userMessage.getMessages().get(0).getMessage()));
-        //Provide screenshots here
+        List<KeyValue> S2RScreens = Arrays.asList(
+                new KeyValue("S2RScreen1","S2RScreen1.png"),
+                new KeyValue("S2RScreen2","S2RScreen2.png"),
+                new KeyValue("S2RScreen2","S2RScreen2.png"));
+        MessageObj messageObj = new MessageObj(MessageFormat.format("Okay, it seems ambiguous, which of the following do you mean by \"{0}\"?",
+                userMessage.getMessages().get(0).getMessage()), "S2RScreenSelector" );
+        return new ChatbotMessage(messageObj, S2RScreens);
+
     }
 
     public String nextExpectedIntent() {

@@ -15,8 +15,8 @@ public class SelectOBScreenAction extends ChatbotAction {
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
 
         String app = state.get("APP").toString();
-        MessageObj messageObj = new MessageObj("Got it. Just to confirm, can you select the " + app + " screen that " +
-                "is having the problem? Please hit the “Done” button after you have selected it.",  "OBScreenSelector");
+        MessageObj messageObj = new MessageObj(MessageFormat.format("Got it. Just to confirm, can you select the {0} screen that is having the problem?" +
+                " Please hit the “Done” button after you have selected it.", app) ,"OBScreenSelector");
         List<KeyValue> OBScreen = Arrays.asList(new KeyValue("OBScreen","OBScreen.png"));
         return new ChatbotMessage(messageObj, OBScreen);
     }

@@ -13,15 +13,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-public class ConversationTest extends AbstractTest {
+/**
+ * test conversation flow
+ * [Hi, send selected app, yes(confirm app selection), provide OB, done(select OB screenshots), provide EB, provide the first step, done(select predicted S2R screens), ]
+ */
+public class ConversationTest1 extends AbstractTest {
 
     private static final String END_POINT = "http://localhost:8081";
     private static String APP;
     private static String OB_SCREEN;
     private static UserMessage MESSAGE;
     private static String SESSION_ID;
-
+    private static List<String> S2R_SCREENS = new ArrayList<>();
 
     @Override
     @Before
@@ -107,36 +110,50 @@ public class ConversationTest extends AbstractTest {
         assertNotEquals(-1,code);
     }
 
-    //Disabled does not work
-    @Disabled("Do not run this")
-    @org.junit.Test
-    @DisplayName("confirm OB screen selection")
-    public void testH() throws Exception {
-        int code = sendAffirmativeOrNegativeAnswer("no");
-        assertNotEquals(-1,code);
-    }
 
     @org.junit.Test
     @DisplayName("provide EB")
-    public void testI() throws Exception {
+    public void testH() throws Exception {
         int code = answerWithoutScreens("the app should not crash");
         assertNotEquals(-1, code);
     }
 
-    @Disabled
-    @org.junit.Test
-    @DisplayName("confirm EB screen")
-    public void testJ() throws Exception {
-        int code = sendAffirmativeOrNegativeAnswer("yes");
-        assertNotEquals(-1,code);
-    }
+//    @org.junit.Test
+//    @DisplayName("confirm EB screen")
+//    public void testI() throws Exception {
+//        int code = sendAffirmativeOrNegativeAnswer("yes");
+//        assertNotEquals(-1,code);
+//    }
 
     @org.junit.Test
     @DisplayName("provide the first step")
-    public void testK() throws Exception {
-        int code = answerWithoutScreens("the first step is that i open the app");
-        assertNotEquals(-1, code);
+    public void testJ() throws Exception {
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj("I opened the app")));
+        MvcResult mvcResultAnswerFirstStep= sendRequest(MESSAGE);
+        String responseAnswerFirstStep = mvcResultAnswerFirstStep.getResponse().getContentAsString();
+
+        ConversationResponse objAnswerFirstStep= mapFromJson(responseAnswerFirstStep, ConversationResponse.class);
+        System.out.println(objAnswerFirstStep.getMessage().getMessageObj().getMessage());
+        S2R_SCREENS.add(objAnswerFirstStep.getMessage().getValues().get(0).getKey());
+        S2R_SCREENS.add(objAnswerFirstStep.getMessage().getValues().get(1).getKey());
+        assertNotEquals(-1, objAnswerFirstStep.getCode());
     }
+
+    @org.junit.Test
+    @DisplayName("select predicted S2R screens")
+    public void testK() throws Exception {
+        List<String> selectedValuesS2RScreens = S2R_SCREENS;
+        MESSAGE.setMessages(Collections.singletonList(new MessageObj("done",  selectedValuesS2RScreens)));
+        MvcResult mvcResultSelectedS2RScreens= sendRequest(MESSAGE);
+        String responseSelectedS2RScreens =  mvcResultSelectedS2RScreens.getResponse().getContentAsString();
+
+        ConversationResponse objSelectedS2RScreen = mapFromJson(responseSelectedS2RScreens, ConversationResponse.class);
+        System.out.println(objSelectedS2RScreen.getMessage().getMessageObj().getMessage());
+
+        assertNotEquals(-1, objSelectedS2RScreen.getCode());
+
+    }
+
 
     @org.junit.Test
     public void testL() throws Exception{

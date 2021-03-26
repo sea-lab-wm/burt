@@ -53,6 +53,7 @@ public class ConversationController {
             put("PROVIDE_S2R_FIRST", new ProvideS2RFirstAction());
             put("PREDICT_S2R", new ProvidePredictedS2RAction());
             put("PROVIDE_S2R", new ProvideS2RAction());
+            put("CONFIRM_PREDICTED_SELECTED_S2R_SCREENS", new ConfirmPredictedS2RScreensSelectedAction());
             put("DISAMBIGUATE_S2R", new DisambiguateS2RAction());
             put("REPHRASE_S2R", new RephraseS2RAction());
             put("SPECIFY_INPUT_S2R", new SpecifyInputS2RAction());
@@ -61,6 +62,7 @@ public class ConversationController {
             put("CONFIRM_LAST_STEP", new ConfirmLastStepAction());
             put("REPORT_SUMMARY", new ProvideReportSummary());
             put("UNEXPECTED_ERROR", new UnexpectedErrorAction());
+
 
 
         }
@@ -78,7 +80,7 @@ public class ConversationController {
         put("EB_DESCRIPTION", new EBDescriptionStateChecker(null));
         //--------S2R-----------//
         put("S2R_DESCRIPTION", new S2RDescriptionStateChecker(null));
-        put("S2R_PREDICTED_SELECTED", new S2RDescriptionStateChecker(null));
+        put("S2R_PREDICTED_SELECTED", new NStateChecker("CONFIRM_PREDICTED_SELECTED_S2R_SCREENS"));
         put("S2R_MISSING_SELECTED", new S2RDescriptionStateChecker(null));
         put("S2R_AMBIGUOUS_SELECTED", new NStateChecker("CONFIRM_SELECTED_AMBIGUOUS_S2R"));
 

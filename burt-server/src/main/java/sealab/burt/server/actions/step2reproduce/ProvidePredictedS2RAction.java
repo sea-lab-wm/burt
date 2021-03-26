@@ -14,11 +14,11 @@ public class ProvidePredictedS2RAction extends ChatbotAction {
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         MessageObj messageObj = new MessageObj(" Ok, it seems the next steps that you performed are the following." +
                 " Can you confirm which are correct? Please click the “done” button when you are done.",  "S2RScreenSelector");
-        List<KeyValue> S2RScreen = Arrays.asList(
+        List<KeyValue> S2RScreens = Arrays.asList(
                 new KeyValue("S2RScreen1","S2RScreen1.png"),
                 new KeyValue("S2RScreen2","S2RScreen2.png"),
                 new KeyValue("S2RScreen2","S2RScreen2.png"));
-        return new ChatbotMessage(messageObj, S2RScreen);
+        return new ChatbotMessage(messageObj, S2RScreens);
 
     }
 
