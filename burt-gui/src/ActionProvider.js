@@ -10,6 +10,7 @@ class ActionProvider{
 
     constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj) {
         this.createChatBotMessage = createChatBotMessage;
+        this.createClientMessage = createClientMessage;
         this.setState = setStateFunc;
         this.sessionId = sessionIdObj
     }

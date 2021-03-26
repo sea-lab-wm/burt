@@ -1,12 +1,12 @@
 import React from "react";
 // Config starter code
-import { createChatBotMessage } from "react-chatbot-kit";
+import { createChatBotMessage, createClientMessage } from "react-chatbot-kit";
 import AppSelector from "./components/ScreenOptions/AppSelector";
-import SelectMultipleScreens from "./components/ScreenOptions/SelectMultipleScreensOption";
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
 import EBScreenSelector from "./components/ScreenOptions/EBScreenSelector";
+
 const config = {
     botName: "BURT",
     serverEndpoint: "http://localhost:8081",

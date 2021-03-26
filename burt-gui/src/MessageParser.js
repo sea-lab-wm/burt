@@ -3,6 +3,7 @@ import SessionManager from "./SessionManager";
 import processResponse from "./ServerResponseProcessor";
 
 
+
 class MessageParser {
     constructor(actionProvider, state) {
         this.actionProvider = actionProvider;
@@ -13,9 +14,8 @@ class MessageParser {
     parse(messageObj) {
 
         const userMsg = messageObj.message
-
-        console.log("This is the user message: ")
-        console.log(userMsg)
+        // console.log("This is the user message: ")
+        // console.log(userMsg)
 
         const responsePromise = ApiClient.processUserMessage(userMsg, [])
 

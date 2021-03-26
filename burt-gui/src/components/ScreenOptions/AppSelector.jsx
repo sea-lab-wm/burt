@@ -19,13 +19,15 @@ const AppSelector = (props) => {
 
         // setTimeout(() => {
 
-            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [screen.value]});
+        let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [screen.value]});
 
-            const responsePromise = ApiClient.processUserMessage(message)
-            processResponse(responsePromise, props.actionProvider)
+        const responsePromise = ApiClient.processUserMessage(message)
+        processResponse(responsePromise, props.actionProvider)
 
-            const idx = props.messages.findIndex(x => x.id === props.id)
-            props.messages[idx].selectedValues = [screen.value]
+        const idx = props.messages.findIndex(x => x.id === props.id)
+        props.messages[idx].selectedValues = [screen.value]
+
+
 
         // }, 1000)
     }
