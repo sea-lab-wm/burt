@@ -20,10 +20,10 @@ public class DisambiguateS2RAction extends ChatbotAction {
         List<KeyValue> S2RScreens = Arrays.asList(
                 new KeyValue("S2RScreen1","S2RScreen1.png"),
                 new KeyValue("S2RScreen2","S2RScreen2.png"),
-                new KeyValue("S2RScreen2","S2RScreen2.png"));
+                new KeyValue("S2RScreen3","S2RScreen3.png"));
         MessageObj messageObj = new MessageObj(MessageFormat.format("Okay, it seems ambiguous, which of the following do you mean by \"{0}\"?",
                 userMessage.getMessages().get(0).getMessage()), "S2RScreenSelector" );
-        return new ChatbotMessage(messageObj, S2RScreens);
+        return new ChatbotMessage(messageObj, S2RScreens, false);
 
     }
 

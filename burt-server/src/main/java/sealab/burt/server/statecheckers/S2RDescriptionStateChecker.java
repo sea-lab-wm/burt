@@ -26,9 +26,11 @@ public class S2RDescriptionStateChecker extends StateChecker {
     public String nextAction(ConcurrentHashMap<String, Object> state) {
 
         try {
+            //            return "SELECT_MISSING_S2R";
             UserMessage userMessage = (UserMessage) state.get("CURRENT_MESSAGE");
             S2RChecker checker = (S2RChecker) state.get("S2R_CHECKER");
             QualityResult result = checker.checkS2R(userMessage.getMessages().get(0).getMessage());
+
 
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {

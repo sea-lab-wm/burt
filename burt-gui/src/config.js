@@ -6,6 +6,7 @@ import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
 import EBScreenSelector from "./components/ScreenOptions/EBScreenSelector";
+import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
 
 const config = {
     botName: "BURT",
@@ -32,6 +33,11 @@ const config = {
         {
             widgetName: "EBScreenSelector",
             widgetFunc: (props) => <EBScreenSelector {...props} />,
+            mapStateToProps: []
+        },
+        {
+            widgetName: "S2RScreenSelector",
+            widgetFunc: (props) => <S2RScreenSelector {...props} />,
             mapStateToProps: []
         },
         // {

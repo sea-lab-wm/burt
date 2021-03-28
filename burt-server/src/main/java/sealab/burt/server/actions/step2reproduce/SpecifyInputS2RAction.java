@@ -10,7 +10,7 @@ public class SpecifyInputS2RAction extends ChatbotAction {
 
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
-        return new ChatbotMessage("It seems you forget specify input. Can you please provide the input to make the step more accurately?");
+        return new ChatbotMessage("It seems you forget to specify input. Can you please provide the input to make the step more accurately?");
     }
     @Override
     public String nextExpectedIntent() {

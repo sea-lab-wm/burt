@@ -19,7 +19,12 @@ const S2RScreenSelector = (props) => {
     const handleConfirmButton= (choice) => {
 
         setTimeout(() => {
-            const selectedValues = screen.map(s => s.value);
+            let selectedValues;
+            if (!multiple){
+                selectedValues = [screen.value];
+            }else{
+                selectedValues = screen.map(s => s.value);
+            }
             let message = props.actionProvider.createChatBotMessage(choice, {selectedValues: selectedValues}); // why this message does not show up on the chatbot?
             const responsePromise = ApiClient.processUserMessage(message)
             processResponse(responsePromise, props.actionProvider)
@@ -51,6 +56,7 @@ const S2RScreenSelector = (props) => {
     }
     const dataValues = props.allValues; // only one screenshot
     const selectedValues = props.selectedValues
+    const multiple = props.multiple;
 
     return (
         <div>
@@ -59,7 +65,7 @@ const S2RScreenSelector = (props) => {
                 style={getImageStyle(150, 300)}
                 selected={selectedValues}
                 onPick={pickImageHandler}
-                multiple = {true}
+                multiple = {multiple}
                 // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
             />
             <center>

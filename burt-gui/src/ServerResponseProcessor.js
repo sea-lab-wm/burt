@@ -30,6 +30,7 @@ const processResponse = (responsePromise, actionProvider) =>{
             if (responseData.message.messageObj.widget) {
 
                 const valuesData = responseData.message.values
+                const multiple =  responseData.message.multiple;
 
                 console.log("Processing a widget msg: ")
                 console.log(responseData.message)
@@ -37,6 +38,7 @@ const processResponse = (responsePromise, actionProvider) =>{
                 const message = actionProvider.createChatBotMessage(
                     responseData.message.messageObj.message, {
                         allValues: valuesData,
+                        multiple: multiple,
                         selectedValues: null,
                         widget: responseData.message.messageObj.widget,
                     }

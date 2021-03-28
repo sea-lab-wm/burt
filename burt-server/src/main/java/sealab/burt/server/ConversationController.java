@@ -81,13 +81,17 @@ public class ConversationController {
         //--------EB-------------//
         put("EB_DESCRIPTION", new EBDescriptionStateChecker(null));
         //--------S2R-----------//
-        //put("S2R_DESCRIPTION", new S2RDescriptionStateChecker(null));
+        put("S2R_DESCRIPTION", new S2RDescriptionStateChecker(null));
         put("S2R_PREDICTED_SELECTED", new NStateChecker("CONFIRM_PREDICTED_SELECTED_S2R_SCREENS"));
         put("S2R_MISSING_SELECTED", new NStateChecker("CONFIRM_SELECTED_MISSING_S2R"));
         put("S2R_AMBIGUOUS_SELECTED", new NStateChecker("CONFIRM_SELECTED_AMBIGUOUS_S2R"));
-        //------S2R for test---------//
-        put("S2R_DESCRIPTION", new S2RDescriptionStateCheckerForTest(null));
+        //--------Ending---------------//
         put("THANKS", new NStateChecker("ENDING"));
+
+
+        //------S2R for test---------//
+//        put("S2R_DESCRIPTION", new S2RDescriptionStateCheckerForTest(null));
+
 
     }};
 
