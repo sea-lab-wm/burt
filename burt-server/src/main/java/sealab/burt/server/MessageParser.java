@@ -17,6 +17,7 @@ class MessageParser {
         addIntentTokens("AFFIRMATIVE_ANSWER", Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah"));
         addIntentTokens("GREETING", Arrays.asList("hi", "hello", "yo", "hey", "hello"));
         addIntentTokens("NEGATIVE_ANSWER",Arrays.asList("no") );
+        addIntentTokens("THANKS", Arrays.asList("thanks", "thank you"));
         //....
     }
 

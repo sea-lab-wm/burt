@@ -9,9 +9,16 @@ public @Data @AllArgsConstructor
 class ChatbotMessage {
     private MessageObj messageObj;
     private List<KeyValue> values;
+    private String intent;
+    private String action;
 
-    ChatbotMessage(){
+    public ChatbotMessage(){}
+    public ChatbotMessage(MessageObj messageObj,List<KeyValue> values ){
+        this.messageObj= messageObj;
+        this.values= values;
     }
+
+
 
     public ChatbotMessage(String message){
         this.messageObj = new MessageObj((message));

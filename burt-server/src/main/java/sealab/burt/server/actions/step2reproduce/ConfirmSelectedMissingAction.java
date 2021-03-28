@@ -1,14 +1,14 @@
 package sealab.burt.server.actions.step2reproduce;
 
 import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.MessageObj;
 import sealab.burt.server.UserMessage;
 import sealab.burt.server.actions.ChatbotAction;
+
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
+public class ConfirmSelectedMissingAction extends ChatbotAction {
     static String nextIntent = "";
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
@@ -18,19 +18,21 @@ public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
             String confirmMessage = msg.getMessages().get(0).getMessage();
             if (confirmMessage.equals("done")) {
                 nextIntent = "";
-                 List<String> S2RScreens =  msg.getMessages().get(0).getSelectedValues();
-                response = MessageFormat.format("Ok, you select {0}, what is the next step?",  S2RScreens.get(0));
+                List<String> S2RScreens =  msg.getMessages().get(0).getSelectedValues();
+                response = MessageFormat.format("Ok, you select {0} and {1}, what is the next step?",  S2RScreens.get(0), S2RScreens.get(1));
+                // need to check the quality of selected steps? or just give the next predicted steps.
             }else{
                 nextIntent = "none";
-                // give other screens to let user choose?
                 response = " Ok, what is the next step?";
-                return new ChatbotMessage(response);
             }
         }
         return new ChatbotMessage(response);
     }
     @Override
     public String nextExpectedIntent() {
+        if (nextIntent.equals("none")) {
+            return "S2R_DESCRIPTION";
+        }
         return "S2R_DESCRIPTION";
     }
 

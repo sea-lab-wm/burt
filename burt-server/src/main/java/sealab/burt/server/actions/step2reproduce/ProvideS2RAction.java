@@ -10,7 +10,7 @@ public class ProvideS2RAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         return new ChatbotMessage(" Ok, what is the next step?");
-        //provide screenshots here
+
     }
 
     @Override

@@ -21,6 +21,7 @@ public class SelectAppAction extends ChatbotAction {
                 new KeyValue("Mileage v. 3.1.1","milage.webp")
                 );
         return new ChatbotMessage(messageObj, allApps);
+
     }
 
     @Override

@@ -10,15 +10,22 @@ class ConversationResponse {
 
     private ChatbotMessage message;
     private Integer code;
+    private String nextIntent;
+    private String currentAction;
 
-    ConversationResponse(){
-    }
 
-
+    public ConversationResponse(){}
     public ConversationResponse(ChatbotMessage message, Integer code) {
         this.message = message;
         this.code = code;
     }
+    public ConversationResponse(ChatbotMessage message,String intent, String action, Integer code) {
+        this.message = message;
+        this.nextIntent= intent;
+        this.currentAction = action;
+        this.code = code;
+    }
+
 
     static ConversationResponse createResponse(String message, Integer code){
         ConversationResponse conversationResponse =

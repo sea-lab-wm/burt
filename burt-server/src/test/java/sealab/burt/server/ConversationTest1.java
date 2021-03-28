@@ -1,8 +1,9 @@
 package sealab.burt.server;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import org.junit.Before;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class ConversationTest1 extends AbstractTest {
 
     private static final String END_POINT = "http://localhost:8081";
-    private static String APP;
     private static String OB_SCREEN;
     private static UserMessage MESSAGE;
     private static String SESSION_ID;
@@ -33,7 +33,8 @@ public class ConversationTest1 extends AbstractTest {
     }
 
     @org.junit.Test
-     public void testA() throws Exception {
+    @Order(1)
+    public void testA() throws Exception {
         MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/start")
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
@@ -45,28 +46,35 @@ public class ConversationTest1 extends AbstractTest {
         MESSAGE.setSessionId(SESSION_ID);
     }
     @org.junit.Test
+    @Order(2)
     @DisplayName("send greeting message")
     public void testB() throws Exception {
         System.out.println(MESSAGE);
         MESSAGE.setMessages(Collections.singletonList(new MessageObj("Hi")));
         MvcResult mvcResult3 = sendRequest(MESSAGE);
         String response3 = mvcResult3.getResponse().getContentAsString();
+        System.out.println(response3);
 
         ConversationResponse obj = mapFromJson(response3, ConversationResponse.class);
-        APP = obj.getMessage().getValues().get(0).getKey();
-
+//        APP = obj.getMessage().getValues().get(0).getKey();
         assertNotEquals(-1, obj.getCode());
+        assertEquals("SELECT_APP",obj.getCurrentAction());
+        assertEquals("APP_SELECTED",obj.getNextIntent());
+
+
     }
     @org.junit.Test
     @DisplayName("send selected app")
     public void testC() throws Exception {
-
+        String APP = "GnuCash v. 2.1.3";
         List<String> selectedValuesSelectedApp = new ArrayList<>() {{ add(APP);}};
         MESSAGE.setMessages(Collections.singletonList(new MessageObj(null, selectedValuesSelectedApp)));
         MvcResult mvcResultSelectedApp = sendRequest(MESSAGE);
         String responseSelectedApp = mvcResultSelectedApp.getResponse().getContentAsString();
-        ConversationResponse objSelectedApp = mapFromJson(responseSelectedApp, ConversationResponse.class);
-        System.out.println(objSelectedApp.getMessage().getMessageObj().getMessage());
+        ConversationResponse obj = mapFromJson(responseSelectedApp, ConversationResponse.class);
+        assertNotEquals(-1, obj.getCode());
+        assertEquals("CONFIRM_APP",obj.getCurrentAction());
+        assertEquals("NO_EXPECTED_INTENT",obj.getNextIntent());
 
     }
     @org.junit.Test

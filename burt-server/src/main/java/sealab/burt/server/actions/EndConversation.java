@@ -1,0 +1,14 @@
+package sealab.burt.server.actions;
+
+import sealab.burt.server.ChatbotMessage;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+public class EndConversation extends ChatbotAction {
+    @Override
+    public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
+        // provide the summery of bug report
+        String response =  "Have a great day. Bye";
+        return new ChatbotMessage(response);
+    }
+}

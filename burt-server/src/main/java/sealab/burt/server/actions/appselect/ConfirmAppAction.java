@@ -19,6 +19,7 @@ public class ConfirmAppAction extends ChatbotAction {
         state.put("APP", tokens[0].trim());
         state.put("APP_VERSION", tokens[1].trim());
         return new ChatbotMessage(MessageFormat.format("You selected {0}, shall we continue?", appNameVersion));
+
     }
 
 }

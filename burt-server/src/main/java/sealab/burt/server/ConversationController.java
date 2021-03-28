@@ -59,10 +59,12 @@ public class ConversationController {
             put("SPECIFY_INPUT_S2R", new SpecifyInputS2RAction());
             put("SELECT_MISSING_S2R", new SelectMissingS2RAction());
             put("CONFIRM_SELECTED_AMBIGUOUS_S2R", new ConfirmSelectedAmbiguousAction());
+            put("CONFIRM_SELECTED_MISSING_S2R", new ConfirmSelectedMissingAction());
             put("CONFIRM_LAST_STEP", new ConfirmLastStepAction());
             put("REPORT_SUMMARY", new ProvideReportSummary());
             put("UNEXPECTED_ERROR", new UnexpectedErrorAction());
 
+            put("ENDING", new EndConversation());
 
 
         }
@@ -79,10 +81,13 @@ public class ConversationController {
         //--------EB-------------//
         put("EB_DESCRIPTION", new EBDescriptionStateChecker(null));
         //--------S2R-----------//
-        put("S2R_DESCRIPTION", new S2RDescriptionStateChecker(null));
+        //put("S2R_DESCRIPTION", new S2RDescriptionStateChecker(null));
         put("S2R_PREDICTED_SELECTED", new NStateChecker("CONFIRM_PREDICTED_SELECTED_S2R_SCREENS"));
-        put("S2R_MISSING_SELECTED", new S2RDescriptionStateChecker(null));
+        put("S2R_MISSING_SELECTED", new NStateChecker("CONFIRM_SELECTED_MISSING_S2R"));
         put("S2R_AMBIGUOUS_SELECTED", new NStateChecker("CONFIRM_SELECTED_AMBIGUOUS_S2R"));
+        //------S2R for test---------//
+        put("S2R_DESCRIPTION", new S2RDescriptionStateCheckerForTest(null));
+        put("THANKS", new NStateChecker("ENDING"));
 
     }};
 
@@ -148,7 +153,8 @@ public class ConversationController {
             String nextIntent = nextAction.nextExpectedIntent();
             conversationState.put("NEXT_INTENT", nextIntent);
 
-            return new ConversationResponse(nextMessage, 0);
+
+            return new ConversationResponse(nextMessage, nextIntent, action, 0);
         } catch (Exception e) {
             LOGGER.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return  ConversationResponse.createResponse(e.getMessage(), -1);
