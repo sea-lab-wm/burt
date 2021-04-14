@@ -163,18 +163,18 @@ public class CrashScope extends GeneralStrategy {
 
 //      String adbPort = "5037";
 //      String avdPort = "0932890b";
-      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Core/scripts/";
+      String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScope/burt/crashscope/scripts";
 //      String uiDumpLocation = "/Volumes/Macintosh_HD_3/Research-Files/Bug-Reproduction-CrashScope-Workspace/ui-dumps/";
-      String dataFolder = "/Volumes/Macintosh_HD_2/Research-Files/eBug/CrashScope-Data";
+      String dataFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScopeData";
 //      String apkPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Bug-Report-Reproduction/Data/FUSION-Data/Apks/mileage.apk";
-      String androidSDKPath = "/Applications/AndroidSDK/sdk";
+      String androidSDKPath = "/Users/junayed/Library/Android/sdk";
               
 //      String androidSDKPath = "/Users/semeru/Applications/android-sdk";
 //      String dataFolder = "/Users/semeru/Documents/SEMERU/CrashScope/output/";
 //      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Core/scripts/";
-        String avdPort = "192.168.56.143";
+        String avdPort = "emulator-5554";
         String adbPort = "5037";
-        TypeDeviceEnum deviceType = UiAutoConnector.TypeDeviceEnum.GENY_MOTION;
+        TypeDeviceEnum deviceType = UiAutoConnector.TypeDeviceEnum.EMULATOR;
         DeviceHelper deviceHelper = new DeviceHelper(deviceType, androidSDKPath, avdPort, adbPort);
 
         
@@ -200,7 +200,7 @@ public class CrashScope extends GeneralStrategy {
     public static void main(String[] args) throws InstantiationException, IllegalAccessException,
     ClassNotFoundException, SQLException {
 
-        ArrayList<App> bugRepApps = generateBugRepData("/Volumes/Macintosh_HD_2/Research-Files/eBug/apps.txt","/Applications/AndroidSDK/sdk/build-tools/25.0.0");
+        ArrayList<App> bugRepApps = generateBugRepData("/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScopeTest/apps.txt","/Users/junayed/Library/Android/sdk/build-tools/30.0.3");
 
         for(App currApp: bugRepApps) {
 

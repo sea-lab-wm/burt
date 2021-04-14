@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="FUSION">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<!-- <property name="javax.persistence.jdbc.password" value="Andr0yd" 
+				/> -->
+			<!-- <property name="javax.persistence.jdbc.user" value="android" /> -->
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fusion" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScope">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScope2">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope2" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeAndroTest">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_androtest" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeAndroTestRandom">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_androtest_random" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+		</persistence-unit>
+		<persistence-unit name="CrashScopeAndroTestForwards">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_androtest_forwards" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeAndroTestBackwards">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_androtest_backwards" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeAndroTestBackwardsNexus5">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_androtest_backwards_nexus5" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeAndroTestForwardsNexus5">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_androtest_forwards_nexus5" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeNexus7Final">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_nexus7_final" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeNexus7FinalBackwards">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope_nexus7_final_backwards" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="MonkeyLabPlus">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.UseCase</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/random-test" />
+ 			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeFeatures">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.UseCase</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crashscope_icse_androtest_nf_forward" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="REACH">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/reach" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+		<persistence-unit name="APK-analyzer">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.UseCase</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<!-- <property name="javax.persistence.jdbc.password" value="Andr0yd" 
+				/> -->
+			<!-- <property name="javax.persistence.jdbc.user" value="android" /> -->
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/apk_data" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScope">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<!-- <property name="javax.persistence.jdbc.password" value="Andr0yd" 
+				/> -->
+			<!-- <property name="javax.persistence.jdbc.user" value="android" /> -->
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crash_scope" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+ 	<persistence-unit name="CrashScope-Bug-Reporoduction">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.UseCase</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screen</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crashscope-bug-rep" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.cache.shared.default" value="false"/>
+<!-- 			<property name="eclipselink.logging.level" value="FINE"/> -->
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScope-Android-Security">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.UseCase</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screen</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/muse-tops-complex"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.cache.shared.default" value="false"/>
+<!-- 			<property name="eclipselink.logging.level" value="FINE"/> -->
+		</properties>
+	</persistence-unit>
+		<persistence-unit name="CrashScope-eBug">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.UseCase</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screen</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="NotunMac@19" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crashscope"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.cache.shared.default" value="false"/>
+<!-- 			<property name="eclipselink.logging.level" value="FINE"/> -->
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeFeatures">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="NotunMac@19" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/crashscope" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.cache.shared.default" value="false"/>
+			<property name="eclipselink.logging.level" value="FINE"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="CrashScopeFeaturesDerby">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edu.semeru.android.core.entity.model.ActionType</class>
+		<class>edu.semeru.android.core.entity.model.App</class>
+		<class>edu.semeru.android.core.entity.model.Class</class>
+		<class>edu.semeru.android.core.entity.model.ComponentAction</class>
+		<class>edu.semeru.android.core.entity.model.ComponentClasses</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.GuiComponentType</class>
+		<class>edu.semeru.android.core.entity.model.Method</class>
+		<class>edu.semeru.android.core.entity.model.Transition</class>
+		<class>edu.semeru.android.core.entity.model.TransitionPK</class>
+		<class>edu.semeru.android.core.entity.model.LineNums</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynamicTransition</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynGuiComponent</class>
+		<class>edu.semeru.android.core.entity.model.fusion.DynWindow</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Execution</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screen</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Screenshot</class>
+		<class>edu.semeru.android.core.entity.model.fusion.Step</class>
+		<class>edu.semeru.android.core.entity.model.fusion.UseCase</class>
+		<class>edu.semeru.android.core.entity.model.fusion.ActivityFeature</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+</persistence>
