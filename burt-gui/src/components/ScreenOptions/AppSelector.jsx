@@ -14,18 +14,24 @@ const AppSelector = (props) => {
     const pickImageHandler = (image) => {
         setScreen(image);
     }
+    console.log(props.messages)
 
     const handleConfirmButton =() => {
 
         // setTimeout(() => {
 
+
         let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [screen.value]});
 
+
         const responsePromise = ApiClient.processUserMessage(message)
+
         processResponse(responsePromise, props.actionProvider)
 
         const idx = props.messages.findIndex(x => x.id === props.id)
+
         props.messages[idx].selectedValues = [screen.value]
+        console.log(props.messages)
 
 
 
@@ -44,7 +50,9 @@ const AppSelector = (props) => {
     // console.log(props)
 
     const dataValues = props.allValues;
+
     const selectedValues = props.selectedValues
+
 
     return (
         <div>
