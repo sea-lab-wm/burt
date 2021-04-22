@@ -34,7 +34,7 @@ class ImagePicker extends Component {
                     const pickedImageToArray = []
 
                     this.state.picked.map((image, i) => pickedImageToArray.push({src: image.src, value: i}))
-                    console.log(pickedImageToArray)
+                    //console.log(pickedImageToArray)
                     onPick(pickedImageToArray)
                 });
             }

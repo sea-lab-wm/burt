@@ -23,7 +23,7 @@ const config = {
         {
             widgetName: "AppSelector",
             widgetFunc: (props) => <AppSelector {...props} />,
-            mapStateToProps: ["app_list", "app_values"]
+            // mapStateToProps: ["app_list", "app_values"]
         },
         {
             widgetName: "OBScreenSelector",

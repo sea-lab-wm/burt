@@ -71,6 +71,7 @@ function App() {
 
                 if (messagesFromServer !== "") {
                     messages = JSON.parse(messagesFromServer)
+
                 }
             } else {
                 console.error(`There was an error retrieving the messages: ${request.status} - ${request.statusText}`)
