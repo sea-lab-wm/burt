@@ -15,8 +15,10 @@ public class NegativeAnswerStateChecker extends StateChecker {
         if (state.containsKey("CONFIRM_LAST_STEP")) {
             nextAction = "PROVIDE_S2R";
             state.putIfAbsent("CONVERSATION_STATE", "COLLECTING_S2R");
-        } else if(state.containsKey("APP_ASKED")){
+        } else if(state.containsKey("APP_ASKED")) {
             nextAction = "SELECT_APP";
+        } else if (state.containsKey("OB_SCREEN_SELECTED")){
+            nextAction = "UNEXPECTED_ERROR";
         } else if (state.containsKey("COLLECTING_EB")){
             nextAction = "CLARIFY_EB";
         }
