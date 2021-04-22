@@ -1,0 +1,31 @@
+package sealab.burt.server.actions;
+
+public enum ActionName {
+
+    //app selection
+    SELECT_APP, CONFIRM_APP ,
+
+    //ob actions
+    PROVIDE_OB , REPHRASE_OB,  SELECT_OB_SCREEN, CONFIRM_SELECTED_OB_SCREEN,
+
+    //eb actions
+    PROVIDE_EB  ,CLARIFY_EB ,
+
+    //s2r actions
+    PROVIDE_S2R_FIRST, PREDICT_S2R, PROVIDE_S2R, CONFIRM_PREDICTED_SELECTED_S2R_SCREENS,
+    DISAMBIGUATE_S2R , REPHRASE_S2R, SPECIFY_INPUT_S2R,SELECT_MISSING_S2R , CONFIRM_SELECTED_AMBIGUOUS_S2R,
+    CONFIRM_SELECTED_MISSING_S2R,CONFIRM_LAST_STEP ,
+
+    //repot
+    REPORT_SUMMARY,
+
+    //error
+    UNEXPECTED_ERROR,
+
+    //end
+    ENDING;
+
+
+
+
+}

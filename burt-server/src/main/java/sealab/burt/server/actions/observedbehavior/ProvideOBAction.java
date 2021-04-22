@@ -1,13 +1,19 @@
 package sealab.burt.server.actions.observedbehavior;
 
 import sealab.burt.qualitychecker.OBChecker;
-import sealab.burt.server.ChatbotMessage;
+import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.actions.ChatbotAction;
+import sealab.burt.server.msgparsing.Intent;
 
 import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProvideOBAction extends ChatbotAction {
+
+    public ProvideOBAction(Intent nextExpectedIntent) {
+        super(nextExpectedIntent);
+    }
+
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         String appName = state.get("APP").toString();
@@ -18,8 +24,4 @@ public class ProvideOBAction extends ChatbotAction {
                 "observed in {0}?", appName));
     }
 
-    @Override
-    public String nextExpectedIntent() {
-        return "OB_DESCRIPTION";
-    }
 }

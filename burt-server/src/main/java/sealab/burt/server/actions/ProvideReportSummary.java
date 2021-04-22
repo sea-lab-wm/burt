@@ -1,9 +1,7 @@
 package sealab.burt.server.actions;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.MessageObj;
+import sealab.burt.server.conversation.ChatbotMessage;
 
-import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProvideReportSummary extends ChatbotAction{

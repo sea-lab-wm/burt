@@ -1,15 +1,20 @@
 package sealab.burt.server.actions.appselect;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.KeyValue;
-import sealab.burt.server.MessageObj;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.KeyValue;
+import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.actions.ChatbotAction;
+import sealab.burt.server.msgparsing.Intent;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SelectAppAction extends ChatbotAction {
+
+    public SelectAppAction(Intent nextExpectedIntent) {
+        super(nextExpectedIntent);
+    }
 
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
@@ -24,8 +29,4 @@ public class SelectAppAction extends ChatbotAction {
 
     }
 
-    @Override
-    public String nextExpectedIntent() {
-        return "APP_SELECTED";
-    }
 }

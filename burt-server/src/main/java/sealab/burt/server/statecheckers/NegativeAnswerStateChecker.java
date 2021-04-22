@@ -1,26 +1,29 @@
 package sealab.burt.server.statecheckers;
 
+import sealab.burt.server.actions.ActionName;
+
 import java.util.concurrent.ConcurrentHashMap;
 
+import static sealab.burt.server.actions.ActionName.*;
 public class NegativeAnswerStateChecker extends StateChecker {
 
-    public NegativeAnswerStateChecker(String defaultAction) {
+    public NegativeAnswerStateChecker(ActionName defaultAction) {
         super(defaultAction);
     }
 
     @Override
-    public String nextAction(ConcurrentHashMap<String, Object> state) {
-        String nextAction = null;
+    public ActionName nextAction(ConcurrentHashMap<String, Object> state) {
+        ActionName nextAction = null;
 
         if (state.containsKey("CONFIRM_LAST_STEP")) {
-            nextAction = "PROVIDE_S2R";
+            nextAction = PROVIDE_S2R;
             state.putIfAbsent("CONVERSATION_STATE", "COLLECTING_S2R");
         } else if(state.containsKey("APP_ASKED")) {
-            nextAction = "SELECT_APP";
+            nextAction = SELECT_APP;
         } else if (state.containsKey("OB_SCREEN_SELECTED")){
-            nextAction = "UNEXPECTED_ERROR";
+            nextAction = UNEXPECTED_ERROR;
         } else if (state.containsKey("COLLECTING_EB")){
-            nextAction = "CLARIFY_EB";
+            nextAction = CLARIFY_EB;
         }
         return nextAction;
 

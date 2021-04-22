@@ -4,26 +4,30 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.S2RChecker;
-import sealab.burt.server.UserMessage;
+import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.UserMessage;
+
 import java.util.concurrent.ConcurrentHashMap;
+
+import static sealab.burt.server.actions.ActionName.*;
 
 public class S2RDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
-    private static final ConcurrentHashMap<String, String> nextActions = new ConcurrentHashMap<>() {{
-        put(QualityResult.Result.MATCH.name(), "PREDICT_S2R");
-        put(QualityResult.Result.MULTIPLE_MATCH.name(), "DISAMBIGUATE_S2R");
-        put(QualityResult.Result.NO_MATCH.name(), "REPHRASE_S2R");
-        put(QualityResult.Result.NO_S2R_INPUT.name(), "SPECIFY_INPUT_S2R");
-        put(QualityResult.Result.MISSING_STEPS.name(), "SELECT_MISSING_S2R");
+    private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
+        put(QualityResult.Result.MATCH.name(), PREDICT_S2R);
+        put(QualityResult.Result.MULTIPLE_MATCH.name(), DISAMBIGUATE_S2R);
+        put(QualityResult.Result.NO_MATCH.name(), REPHRASE_S2R);
+        put(QualityResult.Result.NO_S2R_INPUT.name(), SPECIFY_INPUT_S2R);
+        put(QualityResult.Result.MISSING_STEPS.name(), SELECT_MISSING_S2R);
     }};
 
-    public S2RDescriptionStateChecker(String defaultAction) {
+    public S2RDescriptionStateChecker(ActionName defaultAction) {
         super(defaultAction);
     }
 
     @Override
-    public String nextAction(ConcurrentHashMap<String, Object> state) {
+    public ActionName nextAction(ConcurrentHashMap<String, Object> state) {
 
         try {
             //            return "SELECT_MISSING_S2R";

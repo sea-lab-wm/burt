@@ -1,7 +1,6 @@
 package sealab.burt.server.actions.step2reproduce;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.MessageObj;
+import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.actions.ChatbotAction;
 
 import java.util.concurrent.ConcurrentHashMap;

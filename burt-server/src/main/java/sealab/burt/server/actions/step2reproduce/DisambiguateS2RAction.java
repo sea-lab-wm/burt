@@ -1,10 +1,11 @@
 package sealab.burt.server.actions.step2reproduce;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.KeyValue;
-import sealab.burt.server.MessageObj;
-import sealab.burt.server.UserMessage;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.KeyValue;
+import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.actions.ChatbotAction;
+import sealab.burt.server.msgparsing.Intent;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -12,6 +13,11 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DisambiguateS2RAction extends ChatbotAction {
+
+    public DisambiguateS2RAction(Intent nextExpectedIntent) {
+        super(nextExpectedIntent);
+    }
+
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         state.put("DISAMBIGUATE_S2R", true);
@@ -27,8 +33,5 @@ public class DisambiguateS2RAction extends ChatbotAction {
 
     }
 
-    public String nextExpectedIntent() {
-        return "S2R_AMBIGUOUS_SELECTED";
-    }
 
 }

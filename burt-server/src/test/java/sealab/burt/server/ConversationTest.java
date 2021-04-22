@@ -1,32 +1,40 @@
 package sealab.burt.server;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.DisplayName;
-import org.springframework.core.annotation.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.UserMessage;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
+
 /**
  * test conversation flow
- * [Hi, send selected app, yes(confirm app selection), provide OB, done(select OB screenshots), provide EB, provide the first step, done(select predicted S2R screens), ]
+ * [Hi, send selected app, yes(confirm app selection), provide OB, done(select OB screenshots), provide EB, provide
+ * the first step, done(select predicted S2R screens), ]
  */
 public class ConversationTest extends AbstractTest {
 
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConversationTest.class);
+
     private static final String END_POINT = "http://localhost:8081";
-    private static final List<List<MessageObjectTest>> conversationFlowList = ConversationExamples.getConversationExamples();
+
+    private static final List<List<MessageObjectTest>> conversationFlowList =
+            ConversationExamples.getConversationExamples();
     private static final List<MessageObjectTest> conversationFlow = conversationFlowList.get(1);
-    private static String SESSION_ID;
-    private static UserMessage MESSAGE;
+
+    private static String sessionId;
 
     @Override
     @Before
@@ -36,51 +44,64 @@ public class ConversationTest extends AbstractTest {
 
     @org.junit.Test
     public void test1() throws Exception {
+
+        //start the conversation
         MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/start")
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
-
         int status = mvcResult1.getResponse().getStatus();
         assertEquals(200, status);
-        SESSION_ID = mvcResult1.getResponse().getContentAsString();
-        MESSAGE = new UserMessage();;
-        MESSAGE.setSessionId(SESSION_ID);
+        sessionId = mvcResult1.getResponse().getContentAsString();
+
+        LOGGER.debug("Conversation started: " + sessionId);
+
+
+        ConversationController.stateCheckers.put(S2R_DESCRIPTION, new S2RDescriptionStateCheckerForTest(null));
+
+        //send each message
+
         for (MessageObjectTest messObj : conversationFlow) {
-            ConversationResponse objAnswer = null;
             String message = messObj.getMessage();
-            String currentAction = messObj.getCurrentAction();
-            System.out.println(message);
+            ActionName currentAction = messObj.getCurrentAction();
+
+            LOGGER.debug("Sending message: " + messObj);
+            ConversationResponse botResponse = null;
             switch (messObj.getType()) {
-                case "REGULAR_RESPONSE":
-                    objAnswer = sendRegularRequest(message, currentAction);
+                case REGULAR_RESPONSE:
+                    botResponse = sendRegularRequest(message, currentAction);
                     break;
-                case "WITH_SELECTED_VALUES":
+                case WITH_SELECTED_VALUES:
                     List<String> selectedValues = messObj.getSelectedValues();
-                    objAnswer = sendRegularRequestWithMultipleValues(message, selectedValues, currentAction);
+                    botResponse = sendRegularRequestWithMultipleValues(message, selectedValues, currentAction);
                     break;
             }
 
-            assert objAnswer != null;
-            System.out.println(objAnswer.getMessage().getMessageObj().getMessage());
-            assertNotEquals(-1, objAnswer.getCode());
-            assertEquals(messObj.getCurrentAction(), objAnswer.getCurrentAction());
-            assertEquals(messObj.getNextIntent(), objAnswer.getNextIntent());
+            LOGGER.debug("Received response: " + botResponse);
+
+            assert botResponse != null;
+//            System.out.println(botResponse.getMessage().getMessageObj().getMessage());
+            assertNotEquals(-1, botResponse.getCode());
+            assertEquals(messObj.getCurrentAction(), botResponse.getCurrentAction());
+            assertEquals(messObj.getNextIntent(), botResponse.getNextIntent());
         }
 
     }
 
-    private ConversationResponse sendRegularRequest(String Message, String currentAction) throws Exception {
-        MESSAGE.setMessages(Collections.singletonList(new MessageObj(Message)));
-        MESSAGE.setCurrentAction(currentAction);
-        MvcResult mvcResult= sendRequest(MESSAGE);
+    private ConversationResponse sendRegularRequest(String Message, ActionName currentAction) throws Exception {
+        UserMessage message = new UserMessage(sessionId, Collections.singletonList(new MessageObj(Message)));
+        message.setCurrentAction(currentAction);
+
+        MvcResult mvcResult = sendRequest(message);
         String response = mvcResult.getResponse().getContentAsString();
+
         return mapFromJson(response, ConversationResponse.class);
     }
 
-    private ConversationResponse sendRegularRequestWithMultipleValues(String Message, List<String> selectedValues, String currentAction) throws Exception {
-
-        MESSAGE.setMessages(Collections.singletonList(new MessageObj(Message, selectedValues)));
-        MESSAGE.setCurrentAction(currentAction);
-        MvcResult mvcResult= sendRequest(MESSAGE);
+    private ConversationResponse sendRegularRequestWithMultipleValues(String Message, List<String> selectedValues,
+                                                                      ActionName currentAction) throws Exception {
+        UserMessage message = new UserMessage(sessionId, Collections.singletonList(new MessageObj(Message,
+                selectedValues)));
+        message.setCurrentAction(currentAction);
+        MvcResult mvcResult = sendRequest(message);
         String response = mvcResult.getResponse().getContentAsString();
         return mapFromJson(response, ConversationResponse.class);
     }
@@ -98,9 +119,9 @@ public class ConversationTest extends AbstractTest {
 
     @org.junit.Test
     @After
-    public void test2() throws Exception{
+    public void test2() throws Exception {
         MvcResult mvcResult2 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/end").param("sessionId",
-                SESSION_ID).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+                sessionId).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
         int status2 = mvcResult2.getResponse().getStatus();
         assertEquals(200, status2);

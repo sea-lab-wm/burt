@@ -18,6 +18,11 @@ import sealab.burt.server.actions.observedbehavior.ProvideOBAction;
 import sealab.burt.server.actions.observedbehavior.RephraseOBAction;
 import sealab.burt.server.actions.observedbehavior.SelectOBScreenAction;
 import sealab.burt.server.actions.step2reproduce.*;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.msgparsing.Intent;
+import sealab.burt.server.msgparsing.MessageParser;
 import sealab.burt.server.statecheckers.*;
 import seers.textanalyzer.TextProcessor;
 
@@ -27,6 +32,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static sealab.burt.server.actions.ActionName.*;
+import static sealab.burt.server.msgparsing.Intent.*;
+
 @SpringBootApplication
 @RestController
 public class ConversationController {
@@ -34,66 +42,58 @@ public class ConversationController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
     ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> conversationStates = new ConcurrentHashMap<>();
-    ConcurrentHashMap<String, ChatbotAction> actions = new ConcurrentHashMap<>() {
+    public static final ConcurrentHashMap<ActionName, ChatbotAction> actions = new ConcurrentHashMap<>(){
         {
-            put("SELECT_APP", new SelectAppAction());
-            put("CONFIRM_APP", new ConfirmAppAction());
+            put(SELECT_APP, new SelectAppAction(APP_SELECTED));
+            put(CONFIRM_APP, new ConfirmAppAction());
 
             //--------OB---------------//
-            put("PROVIDE_OB", new ProvideOBAction());
-            put("REPHRASE_OB", new RephraseOBAction());
-            put("SELECT_OB_SCREEN", new SelectOBScreenAction());
-            put("CONFIRM_SELECTED_OB_SCREEN", new ConfirmOBScreenSelectedAction());
+            put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
+            put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
+            put(SELECT_OB_SCREEN, new SelectOBScreenAction(OB_SCREEN_SELECTED));
+            put(CONFIRM_SELECTED_OB_SCREEN, new ConfirmOBScreenSelectedAction());
 
             //--------EB-------------//
-            put("PROVIDE_EB", new ProvideEBAction());
-            put("CLARIFY_EB", new ClarifyEBAction());
+            put(PROVIDE_EB, new ProvideEBAction(EB_DESCRIPTION));
+            put(CLARIFY_EB, new ClarifyEBAction());
 
             //--------S2R-----------//
-            put("PROVIDE_S2R_FIRST", new ProvideS2RFirstAction());
-            put("PREDICT_S2R", new ProvidePredictedS2RAction());
-            put("PROVIDE_S2R", new ProvideS2RAction());
-            put("CONFIRM_PREDICTED_SELECTED_S2R_SCREENS", new ConfirmPredictedS2RScreensSelectedAction());
-            put("DISAMBIGUATE_S2R", new DisambiguateS2RAction());
-            put("REPHRASE_S2R", new RephraseS2RAction());
-            put("SPECIFY_INPUT_S2R", new SpecifyInputS2RAction());
-            put("SELECT_MISSING_S2R", new SelectMissingS2RAction());
-            put("CONFIRM_SELECTED_AMBIGUOUS_S2R", new ConfirmSelectedAmbiguousAction());
-            put("CONFIRM_SELECTED_MISSING_S2R", new ConfirmSelectedMissingAction());
-            put("CONFIRM_LAST_STEP", new ConfirmLastStepAction());
-            put("REPORT_SUMMARY", new ProvideReportSummary());
-            put("UNEXPECTED_ERROR", new UnexpectedErrorAction());
+            put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
+            put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
+            put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
+            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RScreensSelectedAction(S2R_DESCRIPTION));
+            put(DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
+            put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
+            put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_DESCRIPTION));
+            put(SELECT_MISSING_S2R, new SelectMissingS2RAction(S2R_MISSING_SELECTED));
+            put(CONFIRM_SELECTED_AMBIGUOUS_S2R, new ConfirmSelectedAmbiguousAction(S2R_DESCRIPTION));
+            put(CONFIRM_SELECTED_MISSING_S2R, new ConfirmSelectedMissingAction(S2R_DESCRIPTION));
+            put(CONFIRM_LAST_STEP, new ConfirmLastStepAction());
+            put(REPORT_SUMMARY, new ProvideReportSummary());
+            put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
 
-            put("ENDING", new EndConversation());
-
-
-
-
+            put(ENDING, new EndConversation());
 
         }
     };
-    ConcurrentHashMap<String, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
-        put("GREETING", new NStateChecker("SELECT_APP"));
-        put("APP_SELECTED", new NStateChecker("CONFIRM_APP"));
-        put("AFFIRMATIVE_ANSWER", new AffirmativeAnswerStateChecker(null));
-        put("NEGATIVE_ANSWER", new NegativeAnswerStateChecker(null));
+    public static final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
+        put(GREETING, new NStateChecker(SELECT_APP));
+        put(APP_SELECTED, new NStateChecker(CONFIRM_APP));
+        put(AFFIRMATIVE_ANSWER, new AffirmativeAnswerStateChecker(null));
+        put(NEGATIVE_ANSWER, new NegativeAnswerStateChecker(null));
 
         //--------OB---------------//
-        put("OB_DESCRIPTION", new OBDescriptionStateChecker(null));
-        put("OB_SCREEN_SELECTED", new NStateChecker("CONFIRM_SELECTED_OB_SCREEN"));
+        put(OB_DESCRIPTION, new OBDescriptionStateChecker(null));
+        put(OB_SCREEN_SELECTED, new NStateChecker(CONFIRM_SELECTED_OB_SCREEN));
         //--------EB-------------//
-        put("EB_DESCRIPTION", new EBDescriptionStateChecker(null));
+        put(EB_DESCRIPTION, new EBDescriptionStateChecker(null));
         //--------S2R-----------//
-        put("S2R_DESCRIPTION", new S2RDescriptionStateChecker(null));
-        put("S2R_PREDICTED_SELECTED", new NStateChecker("CONFIRM_PREDICTED_SELECTED_S2R_SCREENS"));
-        put("S2R_MISSING_SELECTED", new NStateChecker("CONFIRM_SELECTED_MISSING_S2R"));
-        put("S2R_AMBIGUOUS_SELECTED", new NStateChecker("CONFIRM_SELECTED_AMBIGUOUS_S2R"));
+        put(S2R_DESCRIPTION, new S2RDescriptionStateChecker(null));
+        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
+        put(S2R_MISSING_SELECTED, new NStateChecker(CONFIRM_SELECTED_MISSING_S2R));
+        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
-        put("THANKS", new NStateChecker("ENDING"));
-
-
-        //------S2R for test---------//
-//        put("S2R_DESCRIPTION", new S2RDescriptionStateCheckerForTest(null));
+        put(THANKS, new NStateChecker(ENDING));
 
 
     }};
@@ -129,14 +129,14 @@ public class ConversationController {
             conversationState.put("CURRENT_MESSAGE", userResponse);
 
 //        LOGGER.debug(MessageFormat.format("Past conversation state {0}"));
-            String intent = MessageParser.getIntent(userResponse, conversationState);
+            Intent intent = MessageParser.getIntent(userResponse, conversationState);
 
             if (intent == null)
                 return ConversationResponse.createResponse("Sorry, I did not get that!");
 
             LOGGER.debug("Identified intent: "+ intent);
 
-            if("END_CONVERSATION".equals(intent)){
+            if(END_CONVERSATION.equals(intent)){
                 endConversation(sessionId);
                 return ConversationResponse.createResponse("Thank you for using BURT", 100);
             }
@@ -146,22 +146,24 @@ public class ConversationController {
             if (stateChecker == null)
                 return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
 
-            String action = stateChecker.nextAction(conversationState);
+            ActionName action = stateChecker.nextAction(conversationState);
 
-            LOGGER.debug("Identified next action: "+ action);
+            LOGGER.debug("Identified action name: "+ action);
             ChatbotAction nextAction = actions.get(action);
 //        LOGGER.debug(conversationState.get("CONVERSATION_STATE").toString());
 
             if (nextAction == null)
                 return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
 
+            LOGGER.debug("Identified action: "+ nextAction.getClass().getSimpleName());
 
             ChatbotMessage nextMessage = nextAction.execute(conversationState);
-            String nextIntent = nextAction.nextExpectedIntent();
+            Intent nextIntent = nextAction.nextExpectedIntent();
             conversationState.put("NEXT_INTENT", nextIntent);
 
+            LOGGER.debug("Expected next intent: "+ nextIntent);
 
-            return new ConversationResponse(nextMessage, nextIntent, action, 0);
+            return new ConversationResponse(nextMessage, nextIntent.toString(), action, 0);
         } catch (Exception e) {
             LOGGER.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return  ConversationResponse.createResponse(e.getMessage(), -1);

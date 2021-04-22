@@ -1,6 +1,6 @@
 package sealab.burt.server.actions;
 
-import sealab.burt.server.ChatbotMessage;
+import sealab.burt.server.conversation.ChatbotMessage;
 
 import java.util.concurrent.ConcurrentHashMap;
 

@@ -1,8 +1,8 @@
 package sealab.burt.server.actions.expectedbehavior;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.KeyValue;
-import sealab.burt.server.MessageObj;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.KeyValue;
+import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.actions.ChatbotAction;
 
 import java.util.Arrays;

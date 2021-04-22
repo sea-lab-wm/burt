@@ -1,15 +1,21 @@
 package sealab.burt.server.actions.step2reproduce;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.KeyValue;
-import sealab.burt.server.MessageObj;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.KeyValue;
+import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.actions.ChatbotAction;
+import sealab.burt.server.msgparsing.Intent;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProvidePredictedS2RAction extends ChatbotAction {
+
+    public ProvidePredictedS2RAction(Intent nextExpectedIntent) {
+        super(nextExpectedIntent);
+    }
+
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         MessageObj messageObj = new MessageObj(" Ok, it seems the next steps that you performed are the following." +
@@ -22,8 +28,4 @@ public class ProvidePredictedS2RAction extends ChatbotAction {
 
     }
 
-    @Override
-    public String nextExpectedIntent() {
-        return "S2R_PREDICTED_SELECTED";
-    }
 }

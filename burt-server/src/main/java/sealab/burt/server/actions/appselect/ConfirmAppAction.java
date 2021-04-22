@@ -1,13 +1,18 @@
 package sealab.burt.server.actions.appselect;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.UserMessage;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.actions.ChatbotAction;
 
 import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfirmAppAction extends ChatbotAction {
+
+    public ConfirmAppAction() {
+        super();
+    }
+
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
         UserMessage msg = (UserMessage) state.get("CURRENT_MESSAGE");

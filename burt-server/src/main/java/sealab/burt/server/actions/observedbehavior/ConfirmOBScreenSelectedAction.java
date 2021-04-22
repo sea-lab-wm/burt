@@ -1,17 +1,17 @@
 package sealab.burt.server.actions.observedbehavior;
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.KeyValue;
-import sealab.burt.server.MessageObj;
-import sealab.burt.server.UserMessage;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.KeyValue;
+import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.actions.ChatbotAction;
+import sealab.burt.server.msgparsing.Intent;
 
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfirmOBScreenSelectedAction extends ChatbotAction {
-    static String nextIntent = "";
+
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
 
@@ -20,24 +20,17 @@ public class ConfirmOBScreenSelectedAction extends ChatbotAction {
         if (!msg.getMessages().isEmpty()) {
             String confirmMessage = msg.getMessages().get(0).getMessage();
             if (confirmMessage.equals("done")) {
+                setNextExpectedIntent(Intent.NO_EXPECTED_INTENT);
                 state.put("OB_SCREEN_SELECTED", true);
-                nextIntent = "";
                 String OBScreen =  msg.getMessages().get(0).getSelectedValues().get(0);
                 response = "you selected " + OBScreen + " , shall we continue?";
             }else{
-                nextIntent = "none";
+                setNextExpectedIntent(Intent.OB_SCREEN_SELECTED);
                 MessageObj messageObj = new MessageObj("then, is this screen that has the problem? Please hit the “Done” button after you have selected it.",  "OBScreenSelector");
                 List<KeyValue> OBScreen = Arrays.asList(new KeyValue("OBScreen","OBScreen.png"));
                 return new ChatbotMessage(messageObj, OBScreen);
             }
         }
         return new ChatbotMessage(response);
-    }
-    @Override
-    public String nextExpectedIntent() {
-        if (nextIntent.equals("none")) {
-            return "OB_SCREEN_SELECTED";
-        }
-        return "NO_EXPECTED_INTENT";
     }
 }

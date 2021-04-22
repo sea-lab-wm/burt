@@ -4,25 +4,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.qualitychecker.QualityResult;
-import sealab.burt.server.UserMessage;
+import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.UserMessage;
 
 import java.util.concurrent.ConcurrentHashMap;
+
+import static sealab.burt.server.actions.ActionName.*;
 
 public class OBDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
-    private static final ConcurrentHashMap<String, String> nextActions = new ConcurrentHashMap<>() {{
-        put(QualityResult.Result.MATCH.name(), "PROVIDE_EB");
-        put(QualityResult.Result.MULTIPLE_MATCH.name(), "SELECT_OB_SCREEN");
-        put(QualityResult.Result.NO_MATCH.name(), "REPHRASE_OB");
+    private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
+        put(QualityResult.Result.MATCH.name(), PROVIDE_EB);
+        put(QualityResult.Result.MULTIPLE_MATCH.name(), SELECT_OB_SCREEN);
+        put(QualityResult.Result.NO_MATCH.name(), REPHRASE_OB);
     }};
 
-    public OBDescriptionStateChecker(String defaultAction) {
+    public OBDescriptionStateChecker(ActionName defaultAction) {
         super(defaultAction);
     }
 
     @Override
-    public String nextAction(ConcurrentHashMap<String, Object> state) {
+    public ActionName nextAction(ConcurrentHashMap<String, Object> state) {
         try {
             UserMessage userMessage = (UserMessage) state.get("CURRENT_MESSAGE");
             OBChecker obChecker = (OBChecker) state.get("OB_CHECKER");
@@ -31,7 +34,7 @@ public class OBDescriptionStateChecker extends StateChecker {
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
-            return "UNEXPECTED_ERROR";
+            return UNEXPECTED_ERROR;
         }
     }
 }

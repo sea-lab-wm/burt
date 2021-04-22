@@ -1,8 +1,8 @@
-package sealab.burt.server;
+package sealab.burt.server.conversation;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.apache.catalina.User;
+import sealab.burt.server.actions.ActionName;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ class UserMessage {
 
     private String sessionId;
     private List<MessageObj> messages;
-    private String CurrentAction;
+    private ActionName CurrentAction;
 
     public UserMessage(){}
     public UserMessage(String sessionId, List<MessageObj> messages){

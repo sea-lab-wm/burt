@@ -4,25 +4,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.qualitychecker.QualityResult;
-import sealab.burt.server.UserMessage;
+import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.UserMessage;
 
 import java.util.concurrent.ConcurrentHashMap;
+import static sealab.burt.server.actions.ActionName.*;
 
 public class EBDescriptionStateChecker extends StateChecker {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
-    private final static ConcurrentHashMap<String, String> nextActions= new ConcurrentHashMap<>(){{
-        put(QualityResult.Result.MATCH.name(), "PROVIDE_S2R_FIRST");
-        put(QualityResult.Result.NO_MATCH.name(), "CLARIFY_EB");
+    private final static ConcurrentHashMap<String, ActionName> nextActions= new ConcurrentHashMap<>(){{
+        put(QualityResult.Result.MATCH.name(), PROVIDE_S2R_FIRST);
+        put(QualityResult.Result.NO_MATCH.name(), CLARIFY_EB);
     }};
 
-    public EBDescriptionStateChecker(String defaultAction) {
+    public EBDescriptionStateChecker(ActionName defaultAction) {
         super(defaultAction);
     }
 
     @Override
-    public String nextAction(ConcurrentHashMap<String, Object> state) {
+    public ActionName nextAction(ConcurrentHashMap<String, Object> state) {
         try {
             UserMessage userMessage = (UserMessage) state.get("CURRENT_MESSAGE");
             EBChecker ebChecker = (EBChecker) state.get("EB_CHECKER");

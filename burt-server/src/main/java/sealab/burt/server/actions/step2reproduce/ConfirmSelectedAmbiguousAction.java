@@ -1,14 +1,20 @@
 package sealab.burt.server.actions.step2reproduce;
 
-import sealab.burt.server.ChatbotMessage;
-import sealab.burt.server.MessageObj;
-import sealab.burt.server.UserMessage;
+import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.actions.ChatbotAction;
+import sealab.burt.server.msgparsing.Intent;
+
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
+
+    public ConfirmSelectedAmbiguousAction(Intent nextExpectedIntent) {
+        super(nextExpectedIntent);
+    }
+
     static String nextIntent = "";
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
@@ -28,10 +34,6 @@ public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
             }
         }
         return new ChatbotMessage(response);
-    }
-    @Override
-    public String nextExpectedIntent() {
-        return "S2R_DESCRIPTION";
     }
 
 }
