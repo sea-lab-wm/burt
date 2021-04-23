@@ -58,7 +58,7 @@ class ImagePicker extends Component {
         }
 
     }
-    renderImage(image, i, style, selected) {
+    renderImage(image, i, style, selected, disabled) {
 
         return (
             <div key={image.value}>
@@ -68,6 +68,7 @@ class ImagePicker extends Component {
                     onImageClick={() => this.handleImageClick(image)}
                     key={i}
                     style={style}
+                    disabled = {disabled}
                 />
                 <p>{image.value}</p>
             </div>
@@ -75,10 +76,10 @@ class ImagePicker extends Component {
     }
 
     render() {
-        const {images, style, selected} = this.props
+        const {images, style, selected, disabled} = this.props
         return (
             <div className="image_picker">
-                { images.map( (image, i) => this.renderImage(image, i, style, selected)) }
+                { images.map( (image, i) => this.renderImage(image, i, style, selected, disabled)) }
                 <div className="clear"/>
             </div>
         )

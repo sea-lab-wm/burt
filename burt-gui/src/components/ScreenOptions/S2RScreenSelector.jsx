@@ -10,7 +10,7 @@ let logos = require.context('../../../../data/app_logos', true);
 const S2RScreenSelector = (props) => {
 
     const [screen, setScreen] = useState({});
-    // const [imageChanged, setImageChanged] = useState(false);
+    const [disabled, setDisable] = useState(false)
 
     const pickImageHandler = (image) => {
         setScreen(image);
@@ -27,6 +27,7 @@ const S2RScreenSelector = (props) => {
                 const idx = props.messages.findIndex(x => x.id === props.id)
 
                 props.messages[idx].selectedValues = selectedValues;
+                setDisable(true)
             } else {
                 alert("please select one screenshot!")
             }
@@ -41,6 +42,7 @@ const S2RScreenSelector = (props) => {
 
             const responsePromise = ApiClient.processUserMessage(message)
             processResponse(responsePromise, props.actionProvider)
+            setDisable(true)
 
         }, 1000)
     }
@@ -65,11 +67,12 @@ const S2RScreenSelector = (props) => {
                 selected={selectedValues}
                 onPick={pickImageHandler}
                 multiple = {multiple}
+                disabled={disabled}
                 // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
             />
             <center>
-                <button type="button" className="button" onClick={() => handleConfirmButton("done")}>done</button>
-                <button type="button" className="button" onClick={() => handleNegativeButton("none of above")}>none of above</button>
+                <button type="button" className="button" onClick={() => handleConfirmButton("done")} disabled={disabled}>done</button>
+                <button type="button" className="button" onClick={() => handleNegativeButton("none of above")} disabled={disabled}>none of above</button>
             </center>
 
 

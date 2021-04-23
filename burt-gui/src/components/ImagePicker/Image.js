@@ -9,10 +9,15 @@ export default class Image extends Component {
 
 
     render() {
-        const { src, isSelected, onImageClick, style } = this.props
+        const { src, isSelected, onImageClick, style, disabled} = this.props
         return (
-            <div className={`responsive${isSelected ? " selected" : ""}`}
-                 onClick={onImageClick}>
+            <div
+                className={`responsive${isSelected ? " selected" : ""}`}
+                 onClick={() =>{
+                     if (!disabled){
+                         onImageClick()}
+                 }}
+                 >
                 <img src={src}
                      className={`thumbnail${isSelected ? " selected" : ""}`}
                      style={style}
@@ -20,6 +25,9 @@ export default class Image extends Component {
                 <div className="checked">
                     {/*<img src={imgCheck} style={{ width: 75, height: 75, objectFit: "cover" }}/>*/}
                     <div className="icon"/>
+                </div>
+                <div className="disabled">
+
                 </div>
             </div>
         )
