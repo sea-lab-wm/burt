@@ -1,6 +1,7 @@
 package sealab.burt.server.statecheckers;
 
 import lombok.Data;
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,5 +15,5 @@ abstract class StateChecker {
         this.defaultAction = defaultAction;
     }
 
-    public abstract ActionName nextAction(ConcurrentHashMap<String, Object> state);
+    public abstract ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state);
 }

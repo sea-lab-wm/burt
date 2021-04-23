@@ -1,9 +1,10 @@
 package sealab.burt.server.actions.step2reproduce;
 
+import sealab.burt.server.StateVariable;
+import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.conversation.KeyValue;
 import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class ProvidePredictedS2RAction extends ChatbotAction {
     }
 
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
+    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
         MessageObj messageObj = new MessageObj(" Ok, it seems the next steps that you performed are the following." +
                 " Can you confirm which are correct? Please click the “done” button when you are done.",  "S2RScreenSelector");
         List<KeyValue> S2RScreens = Arrays.asList(

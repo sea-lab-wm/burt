@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.step2reproduce;
 
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.conversation.UserMessage;
@@ -9,6 +10,7 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static sealab.burt.server.StateVariable.*;
 public class ConfirmPredictedS2RScreensSelectedAction extends ChatbotAction {
 
     public ConfirmPredictedS2RScreensSelectedAction(Intent nextExpectedIntent) {
@@ -17,8 +19,8 @@ public class ConfirmPredictedS2RScreensSelectedAction extends ChatbotAction {
 
     static String nextIntent = "";
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
-        UserMessage msg = (UserMessage) state.get("CURRENT_MESSAGE");
+    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
+        UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
         String response = "";
         if (!msg.getMessages().isEmpty()) {
             String confirmMessage = msg.getMessages().get(0).getMessage();

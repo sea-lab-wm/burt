@@ -1,5 +1,6 @@
 package sealab.burt.server.msgparsing;
 
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
 
@@ -10,6 +11,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
+import static sealab.burt.server.StateVariable.NEXT_INTENT;
 import static sealab.burt.server.msgparsing.Intent.*;
 
 public class MessageParser {
@@ -32,7 +34,7 @@ public class MessageParser {
         }
     }
 
-    public static Intent getIntent(UserMessage userMessage, ConcurrentHashMap<String, Object> state) {
+    public static Intent getIntent(UserMessage userMessage, ConcurrentHashMap<StateVariable, Object> state) {
 
         //------------------------
 
@@ -48,7 +50,7 @@ public class MessageParser {
         //------------------------
 
         //get the next intent
-        Object intent = state.get("NEXT_INTENT");
+        Object intent = state.get(NEXT_INTENT);
         if (intent != null && ! NO_EXPECTED_INTENT.equals(intent))
             return (Intent) intent;
 

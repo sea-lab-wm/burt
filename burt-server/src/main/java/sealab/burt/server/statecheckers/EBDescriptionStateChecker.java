@@ -4,10 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.qualitychecker.QualityResult;
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
 
 import java.util.concurrent.ConcurrentHashMap;
+
+import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 
 public class EBDescriptionStateChecker extends StateChecker {
@@ -24,12 +27,12 @@ public class EBDescriptionStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConcurrentHashMap<String, Object> state) {
+    public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
-            UserMessage userMessage = (UserMessage) state.get("CURRENT_MESSAGE");
-            EBChecker ebChecker = (EBChecker) state.get("EB_CHECKER");
+            UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+            EBChecker ebChecker = (EBChecker) state.get(EB_CHECKER);
             QualityResult result = ebChecker.checkEb(userMessage.getMessages().get(0).getMessage());
-            state.put("EB_QUALITY_RESULT", result);
+            state.put(EB_QUALITY_RESULT, result);
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);

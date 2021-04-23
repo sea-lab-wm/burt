@@ -1,5 +1,6 @@
 package sealab.burt.server.actions;
 
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
@@ -19,7 +20,7 @@ public abstract class ChatbotAction {
         this.nextExpectedIntent = nextExpectedIntent;
     }
 
-    public abstract ChatbotMessage execute(ConcurrentHashMap<String, Object> state);
+    public abstract ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state);
 
     public final Intent nextExpectedIntent() {
         return nextExpectedIntent;

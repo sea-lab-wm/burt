@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
 
@@ -41,7 +42,7 @@ public class ConversationController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
     ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
-    ConcurrentHashMap<String, ConcurrentHashMap<String, Object>> conversationStates = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, ConcurrentHashMap<StateVariable, Object>> conversationStates = new ConcurrentHashMap<>();
     public static final ConcurrentHashMap<ActionName, ChatbotAction> actions = new ConcurrentHashMap<>(){
         {
             put(SELECT_APP, new SelectAppAction(APP_SELECTED));
@@ -50,7 +51,7 @@ public class ConversationController {
             //--------OB---------------//
             put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
             put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
-            put(SELECT_OB_SCREEN, new SelectOBScreenAction(OB_SCREEN_SELECTED));
+            put(SELECT_OB_SCREEN, new SelectOBScreenAction(Intent.OB_SCREEN_SELECTED));
             put(CONFIRM_SELECTED_OB_SCREEN, new ConfirmOBScreenSelectedAction());
 
             //--------EB-------------//
@@ -62,13 +63,13 @@ public class ConversationController {
             put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
             put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RScreensSelectedAction(S2R_DESCRIPTION));
-            put(DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
+            put(ActionName.DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
             put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
             put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_DESCRIPTION));
             put(SELECT_MISSING_S2R, new SelectMissingS2RAction(S2R_MISSING_SELECTED));
             put(CONFIRM_SELECTED_AMBIGUOUS_S2R, new ConfirmSelectedAmbiguousAction(S2R_DESCRIPTION));
             put(CONFIRM_SELECTED_MISSING_S2R, new ConfirmSelectedMissingAction(S2R_DESCRIPTION));
-            put(CONFIRM_LAST_STEP, new ConfirmLastStepAction());
+            put(ActionName.CONFIRM_LAST_STEP, new ConfirmLastStepAction());
             put(REPORT_SUMMARY, new ProvideReportSummary());
             put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
 
@@ -84,7 +85,7 @@ public class ConversationController {
 
         //--------OB---------------//
         put(OB_DESCRIPTION, new OBDescriptionStateChecker(null));
-        put(OB_SCREEN_SELECTED, new NStateChecker(CONFIRM_SELECTED_OB_SCREEN));
+        put(Intent.OB_SCREEN_SELECTED, new NStateChecker(CONFIRM_SELECTED_OB_SCREEN));
         //--------EB-------------//
         put(EB_DESCRIPTION, new EBDescriptionStateChecker(null));
         //--------S2R-----------//
@@ -119,14 +120,14 @@ public class ConversationController {
 
             String sessionId = userResponse.getSessionId();
 
-            ConcurrentHashMap<String, Object> conversationState = conversationStates.get(sessionId);
+            ConcurrentHashMap<StateVariable, Object> conversationState = conversationStates.get(sessionId);
 
             if (conversationState == null) {
                 LOGGER.error("The session does not exist: " + sessionId);
                 return ConversationResponse.createResponse("Thank you for using BURT", 100);
             }
 
-            conversationState.put("CURRENT_MESSAGE", userResponse);
+            conversationState.put(CURRENT_MESSAGE, userResponse);
 
 //        LOGGER.debug(MessageFormat.format("Past conversation state {0}"));
             Intent intent = MessageParser.getIntent(userResponse, conversationState);
@@ -159,7 +160,7 @@ public class ConversationController {
 
             ChatbotMessage nextMessage = nextAction.execute(conversationState);
             Intent nextIntent = nextAction.nextExpectedIntent();
-            conversationState.put("NEXT_INTENT", nextIntent);
+            conversationState.put(NEXT_INTENT, nextIntent);
 
             LOGGER.debug("Expected next intent: "+ nextIntent);
 
@@ -218,7 +219,7 @@ public class ConversationController {
     @PostMapping("/start")
     public String startConversation() {
         String sessionId = UUID.randomUUID().toString();
-        ConcurrentHashMap<String, Object> state = new ConcurrentHashMap<>();
+        ConcurrentHashMap<StateVariable, Object> state = new ConcurrentHashMap<>();
         conversationStates.putIfAbsent(sessionId, state);
         return sessionId;
     }

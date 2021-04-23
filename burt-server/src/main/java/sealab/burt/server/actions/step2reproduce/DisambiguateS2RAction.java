@@ -1,10 +1,11 @@
 package sealab.burt.server.actions.step2reproduce;
 
+import sealab.burt.server.StateVariable;
+import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.conversation.KeyValue;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
-import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.text.MessageFormat;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static sealab.burt.server.StateVariable.*;
 public class DisambiguateS2RAction extends ChatbotAction {
 
     public DisambiguateS2RAction(Intent nextExpectedIntent) {
@@ -19,10 +21,10 @@ public class DisambiguateS2RAction extends ChatbotAction {
     }
 
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<String, Object> state) {
-        state.put("DISAMBIGUATE_S2R", true);
+    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
+        state.put(DISAMBIGUATE_S2R, true);
 
-        UserMessage userMessage = (UserMessage) state.get("CURRENT_MESSAGE");
+        UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
         List<KeyValue> S2RScreens = Arrays.asList(
                 new KeyValue("S2RScreen1","S2RScreen1.png"),
                 new KeyValue("S2RScreen2","S2RScreen2.png"),
