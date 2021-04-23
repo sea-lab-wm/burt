@@ -17,24 +17,23 @@ const S2RScreenSelector = (props) => {
 
     }
     const handleConfirmButton= (choice) => {
-
         setTimeout(() => {
-            let selectedValues;
-            if (!multiple){
-                selectedValues = [screen.value];
-            }else{
-                selectedValues = screen.map(s => s.value);
+            if (screen.length > 0){
+                let selectedValues = screen.map(s => s.value);
+                let message = props.actionProvider.createChatBotMessage(choice, {selectedValues: selectedValues});
+                const responsePromise = ApiClient.processUserMessage(message)
+                processResponse(responsePromise, props.actionProvider)
+
+                const idx = props.messages.findIndex(x => x.id === props.id)
+
+                props.messages[idx].selectedValues = selectedValues;
+            } else {
+                alert("please select one screenshot!")
             }
-            let message = props.actionProvider.createChatBotMessage(choice, {selectedValues: selectedValues}); // why this message does not show up on the chatbot?
-            const responsePromise = ApiClient.processUserMessage(message)
-            processResponse(responsePromise, props.actionProvider)
-
-            const idx = props.messages.findIndex(x => x.id === props.id)
-
-            props.messages[idx].selectedValues = selectedValues;
-
         }, 1000)
     }
+
+
     const handleNegativeButton = (choice)=>{
         setTimeout(() => {
 

@@ -26,7 +26,7 @@ public class SelectOBScreenAction extends ChatbotAction {
         MessageObj messageObj = new MessageObj(MessageFormat.format("Got it. Just to confirm, can you select the {0} screen that is having the problem?" +
                 " Please hit the \"Done\" button after you have selected it.", app) ,"OBScreenSelector");
         List<KeyValue> OBScreen = Arrays.asList(new KeyValue("OBScreen","OBScreen.png"));
-        return new ChatbotMessage(messageObj, OBScreen);
+        return new ChatbotMessage(messageObj, OBScreen, true);
     }
 
 }

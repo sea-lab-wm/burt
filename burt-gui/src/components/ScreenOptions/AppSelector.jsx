@@ -14,27 +14,21 @@ const AppSelector = (props) => {
     const pickImageHandler = (image) => {
         setScreen(image);
     }
-    console.log(props.messages)
 
     const handleConfirmButton =() => {
-
         // setTimeout(() => {
+        if (screen.length > 0) {
+            let selectedValues = screen.map(s => s.value);
+            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: selectedValues });
 
-
-        let message = props.actionProvider.createChatBotMessage(null, {selectedValues: [screen.value]});
-
-
-        const responsePromise = ApiClient.processUserMessage(message)
-
-        processResponse(responsePromise, props.actionProvider)
-
-        const idx = props.messages.findIndex(x => x.id === props.id)
-
-        props.messages[idx].selectedValues = [screen.value]
-        console.log(props.messages)
-
-
-
+            const responsePromise = ApiClient.processUserMessage(message)
+            processResponse(responsePromise, props.actionProvider)
+            const idx = props.messages.findIndex(x => x.id === props.id)
+            props.messages[idx].selectedValues = selectedValues
+            // console.log(props.messages)
+        }else{
+            alert("please select one screenshot!")
+        }
         // }, 1000)
     }
 
@@ -50,8 +44,8 @@ const AppSelector = (props) => {
     // console.log(props)
 
     const dataValues = props.allValues;
-
     const selectedValues = props.selectedValues
+    const multiple = props.multiple
 
 
     return (
@@ -62,6 +56,7 @@ const AppSelector = (props) => {
                 onPick={pickImageHandler}
                 style={getImageStyle(100, 100)}
                 selected={selectedValues}
+                multiple = {multiple}
 
             />
             <button type="button" className="button" onClick={handleConfirmButton}>done</button>

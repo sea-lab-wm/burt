@@ -32,7 +32,6 @@ class ImagePicker extends Component {
 
                 this.setState({picked: newerPickedImage}, function () {
                     const pickedImageToArray = []
-
                     this.state.picked.map((image, i) => pickedImageToArray.push({src: image.src, value: i}))
                     //console.log(pickedImageToArray)
                     onPick(pickedImageToArray)
@@ -53,40 +52,10 @@ class ImagePicker extends Component {
             }
             this.setState({picked: newerPickedImage}, function () {
                 const pickedImageToArray = []
-
                 this.state.picked.map((image, i) => pickedImageToArray.push({src: image.src, value: i}))
-                console.log(pickedImageToArray)
-                onPick(pickedImageToArray[0])
+                onPick(pickedImageToArray)
             });
         }
-
-
-
-        // const pickedImage = multiple ? this.state.picked : Map()
-        // let newerPickedImage
-        //
-        // if (pickedImage.has(image.value)) {
-        //     newerPickedImage = pickedImage.delete(image.value)
-        // } else {
-        //     if (typeof maxPicks === 'undefined') {
-        //         newerPickedImage = pickedImage.set(image.value, image.src)
-        //     } else {
-        //         if (pickedImage.size < maxPicks) {
-        //             newerPickedImage = pickedImage.set(image.value, image.src)
-        //         } else {
-        //             onMaxPicks(image)
-        //         }
-        //     }
-        // }
-        //
-        // if (newerPickedImage) {
-        //     this.setState({picked: newerPickedImage})
-        //
-        //     const pickedImageToArray = []
-        //     newerPickedImage.map((image, i) => pickedImageToArray.push({src: image, value: i}))
-        //
-        //     onPick(multiple ? pickedImageToArray : pickedImageToArray[0])
-        // }
 
     }
     renderImage(image, i, style, selected) {
@@ -106,7 +75,7 @@ class ImagePicker extends Component {
     }
 
     render() {
-        const { images, style, selected, multiple } = this.props
+        const {images, style, selected} = this.props
         return (
             <div className="image_picker">
                 { images.map( (image, i) => this.renderImage(image, i, style, selected)) }

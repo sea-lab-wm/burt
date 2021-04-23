@@ -28,7 +28,7 @@ public class SelectAppAction extends ChatbotAction {
                 new KeyValue("GnuCash v. 2.1.3","gnucash.png"),
                 new KeyValue("Mileage v. 3.1.1","milage.webp")
                 );
-        return new ChatbotMessage(messageObj, allApps);
+        return new ChatbotMessage(messageObj, allApps, false);
 
     }
 

@@ -17,18 +17,18 @@ const OBScreenSelector = (props) => {
 
     }
     const handleConfirmButton= (choice) => {
-
-        setTimeout(() => {
-
-            let message = props.actionProvider.createChatBotMessage(choice, {selectedValues: [screen[0].value]}); // why this message does not show up on the chatbot?
+        if(screen.length > 0) {
+            let selectedValues = screen.map(s => s.value);
+            let message = props.actionProvider.createChatBotMessage(choice, {selectedValues: selectedValues});
 
             const responsePromise = ApiClient.processUserMessage(message)
             processResponse(responsePromise, props.actionProvider)
 
             const idx = props.messages.findIndex(x => x.id === props.id)
-            props.messages[idx].selectedValues = [screen[0].value]
-
-        }, 1000)
+            props.messages[idx].selectedValues = selectedValues
+        }else{
+            alert("please select one screenshot!")
+        }
     }
     const handleNegativeButton = (choice)=>{
         setTimeout(() => {
@@ -51,6 +51,7 @@ const OBScreenSelector = (props) => {
     }
     const dataValues = props.allValues; // only one screenshot
     const selectedValues = props.selectedValues
+    const multiple = props.multiple;
 
     return (
             <div>
@@ -59,7 +60,7 @@ const OBScreenSelector = (props) => {
                     style={getImageStyle(150, 300)}
                     selected={selectedValues}
                     onPick={pickImageHandler}
-                    multiple = {true}
+                    multiple = {multiple}
                     // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
                 />
                 <center>
