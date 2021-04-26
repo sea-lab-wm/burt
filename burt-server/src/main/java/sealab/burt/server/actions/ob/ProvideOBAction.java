@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.observedbehavior;
+package sealab.burt.server.actions.ob;
 
 import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.server.StateVariable;

@@ -1,11 +1,9 @@
-package sealab.burt.server;
+package sealab.burt.server.conversation;
 
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.ChatbotMessage;
-import sealab.burt.server.conversation.MessageObj;
 
 public @Data
 class ConversationResponse {
@@ -30,14 +28,14 @@ class ConversationResponse {
     }
 
 
-    static ConversationResponse createResponse(String message, Integer code){
+    public static ConversationResponse createResponse(String message, Integer code){
         ConversationResponse conversationResponse =
                 new ConversationResponse(new ChatbotMessage(new MessageObj(message)), code);
         LOGGER.debug("Response created: " + conversationResponse);
         return conversationResponse;
     }
 
-    static ConversationResponse createResponse(String message){
+    public static ConversationResponse createResponse(String message){
         ConversationResponse conversationResponse =
                 new ConversationResponse(new ChatbotMessage(new MessageObj(message)), 0);
         LOGGER.debug("Response created: " + conversationResponse);

@@ -5,7 +5,7 @@ import sealab.burt.qualitychecker.graph.AppGraphInfo;
 
 import java.util.List;
 
-import static sealab.burt.qualitychecker.QualityResult.Result.NO_MATCH;
+import static sealab.burt.qualitychecker.QualityResult.Result.NO_PARSED;
 
 public class EBChecker {
 
@@ -19,7 +19,7 @@ public class EBChecker {
 
     public QualityResult checkEb(String ebDescription) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(app, ebDescription);
-        if (nlActions.isEmpty()) return new QualityResult(NO_MATCH);
+        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
         return matchActions(nlActions);
     }
 
