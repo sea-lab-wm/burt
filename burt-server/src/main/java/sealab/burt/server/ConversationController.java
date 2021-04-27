@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import sealab.burt.server.actions.*;
 import sealab.burt.server.actions.appselect.ConfirmAppAction;
 import sealab.burt.server.actions.appselect.SelectAppAction;
-import sealab.burt.server.actions.expectedbehavior.ClarifyEBAction;
-import sealab.burt.server.actions.expectedbehavior.ProvideEBAction;
-import sealab.burt.server.actions.observedbehavior.ConfirmOBScreenSelectedAction;
-import sealab.burt.server.actions.observedbehavior.ProvideOBAction;
-import sealab.burt.server.actions.observedbehavior.RephraseOBAction;
-import sealab.burt.server.actions.observedbehavior.SelectOBScreenAction;
-import sealab.burt.server.actions.step2reproduce.*;
+import sealab.burt.server.actions.eb.ClarifyEBAction;
+import sealab.burt.server.actions.eb.ProvideEBAction;
+import sealab.burt.server.actions.eb.ProvideEBNoParseAction;
+import sealab.burt.server.actions.ob.*;
+import sealab.burt.server.actions.s2r.*;
 import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.ConversationResponse;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
@@ -32,7 +31,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static sealab.burt.server.StateVariable.*;
+import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
+import static sealab.burt.server.StateVariable.NEXT_INTENT;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
 
@@ -50,18 +50,21 @@ public class ConversationController {
 
             //--------OB---------------//
             put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
+            put(PROVIDE_OB_NO_PARSE, new ProvideOBNoParseAction(OB_DESCRIPTION));
             put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
             put(SELECT_OB_SCREEN, new SelectOBScreenAction(Intent.OB_SCREEN_SELECTED));
             put(CONFIRM_SELECTED_OB_SCREEN, new ConfirmOBScreenSelectedAction());
 
             //--------EB-------------//
             put(PROVIDE_EB, new ProvideEBAction(EB_DESCRIPTION));
+            put(PROVIDE_EB_NO_PARSE, new ProvideEBNoParseAction(EB_DESCRIPTION));
             put(CLARIFY_EB, new ClarifyEBAction());
 
             //--------S2R-----------//
             put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
             put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
+            put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
             put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RScreensSelectedAction(S2R_DESCRIPTION));
             put(ActionName.DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
             put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
@@ -70,10 +73,14 @@ public class ConversationController {
             put(CONFIRM_SELECTED_AMBIGUOUS_S2R, new ConfirmSelectedAmbiguousAction(S2R_DESCRIPTION));
             put(CONFIRM_SELECTED_MISSING_S2R, new ConfirmSelectedMissingAction(S2R_DESCRIPTION));
             put(ActionName.CONFIRM_LAST_STEP, new ConfirmLastStepAction());
+
+            //--------OTHERS-----------//
+
             put(REPORT_SUMMARY, new ProvideReportSummary());
             put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
 
             put(ENDING, new EndConversation());
+
 
         }
     };

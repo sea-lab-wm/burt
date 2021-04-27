@@ -5,8 +5,7 @@ import sealab.burt.qualitychecker.graph.AppGraphInfo;
 
 import java.util.List;
 
-import static sealab.burt.qualitychecker.QualityResult.Result.MULTIPLE_MATCH;
-import static sealab.burt.qualitychecker.QualityResult.Result.NO_MATCH;
+import static sealab.burt.qualitychecker.QualityResult.Result.*;
 
 public class OBChecker {
 
@@ -20,7 +19,7 @@ public class OBChecker {
 
     public QualityResult checkOb(String obDescription) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(appName, obDescription);
-        if (nlActions.isEmpty()) return new QualityResult(NO_MATCH);
+        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
         return matchActions(nlActions);
     }
 

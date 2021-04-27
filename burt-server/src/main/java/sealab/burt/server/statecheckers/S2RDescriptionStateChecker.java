@@ -23,6 +23,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
         put(QualityResult.Result.NO_MATCH.name(), REPHRASE_S2R);
         put(QualityResult.Result.NO_S2R_INPUT.name(), SPECIFY_INPUT_S2R);
         put(QualityResult.Result.MISSING_STEPS.name(), SELECT_MISSING_S2R);
+        put(QualityResult.Result.NO_PARSED.name(), PROVIDE_S2R_NO_PARSE);
     }};
 
     public S2RDescriptionStateChecker(ActionName defaultAction) {

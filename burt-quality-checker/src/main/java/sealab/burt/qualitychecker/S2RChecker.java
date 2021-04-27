@@ -5,8 +5,7 @@ import sealab.burt.qualitychecker.graph.AppGraphInfo;
 
 import java.util.List;
 
-import static sealab.burt.qualitychecker.QualityResult.Result.MULTIPLE_MATCH;
-import static sealab.burt.qualitychecker.QualityResult.Result.NO_MATCH;
+import static sealab.burt.qualitychecker.QualityResult.Result.*;
 
 public class S2RChecker {
 
@@ -20,7 +19,7 @@ public class S2RChecker {
 
     public QualityResult checkS2R(String S2RDescription) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(appName, S2RDescription);
-        if (nlActions.isEmpty()) return new QualityResult(NO_MATCH);
+        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
         return matchActions(nlActions);
     }
 
