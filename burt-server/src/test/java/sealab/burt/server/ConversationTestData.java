@@ -43,6 +43,8 @@ public class ConversationTestData {
         conversation.add(new MessageObjectTest("bla bla", PROVIDE_S2R_NO_PARSE, "S2R_DESCRIPTION"));
         conversation.add(new MessageObjectTest("I entered 3 in the cost field", PROVIDE_S2R,
                 "S2R_DESCRIPTION"));
+        conversation.add(new MessageObjectTest("The was the last step", CONFIRM_LAST_STEP,
+                "NO_EXPECTED_INTENT"));
 
         return conversation;
     }
