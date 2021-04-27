@@ -18,6 +18,7 @@ public class ProvideS2RFirstAction extends ChatbotAction {
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
         state.put(COLLECTING_S2R, true);
+        state.remove(COLLECTING_EB);
         String appName = state.get(APP).toString();
         String appVersion = state.get(APP_VERSION).toString();
         if (!state.containsKey(S2R_CHECKER)) state.put(S2R_CHECKER, new S2RChecker(appName, appVersion));

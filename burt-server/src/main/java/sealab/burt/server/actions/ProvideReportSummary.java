@@ -9,7 +9,6 @@ import static sealab.burt.server.StateVariable.COLLECTING_S2R;
 public class ProvideReportSummary extends ChatbotAction{
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
-        state.remove(COLLECTING_S2R);
         // provide the summery of bug report
         String response = "Ok, great. This is all the information we need for now. This is a summary of the problem you reported. We will redirect this information to our development team. Thank you for using BURT.";
         return new ChatbotMessage(response);
