@@ -15,7 +15,7 @@ public class RephraseS2RAction extends ChatbotAction {
 
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
-        return new ChatbotMessage("I didn’t quite get that. Can you please rephrase the step more accurately?");
+        return new ChatbotMessage("Oops, I didn’t quite get that. Can you please rephrase the step more accurately?");
 
     }
 

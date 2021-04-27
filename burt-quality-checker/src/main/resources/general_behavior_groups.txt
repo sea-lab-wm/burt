@@ -1,0 +1,5 @@
+CRASH: crash,not responding,anr,freeze
+CONTENT: show,display
+VISIBILITY: show,display,appear,disappear,
+FOCUS: select,focus
+NO_CHANGE: nothing,no change,idle,start,begin

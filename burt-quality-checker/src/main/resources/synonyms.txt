@@ -1,0 +1,14 @@
+left menu,Open navigation,navigation drawer
+menu,options,drop down,navigation drawer
+btn,button
+edt,edit text,text field,field
++ button,fab,+,add refueling
+back icon,up icon,navigate back,navigate up
+search youtube icon,ytsearch
+cost,price,amount
+settings,preferences
+date,time,datetime,period
+backup,back up
+spreadsheet,csv
+stats,statistics
+remove,delete

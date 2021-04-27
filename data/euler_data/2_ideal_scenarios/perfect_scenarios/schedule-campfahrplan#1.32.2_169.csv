@@ -1,0 +1,5 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"open";"application";;;"ImperativeSequencePP";"Open the application";"1.1";""
+"1";"SR";"2";"user";"";"long click";"chaos communication...";"on";"schedule";"ImperativeSequencePP";"long click an entry on schedule (chaos communication...)";"1.2";""
+"1";"SR";"3";"user";"";"rotate";"screen";"to";"landscape";"ImperativeSequencePP";"rotate screen to landscape";"1.4";""
+"1";"OB";"4";"popup menu";"";"disappear";;;;"NegativeVerbPP";"the popup menu disappears";"1.5";""

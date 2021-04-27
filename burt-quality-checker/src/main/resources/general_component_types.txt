@@ -1,0 +1,9 @@
+BUTTON:button,toggle button,dropdown button,toggle,toggle selector,switch,btn
+CHECKED_COMPONENT:check box,checkbox,check-box,radio button
+PICKER:picker,number picker,date picker,time picker,datetime picker,spinner,dropdown list,list box,combo box,combobox,menu,list view
+BAR:progress bar,menu bar
+TEXT_FIELD:text field,search field,edit text,field,input
+TEXT_VIEW:text view,label,tab,tooltip,tool tip
+IMAGE_VIEW:icon,picture,photo
+WINDOW:window,message box,popup window,pop-up window,modal window,flyout window,fly-out window,fly-out,dialog,popup
+OTHER:slider,breadcrumb

@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public @Slf4j
 class GraphReader {
 
-    private static ConcurrentHashMap<String, AppGraphInfo> graphs = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, AppGraphInfo> graphs = new ConcurrentHashMap<>();
 
     public static AppGraphInfo getGraph(String appName, String appVersion) throws Exception {
         AppGraphInfo graph = graphs.get(getKey(appName, appVersion));

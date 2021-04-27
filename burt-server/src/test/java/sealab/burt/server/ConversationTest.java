@@ -1,5 +1,6 @@
 package sealab.burt.server;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.slf4j.Logger;
@@ -24,15 +25,11 @@ import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
  * [Hi, send selected app, yes(confirm app selection), provide OB, done(select OB screenshots), provide EB, provide
  * the first step, done(select predicted S2R screens), ]
  */
-public class ConversationTest extends AbstractTest {
-
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConversationTest.class);
-
-    private static final String END_POINT = "http://localhost:8081";
+public @Slf4j
+class ConversationTest extends AbstractTest {
 
     private static final List<List<MessageObjectTest>> conversationFlowList =
-            ConversationExamples.getConversationExamples();
+            ConversationTestData.getConversationExamples();
     private static final List<MessageObjectTest> conversationFlow = conversationFlowList.get(1);
 
     private static String sessionId;
@@ -53,7 +50,7 @@ public class ConversationTest extends AbstractTest {
         assertEquals(200, status);
         sessionId = mvcResult1.getResponse().getContentAsString();
 
-        LOGGER.debug("Conversation started: " + sessionId);
+        log.debug("Conversation started: " + sessionId);
 
 
         ConversationController.stateCheckers.put(S2R_DESCRIPTION, new S2RDescriptionStateCheckerForTest(null));
@@ -64,7 +61,7 @@ public class ConversationTest extends AbstractTest {
             String message = messObj.getMessage();
             ActionName currentAction = messObj.getCurrentAction();
 
-            LOGGER.debug("Sending message: " + messObj);
+            log.debug("Sending message: " + messObj);
             ConversationResponse botResponse = null;
             switch (messObj.getType()) {
                 case REGULAR_RESPONSE:
@@ -76,7 +73,7 @@ public class ConversationTest extends AbstractTest {
                     break;
             }
 
-            LOGGER.debug("Received response: " + botResponse);
+            log.debug("Received response: " + botResponse);
 
             assert botResponse != null;
 //            System.out.println(botResponse.getMessage().getMessageObj().getMessage());

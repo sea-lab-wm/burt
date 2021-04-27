@@ -18,7 +18,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
     private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
-        put(QualityResult.Result.MATCH.name(), PREDICT_S2R);
+        put(QualityResult.Result.MATCH.name(), PROVIDE_S2R);
         put(QualityResult.Result.MULTIPLE_MATCH.name(), ActionName.DISAMBIGUATE_S2R);
         put(QualityResult.Result.NO_MATCH.name(), REPHRASE_S2R);
         put(QualityResult.Result.NO_S2R_INPUT.name(), SPECIFY_INPUT_S2R);
@@ -35,10 +35,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
 
         try {
             //            return SELECT_MISSING_S2R;
-            UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-            S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
-            QualityResult result = checker.checkS2R(userMessage.getMessages().get(0).getMessage());
-
+            QualityResult result = runS2RChecker(state);
 
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
@@ -47,4 +44,5 @@ public class S2RDescriptionStateChecker extends StateChecker {
         }
 
     }
+
 }

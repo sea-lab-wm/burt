@@ -1,0 +1,6 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"set";"device";"in";"portrait mode";"ImperativeSequencePP";"Set the device in portrait mode";"1.1";""
+"1";"SR";"2";"user";"";"open";"application";;;"ImperativeSequencePP";"Open the application";"1.2";""
+"1";"SR";"3";"user";"";"click";;"on";"Day 1 spinner";"ImperativeSequencePP";"Click on Day 1 spinner";"1.3";""
+"1";"SR";"4";"user";"";"select";"Day 2";;;"ImperativeSequencePP";"Select Day 2";"1.4";""
+"1";"SR";"5";"user";"";"rotate";"device";"to";"landscape mode";"ImperativeSequencePP";"Rotate the device to landscape mode";"1.5";""

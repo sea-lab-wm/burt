@@ -1,0 +1,8 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"choose";""disable crash reports"";;;"ImperativeSequencePP";"";"1.5";""
+"1";"SR";"2";"user";"";"click";"done";;;"ImperativeSequencePP";"click done";"1.7";""
+"1";"SR";"3";"user";"";"open";"book selector";;;"ActionsInfinitivePP";"Manage books...";"1.3";""
+"1";"SR";"4";"user";"";"manage";"books";;;"ActionsInfinitivePP";"Manage books...";"1.3";""
+"1";"SR";"5";"user";"";"create";"new book";;;"ActionsInfinitivePP";"Create a new book.";"1.2";""
+"1";"SR";"6";"user";"";"open";"book selector";;;"ActionsInfinitivePP";"Manage books...";"1.3";""
+"1";"SR";"7";"user";"";"manage";"books";;;"ActionsInfinitivePP";"Manage books...";"1.3";""

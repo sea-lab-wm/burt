@@ -3,10 +3,9 @@ package sealab.burt.nlparser.euler.actions.utils;
 import org.apache.commons.lang3.StringUtils;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -90,6 +89,18 @@ public class GeneralUtils {
             return findFirst.isPresent();
 
         }).collect(Collectors.toList());
+    }
+
+
+    public static List<String> getAllLines(Path path, String fileName) throws IOException {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Files.newInputStream(path)))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        }
+        return lines;
     }
 
 

@@ -1,0 +1,5 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"open";"application";;;"ImperativeSequencePP";"Open the application";"1.1";""
+"1";"SR";"2";"user";"";"click";"search youtube icon";;;"ImperativeSequencePP";"click search youtube icon";"1.2";""
+"1";"SR";"3";"user";"";"type";"search keyword";;;"ImperativeSequencePP";"type a search keyword";"1.3";""
+"1";"SR";"4";"user";"";"press";"enter key";;;"ImperativeSequencePP";"press the enter key";"1.4";""

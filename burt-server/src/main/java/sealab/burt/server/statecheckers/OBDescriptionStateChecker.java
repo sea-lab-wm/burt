@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
+
 public class OBDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
@@ -29,14 +30,12 @@ public class OBDescriptionStateChecker extends StateChecker {
     @Override
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
-            UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-            OBChecker obChecker = (OBChecker) state.get(OB_CHECKER);
-            QualityResult result = obChecker.checkOb(userMessage.getMessages().get(0).getMessage());
-            state.put(OB_QUALITY_RESULT, result);
+            QualityResult result = runOBQualityCheck(state);
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
             return UNEXPECTED_ERROR;
         }
     }
+
 }

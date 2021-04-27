@@ -30,10 +30,7 @@ public class EBDescriptionStateChecker extends StateChecker {
     @Override
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
-            UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-            EBChecker ebChecker = (EBChecker) state.get(EB_CHECKER);
-            QualityResult result = ebChecker.checkEb(userMessage.getMessages().get(0).getMessage());
-            state.put(EB_QUALITY_RESULT, result);
+            QualityResult result = runEBCheck(state);
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);

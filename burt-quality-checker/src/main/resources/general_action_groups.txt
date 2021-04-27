@@ -1,0 +1,7 @@
+OPEN: open, start, execute, initiate, run, begin, commence
+TOGGLE: toggle, flip flop, interchange, switch, alternate, flip
+LONG_CLICK: long tap, hold, long click, long press, long push, long hit, long click on, select, change
+CLICK: tap, tip, click, press, push, select, go, choose, check, pick, hit, click on, add, change, save, click back, mark, set, edit, display, leave, create, enable
+SWIPE: swipe, drag, sweep, scroll, scroll down, scroll up, scroll right, scroll left, swipe down, swipe up, swipe right, swipe left
+TYPE: type, edit, input, fill, typewrite, insert, infix, enter, introduce, write, set, add, change, press
+ROTATE: rotate, change, set, turn

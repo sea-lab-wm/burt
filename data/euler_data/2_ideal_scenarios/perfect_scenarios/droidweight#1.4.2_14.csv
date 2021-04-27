@@ -1,0 +1,4 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"open";"application";;;"ImperativeSequencePP";"Open the application";"1.1";""
+"1";"OB";"2";"app";"not";"show";"menu button";;;"NegativeAuxVerbPP";"The menu button is not shown";"1.2";""
+"1";"OB";"3";"app";"not";"show";"menu button";;;"OutputVerbPP";"The menu button is not shown";"1.2";""

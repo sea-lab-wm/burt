@@ -20,6 +20,8 @@ import java.io.IOException;
 @WebAppConfiguration
 public abstract class AbstractTest {
 
+    protected static final String END_POINT = "http://localhost:8081";
+
     protected  MockMvc mvc;
     @Autowired
     WebApplicationContext webApplicationContext;
