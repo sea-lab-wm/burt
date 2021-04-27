@@ -22,7 +22,6 @@ public class DisambiguateS2RAction extends ChatbotAction {
 
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
-        state.put(DISAMBIGUATE_S2R, true);
 
         UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
         List<KeyValue> S2RScreens = Arrays.asList(

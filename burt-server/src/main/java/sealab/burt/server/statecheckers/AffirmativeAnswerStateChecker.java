@@ -28,10 +28,8 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
         } else if (state.containsKey(COLLECTING_EB)) {
             state.remove(COLLECTING_EB);
             nextAction = PROVIDE_S2R_FIRST;
-        } else if (state.containsKey(StateVariable.DISAMBIGUATE_S2R)) {
-            state.remove(StateVariable.DISAMBIGUATE_S2R);
-            nextAction = PROVIDE_S2R;
         } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
+            state.remove(COLLECTING_S2R);
             state.remove(StateVariable.CONFIRM_LAST_STEP);
             // CHECK LAST STEP HERE
             nextAction = REPORT_SUMMARY;

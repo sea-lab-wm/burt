@@ -34,10 +34,16 @@ public class S2RDescriptionStateChecker extends StateChecker {
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
 
         try {
-            //            return SELECT_MISSING_S2R;
-            QualityResult result = runS2RChecker(state);
+            UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+            String message = userMessage.getMessages().get(0).getMessage();
+            String targetString = "last step";
+            if (message.toLowerCase().contains(targetString.toLowerCase())){
+                return ActionName.CONFIRM_LAST_STEP;
+            }else {
+                QualityResult result = runS2RChecker(state);
 
-            return nextActions.get(result.getResult().name());
+                return nextActions.get(result.getResult().name());
+            }
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
             return null;
