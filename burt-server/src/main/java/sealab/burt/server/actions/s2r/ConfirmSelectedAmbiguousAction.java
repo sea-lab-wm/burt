@@ -6,8 +6,13 @@ import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
+import sealab.burt.server.output.outputMessageObj;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,6 +32,15 @@ public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
             if (confirmMessage.equals("done")) {
                  List<String> S2RScreens =  msg.getMessages().get(0).getSelectedValues();
                 response = MessageFormat.format("Ok, you select {0}, what is the next step?",  S2RScreens.get(0));
+                // add the selected step to report summary
+                if(!state.containsKey(S2R_DESCRIPTION)){
+                    List<outputMessageObj> outputMessageList = new ArrayList<>();
+                    outputMessageList.add(new outputMessageObj(null, Collections.singletonList(Paths.get("../../data/app_logos/",  S2RScreens.get(0), ".png"))));
+                    state.put(S2R_DESCRIPTION, outputMessageList);
+                }else{
+                    List<outputMessageObj>  outputMessageList= (List<outputMessageObj>) state.get(S2R_DESCRIPTION);
+                    outputMessageList.add(new outputMessageObj(null, Collections.singletonList(Paths.get("../../data/app_logos/",  S2RScreens.get(0), ".png"))));
+                }
             }else{
 
                 // give other screens to let user choose?

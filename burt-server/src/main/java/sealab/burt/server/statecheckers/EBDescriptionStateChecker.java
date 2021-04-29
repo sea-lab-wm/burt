@@ -7,7 +7,10 @@ import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.output.outputMessageObj;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
@@ -20,7 +23,7 @@ public class EBDescriptionStateChecker extends StateChecker {
     private final static ConcurrentHashMap<String, ActionName> nextActions= new ConcurrentHashMap<>(){{
         put(QualityResult.Result.MATCH.name(), PROVIDE_S2R_FIRST);
         put(QualityResult.Result.NO_MATCH.name(), CLARIFY_EB);
-        put(QualityResult.Result.NO_PARSED.name(), PROVIDE_OB_NO_PARSE);
+        put(QualityResult.Result.NO_PARSED.name(), PROVIDE_EB_NO_PARSE);
     }};
 
     public EBDescriptionStateChecker(ActionName defaultAction) {
@@ -31,6 +34,18 @@ public class EBDescriptionStateChecker extends StateChecker {
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
             QualityResult result = runEBCheck(state);
+            if (result.getResult().name().equals("MATCH")){
+                UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+                String message = userMessage.getMessages().get(0).getMessage();
+                if (!state.containsKey(EB_DESCRIPTION)){
+                    List<outputMessageObj> outputMessageList = new ArrayList<>();
+                    outputMessageList.add(new outputMessageObj(message,null));
+                    state.put(EB_DESCRIPTION, outputMessageList);
+                }else{
+                    List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(EB_DESCRIPTION);
+                    outputMessage.add(new outputMessageObj(message, null));
+                }
+            }
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);

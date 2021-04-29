@@ -20,7 +20,7 @@ public abstract class ChatbotAction {
         this.nextExpectedIntent = nextExpectedIntent;
     }
 
-    public abstract ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state);
+    public abstract ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception;
 
     public final Intent nextExpectedIntent() {
         return nextExpectedIntent;

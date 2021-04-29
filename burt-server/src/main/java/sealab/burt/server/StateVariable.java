@@ -18,4 +18,7 @@ public enum StateVariable {
 
     //quality checkers/results
     EB_CHECKER, S2R_CHECKER, OB_CHECKER, EB_QUALITY_RESULT, OB_QUALITY_RESULT, S2R_QUALITY_RESULT,
+
+    //report summary
+    OB_DESCRIPTION, EB_DESCRIPTION, S2R_DESCRIPTION,EB_SCREEN
 }

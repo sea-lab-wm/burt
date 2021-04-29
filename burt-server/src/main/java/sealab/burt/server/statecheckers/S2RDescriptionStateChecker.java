@@ -7,11 +7,14 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.output.outputMessageObj;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
-import static sealab.burt.server.StateVariable.S2R_CHECKER;
+import static sealab.burt.server.StateVariable.*;
+import static sealab.burt.server.StateVariable.OB_DESCRIPTION;
 import static sealab.burt.server.actions.ActionName.*;
 
 public class S2RDescriptionStateChecker extends StateChecker {
@@ -41,6 +44,17 @@ public class S2RDescriptionStateChecker extends StateChecker {
                 return ActionName.CONFIRM_LAST_STEP;
             }else {
                 QualityResult result = runS2RChecker(state);
+                //
+                if (result.getResult().name().equals("MATCH")){
+                    if (!state.containsKey(S2R_DESCRIPTION)){
+                        List<outputMessageObj> outputMessageList = new ArrayList<>();
+                        outputMessageList.add(new outputMessageObj(message, null));
+                        state.put(S2R_DESCRIPTION, outputMessageList);
+                    }else{
+                        List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(S2R_DESCRIPTION);
+                        outputMessage.add(new outputMessageObj(message, null));
+                    }
+                }
 
                 return nextActions.get(result.getResult().name());
             }

@@ -2,7 +2,13 @@ package sealab.burt.server.statecheckers;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.output.outputMessageObj;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.actions.ActionName.*;
@@ -27,6 +33,17 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
             nextAction = PROVIDE_EB;
         } else if (state.containsKey(COLLECTING_EB)) {
             state.remove(COLLECTING_EB);
+            // add selected EB screen to report summary
+            List<Path> screenList = new ArrayList<>();
+            screenList.add((Path) state.get(EB_SCREEN));
+            List<outputMessageObj> outputMessageList;
+            if (!state.containsKey(EB_DESCRIPTION)){
+                outputMessageList = new ArrayList<>();
+            }else{
+                outputMessageList = (List<outputMessageObj>) state.get(EB_DESCRIPTION);
+            }
+            outputMessageList.add(new outputMessageObj(null, screenList));
+            state.put(EB_DESCRIPTION, outputMessageList);
             nextAction = PROVIDE_S2R_FIRST;
         } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
             state.remove(COLLECTING_S2R);

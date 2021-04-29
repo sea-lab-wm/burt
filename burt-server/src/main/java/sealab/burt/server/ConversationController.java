@@ -22,6 +22,7 @@ import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
+import sealab.burt.server.output.outputMessageObj;
 import sealab.burt.server.statecheckers.*;
 import seers.textanalyzer.TextProcessor;
 
