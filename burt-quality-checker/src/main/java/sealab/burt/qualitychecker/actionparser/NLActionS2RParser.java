@@ -99,7 +99,7 @@ public class NLActionS2RParser {
                 if (!Files.exists(path))
                     throw new RuntimeException("Could not find the component types file: " + fileName);
 
-                List<String> lines = GeneralUtils.getAllLines((ClassLoader) path, fileName);
+                List<String> lines = GeneralUtils.getAllLines( path, fileName);
                 for (String line : lines) {
 
                     String[] types2 = line.split(":");
@@ -148,7 +148,7 @@ public class NLActionS2RParser {
                 if (!Files.exists(path))
                     throw new RuntimeException("Could not find the action groups file: " + fileName);
 
-                List<String> lines = GeneralUtils.getAllLines((ClassLoader) path, fileName);
+                List<String> lines = GeneralUtils.getAllLines(path, fileName);
 
                 for (String line : lines) {
 
@@ -190,7 +190,7 @@ public class NLActionS2RParser {
                 if (!Files.exists(path))
                     throw new RuntimeException("Could not find file: " + fileName);
 
-                List<String> lines = GeneralUtils.getAllLines((ClassLoader) path, fileName);
+                List<String> lines = GeneralUtils.getAllLines(path, fileName);
                 for (String line : lines) {
                     String[] words = line.split(",");
                     synonyms.put(words[0], JavaUtils.getSet(words));
@@ -221,7 +221,7 @@ public class NLActionS2RParser {
                 if (!Files.exists(path))
                     throw new RuntimeException("Could not find the component types file: " + fileName);
 
-                List<String> lines = GeneralUtils.getAllLines((ClassLoader) path, fileName);
+                List<String> lines = GeneralUtils.getAllLines(path, fileName);
                 for (String line : lines) {
 
                     String[] typeClasses = line.split(":");

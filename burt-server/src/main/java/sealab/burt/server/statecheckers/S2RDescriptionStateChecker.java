@@ -45,7 +45,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
             }else {
                 QualityResult result = runS2RChecker(state);
                 //
-                if (result.getResult().name().equals("MATCH")){
+                if (result.getResult().equals(QualityResult.Result.MATCH)){
                     if (!state.containsKey(S2R_DESCRIPTION)){
                         List<outputMessageObj> outputMessageList = new ArrayList<>();
                         outputMessageList.add(new outputMessageObj(message, null));
