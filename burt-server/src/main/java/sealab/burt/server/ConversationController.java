@@ -228,6 +228,7 @@ public class ConversationController {
     public String startConversation() {
         String sessionId = UUID.randomUUID().toString();
         ConcurrentHashMap<StateVariable, Object> state = new ConcurrentHashMap<>();
+        state.put(StateVariable.SESSION_ID, sessionId);
         conversationStates.putIfAbsent(sessionId, state);
         return sessionId;
     }

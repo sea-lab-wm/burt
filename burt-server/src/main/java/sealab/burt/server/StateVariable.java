@@ -2,7 +2,7 @@ package sealab.burt.server;
 
 public enum StateVariable {
     //general ones
-    NEXT_INTENT, CURRENT_MESSAGE,
+    NEXT_INTENT, CURRENT_MESSAGE, SESSION_ID,
 
     //app variables
     APP, APP_VERSION, APP_ASKED,
@@ -20,5 +20,5 @@ public enum StateVariable {
     EB_CHECKER, S2R_CHECKER, OB_CHECKER, EB_QUALITY_RESULT, OB_QUALITY_RESULT, S2R_QUALITY_RESULT,
 
     //report summary
-    OB_DESCRIPTION, EB_DESCRIPTION, S2R_DESCRIPTION,EB_SCREEN
+    OB_DESCRIPTION, EB_DESCRIPTION, S2R_DESCRIPTION, EB_SCREEN
 }

@@ -53,7 +53,7 @@ public class HTMLOutputGenerator {
 
     public void generateOutput(File outputFile, ConcurrentHashMap<StateVariable, Object> state) throws Exception {
 
-        File htmlTemplate = new File("D:/Projects/burt/burt-server/html_template/template.html");
+        File htmlTemplate = new File("html_template/template.html");
 
         HashMap<String, Object> parameters = new HashMap<>();
         parameters.put("APP", getApplicationName(state));

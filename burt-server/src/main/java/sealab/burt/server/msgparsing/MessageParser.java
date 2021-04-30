@@ -60,7 +60,7 @@ public class MessageParser {
 
         MessageObj message = userMessage.getMessages().get(0);
 
-        if (message == null) return null;
+        if (message == null || message.getMessage() == null) return null;
         //determine the intent based on tokens
 
         Set<Map.Entry<String, Intent>> entries = intentTokens.entrySet();
