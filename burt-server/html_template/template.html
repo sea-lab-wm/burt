@@ -52,54 +52,157 @@
             color: #07C;
             cursor: pointer;
         }
+        .small_img,
+        .big_img {
+            cursor: pointer;
+        }
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=80);
+        }
+        .big_img {
+            display: none;
+            position: absolute;
+            width: 400px;
+            height: 800px;
+            /*left: 50%;*/
+            /*top: 50%;*/
+            margin: -60px 0px 0px -60px;
+            z-index:1002;
+            overflow: auto;
+        }
+        /*.content {*/
+        /*    width: 400px;*/
+        /*    padding: 20px;*/
+        /*    overflow: hidden;*/
+        /*}*/
+        .content h3,
+        .content p {
+
+            display: block;
+
+        }
+        .content img {
+            position:relative;
+            margin-right: 15px;
+            float: left;
+        }
+        div{
+            display:inline-block;    width:200px;    height:200px;
+        }
     </style>
-    <title>BURT's Bug Report for [ 1 ] #[ 3 ]</title>
+
 </head>
 <body>
 <div class="container">
     <div style="display: table-cell;">
-        <h3>
-            <strong>BURT's Bug Report</strong>
-        </h3>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <span class="label label-primary">1</span>&nbsp;Bug Report Information
-            </h3>
-        </div>
-        <div class="panel-body" >
-            <div class="" id="APP">Application:</div>
-            <br/>
-            <table class="table table-bordered" >
+            <table class="table table-bordered">
                 <thead class="panel-footer">
                 <tr>
-                    <th style="width: 10px;">type</th>
-                    <th style="width: 400px;">description</th>
+                    <th style="width: 10px;" colspan="2"><strong>Bug Report [1], App and Version: [2] </strong></th>
 
                 </tr>
                 </thead>
-                <tr>
-                    <td>Observed Behavior</td>
-                    <td id="OB"> </td>
-<!--                    <td id="OB"> OB description <br/> <img src="../../data/app_logos/OBScreen.png" width="200" height="400"></td>-->
+                <tr >
+                    <td>
+                        <div >
+                            <h5>Observed behavior</h5>
+                            <P> ob</P>
+                        <img class="small_img" src ="../../data/app_logos/OBScreen.png"  width="50" height="100" onclick="document.getElementById('light').style.display ='block';document.getElementById('fade').style.display='block'" alt=""/>
+                        <img id="light" class="big_img" src ="../../data/app_logos/OBScreen.png" onclick = "document.getElementById('light').style.display ='none' ;document.getElementById('fade').style.display='none'" alt=""/>
+                        <div id="fade" class="black_overlay"></div>
+                            </div >
+                    </td>
+
+
+                    <td>
+                        <div>
+                        <h5>Expected behavior</h5>
+                        <P> eb</P>
+
+                        <img class="small_img" src ="../../data/app_logos/EBScreen.png"  width="50" height="100" onclick="document.getElementById('light1').style.display ='block';document.getElementById('fade1').style.display='block'" alt=""/>
+                        <img id="light1" class="big_img" src ="../../data/App_logos/EBScreen.png" onclick = "document.getElementById('light1').style.display ='none' ;document.getElementById('fade1').style.display='none'" alt=""/>
+                        <div id="fade1" class="black_overlay"></div>
+                        </div >
+                    </td>
 
                 </tr>
                 <tr>
-                    <td>Expected Behavior</td>
-                    <td id="EB"></td>
+                    <td colspan="2">
+                        <div >
+                            <h5>Step 1</h5>
+                            <P>s2r1</P>
+                        <img class= "small_img" src ="../../data/app_logos/S2RScreen1.png"  width="50" height="100" onclick="document.getElementById('light2').style.display ='block';document.getElementById('fade2').style.display='block'"/>
+                        <img id="light2" class="big_img" src ="../../data/App_logos/S2RScreen1.png" onclick = "document.getElementById('light2').style.display ='none' ;document.getElementById('fade2').style.display='none'" alt=""/>
+                        <div id="fade2" class="black_overlay"></div>
+                        </div>
 
-                </tr>
-                <tr>
-                    <td>Step to Reproduce</td>
-                    <td id="S2R"> </td>
+
+                        <div class=>
+                            <h5>Step 2</h5>
+                            <P>s2r2</P>
+                        <img class="small_img" src ="../../data/app_logos/S2RScreen2.png"  width="50" height="100" onclick="document.getElementById('light3').style.display ='block';document.getElementById('fade3').style.display='block'"/>
+                        <img id="light3" class="big_img" src ="../../data/App_logos/S2RScreen2.png" onclick = "document.getElementById('light3').style.display ='none' ;document.getElementById('fade3').style.display='none'" alt=""/>
+                        <div id="fade3" class="black_overlay"></div>
+                        </div>
+
+
+                        <div>
+                            <h5>Step 3</h5>
+                            <P>s2r3</P>
+                        <img class="small_img" src ="../../data/app_logos/S2RScreen3.png"  width="50" height="100" onclick="document.getElementById('light4').style.display ='block';document.getElementById('fade4').style.display='block'"/>
+                        <img id="light4" class="big_img" src ="../../data/App_logos/S2RScreen3.png" onclick = "document.getElementById('light4').style.display ='none' ;document.getElementById('fade4').style.display='none'" alt=""/>
+                        <div id="fade4" class="black_overlay"></div>
+                        </div>
+                        <div >
+                            <h5>Step 5</h5>
+                            <P>s2r5</P>
+                            <img class="small_img" src ="../../data/app_logos/S2RScreen3.png"  width="50" height="100" onclick="document.getElementById('light5').style.display ='block';document.getElementById('fade5').style.display='block'"/>
+                            <img id="light5" class="big_img" src ="../../data/App_logos/S2RScreen3.png" onclick = "document.getElementById('light5').style.display ='none' ;document.getElementById('fade5').style.display='none'" alt=""/>
+                            <div id="fade5" class="black_overlay"></div>
+                        </div>
+                        <div>
+                            <h5>Step 6</h5>
+                            <P>s2r6</P>
+                            <img class="small_img" src ="../../data/app_logos/S2RScreen3.png"  width="50" height="100" onclick="document.getElementById('light6').style.display ='block';document.getElementById('fade6').style.display='block'"/>
+                            <img id="light6" class="big_img" src ="../../data/App_logos/S2RScreen3.png" onclick = "document.getElementById('light6').style.display ='none' ;document.getElementById('fade6').style.display='none'" alt=""/>
+                            <div id="fade6" class="black_overlay"></div>
+                        </div>
+                        <div>
+                            <h5>Step 7</h5>
+                            <P>s2r7</P>
+                            <img class="small_img" src ="../../data/app_logos/S2RScreen3.png"  width="50" height="100" onclick="document.getElementById('light7').style.display ='block';document.getElementById('fade7').style.display='block'"/>
+                            <img id="light7" class="big_img" src ="../../data/App_logos/S2RScreen3.png" onclick = "document.getElementById('light7').style.display ='none' ;document.getElementById('fade7').style.display='none'" alt=""/>
+                            <div id="fade7" class="black_overlay"></div>
+                        </div>
+                        <div>
+                            <h5>Step 8</h5>
+                            <P>s2r8</P>
+                            <img class="small_img" src ="../../data/app_logos/S2RScreen3.png"  width="50" height="100" onclick="document.getElementById('light8').style.display ='block';document.getElementById('fade8').style.display='block'"/>
+                            <img id="light8" class="big_img" src ="../../data/App_logos/S2RScreen3.png" onclick = "document.getElementById('light8').style.display ='none' ;document.getElementById('fade8').style.display='none'" alt=""/>
+                            <div id="fade8" class="black_overlay"></div>
+                        </div>
+
+
+
+                    </td>
 
                 </tr>
 
             </table>
 
 
-        </div>
+<!--        </div>-->
     </div>
 <!--    <div class="panel panel-default">-->
 <!--        <div class="panel-heading">-->
