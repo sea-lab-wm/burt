@@ -9,6 +9,7 @@ import sealab.burt.server.msgparsing.Intent;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -23,9 +24,13 @@ public class SelectOBScreenAction extends ChatbotAction {
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
 
         String app = state.get(APP).toString();
+
         MessageObj messageObj = new MessageObj(MessageFormat.format("Got it. Just to confirm, can you select the {0} screen that is having the problem?" +
                 " Please hit the \"Done\" button after you have selected it.", app) ,"OBScreenSelector");
-        List<KeyValue> OBScreen = Arrays.asList(new KeyValue("OBScreen","OBScreen.png"));
+//        String screenshotPath = (String) state.get(OB_SCREEN);
+//        String description  = (String) state.get(OB_DESCRIPTION);
+        List<KeyValue> OBScreen = Arrays.asList(new KeyValue("OB description","OBScreen.png"));
+//        List<KeyValue> OBScreen = Collections.singletonList(new KeyValue(description, screenshotPath));
         return new ChatbotMessage(messageObj, OBScreen, true);
     }
 

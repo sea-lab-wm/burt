@@ -10,6 +10,7 @@ import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.output.outputMessageObj;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -34,16 +35,29 @@ public class OBDescriptionStateChecker extends StateChecker {
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
             QualityResult result = runOBQualityCheck(state);
-            if (result.getResult().name().equals("MATCH")){
-                UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-                String message = userMessage.getMessages().get(0).getMessage();
-                if (!state.containsKey(OB_DESCRIPTION)){
+//            String screenshotPath = result.getScreenshotPath();
+//            String description = result.getDescription();
+//            String qualityFeedback = result.getQualityFeedback();
+//            state.put(OB_DESCRIPTION, description);
+//            state.put(OB_SCREEN, screenshotPath);
+//            state.put(OB_QUALITY_FEEDBACK, qualityFeedback);
+
+            // if result is MULTIPLE_MATCH, it will return multiple screenshots
+            String description = "OB description";
+            String screenshotPath = "../../data/app_logos/OBScreen.png";
+            state.put(OB_DESCRIPTION, description);
+            state.put(OB_SCREEN, screenshotPath);
+
+            if (result.getResult().equals(QualityResult.Result.MATCH)){
+                // UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+                //String message = userMessage.getMessages().get(0).getMessage();
+                if (!state.containsKey(REPORT_OB)){
                     List<outputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new outputMessageObj(message, null));
-                    state.put(OB_DESCRIPTION, outputMessageList);
+                    outputMessageList.add(new outputMessageObj(description, screenshotPath));
+                    state.put(REPORT_OB, outputMessageList);
                 }else{
-                    List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(OB_DESCRIPTION);
-                    outputMessage.add(new outputMessageObj(message, null));
+                    List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(REPORT_OB);
+                    outputMessage.add(new outputMessageObj(description, screenshotPath));
                 }
             }
             return nextActions.get(result.getResult().name());

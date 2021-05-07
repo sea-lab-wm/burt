@@ -31,10 +31,10 @@ public class ConfirmSelectedMissingAction extends ChatbotAction {
             if (confirmMessage.equals("done")) {
                 List<String> S2RScreens =  msg.getMessages().get(0).getSelectedValues();
                 response.append("Ok, you select ");
-                List<Path> S2RScreenPathList = new ArrayList<>();
+                List<String> S2RScreenPathList = new ArrayList<>();
 
                 for (String screen: S2RScreens){
-                    S2RScreenPathList.add(Paths.get("D:/Projects/burt/data/app_logos/", screen, ".png"));
+                    S2RScreenPathList.add("../../data/app_logos/" + screen + ".png");
                     response.append(screen);
                     response.append(", ");
                 }
@@ -42,19 +42,26 @@ public class ConfirmSelectedMissingAction extends ChatbotAction {
 //                response = new StringBuilder(MessageFormat.format("Ok, you select {0} and {1}, what is the next step?", S2RScreens.get(0), S2RScreens.get(1)));
 
                 // add the selected missing steps to report summary
-                if(!state.containsKey(S2R_DESCRIPTION)){
+                if(!state.containsKey(REPORT_S2R)){
+
                     List<outputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new outputMessageObj(null, S2RScreenPathList));
-                    state.put(S2R_DESCRIPTION, outputMessageList);
+                    for (String screenshotPath: S2RScreenPathList) {
+                        outputMessageList.add(new outputMessageObj("S2R description", screenshotPath));
+                    }
+                    state.put(REPORT_S2R, outputMessageList);
+
                 }else{
-                    List<outputMessageObj>  outputMessageList= (List<outputMessageObj>) state.get(S2R_DESCRIPTION);
-                    outputMessageList.add(new outputMessageObj(null, S2RScreenPathList));
+                    List<outputMessageObj>  outputMessageList= (List<outputMessageObj>) state.get(REPORT_S2R);
+                    for (String screenshotPath: S2RScreenPathList) {
+                        outputMessageList.add(new outputMessageObj("S2R description", screenshotPath));
+                    }
                 }
 
             }else{
 
                 response.append(" Ok, what is the next step?");
             }
+
         }
         return new ChatbotMessage(response.toString());
     }

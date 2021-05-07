@@ -34,16 +34,14 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
         } else if (state.containsKey(COLLECTING_EB)) {
             state.remove(COLLECTING_EB);
             // add selected EB screen to report summary
-            List<Path> screenList = new ArrayList<>();
-            screenList.add((Path) state.get(EB_SCREEN));
-            List<outputMessageObj> outputMessageList;
-            if (!state.containsKey(EB_DESCRIPTION)){
-                outputMessageList = new ArrayList<>();
+            if (!state.containsKey(REPORT_EB)){
+                List<outputMessageObj> outputMessageObjList = new ArrayList<>();
+                outputMessageObjList.add(new outputMessageObj((String)state.get(EB_DESCRIPTION), (String)(state.get(EB_SCREEN))));
+                state.put(REPORT_EB, outputMessageObjList);
             }else{
-                outputMessageList = (List<outputMessageObj>) state.get(EB_DESCRIPTION);
+                List<outputMessageObj> outputMessageObjList = (List<outputMessageObj>) state.get(REPORT_EB);
+                outputMessageObjList.add(new outputMessageObj((String)state.get(EB_DESCRIPTION), (String)(state.get(EB_SCREEN))));
             }
-            outputMessageList.add(new outputMessageObj(null, screenList));
-            state.put(EB_DESCRIPTION, outputMessageList);
             nextAction = PROVIDE_S2R_FIRST;
         } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
             state.remove(COLLECTING_S2R);

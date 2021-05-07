@@ -22,7 +22,7 @@ class outputMessageObj {
 
     private String message;
     private String type;
-    private List<Path> screenshots;
+    private String screenshotPath;
 
     public outputMessageObj(){
     }
@@ -31,12 +31,10 @@ class outputMessageObj {
         this.message = message;
     }
 
-    public outputMessageObj(String message, List<Path> screenshots) {
-        this.screenshots = screenshots;
+    public outputMessageObj(String message, String screenshotPath) {
+        this.screenshotPath = screenshotPath;
         this.message = message;
     }
-    public outputMessageObj(List<Path> screenshots) {
-        this.screenshots = screenshots;
-    }
+
 
 }

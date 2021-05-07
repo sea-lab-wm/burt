@@ -34,16 +34,26 @@ public class EBDescriptionStateChecker extends StateChecker {
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
             QualityResult result = runEBCheck(state);
-            if (result.getResult().name().equals("MATCH")){
-                UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-                String message = userMessage.getMessages().get(0).getMessage();
-                if (!state.containsKey(EB_DESCRIPTION)){
+//            String description = result.getDescription();
+//            String screenshotPath= result.getScreenshotPath();
+//            state.put(EB_DESCRIPTION, description);
+//            state.put(EB_SCREEN, screenshotPath);
+            String description = "EB description";
+            String screenshotPath = "../../data/app_logos/EBScreen.png";
+            state.put(EB_DESCRIPTION, description);
+            state.put(EB_SCREEN, screenshotPath);
+
+            if (result.getResult().equals(QualityResult.Result.MATCH)){
+//                UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+//                String message = userMessage.getMessages().get(0).getMessage();
+                if (!state.containsKey(REPORT_EB)){
+
                     List<outputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new outputMessageObj(message,null));
-                    state.put(EB_DESCRIPTION, outputMessageList);
+                    outputMessageList.add(new outputMessageObj(description,screenshotPath));
+                    state.put(REPORT_EB, outputMessageList);
                 }else{
-                    List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(EB_DESCRIPTION);
-                    outputMessage.add(new outputMessageObj(message, null));
+                    List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(REPORT_EB);
+                    outputMessage.add(new outputMessageObj(description, screenshotPath));
                 }
             }
             return nextActions.get(result.getResult().name());

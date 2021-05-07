@@ -9,6 +9,7 @@ import static sealab.burt.server.StateVariable.*;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -18,8 +19,9 @@ public class ClarifyEBAction extends ChatbotAction {
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
         //provide EB screenshot here
         MessageObj messageObj = new MessageObj("So, is this the screen that should work fine?", "EBScreenSelector");
-        List<KeyValue> EBScreen = Arrays.asList(new KeyValue("EBScreen","EBScreen.png"));
-        state.put(EB_SCREEN, Paths.get("../../data/app_logos/EBScreen.png"));
+//        String screenshotPath = (String) state.get(EB_SCREEN);
+//        String description = (String) state.get(EB_DESCRIPTION);
+        List<KeyValue> EBScreen = Arrays.asList(new KeyValue("EB_description", "EBScreen.png"));
         return new ChatbotMessage(messageObj, EBScreen);
     }
 

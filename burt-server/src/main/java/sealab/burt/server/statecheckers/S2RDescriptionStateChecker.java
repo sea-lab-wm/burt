@@ -44,15 +44,24 @@ public class S2RDescriptionStateChecker extends StateChecker {
                 return ActionName.CONFIRM_LAST_STEP;
             }else {
                 QualityResult result = runS2RChecker(state);
-                //
+//                String description = result.getDescription();
+//                String screenshotPath = result.getScreenshotPath();
+//                String qualityFeedback = result.getQualityFeedback();
+//                state.put(S2R_DESCRIPTION, description);
+//                state.put(S2R_SCREEN, screenshotPath);
+                String description = "S2R description";
+                String screenshotPath = "../../data/app_logos/S2RScreen1.png";
+                state.put(S2R_DESCRIPTION, description);
+                state.put(S2R_SCREEN, screenshotPath);
+
                 if (result.getResult().equals(QualityResult.Result.MATCH)){
-                    if (!state.containsKey(S2R_DESCRIPTION)){
+                    if (!state.containsKey(REPORT_S2R)){
                         List<outputMessageObj> outputMessageList = new ArrayList<>();
-                        outputMessageList.add(new outputMessageObj(message, null));
-                        state.put(S2R_DESCRIPTION, outputMessageList);
+                        outputMessageList.add(new outputMessageObj(description, screenshotPath));
+                        state.put(REPORT_S2R, outputMessageList);
                     }else{
-                        List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(S2R_DESCRIPTION);
-                        outputMessage.add(new outputMessageObj(message, null));
+                        List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(REPORT_S2R);
+                        outputMessage.add(new outputMessageObj(description, screenshotPath));
                     }
                 }
 

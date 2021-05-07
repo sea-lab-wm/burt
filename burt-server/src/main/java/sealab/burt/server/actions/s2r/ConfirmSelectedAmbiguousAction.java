@@ -33,13 +33,13 @@ public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
                  List<String> S2RScreens =  msg.getMessages().get(0).getSelectedValues();
                 response = MessageFormat.format("Ok, you select {0}, what is the next step?",  S2RScreens.get(0));
                 // add the selected step to report summary
-                if(!state.containsKey(S2R_DESCRIPTION)){
+                if(!state.containsKey(REPORT_S2R)){
                     List<outputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new outputMessageObj(null, Collections.singletonList(Paths.get("../../data/app_logos/",  S2RScreens.get(0), ".png"))));
-                    state.put(S2R_DESCRIPTION, outputMessageList);
+                    outputMessageList.add(new outputMessageObj("screenshot description", "../../data/app_logos/" + S2RScreens.get(0)+ ".png"));
+                    state.put(REPORT_S2R, outputMessageList);
                 }else{
-                    List<outputMessageObj>  outputMessageList= (List<outputMessageObj>) state.get(S2R_DESCRIPTION);
-                    outputMessageList.add(new outputMessageObj(null, Collections.singletonList(Paths.get("../../data/app_logos/",  S2RScreens.get(0), ".png"))));
+                    List<outputMessageObj>  outputMessageList= (List<outputMessageObj>) state.get(REPORT_S2R);
+                    outputMessageList.add(new outputMessageObj("screenshot description", "../../data/app_logos/" + S2RScreens.get(0)+ ".png"));
                 }
             }else{
 

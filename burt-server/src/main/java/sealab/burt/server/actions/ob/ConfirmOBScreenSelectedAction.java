@@ -34,20 +34,20 @@ public class ConfirmOBScreenSelectedAction extends ChatbotAction {
                 String OBScreen =  msg.getMessages().get(0).getSelectedValues().get(0);
                 response = "you selected " + OBScreen + " , shall we continue?";
                 // add the selected screen to the report summary
-                Path OBScreenPath = Paths.get("../../data/app_logos/OBScreen.png");
-                if(!state.containsKey(OB_DESCRIPTION)){
+//                Path OBScreenPath = Paths.get("../../data/app_logos/OBScreen.png");
+                if(!state.containsKey(REPORT_OB)){
                     List<outputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new outputMessageObj(null,Collections.singletonList(OBScreenPath)));
-                    state.put(OB_DESCRIPTION, outputMessageList);
+                    outputMessageList.add(new outputMessageObj((String)state.get(OB_DESCRIPTION),(String) state.get(OB_SCREEN)));
+                    state.put(REPORT_OB, outputMessageList);
                 }else{
-                    List<outputMessageObj> outputMessageList = (List<outputMessageObj>) state.get(OB_DESCRIPTION);
-                    outputMessageList.add(new outputMessageObj(null, Collections.singletonList(OBScreenPath)));
+                    List<outputMessageObj> outputMessageList = (List<outputMessageObj>) state.get(REPORT_OB);
+                    outputMessageList.add(new outputMessageObj((String)state.get(OB_DESCRIPTION),(String) state.get(OB_SCREEN)));
                 }
             }else{
                 state.remove(OB_SCREEN_SELECTED);
                 setNextExpectedIntent(Intent.OB_SCREEN_SELECTED);
                 MessageObj messageObj = new MessageObj("then, is this screen that has the problem? Please hit the “Done” button after you have selected it.",  "OBScreenSelector");
-                List<KeyValue> OBScreen = Arrays.asList(new KeyValue("OBScreen","OBScreen.png"));
+                List<KeyValue> OBScreen = Collections.singletonList(new KeyValue("OBScreen", "OBScreen.png"));
                 return new ChatbotMessage(messageObj, OBScreen);
             }
         }
