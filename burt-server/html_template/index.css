@@ -4,55 +4,58 @@
     margin: 0px;
 }
 body{
-    background-color: #F5F5F5
+    background-color: #FFFF
 }
 /*--------------------logo,menu,login--------------------*/
 
-.header{
-    width: 1200px;
-    margin: 25px auto; }
+/*.header{*/
+/*    width: 1200px;*/
+/*    margin: 25px auto; }*/
 
 
 
-.header .menu ul{
-    display: none;
-    list-style: none;
+/*.header .menu ul{*/
+/*    display: none;*/
+/*    list-style: none;*/
 
-    position: absolute;
-    width: 80px;
-    opacity: 0.5;
-    background-color: white;
-}
+/*    position: absolute;*/
+/*    width: 80px;*/
+/*    opacity: 0.5;*/
+/*    background-color: white;*/
+/*}*/
 
-/*设置菜单和logo位置*/
-.header .logo{
-    float: left;
-    position: relative;
-}
-/*菜单位置*/
-.header .menu{
-    float: left;
-    position: relative;
-    margin-top: 12px;
-    margin-left: 16px;
-}
+/*!*设置菜单和logo位置*!*/
+/*.header .logo{*/
+/*    float: left;*/
+/*    position: relative;*/
+/*}*/
+/*!*菜单位置*!*/
+/*.header .menu{*/
+/*    float: left;*/
+/*    position: relative;*/
+/*    margin-top: 12px;*/
+/*    margin-left: 16px;*/
+/*}*/
 
 
-.header .menu ul li{
-    margin-top: 20px;
-    text-align: center;
-}
+/*.header .menu ul li{*/
+/*    margin-top: 20px;*/
+/*    text-align: center;*/
+/*}*/
 
-.header .menu .menu_title{
-    /*border-bottom: 1px solid black;*/
-    padding-bottom: 20px;
-    width: 120px;
-    text-align: center;
-}
+/*.header .menu .menu_title{*/
+/*    !*border-bottom: 1px solid black;*!*/
+/*    !*padding-bottom: 20px;*!*/
+/*    width: 500px;*/
+/*    text-align: center;*/
+/*    font-size: 25px;*/
+/*    color: black;*/
+/*    margin-left: 5px;*/
+/*}*/
 
-a{
-    text-decoration: none;
-}
+/*a{*/
+/*    text-decoration: none;*/
+/*}*/
 /*---------------login---------------*/
 .header .auth{
     float: right;
@@ -71,18 +74,31 @@ a{
     width: 1280px;
     margin: 25px auto;
 }
+.content .menu .menu_title{
+    /*border-bottom: 1px solid black;*/
+    /*padding-bottom: 20px;*/
+    width: 500px;
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    margin-left: 5px;
+}
 /*image distance*/
 .content .banner .banner_table{
-    margin-top: 100px;
-    width:10px;
+    margin-top: 120px;
+    /*width:10px;*/
     border-bottom:2px solid #ccc;
-
-
     /*-webkit-box-shadow: 0 0 5px 3px #ccc; !*google browser*!*/
     /*-moz-box-shadow: 0 0 5px 3px #ccc; !*fox browser*!*/
 
     /*display: inline-block;*/
 
+}
+.content .banner .banner_table h4{
+    font-size: 25px;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /*---------------S2R---------------*/
@@ -91,38 +107,52 @@ a{
     width: 1280px;
 
 }
-.content .img_content ul li{
+.content .img_content ul li_0{
+    width: 560px;  /*360*3+120*/
+    float: left;
+    list-style: none;
+    background-color: #FFFF;
+
+    /*border*/
+    height: 400px;
+    margin: 30px 60px 30px 0;
+    -webkit-box-shadow: 0 0 5px 3px #ccc; /*google browser*/
+    -moz-box-shadow: 0 0 5px 3px #ccc; /*fox browser*/
+}
+
+
+.content .img_content ul li_1{
     width: 150px;  /*360*3+120*/
     float: left;
     list-style: none;
-    background-color: #F5F5F5;
+    background-color: #FFFF;
 
     /*border*/
-    height: 300px;
+    height: 400px;
     margin: 30px 60px 30px 0;
-    /*-webkit-box-shadow: 0 0 5px 3px #ccc; !*google browser*!*/
-    /*-moz-box-shadow: 0 0 5px 3px #ccc; !*fox browser*!*/
-}
-.content .img_content  h4{
-    font-size: 30px;
-    color: red;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.content .img_content li h3{
-    font-size: 15px;
-    color: red;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    -webkit-box-shadow: 0 0 5px 3px #ccc; /*google browser*/
+    -moz-box-shadow: 0 0 5px 3px #ccc; /*fox browser*/
 }
 
+.content .img_content {
+    font-size: 25px;
+    color: black;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.ob_eb_small_img{
+    /*width:50px;*/
+    height:215px;
+    margin-left: 200px;
+    margin-top: 50px;
+}
 
 .small_img{
-    width:50px;
-    height:100px;
-    margin-left: 50px;
-    margin-top: 15px;
+    /*width:50px;*/
+    height:215px;
+    margin-left: 15px;
+    margin-top: 10px;
 }
 .big_img {
     cursor: pointer;
@@ -153,15 +183,18 @@ a{
 }
 
 .img_bookmark{
+    font-size: 20px;
     width:15px;
     height:15px;
-    margin-left: 67px;
-    margin-top:10px;
+    margin-left: 50px;
+    /*margin-top:5px;*/
 }
 .content .img_content .info{
-    margin-top: 10px;
+    margin-top: 1px;
+    font-size: 20px;
 
 }
+
 
 .content .img_content .info p{
     font-size: 10px;
@@ -169,6 +202,14 @@ a{
 
     width:140px;
     margin-left: 10px;
+
+}
+.content .img_content .ob_eb_info p{
+    font-size: 10px;
+    line-height: 20px;
+
+    width:400px;
+    margin-left: 80px;
 
 
 }
