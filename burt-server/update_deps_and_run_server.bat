@@ -9,8 +9,7 @@ set TXT_ANALYZER_REPO_PATH=%REPOSITORIES_PATH%\text-analyzer
 set BUG_REPORT_COMPLETION_REPO_PATH=%REPOSITORIES_PATH%\bug_report_completion
 set ANDROID_CORE_REPO_PATH=%REPOSITORIES_PATH%\SEMERU-Code\Android-Core
 
-
-REM repo update
+rem repo update
 cd "%APPCORE_REPO_PATH%" && git pull
 cd "%TXT_ANALYZER_REPO_PATH%" && git pull
 cd "%BUG_REPORT_COMPLETION_REPO_PATH%" && git pull
