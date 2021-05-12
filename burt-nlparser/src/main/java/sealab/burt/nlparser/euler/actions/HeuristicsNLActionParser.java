@@ -27,6 +27,7 @@ import seers.textanalyzer.entity.Sentence;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -44,21 +45,29 @@ public class HeuristicsNLActionParser extends NLActionParser {
 	static private List<PatternMatcher> sentencePMs = new ArrayList<>();
 
 	public HeuristicsNLActionParser() {
-		this(null, null, null);
+		loadParsers(null, null, null);
+	}
+
+	public HeuristicsNLActionParser(String baseFolder) {
+		if(baseFolder ==null)
+			loadParsers(null, null, null);
+		else{
+			loadParsers(Path.of(baseFolder, DEFAULT_PARSERS_FILE).toString(),
+					Path.of(baseFolder, DEFAULT_PARAG_PATTERNS_FILE).toString(),
+					Path.of(baseFolder, DEFAULT_SENTCE_PATTERNS_CSV).toString());
+		}
 	}
 
 	public HeuristicsNLActionParser(String parsersFile, String paragPatternsFile, String stncePatternsFile) {
+		loadParsers(parsersFile, paragPatternsFile, stncePatternsFile);
+	}
 
+	private void loadParsers(String parsersFile, String paragPatternsFile, String stncePatternsFile) {
 		synchronized (patternParsers) {
 			try {
 				if (patternParsers.isEmpty()) {
 					if (parsersFile == null) {
 						parsersFile = DEFAULT_PARSERS_FILE;
-//						ClassLoader classLoader = getClass().getClassLoader();
-//						URL resource = classLoader.getResource(parsersFile);
-//
-//						if (resource != null)
-//							parsersFile = resource.getPath();
 					}
 					patternParsers = loadParsers(parsersFile);
 				}
@@ -95,7 +104,7 @@ public class HeuristicsNLActionParser extends NLActionParser {
 		//right now, implemented for perfect synthetic data
 
 		sentencesMatched = findLabeledS2RandOBSentences(bugReport);
-		
+
 		List<HashMap<Sentence, List<String>>> groupedSentences = determineScenarios(sentencesMatched);
 
 		List<BugScenario> scenarios = parseSentences(groupedSentences, bugReport.getId(), systemName);
@@ -360,6 +369,7 @@ public class HeuristicsNLActionParser extends NLActionParser {
 					// S2R
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "P_SR_ACTIONS_INF");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "P_SR_LABELED_LIST");
+					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_SIMPLE_PRESENT_SUBORDINATES");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_COND_OBS");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_IMPERATIVE_SEQUENCE");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "P_SR_ACTIONS_MULTI_OBS_BEHAVIOR");
@@ -485,11 +495,11 @@ public class HeuristicsNLActionParser extends NLActionParser {
 		}
 
 		for (LabeledDescriptionSentence labSentence : allSentences) {
-			
+
 			if (!labSentence.isObLabeled() && !labSentence.isSrLabeled()) {
 				continue;
 			}
-			
+
 			Sentence sentence = SentenceUtils.parseSentence(labSentence.getId(), labSentence.getValue());
 
 			if (avoidSentence(sentence)) {

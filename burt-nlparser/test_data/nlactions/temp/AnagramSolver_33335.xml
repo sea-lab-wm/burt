@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>2</id>
+    <title>Force Close when enter word with new apostrophe</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.3">Enter a new word with an apostrophe</sentence>
+        </paragraph>
+    </description>
+</bug>

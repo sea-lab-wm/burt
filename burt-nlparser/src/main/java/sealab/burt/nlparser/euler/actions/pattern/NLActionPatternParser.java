@@ -211,7 +211,9 @@ public abstract class NLActionPatternParser {
 	}
 
 	protected String getObject(SemanticGraph dependencies, IndexedWord objToken) {
-		String[] rels = { "amod", "nummod", "compound", "neg" };
+		String[] rels = { "amod", "nummod", "compound", "neg"
+				, "advmod"
+		};
 
 		return getCompoundExpression(dependencies, objToken, rels, true, false);
 
@@ -225,6 +227,12 @@ public abstract class NLActionPatternParser {
 
 		List<Pair<GrammaticalRelation, IndexedWord>> relations = DependenciesUtils.getChildRelations(dependencies,
 				idxWord, rels);
+
+		//consider the advmod "back" and other non-advmod
+		relations =
+				relations.stream().filter(r -> !r.first.getShortName().equals("advmod") ||
+						(r.first.getShortName().equals("advmod") && r.second.lemma().equals("back")))
+						.collect(Collectors.toList());
 
 		relations.sort(Comparator.comparingInt(p -> p.second.index()));
 

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<bug>
+  <id>247</id>
+  <title>Deposit / Withdrawal change existing entry</title>
+  <description>An existing entry is created as a "Withdrawal". Try to change the existing entry from a "withdrawal" to "Deposit" button next to the amount, it does change the color of the amount to green and changes the button to say Deposit, but when you click the checkmark to save the entry it does not save the entry as a deposit. (also vice versa deposit -&gt;Withdrawal) Also when entering it will auto-fill the amount from a previous transaction, and automatically mark it as withdrawal or deposit but will not save if you change it to the other.
+</description>
+</bug>

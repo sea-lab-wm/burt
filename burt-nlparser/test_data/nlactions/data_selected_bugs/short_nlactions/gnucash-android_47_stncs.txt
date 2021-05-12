@@ -1,0 +1,1 @@
+"* [0] Crash when creating account names with an apostrophe -> [S_SR_COND_OBS, S_OB_ERROR_AS_SUBJECT, S_OB_NEG_COND]"

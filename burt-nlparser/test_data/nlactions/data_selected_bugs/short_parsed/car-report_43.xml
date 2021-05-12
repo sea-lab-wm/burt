@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>43</id>
+    <title>Infinity / 100 km and plot deathlock</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">During multiple input of identical values e.g. 10 km (by day) and 10 litres some calculations fail.</sentence>
+            <sentence id="1.2">E.g. first calculates correcty 100 l/km but then next two results are "infinity l / 100 km.</sentence>
+            <sentence id="1.3">Plotting will death lock program then and you have to restart device.</sentence>
+        </paragraph>
+    </description>
+</bug>

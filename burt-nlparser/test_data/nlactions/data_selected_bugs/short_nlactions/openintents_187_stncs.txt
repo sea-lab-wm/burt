@@ -1,0 +1,7 @@
+"* [0] OI Notepad: Sort order does not work with encrypted notes -> [S_OB_NEG_AUX_VERB]"
+"* [1.1] ``` -> [P_SR_ACTIONS_INF, P_SR_ACTIONS_MULTI_OBS_BEHAVIOR]"
+"* [1.2] What steps will reproduce the problem? -> [P_SR_ACTIONS_INF, P_SR_ACTIONS_MULTI_OBS_BEHAVIOR, S_OB_VERB_ERROR]"
+"* [1.3] 1. In OI Notepad, choose alphabetical sort ordering. -> [P_SR_ACTIONS_INF, P_SR_ACTIONS_MULTI_OBS_BEHAVIOR, S_SR_IMPERATIVE_SEQUENCE]"
+"* [1.4] 2. Encrypted notes appear at seemingly random places. -> [P_SR_ACTIONS_INF, P_SR_ACTIONS_MULTI_OBS_BEHAVIOR, S_OB_VERB_ERROR, S_OB_NEG_ADV_ADJ]"
+"* [2.1] Encrypted notes are sorted according to their encrypted version, not according to the decrypted string. -> [S_OB_PASSIVE_VOICE]"
+"* [3.1] Original issue reported on code.google.com by `peli0...@googlemail.com` on 20 Jan 2009 at 9:54 -> [S_OB_ERROR_AS_SUBJECT, S_OB_OUTPUT_VERB]"

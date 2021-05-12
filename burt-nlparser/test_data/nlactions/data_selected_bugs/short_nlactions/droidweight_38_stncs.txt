@@ -1,0 +1,5 @@
+"* [0] Chart only displays two digits of the weight axis -> [S_OB_OUTPUT_VERB]"
+"* [1.2] What steps will reproduce the problem? -> [S_OB_VERB_ERROR]"
+"* [1.3] If you enter a weight with 3 digits the labeling on the weight axis will omit the first digit. -> [S_OB_COND_POS]"
+"* [1.4] E.g.: 104 kg will be displayed as 04 kg. -> [S_OB_OUTPUT_VERB, S_OB_PASSIVE_VOICE]"
+"* [4.1] Original issue reported on code.google.com by `manuel.p...@googlemail.com` on 20 Aug 2014 at 11:38 -> [S_OB_ERROR_AS_SUBJECT, S_OB_OUTPUT_VERB]"

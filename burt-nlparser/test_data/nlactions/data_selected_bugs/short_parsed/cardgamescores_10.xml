@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>10</id>
+    <title>NumberFormatException caused by Invalid Inputs</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">App crashes with the following stack traces when "Maximum Score" is the character "-" or is a big number.</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">E/AndroidRuntime( 2236): FATAL EXCEPTION: main</sentence>
+            <sentence id="2.2">E/AndroidRuntime( 2236): java.lang.IllegalStateException: Could not execute method of the activity</sentence>
+            <sentence id="2.3">E/AndroidRuntime( 2236): at android.view.View$1.onClick(View.java:3591)</sentence>
+            <sentence id="2.4">E/AndroidRuntime( 2236): at android.view.View.performClick(View.java:4084)</sentence>
+            <sentence id="2.5">E/AndroidRuntime( 2236): at android.view.View$PerformClick.run(View.java:16966)</sentence>
+            <sentence id="2.6">E/AndroidRuntime( 2236): at android.os.Handler.handleCallback(Handler.java:615)</sentence>
+            <sentence id="2.7">E/AndroidRuntime( 2236): at android.os.Handler.dispatchMessage(Handler.java:92)</sentence>
+            <sentence id="2.8">E/AndroidRuntime( 2236): at android.os.Looper.loop(Looper.java:137)</sentence>
+            <sentence id="2.9">E/AndroidRuntime( 2236): at android.app.ActivityThread.main(ActivityThread.java:4745)</sentence>
+            <sentence id="2.10">E/AndroidRuntime( 2236): at java.lang.reflect.Method.invokeNative(Native Method)</sentence>
+            <sentence id="2.11">E/AndroidRuntime( 2236): at java.lang.reflect.Method.invoke(Method.java:511)</sentence>
+            <sentence id="2.12">E/AndroidRuntime( 2236): at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:786)</sentence>
+            <sentence id="2.13">E/AndroidRuntime( 2236): at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:553)</sentence>
+            <sentence id="2.14">E/AndroidRuntime( 2236): at dalvik.system.NativeStart.main(Native Method)</sentence>
+            <sentence id="2.15">E/AndroidRuntime( 2236): Caused by: java.lang.reflect.InvocationTargetException</sentence>
+            <sentence id="2.16">E/AndroidRuntime( 2236): at java.lang.reflect.Method.invokeNative(Native Method)</sentence>
+            <sentence id="2.17">E/AndroidRuntime( 2236): at java.lang.reflect.Method.invoke(Method.java:511)</sentence>
+            <sentence id="2.18">E/AndroidRuntime( 2236): at android.view.View$1.onClick(View.java:3586)</sentence>
+            <sentence id="2.19">E/AndroidRuntime( 2236): ... 11 more</sentence>
+            <sentence id="2.20">E/AndroidRuntime( 2236): Caused by: java.lang.NumberFormatException: Invalid int: "12345678901234567890"</sentence>
+            <sentence id="2.21">E/AndroidRuntime( 2236): at java.lang.Integer.invalidInt(Integer.java:138)</sentence>
+            <sentence id="2.22">E/AndroidRuntime( 2236): at java.lang.Integer.parse(Integer.java:378)</sentence>
+            <sentence id="2.23">E/AndroidRuntime( 2236): at java.lang.Integer.parseInt(Integer.java:366)</sentence>
+            <sentence id="2.24">E/AndroidRuntime( 2236): at java.lang.Integer.parseInt(Integer.java:332)</sentence>
+            <sentence id="2.25">E/AndroidRuntime( 2236): at java.lang.Integer.valueOf(Integer.java:490)</sentence>
+            <sentence id="2.26">E/AndroidRuntime( 2236): at org.systemcall.scores.AddPlayersActivity.startGame(AddPlayersActivity.java:60)</sentence>
+            <sentence id="2.27">E/AndroidRuntime( 2236): ... 14 more</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">E/AndroidRuntime( 2215): FATAL EXCEPTION: main</sentence>
+            <sentence id="3.2">E/AndroidRuntime( 2215): java.lang.IllegalStateException: Could not execute method of the activity</sentence>
+            <sentence id="3.3">E/AndroidRuntime( 2215): at android.view.View$1.onClick(View.java:3591)</sentence>
+            <sentence id="3.4">E/AndroidRuntime( 2215): at android.view.View.performClick(View.java:4084)</sentence>
+            <sentence id="3.5">E/AndroidRuntime( 2215): at android.view.View$PerformClick.run(View.java:16966)</sentence>
+            <sentence id="3.6">E/AndroidRuntime( 2215): at android.os.Handler.handleCallback(Handler.java:615)</sentence>
+            <sentence id="3.7">E/AndroidRuntime( 2215): at android.os.Handler.dispatchMessage(Handler.java:92)</sentence>
+            <sentence id="3.8">E/AndroidRuntime( 2215): at android.os.Looper.loop(Looper.java:137)</sentence>
+            <sentence id="3.9">E/AndroidRuntime( 2215): at android.app.ActivityThread.main(ActivityThread.java:4745)</sentence>
+            <sentence id="3.10">E/AndroidRuntime( 2215): at java.lang.reflect.Method.invokeNative(Native Method)</sentence>
+            <sentence id="3.11">E/AndroidRuntime( 2215): at java.lang.reflect.Method.invoke(Method.java:511)</sentence>
+            <sentence id="3.12">E/AndroidRuntime( 2215): at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:786)</sentence>
+            <sentence id="3.13">E/AndroidRuntime( 2215): at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:553)</sentence>
+            <sentence id="3.14">E/AndroidRuntime( 2215): at dalvik.system.NativeStart.main(Native Method)</sentence>
+            <sentence id="3.15">E/AndroidRuntime( 2215): Caused by: java.lang.reflect.InvocationTargetException</sentence>
+            <sentence id="3.16">E/AndroidRuntime( 2215): at java.lang.reflect.Method.invokeNative(Native Method)</sentence>
+            <sentence id="3.17">E/AndroidRuntime( 2215): at java.lang.reflect.Method.invoke(Method.java:511)</sentence>
+            <sentence id="3.18">E/AndroidRuntime( 2215): at android.view.View$1.onClick(View.java:3586)</sentence>
+            <sentence id="3.19">E/AndroidRuntime( 2215): ... 11 more</sentence>
+            <sentence id="3.20">E/AndroidRuntime( 2215): Caused by: java.lang.NumberFormatException: Invalid int: "-"</sentence>
+            <sentence id="3.21">E/AndroidRuntime( 2215): at java.lang.Integer.invalidInt(Integer.java:138)</sentence>
+            <sentence id="3.22">E/AndroidRuntime( 2215): at java.lang.Integer.parseInt(Integer.java:363)</sentence>
+            <sentence id="3.23">E/AndroidRuntime( 2215): at java.lang.Integer.parseInt(Integer.java:332)</sentence>
+            <sentence id="3.24">E/AndroidRuntime( 2215): at java.lang.Integer.valueOf(Integer.java:490)</sentence>
+            <sentence id="3.25">E/AndroidRuntime( 2215): at org.systemcall.scores.AddPlayersActivity.startGame(AddPlayersActivity.java:60)</sentence>
+            <sentence id="3.26">E/AndroidRuntime( 2215): ... 14 more</sentence>
+        </paragraph>
+    </description>
+</bug>

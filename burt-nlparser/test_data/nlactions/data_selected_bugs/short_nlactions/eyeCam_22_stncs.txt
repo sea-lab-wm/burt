@@ -1,0 +1,2 @@
+"* [0] "Unfortunately eyeCam has stopped." -> [S_OB_NEG_VERB]"
+"* [1.1] Sadly nowhere to submit debugging Info but I'm especially surprised as this is the Google nexus 5 flagship phone with the latest stock rom, unrooted. -> [S_OB_BUT, S_OB_PASSIVE_VOICE]"

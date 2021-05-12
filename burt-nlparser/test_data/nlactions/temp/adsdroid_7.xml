@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>7</id>
+    <title>The new build crashes after searching anything</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">Tested on Samsung Galaxy SII, Android 4.0.3/cyanogenmod.</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">ADSDroid 1.5 (built from an hour ago)</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">While searching for "TSOP 4838":</sentence>
+        </paragraph>
+        <paragraph id="4">
+            <sentence id="4.1">```</sentence>
+            <sentence id="4.2">W/dalvikvm(28294): Exception Ljava/lang/NullPointerException; thrown while initializing La/a/b/k;</sentence>
+            <sentence id="4.3">W/dalvikvm(28294): Exception Ljava/lang/ExceptionInInitializerError; thrown while initializing La/a/b/l;</sentence>
+            <sentence id="4.4">W/dalvikvm(28294): threadid=11: thread exiting with uncaught exception (group=0x40a2a1f8)</sentence>
+            <sentence id="4.5">E/AndroidRuntime(28294): FATAL EXCEPTION: AsyncTask #1</sentence>
+            <sentence id="4.6">E/AndroidRuntime(28294): java.lang.RuntimeException: An error occured while executing doInBackground()</sentence>
+            <sentence id="4.7">E/AndroidRuntime(28294): at android.os.AsyncTask$3.done(AsyncTask.java:278)</sentence>
+            <sentence id="4.8">E/AndroidRuntime(28294): at java.util.concurrent.FutureTask$Sync.innerSetException(FutureTask.java:273)</sentence>
+            <sentence id="4.9">E/AndroidRuntime(28294): at java.util.concurrent.FutureTask.setException(FutureTask.java:124)</sentence>
+            <sentence id="4.10">E/AndroidRuntime(28294): at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:307)</sentence>
+            <sentence id="4.11">E/AndroidRuntime(28294): at java.util.concurrent.FutureTask.run(FutureTask.java:137)</sentence>
+            <sentence id="4.12">E/AndroidRuntime(28294): at android.os.AsyncTask$SerialExecutor$1.run(AsyncTask.java:208)</sentence>
+            <sentence id="4.13">E/AndroidRuntime(28294): at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1076)</sentence>
+            <sentence id="4.14">E/AndroidRuntime(28294): at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:569)</sentence>
+            <sentence id="4.15">E/AndroidRuntime(28294): at java.lang.Thread.run(Thread.java:856)</sentence>
+            <sentence id="4.16">E/AndroidRuntime(28294): Caused by: java.lang.ExceptionInInitializerError</sentence>
+            <sentence id="4.17">E/AndroidRuntime(28294): at a.a.b.f.&lt;init&gt;(Unknown Source)</sentence>
+            <sentence id="4.18">E/AndroidRuntime(28294): at a.a.b.e.&lt;init&gt;(Unknown Source)</sentence>
+            <sentence id="4.19">E/AndroidRuntime(28294): at a.a.c.di.b(Unknown Source)</sentence>
+            <sentence id="4.20">E/AndroidRuntime(28294): at a.a.c.di.a(Unknown Source)</sentence>
+            <sentence id="4.21">E/AndroidRuntime(28294): at a.a.c.b.a(Unknown Source)</sentence>
+            <sentence id="4.22">E/AndroidRuntime(28294): at a.a.c.ae.a(Unknown Source)</sentence>
+            <sentence id="4.23">E/AndroidRuntime(28294): at a.a.a.a.a(Unknown Source)</sentence>
+            <sentence id="4.24">E/AndroidRuntime(28294): at a.a.a.j.e(Unknown Source)</sentence>
+            <sentence id="4.25">E/AndroidRuntime(28294): at a.a.a.e.b(Unknown Source)</sentence>
+            <sentence id="4.26">E/AndroidRuntime(28294): at hu.vsza.a.b.searchByPartName(Unknown Source)</sentence>
+            <sentence id="4.27">E/AndroidRuntime(28294): at hu.vsza.adsdroid.c.a(Unknown Source)</sentence>
+            <sentence id="4.28">E/AndroidRuntime(28294): at hu.vsza.adsdroid.c.doInBackground(Unknown Source)</sentence>
+            <sentence id="4.29">E/AndroidRuntime(28294): at android.os.AsyncTask$2.call(AsyncTask.java:264)</sentence>
+            <sentence id="4.30">E/AndroidRuntime(28294): at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:305)</sentence>
+            <sentence id="4.31">E/AndroidRuntime(28294): ... 5 more</sentence>
+            <sentence id="4.32">E/AndroidRuntime(28294): Caused by: java.lang.ExceptionInInitializerError</sentence>
+            <sentence id="4.33">E/AndroidRuntime(28294): at a.a.b.l.&lt;clinit&gt;(Unknown Source)</sentence>
+            <sentence id="4.34">E/AndroidRuntime(28294): ... 19 more</sentence>
+            <sentence id="4.35">E/AndroidRuntime(28294): Caused by: java.lang.NullPointerException</sentence>
+            <sentence id="4.36">E/AndroidRuntime(28294): at java.util.Properties.load(Properties.java:246)</sentence>
+            <sentence id="4.37">E/AndroidRuntime(28294): at a.a.b.k.d(Unknown Source)</sentence>
+            <sentence id="4.38">E/AndroidRuntime(28294): at a.a.b.k.&lt;clinit&gt;(Unknown Source)</sentence>
+            <sentence id="4.39">E/AndroidRuntime(28294): ... 20 more</sentence>
+            <sentence id="4.40">W/ActivityManager( 1798): Force finishing activity hu.vsza.adsdroid/.</sentence>
+            <sentence id="4.41">SearchPanel</sentence>
+            <sentence id="4.42">(...)</sentence>
+            <sentence id="4.43">E/WindowManager(28294): Activity hu.vsza.adsdroid.SearchPanel has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView@41380cf8 that was originally added here</sentence>
+            <sentence id="4.44">E/WindowManager(28294): android.view.WindowLeaked: Activity hu.vsza.adsdroid.SearchPanel has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView@41380cf8 that was originally added here</sentence>
+            <sentence id="4.45">E/WindowManager(28294): at android.view.ViewRootImpl.&lt;init&gt;(ViewRootImpl.java:344)</sentence>
+            <sentence id="4.46">E/WindowManager(28294): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:267)</sentence>
+            <sentence id="4.47">E/WindowManager(28294): at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:215)</sentence>
+            <sentence id="4.48">E/WindowManager(28294): at android.view.WindowManagerImpl$CompatModeWrapper.addView(WindowManagerImpl.java:140)</sentence>
+            <sentence id="4.49">E/WindowManager(28294): at android.view.Window$LocalWindowManager.addView(Window.java:537)</sentence>
+            <sentence id="4.50">E/WindowManager(28294): at android.app.Dialog.show(Dialog.java:278)</sentence>
+            <sentence id="4.51">E/WindowManager(28294): at hu.vsza.adsdroid.c.onPreExecute(Unknown Source)</sentence>
+            <sentence id="4.52">E/WindowManager(28294): at android.os.AsyncTask.executeOnExecutor(AsyncTask.java:561)</sentence>
+            <sentence id="4.53">E/WindowManager(28294): at android.os.AsyncTask.execute(AsyncTask.java:511)</sentence>
+            <sentence id="4.54">E/WindowManager(28294): at hu.vsza.adsdroid.SearchPanel.searchByPartName(Unknown Source)</sentence>
+            <sentence id="4.55">E/WindowManager(28294): at java.lang.reflect.Method.invokeNative(Native Method)</sentence>
+            <sentence id="4.56">E/WindowManager(28294): at java.lang.reflect.Method.invoke(Method.java:511)</sentence>
+            <sentence id="4.57">E/WindowManager(28294): at android.view.View$1.onClick(View.java:3039)</sentence>
+            <sentence id="4.58">E/WindowManager(28294): at android.view.View.performClick(View.java:3511)</sentence>
+            <sentence id="4.59">E/WindowManager(28294): at android.view.View$PerformClick.run(View.java:14105)</sentence>
+            <sentence id="4.60">E/WindowManager(28294): at android.os.Handler.handleCallback(Handler.java:605)</sentence>
+            <sentence id="4.61">E/WindowManager(28294): at android.os.Handler.dispatchMessage(Handler.java:92)</sentence>
+            <sentence id="4.62">E/WindowManager(28294): at android.os.Looper.loop(Looper.java:137)</sentence>
+            <sentence id="4.63">E/WindowManager(28294): at android.app.ActivityThread.main(ActivityThread.java:4424)</sentence>
+            <sentence id="4.64">E/WindowManager(28294): at java.lang.reflect.Method.invokeNative(Native Method)</sentence>
+            <sentence id="4.65">E/WindowManager(28294): at java.lang.reflect.Method.invoke(Method.java:511)</sentence>
+            <sentence id="4.66">E/WindowManager(28294): at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)</sentence>
+            <sentence id="4.67">E/WindowManager(28294): at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)</sentence>
+            <sentence id="4.68">E/WindowManager(28294): at dalvik.system.NativeStart.main(Native Method)</sentence>
+            <sentence id="4.69">(...)</sentence>
+            <sentence id="4.70">E/JavaBinder( 1798): !!!</sentence>
+            <sentence id="4.71">FAILED BINDER TRANSACTION !!!</sentence>
+            <sentence id="4.72">E/JavaBinder( 1798): !!!</sentence>
+            <sentence id="4.73">FAILED BINDER TRANSACTION !!!</sentence>
+            <sentence id="4.74">W/ActivityManager( 1798): Failure sending broadcast Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:hu.vsza.adsdroid flg=0x10000010 (has extras) }</sentence>
+            <sentence id="4.75">W/ActivityManager( 1798): android.os.TransactionTooLargeException</sentence>
+            <sentence id="4.76">W/ActivityManager( 1798): at android.os.BinderProxy.transact(Native Method)</sentence>
+            <sentence id="4.77">W/ActivityManager( 1798): at android.app.ApplicationThreadProxy.scheduleRegisteredReceiver(ApplicationThreadNative.java:946)</sentence>
+            <sentence id="4.78">W/ActivityManager( 1798): at com.android.server.am.ActivityManagerService.performReceiveLocked(ActivityManagerService.java:12826)</sentence>
+            <sentence id="4.79">W/ActivityManager( 1798): at com.android.server.am.ActivityManagerService.deliverToRegisteredReceiverLocked(ActivityManagerService.java:12891)</sentence>
+            <sentence id="4.80">W/ActivityManager( 1798): at com.android.server.am.ActivityManagerService.processNextBroadcast(ActivityManagerService.java:12949)</sentence>
+            <sentence id="4.81">W/ActivityManager( 1798): at com.android.server.am.ActivityManagerService.access$100(ActivityManagerService.java:151)</sentence>
+            <sentence id="4.82">W/ActivityManager( 1798): at com.android.server.am.ActivityManagerService$2.handleMessage(ActivityManagerService.java:993)</sentence>
+            <sentence id="4.83">W/ActivityManager( 1798): at android.os.Handler.dispatchMessage(Handler.java:99)</sentence>
+            <sentence id="4.84">W/ActivityManager( 1798): at android.os.Looper.loop(Looper.java:137)</sentence>
+            <sentence id="4.85">W/ActivityManager( 1798): at com.android.server.am.ActivityManagerService$AThread.run(ActivityManagerService.java:1414)</sentence>
+            <sentence id="4.86">```</sentence>
+        </paragraph>
+    </description>
+</bug>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>3</id>
+    <title>Most Youtube videos don't play for me</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">Hi,</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">I downloaded the latest NetMBuddy from F-Droid and tried to watch some Youtube videos.</sentence>
+            <sentence id="2.2">I entered "cranberries" into the search and tried to see "The Cranberries - Zombie" from their VEVO.</sentence>
+            <sentence id="2.3">I immediately saw "playing done" and logcat shows the following error:</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">&lt;pre&gt;</sentence>
+            <sentence id="3.2">W/ResponseProcessCookies( 787): Invalid cookie header: "Set-Cookie: VISITOR_INFO1_LIVE=hLkzVy3bDhc; path=/; domain=.</sentence>
+            <sentence id="3.3">youtube.com; expires=Tue, 14-Oct-2014 08:51:24 GMT".</sentence>
+            <sentence id="3.4">Unable to parse expires attribute: Tue</sentence>
+            <sentence id="3.5">W/ResponseProcessCookies( 787): Invalid cookie header: "Set-Cookie: PREF=f1=50000000; path=/; domain=.</sentence>
+            <sentence id="3.6">youtube.com; expires=Tue, 14-Oct-2014 08:51:24 GMT".</sentence>
+            <sentence id="3.7">Unable to parse expires attribute: Tue</sentence>
+            <sentence id="3.8">D/dalvikvm( 787): GC_CONCURRENT freed 518K, 46% free 4496K/8263K, external 1117K/1544K, paused 5ms+6ms</sentence>
+            <sentence id="3.9">I/dalvikvm( 787): Jit: resizing JitTable from 1024 to 2048</sentence>
+            <sentence id="3.10">D/dalvikvm( 787): GC_CONCURRENT freed 1435K, 53% free 3965K/8263K, external 1138K/1544K, paused 4ms+5ms</sentence>
+            <sentence id="3.11">I/StagefrightPlayer( 138): setDataSource('http://r2---sn-uvt5-ajwe.googlevideo.com/videoplayback?ratebypass=yes&amp;sver=3&amp;mt=1392238650&amp;expire=1392261303&amp;key=yt5&amp;id=e848e06b890952db&amp;mv=m&amp;sparams=gcr%2Cid%2Cip%2Cipbits%2Citag%2Cratebypass%2Csource%2Cupn%2Cexpire&amp;ipbits=0&amp;ip=77.237.11.50&amp;itag=18&amp;fexp=927905%2C928025%2C914072%2C916626%2C902533%2C937417%2C913434%2C936910%2C936913&amp;ms=au&amp;source=youtube&amp;upn=BJOD28vzJp0&amp;gcr=pl')</sentence>
+            <sentence id="3.12">I/NuHTTPDataSource( 138): connect to r2---sn-uvt5-ajwe.</sentence>
+            <sentence id="3.13">googlevideo.com:80/videoplayback?ratebypass=yes&amp;sver=3&amp;mt=1392238650&amp;expire=1392261303&amp;key=yt5&amp;id=e848e06b890952db&amp;mv=m&amp;sparams=gcr%2Cid%2Cip%2Cipbits%2Citag%2Cratebypass%2Csource%2Cupn%2Cexpire&amp;ipbits=0&amp;ip=77.237.11.50&amp;itag=18&amp;fexp=927905%2C928025%2C914072%2C916626%2C902533%2C937417%2C913434%2C936910%2C936913&amp;ms=au&amp;source=youtube&amp;upn=BJOD28vzJp0&amp;gcr=pl @0</sentence>
+            <sentence id="3.14">I/AwesomePlayer( 138): mConnectingDataSource-&gt;connect() returned -1004</sentence>
+            <sentence id="3.15">E/MediaPlayer( 787): error (1, -1004)</sentence>
+            <sentence id="3.16">E/MediaPlayer( 787): Error (1,-1004)</sentence>
+            <sentence id="3.17">I/StagefrightPlayer( 138): setDataSource('http://r2---sn-uvt5-ajwe.googlevideo.com/videoplayback?ratebypass=yes&amp;sver=3&amp;mt=1392238650&amp;expire=1392261303&amp;key=yt5&amp;id=e848e06b890952db&amp;mv=m&amp;sparams=gcr%2Cid%2Cip%2Cipbits%2Citag%2Cratebypass%2Csource%2Cupn%2Cexpire&amp;ipbits=0&amp;ip=77.237.11.50&amp;itag=18&amp;fexp=927905%2C928025%2C914072%2C916626%2C902533%2C937417%2C913434%2C936910%2C936913&amp;ms=au&amp;source=youtube&amp;upn=BJOD28vzJp0&amp;gcr=pl')</sentence>
+            <sentence id="3.18">I/NuHTTPDataSource( 138): connect to r2---sn-uvt5-ajwe.</sentence>
+            <sentence id="3.19">googlevideo.com:80/videoplayback?ratebypass=yes&amp;sver=3&amp;mt=1392238650&amp;expire=1392261303&amp;key=yt5&amp;id=e848e06b890952db&amp;mv=m&amp;sparams=gcr%2Cid%2Cip%2Cipbits%2Citag%2Cratebypass%2Csource%2Cupn%2Cexpire&amp;ipbits=0&amp;ip=77.237.11.50&amp;itag=18&amp;fexp=927905%2C928025%2C914072%2C916626%2C902533%2C937417%2C913434%2C936910%2C936913&amp;ms=au&amp;source=youtube&amp;upn=BJOD28vzJp0&amp;gcr=pl @0</sentence>
+            <sentence id="3.20">I/AwesomePlayer( 138): mConnectingDataSource-&gt;connect() returned -1004</sentence>
+            <sentence id="3.21">E/MediaPlayer( 787): error (1, -1004)</sentence>
+            <sentence id="3.22">E/MediaPlayer( 787): Error (1,-1004)</sentence>
+            <sentence id="3.23">I/StagefrightPlayer( 138): setDataSource('http://r2---sn-uvt5-ajwe.googlevideo.com/videoplayback?ratebypass=yes&amp;sver=3&amp;mt=1392238650&amp;expire=1392261303&amp;key=yt5&amp;id=e848e06b890952db&amp;mv=m&amp;sparams=gcr%2Cid%2Cip%2Cipbits%2Citag%2Cratebypass%2Csource%2Cupn%2Cexpire&amp;ipbits=0&amp;ip=77.237.11.50&amp;itag=18&amp;fexp=927905%2C928025%2C914072%2C916626%2C902533%2C937417%2C913434%2C936910%2C936913&amp;ms=au&amp;source=youtube&amp;upn=BJOD28vzJp0&amp;gcr=pl')</sentence>
+            <sentence id="3.24">D/dalvikvm( 326): GC_CONCURRENT freed 378K, 48% free 3167K/6087K, external 638K/1023K, paused 4ms+42ms</sentence>
+            <sentence id="3.25">I/NuHTTPDataSource( 138): connect to r2---sn-uvt5-ajwe.</sentence>
+            <sentence id="3.26">googlevideo.com:80/videoplayback?ratebypass=yes&amp;sver=3&amp;mt=1392238650&amp;expire=1392261303&amp;key=yt5&amp;id=e848e06b890952db&amp;mv=m&amp;sparams=gcr%2Cid%2Cip%2Cipbits%2Citag%2Cratebypass%2Csource%2Cupn%2Cexpire&amp;ipbits=0&amp;ip=77.237.11.50&amp;itag=18&amp;fexp=927905%2C928025%2C914072%2C916626%2C902533%2C937417%2C913434%2C936910%2C936913&amp;ms=au&amp;source=youtube&amp;upn=BJOD28vzJp0&amp;gcr=pl @0</sentence>
+            <sentence id="3.27">I/AwesomePlayer( 138): mConnectingDataSource-&gt;connect() returned -1004</sentence>
+            <sentence id="3.28">E/MediaPlayer( 787): error (1, -1004)</sentence>
+            <sentence id="3.29">E/MediaPlayer( 787): Error (1,-1004)</sentence>
+            <sentence id="3.30">V/lights ( 228): set_light_buttons state-&gt;color = -16777216 is_lit = 0</sentence>
+            <sentence id="3.31">V/lights ( 228): write_int: path /sys/class/leds/button-backlight/brightness, value 0</sentence>
+            <sentence id="3.32">D/droidparts-battery-widget( 692): battery state: level=77, charging=true</sentence>
+            <sentence id="3.33">D/droidparts-battery-widget( 692): widgets updated</sentence>
+            <sentence id="3.34">&lt;/pre&gt;</sentence>
+        </paragraph>
+        <paragraph id="4">
+            <sentence id="4.1">Generally, most of the youtube videos don't seem to work, not sure if all of these are from Vevo.</sentence>
+        </paragraph>
+    </description>
+</bug>

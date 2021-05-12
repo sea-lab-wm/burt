@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>31</id>
+    <title>History list does not display comments</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">What steps will reproduce the problem?</sentence>
+            <sentence id="1.2">1. Add fillup with comment</sentence>
+            <sentence id="1.3">2. View history</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">Expected behavior:</sentence>
+            <sentence id="2.2">Comment displayed</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">Actual behavior:</sentence>
+            <sentence id="3.2">Comment is not displayed</sentence>
+        </paragraph>
+        <paragraph id="4">
+            <sentence id="4.1">Mileage version: 3.0.8</sentence>
+            <sentence id="4.2">Android version: Irrelevant</sentence>
+            <sentence id="4.3">Device: Irrelevant</sentence>
+        </paragraph>
+        <paragraph id="5">
+            <sentence id="5.1">Please use labels and text to provide additional information.</sentence>
+        </paragraph>
+    </description>
+</bug>

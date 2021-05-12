@@ -1,0 +1,1 @@
+"* [0] Force Close when enter word with apostrophe -> [S_OB_ERROR_AS_SUBJECT, S_OB_NEG_COND]"

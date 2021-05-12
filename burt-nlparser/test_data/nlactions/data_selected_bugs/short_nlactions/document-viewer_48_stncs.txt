@@ -1,0 +1,6 @@
+"* [0] Sometimes 'Go to...' or 'Outline' doesn't work -> [S_OB_NEG_AUX_VERB]"
+"* [1.1] It's a weird issue. -> [S_OB_NEG_ADV_ADJ]"
+"* [1.2] Usually when I press 'Go to...' and type a number and press 'Go', it simply refreshes at the original page, not the page I inputted. -> [S_SR_COND_OBS, S_OB_COND_POS]"
+"* [1.3] I need to do twice or so to switch to a new page. -> [S_OB_VERB_ERROR, S_OB_NEG_ADV_ADJ, S_OB_ERROR_AS_SUBJECT]"
+"* [1.4] The problem of 'Outline' is similar. -> [S_OB_ERROR_AS_SUBJECT]"
+"* [1.5] When I choose a page in 'Outline', it stops at the original page. -> [S_SR_COND_OBS, S_OB_COND_NEG, S_OB_NEG_VERB]"

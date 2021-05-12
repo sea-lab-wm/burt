@@ -19,14 +19,16 @@ public class OBChecker {
     private final String appVersion;
 
     private GraphState currentState;
+    private String parsersBaseFolder;
 
-    public OBChecker(String appName, String appVersion) {
+    public OBChecker(String appName, String appVersion, String parsersBaseFolder) {
         this.appName = appName;
         this.appVersion = appVersion;
+        this.parsersBaseFolder = parsersBaseFolder;
     }
 
     public QualityResult checkOb(String obDescription) throws Exception {
-        List<NLAction> nlActions = NLParser.parseText(appName, obDescription);
+        List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, obDescription);
         if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
         return matchActions(nlActions);
     }

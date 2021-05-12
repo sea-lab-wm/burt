@@ -1,0 +1,3 @@
+"+";"Editing the entry later has the same result, the old transaction amount sticks.";"[{"sub":"user", "act":"edit", "obj":"entry"}]"
+"-";"Setting date range shows "set date" dialog thrice";""
+"-";"Using GT-I8160 (Ace 2) with unofficial CyanogenMod 10.1, if it helps.";""

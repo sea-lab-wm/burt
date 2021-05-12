@@ -6,9 +6,11 @@ import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.nio.file.Path;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
+
 public class ProvideS2RFirstAction extends ChatbotAction {
 
     public ProvideS2RFirstAction(Intent nextExpectedIntent) {
@@ -21,8 +23,10 @@ public class ProvideS2RFirstAction extends ChatbotAction {
         state.remove(COLLECTING_EB);
         String appName = state.get(APP).toString();
         String appVersion = state.get(APP_VERSION).toString();
-        String resourcesPath ="../burt-quality-checker/src/main/resources";
-        if (!state.containsKey(S2R_CHECKER)) state.put(S2R_CHECKER, new S2RChecker(appName, appVersion, resourcesPath));
+        String resourcesPath = "../burt-quality-checker/src/main/resources";
+        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
+        if (!state.containsKey(S2R_CHECKER)) state.put(S2R_CHECKER,
+                new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder));
         return new ChatbotMessage(" Okay. Now I need to know the steps that you performed and caused the problem. Can" +
                 " you please tell me the first step that you performed?");
     }

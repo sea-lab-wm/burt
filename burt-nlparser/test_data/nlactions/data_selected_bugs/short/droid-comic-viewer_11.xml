@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<bug>
+  <id>11</id>
+  <title>Crash when long-pressing a folder</title>
+  <description>Crash on Nexus 4, ACV 1.4.1.4:
+1. start the app
+2. click menu
+3. choose "open"
+4. go to directories like /mnt
+5. long-press a folder, like "secure"
+6. crash
+
+The reason is that, when you don't have permission, File.list() would return null. But this is not checked. The problem happens in src/net/robotmedia/acv/ui/SDBrowserActivity.java:111, where you called file.list() and later used the result. The return code may be null.
+
+In this case, it's due to permission, so maybe it's not that interesting. However, it may also return null due to other reasons. Anyway, showing an error message is better than crashing.
+</description>
+</bug>

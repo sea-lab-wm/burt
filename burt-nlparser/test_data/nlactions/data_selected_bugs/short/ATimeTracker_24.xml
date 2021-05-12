@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<bug>
+  <id>24</id>
+  <title>Setting date range shows "set date" dialog thrice</title>
+  <description>Open time tracker
+Create few task to track
+select menu-&gt;more option
+Tap on change date range-&gt;select range option
+By default current date is marked in date time picker
+Tap done
+Again By default current date is marked in date time picker
+Tap done
+
+Expected: Both start and end range should be set as current date 
+Actual: Start date was set as current date and end range is mapped to immediate next date. And also Date time picker is shown for third time with current date set as default option.
+</description>
+</bug>

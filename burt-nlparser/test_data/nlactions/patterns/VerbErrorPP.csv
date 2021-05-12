@@ -1,0 +1,7 @@
+"+";"Ever since I turned the LogLevel from 'warn' to 'info', I've received thousands of the following messages in httpd-error.log";"[{"sub":"user", "act":"receive", "obj":"following messages", "prep":"in", "obj2":"httpd-error"}]"
+"+";"it yields this error and configure exits:";"[{"sub":"app", "act":"yield", "obj":"error"}]"
+"+";"Which causes the error:";"[{"sub":"app", "act":"cause", "obj":"error"}]"
+"//+";"I installed the new Apache 2.0.40, and when I try to restart the service I get an error saying: Cannot load C:/php-4.2.2-Win32/sapi/php4apache2.dll into server: The specified procedure could not be found.";"[{"sub":"user", "act":"get", "obj":"error"}]"
+"+";"it returns with error";"[{"sub":"app", "act":"return", "prep":"with", "obj2":"error"}]"
+"//+";"they get a "network error" OK dialog box come up";"[{"sub":"user", "act":"get", "obj":"network error"}]"
+"-";"What steps will reproduce the problem?";""

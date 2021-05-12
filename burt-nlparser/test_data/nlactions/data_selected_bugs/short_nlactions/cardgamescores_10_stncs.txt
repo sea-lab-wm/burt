@@ -1,0 +1,2 @@
+"* [0] NumberFormatException caused by Invalid Inputs -> [S_OB_VERB_ERROR, S_OB_NEG_ADV_ADJ, S_OB_ERROR_AS_SUBJECT, S_OB_ERROR_NOUN_PHRASE]"
+"* [1.1] App crashes with the following stack traces when "Maximum Score" is the character "-" or is a big number. -> [S_OB_VERB_ERROR, S_OB_NEG_VERB, S_OB_COND_POS, S_OB_NEG_COND]"

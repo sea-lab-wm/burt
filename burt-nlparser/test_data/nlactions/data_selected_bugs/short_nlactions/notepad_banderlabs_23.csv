@@ -1,0 +1,4 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"long tap";;"on";"note";"ActionsSeparatorPP";"Long tap on note > send note > crash";"0";""
+"1";"SR";"2";"user";"";"send";"note";;;"ActionsSeparatorPP";"Long tap on note > send note > crash";"0";""
+"1";"OB";"3";"app";"";"crash";;;;"NegativeVerbPP";"Long tap on note > send note > crash";"0";""

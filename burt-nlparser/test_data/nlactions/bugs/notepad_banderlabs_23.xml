@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>23</id>
+    <title>Long tap on note &gt; send note &gt; crash</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">```</sentence>
+            <sentence id="1.2">The summary pretty much tell you how to reproduce the issue.</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">Using GT-I8160 (Ace 2) with unofficial CyanogenMod 10.1, if it helps.</sentence>
+            <sentence id="2.2">```</sentence>
+        </paragraph>
+        <paragraph id="3">
+            <sentence id="3.1">Original issue reported on code.google.com by `alexejsc...@gmail.com` on 27 Nov 2013 at 12:49</sentence>
+        </paragraph>
+    </description>
+</bug>

@@ -7,6 +7,7 @@ import seers.appcore.xml.XMLHelper;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledBugReport;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledDescriptionSentence;
 
+import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,8 @@ class OBCheckerTest {
 
         String appName = "Gnucash";
         String appVersion = "2.0.4";
-        OBChecker checker = new OBChecker(appName, appVersion);
+        String parsersBaseFolder =  Path.of("..", "burt-nlparser").toString();
+        OBChecker checker = new OBChecker(appName, appVersion, parsersBaseFolder);
 
         LinkedList<String> allSentences =
                 bugReport.getDescription().getAllSentences().stream()

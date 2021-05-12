@@ -3,6 +3,7 @@ S_SR_IMPERATIVE_SEQUENCE;ImperativeSequencePM 148
 S_SR_SIMPLE_PAST;SimplePastPM 144
 S_SR_TRY;TrySentencePM 77
 S_SR_ACTIONS_SEPARATOR;ActionsSeparatorPM 87
+S_SR_SIMPLE_PRESENT_SUBORDINATES;SimplePresentSubordinatesPM 80
 
 S_OB_NEG_AUX_VERB;NegativeAuxVerbPM 30
 S_OB_COND_NEG;ConditionalNegativePM 40

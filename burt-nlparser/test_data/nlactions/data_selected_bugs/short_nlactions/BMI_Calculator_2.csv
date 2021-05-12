@@ -1,0 +1,4 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"leave blank";"field";;;"ConditionalObsBehaviorPP";"If a field is left blank upon pressing the calculate button the app fails";"1.1";""
+"1";"SR";"2";"user";"";"press";"calculate button";;;"ConditionalObsBehaviorPP";"If a field is left blank upon pressing the calculate button the app fails";"1.1";""
+"1";"OB";"3";"app";"";"fail";;;;"NegativeVerbPP";"If a field is left blank upon pressing the calculate button the app fails";"1.1";""

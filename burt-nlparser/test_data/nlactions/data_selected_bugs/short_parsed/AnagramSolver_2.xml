@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>2</id>
+    <title>Force Close when enter word with apostrophe</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">Application crashes with the following stack trace when the next sequence of events is fired:</sentence>
+            <sentence id="1.2">starting by main activity</sentence>
+            <sentence id="1.3">Enter a new word with an apostrophe (example: test')</sentence>
+            <sentence id="1.4">click on "Search words!"</sentence>
+        </paragraph>
+        <paragraph id="2">
+            <sentence id="2.1">E/AndroidRuntime( 785): FATAL EXCEPTION: AsyncTask #4</sentence>
+            <sentence id="2.2">E/AndroidRuntime( 785): java.lang.RuntimeException: An error occured while executing doInBackground()</sentence>
+            <sentence id="2.3">E/AndroidRuntime( 785): at android.os.AsyncTask$3.done(AsyncTask.java:299)</sentence>
+            <sentence id="2.4">E/AndroidRuntime( 785): at java.util.concurrent.FutureTask$Sync.innerSetException(FutureTask.java:273)</sentence>
+            <sentence id="2.5">E/AndroidRuntime( 785): at java.util.concurrent.FutureTask.setException(FutureTask.java:124)</sentence>
+            <sentence id="2.6">E/AndroidRuntime( 785): at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:307)</sentence>
+            <sentence id="2.7">E/AndroidRuntime( 785): at java.util.concurrent.FutureTask.run(FutureTask.java:137)</sentence>
+            <sentence id="2.8">E/AndroidRuntime( 785): at android.os.AsyncTask$SerialExecutor$1.run(AsyncTask.java:230)</sentence>
+            <sentence id="2.9">E/AndroidRuntime( 785): at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1076)</sentence>
+            <sentence id="2.10">E/AndroidRuntime( 785): at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:569)</sentence>
+            <sentence id="2.11">E/AndroidRuntime( 785): at java.lang.Thread.run(Thread.java:856)</sentence>
+            <sentence id="2.12">E/AndroidRuntime( 980): Caused by: android.database.sqlite.SQLiteException: near "est": syntax error (code 1): , while compiling: SELECT word FROM English WHERE aword=''est'</sentence>
+            <sentence id="2.13">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteConnection.nativePrepareStatement(Native Method)</sentence>
+            <sentence id="2.14">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteConnection.acquirePreparedStatement(SQLiteConnection.java:882)</sentence>
+            <sentence id="2.15">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteConnection.prepare(SQLiteConnection.java:493)</sentence>
+            <sentence id="2.16">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteSession.prepare(SQLiteSession.java:588)</sentence>
+            <sentence id="2.17">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteProgram.&lt;init&gt;(SQLiteProgram.java:58)</sentence>
+            <sentence id="2.18">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteQuery.&lt;init&gt;(SQLiteQuery.java:37)</sentence>
+            <sentence id="2.19">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteDirectCursorDriver.query(SQLiteDirectCursorDriver.java:44)</sentence>
+            <sentence id="2.20">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteDatabase.rawQueryWithFactory(SQLiteDatabase.java:1314)</sentence>
+            <sentence id="2.21">E/AndroidRuntime( 785): at android.database.sqlite.SQLiteDatabase.rawQuery(SQLiteDatabase.java:1253)</sentence>
+            <sentence id="2.22">E/AndroidRuntime( 785): at com.as.anagramsolver.DictionaryDBCreator.rawQueryResults(DictionaryDBCreator.java:189)</sentence>
+            <sentence id="2.23">E/AndroidRuntime( 785): at com.as.anagramsolver.DictionaryDBCreator.getMatchingAnagrams(DictionaryDBCreator.java:172)</sentence>
+            <sentence id="2.24">E/AndroidRuntime( 785): at com.as.anagramsolver.StartPage$DBSearchTask.searchAllMatchingAnagrams(StartPage.java:208)</sentence>
+            <sentence id="2.25">E/AndroidRuntime( 785): at com.as.anagramsolver.StartPage$DBSearchTask.doInBackground(StartPage.java:142)</sentence>
+            <sentence id="2.26">E/AndroidRuntime( 785): at com.as.anagramsolver.StartPage$DBSearchTask.doInBackground(StartPage.java:114)</sentence>
+            <sentence id="2.27">E/AndroidRuntime( 785): at android.os.AsyncTask$2.call(AsyncTask.java:287)</sentence>
+            <sentence id="2.28">E/AndroidRuntime( 785): at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:305)</sentence>
+            <sentence id="2.29">E/AndroidRuntime( 785): ... 5 more</sentence>
+        </paragraph>
+    </description>
+</bug>

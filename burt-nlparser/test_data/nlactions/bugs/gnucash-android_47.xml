@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>47</id>
+    <title>Crash when creating account names with an apostrophe</title>
+</bug>

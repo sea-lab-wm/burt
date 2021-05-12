@@ -453,7 +453,7 @@ public class ActionsInfinitivePP extends NLActionPatternParser {
         }
 
         //--------------------------------
-        // recurvise calls, by conjunctions when deps/pos parsing is innacurate
+        // recursive calls, by conjunctions when deps/pos parsing is inaccurate
 
         if (pairs.isEmpty()) {
 

@@ -1,0 +1,4 @@
+"+";"Crash when long-pressing a folder";"[{"sub":"app", "act":"crash"}]"
+"+";"6. crash";"[{"sub":"app", "act":"crash"}]"
+"+";"Crash on Nexus 4, ACV 1.4.1.4";"[{"sub":"app", "act":"crash"}]"
+"-";"Anyway, showing an error message is better than crashing.";""

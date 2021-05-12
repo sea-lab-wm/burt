@@ -1,0 +1,3 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"OB";"1";"Most Youtube videos";"not";"play";;"for";"me";"NegativeAuxVerbPP";"Most Youtube videos don't play for me";"0";""
+"1";"OB";"2";""playing done"";"";"show";"following error";;;"OutputVerbPP";"I immediately saw "playing done" and logcat shows the following error:";"2.3";""

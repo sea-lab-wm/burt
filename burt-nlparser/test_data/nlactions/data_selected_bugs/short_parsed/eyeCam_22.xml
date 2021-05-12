@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>22</id>
+    <title>"Unfortunately eyeCam has stopped."</title>
+    <description>
+        <paragraph id="1">
+            <sentence id="1.1">Sadly nowhere to submit debugging Info but I'm especially surprised as this is the Google nexus 5 flagship phone with the latest stock rom, unrooted.</sentence>
+        </paragraph>
+    </description>
+</bug>

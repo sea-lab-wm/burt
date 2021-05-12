@@ -1,0 +1,6 @@
+"scenario";"sntc_type";"sequence";"subject";"negation";"action";"object";"preposition";"object2";"parsing_class";"original_stnc";"sntc_id";"trace"
+"1";"SR";"1";"user";"";"press";"'Go to...'";;;"ConditionalObsBehaviorPP";"Usually when I press 'Go to...' and type a number and press 'Go', it simply refreshes at the original page, not the page I inputted.";"1.2";""
+"1";"SR";"2";"user";"";"type";"number";;;"ConditionalObsBehaviorPP";"Usually when I press 'Go to...' and type a number and press 'Go', it simply refreshes at the original page, not the page I inputted.";"1.2";""
+"1";"OB";"3";"app";"";"refresh";;"at";"original page";"ConditionalPositivePP";"Usually when I press 'Go to...' and type a number and press 'Go', it simply refreshes at the original page, not the page I inputted.";"1.2";""
+"1";"SR";"4";"user";"";"choose";"page";"in";"'Outline'";"ConditionalObsBehaviorPP";"When I choose a page in 'Outline', it stops at the original page.";"1.5";""
+"1";"OB";"5";"app";"";"stop";;"at";"original page";"NegativeVerbPP";"When I choose a page in 'Outline', it stops at the original page.";"1.5";""

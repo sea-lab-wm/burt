@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<bug>
+  <id>48</id>
+  <title>Sometimes 'Go to...' or 'Outline' doesn't work</title>
+  <description>It's a weird issue. Usually when I press 'Go to...' and type a number and press 'Go', it simply refreshes at the original page, not the page I inputted. I need to do twice or so to switch to a new page. The problem of 'Outline' is similar. When I choose a page in 'Outline', it stops at the original page. I need to do this many times to switch a page.
+
+Android 4.1.2 (my Samsung phone) &amp; Android 4.1.1 (my Samsung tab)
+Document Viewer 2.5, installed from F-Droid.
+</description>
+</bug>

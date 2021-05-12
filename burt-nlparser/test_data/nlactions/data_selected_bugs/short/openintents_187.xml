@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<bug>
+  <id>187</id>
+  <title>OI Notepad: Sort order does not work with encrypted notes</title>
+  <description>```
+What steps will reproduce the problem?
+1. In OI Notepad, choose alphabetical sort ordering.
+2. Encrypted notes appear at seemingly random places.
+
+Encrypted notes are sorted according to their encrypted version, not 
+according to the decrypted string.
+```
+
+Original issue reported on code.google.com by `peli0...@googlemail.com` on 20 Jan 2009 at 9:54
+</description>
+</bug>

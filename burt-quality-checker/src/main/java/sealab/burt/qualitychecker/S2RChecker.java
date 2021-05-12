@@ -7,8 +7,6 @@ import edu.semeru.android.core.helpers.device.DeviceHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.actionparser.*;
 import sealab.burt.qualitychecker.graph.*;
@@ -51,19 +49,27 @@ class S2RChecker {
     private GraphState currentState;
     private AppGraphInfo executionGraph;
     private HashMap<Integer, Integer> statesExecuted = new HashMap<>();
+    private String parsersBaseFolder;
 
-    public S2RChecker(String appName, String appVersion, String resourcesPath) {
+    public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder) {
         this.appName = appName;
         this.appVersion = appVersion;
+        this.parsersBaseFolder = parsersBaseFolder;
 
         s2rParser = new NLActionS2RParser(null, resourcesPath);
         resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 
     public QualityResult checkS2R(String S2RDescription) throws Exception {
-        List<NLAction> nlActions = NLParser.parseText(appName, S2RDescription);
+        List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, S2RDescription);
         if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
-        return matchActions(nlActions);
+        return matchActions(nlActions, null);
+    }
+
+    public QualityResult checkS2R(String S2RDescription, int currentState) throws Exception {
+        List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, S2RDescription);
+        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
+        return matchActions(nlActions, currentState);
     }
 
     public QualityResult checkS2R(NLAction action) throws Exception {
@@ -77,16 +83,24 @@ class S2RChecker {
         return matchAction(action);
     }
 
-    private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
+    private QualityResult matchActions(List<NLAction> nlActions, Integer currentStateId) throws Exception {
         executionGraph = GraphReader.getGraph(appName, appVersion);
 
-        if (currentState == null)
-            currentState = GraphState.START_STATE;
+        if (this.currentState == null)
+            this.currentState = GraphState.START_STATE;
 
-        log.debug("Current state: " + currentState);
+        if (currentStateId != null) {
+            currentState = executionGraph.getStates().stream()
+                    .filter(s -> s.getUniqueHash().equals(currentStateId))
+                    .findFirst().get();
+        }
+
+        log.debug("Current state: " + this.currentState);
 
         //focus on the 1st action for now
         NLAction nlAction = nlActions.get(0);
+
+        log.debug("Matching action: " + nlAction);
 
         return matchAction(nlAction);
     }

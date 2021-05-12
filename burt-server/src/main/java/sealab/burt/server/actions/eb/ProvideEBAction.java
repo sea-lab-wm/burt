@@ -6,6 +6,7 @@ import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.nio.file.Path;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
@@ -21,7 +22,8 @@ public class ProvideEBAction extends ChatbotAction {
         state.put(COLLECTING_EB, true);
         String appName = state.get(StateVariable.APP).toString();
         String appVersion = state.get(APP_VERSION).toString();
-        if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new EBChecker(appName, appVersion));
+        String parsersBaseFolder =  Path.of("..", "burt-nlparser").toString();
+        if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new EBChecker(appName, appVersion, parsersBaseFolder));
         return new ChatbotMessage("ok, can you please tell me how the app is supposed to work instead?");
     }
 }

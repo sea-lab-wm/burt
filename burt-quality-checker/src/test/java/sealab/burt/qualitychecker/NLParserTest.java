@@ -11,6 +11,7 @@ import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledBugReport;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledDescriptionSentence;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,6 +46,7 @@ class NLParserTest {
 
     private void testSentenceParsing(List<ImmutablePair<String, ShortLabeledBugReport>> bugReportPairs,
                                      Function<ShortLabeledDescriptionSentence, Boolean> filter) throws Exception {
+        String baseFolder = Path.of("..", "burt-nlparser").toString();
         float  numErrors = 0;
         int totalNumSentences = 0;
         for (ImmutablePair<String, ShortLabeledBugReport> brPair : bugReportPairs) {
@@ -72,7 +74,7 @@ class NLParserTest {
                 System.out.println("* Parsing sentence:");
                 System.out.println(sentence);
 
-                List<NLAction> actions = NLParser.parseText(appName, sentence);
+                List<NLAction> actions = NLParser.parseText(baseFolder, appName, sentence);
 
                 if(actions == null || actions.isEmpty())
                     numErrors++;

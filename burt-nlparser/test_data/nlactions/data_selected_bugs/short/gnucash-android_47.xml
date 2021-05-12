@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<bug>
+  <id>47</id>
+  <title>Crash when creating account names with an apostrophe</title>
+  <body/>
+</bug>

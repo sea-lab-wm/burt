@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<bug>
+  <id>256</id>
+  <title>Autocomplete problems</title>
+  <description>(My experience with this bug relates to issue #254 but is perhaps separate.)
+
+When I create an entry for a purchase, the autocomplete list shows up, per usual. If I pick one of the suggestions, the previous amount associated with that suggestion populates the field (normal behavior). Even if I change the value before saving the entry, the old value is retained. Editing the entry later has the same result, the old transaction amount sticks. Luckly I caught this before too many entries were affected.
+
+I would like to be able to completely disable the autocomplete feature, or at least disable the automatic population of the transaction amount. The majority of my transactions are not repetitive (different dollar amounts at the same stores, varying bills each month, etc), and it ends up creating a lot more work than it saves me time.
+
+Thanks for your hard work on this project!
+</description>
+</bug>

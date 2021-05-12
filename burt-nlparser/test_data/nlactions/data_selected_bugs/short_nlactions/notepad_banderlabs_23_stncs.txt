@@ -1,0 +1,4 @@
+"* [0] Long tap on note > send note > crash -> [S_SR_IMPERATIVE_SEQUENCE, S_SR_ACTIONS_SEPARATOR, S_OB_VERB_ERROR, S_OB_NEG_VERB]"
+"* [1.2] The summary pretty much tell you how to reproduce the issue. -> [S_OB_VERB_ERROR]"
+"* [2.1] Using GT-I8160 (Ace 2) with unofficial CyanogenMod 10.1, if it helps. -> [S_OB_COND_POS, S_OB_ACTION_SUBJECT]"
+"* [3.1] Original issue reported on code.google.com by `alexejsc...@gmail.com` on 27 Nov 2013 at 12:49 -> [S_OB_ERROR_AS_SUBJECT, S_OB_OUTPUT_VERB]"

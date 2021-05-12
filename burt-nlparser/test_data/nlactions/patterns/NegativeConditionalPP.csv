@@ -1,0 +1,2 @@
+"+";"Even if I change the value before saving the entry, the old value is retained.";"[{"sub":"app", "act":"retain", "obj":"old value"}]"
+"+";"App crashes with the following stack traces when "Maximum Score" is a big number.";"[{"sub":"App", "act":"crash"}]"

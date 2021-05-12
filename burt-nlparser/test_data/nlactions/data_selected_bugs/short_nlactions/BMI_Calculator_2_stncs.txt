@@ -1,0 +1,2 @@
+"* [0] FC blank fields -> [S_OB_NEG_ADV_ADJ, S_OB_ERROR_NOUN_PHRASE]"
+"* [1.1] If a field is left blank upon pressing the calculate button the app force closes -> [S_SR_COND_OBS, S_OB_COND_NEG, S_OB_VERB_ERROR, S_OB_NEG_VERB, S_OB_NEG_ADV_ADJ, S_OB_ERROR_AS_SUBJECT, S_OB_NEG_COND, S_OB_ERROR_NOUN_PHRASE]"

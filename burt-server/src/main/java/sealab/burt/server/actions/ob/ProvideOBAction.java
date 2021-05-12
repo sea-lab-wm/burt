@@ -6,6 +6,7 @@ import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,7 +23,8 @@ public class ProvideOBAction extends ChatbotAction {
         String appName = state.get(APP).toString();
         String appVersion = state.get(APP_VERSION).toString();
         state.put(COLLECTING_OB, true);
-        if (!state.containsKey(OB_CHECKER)) state.put(OB_CHECKER, new OBChecker(appName, appVersion));
+        String parsersBaseFolder =  Path.of("..", "burt-nlparser").toString();
+        if (!state.containsKey(OB_CHECKER)) state.put(OB_CHECKER, new OBChecker(appName, appVersion, parsersBaseFolder));
         return new ChatbotMessage(MessageFormat.format("Ok, can you please tell me the incorrect behavior that you " +
                 "observed in {0}?", appName));
     }

@@ -11,14 +11,16 @@ public class EBChecker {
 
     private final String app;
     private final String appVersion;
+    private String parsersBaseFolder;
 
-    public EBChecker(String app, String appVersion) {
+    public EBChecker(String app, String appVersion, String parsersBaseFolder) {
         this.app = app;
         this.appVersion = appVersion;
+        this.parsersBaseFolder = parsersBaseFolder;
     }
 
     public QualityResult checkEb(String ebDescription) throws Exception {
-        List<NLAction> nlActions = NLParser.parseText(app, ebDescription);
+        List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, app, ebDescription);
         if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
         return matchActions(nlActions);
     }
