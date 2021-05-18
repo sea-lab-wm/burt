@@ -223,8 +223,8 @@
         float: left;
         width: 100%;
         min-height: 30px;
-        margin-left: 2.564102564102564%;
-        *margin-left: 2.5109110747408616%;
+        margin-left: 4.564102564102564%;
+        /**margin-left: 2.5109110747408616%;*/
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
@@ -268,7 +268,7 @@
         *width: 40.11774868157847%;
     }
     .row-fluid .span4 {
-        width: 20.623931623931625%;
+        width: 15.623931623931625%;
         *width: 31.570740134569924%;
     }
     .row-fluid .span3 {

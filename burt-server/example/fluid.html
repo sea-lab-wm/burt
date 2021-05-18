@@ -9,6 +9,22 @@
 
     <!-- Le styles -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.btn').on('click', function() {
+                const divElement = $(this);
+                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('#imagemodal').modal('show');
+                $('#modal_title').html(divElement.attr('title'));
+            });
+        });
+    </script>
     <style type="text/css">
         body {
             padding-top: 60px;
@@ -44,95 +60,107 @@
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <a class="brand" href="#">Bug Report # , App and Version: </a>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="#">Bug Report # , App and Version: </a>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container-fluid">
-    <div class="row-fluid">
+    <div class="container-fluid">
+        <div class="row-fluid">
 
-        <div class="span10">
-            <div class="row-fluid">
-                <div class="span5">
-                    <h2>Observed Behavior</h2>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-                <div class="span5">
-                    <h2>Expected Behavior</h2>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-            </div><!--/row-->
+            <div class="span10">
+                <div class="row-fluid">
+                    <div class="span5">
+                        <h2>Observed Behavior</h2>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
 
 
-            <h3>Steps to Reproduce </h3>
-            <div class="row-fluid">
-                <div class="span4">
-                    <h4>Heading</h4>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tort commodo, tort</p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-                <div class="span4" >
-                    <h4 class=>Heading</h4>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                        Donec id elit noncommodo, tort</p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-                <div class="span4">
-                    <h4>Heading</h4>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-                <div class="span4">
-                    <h4>Heading</h4>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gr
-                       avida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-            </div><!--/row-->
+                    </div><!--/span-->
+                    <div class="span5">
+                        <h2>Expected Behavior</h2>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
 
-            <div class="row-fluid">
-                <div class="span4">
-                    <h4>Heading</h4>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-                <div class="span4">
-                    <h4>Heading</h4>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-                <div class="span4">
-                    <h4>Heading</h4>
-                    <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div><!--/span-->
-            </div><!--/row-->
-        </div><!--/span-->
-    </div><!--/row-->
+                    </div><!--/span-->
+                </div><!--/row-->
 
-    <hr>
 
-    <footer>
-        <p>&copy; Company 2013</p>
-    </footer>
+                <h3>Steps to Reproduce </h3>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                            </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
 
-</div><!--/.fluid-container-->
+                    </div><!--/span-->
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, entum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+
+                    </div><!--/span-->
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gr
+                           avida at eget metus. Fusce dapibus, tellus ac cursus comm. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+
+                    </div><!--/span-->
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gr
+                            avida at eget metus. Fusce dapibus, tellus ac cursus comm. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+
+                    </div><!--/span-->
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gr
+                            avida at eget metus. Fusce dapibus, tellus ac cursus comm. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#" data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+
+                    </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+
+                    </div><!--/span-->
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+
+                    </div><!--/span-->
+                    <div class="span4">
+                        <h4>Heading</h4>
+                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <div class="btn" href="#" data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+
+                    </div><!--/span-->
+                </div><!--/row-->
+            </div><!--/span-->
+        </div><!--/row-->
+    </div>
+<!--</div>&lt;!&ndash;/.fluid-container&ndash;&gt;-->
 
 <!-- Le javascript
 ================================================== -->
@@ -150,6 +178,23 @@
 <script src="../assets/js/bootstrap-collapse.js"></script>
 <script src="../assets/js/bootstrap-carousel.js"></script>
 <script src="../assets/js/bootstrap-typeahead.js"></script>
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modal_title">Step</span>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <img src="" class="imagepreview">
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
