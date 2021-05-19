@@ -1,4 +1,5 @@
 //"+";"click another day";"[{"sub":"user", "act":"click", "obj":"another day"}]"
+"+";"Now again select " Export view to csv"";"[{"sub":"user", "act":"select", "obj":"\" Export view to csv\""}]"
 "+";"click the "preferences icon"";"[{"sub":"user", "act":"click", "obj":"\"preferences icon\""}]"
 "+";"select "configure taps"";"[{"sub":"user", "act":"select", "obj":"\"configure taps\""}]"
 "+";"Click on the NEW GAME button";"[{"sub":"user", "act":"click", "prep":"on", "obj2":"NEW GAME button"}]"

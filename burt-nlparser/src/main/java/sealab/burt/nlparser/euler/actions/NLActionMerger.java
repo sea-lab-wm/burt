@@ -19,7 +19,7 @@ public class NLActionMerger {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NLActionMerger.class);
 
-	private String systemName;
+	private final String systemName;
 
 	public NLActionMerger(String systemName) {
 		super();

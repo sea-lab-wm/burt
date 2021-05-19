@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2019, SEMERU
  * All rights reserved.
- *  
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
@@ -10,7 +10,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- *  
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -21,7 +21,7 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *  
+ *
  * The views and conclusions contained in the software and documentation are those
  * of the authors and should not be interpreted as representing official policies,
  * either expressed or implied, of the FreeBSD Project.
@@ -30,6 +30,8 @@ package sealab.burt.qualitychecker;
 
 import edu.semeru.android.core.helpers.device.DeviceHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.graph.AppGuiComponent;
 import sealab.burt.qualitychecker.graph.AppStep;
@@ -46,13 +48,21 @@ import java.util.HashMap;
 public class UtilReporter {
 
     static HashMap<String, String> COMPONENT_TRANSLATIONS = new HashMap<>();
+    private static HashMap<String, Pair<String, String>> irregularVerbsPast = new HashMap<>() {
+        {
+            put("set", new ImmutablePair<>("set", "set"));
+            put("put", new ImmutablePair<>("put", "put"));
+            put("go", new ImmutablePair<>("went", "gone"));
+            put("choose", new ImmutablePair<>("chose", "chosen"));
+        }
+    };
+
     static {
         COMPONENT_TRANSLATIONS.put("Edit Text", "Text Field");
         COMPONENT_TRANSLATIONS.put("Relative Layout", "View");
         COMPONENT_TRANSLATIONS.put("Linear Layout", "View");
         COMPONENT_TRANSLATIONS.put("Spinner", "Drop Down List");
     }
-
 
     public static String getNLStep(AppStep step) {
         return getNLStep(null, step, true);
@@ -61,7 +71,7 @@ public class UtilReporter {
     public static String getNLStep(AppStep step, boolean displayScreen) {
         return getNLStep(null, step, displayScreen);
     }
-    
+
     public static String getNLStep(ActionMatch actionMatch, AppStep step, boolean displayScreen) {
         Integer action = step.getAction();
 
@@ -77,7 +87,7 @@ public class UtilReporter {
             return "Tap the back button";
         }
 
-        if (DeviceHelper.ROTATION == action){
+        if (DeviceHelper.ROTATION == action) {
             return "Rotate the screen";
         }
 
@@ -100,8 +110,8 @@ public class UtilReporter {
 
         // action
         String actionString = GraphTransition.getAction(action);
-        if (!displayScreen){
-            actionString =StringUtils.capitalize(actionString);
+        if (!displayScreen) {
+            actionString = StringUtils.capitalize(actionString);
         }
 
         builder.append(actionString);
@@ -134,7 +144,7 @@ public class UtilReporter {
 
             if (DeviceHelper.TYPE == action) {
                 builder.append("on the ");
-            }else {
+            } else {
                 builder.append("the ");
             }
 
@@ -149,7 +159,7 @@ public class UtilReporter {
     }
 
     public static String getComponentDescription(AppGuiComponent component) {
-        StringBuilder builder =new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         String compName = getComponentName(component);
         if (compName != null && !compName.trim().isEmpty()) {
             builder.append(compName);
@@ -162,7 +172,7 @@ public class UtilReporter {
 
     public static String getComponentName(AppGuiComponent component) {
 
-        if (component==null){
+        if (component == null) {
             return "";
         }
 
@@ -210,7 +220,7 @@ public class UtilReporter {
 
         return builder.toString();
     }
-    
+
     public static String translateComponent(String componentString) {
         String transComp = COMPONENT_TRANSLATIONS.get(componentString);
         if (transComp == null) {
@@ -218,38 +228,69 @@ public class UtilReporter {
         }
         return transComp;
     }
-    
+
     /**
      * By default the subject is included
-     * 
+     *
      * @param nlAction
      * @param attachType
      * @param includePrefix
      * @return
      */
     public static String getActionString(NLAction nlAction, boolean attachType, boolean includePrefix) {
-        return getActionString(nlAction, attachType, includePrefix, true, false);
+        return getActionString(nlAction, attachType, includePrefix, true, false, false);
     }
-    
+
     public static String getActionString(NLAction nlAction, boolean attachType, boolean includePrefix,
-                                         boolean includeSubject, boolean addPastTense) {
+                                         boolean includeSubject, boolean addPastTense, boolean addPerfectTense) {
         StringBuilder builder = new StringBuilder();
 
         if (includeSubject || !"user".equalsIgnoreCase(nlAction.getSubject())) {
             builder.append("I");
             builder.append(" ");
         }
+
+        if (addPerfectTense) {
+            if (addPastTense)
+                builder.append("had");
+            else
+                builder.append("have");
+            builder.append(" ");
+        }
+
         if (nlAction.isActionNegated() != null && nlAction.isActionNegated()) {
             builder.append("not");
             builder.append(" ");
         }
 
+        Pair<String, String> pastVerbs = irregularVerbsPast.get(nlAction.getAction());
         if (addPastTense) {
-            builder.append(nlAction.getAction()).append("ed");
+            if (pastVerbs != null)
+                if (addPerfectTense)
+                    builder.append(pastVerbs.getValue());
+                else
+                    builder.append(pastVerbs.getKey());
+            else {
+                if (nlAction.getAction().endsWith("e"))
+                    builder.append(nlAction.getAction()).append("d");
+                else
+                    builder.append(nlAction.getAction()).append("ed");
+            }
         } else {
-            builder.append(nlAction.getAction());
+            if (addPerfectTense) {
+                if (pastVerbs != null)
+                        builder.append(pastVerbs.getValue());
+                else {
+                    if (nlAction.getAction().endsWith("e"))
+                        builder.append(nlAction.getAction()).append("d");
+                    else
+                        builder.append(nlAction.getAction()).append("ed");
+                }
+            }else
+                builder.append(nlAction.getAction());
         }
-            builder.append(" ");
+        builder.append(" ");
+
         if (nlAction.getObject() != null && !nlAction.getObject().isEmpty()) {
             builder.append(nlAction.getObject());
             builder.append(" ");

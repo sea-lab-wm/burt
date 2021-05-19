@@ -154,7 +154,7 @@ public class HeuristicsNLActionParser extends NLActionParser {
 		// ----------------------------------------
 
 		// any scenario with traces?
-		boolean anyCrashes = scenarios.stream().anyMatch(s -> s.getActions().stream().anyMatch(a -> a.isCrash()));
+		boolean anyCrashes = scenarios.stream().anyMatch(s -> s.getActions().stream().anyMatch(NLAction::isCrash));
 		if (anyCrashes) {
 
 			// parse the first trace found
@@ -367,11 +367,13 @@ public class HeuristicsNLActionParser extends NLActionParser {
 				try {
 
 					// S2R
+					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_SIMPLE_PRESENT_SUBORDINATES");
+					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_IMPERATIVE_SEQUENCE");
+					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_SIMPLE_PAST");
+					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_COND_OBS");
+					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_ACTIONS_PRESENT_PERFECT");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "P_SR_ACTIONS_INF");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "P_SR_LABELED_LIST");
-					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_SIMPLE_PRESENT_SUBORDINATES");
-					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_COND_OBS");
-					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_IMPERATIVE_SEQUENCE");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "P_SR_ACTIONS_MULTI_OBS_BEHAVIOR");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_COND_POS", "S_SR_COND_OBS");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_NEG_COND", "S_SR_COND_OBS");
@@ -379,7 +381,6 @@ public class HeuristicsNLActionParser extends NLActionParser {
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_ACTION_SUBJECT",
 							"S_SR_GERUND_ACTION");
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_ACTIONS_SEPARATOR");
-					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_SIMPLE_PAST");
 
 					// OB
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_ERROR_NOUN_PHRASE");

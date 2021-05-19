@@ -117,18 +117,18 @@ class S2RChecker {
             log.debug("New current state: " + currentState);
             return new QualityResult(MATCH);
         }
-
         if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_AMBIGUOUS)))
             return new QualityResult(MULTIPLE_MATCH);
 
         if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_INCORRECT_INPUT)))
             return new QualityResult(NO_S2R_INPUT);
 
+        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_VOCAB_MISMATCH)))
+            return new QualityResult(NO_MATCH);
+
         if (assessments.stream().anyMatch(a -> a.getCategory().equals(MISSING)))
             return new QualityResult(MISSING_STEPS);
 
-        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_VOCAB_MISMATCH)))
-            return new QualityResult(NO_MATCH);
 
 
         throw new RuntimeException("Unknown quality assessment");
