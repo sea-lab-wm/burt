@@ -12,6 +12,7 @@ class ChatbotMessage {
     private String intent;
     private String action;
     private boolean multiple;
+    private String generatedReport;
 
     public ChatbotMessage(){}
     public ChatbotMessage(MessageObj messageObj,List<KeyValue> values ){
@@ -22,6 +23,11 @@ class ChatbotMessage {
         this.messageObj= messageObj;
         this.values= values;
         this.multiple = multiple;
+
+    }
+    public ChatbotMessage(MessageObj messageObj, String generatedReport){
+        this.messageObj = messageObj;
+        this.generatedReport = generatedReport;
     }
 
 

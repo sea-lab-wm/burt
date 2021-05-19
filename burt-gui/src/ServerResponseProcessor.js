@@ -41,6 +41,7 @@ const processResponse = (responsePromise, actionProvider) =>{
                         multiple: multiple,
                         selectedValues: null,
                         widget: responseData.message.messageObj.widget,
+                        generatedReport: responseData.message.generatedReport,
                     }
                 );
 

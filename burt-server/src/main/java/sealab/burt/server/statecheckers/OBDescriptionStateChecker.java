@@ -8,7 +8,6 @@ import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.output.outputMessageObj;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

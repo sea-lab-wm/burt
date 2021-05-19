@@ -170,7 +170,7 @@ public class ConversationController {
             Intent nextIntent = nextAction.nextExpectedIntent();
             conversationState.put(NEXT_INTENT, nextIntent);
 
-            LOGGER.debug("Expected next intent: "+ nextIntent);
+            LOGGER.debug("Expected next intent: " + nextIntent);
 
             return new ConversationResponse(nextMessage, nextIntent.toString(), action, 0);
         } catch (Exception e) {

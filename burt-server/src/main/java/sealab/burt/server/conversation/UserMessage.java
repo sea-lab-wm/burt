@@ -19,4 +19,5 @@ class UserMessage {
         this.sessionId = sessionId;
         this.messages = messages;
     }
+
 }

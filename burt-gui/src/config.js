@@ -7,6 +7,7 @@ import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
 import EBScreenSelector from "./components/ScreenOptions/EBScreenSelector";
 import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
+import ReportGenerator from "./components/ReportGenerator";
 
 const config = {
     botName: "BURT",
@@ -38,6 +39,11 @@ const config = {
         {
             widgetName: "S2RScreenSelector",
             widgetFunc: (props) => <S2RScreenSelector {...props} />,
+            mapStateToProps: []
+        },
+        {
+            widgetName: "ReportGenerator",
+            widgetFunc: (props) => <ReportGenerator {...props} />,
             mapStateToProps: []
         },
         // {

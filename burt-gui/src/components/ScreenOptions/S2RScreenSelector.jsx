@@ -37,7 +37,6 @@ const S2RScreenSelector = (props) => {
 
     const handleNegativeButton = (choice)=>{
         setTimeout(() => {
-
             let message = props.actionProvider.createChatBotMessage(choice);
 
             const responsePromise = ApiClient.processUserMessage(message)
