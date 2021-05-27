@@ -1,3 +1,4 @@
+"+";"I enter fill up";"[{"sub":"user", "act":"enter", "obj":"fill", "prep":null, "obj2":null}]"
 "+";"I type one in odometer";"[{"sub":"user", "act":"type", "obj":"one", "prep":"in", "obj2":"odometer"}]"
 "+";"I click on back button";"[{"sub":"user", "act":"click", "prep":"on", "obj2":"back button"}]"
 "+";"I type 1 in odometer";"[{"sub":"user", "act":"type", "obj":"1", "prep":"in", "obj2":"odometer"}]"

@@ -5,13 +5,9 @@ import sealab.burt.server.actions.ChatbotAction;
 import sealab.burt.server.conversation.ChatbotMessage;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.output.outputMessageObj;
+import sealab.burt.server.output.OutputMessageObj;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -44,16 +40,16 @@ public class ConfirmSelectedMissingAction extends ChatbotAction {
                 // add the selected missing steps to report summary
                 if(!state.containsKey(REPORT_S2R)){
 
-                    List<outputMessageObj> outputMessageList = new ArrayList<>();
+                    List<OutputMessageObj> outputMessageList = new ArrayList<>();
                     for (String screenshotPath: S2RScreenPathList) {
-                        outputMessageList.add(new outputMessageObj("S2R description", screenshotPath));
+                        outputMessageList.add(new OutputMessageObj("S2R description", screenshotPath));
                     }
                     state.put(REPORT_S2R, outputMessageList);
 
                 }else{
-                    List<outputMessageObj>  outputMessageList= (List<outputMessageObj>) state.get(REPORT_S2R);
+                    List<OutputMessageObj>  outputMessageList= (List<OutputMessageObj>) state.get(REPORT_S2R);
                     for (String screenshotPath: S2RScreenPathList) {
-                        outputMessageList.add(new outputMessageObj("S2R description", screenshotPath));
+                        outputMessageList.add(new OutputMessageObj("S2R description", screenshotPath));
                     }
                 }
 

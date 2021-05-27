@@ -3,18 +3,16 @@ package sealab.burt.server.statecheckers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
-import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
-import sealab.burt.server.output.outputMessageObj;
+import sealab.burt.server.output.OutputMessageObj;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
-import static sealab.burt.server.StateVariable.OB_DESCRIPTION;
 import static sealab.burt.server.actions.ActionName.*;
 
 public class S2RDescriptionStateChecker extends StateChecker {
@@ -40,9 +38,13 @@ public class S2RDescriptionStateChecker extends StateChecker {
             UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
             String message = userMessage.getMessages().get(0).getMessage();
             String targetString = "last step";
-            if (message.toLowerCase().contains(targetString.toLowerCase())){
-                return ActionName.CONFIRM_LAST_STEP;
-            }else {
+            if (message.toLowerCase().contains(targetString.toLowerCase())) {
+                //ask for the first step, if there was no first step provided
+                if(!state.containsKey(REPORT_S2R))
+                    return PROVIDE_S2R_FIRST;
+                else
+                    return ActionName.CONFIRM_LAST_STEP;
+            } else {
                 QualityResult result = runS2RChecker(state);
 //                String description = result.getDescription();
 //                String screenshotPath = result.getScreenshotPath();
@@ -54,14 +56,14 @@ public class S2RDescriptionStateChecker extends StateChecker {
                 state.put(S2R_DESCRIPTION, description);
                 state.put(S2R_SCREEN, screenshotPath);
 
-                if (result.getResult().equals(QualityResult.Result.MATCH)){
-                    if (!state.containsKey(REPORT_S2R)){
-                        List<outputMessageObj> outputMessageList = new ArrayList<>();
-                        outputMessageList.add(new outputMessageObj(description, screenshotPath));
+                if (result.getResult().equals(QualityResult.Result.MATCH)) {
+                    if (!state.containsKey(REPORT_S2R)) {
+                        List<OutputMessageObj> outputMessageList = new ArrayList<>();
+                        outputMessageList.add(new OutputMessageObj(description, screenshotPath));
                         state.put(REPORT_S2R, outputMessageList);
-                    }else{
-                        List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(REPORT_S2R);
-                        outputMessage.add(new outputMessageObj(description, screenshotPath));
+                    } else {
+                        List<OutputMessageObj> outputMessage = (List<OutputMessageObj>) state.get(REPORT_S2R);
+                        outputMessage.add(new OutputMessageObj(description, screenshotPath));
                     }
                 }
 
@@ -69,7 +71,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
             }
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
-            return null;
+            return UNEXPECTED_ERROR;
         }
 
     }

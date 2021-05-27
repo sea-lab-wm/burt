@@ -18,20 +18,20 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public @Data
 @AllArgsConstructor
-class outputMessageObj {
+class OutputMessageObj {
 
     private String message;
     private String type;
     private String screenshotPath;
 
-    public outputMessageObj(){
+    public OutputMessageObj(){
     }
 
-    public outputMessageObj(String message) {
+    public OutputMessageObj(String message) {
         this.message = message;
     }
 
-    public outputMessageObj(String message, String screenshotPath) {
+    public OutputMessageObj(String message, String screenshotPath) {
         this.screenshotPath = screenshotPath;
         this.message = message;
     }

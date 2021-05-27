@@ -2,14 +2,11 @@ package sealab.burt.server.statecheckers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.UserMessage;
-import sealab.burt.server.output.outputMessageObj;
+import sealab.burt.server.output.OutputMessageObj;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -51,12 +48,12 @@ public class OBDescriptionStateChecker extends StateChecker {
                 // UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
                 //String message = userMessage.getMessages().get(0).getMessage();
                 if (!state.containsKey(REPORT_OB)){
-                    List<outputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new outputMessageObj(description, screenshotPath));
+                    List<OutputMessageObj> outputMessageList = new ArrayList<>();
+                    outputMessageList.add(new OutputMessageObj(description, screenshotPath));
                     state.put(REPORT_OB, outputMessageList);
                 }else{
-                    List<outputMessageObj> outputMessage = (List<outputMessageObj>) state.get(REPORT_OB);
-                    outputMessage.add(new outputMessageObj(description, screenshotPath));
+                    List<OutputMessageObj> outputMessage = (List<OutputMessageObj>) state.get(REPORT_OB);
+                    outputMessage.add(new OutputMessageObj(description, screenshotPath));
                 }
             }
             return nextActions.get(result.getResult().name());

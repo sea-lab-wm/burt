@@ -1,31 +1,20 @@
 package sealab.burt.server.output;
 import static sealab.burt.server.StateVariable.*;
 
-import com.sun.el.lang.ELArithmetic;
-import org.apache.commons.digester.plugins.strategies.FinderFromDfltClass;
 import org.apache.commons.io.FileUtils;
-import org.springframework.boot.autoconfigure.web.servlet.JspTemplateAvailabilityProvider;
-import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.conversation.MessageObj;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import javax.management.loading.MLetMBean;
 
 public class HTMLOutputGenerator {
 
@@ -36,9 +25,9 @@ public class HTMLOutputGenerator {
         HashMap<String, Object> parameters = new HashMap<>();
         parameters.put("APP", getApplicationName(state));
         parameters.put("APP_VERSION", getApplicationVersion(state));
-        List<outputMessageObj> OB = (List<outputMessageObj>) state.get(REPORT_OB);
-        List<outputMessageObj> EB = (List<outputMessageObj>) state.get(REPORT_EB);
-        List<outputMessageObj> S2R = (List<outputMessageObj>) state.get(REPORT_S2R);
+        List<OutputMessageObj> OB = (List<OutputMessageObj>) state.get(REPORT_OB);
+        List<OutputMessageObj> EB = (List<OutputMessageObj>) state.get(REPORT_EB);
+        List<OutputMessageObj> S2R = (List<OutputMessageObj>) state.get(REPORT_S2R);
         parameters.put("OB", OB);
         parameters.put("EB", EB);
         parameters.put("S2R", S2R);
@@ -69,8 +58,8 @@ public class HTMLOutputGenerator {
         Element obSpan = doc.getElementById("ob");
         obSpan.append("<h2>Observed Behavior</h2>");
 
-        List<outputMessageObj> OBList = (List<outputMessageObj>) parameters.get("OB");
-        for (outputMessageObj messageObj: OBList) {
+        List<OutputMessageObj> OBList = (List<OutputMessageObj>) parameters.get("OB");
+        for (OutputMessageObj messageObj: OBList) {
             String message =  messageObj.getMessage();
             String screenshotPath = messageObj.getScreenshotPath();
             if (screenshotPath != null){
@@ -87,8 +76,8 @@ public class HTMLOutputGenerator {
         obebRow.append("<div class=\"span5\" id=eb>");
         Element ebSpan = doc.getElementById("eb");
         ebSpan.append("<h2>Expected Behavior</h2>");
-        List<outputMessageObj> EBList = (List<outputMessageObj>) parameters.get("EB");
-        for (outputMessageObj messageObj : EBList) {
+        List<OutputMessageObj> EBList = (List<OutputMessageObj>) parameters.get("EB");
+        for (OutputMessageObj messageObj : EBList) {
             String message =  messageObj.getMessage();
             String screenshotPath = messageObj.getScreenshotPath();
             if (screenshotPath != null){
@@ -105,7 +94,7 @@ public class HTMLOutputGenerator {
         content.append("<h3>Steps to Reproduce </h3>");
 
         //S2R
-        List<outputMessageObj> S2RList = (List<outputMessageObj>) parameters.get("S2R");
+        List<OutputMessageObj> S2RList = (List<OutputMessageObj>) parameters.get("S2R");
         if(S2RList !=null){
             int numOfRows = S2RList.size()/5;
             for (int i = 0; i < numOfRows; i++){

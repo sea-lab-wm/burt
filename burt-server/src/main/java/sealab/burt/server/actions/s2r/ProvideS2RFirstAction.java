@@ -21,12 +21,15 @@ public class ProvideS2RFirstAction extends ChatbotAction {
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
         state.put(COLLECTING_S2R, true);
         state.remove(COLLECTING_EB);
+
         String appName = state.get(APP).toString();
         String appVersion = state.get(APP_VERSION).toString();
         String resourcesPath = "../burt-quality-checker/src/main/resources";
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
+
         if (!state.containsKey(S2R_CHECKER)) state.put(S2R_CHECKER,
                 new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder));
+
         return new ChatbotMessage(" Okay. Now I need to know the steps that you performed and caused the problem. Can" +
                 " you please tell me the first step that you performed?");
     }

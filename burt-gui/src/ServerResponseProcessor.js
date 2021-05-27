@@ -23,7 +23,8 @@ const processResponse = (responsePromise, actionProvider) =>{
 
                 SessionManager.endSession();
 
-                window.location.reload(false)
+                setTimeout(() => {window.location.reload(false);}, 5000);
+
                 return
             }
 

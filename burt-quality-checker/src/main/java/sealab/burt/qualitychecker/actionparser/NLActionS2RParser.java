@@ -1930,8 +1930,9 @@ public class NLActionS2RParser {
     }
 
     private boolean containsBlankToken(PreProcessedText preprocessedObject) {
-        return preprocessedObject.lemmatized.endsWith("blank") && preprocessedObject.preprocessedTokens
-                .size() > 2;
+        return preprocessedObject.lemmatized != null &&
+                preprocessedObject.lemmatized.endsWith("blank") &&
+                preprocessedObject.preprocessedTokens.size() > 2;
     }
 
     private boolean noLongClickableComponents(List<AppGuiComponent> currentScreen) {

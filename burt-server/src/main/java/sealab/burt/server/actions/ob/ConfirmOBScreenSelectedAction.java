@@ -7,12 +7,9 @@ import sealab.burt.server.conversation.KeyValue;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.output.outputMessageObj;
+import sealab.burt.server.output.OutputMessageObj;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,12 +33,12 @@ public class ConfirmOBScreenSelectedAction extends ChatbotAction {
                 // add the selected screen to the report summary
 //                Path OBScreenPath = Paths.get("../../data/app_logos/OBScreen.png");
                 if(!state.containsKey(REPORT_OB)){
-                    List<outputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new outputMessageObj((String)state.get(OB_DESCRIPTION),(String) state.get(OB_SCREEN)));
+                    List<OutputMessageObj> outputMessageList = new ArrayList<>();
+                    outputMessageList.add(new OutputMessageObj((String)state.get(OB_DESCRIPTION),(String) state.get(OB_SCREEN)));
                     state.put(REPORT_OB, outputMessageList);
                 }else{
-                    List<outputMessageObj> outputMessageList = (List<outputMessageObj>) state.get(REPORT_OB);
-                    outputMessageList.add(new outputMessageObj((String)state.get(OB_DESCRIPTION),(String) state.get(OB_SCREEN)));
+                    List<OutputMessageObj> outputMessageList = (List<OutputMessageObj>) state.get(REPORT_OB);
+                    outputMessageList.add(new OutputMessageObj((String)state.get(OB_DESCRIPTION),(String) state.get(OB_SCREEN)));
                 }
             }else{
                 state.remove(OB_SCREEN_SELECTED);

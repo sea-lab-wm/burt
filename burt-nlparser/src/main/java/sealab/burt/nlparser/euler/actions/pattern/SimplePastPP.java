@@ -42,6 +42,12 @@ public class SimplePastPP extends NLActionPatternParser {
         IndexedWord objToken = null;
         if (objRelation != null) {
             objToken = objRelation.second;
+        }else{
+            objRelation = DependenciesUtils.getFirstChildByRelation(dependencies,
+                    verbToken, "ccomp");
+            if (objRelation != null) {
+                objToken = objRelation.second;
+            }
         }
 
         String subject = "user";

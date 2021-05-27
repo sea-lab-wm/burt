@@ -73,12 +73,15 @@ class NLParserTest {
     @Test
     void parseS2R() throws Exception {
 
-        List<String> allSentences = Arrays.asList("Entered all the fillup data and goto History Tab",
-                "Add Service Interval",
-                "Force Close if I press Back in Preferences screen",
-                "Now again select \" Export view to csv\"",
-                "When I perform this sequence of events, the app does not respond",
-                "change orientation"
+        List<String> allSentences = Arrays.asList(
+                "enter fill up"
+//                ,
+//                "Entered all the fillup data and goto History Tab",
+//                "Add Service Interval",
+//                "Force Close if I press Back in Preferences screen",
+//                "Now again select \" Export view to csv\"",
+//                "When I perform this sequence of events, the app does not respond",
+//                "change orientation"
         );
 
         parseSentences(allSentences);

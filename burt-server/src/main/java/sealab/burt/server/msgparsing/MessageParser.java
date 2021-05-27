@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 import static sealab.burt.server.StateVariable.NEXT_INTENT;
+import static sealab.burt.server.StateVariable.REPORT_GENERATED;
 import static sealab.burt.server.msgparsing.Intent.*;
 
 public class MessageParser {
@@ -22,8 +23,8 @@ public class MessageParser {
         intentTokens = new ConcurrentHashMap<>();
 
         addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah"));
-        addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "hello"));
-        addIntentTokens(NEGATIVE_ANSWER,Arrays.asList("no") );
+        addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey"));
+        addIntentTokens(NEGATIVE_ANSWER, Arrays.asList("no", "nah"));
         addIntentTokens(THANKS, Arrays.asList("thanks", "thank you"));
         //....
     }
@@ -36,13 +37,17 @@ public class MessageParser {
 
     public static Intent getIntent(UserMessage userMessage, ConcurrentHashMap<StateVariable, Object> state) {
 
+        if (state.get(REPORT_GENERATED) != null)
+            return END_CONVERSATION;
+
         //------------------------
 
         if (userMessage.getMessages().get(0) != null) {
 
             MessageObj message = userMessage.getMessages().get(0);
 
-            if (message.getMessage()!= null && Stream.of("bye", "good bye").anyMatch(token -> message.getMessage().toLowerCase().contains(token)))
+            if (message.getMessage() != null && Stream.of("bye", "good bye", "see ya", "see you")
+                    .anyMatch(token -> message.getMessage().toLowerCase().contains(token)))
                 return END_CONVERSATION;
 
         }
@@ -51,7 +56,7 @@ public class MessageParser {
 
         //get the next intent
         Object intent = state.get(NEXT_INTENT);
-        if (intent != null && ! NO_EXPECTED_INTENT.equals(intent))
+        if (intent != null && !NO_EXPECTED_INTENT.equals(intent))
             return (Intent) intent;
 
         //------------------------

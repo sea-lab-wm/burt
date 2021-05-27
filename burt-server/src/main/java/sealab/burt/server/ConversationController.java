@@ -1,7 +1,6 @@
 package sealab.burt.server;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +21,6 @@ import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
-import sealab.burt.server.output.outputMessageObj;
 import sealab.burt.server.statecheckers.*;
 import seers.textanalyzer.TextProcessor;
 
@@ -39,12 +37,11 @@ import static sealab.burt.server.msgparsing.Intent.*;
 
 @SpringBootApplication
 @RestController
-public class ConversationController {
+public
+@Slf4j
+class ConversationController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
-    ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
-    ConcurrentHashMap<String, ConcurrentHashMap<StateVariable, Object>> conversationStates = new ConcurrentHashMap<>();
-    public static final ConcurrentHashMap<ActionName, ChatbotAction> actions = new ConcurrentHashMap<>(){
+    public static final ConcurrentHashMap<ActionName, ChatbotAction> actions = new ConcurrentHashMap<>() {
         {
             put(SELECT_APP, new SelectAppAction(APP_SELECTED));
             put(CONFIRM_APP, new ConfirmAppAction());
@@ -106,7 +103,8 @@ public class ConversationController {
 
 
     }};
-
+    ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, ConcurrentHashMap<StateVariable, Object>> conversationStates = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
         //this call is required to load the stanford corenlp library since the start of the server:
@@ -120,9 +118,9 @@ public class ConversationController {
 
         try {
             if (userResponse != null)
-                LOGGER.debug("User response: " + userResponse);
+                log.debug("User response: " + userResponse);
             else {
-                LOGGER.debug("User response is null");
+                log.debug("User response is null");
                 throw new RuntimeException("The message cannot be null");
             }
 
@@ -131,25 +129,25 @@ public class ConversationController {
             ConcurrentHashMap<StateVariable, Object> conversationState = conversationStates.get(sessionId);
 
             if (conversationState == null) {
-                LOGGER.error("The session does not exist: " + sessionId);
-                return ConversationResponse.createResponse("Thank you for using BURT", 100);
+                log.error("The session does not exist: " + sessionId);
+                return ConversationResponse.createResponse("Thank you for using BURT. " +
+                        "The conversation will automatically end in a few seconds.", 100);
             }
 
             conversationState.put(CURRENT_MESSAGE, userResponse);
 
-//        LOGGER.debug(MessageFormat.format("Past conversation state {0}"));
+//        log.debug(MessageFormat.format("Past conversation state {0}"));
             Intent intent = MessageParser.getIntent(userResponse, conversationState);
 
             if (intent == null)
                 return ConversationResponse.createResponse("Sorry, I did not get that!");
 
-            LOGGER.debug("Identified intent: "+ intent);
+            log.debug("Identified intent: " + intent);
 
-            if(END_CONVERSATION.equals(intent)){
+            if (END_CONVERSATION.equals(intent)) {
                 endConversation(sessionId);
                 return ConversationResponse.createResponse("Thank you for using BURT", 100);
             }
-
 
             StateChecker stateChecker = stateCheckers.get(intent);
             if (stateChecker == null)
@@ -157,25 +155,28 @@ public class ConversationController {
 
             ActionName action = stateChecker.nextAction(conversationState);
 
-            LOGGER.debug("Identified action name: "+ action);
+            if (action == null)
+                throw new RuntimeException("The state checker returned a null action. It cannot be null!");
+
+            log.debug("Identified action name: " + action);
             ChatbotAction nextAction = actions.get(action);
-//        LOGGER.debug(conversationState.get("CONVERSATION_STATE").toString());
+//        log.debug(conversationState.get("CONVERSATION_STATE").toString());
 
             if (nextAction == null)
                 return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
 
-            LOGGER.debug("Identified action: "+ nextAction.getClass().getSimpleName());
+            log.debug("Identified action: " + nextAction.getClass().getSimpleName());
 
             ChatbotMessage nextMessage = nextAction.execute(conversationState);
             Intent nextIntent = nextAction.nextExpectedIntent();
             conversationState.put(NEXT_INTENT, nextIntent);
 
-            LOGGER.debug("Expected next intent: " + nextIntent);
+            log.debug("Expected next intent: " + nextIntent);
 
             return new ConversationResponse(nextMessage, nextIntent.toString(), action, 0);
         } catch (Exception e) {
-            LOGGER.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
-            return  ConversationResponse.createResponse(e.getMessage(), -1);
+            log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
+            return ConversationResponse.createResponse(e.getMessage(), -1);
         }
 
     }
@@ -184,7 +185,7 @@ public class ConversationController {
     @PostMapping("/saveSingleMessage")
     public void saveSingleMessage(@RequestBody UserMessage req) {
         String msg = "Saving the messages in the server...";
-        LOGGER.debug(msg);
+        log.debug(msg);
         List<MessageObj> sessionMsgs = messages.getOrDefault(req.getSessionId(), new ArrayList<>());
         sessionMsgs.add(req.getMessages().get(0));
         messages.put(req.getSessionId(), sessionMsgs);
@@ -193,7 +194,7 @@ public class ConversationController {
     @PostMapping("/saveMessages")
     public void saveMessages(@RequestBody UserMessage req) {
         String msg = "Saving the messages in the server...";
-        LOGGER.debug(msg);
+        log.debug(msg);
         messages.put(req.getSessionId(), req.getMessages());
     }
 
@@ -207,20 +208,20 @@ public class ConversationController {
     @PostMapping("/loadMessages")
     public List<MessageObj> loadMessages(@RequestBody UserMessage req) {
         String msg = "Returning the messages in the server...";
-        LOGGER.debug(msg);
+        log.debug(msg);
         return messages.get(req.getSessionId());
     }
 
     @PostMapping("/")
     public String index() {
         String msg = "BURT is running...";
-        LOGGER.debug(msg);
+        log.debug(msg);
         return msg;
     }
 
     @PostMapping("/echo")
     public ConversationResponse echo() {
-        LOGGER.debug("Echoing");
+        log.debug("Echoing");
         return ConversationResponse.createResponse("BURT is running");
     }
 

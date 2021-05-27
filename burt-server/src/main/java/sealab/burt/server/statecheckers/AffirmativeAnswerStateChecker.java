@@ -2,12 +2,9 @@ package sealab.burt.server.statecheckers;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.UserMessage;
-import sealab.burt.server.output.outputMessageObj;
+import sealab.burt.server.output.OutputMessageObj;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -35,12 +32,12 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
             state.remove(COLLECTING_EB);
             // add selected EB screen to report summary
             if (!state.containsKey(REPORT_EB)){
-                List<outputMessageObj> outputMessageObjList = new ArrayList<>();
-                outputMessageObjList.add(new outputMessageObj((String)state.get(EB_DESCRIPTION), (String)(state.get(EB_SCREEN))));
+                List<OutputMessageObj> outputMessageObjList = new ArrayList<>();
+                outputMessageObjList.add(new OutputMessageObj((String)state.get(EB_DESCRIPTION), (String)(state.get(EB_SCREEN))));
                 state.put(REPORT_EB, outputMessageObjList);
             }else{
-                List<outputMessageObj> outputMessageObjList = (List<outputMessageObj>) state.get(REPORT_EB);
-                outputMessageObjList.add(new outputMessageObj((String)state.get(EB_DESCRIPTION), (String)(state.get(EB_SCREEN))));
+                List<OutputMessageObj> outputMessageObjList = (List<OutputMessageObj>) state.get(REPORT_EB);
+                outputMessageObjList.add(new OutputMessageObj((String)state.get(EB_DESCRIPTION), (String)(state.get(EB_SCREEN))));
             }
             nextAction = PROVIDE_S2R_FIRST;
         } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
