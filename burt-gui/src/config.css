@@ -16,4 +16,10 @@
 .react-chatbot-kit-chat-bot-message {
     margin-left: initial;
     text-align: initial;
+    overflow-wrap: break-word;
+}
+
+.react-chatbot-kit-user-chat-message {
+    width:  184.5px;
+    overflow-wrap: break-word;
 }
