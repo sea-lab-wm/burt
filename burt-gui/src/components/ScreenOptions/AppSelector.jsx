@@ -7,7 +7,8 @@ import processResponse from "../../ServerResponseProcessor";
 let logos = require.context('../../../../data/app_logos', true);
 
 const AppSelector = (props) => {
-    console.log(props.disabled);
+    //console.log(props.disabled);
+    //console.log(props.messages);
 
     const [screen, setScreen] = useState({});
     const [disabled, setDisable] = useState(props.disabled);
@@ -19,7 +20,7 @@ const AppSelector = (props) => {
 
     const handleConfirmButton =() => {
         // setTimeout(() => {
-        // console.log( props.messages) // why it already has lastest selectedValue??
+        console.log( props.messages)
         if (screen.length > 0) {
             setDisable(true);
             let selectedValues = screen.map(s => s.value);

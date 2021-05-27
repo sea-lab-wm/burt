@@ -1,6 +1,9 @@
 .react-chatbot-kit-chat-container {
     position: relative;
     width: 500px;
+    border-radius: 5px ;
+    border: 1px solid #d8d8d8;
+
 }
 .react-chatbot-kit-chat-message-container {
     height: 724px;
