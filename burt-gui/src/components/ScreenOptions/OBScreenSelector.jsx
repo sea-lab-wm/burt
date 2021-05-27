@@ -10,7 +10,7 @@ let logos = require.context('../../../../data/app_logos', true);
 const OBScreenSelector = (props) => {
 
     const [screen, setScreen] = useState({});
-    const [disabled, setDisable] = useState(false)
+    const [disabled, setDisable] = useState(props.disabled)
 
     const pickImageHandler = (image) => {
         setScreen(image);
@@ -26,6 +26,7 @@ const OBScreenSelector = (props) => {
 
             const idx = props.messages.findIndex(x => x.id === props.id)
             props.messages[idx].selectedValues = selectedValues
+            props.messages[idx].disabled = true
             setDisable(true)
         }else{
             alert("please select one screenshot!")

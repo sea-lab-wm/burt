@@ -19,6 +19,7 @@ class MessageObj {
     private Boolean loading;
     private List<KeyValue> allValues;
     private List<String> selectedValues;
+    private boolean disabled;
 
     public MessageObj(){
     }
@@ -48,5 +49,13 @@ class MessageObj {
         this.id = id;
         this.loading = loading;
         this.selectedValues = selectedValues;
+    }
+    public MessageObj(String message, String type, double id, Boolean loading, List<String> selectedValues, boolean disabled) {
+        this.message = message;
+        this.type = type;
+        this.id = id;
+        this.loading = loading;
+        this.selectedValues = selectedValues;
+        this.disabled = disabled;
     }
 }

@@ -7,9 +7,11 @@ import processResponse from "../../ServerResponseProcessor";
 let logos = require.context('../../../../data/app_logos', true);
 
 const AppSelector = (props) => {
+    console.log(props.disabled);
 
     const [screen, setScreen] = useState({});
-    const [disabled, setDisable] = useState(false)
+    const [disabled, setDisable] = useState(props.disabled);
+
 
     const pickImageHandler = (image) => {
         setScreen(image);
@@ -17,16 +19,18 @@ const AppSelector = (props) => {
 
     const handleConfirmButton =() => {
         // setTimeout(() => {
+        // console.log( props.messages) // why it already has lastest selectedValue??
         if (screen.length > 0) {
+            setDisable(true);
             let selectedValues = screen.map(s => s.value);
-            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: selectedValues });
+            let message = props.actionProvider.createChatBotMessage(null, {selectedValues: selectedValues , disabled: true});
+            const responsePromise = ApiClient.processUserMessage(message);
+            processResponse(responsePromise, props.actionProvider);
+            const idx = props.messages.findIndex(x => x.id === props.id);
+            props.messages[idx].selectedValues = selectedValues;
+            props.messages[idx].disabled = true;
 
-            const responsePromise = ApiClient.processUserMessage(message)
-            processResponse(responsePromise, props.actionProvider)
-            const idx = props.messages.findIndex(x => x.id === props.id)
-            props.messages[idx].selectedValues = selectedValues
-            setDisable(true)
-            // console.log(props.messages)
+            console.log(props.messages)
         }else{
             alert("please select one screenshot!")
         }
@@ -47,6 +51,7 @@ const AppSelector = (props) => {
     const dataValues = props.allValues;
     const selectedValues = props.selectedValues
     const multiple = props.multiple
+
 
 
     return (
