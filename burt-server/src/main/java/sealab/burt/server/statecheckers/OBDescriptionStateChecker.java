@@ -43,7 +43,7 @@ public class OBDescriptionStateChecker extends StateChecker {
 
             // if result is MULTIPLE_MATCH, it will return multiple screenshots
             String description = "OB description";
-            String screenshotPath = "../../data/app_logos/OBScreen.png";
+            String screenshotPath = "app_logos/OBScreen.png";
             state.put(OB_DESCRIPTION, description);
             state.put(OB_SCREEN, screenshotPath);
 

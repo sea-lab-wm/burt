@@ -50,7 +50,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
 //                state.put(S2R_DESCRIPTION, description);
 //                state.put(S2R_SCREEN, screenshotPath);
                 String description = "S2R description";
-                String screenshotPath = "../../data/app_logos/S2RScreen1.png";
+                String screenshotPath = "app_logos/S2RScreen1.png";
                 state.put(S2R_DESCRIPTION, description);
                 state.put(S2R_SCREEN, screenshotPath);
 

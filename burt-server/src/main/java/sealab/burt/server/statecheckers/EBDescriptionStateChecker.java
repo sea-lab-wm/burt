@@ -39,7 +39,7 @@ public class EBDescriptionStateChecker extends StateChecker {
 //            state.put(EB_DESCRIPTION, description);
 //            state.put(EB_SCREEN, screenshotPath);
             String description = "EB description";
-            String screenshotPath = "../../data/app_logos/EBScreen.png";
+            String screenshotPath = "app_logos/EBScreen.png";
             state.put(EB_DESCRIPTION, description);
             state.put(EB_SCREEN, screenshotPath);
 

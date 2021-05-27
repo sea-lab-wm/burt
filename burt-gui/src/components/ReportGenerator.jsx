@@ -1,15 +1,16 @@
 import React , { useState, useEffect }  from "react";
+import config from "../config";
 
-let bugreports = require.context('../../../data/generated_bug_reports', true);
+// let bugreports = require.context('../../../data/generated_bug_reports', true);
 
 const ReportGenerator = (props) => {
     const generatedReport = props.generatedReport;
     console.log("Generated report: " +generatedReport);
     // props.actionProvider.updateChatbotState(message)
-    const link = bugreports("./" + generatedReport).default;
+    const link = config.serverEndpoint +"/" + generatedReport
 
     return (
-<div>   <a target="_blank" href={link}> the link of summary</a></div>
+<div>   <a target="_blank" href={link}>Bug report</a></div>
     )
 
 }
