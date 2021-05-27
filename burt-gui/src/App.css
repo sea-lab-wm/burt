@@ -2,6 +2,13 @@
   text-align: -webkit-center;
 }
 
+.center-screen{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .App-logo {
   height: 100%;
   pointer-events: none;
@@ -36,3 +43,4 @@
     transform: rotate(360deg);
   }
 }
+

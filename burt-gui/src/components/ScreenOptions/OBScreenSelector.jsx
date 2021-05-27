@@ -57,7 +57,7 @@ const OBScreenSelector = (props) => {
     const multiple = props.multiple;
 
     return (
-            <div>
+            <div className="center-screen">
                 <ImagePicker
                     images={dataValues.map((image, i) => ({src: logos("./" + image.value).default, value: image.key}))}
                     style={getImageStyle(150, 300)}
@@ -67,11 +67,8 @@ const OBScreenSelector = (props) => {
                     disabled={disabled}
                     // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
                 />
-                <center>
-                    <button type="button" className="button" onClick={() => handleConfirmButton("done")} disabled={disabled}>done</button>
-                    <button type="button" className="button" onClick={() => handleNegativeButton("none of above")} disabled={disabled}>none of above</button>
-                </center>
-
+                <button type="button" className="button" onClick={() => handleConfirmButton("done")} disabled={disabled}>done</button>
+                <button type="button" className="button" onClick={() => handleNegativeButton("none of above")} disabled={disabled}>none of above</button>
 
             </div>
         )

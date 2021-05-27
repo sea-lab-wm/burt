@@ -134,7 +134,7 @@ class NLParserTestIdealData {
     }
 
     @Test
-    void testIdealScenario() throws Exception {
+    void testOneIdealScenario() throws Exception {
         String appName = "android-mileage";
         String appVersion = "3.1.1";
         String resourcesPath = "src/main/resources";

@@ -55,7 +55,7 @@ const AppSelector = (props) => {
 
 
     return (
-        <div>
+        <div className="center-screen">
             <ImagePicker
                 //images={imageList.map((image, i) => ({src: image, value: i}))}
                 images={dataValues.map((image, i) => ({src: logos("./" + image.value).default, value: image.key}))}

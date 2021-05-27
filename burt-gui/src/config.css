@@ -3,7 +3,8 @@
     width: 500px;
 }
 .react-chatbot-kit-chat-message-container {
-    height: 750px;
+    height: 724px;
+    overflow-x: hidden;
 }
 .react-chatbot-kit-chat-inner-container {
     position: center;

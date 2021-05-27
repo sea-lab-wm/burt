@@ -89,7 +89,7 @@ function App() {
 
     if (sessionId != null && sessionId != undefined)
         return (
-            <div className="App">
+            <div className="App center-screen">
                 {
                     <Chatbot
                         config={config}
