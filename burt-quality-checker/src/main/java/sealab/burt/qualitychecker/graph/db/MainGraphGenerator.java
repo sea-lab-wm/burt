@@ -6,6 +6,7 @@ import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
 import edu.semeru.android.core.entity.model.fusion.Execution;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import edu.semeru.android.core.entity.model.fusion.Step;
+//import edu.semeru.android.core.helpers.ui.UiAutoConnector;
 import edu.semeru.android.core.model.DynGuiComponentVO;
 import edu.semeru.android.testing.helpers.UiAutoConnector;
 
@@ -92,13 +93,15 @@ public class MainGraphGenerator {
         //		ThreadExecutor.executePaginated(filteredApps, AppThreadProcessor.class, new ThreadParameters(), 7);
 
 
-        String uiDumpLocation = "/Users/KevinMoran/Desktop/CrashScope-Data"; //This is the location where the CrashScope data is stored (the .xmls and screenshots)
+        String uiDumpLocation = "../data/CrashScope-Data-Droidweight"; //This is the location where the CrashScope
+        // data is stored (the .xmls and
+        // screenshots)
         
         //Set up a new Gson object and read it in. Currently this is set up to work for 
         // a single file
         // TODO: Set up to read in and combine multiple json files for the same app.
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader("/Users/KevinMoran/Desktop/CrashScope-Data/Execution-1.json"));
+        JsonReader reader = new JsonReader(new FileReader("..\\data\\CrashScope-Data-Droidweight\\Execution-1.json"));
         
         // De-serialize the Execution object. I currently set a manual ID for testing purposes.
         Execution exec = gson.fromJson(reader, Execution.class);
@@ -135,7 +138,7 @@ public class MainGraphGenerator {
         }
             
             
-                    GraphGenerator generator = new GraphGenerator();
+                    GraphGenerator2 generator = new GraphGenerator2();
             
                     AppGraphInfo graphInfo = generator.generateGraph(exec);
                     AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
