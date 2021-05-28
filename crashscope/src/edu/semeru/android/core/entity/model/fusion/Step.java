@@ -114,7 +114,7 @@ public class Step implements Serializable, Comparable<Step> {
     // bi-directional many-to-one association to Execution
     @ManyToOne
     @JoinColumn(name = "ID_EXECUTION")
-    private Execution execution;
+    private transient Execution execution;
 
     // bi-directional many-to-one association to Execution
     @ManyToOne

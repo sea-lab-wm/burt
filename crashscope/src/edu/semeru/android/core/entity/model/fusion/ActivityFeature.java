@@ -71,7 +71,7 @@ public class ActivityFeature implements Serializable {
     private String feature;
     @ManyToOne
     @JoinColumn(name = "APP")
-    private App app;
+    private transient App app;
     
     /**
      * @return the activity

@@ -1215,8 +1215,10 @@ public class DeviceHelper {
         activity1 = packageName + activity1.replace(packageName, "").replace("/", "").replace("..", ".");
 
         if (!activity1.equals(activity2)) {
+            System.out.println(activity1);
             return activity1;
         } else {
+            System.out.println(activity2);
             return activity2;
         }
     }

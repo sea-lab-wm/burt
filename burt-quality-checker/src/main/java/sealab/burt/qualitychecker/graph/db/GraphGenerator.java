@@ -102,6 +102,40 @@ public class GraphGenerator {
         return generateGraph(app);
     }
 
+    public AppGraphInfo generateGraph(Execution execution) throws Exception {
+
+        states.clear();
+        transitions.clear();
+
+        App app = execution.getApp();
+        
+        List<AppStep> allSteps = new ArrayList<>();
+        
+            try {
+                if (!execution.getSteps().isEmpty()) {
+                    List<AppStep> steps = processExecution(execution);
+                    System.out.println(steps.size());
+                    allSteps.addAll(steps);
+                    // System.out.println("=="+execution.getSteps().size()+"==");
+                    // System.out.println("====================");
+                }
+            } catch (Exception e) {
+                LOGGER.error("Error for execution " + execution.getId(), e);
+                throw e;
+            }
+            // }
+        
+
+        AppGraph<GraphState, GraphTransition> graph = buildDirectedGraph();
+
+        AppGraphInfo graphInfo = new AppGraphInfo();
+        graphInfo.setGraph(graph);
+        graphInfo.setSteps(allSteps);
+        graphInfo.setApp(Transform.getAppl(app));
+
+        return graphInfo;
+    }
+    
     public AppGraphInfo generateGraph(App app) throws Exception {
 
         states.clear();
@@ -175,6 +209,7 @@ public class GraphGenerator {
         steps = steps.stream()
                 .filter(step -> !DeviceUtils.isNothing(step.getAction()) && !DeviceUtils.isOpenApp(step.getAction()))
                 .collect(Collectors.toList());
+        System.out.println(steps.size());
 
         //no steps
         if (steps.isEmpty()) {
@@ -193,7 +228,7 @@ public class GraphGenerator {
             }
             final Step step = steps.get(i);
             final Step nextStep = steps.get(i + 1);
-            final Long executionId1 = executionId != null ? executionId : step.getExecution().getId();
+            final Long executionId1 = executionId;
             final int stepAction = step.getAction();
 
             //----------------------------------------
@@ -332,7 +367,7 @@ public class GraphGenerator {
         final ImmutablePair<Screen, GraphState> screenPair = stepScreens.get(step.getId());
         if (screenPair != null)
             return screenPair.right;
-
+        System.out.println(step.getId());
         final GraphState graphState = addGraphState(screen);
         stepScreens.put(step.getId(), new ImmutablePair<>(screen, graphState));
         return graphState;
@@ -342,11 +377,14 @@ public class GraphGenerator {
         List<DynGuiComponent> screenComponents = screen.getDynGuiComponents();
 
 //        HierarchyNode node = getUniqueState2(screenComponents);
-
+        
         DynGuiComponent root = findRootComponent(screenComponents);
-        StringBuilder builder = getUniqueState(root);
+        
+        
+        StringBuilder builder = getUniqueState(screenComponents, root);
+       
         int hashCode = builder.toString().hashCode();
-
+        System.out.println(hashCode);
         // StringBuilder builder = getUniqueState(screenComponents);
         // int hashCode = builder.toString().hashCode();
 
@@ -532,11 +570,11 @@ public class GraphGenerator {
 
         DynGuiComponent root = findRootComponent(components);
 //	    HierarchyNode node = getUniqueState2(components);
-        StringBuilder builder = getUniqueState(root);
+        StringBuilder builder = getUniqueState(components, root);
         // Don't recompute the hashCode if it is -1
         int hashCode = pHashCode == -1 ? builder.toString().hashCode() : pHashCode;
-
-        final DynGuiComponent firstComponent = root.getChildren().get(0);
+        System.out.println(hashCode);
+        final DynGuiComponent firstComponent = root;
         String stateName = getStateName(firstComponent, hashCode);
 
         // Create a new state
@@ -653,21 +691,24 @@ public class GraphGenerator {
      * @param root
      * @return
      */
-    private StringBuilder getUniqueState(DynGuiComponent root) {
+    private StringBuilder getUniqueState(List<DynGuiComponent> compList, DynGuiComponent root) {
 
         StringBuilder builder = new StringBuilder();
-
-        final DynGuiComponent firstComponent = root.getChildren().get(0);
+    
+        
         builder.append(String.format("<w>%s</w><h>%s</h>",
-                firstComponent.getWidth(), firstComponent.getHeight()));
+                root.getWidth(), root.getHeight()));
         builder.append(String.format("<x>%s</x><y>%s</y>",
-                firstComponent.getPositionX(), firstComponent.getPositionY()));
+                root.getPositionX(), root.getPositionY()));
+        
+    for(DynGuiComponent currComp : compList) {
+        
+        visitComponents(currComp, builder);
+    }
 
 
-        visitComponents(root, builder);
-
-        // System.out.println(builder.toString());
-        // System.out.println("----------------------------");
+         System.out.println(builder.toString());
+         System.out.println("----------------------------");
 
         return builder;
     }
@@ -695,14 +736,15 @@ public class GraphGenerator {
         builder.append("<" + (elementName.isEmpty() ? "root" : elementName) + ">");
 
         // sort
-        List<DynGuiComponent> children = component.getChildren();
+        DynGuiComponent parent = component.getParent();
 
-        children.sort(Comparator.comparingInt(DynGuiComponent::getComponentIndex));
+//        children.sort(Comparator.comparingInt(DynGuiComponent::getComponentIndex));
 
-        for (DynGuiComponent child : children) {
-            visitComponents(child, builder);
+//        for (DynGuiComponent child : children) {
+        if(parent != null) {
+            visitComponents(parent, builder);
         }
-
+            
         builder.append("</" + (elementName.isEmpty() ? "root" : elementName) + ">");
     }
 

@@ -73,18 +73,18 @@ public class App implements Serializable {
 
     // bi-directional many-to-one association to Class
     @OneToMany(mappedBy = "app", cascade = CascadeType.ALL)
-    private List<ActivityFeature> actFeatures = new ArrayList<ActivityFeature>();
+    private transient List<ActivityFeature> actFeatures = new ArrayList<ActivityFeature>();
 
     // bi-directional many-to-one association to Class
     @OneToMany(mappedBy = "app", cascade = CascadeType.ALL)
-    private List<Class> clazzs = new ArrayList<Class>();
+    private transient List<Class> clazzs = new ArrayList<Class>();
 
     // bi-directional many-to-one association to Class
     @OneToMany(mappedBy = "app", cascade = CascadeType.ALL)
-    private List<GuiComponent> guiz = new ArrayList<GuiComponent>();
+    private transient List<GuiComponent> guiz = new ArrayList<GuiComponent>();
 
     @OneToMany(mappedBy = "app", cascade = CascadeType.ALL)
-    private List<Execution> executions = new ArrayList<Execution>();
+    private transient List<Execution> executions = new ArrayList<Execution>();
 
     /**
      * @return the actFeatures

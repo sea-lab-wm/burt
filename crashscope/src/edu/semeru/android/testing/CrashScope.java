@@ -1,5 +1,6 @@
 
 
+
 /*******************************************************************************
  * Copyright (c) 2016, SEMERU
  * All rights reserved.
@@ -58,6 +59,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.stream.JsonReader;
 
 import edu.semeru.android.core.entity.model.App;
 import edu.semeru.android.core.entity.model.fusion.ActivityFeature;
@@ -150,7 +155,7 @@ public class CrashScope extends GeneralStrategy {
         this.deviceType = deviceHelper.getDEVICE_TYPE();
     }
 
-    public static void runCrashScopeLocal(App testApp) {
+    public static void runCrashScopeLocal(App testApp) throws JsonIOException, IOException {
 
         CrashScopeSettings strategy = new CrashScopeSettings();
         strategy.setTopDown(true);
@@ -163,16 +168,16 @@ public class CrashScope extends GeneralStrategy {
 
 //      String adbPort = "5037";
 //      String avdPort = "0932890b";
-      String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScope/burt/crashscope/scripts";
+      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/scripts";
 //      String uiDumpLocation = "/Volumes/Macintosh_HD_3/Research-Files/Bug-Reproduction-CrashScope-Workspace/ui-dumps/";
-      String dataFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScopeData";
+      String dataFolder = "/Users/KevinMoran/Desktop/CrashsCope-Data";
 //      String apkPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Bug-Report-Reproduction/Data/FUSION-Data/Apks/mileage.apk";
-      String androidSDKPath = "/Users/junayed/Library/Android/sdk";
+      String androidSDKPath = "/Applications/AndroidSDK/sdk";
               
 //      String androidSDKPath = "/Users/semeru/Applications/android-sdk";
 //      String dataFolder = "/Users/semeru/Documents/SEMERU/CrashScope/output/";
 //      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Core/scripts/";
-        String avdPort = "emulator-5554";
+        String avdPort = "5554";
         String adbPort = "5037";
         TypeDeviceEnum deviceType = UiAutoConnector.TypeDeviceEnum.EMULATOR;
         DeviceHelper deviceHelper = new DeviceHelper(deviceType, androidSDKPath, avdPort, adbPort);
@@ -180,9 +185,9 @@ public class CrashScope extends GeneralStrategy {
         
         HashMap<String, String> dpProperties = new HashMap<String, String>();
         
-        App dbApp = PersistDataService.getAppByPackageAndVersion(testApp.getPackageName(), testApp.getVersion(), PERSIST_UNIT, dpProperties);
+//        App dbApp = PersistDataService.getAppByPackageAndVersion(testApp.getPackageName(), testApp.getVersion(), PERSIST_UNIT, dpProperties);
         
-        CrashScope crashScope = new CrashScope(deviceHelper, dbApp, dataFolder, dbApp.getApkPath(), scriptsPath, strategy);
+        CrashScope crashScope = new CrashScope(deviceHelper, testApp, dataFolder, testApp.getApkPath(), scriptsPath, strategy);
 
         //      deviceHelper.unInstallAndInstallApp(app.getApkPath(), app.getPackageName());
         //      deviceHelper.unInstallApp(app.getPackageName());
@@ -198,10 +203,18 @@ public class CrashScope extends GeneralStrategy {
     }
 
     public static void main(String[] args) throws InstantiationException, IllegalAccessException,
-    ClassNotFoundException, SQLException {
+    ClassNotFoundException, SQLException, JsonIOException, IOException {
 
-        ArrayList<App> bugRepApps = generateBugRepData("/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScopeTest/apps.txt","/Users/junayed/Library/Android/sdk/build-tools/30.0.3");
+        ArrayList<App> bugRepApps = generateBugRepData("/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/test-apks/apps.txt","/Applications/AndroidSDK/sdk/build-tools/25.0.1");
 
+        Gson gson = new Gson();
+        
+//        JsonReader reader = new JsonReader(new FileReader("/Users/KevinMoran/Desktop/CrashsCope-Data/Execution-1.json"));
+        
+//        Execution exec = gson.fromJson(reader, Execution.class);
+        
+//        System.out.println("Execution App: " + exec.getApp().getMainActivity());
+        
         for(App currApp: bugRepApps) {
 
             System.out.println("Running Crashscope on App:" + currApp.getName());
@@ -212,7 +225,7 @@ public class CrashScope extends GeneralStrategy {
     }
 
     public List<Execution> executeDFS()
-            throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+            throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, JsonIOException, IOException {
         return executeDFS(true);
     }
     
@@ -232,9 +245,11 @@ public class CrashScope extends GeneralStrategy {
      * @throws IllegalAccessException
      * @throws ClassNotFoundException
      * @throws SQLException
+     * @throws IOException 
+     * @throws JsonIOException 
      */
     public List<Execution> executeDFS(boolean storeInDb)
-            throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+            throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, JsonIOException, IOException {
 
         long appStartTime = System.currentTimeMillis();
         
@@ -329,6 +344,7 @@ public class CrashScope extends GeneralStrategy {
                     execution.setOrientation(deviceHelper.getOrientation());
                     execution.setAndroidVersion(deviceHelper.getAndroidVersion());
                     execution.setDeviceName(deviceHelper.getDeviceVersion());
+                    execution.setExecutionType(getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat());
                     widthScreen = Integer.parseInt(execution.getDeviceDimensions().split("x")[0]);
                     heightScreen = Integer.parseInt(execution.getDeviceDimensions().split("x")[1]);
 
@@ -373,7 +389,7 @@ public class CrashScope extends GeneralStrategy {
                         deviceHelper.disposeKeyboard();
                     }
                     Step step = null;
-                    setupGNUCash();
+//                    setupGNUCash();
                     
                     // Update the initial stack of components that can recieve input, and get the current activity and window
                     updateAvailableStack(app.getPackageName(), deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), false);
@@ -494,7 +510,7 @@ public class CrashScope extends GeneralStrategy {
                         // If there was a crash restart the execution from the current step.
                         if (crash) {
 
-                            System.out.println("Collecting and Persisting Execution Data for Crashing Execution...");
+                            System.out.println("Collecting and Saving Execution Data to JSON");
 
                             setExecutionCtr(getExecutionCtr()+1);   // Increment the Execution Counter
                             addStep(null, DeviceHelper.BACK, null, "none", null, null); // Add step for crash
@@ -506,9 +522,24 @@ public class CrashScope extends GeneralStrategy {
                                 listStep.setExecution(execution);
                             }
                             csExecutions.add(execution);
-                            if(storeInDb){
-                                PersistDataService.saveExecutionData(execution, PERSIST_UNIT, dpProperties);
+                            
+                            Gson gson = new Gson();
+                            
+                            try {
+                                gson.toJson(execution, new FileWriter(dataFolder + File.separator + "Execution-" + executionCtr + ".json"));
+                            } catch (JsonIOException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
                             }
+                            
+                           
+                            
+//                            if(storeInDb){
+//                                PersistDataService.saveExecutionData(execution, PERSIST_UNIT, dpProperties);
+//                            }
 
 
                             //Set up new execution to continue from point where the app crashed
@@ -565,9 +596,22 @@ public class CrashScope extends GeneralStrategy {
                     for (Step listStep : getSteps()) {
                         listStep.setExecution(execution);
                     }
-                    if(storeInDb){
-                        PersistDataService.saveExecutionData(execution, PERSIST_UNIT , dpProperties);
+//                    if(storeInDb){
+//                        PersistDataService.saveExecutionData(execution, PERSIST_UNIT , dpProperties);
+//                    }
+                    
+                    Gson gson = new Gson();
+                    String json = gson.toJson(execution);
+                    PrintWriter writer = new PrintWriter(dataFolder + File.separator + "Execution-" + executionCtr + ".json");
+                    writer.println(json);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
+                    writer.close();
+                    
                     System.out.println("Execution took " + (endTime - startTime) + " milliseconds");
                     csExecutions.add(execution);
 
@@ -767,6 +811,7 @@ public class CrashScope extends GeneralStrategy {
             currentWindow += "->" + hash.toString().hashCode() + "";
         }
 
+        System.out.println("Window:" + currentWindow);
         return currentWindow;
 
     }
@@ -1521,6 +1566,7 @@ public class CrashScope extends GeneralStrategy {
         StringBuilder hash = new StringBuilder();
         // TODO #1 Kevin here you use the one you need
         // Activity 
+        System.out.println("Name: " + getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence);
         ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
         // Layout
         //ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoLayout(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence, deviceType);
@@ -2040,7 +2086,7 @@ public class CrashScope extends GeneralStrategy {
         }
 
         for(App persistApp : bugRepApps) {
-            PersistDataService.saveAppData(persistApp, PERSIST_UNIT);
+           // PersistDataService.saveAppData(persistApp, PERSIST_UNIT);
         }
 
         return bugRepApps;

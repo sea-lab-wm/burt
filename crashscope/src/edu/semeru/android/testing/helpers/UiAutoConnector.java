@@ -539,6 +539,7 @@ public class UiAutoConnector {
             String adb = androidSDKPath + File.separator + "platform-tools" + File.separator + "adb";
             String terminal = "";
             String deviceCommand = "";
+//            System.out.println("Name: " + name);
 
             switch (device) {
             case EMULATOR:
@@ -623,7 +624,7 @@ public class UiAutoConnector {
      * @param heightScreen
      * @param widthScreen
      */
-    private static DynGuiComponentVO visitNodes(String currentActivity, BasicTreeNode node,
+    public static DynGuiComponentVO visitNodes(String currentActivity, BasicTreeNode node,
             ArrayList<DynGuiComponentVO> list, int widthScreen, int heightScreen, boolean all, DynGuiComponentVO parent,
             boolean includeLists, int offset, StringBuilder builder, int typeStrategy) {
         DynGuiComponentVO vo = Utilities.getHVComponentFromBasicTreeNode(node, widthScreen, heightScreen,

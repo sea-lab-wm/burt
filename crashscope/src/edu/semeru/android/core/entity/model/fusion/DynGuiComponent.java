@@ -108,7 +108,7 @@ public class DynGuiComponent implements Serializable {
     private String guiScreenshot;
     @ManyToOne
     @JoinColumn(name = "ID_PARENT")
-    private DynGuiComponent parent;
+    private transient DynGuiComponent parent;
     // bi-directional many-to-one association to Step
     // @OneToMany(mappedBy = "dynGuiComponent")
     // private List<Step> steps = new ArrayList<Step>();
@@ -116,7 +116,7 @@ public class DynGuiComponent implements Serializable {
      // bi-directional many-to-one association to DynamicTransition
      @ManyToOne
      @JoinColumn(name = "Screen")
-     private Screen screen;
+     private transient Screen screen;
 
 	@Transient
     private String idText;
@@ -128,9 +128,9 @@ public class DynGuiComponent implements Serializable {
     private List<Property> properties;
     @Transient
     private double drawTime;
-//    @Transient
+    
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<DynGuiComponent> children = new ArrayList<DynGuiComponent>();
+    private transient List<DynGuiComponent> children = new ArrayList<DynGuiComponent>();
    
 
     public DynGuiComponent() {

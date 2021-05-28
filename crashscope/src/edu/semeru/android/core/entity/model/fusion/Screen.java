@@ -80,7 +80,7 @@ public class Screen implements Serializable, Comparable<Screen> {
 
     @OneToOne
     @JoinColumn(name = "ID_STEP")
-    private Step step;
+    private transient Step step;
     
     // bi-directional many-to-one association to Screenshot
     // @OneToOne(mappedBy = "step")

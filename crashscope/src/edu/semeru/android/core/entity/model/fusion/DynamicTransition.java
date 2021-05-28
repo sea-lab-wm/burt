@@ -71,10 +71,10 @@ public class DynamicTransition implements Serializable {
     // bi-directional many-to-one association to Step
     @OneToOne
     @JoinColumn(name = "ID_STEP")
-    private Step step;
+    private transient Step step;
 
     @Transient
-    private DynGuiComponent targetComponent;
+    private transient DynGuiComponent targetComponent;
 
     /**
      * @return the id
