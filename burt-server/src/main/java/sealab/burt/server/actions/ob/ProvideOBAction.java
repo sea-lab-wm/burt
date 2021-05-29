@@ -26,7 +26,7 @@ public class ProvideOBAction extends ChatbotAction {
         String parsersBaseFolder =  Path.of("..", "burt-nlparser").toString();
         if (!state.containsKey(OB_CHECKER)) state.put(OB_CHECKER, new OBChecker(appName, appVersion, parsersBaseFolder));
         return new ChatbotMessage(MessageFormat.format("Ok, can you please tell me the incorrect behavior that you " +
-                "observed in {0}?", appName));
+                "observed on {0}?", appName));
     }
 
 }

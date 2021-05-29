@@ -15,8 +15,8 @@ public class ProvideS2RNoParseAction extends ChatbotAction {
 
     @Override
     public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
-        return new ChatbotMessage("I am sorry, I didn't quite get that. Can you please provide the step one more " +
-                "time?");
+        return new ChatbotMessage("I am sorry, it seems the language of the step is a little odd and I am not able " +
+                "to understand it. Can you please rephrase the step and provide it one more time?");
 
     }
 

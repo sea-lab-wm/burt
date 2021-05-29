@@ -20,7 +20,7 @@ public class BRQualityReport {
     private String appVersion;
 
     //the quality feedback for each S2R
-    private List<S2RQualityFeedback> s2RQualityFeedback;
+    private List<QualityFeedback> qualityFeedback;
 
     public String getToken() {
         return token;
@@ -34,16 +34,16 @@ public class BRQualityReport {
         this.bugReport = bugReport;
     }
 
-    public void setS2RQualityFeedback(List<S2RQualityFeedback> s2RQualityFeedback) {
-        this.s2RQualityFeedback = s2RQualityFeedback;
+    public void setS2RQualityFeedback(List<QualityFeedback> qualityFeedback) {
+        this.qualityFeedback = qualityFeedback;
     }
 
     public BugReport getBugReport() {
         return bugReport;
     }
 
-    public List<S2RQualityFeedback> getS2RQualityFeedback() {
-        return s2RQualityFeedback;
+    public List<QualityFeedback> getS2RQualityFeedback() {
+        return qualityFeedback;
     }
 
     public String getAppName() {

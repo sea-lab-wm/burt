@@ -15,7 +15,7 @@ import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.graph.db.Transform;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import sealab.burt.qualitychecker.s2rquality.S2RQualityFeedback;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -60,19 +60,19 @@ class S2RChecker {
         resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 
-    public QualityResult checkS2R(String S2RDescription) throws Exception {
+    public QualityFeedback checkS2R(String S2RDescription) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, S2RDescription);
-        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
+        if (nlActions.isEmpty()) return QualityFeedback.noParsedFeedback();
         return matchActions(nlActions, null);
     }
 
-    public QualityResult checkS2R(String S2RDescription, int currentState) throws Exception {
+    public QualityFeedback checkS2R(String S2RDescription, int currentState) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, S2RDescription);
-        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
+        if (nlActions.isEmpty()) return QualityFeedback.noParsedFeedback();
         return matchActions(nlActions, currentState);
     }
 
-    public QualityResult checkS2R(NLAction action) throws Exception {
+    public QualityFeedback checkS2R(NLAction action) throws Exception {
         executionGraph = GraphReader.getGraph(appName, appVersion);
 
         if (currentState == null)
@@ -83,7 +83,7 @@ class S2RChecker {
         return matchAction(action);
     }
 
-    private QualityResult matchActions(List<NLAction> nlActions, Integer currentStateId) throws Exception {
+    private QualityFeedback matchActions(List<NLAction> nlActions, Integer currentStateId) throws Exception {
         executionGraph = GraphReader.getGraph(appName, appVersion);
 
         if (this.currentState == null)
@@ -105,39 +105,38 @@ class S2RChecker {
         return matchAction(nlAction);
     }
 
-    private QualityResult matchAction(NLAction nlAction) {
-        S2RQualityFeedback s2rQA = new S2RQualityFeedback();
+    private QualityFeedback matchAction(NLAction nlAction) {
+        QualityFeedback qualityFeedback = new QualityFeedback();
+        qualityFeedback.setAction(nlAction);
         List<AppStep> currentResolvedSteps = new LinkedList<>();
-        resolveNLAction(nlAction, currentResolvedSteps, currentState, null, null, null, s2rQA);
+        resolveNLAction(nlAction, currentResolvedSteps, currentState, null, null, null, qualityFeedback);
 
-        List<S2RQualityAssessment> assessments = s2rQA.getQualityAssessments();
-
-        if (assessments.stream().anyMatch(a -> a.getCategory().equals(HIGH_QUALITY))) {
-            currentState = assessments.get(0).getMatchedSteps().get(0).getCurrentState();
-            log.debug("New current state: " + currentState);
-            return new QualityResult(MATCH);
-        }
-        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_AMBIGUOUS)))
-            return new QualityResult(MULTIPLE_MATCH);
-
-        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_INCORRECT_INPUT)))
-            return new QualityResult(NO_S2R_INPUT);
-
-        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_VOCAB_MISMATCH)))
-            return new QualityResult(NO_MATCH);
-
-        if (assessments.stream().anyMatch(a -> a.getCategory().equals(MISSING)))
-            return new QualityResult(MISSING_STEPS);
-
-
-
-        throw new RuntimeException("Unknown quality assessment");
+//
+//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_AMBIGUOUS)))
+//            return new QualityResult(MULTIPLE_MATCH);
+//
+//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_INCORRECT_INPUT)))
+//            return new QualityResult(NO_S2R_INPUT);
+//
+//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_VOCAB_MISMATCH)))
+//            return new QualityResult(NO_MATCH);
+//
+//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(MISSING)))
+//            return new QualityResult(MISSING_STEPS);
+//
+//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(HIGH_QUALITY))) {
+//            currentState = assessments.get(0).getMatchedSteps().get(0).getCurrentState();
+//            log.debug("New current state: " + currentState);
+//            return new QualityResult(MATCH);
+//        }
+//        throw new RuntimeException("Unknown quality assessment");
+        return qualityFeedback;
     }
 
     private List<DevServerCommandResult> resolveNLAction(NLAction currNLAction, List<AppStep> currentResolvedSteps,
                                                          GraphState currentState, Screen currentScreen,
                                                          NLAction previousS2RNlAction,
-                                                         AppStep lastStep, S2RQualityFeedback s2rQA) {
+                                                         AppStep lastStep, QualityFeedback s2rQA) {
 
         log.debug("Resolving action: " + currNLAction);
 

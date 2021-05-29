@@ -3,6 +3,7 @@ package sealab.burt.qualitychecker;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.collections.KeyValue;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 
 
 import java.security.KeyStore;
@@ -21,7 +22,8 @@ class QualityResult {
     }
 
     private Result result;
-    private String description;
+    private QualityFeedback qualityFeedback;
+  /*  private String description;
     private String screenshotPath;
     private String qualityFeedback;
     private List<KeyValue> descriptionScreenshotPath;
@@ -41,7 +43,7 @@ class QualityResult {
         this.description = description;
         this.screenshotPath = screenshotPath;
 
-    }
+    }*/
 
 
 }

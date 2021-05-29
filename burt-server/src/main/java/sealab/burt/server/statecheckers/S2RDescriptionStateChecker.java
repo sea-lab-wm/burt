@@ -3,6 +3,8 @@ package sealab.burt.server.statecheckers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
@@ -19,12 +21,12 @@ public class S2RDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
     private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
-        put(QualityResult.Result.MATCH.name(), PROVIDE_S2R);
-        put(QualityResult.Result.MULTIPLE_MATCH.name(), ActionName.DISAMBIGUATE_S2R);
-        put(QualityResult.Result.NO_MATCH.name(), REPHRASE_S2R);
-        put(QualityResult.Result.NO_S2R_INPUT.name(), SPECIFY_INPUT_S2R);
-        put(QualityResult.Result.MISSING_STEPS.name(), SELECT_MISSING_S2R);
-        put(QualityResult.Result.NO_PARSED.name(), PROVIDE_S2R_NO_PARSE);
+        put(S2RQualityCategory.HIGH_QUALITY.name(), PROVIDE_S2R);
+        put(S2RQualityCategory.LOW_Q_AMBIGUOUS.name(), ActionName.DISAMBIGUATE_S2R);
+        put(S2RQualityCategory.LOW_Q_VOCAB_MISMATCH.name(), REPHRASE_S2R);
+        put(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name(), SPECIFY_INPUT_S2R);
+        put(S2RQualityCategory.MISSING.name(), SELECT_MISSING_S2R);
+        put(S2RQualityCategory.LOW_Q_NOT_PARSED.name(), PROVIDE_S2R_NO_PARSE);
     }};
 
     public S2RDescriptionStateChecker(ActionName defaultAction) {
@@ -37,38 +39,50 @@ public class S2RDescriptionStateChecker extends StateChecker {
         try {
             UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
             String message = userMessage.getMessages().get(0).getMessage();
+
+            //-------------------------------
+
             String targetString = "last step";
             if (message.toLowerCase().contains(targetString.toLowerCase())) {
                 //ask for the first step, if there was no first step provided
-                if(!state.containsKey(REPORT_S2R))
+                if (!state.containsKey(REPORT_S2R))
                     return PROVIDE_S2R_FIRST;
                 else
                     return ActionName.CONFIRM_LAST_STEP;
-            } else {
-                QualityResult result = runS2RChecker(state);
-//                String description = result.getDescription();
-//                String screenshotPath = result.getScreenshotPath();
-//                String qualityFeedback = result.getQualityFeedback();
-//                state.put(S2R_DESCRIPTION, description);
-//                state.put(S2R_SCREEN, screenshotPath);
-                String description = "S2R description";
-                String screenshotPath = "app_logos/S2RScreen1.png";
-                state.put(S2R_DESCRIPTION, description);
-                state.put(S2R_SCREEN, screenshotPath);
-
-                if (result.getResult().equals(QualityResult.Result.MATCH)) {
-                    if (!state.containsKey(REPORT_S2R)) {
-                        List<OutputMessageObj> outputMessageList = new ArrayList<>();
-                        outputMessageList.add(new OutputMessageObj(description, screenshotPath));
-                        state.put(REPORT_S2R, outputMessageList);
-                    } else {
-                        List<OutputMessageObj> outputMessage = (List<OutputMessageObj>) state.get(REPORT_S2R);
-                        outputMessage.add(new OutputMessageObj(description, screenshotPath));
-                    }
-                }
-
-                return nextActions.get(result.getResult().name());
             }
+
+            //------------------------
+
+            QualityFeedback qFeedback = runS2RChecker(state);
+
+            List<S2RQualityCategory> results = qFeedback.getAssessmentResults();
+
+            if (results.isEmpty()) throw new RuntimeException("No quality assessment");
+
+            if (results.size() > 1) {
+                //FIXME: what if there is high quality result?
+                if(results.contains(S2RQualityCategory.MISSING))
+                   return nextActions.get(S2RQualityCategory.MISSING.name());
+                else
+                    throw new RuntimeException("Unsupported quality assessment combination: " + results);
+            }
+
+            S2RQualityCategory assessmentCategory = results.get(0);
+
+            String screenshotPath = "dummy.png";
+
+            if (results.contains(S2RQualityCategory.HIGH_QUALITY)) {
+                if (!state.containsKey(REPORT_S2R)) {
+                    List<OutputMessageObj> outputMessageList = new ArrayList<>();
+                    outputMessageList.add(new OutputMessageObj(message, screenshotPath));
+                    state.put(REPORT_S2R, outputMessageList);
+                } else {
+                    List<OutputMessageObj> outputMessage = (List<OutputMessageObj>) state.get(REPORT_S2R);
+                    outputMessage.add(new OutputMessageObj(message, screenshotPath));
+                }
+            }
+
+            return nextActions.get(assessmentCategory.name());
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
             return UNEXPECTED_ERROR;

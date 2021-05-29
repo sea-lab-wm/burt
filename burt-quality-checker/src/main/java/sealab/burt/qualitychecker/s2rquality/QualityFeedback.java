@@ -5,11 +5,12 @@ import sealab.burt.nlparser.euler.actions.nl.NLAction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Quality feedback for an S2R
  */
-public class S2RQualityFeedback {
+public class QualityFeedback {
 
     //the action that represents the S2R
     private NLAction action;
@@ -17,14 +18,21 @@ public class S2RQualityFeedback {
     //an S2R can have more than one quality assessment
     private List<S2RQualityAssessment> qualityAssessments = new ArrayList<>();
 
-    public S2RQualityFeedback() {
+    public QualityFeedback() {
     }
 
-    public S2RQualityFeedback(NLAction action) {
+    public QualityFeedback(NLAction action) {
         this.action = action;
     }
 
-    public void addFeedback(S2RQualityFeedback feedback){
+    public static QualityFeedback noParsedFeedback() {
+        QualityFeedback feedback = new QualityFeedback();
+        S2RQualityAssessment assessment = new S2RQualityAssessment(S2RQualityCategory.LOW_Q_NOT_PARSED);
+        feedback.addQualityAssessment(assessment);
+        return feedback;
+    }
+
+    public void addFeedback(QualityFeedback feedback){
 
         if (action == null)
             throw new RuntimeException("Cannot check the action because it is null!");
@@ -54,5 +62,11 @@ public class S2RQualityFeedback {
 
     public void setQualityAssessments(List<S2RQualityAssessment> qualityAssessments) {
         this.qualityAssessments = qualityAssessments;
+    }
+
+    public List<S2RQualityCategory> getAssessmentResults() {
+        return this.qualityAssessments.stream()
+                .map(S2RQualityAssessment::getCategory)
+                .collect(Collectors.toList());
     }
 }

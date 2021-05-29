@@ -5,6 +5,7 @@ public enum S2RQualityCategory {
     HIGH_QUALITY("EM", "This S2R matches the following app interaction:"),
 
     // low-quality
+    LOW_Q_NOT_PARSED("NP", "-"),
     LOW_Q_AMBIGUOUS("AS", "-"),
     LOW_Q_VOCAB_MISMATCH("VM", "-"),
     LOW_Q_INCORRECT_INPUT("IV", "This S2R's input value is missing or incorrect. An example of a valid value is:"),

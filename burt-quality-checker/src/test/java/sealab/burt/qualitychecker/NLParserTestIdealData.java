@@ -12,12 +12,16 @@ import sealab.burt.nlparser.euler.actions.nl.ActionType;
 import sealab.burt.nlparser.euler.actions.nl.BugScenario;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.nlparser.euler.actions.utils.DataReader;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import seers.appcore.xml.XMLHelper;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledBugReport;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledDescriptionSentence;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,10 +97,13 @@ class NLParserTestIdealData {
 
                         log.debug("Action: " + s2rSentence);
                         log.debug("S2R: " + s2rSentence);
-                        QualityResult qualityResult = checker.checkS2R(s2rSentence);
-                        log.debug(qualityResult.toString());
-                        if(QualityResult.Result.NO_PARSED.equals(qualityResult.getResult()))
-                            log.warn(QualityResult.Result.NO_PARSED.toString());
+                        QualityFeedback qualityResult = checker.checkS2R(s2rSentence);
+
+                        List<S2RQualityCategory> assessmentResults = qualityResult.getAssessmentResults();
+                        log.debug(assessmentResults.toString());
+
+                        if(Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED).equals(assessmentResults))
+                            log.warn(S2RQualityCategory.LOW_Q_NOT_PARSED.toString());
                     }
                 }
             }
@@ -226,6 +233,7 @@ class NLParserTestIdealData {
                                boolean addPastTense, boolean includeSubject, Path scenarioFile, boolean addPerfectTense,
                                Integer sequence)
             throws Exception {
+
         log.debug("-------------------------------------------------------------");
         log.debug("Processing: " + scenarioFile);
 
@@ -249,9 +257,11 @@ class NLParserTestIdealData {
             String s2r = UtilReporter.getActionString(action, false, false, includeSubject, addPastTense,
                     addPerfectTense);
             log.debug("S2R: " + s2r);
-            QualityResult qualityResult = checker.checkS2R(s2r);
-            log.debug(qualityResult.toString());
-            assertNotEquals(QualityResult.Result.NO_PARSED, qualityResult.getResult());
+            QualityFeedback qualityResult = checker.checkS2R(s2r);
+
+            List<S2RQualityCategory> assessmentResults = qualityResult.getAssessmentResults();
+            log.debug(assessmentResults.toString());
+            assertNotEquals(Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED), assessmentResults);
         }
     }
 }

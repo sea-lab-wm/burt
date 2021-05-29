@@ -6,6 +6,7 @@ import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
@@ -25,10 +26,10 @@ abstract class StateChecker {
 
     public abstract ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state);
 
-    protected QualityResult runS2RChecker(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    protected QualityFeedback runS2RChecker(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
         UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
         S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
-        QualityResult qualityResult = checker.checkS2R(userMessage.getMessages().get(0).getMessage());
+        QualityFeedback qualityResult = checker.checkS2R(userMessage.getMessages().get(0).getMessage());
         state.put(S2R_QUALITY_RESULT, qualityResult);
         log.debug("S2R quality result: " + qualityResult);
         return qualityResult;
