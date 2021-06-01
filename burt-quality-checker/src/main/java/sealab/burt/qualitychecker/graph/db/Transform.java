@@ -1,4 +1,5 @@
-package sealab.burt.qualitychecker.graph.db; /*******************************************************************************
+package sealab.burt.qualitychecker.graph.db; /**
+ *****************************************************************************
  * Copyright (c) 2018, SEMERU
  * All rights reserved.
  *
@@ -107,6 +108,9 @@ public class Transform {
     }
 
     public static Appl getAppl(App app) {
+
+        if (app == null) return null;
+
         Appl appl = new Appl();
         appl.setId(app.getId());
         appl.setName(app.getName());

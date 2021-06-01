@@ -102,6 +102,39 @@ public class GraphGenerator {
         return generateGraph(app);
     }
 
+
+    public AppGraphInfo generateGraph(List<Execution> executions, App app) throws Exception {
+
+        states.clear();
+        transitions.clear();
+
+        List<AppStep> allSteps = new ArrayList<>();
+        for (Execution execution : executions) {
+            // if (execution.getId() == 9) {
+            try {
+                if (!execution.getSteps().isEmpty()) {
+                    List<AppStep> steps = processExecution(execution);
+                    allSteps.addAll(steps);
+                    // System.out.println("=="+execution.getSteps().size()+"==");
+                    // System.out.println("====================");
+                }
+            } catch (Exception e) {
+                LOGGER.error("Error for execution " + execution.getId(), e);
+                throw e;
+            }
+            // }
+        }
+
+        AppGraph<GraphState, GraphTransition> graph = buildDirectedGraph();
+
+        AppGraphInfo graphInfo = new AppGraphInfo();
+        graphInfo.setGraph(graph);
+        graphInfo.setSteps(allSteps);
+        graphInfo.setApp(Transform.getAppl(app));
+
+        return graphInfo;
+    }
+
     public AppGraphInfo generateGraph(App app) throws Exception {
 
         states.clear();
