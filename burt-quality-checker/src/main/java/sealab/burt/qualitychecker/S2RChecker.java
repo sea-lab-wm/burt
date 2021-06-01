@@ -13,9 +13,9 @@ import sealab.burt.qualitychecker.graph.*;
 import sealab.burt.qualitychecker.graph.db.DBUtils;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.graph.db.Transform;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -23,8 +23,7 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static sealab.burt.qualitychecker.QualityResult.Result.*;
-import static sealab.burt.qualitychecker.s2rquality.S2RQualityCategory.*;
+import static sealab.burt.qualitychecker.s2rquality.S2RQualityCategory.HIGH_QUALITY;
 
 public @Slf4j
 class S2RChecker {
@@ -50,11 +49,14 @@ class S2RChecker {
     private AppGraphInfo executionGraph;
     private HashMap<Integer, Integer> statesExecuted = new HashMap<>();
     private String parsersBaseFolder;
+    private String crashScopeDataPath;
 
-    public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder) {
+    public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder,
+                      String crashScopeDataPath) {
         this.appName = appName;
         this.appVersion = appVersion;
         this.parsersBaseFolder = parsersBaseFolder;
+        this.crashScopeDataPath = crashScopeDataPath;
 
         s2rParser = new NLActionS2RParser(null, resourcesPath);
         resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
@@ -73,7 +75,7 @@ class S2RChecker {
     }
 
     public QualityFeedback checkS2R(NLAction action) throws Exception {
-        executionGraph = GraphReader.getGraph(appName, appVersion);
+        readGraph();
 
         if (currentState == null)
             currentState = GraphState.START_STATE;
@@ -84,7 +86,7 @@ class S2RChecker {
     }
 
     private QualityFeedback matchActions(List<NLAction> nlActions, Integer currentStateId) throws Exception {
-        executionGraph = GraphReader.getGraph(appName, appVersion);
+        readGraph();
 
         if (this.currentState == null)
             this.currentState = GraphState.START_STATE;
@@ -103,6 +105,13 @@ class S2RChecker {
         log.debug("Matching action: " + nlAction);
 
         return matchAction(nlAction);
+    }
+
+    private void readGraph() throws Exception {
+        if (crashScopeDataPath == null)
+            executionGraph = DBGraphReader.getGraph(appName, appVersion);
+        else
+            executionGraph = JSONGraphReader.getGraph(crashScopeDataPath, appName, appVersion);
     }
 
     private QualityFeedback matchAction(NLAction nlAction) {

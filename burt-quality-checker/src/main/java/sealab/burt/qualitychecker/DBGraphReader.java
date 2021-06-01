@@ -10,7 +10,7 @@ import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 
 public @Slf4j
-class GraphReader {
+class DBGraphReader {
 
     private static final ConcurrentHashMap<String, AppGraphInfo> graphs = new ConcurrentHashMap<>();
 

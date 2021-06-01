@@ -1,11 +1,9 @@
-package sealab.burt.qualitychecker.graph.db;
+package sealab.burt.qualitychecker;
 
 import com.android.uiautomator.tree.BasicTreeNode;
 import com.android.uiautomator.tree.UiHierarchyXmlLoader;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.mxgraph.util.mxCellRenderer;
-import com.mxgraph.view.mxGraph;
 import edu.semeru.android.core.entity.model.App;
 import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
 import edu.semeru.android.core.entity.model.fusion.Execution;
@@ -14,65 +12,69 @@ import edu.semeru.android.core.entity.model.fusion.Step;
 import edu.semeru.android.core.model.DynGuiComponentVO;
 import edu.semeru.android.testing.helpers.UiAutoConnector;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
-import sealab.burt.qualitychecker.actionparser.GraphLayout;
-import sealab.burt.qualitychecker.actionparser.GraphUtils;
-import sealab.burt.qualitychecker.graph.AppGraph;
+import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
-import sealab.burt.qualitychecker.graph.GraphState;
-import sealab.burt.qualitychecker.graph.GraphTransition;
-import seers.appcore.threads.ThreadExecutor;
-import seers.appcore.threads.processor.ThreadParameters;
-import seers.appcore.threads.processor.ThreadProcessor;
-import seers.appcore.utils.JavaUtils;
+import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.nio.file.Paths;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-public
-@Slf4j
-class MainJSONGraphGenerator {
+public @Slf4j
+class JSONGraphReader {
 
-    private static final Set<ImmutablePair<String, String>> SYSTEMS_ALLOWED = JavaUtils.getSet(
-            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.0.8")
-            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.1.1")
-            //			new ImmutablePair<>("me.kuehle.carreport", "3.6.0"),
-            //			new ImmutablePair<>("me.kuehle.carreport", "3.11.2")
-            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.20")
-            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
-            //			new ImmutablePair<>("nerd.tuxmobil.fahrplan.camp", "1.32.2"),
-            //			new ImmutablePair<>("aarddict.android", "1.6.10")
-            //			new ImmutablePair<>("aarddict.android", "1.6.10")
-            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
-            //			new ImmutablePair<>("org.gnucash.android", "2.1.3")
-            //			new ImmutablePair<>("org.gnucash.android", "2.1.1")
-            //			new ImmutablePair<>("org.gnucash.android", "2.2.0")
-            //			new ImmutablePair<>("org.gnucash.android", "2.0.3")
-            new ImmutablePair<>("org.gnucash.android", "2.0.4")
-    );
+    private static final ConcurrentHashMap<String, AppGraphInfo> graphs = new ConcurrentHashMap<>();
 
-    private static String outFolder = "C:\\Users\\ojcch\\Documents\\Projects\\Burt\\burt\\data\\graphs2";
+    public static AppGraphInfo getGraph(String baseFolder, String appName, String appVersion) throws Exception {
+        AppGraphInfo graph = graphs.get(getKey(appName, appVersion));
+        if (graph == null) {
+            readGraph(baseFolder, appName, appVersion);
+            graph = graphs.get(getKey(appName, appVersion));
+        }
+        return graph;
+    }
 
-    //This is the location where the CrashScope data is stored (the .xmls and screenshots)
-    private static String uiDumpLocation = "../data/CrashScope-Data-Mileage";
+    private static String getKey(String app, String appVersion) {
+        return MessageFormat.format("{0}-{1}", app, appVersion);
+    }
 
-    public static void main(String[] args) throws Exception {
+    private static String getFirstPackageName(String appName){
+        String normalizedAppName = AppNamesMappings.normalizeAppName(appName);
+
+        if(normalizedAppName==null) throw new RuntimeException("Could not normalize app name: "+ appName);
+
+        List<String> packages = AppNamesMappings.getPackageNames(normalizedAppName.toLowerCase());
+        if (packages == null || packages.isEmpty()) {
+            throw new RuntimeException("No packages found for: " + appName );
+        }
+
+        return packages.get(0);
+    }
+
+    private static void readGraph(String baseFolder, String appName, String appVersion) throws Exception {
+
+        String packageName = getFirstPackageName(appName);
+        String dataLocation = Paths.get(baseFolder, String.join("-", packageName, appVersion)).toString();
+
+        String key = getKey(appName, appVersion);
+        log.debug("Reading graph for " + key);
+
+        //----------------------
 
         //Set up a new Gson object and read it in.
         // Currently this is set up to work for a single file
         // TODO: Set up to read in and combine multiple json files for the same app.
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader(uiDumpLocation + "/Execution-1.json"));
+        JsonReader reader = new JsonReader(new FileReader(Paths.get(dataLocation, "Execution-1.json").toFile()));
 
         // De-serialize the Execution object. I currently set a manual ID for testing purposes.
         Execution exec = gson.fromJson(reader, Execution.class);
@@ -99,7 +101,7 @@ class MainJSONGraphGenerator {
             // Get the current screen and read in the corresponding xml file.
             // Note that I decrement the "sequenceStep" by one since it is not zero indexed.
             String xmlPath =
-                    uiDumpLocation + File.separator + exec.getApp().getPackageName() + "-" +
+                    dataLocation + File.separator + exec.getApp().getPackageName() + "-" +
                             exec.getApp().getVersion() + "-" + exec.getExecutionNum() + "-" +
                             exec.getExecutionType() + (currStep.getSequenceStep() - 1) + ".xml";
 //            System.out.println(xmlPath); //For debug
@@ -128,83 +130,7 @@ class MainJSONGraphGenerator {
         GraphGenerator generator = new GraphGenerator();
 
         AppGraphInfo graphInfo = generator.generateGraph(Collections.singletonList(exec), app);
-        AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
-        System.out.println(graph.toString());
-
-
-        //----------------------------------------
-
-        String sysString = File.separator + app.getId() + "-" + graphInfo.getApp().getPackageName() + "-"
-                + graphInfo.getApp().getVersion();
-
-        File sysFolder = new File(outFolder + File.separator + sysString);
-
-        if (sysFolder.exists()) {
-            FileUtils.deleteDirectory(sysFolder);
-        }
-
-        String pathname = sysFolder + File.separator + sysString;
-
-        // ------------------------------------------------------
-
-        File file = new File(pathname + "-graph.txt");
-        String graphStr = graphInfo.graphToString();
-        FileUtils.write(file, graphStr);
-
-        // ------------------------------------------------------
-
-        KosarajuStrongConnectivityInspector<GraphState, GraphTransition> inspector =
-                new KosarajuStrongConnectivityInspector<>(
-                graph);
-        List<Set<GraphState>> stronglyConnectedSets = inspector.stronglyConnectedSets();
-
-        String ccStr = getConnectedComponentsStr(stronglyConnectedSets);
-        File ccfile = new File(pathname + "-connected-comp.txt");
-        FileUtils.write(ccfile, ccStr, StandardCharsets.UTF_8);
-
-        // ------------------------------------------------------
-
-        String pathnameStates = sysFolder + File.separator + "states";
-        String pathnameTransitions = sysFolder + File.separator + "transitions";
-
-        new File(pathnameStates).mkdir();
-        new File(pathnameTransitions).mkdir();
-
-        Set<GraphTransition> edgeSet = graphInfo.getGraph().edgeSet();
-
-        for (GraphTransition edge : edgeSet) {
-
-            String screenshotFile = edge.getStep().getScreenshotFile();
-
-            File srcFile = new File(uiDumpLocation + "/screenshots/" + File.separator + screenshotFile);
-
-            if (screenshotFile != null && screenshotFile.endsWith(".png") && srcFile.exists()
-                    && srcFile.isFile()) {
-
-                File destFile = new File(pathnameTransitions + File.separator + edge.getId() + ".png");
-                FileUtils.copyFile(srcFile, destFile);
-
-                GraphState sourceState = edge.getSourceState();
-
-                File destFile2 = new File(
-                        pathnameStates + File.separator + sourceState.getUniqueHash() + ".png");
-                if (!destFile2.exists()) {
-                    FileUtils.copyFile(srcFile, destFile2);
-                }
-
-            }
-        }
-
-        // ------------------------------------------------------
-        log.debug("Saving image");
-
-        mxGraph visualGraph = GraphUtils.getVisualGraph(graph, GraphLayout.CIRCLE);
-        BufferedImage image = mxCellRenderer.createBufferedImage(visualGraph, null, 1, Color.WHITE, true,
-                null);
-        ImageIO.write(image, "PNG", new File(pathname + ".png"));
-
-        log.debug("Done");
-
+        graphs.put(key, graphInfo);
     }
 
     private static List<DynGuiComponent> convertVOstoGUIComps(ArrayList<DynGuiComponentVO> currComps, Screen screen) {
@@ -276,30 +202,4 @@ class MainJSONGraphGenerator {
 
         return component;
     }
-
-    private static String getConnectedComponentsStr(List<Set<GraphState>> stronglyConnectedSets) {
-
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("# of components: " + stronglyConnectedSets.size());
-        builder.append("\n");
-        builder.append("\n");
-
-        for (int i = 0; i < stronglyConnectedSets.size(); i++) {
-            Set<GraphState> set = stronglyConnectedSets.get(i);
-
-            builder.append("Component " + (i + 1));
-            builder.append("\n");
-
-            set.forEach(s -> {
-                builder.append(s.getName() + ": " + s.getUnformattedXml());
-                builder.append("\n");
-            });
-
-            builder.append("\n");
-        }
-
-        return builder.toString();
-    }
-
 }

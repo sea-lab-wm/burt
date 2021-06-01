@@ -100,6 +100,7 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("gnucash", Arrays.asList("org.gnucash.android"));
 
         APP_NAMES_PACKAGES.put("mileage", Arrays.asList("com.evancharlton.mileage"));
+        APP_NAMES_PACKAGES.put("Mileage", Arrays.asList("com.evancharlton.mileage"));
         APP_NAMES_PACKAGES.put("android-mileage", Arrays.asList("com.evancharlton.mileage"));
 
         APP_NAMES_PACKAGES.put("netmbuddy", Arrays.asList("free.yhc.netmbuddy"));

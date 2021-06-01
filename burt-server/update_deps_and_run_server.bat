@@ -1,8 +1,8 @@
 
 set CUR_DIR=%CD%
 
-rem set REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
-set REPOSITORIES_PATH=D:\Projects
+set REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
+rem set REPOSITORIES_PATH=D:\Projects
 
 set APPCORE_REPO_PATH=%REPOSITORIES_PATH%\appcore
 set TXT_ANALYZER_REPO_PATH=%REPOSITORIES_PATH%\text-analyzer
@@ -28,6 +28,7 @@ cd "%ANDROID_CORE_REPO_PATH%" && call mvn clean install -DskipTests && @echo on
 cd "%CUR_DIR%"
 
 cd ..\burt-nlparser && call mvn clean install -DskipTests && @echo on
+cd ..\crashscope && call mvn clean install -DskipTests && @echo on
 cd ..\burt-quality-checker && call mvn clean install -DskipTests && @echo on
 
 cd "%CUR_DIR%"

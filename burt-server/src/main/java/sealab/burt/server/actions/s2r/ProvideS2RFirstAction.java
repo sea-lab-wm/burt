@@ -24,11 +24,14 @@ public class ProvideS2RFirstAction extends ChatbotAction {
 
         String appName = state.get(APP).toString();
         String appVersion = state.get(APP_VERSION).toString();
-        String resourcesPath = "../burt-quality-checker/src/main/resources";
+        String resourcesPath = Path.of("..", "burt-quality-checker", "src", "main", "resources").toString();
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
+//        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
+        String crashScopeDataPath = null;
 
-        if (!state.containsKey(S2R_CHECKER)) state.put(S2R_CHECKER,
-                new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder));
+        if (!state.containsKey(S2R_CHECKER))
+            state.put(S2R_CHECKER,
+                    new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder, crashScopeDataPath));
 
         return new ChatbotMessage(" Okay. Now I need to know the steps that you performed and caused the problem. Can" +
                 " you please tell me the first step that you performed?");

@@ -34,7 +34,7 @@ public class OBChecker {
     }
 
     private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
-        AppGraphInfo graph = GraphReader.getGraph(appName, appVersion);
+        AppGraphInfo graph = DBGraphReader.getGraph(appName, appVersion);
 
         if (currentState == null)
             currentState = GraphState.START_STATE;

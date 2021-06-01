@@ -31,7 +31,7 @@ abstract class StateChecker {
         S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
         QualityFeedback qualityResult = checker.checkS2R(userMessage.getMessages().get(0).getMessage());
         state.put(S2R_QUALITY_RESULT, qualityResult);
-        log.debug("S2R quality result: " + qualityResult);
+        log.debug("S2R quality result: " + qualityResult.getAssessmentResults());
         return qualityResult;
     }
 

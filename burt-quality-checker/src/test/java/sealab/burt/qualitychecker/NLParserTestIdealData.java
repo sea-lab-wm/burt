@@ -20,7 +20,6 @@ import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledDescriptionSentence
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,9 +42,9 @@ class NLParserTestIdealData {
     }
 
     private static void disableLogging() {
-        Logger.getLogger("sealab.burt.qualitychecker.actionparser").setLevel(Level.OFF);
-        Logger.getLogger("sealab.burt.qualitychecker.S2RChecker").setLevel(Level.OFF);
-        Logger.getLogger("sealab.burt.qualitychecker.graph").setLevel(Level.OFF);
+//        Logger.getLogger("sealab.burt.qualitychecker.actionparser").setLevel(Level.OFF);
+//        Logger.getLogger("sealab.burt.qualitychecker.S2RChecker").setLevel(Level.OFF);
+//        Logger.getLogger("sealab.burt.qualitychecker.graph").setLevel(Level.OFF);
         Logger.getLogger("edu.stanford.nlp").setLevel(Level.OFF);
     }
 
@@ -54,13 +53,14 @@ class NLParserTestIdealData {
 
         List<Pair<String, String>> apps = new LinkedList<>() {
             {
-                add(new ImmutablePair<>("gnucash-android", "2.1.3"));
-                add(new ImmutablePair<>("droidweight", "1.5.4"));
+//                add(new ImmutablePair<>("gnucash-android", "2.1.3"));
+//                add(new ImmutablePair<>("droidweight", "1.5.4"));
                 add(new ImmutablePair<>("android-mileage", "3.1.1"));
             }
         };
         String resourcesPath = "src/main/resources";
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
+        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
 
         //------------------------------------
 
@@ -78,9 +78,11 @@ class NLParserTestIdealData {
                     log.debug("-------------------------------------------------------------");
                     log.debug("Processing: " + bugReportFile);
 
-                    S2RChecker checker = new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder);
+                    S2RChecker checker = new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder,
+                            crashScopeDataPath);
 
-                    ShortLabeledBugReport bugReport = XMLHelper.readXML(ShortLabeledBugReport.class, bugReportFile.toFile());
+                    ShortLabeledBugReport bugReport = XMLHelper.readXML(ShortLabeledBugReport.class,
+                            bugReportFile.toFile());
 
                     LinkedList<String> allSentences =
                             bugReport.getDescription().getAllSentences().stream()
@@ -100,9 +102,9 @@ class NLParserTestIdealData {
                         QualityFeedback qualityResult = checker.checkS2R(s2rSentence);
 
                         List<S2RQualityCategory> assessmentResults = qualityResult.getAssessmentResults();
-                        log.debug(assessmentResults.toString());
+                        log.debug("Quality results: " + assessmentResults.toString());
 
-                        if(Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED).equals(assessmentResults))
+                        if (Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED).equals(assessmentResults))
                             log.warn(S2RQualityCategory.LOW_Q_NOT_PARSED.toString());
                     }
                 }
@@ -237,7 +239,7 @@ class NLParserTestIdealData {
         log.debug("-------------------------------------------------------------");
         log.debug("Processing: " + scenarioFile);
 
-        S2RChecker checker = new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder);
+        S2RChecker checker = new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder, null);
 
         List<BugScenario> bugScenarios = DataReader.readScenarios(scenarioFile.toString());
 
