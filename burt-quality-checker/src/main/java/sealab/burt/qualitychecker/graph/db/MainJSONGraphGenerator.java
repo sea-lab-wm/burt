@@ -4,6 +4,8 @@ import com.android.uiautomator.tree.BasicTreeNode;
 import com.android.uiautomator.tree.UiHierarchyXmlLoader;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import com.mxgraph.util.mxCellRenderer;
+import com.mxgraph.view.mxGraph;
 import edu.semeru.android.core.entity.model.App;
 import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
 import edu.semeru.android.core.entity.model.fusion.Execution;
@@ -11,12 +13,13 @@ import edu.semeru.android.core.entity.model.fusion.Screen;
 import edu.semeru.android.core.entity.model.fusion.Step;
 import edu.semeru.android.core.model.DynGuiComponentVO;
 import edu.semeru.android.testing.helpers.UiAutoConnector;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import sealab.burt.qualitychecker.actionparser.GraphLayout;
+import sealab.burt.qualitychecker.actionparser.GraphUtils;
 import sealab.burt.qualitychecker.graph.AppGraph;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.GraphState;
@@ -26,12 +29,19 @@ import seers.appcore.threads.processor.ThreadParameters;
 import seers.appcore.threads.processor.ThreadProcessor;
 import seers.appcore.utils.JavaUtils;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainGraphGenerator {
+public
+@Slf4j
+class MainJSONGraphGenerator {
 
     private static final Set<ImmutablePair<String, String>> SYSTEMS_ALLOWED = JavaUtils.getSet(
             //			new ImmutablePair<>			("com.evancharlton.mileage", "3.0.8")
@@ -51,57 +61,27 @@ public class MainGraphGenerator {
             new ImmutablePair<>("org.gnucash.android", "2.0.4")
     );
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainGraphGenerator.class);
-
     private static String outFolder = "C:\\Users\\ojcch\\Documents\\Projects\\Burt\\burt\\data\\graphs2";
-    private static String screenShotsFolder = "C:/Users/ojcch/Documents/Projects/Amadeus/study-data/CS-Data" +
-            "/screenshots";
-    private static String entityManager = DBUtils.DEFAULT_EM;
 
-    // private static String outFolder =
-    // "C:/Users/ojcch/Documents/Projects/Andriod_bug_reproduction/testing-graphs2";
-    // private static String screenShotsFolder =
-    // "C:/Users/ojcch/Documents/Projects/Andriod_bug_reproduction/backup/Data/screenshots";
-    // private static String entityManager = MainGraphBasedAmadeus.dbEntityManager;
+    //This is the location where the CrashScope data is stored (the .xmls and screenshots)
+    private static String uiDumpLocation = "../data/CrashScope-Data-Droidweight";
 
     public static void main(String[] args) throws Exception {
 
-
-        // This is the old code that extracted the Graph from the database. This has been replaced with the 
-        // new code below which reads things from the json file.
-        //		EntityManager em = DBUtils.createEntityManager(entityManager);
-        //		
-        //		LOGGER.debug(entityManager);
-        //
-        //		AppDao daoApp = new AppDao();
-        //
-        //		List<App> apps = daoApp.findAll(em);
-        //
-        //		List<App> filteredApps = apps;
-        //		if (!SYSTEMS_ALLOWED.isEmpty()) {
-        //			filteredApps = apps.stream().filter(a -> SYSTEMS_ALLOWED.stream().anyMatch(pair -> pair.left
-        //			.equals(a
-        //					.getPackageName()) && pair.right.equals(a.getVersion())) )
-        //					.collect(Collectors.toList());
-        //		}
-        //
-        //		ThreadExecutor.executePaginated(filteredApps, AppThreadProcessor.class, new ThreadParameters(), 7);
-
-
-        String uiDumpLocation = "../data/CrashScope-Data-Droidweight"; //This is the location where the CrashScope
-        // data is stored (the .xmls and
-        // screenshots)
-
-        //Set up a new Gson object and read it in. Currently this is set up to work for 
-        // a single file
+        //Set up a new Gson object and read it in.
+        // Currently this is set up to work for a single file
         // TODO: Set up to read in and combine multiple json files for the same app.
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader("..\\data\\CrashScope-Data-Droidweight\\Execution-1.json"));
+        JsonReader reader = new JsonReader(new FileReader(uiDumpLocation + "/Execution-1.json"));
 
         // De-serialize the Execution object. I currently set a manual ID for testing purposes.
         Execution exec = gson.fromJson(reader, Execution.class);
         exec.setId((long) 1);
 
+        App app = exec.getApp();
+        app.setId(1L);
+
+        //----------------------------------------
 
         //Add IDs to steps
         List<Step> steps = exec.getSteps();
@@ -109,16 +89,15 @@ public class MainGraphGenerator {
 
             steps.get(i).setId((long) i);
         }
-
         exec.setSteps(steps);
 
+        //----------------------------------------
 
-        //This for loop reads in the list of DynGuiComponentVOs for each screen 
+        //This for loop reads in the list of DynGuiComponentVOs for each screen
         for (Step currStep : exec.getSteps()) {
 
             // Get the current screen and read in the corresponding xml file.
             // Note that I decrement the "sequenceStep" by one since it is not zero indexed.
-            Screen currScreen = new Screen();
             String xmlPath =
                     uiDumpLocation + File.separator + exec.getApp().getPackageName() + "-" +
                             exec.getApp().getVersion() + "-" + exec.getExecutionNum() + "-" +
@@ -143,15 +122,88 @@ public class MainGraphGenerator {
 //            System.out.println(guiComponents);
         }
 
+        //----------------------------------------
+
 
         GraphGenerator generator = new GraphGenerator();
 
-        AppGraphInfo graphInfo = generator.generateGraph(Collections.singletonList(exec), null);
+        AppGraphInfo graphInfo = generator.generateGraph(Collections.singletonList(exec), app);
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         System.out.println(graph.toString());
 
 
-        LOGGER.debug("Done");
+        //----------------------------------------
+
+        String sysString = File.separator + app.getId() + "-" + graphInfo.getApp().getPackageName() + "-"
+                + graphInfo.getApp().getVersion();
+
+        File sysFolder = new File(outFolder + File.separator + sysString);
+
+        if (sysFolder.exists()) {
+            FileUtils.deleteDirectory(sysFolder);
+        }
+
+        String pathname = sysFolder + File.separator + sysString;
+
+        // ------------------------------------------------------
+
+        File file = new File(pathname + "-graph.txt");
+        String graphStr = graphInfo.graphToString();
+        FileUtils.write(file, graphStr);
+
+        // ------------------------------------------------------
+
+        KosarajuStrongConnectivityInspector<GraphState, GraphTransition> inspector =
+                new KosarajuStrongConnectivityInspector<>(
+                graph);
+        List<Set<GraphState>> stronglyConnectedSets = inspector.stronglyConnectedSets();
+
+        String ccStr = getConnectedComponentsStr(stronglyConnectedSets);
+        File ccfile = new File(pathname + "-connected-comp.txt");
+        FileUtils.write(ccfile, ccStr, StandardCharsets.UTF_8);
+
+        // ------------------------------------------------------
+
+        String pathnameStates = sysFolder + File.separator + "states";
+        String pathnameTransitions = sysFolder + File.separator + "transitions";
+
+        new File(pathnameStates).mkdir();
+        new File(pathnameTransitions).mkdir();
+
+        Set<GraphTransition> edgeSet = graphInfo.getGraph().edgeSet();
+
+        for (GraphTransition edge : edgeSet) {
+
+            String screenshotFile = edge.getStep().getScreenshotFile();
+
+            File srcFile = new File(uiDumpLocation + "/screenshots/" + File.separator + screenshotFile);
+
+            if (screenshotFile != null && screenshotFile.endsWith(".png") && srcFile.exists()
+                    && srcFile.isFile()) {
+
+                File destFile = new File(pathnameTransitions + File.separator + edge.getId() + ".png");
+                FileUtils.copyFile(srcFile, destFile);
+
+                GraphState sourceState = edge.getSourceState();
+
+                File destFile2 = new File(
+                        pathnameStates + File.separator + sourceState.getUniqueHash() + ".png");
+                if (!destFile2.exists()) {
+                    FileUtils.copyFile(srcFile, destFile2);
+                }
+
+            }
+        }
+
+        // ------------------------------------------------------
+        log.debug("Saving image");
+
+        mxGraph visualGraph = GraphUtils.getVisualGraph(graph, GraphLayout.CIRCLE);
+        BufferedImage image = mxCellRenderer.createBufferedImage(visualGraph, null, 1, Color.WHITE, true,
+                null);
+        ImageIO.write(image, "PNG", new File(pathname + ".png"));
+
+        log.debug("Done");
 
     }
 
@@ -248,115 +300,6 @@ public class MainGraphGenerator {
         }
 
         return builder.toString();
-    }
-
-    public static class AppThreadProcessor extends ThreadProcessor {
-
-        private List<App> apps;
-
-        public AppThreadProcessor(ThreadParameters params) {
-            super(params);
-            apps = params.getListParam(App.class, ThreadExecutor.ELEMENTS_PARAM);
-        }
-
-        @Override
-        public void executeJob() throws Exception {
-
-            for (App app : apps) {
-
-                //				if (app.getName() == null || app.getName().isEmpty()) {
-                //					continue;
-                //				}
-
-                String appNameVersion = app.getPackageName() + "-" + app.getVersion();
-                LOGGER.debug("Processing system " + appNameVersion);
-
-                try {
-
-                    GraphGenerator generator = new GraphGenerator();
-
-                    AppGraphInfo graphInfo = generator.generateGraph(app);
-                    AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
-
-                    if (graph.vertexSet().isEmpty()) {
-                        LOGGER.warn("No graph for " + appNameVersion);
-                        continue;
-                    }
-
-                    String sysString = File.separator + app.getId() + "-" + graphInfo.getApp().getPackageName() + "-"
-                            + graphInfo.getApp().getVersion();
-
-                    File sysFolder = new File(outFolder + File.separator + sysString);
-
-                    if (sysFolder.exists()) {
-                        FileUtils.deleteDirectory(sysFolder);
-                    }
-
-                    String pathname = sysFolder + File.separator + sysString;
-
-                    // ------------------------------------------------------
-
-                    File file = new File(pathname + "-graph.txt");
-                    String graphStr = graphInfo.graphToString();
-                    FileUtils.write(file, graphStr);
-
-                    // ------------------------------------------------------
-
-                    KosarajuStrongConnectivityInspector<GraphState, GraphTransition> inspector =
-                            new KosarajuStrongConnectivityInspector<>(
-                                    graph);
-                    List<Set<GraphState>> stronglyConnectedSets = inspector.stronglyConnectedSets();
-
-                    String ccStr = getConnectedComponentsStr(stronglyConnectedSets);
-                    File ccfile = new File(pathname + "-connected-comp.txt");
-                    FileUtils.write(ccfile, ccStr);
-
-                    // ------------------------------------------------------
-
-                    String pathnameStates = sysFolder + File.separator + "states";
-                    String pathnameTransitions = sysFolder + File.separator + "transitions";
-
-                    new File(pathnameStates).mkdir();
-                    new File(pathnameTransitions).mkdir();
-
-                    Set<GraphTransition> edgeSet = graphInfo.getGraph().edgeSet();
-
-                    for (GraphTransition edge : edgeSet) {
-
-                        String screenshotFile = edge.getStep().getScreenshotFile();
-
-                        File srcFile = new File(screenShotsFolder + File.separator + screenshotFile);
-
-                        if (screenshotFile != null && screenshotFile.endsWith(".png") && srcFile.exists()
-                                && srcFile.isFile()) {
-
-                            File destFile = new File(pathnameTransitions + File.separator + edge.getId() + ".png");
-                            FileUtils.copyFile(srcFile, destFile);
-
-                            GraphState sourceState = edge.getSourceState();
-
-                            File destFile2 = new File(
-                                    pathnameStates + File.separator + sourceState.getUniqueHash() + ".png");
-                            if (!destFile2.exists()) {
-                                FileUtils.copyFile(srcFile, destFile2);
-                            }
-
-                        }
-                    }
-
-                    // ------------------------------------------------------
-                    /*LOGGER.debug("Saving image");
-
-					mxGraph visualGraph = GraphUtils.getVisualGraph(graph, GraphLayout.CIRCLE);
-					BufferedImage image = mxCellRenderer.createBufferedImage(visualGraph, null, 1, Color.WHITE, true,
-							null);
-					ImageIO.write(image, "PNG", new File(pathname + ".png"));*/
-                } catch (Exception e) {
-                    LOGGER.error("Error for: " + appNameVersion, e);
-                }
-            }
-        }
-
     }
 
 }
