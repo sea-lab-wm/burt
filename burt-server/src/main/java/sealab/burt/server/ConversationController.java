@@ -15,7 +15,7 @@ import sealab.burt.server.actions.eb.ProvideEBAction;
 import sealab.burt.server.actions.eb.ProvideEBNoParseAction;
 import sealab.burt.server.actions.ob.*;
 import sealab.burt.server.actions.s2r.*;
-import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.ConversationResponse;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
@@ -25,9 +25,7 @@ import sealab.burt.server.statecheckers.*;
 import seers.textanalyzer.TextProcessor;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
@@ -41,7 +39,7 @@ public
 @Slf4j
 class ConversationController {
 
-    public static final ConcurrentHashMap<ActionName, ChatbotAction> actions = new ConcurrentHashMap<>() {
+    public static final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
         {
             put(SELECT_APP, new SelectAppAction(APP_SELECTED));
             put(CONFIRM_APP, new ConfirmAppAction());
@@ -159,7 +157,7 @@ class ConversationController {
                 throw new RuntimeException("The state checker returned a null action. It cannot be null!");
 
             log.debug("Identified action name: " + action);
-            ChatbotAction nextAction = actions.get(action);
+            ChatBotAction nextAction = actions.get(action);
 //        log.debug(conversationState.get("CONVERSATION_STATE").toString());
 
             if (nextAction == null)
@@ -167,13 +165,13 @@ class ConversationController {
 
             log.debug("Identified action: " + nextAction.getClass().getSimpleName());
 
-            ChatbotMessage nextMessage = nextAction.execute(conversationState);
+            List<ChatBotMessage> nextMessages = nextAction.execute(conversationState);
             Intent nextIntent = nextAction.nextExpectedIntent();
             conversationState.put(NEXT_INTENT, nextIntent);
 
             log.debug("Expected next intent: " + nextIntent);
 
-            return new ConversationResponse(nextMessage, nextIntent.toString(), action, 0);
+            return new ConversationResponse(nextMessages, nextIntent.toString(), action, 0);
         } catch (Exception e) {
             log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +

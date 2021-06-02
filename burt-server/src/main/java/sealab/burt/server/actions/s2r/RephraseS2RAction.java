@@ -6,30 +6,30 @@ import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.actions.ChatbotAction;
-import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.S2R_QUALITY_RESULT;
 
 public
 @Slf4j
-class RephraseS2RAction extends ChatbotAction {
+class RephraseS2RAction extends ChatBotAction {
 
     public RephraseS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 
         StringBuilder message = new StringBuilder("Oops, it seems ");
         message.append(getFeedbackMessage(feedback));
-        message.append(" Can you please rephrase the step more accurately?");
-        return new ChatbotMessage(message.toString());
+        return createChatBotMessages(message.toString(), " Can you please rephrase the step more accurately?");
 
     }
 

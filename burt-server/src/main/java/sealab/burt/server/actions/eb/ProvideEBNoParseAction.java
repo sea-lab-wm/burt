@@ -1,21 +1,22 @@
 package sealab.burt.server.actions.eb;
 
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.actions.ChatbotAction;
-import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ProvideEBNoParseAction extends ChatbotAction {
+public class ProvideEBNoParseAction extends ChatBotAction {
 
     public ProvideEBNoParseAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
-        return new ChatbotMessage("I am sorry, I didn't quite get that. Can you please tell me how the app is " +
-                "supposed to work one more time");
+    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
+        return createChatBotMessages("I am sorry, I didn't quite get that.",
+                "Can you please tell me how the app is supposed to work one more time");
     }
 }

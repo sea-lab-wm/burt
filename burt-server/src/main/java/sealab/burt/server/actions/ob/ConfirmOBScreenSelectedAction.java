@@ -1,8 +1,8 @@
 package sealab.burt.server.actions.ob;
 
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.actions.ChatbotAction;
-import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.KeyValue;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
@@ -16,10 +16,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 
-public class ConfirmOBScreenSelectedAction extends ChatbotAction {
+public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
 
         UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
         String response = "";
@@ -45,9 +45,9 @@ public class ConfirmOBScreenSelectedAction extends ChatbotAction {
                 setNextExpectedIntent(Intent.OB_SCREEN_SELECTED);
                 MessageObj messageObj = new MessageObj("then, is this screen that has the problem? Please hit the “Done” button after you have selected it.",  "OBScreenSelector");
                 List<KeyValue> OBScreen = Collections.singletonList(new KeyValue("OBScreen", "OBScreen.png"));
-                return new ChatbotMessage(messageObj, OBScreen);
+                return createChatBotMessages(new ChatBotMessage(messageObj, OBScreen));
             }
         }
-        return new ChatbotMessage(response);
+        return createChatBotMessages(response);
     }
 }

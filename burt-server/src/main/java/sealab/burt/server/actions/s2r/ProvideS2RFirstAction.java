@@ -2,23 +2,24 @@ package sealab.burt.server.actions.s2r;
 
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.actions.ChatbotAction;
-import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 
-public class ProvideS2RFirstAction extends ChatbotAction {
+public class ProvideS2RFirstAction extends ChatBotAction {
 
     public ProvideS2RFirstAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
         state.put(COLLECTING_S2R, true);
         state.remove(COLLECTING_EB);
 
@@ -33,8 +34,8 @@ public class ProvideS2RFirstAction extends ChatbotAction {
             state.put(S2R_CHECKER,
                     new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder, crashScopeDataPath));
 
-        return new ChatbotMessage(" Okay. Now I need to know the steps that you performed and caused the problem. Can" +
-                " you please tell me the first step that you performed?");
+        return createChatBotMessages(" Okay. Now I need to know the steps that you performed and caused the problem." ,
+                " Can you please tell me the first step that you performed?");
     }
 
 

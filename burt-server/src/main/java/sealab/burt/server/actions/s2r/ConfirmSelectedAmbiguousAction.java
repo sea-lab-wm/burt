@@ -2,8 +2,8 @@ package sealab.burt.server.actions.s2r;
 
 
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.actions.ChatbotAction;
-import sealab.burt.server.conversation.ChatbotMessage;
+import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.OutputMessageObj;
@@ -14,14 +14,14 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
-public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
+public class ConfirmSelectedAmbiguousAction extends ChatBotAction {
 
     public ConfirmSelectedAmbiguousAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
     @Override
-    public ChatbotMessage execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
         UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
         String response = "";
         if (!msg.getMessages().isEmpty()) {
@@ -43,10 +43,10 @@ public class ConfirmSelectedAmbiguousAction extends ChatbotAction {
                 // give other screens to let user choose?
                 response = " Ok, what is the next step?";
                 state.remove(StateVariable.DISAMBIGUATE_S2R);
-                return new ChatbotMessage(response);
+                return createChatBotMessages(response);
             }
         }
-        return new ChatbotMessage(response);
+        return createChatBotMessages(response);
     }
 
 }
