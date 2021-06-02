@@ -27,9 +27,9 @@
   border-radius: 5px;
   font-size: 0.9rem;
   color: #585858;
-  font-weight: medium;
   position: relative;
   text-align: left;
+  max-width:  184.5px;
 }
 
 .react-chatbot-kit-user-chat-message-arrow {
