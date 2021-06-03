@@ -48,7 +48,7 @@ import java.util.HashMap;
 public class UtilReporter {
 
     static HashMap<String, String> COMPONENT_TRANSLATIONS = new HashMap<>();
-    private static HashMap<String, Pair<String, String>> irregularVerbsPast = new HashMap<>() {
+    private static final HashMap<String, Pair<String, String>> irregularVerbsPast = new HashMap<>() {
         {
             put("set", new ImmutablePair<>("set", "set"));
             put("put", new ImmutablePair<>("put", "put"));

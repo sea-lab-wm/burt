@@ -4,6 +4,7 @@ import sealab.burt.server.StateVariable;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,24 +14,35 @@ import static sealab.burt.server.msgparsing.Intent.NO_EXPECTED_INTENT;
 
 public abstract class ChatBotAction {
 
-    public Intent nextExpectedIntent;
+    public List<Intent> nextExpectedIntents;
 
     public ChatBotAction() {
-        setNextExpectedIntent(NO_EXPECTED_INTENT);
-    }
+        nextExpectedIntents = new ArrayList<>();
+        addNextExpectedIntent(NO_EXPECTED_INTENT);
 
-    public ChatBotAction(Intent nextExpectedIntent) {
-        this.nextExpectedIntent = nextExpectedIntent;
+    }
+//
+//    public ChatBotAction(Intent nextExpectedIntent) {
+//        nextExpectedIntents = new ArrayList<>();
+//        addNextExpectedIntent(nextExpectedIntent);
+//    }
+
+    public ChatBotAction(Intent... nextExpectedIntents) {
+        this.nextExpectedIntents = Arrays.asList(nextExpectedIntents);
     }
 
     public abstract List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception;
 
-    public final Intent nextExpectedIntent() {
-        return nextExpectedIntent;
+    public final List<Intent> nextExpectedIntents() {
+        return nextExpectedIntents;
     }
 
-    public final void setNextExpectedIntent(Intent nextExpectedIntent) {
-        this.nextExpectedIntent = nextExpectedIntent;
+    private void addNextExpectedIntent(Intent nextExpectedIntent) {
+        this.nextExpectedIntents.add(nextExpectedIntent);
+    }
+
+    public final void setNextExpectedIntents(List<Intent> nextExpectedIntents) {
+        this.nextExpectedIntents = nextExpectedIntents;
     }
 
     protected List<ChatBotMessage> createChatBotMessages(String... messages) {

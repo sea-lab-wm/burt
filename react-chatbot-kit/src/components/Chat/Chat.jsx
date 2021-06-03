@@ -146,6 +146,15 @@ const Chat = ({
     placeholder = placeholderText;
   }
 
+  const inputElement = useRef(null);
+
+  useEffect(() => {
+    if (inputElement.current) {
+      inputElement.current.focus();
+    }
+  }, []);
+
+
   return (
     <div className="react-chatbot-kit-chat-container">
       <div className="react-chatbot-kit-chat-inner-container">
@@ -177,6 +186,8 @@ const Chat = ({
               placeholder={placeholder}
               value={input}
               onChange={(e) => setInputValue(e.target.value)}
+              autoFocus
+              ref={inputElement}
             />
             <button
               className="react-chatbot-kit-chat-btn-send"

@@ -1,6 +1,8 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +27,13 @@ import sealab.burt.server.statecheckers.*;
 import seers.textanalyzer.TextProcessor;
 
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
-import static sealab.burt.server.StateVariable.NEXT_INTENT;
+import static sealab.burt.server.StateVariable.NEXT_INTENTS;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
 
@@ -42,7 +46,7 @@ class ConversationController {
     public static final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
         {
             put(SELECT_APP, new SelectAppAction(APP_SELECTED));
-            put(CONFIRM_APP, new ConfirmAppAction());
+            put(CONFIRM_APP, new ConfirmAppAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
 
             //--------OB---------------//
             put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
@@ -105,6 +109,7 @@ class ConversationController {
     ConcurrentHashMap<String, ConcurrentHashMap<StateVariable, Object>> conversationStates = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
+
         //this call is required to load the stanford corenlp library since the start of the server:
         TextProcessor.processTextFullPipeline("start", false);
         SpringApplication.run(ConversationController.class, args);
@@ -115,6 +120,7 @@ class ConversationController {
     public ConversationResponse processMessage(@RequestBody UserMessage userResponse) {
 
         try {
+
             if (userResponse != null)
                 log.debug("User response: " + userResponse);
             else {
@@ -166,12 +172,12 @@ class ConversationController {
             log.debug("Identified action: " + nextAction.getClass().getSimpleName());
 
             List<ChatBotMessage> nextMessages = nextAction.execute(conversationState);
-            Intent nextIntent = nextAction.nextExpectedIntent();
-            conversationState.put(NEXT_INTENT, nextIntent);
+            List<Intent> nextIntents = nextAction.nextExpectedIntents();
+            conversationState.put(NEXT_INTENTS, nextIntents);
 
-            log.debug("Expected next intent: " + nextIntent);
+            log.debug("Expected next intent: " + nextIntents);
 
-            return new ConversationResponse(nextMessages, nextIntent.toString(), action, 0);
+            return new ConversationResponse(nextMessages, nextIntents, action, 0);
         } catch (Exception e) {
             log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +

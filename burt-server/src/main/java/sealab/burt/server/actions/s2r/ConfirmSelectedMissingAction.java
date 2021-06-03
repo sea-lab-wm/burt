@@ -21,6 +21,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
         UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
+
         StringBuilder response = new StringBuilder();
         if (!msg.getMessages().isEmpty()) {
             String confirmMessage = msg.getMessages().get(0).getMessage();

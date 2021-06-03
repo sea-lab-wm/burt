@@ -26,7 +26,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
         if (!msg.getMessages().isEmpty()) {
             String confirmMessage = msg.getMessages().get(0).getMessage();
             if (confirmMessage.equals("done")) {
-                setNextExpectedIntent(Intent.NO_EXPECTED_INTENT);
+                setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
                 state.put(OB_SCREEN_SELECTED, true);
                 String OBScreen =  msg.getMessages().get(0).getSelectedValues().get(0);
                 response = "you selected " + OBScreen + " , shall we continue?";
@@ -42,7 +42,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 }
             }else{
                 state.remove(OB_SCREEN_SELECTED);
-                setNextExpectedIntent(Intent.OB_SCREEN_SELECTED);
+                setNextExpectedIntents(Collections.singletonList(Intent.OB_SCREEN_SELECTED));
                 MessageObj messageObj = new MessageObj("then, is this screen that has the problem? Please hit the “Done” button after you have selected it.",  "OBScreenSelector");
                 List<KeyValue> OBScreen = Collections.singletonList(new KeyValue("OBScreen", "OBScreen.png"));
                 return createChatBotMessages(new ChatBotMessage(messageObj, OBScreen));

@@ -2,10 +2,10 @@ package sealab.burt.server;
 
 public enum StateVariable {
     //general ones
-    NEXT_INTENT, CURRENT_MESSAGE, SESSION_ID,
+    NEXT_INTENTS, CURRENT_MESSAGE, SESSION_ID,
 
     //app variables
-    APP, APP_VERSION, APP_ASKED,
+    APP, APP_VERSION, APP_ASKED, APP_CONFIMATION,
 
     //ob variables
     COLLECTING_OB, OB_SCREEN_SELECTED,

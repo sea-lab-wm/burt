@@ -1,8 +1,11 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -63,10 +66,9 @@ class ConversationTest2 extends AbstractTest {
             log.debug("Received response: " + botResponse);
 
             assert botResponse != null;
-//            System.out.println(botResponse.getMessage().getMessageObj().getMessage());
             assertNotEquals(-1, botResponse.getCode());
             assertEquals(messObj.getCurrentAction(), botResponse.getCurrentAction());
-            assertEquals(messObj.getNextIntent(), botResponse.getNextIntent());
+            assertEquals(messObj.getNextIntents(), botResponse.getNextIntents());
         }
 
     }

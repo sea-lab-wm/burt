@@ -3,6 +3,7 @@ package sealab.burt.server.conversation;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.msgparsing.Intent;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,7 @@ class ConversationResponse {
 
     private List<ChatBotMessage> messages;
     private Integer code;
-    private String nextIntent;
+    private List<Intent> nextIntents;
     private ActionName currentAction;
 
 
@@ -24,9 +25,9 @@ class ConversationResponse {
         this.code = code;
     }
 
-    public ConversationResponse(List<ChatBotMessage> messages, String intent, ActionName action, Integer code) {
+    public ConversationResponse(List<ChatBotMessage> messages, List<Intent> intents, ActionName action, Integer code) {
         this.messages = messages;
-        this.nextIntent = intent;
+        this.nextIntents = intents;
         this.currentAction = action;
         this.code = code;
     }

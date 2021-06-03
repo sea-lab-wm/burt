@@ -86,6 +86,9 @@ function App() {
     }
 
     //--------------------------------
+    const emptyStringValidator = (input) => {
+        return input.trim().length > 0;
+    }
 
     if (sessionId != null && sessionId != undefined)
         return (
@@ -98,6 +101,7 @@ function App() {
                         messageParser={messageParser}
                         sessionId={sessionId}
                         saveMessages={saveMessages}
+                        validator={emptyStringValidator}
                     />
                 }
             </div>

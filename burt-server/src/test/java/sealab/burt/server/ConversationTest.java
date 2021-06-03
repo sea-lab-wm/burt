@@ -1,10 +1,11 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -52,7 +53,6 @@ class ConversationTest extends AbstractTest {
 
         log.debug("Conversation started: " + sessionId);
 
-
         ConversationController.stateCheckers.put(S2R_DESCRIPTION, new S2RDescriptionStateCheckerForTest(null));
 
         //send each message
@@ -79,7 +79,7 @@ class ConversationTest extends AbstractTest {
 //            System.out.println(botResponse.getMessage().getMessageObj().getMessage());
             assertNotEquals(-1, botResponse.getCode());
             assertEquals(messObj.getCurrentAction(), botResponse.getCurrentAction());
-            assertEquals(messObj.getNextIntent(), botResponse.getNextIntent());
+            assertEquals(messObj.getNextIntents(), botResponse.getNextIntents(), String.format("bla bla"));
         }
 
     }

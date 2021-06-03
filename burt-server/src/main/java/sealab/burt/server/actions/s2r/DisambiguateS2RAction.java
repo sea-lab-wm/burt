@@ -1,38 +1,82 @@
 package sealab.burt.server.actions.s2r;
 
+import lombok.extern.slf4j.Slf4j;
+import sealab.burt.nlparser.euler.actions.nl.NLAction;
+import sealab.burt.qualitychecker.UtilReporter;
+import sealab.burt.qualitychecker.graph.AppGuiComponent;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValue;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
 
-import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
-import static sealab.burt.server.StateVariable.*;
-public class DisambiguateS2RAction extends ChatBotAction {
+import static sealab.burt.server.StateVariable.S2R_QUALITY_RESULT;
+
+public @Slf4j
+class DisambiguateS2RAction extends ChatBotAction {
 
     public DisambiguateS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
+    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+        QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 
-        UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+        StringBuilder message = new StringBuilder("Oops, it seems ");
+        message.append(getFeedbackMessage(feedback));
+        return createChatBotMessages(message.toString(), "Can you please rephrase the step more accurately?");
+
+  /*      UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
         List<KeyValue> S2RScreens = Arrays.asList(
                 new KeyValue("S2RScreen1","S2RScreen1.png"),
                 new KeyValue("S2RScreen2","S2RScreen2.png"),
                 new KeyValue("S2RScreen3","S2RScreen3.png"));
-        MessageObj messageObj = new MessageObj(MessageFormat.format("Okay, it seems ambiguous, which of the following do you mean by \"{0}\"?",
+        MessageObj messageObj = new MessageObj(MessageFormat.format("Okay, it seems ambiguous, which of the following
+         do you mean by \"{0}\"?",
                 userMessage.getMessages().get(0).getMessage()), "S2RScreenSelector" );
         return createChatBotMessages(new ChatBotMessage(messageObj, S2RScreens, false));
+*/
+    }
 
+    private String getFeedbackMessage(QualityFeedback feedback) {
+
+        S2RQualityAssessment assessment = feedback.getQualityAssessments().get(0);
+
+        final List<AppGuiComponent> components = assessment.getAmbiguousComponents();
+        final List<String> actions = assessment.getAmbiguousActions();
+
+        final String preFix = "This step matches multiple ";
+
+        if (components != null && actions != null) {
+            final String assessmentTemplate = preFix + "UI components (e.g., %s) and multiple actions " +
+                    "(e.g., %s).";
+            return String.format(assessmentTemplate, getComponentsString(components), getActionsString(actions));
+        } else if (components != null) {
+            final String assessmentTemplate = preFix + "UI components (e.g., %s).";
+            return String.format(assessmentTemplate, getComponentsString(components));
+        } else {
+            final String assessmentTemplate = preFix + "actions (e.g., %s).";
+            return String.format(assessmentTemplate, getActionsString(actions));
+        }
+    }
+
+    private String getComponentsString(List<AppGuiComponent> components) {
+        int limit = 3;
+        if (components.size() < limit)
+            limit = components.size();
+        return components.subList(0, limit).stream()
+                .map(c -> "the " + UtilReporter.getComponentDescription(c))
+                .collect(Collectors.joining(" or "));
     }
 
 
+    private String getActionsString(List<String> actions) {
+        return actions.stream().map(s -> "\"" + s.trim() + "\"").collect(Collectors.joining(" or "));
+    }
 }

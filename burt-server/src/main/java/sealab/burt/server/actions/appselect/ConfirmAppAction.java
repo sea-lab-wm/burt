@@ -4,6 +4,7 @@ import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.msgparsing.Intent;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -13,8 +14,8 @@ import static sealab.burt.server.StateVariable.*;
 
 public class ConfirmAppAction extends ChatBotAction {
 
-    public ConfirmAppAction() {
-        super();
+    public ConfirmAppAction(Intent... nextIntents) {
+        super(nextIntents);
     }
 
     @Override
@@ -27,7 +28,7 @@ public class ConfirmAppAction extends ChatBotAction {
 
             if(selectedValues == null || selectedValues.isEmpty())
                 return  createChatBotMessages("Sorry, I didn't quite get that.",
-                        "Please select the application from the list.");
+                        "Please select an app from the list.");
 
             appNameVersion = selectedValues.get(0);
         }
@@ -35,7 +36,9 @@ public class ConfirmAppAction extends ChatBotAction {
         String[] tokens = appNameVersion.split("v\\.");
         state.put(APP, tokens[0].trim());
         state.put(APP_VERSION, tokens[1].trim());
-        return createChatBotMessages(MessageFormat.format("You selected {0}, shall we continue?", appNameVersion));
+
+        state.put(APP_CONFIMATION, true);
+        return createChatBotMessages(MessageFormat.format("You selected {0}, is that right?", appNameVersion));
 
     }
 
