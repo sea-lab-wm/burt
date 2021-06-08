@@ -74,7 +74,8 @@ class NLParserTest {
     void parseS2R() throws Exception {
 
         List<String> allSentences = Arrays.asList(
-                "enter fill up"
+//                "enter fill up",
+                "I entered 23 gallons"
 //                ,
 //                "Entered all the fillup data and goto History Tab",
 //                "Add Service Interval",

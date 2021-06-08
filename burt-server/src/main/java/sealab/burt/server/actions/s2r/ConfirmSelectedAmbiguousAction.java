@@ -23,6 +23,10 @@ public class ConfirmSelectedAmbiguousAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
         UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
+        return respondWithChoices(state, msg);
+    }
+
+    private List<ChatBotMessage> respondWithChoices(ConcurrentHashMap<StateVariable, Object> state, UserMessage msg) {
         String response = "";
         if (!msg.getMessages().isEmpty()) {
             String confirmMessage = msg.getMessages().get(0).getMessage();

@@ -24,7 +24,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
                 new KeyValue("S2RScreen3","S2RScreen3.png"));
         MessageObj messageObj = new MessageObj(
                 "From the following options, select the actions you performed before this step and click the " +
-                "“done” button", "S2RScreenSelector");
+                "\"done\" button", "S2RScreenSelector");
         return createChatBotMessages(
                 "It seems that before that step you had to perform additional steps. ",
                 new ChatBotMessage(messageObj, S2RScreens, true));

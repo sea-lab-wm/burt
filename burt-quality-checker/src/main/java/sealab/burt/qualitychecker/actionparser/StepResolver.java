@@ -397,7 +397,8 @@ class StepResolver {
 
     private Entry<AppStep, Double> resolveStepFromComponentInState(Appl app, NLAction currNLAction,
                                                                    GraphState state, AppStep lastStep,
-                                                                   boolean checkCurrentScreen, ResolvedStepResult result) {
+                                                                   boolean checkCurrentScreen,
+                                                                   ResolvedStepResult result) {
 
         List<AppGuiComponent> stateComponents = state.getComponents();
 

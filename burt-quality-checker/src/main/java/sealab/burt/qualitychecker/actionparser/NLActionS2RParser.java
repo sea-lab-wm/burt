@@ -99,7 +99,7 @@ public class NLActionS2RParser {
                 if (!Files.exists(path))
                     throw new RuntimeException("Could not find the component types file: " + fileName);
 
-                List<String> lines = GeneralUtils.getAllLines( path, fileName);
+                List<String> lines = GeneralUtils.getAllLines(path, fileName);
                 for (String line : lines) {
 
                     String[] types2 = line.split(":");
@@ -612,17 +612,20 @@ public class NLActionS2RParser {
                         event, skipFocused);
         } else if (!StringUtils.isEmpty(object)) {
             //case: type 'x'
-            final boolean isObjectLiteral = isLiteralValue(object) || getLiteralValue(object) != null;
+//            final boolean isObjectLiteral = isLiteralValue(object) || getLiteralValue(object) != null;
          /*   if (!skipFocused && isObjectLiteral) {
                 final AppGuiComponent focusedComponent = getFocusedComponent();
                 if (focusedComponent != null)
                     componentFound = getEntry(focusedComponent, 1d);
             } else */
-            if (!isObjectLiteral) {
+
+            //I commented the next if because we don't allow things like "I enter 23",
+            //We require things like "I enter 23 gallons"
+//            if (!isObjectLiteral) {
                 componentFound = findComponent(currentScreen, preprocessedObject,
                         componentTypes, false, true,
                         event, skipFocused);
-            }
+//            }
         }
         return componentFound;
     }
@@ -862,7 +865,7 @@ public class NLActionS2RParser {
         return null;
     }
 
-    private String getLiteralValue(String textVal) {
+    public String getLiteralValue(String textVal) {
         PreProcessedText preProcessedText = preprocessText(textVal);
         if (preProcessedText.preprocessedTokens.size() != 2) return null;
         String firstToken = preProcessedText.preprocessedTokens.get(0).getWord();
@@ -873,6 +876,20 @@ public class NLActionS2RParser {
         if ("text".equalsIgnoreCase(firstToken))
             return preProcessedText.preprocessedTokens.get(1).getWord();
         return null;
+    }
+
+    public boolean isLiteralValue(String token) {
+
+        if (isQuoted(token)) return true;
+
+        return StringUtils.isNumeric(token) || TextProcessor.isNumber(token);
+    }
+
+    private boolean isQuoted(String token) {
+        if (token == null)
+            return false;
+
+        return token.matches("[\"\'].+[\"\']");
     }
 
     private Entry<AppGuiComponent, Double> findComponent(Screen currentScreen,
@@ -1196,9 +1213,9 @@ public class NLActionS2RParser {
 
                 //if the component is a text view, try to find the text field that corresponds to it
                 List<AppGuiComponent> siblings = getSiblings(entryComp);
-                List<AppGuiComponent> textFields = siblings.stream().filter(c -> isTextField(c.getType())).collect
-                        (Collectors
-                                .toList());
+                List<AppGuiComponent> textFields = siblings.stream()
+                        .filter(c -> isTextField(c.getType()))
+                        .collect(Collectors.toList());
 
                 if (textFields.size() == 1)
                     component = textFields.get(0);
@@ -1968,25 +1985,6 @@ public class NLActionS2RParser {
         return true;
     }
 
-    private boolean isLiteralValue(String token) {
-
-        if (isQuoted(token)) return true;
-
-        if (StringUtils.isNumeric(token) || TextProcessor.isNumber(token))
-            return true;
-
-
-        return false;
-    }
-
-    private boolean isQuoted(String token) {
-        if (token == null)
-            return false;
-
-        if (token.matches("[\"\'].+[\"\']"))
-            return true;
-        return false;
-    }
 
     public enum ActionGroup {
         OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE

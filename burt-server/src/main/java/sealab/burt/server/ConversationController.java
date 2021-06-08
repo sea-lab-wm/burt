@@ -109,7 +109,8 @@ class ConversationController {
         put(S2R_DESCRIPTION, new S2RDescriptionStateChecker());
         put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
         put(S2R_MISSING_SELECTED, new NStateChecker(CONFIRM_SELECTED_MISSING_S2R));
-        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
+        put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
+//        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
         put(THANKS, new NStateChecker(ENDING));
     }};

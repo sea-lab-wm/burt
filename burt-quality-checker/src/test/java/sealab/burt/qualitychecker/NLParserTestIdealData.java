@@ -49,6 +49,25 @@ class NLParserTestIdealData {
     }
 
     @Test
+    void testSingleS2RChecking() throws Exception {
+        String s2r = "I entered 23 gallons";
+        var app = new ImmutablePair<>("android-mileage", "3.1.1");
+
+        String resourcesPath = "src/main/resources";
+        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
+        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
+
+
+        S2RChecker checker = new S2RChecker(app.getKey(), app.getValue(),
+                resourcesPath, parsersBaseFolder, crashScopeDataPath);
+
+        QualityFeedback feedback = checker.checkS2R(s2r);
+
+        log.debug(feedback.getAssessmentResults().toString());
+
+    }
+
+    @Test
     void testBugReports() throws Exception {
 
         List<Pair<String, String>> apps = new LinkedList<>() {

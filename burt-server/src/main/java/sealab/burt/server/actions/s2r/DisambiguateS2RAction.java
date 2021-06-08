@@ -51,7 +51,7 @@ class DisambiguateS2RAction extends ChatBotAction {
         final List<AppGuiComponent> components = assessment.getAmbiguousComponents();
         final List<String> actions = assessment.getAmbiguousActions();
 
-        final String preFix = "This step matches multiple ";
+        final String preFix = "this step refers to multiple ";
 
         if (components != null && actions != null) {
             final String assessmentTemplate = preFix + "UI components (e.g., %s) and multiple actions " +

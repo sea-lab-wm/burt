@@ -61,7 +61,9 @@ public class S2RDescriptionStateChecker extends StateChecker {
 
             if (results.size() > 1) {
                 //FIXME: what if there is high quality result?
-                if(results.contains(S2RQualityCategory.MISSING))
+                if(results.contains(S2RQualityCategory.LOW_Q_INCORRECT_INPUT))
+                    return nextActions.get(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name());
+                else if(results.contains(S2RQualityCategory.MISSING))
                    return nextActions.get(S2RQualityCategory.MISSING.name());
                 else
                     throw new RuntimeException("Unsupported quality assessment combination: " + results);

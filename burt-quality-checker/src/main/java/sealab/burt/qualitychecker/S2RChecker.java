@@ -16,6 +16,7 @@ import sealab.burt.qualitychecker.graph.db.Transform;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
+import seers.appcore.utils.JavaUtils;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -216,6 +217,10 @@ class S2RChecker {
         s2rQA.addQualityAssessment(assessment1);
         if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);
 
+        //-------------------------------------------------
+
+        String text = getTextFromNLAction(currNLAction);
+        matchedStep.setText(text);
 
         //-------------------------------------------------
 
@@ -255,6 +260,32 @@ class S2RChecker {
         return executionResults;
 
     }
+
+    private String getTextFromNLAction(NLAction nlAction) {
+
+        String object = nlAction.getObject();
+        String object2 = nlAction.getObject2();
+        String preposition = nlAction.getPreposition();
+
+        String text = null;
+
+        Map.Entry<AppGuiComponent, Double> componentFound = null;
+        if (!StringUtils.isEmpty(object2)) {
+            //case: type 'x' on 'y'
+            if (JavaUtils.getSet("on", "in", "into", "for", "of", "as", "to", "with").contains(preposition)) {
+
+                final boolean isObjectLiteral = s2rParser.isLiteralValue(object)
+                        || s2rParser.getLiteralValue(object) != null;
+                if (isObjectLiteral)
+                    text = object;
+            }
+
+        } else if (!StringUtils.isEmpty(object)) {
+            text = s2rParser.getLiteralValue(object);
+        }
+        return text;
+    }
+
 
     private void executeIntermediateSteps(AppStep matchedStep, AppStep lastStep, GraphState currentState,
                                           List<DevServerCommandResult> executionResults,
@@ -612,6 +643,8 @@ class S2RChecker {
 
 
     private String getTextForType() {
+
+
         return String.valueOf(textCounter++);
     }
 

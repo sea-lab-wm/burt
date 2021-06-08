@@ -16,7 +16,7 @@ public class SpecifyInputS2RAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        return createChatBotMessages("It seems you forget to specify input.",
+        return createChatBotMessages("It seems that no specific input or value was provided.",
                 "Can you please provide the input to make the step more accurately?");
     }
 

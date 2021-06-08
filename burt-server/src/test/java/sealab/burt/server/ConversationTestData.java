@@ -3,6 +3,8 @@ package sealab.burt.server;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static sealab.burt.server.MessageObjectTest.TestMessageType.WITH_SELECTED_VALUES;
@@ -33,26 +35,16 @@ public class ConversationTestData {
             add(new MessageObjectTest("P23", SELECT_APP, APP_SELECTED));
             //ChatBot: select an app from the list
             add(new MessageObjectTest(null, CONFIRM_APP,
-                    new ArrayList<Intent>() {{
-                        add(AFFIRMATIVE_ANSWER);
-                        add(NEGATIVE_ANSWER);
-                    }},
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
                     WITH_SELECTED_VALUES,
-                    new ArrayList<>() {{
-                        add("Mileage v. 3.1.1");
-                    }}));
+                    Collections.singletonList("Mileage v. 3.1.1")));
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("no", SELECT_APP, APP_SELECTED));
             //ChatBot: ok, select an app from the list
             add(new MessageObjectTest(null, CONFIRM_APP,
-                    new ArrayList<Intent>() {{
-                        add(AFFIRMATIVE_ANSWER);
-                        add(NEGATIVE_ANSWER);
-                    }},
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
                     WITH_SELECTED_VALUES,
-                    new ArrayList<>() {{
-                        add("Mileage v. 3.1.1");
-                    }}));
+                    Collections.singletonList("Mileage v. 3.1.1")));
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
             //ChatBot: provide the OB
@@ -62,17 +54,13 @@ public class ConversationTestData {
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    new ArrayList<String>() {{
-                        add("OB_SCREEN");
-                    }}));
+                    Collections.singletonList("OB_SCREEN")));
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("no", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    new ArrayList<String>() {{
-                        add("OB_SCREEN");
-                    }}));
+                    Collections.singletonList("OB_SCREEN")));
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
@@ -92,10 +80,24 @@ public class ConversationTestData {
             //ChatBot: there are missing steps, please select the ones are correct
             add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
-                    new ArrayList<String>() {{
-                        add("S2R_SCREEN1");
-                        add("S2R_SCREEN2");
-                    }}));
+                    Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
+            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("I created an entry", REPHRASE_S2R, S2R_DESCRIPTION));
+            //ChatBot: I couldn't match the step to anything from the app, please rephrase it
+            add(new MessageObjectTest("I set tank", DISAMBIGUATE_S2R, S2R_AMBIGUOUS_SELECTED));
+            //ChatBot: this steps is ambiguous, please rephrase it
+//            add(new MessageObjectTest("I tap \"tank was not filled to the top\"", CONFIRM_SELECTED_AMBIGUOUS_S2R,
+//                    S2R_DESCRIPTION));
+            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("I entered cost", DISAMBIGUATE_S2R, S2R_AMBIGUOUS_SELECTED));
+            //ChatBot: this steps is ambiguous, please rephrase it
+            add(new MessageObjectTest("I entered gallons", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
+            //ChatBot: this steps has no input, please provide it
+            add(new MessageObjectTest("I entered 23 gallons", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
