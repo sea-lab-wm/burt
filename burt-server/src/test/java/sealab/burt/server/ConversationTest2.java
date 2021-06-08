@@ -1,11 +1,8 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -107,18 +104,20 @@ class ConversationTest2 extends AbstractTest {
     @After
     public void endConversation() throws Exception {
 
-        log.debug("Ending the conversation...");
+        if (sessionId != null) {
+            log.debug("Ending the conversation...");
 
-        MvcResult mvcResult2 = mvc.perform(MockMvcRequestBuilders
-                .post(END_POINT + "/end")
-                .param("sessionId", sessionId)
-                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+            MvcResult mvcResult2 = mvc.perform(MockMvcRequestBuilders
+                    .post(END_POINT + "/end")
+                    .param("sessionId", sessionId)
+                    .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
-        int status2 = mvcResult2.getResponse().getStatus();
-        assertEquals(200, status2);
-        String response = mvcResult2.getResponse().getContentAsString();
+            int status2 = mvcResult2.getResponse().getStatus();
+            assertEquals(200, status2);
+            String response = mvcResult2.getResponse().getContentAsString();
 
-        log.debug(response);
+            log.debug(response);
+        }
     }
 
 }

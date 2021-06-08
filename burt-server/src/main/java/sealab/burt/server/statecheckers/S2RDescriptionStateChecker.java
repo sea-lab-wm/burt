@@ -29,8 +29,8 @@ public class S2RDescriptionStateChecker extends StateChecker {
         put(S2RQualityCategory.LOW_Q_NOT_PARSED.name(), PROVIDE_S2R_NO_PARSE);
     }};
 
-    public S2RDescriptionStateChecker(ActionName defaultAction) {
-        super(defaultAction);
+    public S2RDescriptionStateChecker() {
+        super(null);
     }
 
     @Override

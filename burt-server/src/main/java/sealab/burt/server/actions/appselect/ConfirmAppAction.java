@@ -37,7 +37,7 @@ public class ConfirmAppAction extends ChatBotAction {
         state.put(APP, tokens[0].trim());
         state.put(APP_VERSION, tokens[1].trim());
 
-        state.put(APP_CONFIMATION, true);
+        state.put(APP_CONFIRMATION, true);
         return createChatBotMessages(MessageFormat.format("You selected {0}, is that right?", appNameVersion));
 
     }

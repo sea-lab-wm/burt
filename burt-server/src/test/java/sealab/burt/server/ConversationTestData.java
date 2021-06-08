@@ -24,10 +24,26 @@ public class ConversationTestData {
     }
 
     private static List<MessageObjectTest> getConversationFlow_1() {
-        List<MessageObjectTest> conversation = new ArrayList<>() {{
+        return new ArrayList<>() {{
             //ChatBot: hi this is burt
-            add(new MessageObjectTest("hi", SELECT_APP, APP_SELECTED));
+            add(new MessageObjectTest("what's up?", PROVIDE_PARTICIPANT_ID, PARTICIPANT_PROVIDED));
+            //ChatBot: what is you participant id?
+            add(new MessageObjectTest("no participant id", PROVIDE_PARTICIPANT_ID, PARTICIPANT_PROVIDED));
+            //ChatBot: didn't get that, please provide the participant id
+            add(new MessageObjectTest("P23", SELECT_APP, APP_SELECTED));
             //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    new ArrayList<Intent>() {{
+                        add(AFFIRMATIVE_ANSWER);
+                        add(NEGATIVE_ANSWER);
+                    }},
+                    WITH_SELECTED_VALUES,
+                    new ArrayList<>() {{
+                        add("Mileage v. 3.1.1");
+                    }}));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("no", SELECT_APP, APP_SELECTED));
+            //ChatBot: ok, select an app from the list
             add(new MessageObjectTest(null, CONFIRM_APP,
                     new ArrayList<Intent>() {{
                         add(AFFIRMATIVE_ANSWER);
@@ -40,7 +56,17 @@ public class ConversationTestData {
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
             //ChatBot: provide the OB
+            add(new MessageObjectTest("I don't know", PROVIDE_OB_NO_PARSE, OB_DESCRIPTION));
+            //ChatBot: I couldn't parse that, pls provide the OB
             add(new MessageObjectTest("the app crashed", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    new ArrayList<String>() {{
+                        add("OB_SCREEN");
+                    }}));
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("no", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
@@ -50,6 +76,8 @@ public class ConversationTestData {
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
+            add(new MessageObjectTest("just don't know", PROVIDE_EB_NO_PARSE, EB_DESCRIPTION));
+            //ChatBot: couldn't parse it, give me the EB
             add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
             add(new MessageObjectTest("I opened the app", PROVIDE_S2R, S2R_DESCRIPTION));
@@ -60,14 +88,21 @@ public class ConversationTestData {
             //ChatBot: I couldn't match the step to anything from the app, please rephrase it
             add(new MessageObjectTest("I entered that", REPHRASE_S2R, S2R_DESCRIPTION));
             //ChatBot: I couldn't match the step to anything from the app, please rephrase it
-
-//            add(new MessageObjectTest("I entered 3 in the cost field", SELECT_MISSING_S2R,
-//                    S2R_MISSING_SELECTED));
-//            add(new MessageObjectTest("That was the last step", CONFIRM_SELECTED_MISSING_S2R,
-//                    S2R_DESCRIPTION));
+            add(new MessageObjectTest("I entered 3 in the cost field", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    new ArrayList<String>() {{
+                        add("S2R_SCREEN1");
+                        add("S2R_SCREEN2");
+                    }}));
+            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));
         }};
-
-        return conversation;
     }
 
     private static List<MessageObjectTest> getConversationFlow_2() {

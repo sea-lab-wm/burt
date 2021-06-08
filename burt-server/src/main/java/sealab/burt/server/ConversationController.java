@@ -1,8 +1,6 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +14,10 @@ import sealab.burt.server.actions.eb.ClarifyEBAction;
 import sealab.burt.server.actions.eb.ProvideEBAction;
 import sealab.burt.server.actions.eb.ProvideEBNoParseAction;
 import sealab.burt.server.actions.ob.*;
+import sealab.burt.server.actions.others.EndConversationAction;
+import sealab.burt.server.actions.others.ProvideBugReportAction;
+import sealab.burt.server.actions.others.ProvideParticipantIdAction;
+import sealab.burt.server.actions.others.UnexpectedErrorAction;
 import sealab.burt.server.actions.s2r.*;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.ConversationResponse;
@@ -45,10 +47,16 @@ class ConversationController {
 
     public static final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
         {
+            put(PROVIDE_PARTICIPANT_ID, new ProvideParticipantIdAction(PARTICIPANT_PROVIDED));
+
+
+            //--------APP SELECTION---------------//
+
             put(SELECT_APP, new SelectAppAction(APP_SELECTED));
             put(CONFIRM_APP, new ConfirmAppAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
 
             //--------OB---------------//
+
             put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
             put(PROVIDE_OB_NO_PARSE, new ProvideOBNoParseAction(OB_DESCRIPTION));
             put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
@@ -56,11 +64,13 @@ class ConversationController {
             put(CONFIRM_SELECTED_OB_SCREEN, new ConfirmOBScreenSelectedAction());
 
             //--------EB-------------//
+
             put(PROVIDE_EB, new ProvideEBAction(EB_DESCRIPTION));
             put(PROVIDE_EB_NO_PARSE, new ProvideEBNoParseAction(EB_DESCRIPTION));
             put(CLARIFY_EB, new ClarifyEBAction());
 
             //--------S2R-----------//
+
             put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
             put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
@@ -76,34 +86,32 @@ class ConversationController {
 
             //--------OTHERS-----------//
 
-            put(REPORT_SUMMARY, new ProvideReportSummary());
+            put(REPORT_SUMMARY, new ProvideBugReportAction());
             put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
-
-            put(ENDING, new EndConversation());
+            put(ENDING, new EndConversationAction());
 
 
         }
     };
     public static final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
-        put(GREETING, new NStateChecker(SELECT_APP));
+        put(GREETING, new NStateChecker(PROVIDE_PARTICIPANT_ID));
+        put(PARTICIPANT_PROVIDED, new ParticipantIdStateChecker());
+        //--------------------
         put(APP_SELECTED, new NStateChecker(CONFIRM_APP));
-        put(AFFIRMATIVE_ANSWER, new AffirmativeAnswerStateChecker(null));
-        put(NEGATIVE_ANSWER, new NegativeAnswerStateChecker(null));
-
+        put(AFFIRMATIVE_ANSWER, new AffirmativeAnswerStateChecker());
+        put(NEGATIVE_ANSWER, new NegativeAnswerStateChecker());
         //--------OB---------------//
-        put(OB_DESCRIPTION, new OBDescriptionStateChecker(null));
+        put(OB_DESCRIPTION, new OBDescriptionStateChecker());
         put(Intent.OB_SCREEN_SELECTED, new NStateChecker(CONFIRM_SELECTED_OB_SCREEN));
         //--------EB-------------//
-        put(EB_DESCRIPTION, new EBDescriptionStateChecker(null));
+        put(EB_DESCRIPTION, new EBDescriptionStateChecker());
         //--------S2R-----------//
-        put(S2R_DESCRIPTION, new S2RDescriptionStateChecker(null));
+        put(S2R_DESCRIPTION, new S2RDescriptionStateChecker());
         put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
         put(S2R_MISSING_SELECTED, new NStateChecker(CONFIRM_SELECTED_MISSING_S2R));
         put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
         put(THANKS, new NStateChecker(ENDING));
-
-
     }};
     ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, ConcurrentHashMap<StateVariable, Object>> conversationStates = new ConcurrentHashMap<>();
@@ -150,7 +158,8 @@ class ConversationController {
 
             if (END_CONVERSATION.equals(intent)) {
                 endConversation(sessionId);
-                return ConversationResponse.createResponse("Thank you for using BURT", 100);
+                return ConversationResponse.createResponse("Thank you for using BURT. " +
+                        "The conversation will automatically end in a few seconds.", 100);
             }
 
             StateChecker stateChecker = stateCheckers.get(intent);

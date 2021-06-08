@@ -24,8 +24,8 @@ public class EBDescriptionStateChecker extends StateChecker {
         put(QualityResult.Result.NO_PARSED.name(), PROVIDE_EB_NO_PARSE);
     }};
 
-    public EBDescriptionStateChecker(ActionName defaultAction) {
-        super(defaultAction);
+    public EBDescriptionStateChecker() {
+        super(null);
     }
 
     @Override

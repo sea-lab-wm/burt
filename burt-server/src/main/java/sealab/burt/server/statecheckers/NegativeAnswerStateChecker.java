@@ -10,8 +10,8 @@ import static sealab.burt.server.StateVariable.*;
 
 public class NegativeAnswerStateChecker extends StateChecker {
 
-    public NegativeAnswerStateChecker(ActionName defaultAction) {
-        super(defaultAction);
+    public NegativeAnswerStateChecker() {
+        super(null);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class NegativeAnswerStateChecker extends StateChecker {
         } else if(state.containsKey(APP_ASKED)) {
             nextAction = SELECT_APP;
         } else if (state.containsKey(OB_SCREEN_SELECTED)){
-            nextAction = UNEXPECTED_ERROR;
+            nextAction = SELECT_OB_SCREEN;
         } else if (state.containsKey(COLLECTING_EB)){
             nextAction = CLARIFY_EB;
         }

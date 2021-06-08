@@ -1,5 +1,6 @@
 package sealab.burt.server.statecheckers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
@@ -13,8 +14,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 
-public class OBDescriptionStateChecker extends StateChecker {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
+public @Slf4j
+class OBDescriptionStateChecker extends StateChecker {
 
     private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
         put(QualityResult.Result.MATCH.name(), PROVIDE_EB);
@@ -23,8 +24,8 @@ public class OBDescriptionStateChecker extends StateChecker {
         put(QualityResult.Result.NO_PARSED.name(), PROVIDE_OB_NO_PARSE);
     }};
 
-    public OBDescriptionStateChecker(ActionName defaultAction) {
-        super(defaultAction);
+    public OBDescriptionStateChecker() {
+        super(null);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class OBDescriptionStateChecker extends StateChecker {
             }
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
-            LOGGER.error("There was an error", e);
+            log.error("There was an error", e);
             return UNEXPECTED_ERROR;
         }
     }

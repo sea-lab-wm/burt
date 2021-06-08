@@ -13,8 +13,8 @@ import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.StateVariable.*;
 
 public class AffirmativeAnswerStateChecker extends StateChecker {
-    public AffirmativeAnswerStateChecker(ActionName defaultAction) {
-        super(defaultAction);
+    public AffirmativeAnswerStateChecker() {
+        super(null);
     }
 
     @Override

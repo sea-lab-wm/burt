@@ -64,12 +64,13 @@ const Chat = ({
 
       //after this point, we are dealing with a chatbot message
 
-      let withAvatar;
+      let withAvatar = true;
       if (messageObject.withAvatar) {
         withAvatar = messageObject.withAvatar;
-      } else {
-        withAvatar = showAvatar(messages, index, messageObject.withAvatar);
       }
+      /*else {
+        withAvatar = showAvatar(messages, index, messageObject.withAvatar);
+      }*/
 
       const chatBotMessageProps = {
         passDownProps: { ...messageObject },

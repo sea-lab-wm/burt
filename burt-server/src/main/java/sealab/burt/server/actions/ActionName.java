@@ -2,6 +2,9 @@ package sealab.burt.server.actions;
 
 public enum ActionName {
 
+    //participant
+    PROVIDE_PARTICIPANT_ID, CHECK_PARTICIPANT_ID,
+
     //app selection
     SELECT_APP, CONFIRM_APP ,
 
