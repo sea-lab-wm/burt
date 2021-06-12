@@ -2,15 +2,13 @@ package sealab.burt.server.statecheckers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserMessage;
-import sealab.burt.server.output.OutputMessageObj;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -61,27 +59,21 @@ public class S2RDescriptionStateChecker extends StateChecker {
 
             if (results.size() > 1) {
                 //FIXME: what if there is high quality result?
-                if(results.contains(S2RQualityCategory.LOW_Q_INCORRECT_INPUT))
+                if (results.contains(S2RQualityCategory.LOW_Q_INCORRECT_INPUT))
                     return nextActions.get(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name());
-                else if(results.contains(S2RQualityCategory.MISSING))
-                   return nextActions.get(S2RQualityCategory.MISSING.name());
-                else
+                else if (results.contains(S2RQualityCategory.MISSING)) {
+                    if(results.contains(S2RQualityCategory.HIGH_QUALITY))
+                        state.put(S2R_HQ_MISSING, message);
+                    return nextActions.get(S2RQualityCategory.MISSING.name());
+                } else
                     throw new RuntimeException("Unsupported quality assessment combination: " + results);
             }
 
             S2RQualityCategory assessmentCategory = results.get(0);
 
-            String screenshotPath = "dummy.png";
-
             if (results.contains(S2RQualityCategory.HIGH_QUALITY)) {
-                if (!state.containsKey(REPORT_S2R)) {
-                    List<OutputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new OutputMessageObj(message, screenshotPath));
-                    state.put(REPORT_S2R, outputMessageList);
-                } else {
-                    List<OutputMessageObj> outputMessage = (List<OutputMessageObj>) state.get(REPORT_S2R);
-                    outputMessage.add(new OutputMessageObj(message, screenshotPath));
-                }
+                S2RQualityAssessment assessment = qFeedback.getQualityAssessments().get(0);
+                S2RStateUpdater.addStepToState(state, message, assessment);
             }
 
             return nextActions.get(assessmentCategory.name());

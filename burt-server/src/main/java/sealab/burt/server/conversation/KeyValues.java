@@ -4,11 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 public @Data @AllArgsConstructor
-class KeyValue {
+class KeyValues {
 
     private String key;
-    private String value;
+    private String value1;
+    private String value2;
 
-    public KeyValue(){}
+    public KeyValues(){}
 
 }

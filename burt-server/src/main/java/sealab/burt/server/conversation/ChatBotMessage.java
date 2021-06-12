@@ -10,7 +10,7 @@ public @Data
 class ChatBotMessage {
 
     private MessageObj messageObj;
-    private List<KeyValue> values;
+    private List<KeyValues> values;
     private String intent;
     private String action;
     private boolean multiple;
@@ -19,12 +19,12 @@ class ChatBotMessage {
     public ChatBotMessage() {
     }
 
-    public ChatBotMessage(MessageObj messageObj, List<KeyValue> values) {
+    public ChatBotMessage(MessageObj messageObj, List<KeyValues> values) {
         this.messageObj = messageObj;
         this.values = values;
     }
 
-    public ChatBotMessage(MessageObj messageObj, List<KeyValue> values, boolean multiple) {
+    public ChatBotMessage(MessageObj messageObj, List<KeyValues> values, boolean multiple) {
         this.messageObj = messageObj;
         this.values = values;
         this.multiple = multiple;

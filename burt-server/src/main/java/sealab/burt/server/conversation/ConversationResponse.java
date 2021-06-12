@@ -34,10 +34,7 @@ class ConversationResponse {
 
 
     public static ConversationResponse createResponse(String message, Integer code) {
-        ConversationResponse conversationResponse =
-                new ConversationResponse(Collections.singletonList(new ChatBotMessage(new MessageObj(message))), code);
-        log.debug("Response created: " + conversationResponse);
-        return conversationResponse;
+        return new ConversationResponse(Collections.singletonList(new ChatBotMessage(new MessageObj(message))), code);
     }
 
     public static ConversationResponse createResponse(String message) {

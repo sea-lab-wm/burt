@@ -17,9 +17,8 @@ const S2RScreenSelector = (props) => {
 
     }
     const handleConfirmButton= (choice) => {
-        setTimeout(() => {
             if (screen.length > 0){
-                let selectedValues = screen.map(s => s.value);
+                let selectedValues = screen.map(s => s.id);
                 let message = props.actionProvider.createChatBotMessage(choice, {selectedValues: selectedValues});
                 const responsePromise = ApiClient.processUserMessage(message)
                 processResponse(responsePromise, props.actionProvider)
@@ -30,21 +29,18 @@ const S2RScreenSelector = (props) => {
                 props.messages[idx].disabled = true
                 setDisable(true)
             } else {
-                alert("please select one screenshot!")
+                alert("please select one option!")
             }
-        }, 1000)
     }
 
 
     const handleNegativeButton = (choice)=>{
-        setTimeout(() => {
             let message = props.actionProvider.createChatBotMessage(choice);
 
             const responsePromise = ApiClient.processUserMessage(message)
             processResponse(responsePromise, props.actionProvider)
             setDisable(true)
 
-        }, 1000)
     }
 
 
@@ -62,13 +58,12 @@ const S2RScreenSelector = (props) => {
     return (
         <div className="center-screen">
             <ImagePicker
-                images={dataValues.map((image, i) => ({src: logos("./" + image.value).default, value: image.key}))}
+                images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
                 style={getImageStyle(150, 300)}
                 selected={selectedValues}
                 onPick={pickImageHandler}
                 multiple = {multiple}
                 disabled={disabled}
-                // onClick={this.props.actionProvider.handleOneScreenOption()}/>;
             />
             <button type="button" className="button" onClick={() => handleConfirmButton("done")} disabled={disabled}>done</button>
             <button type="button" className="button" onClick={() => handleNegativeButton("none of above")} disabled={disabled}>none of above</button>

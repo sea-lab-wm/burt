@@ -17,6 +17,6 @@ public class ProvideEBNoParseAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
         return createChatBotMessages("I am sorry, I didn't quite get that.",
-                "Can you please tell me how the app is supposed to work one more time");
+                "Can you please tell me how the app is supposed to work one more time.");
     }
 }

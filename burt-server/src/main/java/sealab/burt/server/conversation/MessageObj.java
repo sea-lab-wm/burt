@@ -17,7 +17,7 @@ class MessageObj {
     private double id;
     private String widget;
     private Boolean loading;
-    private List<KeyValue> allValues;
+    private List<KeyValues> allValues;
     private List<String> selectedValues;
     private boolean disabled;
 

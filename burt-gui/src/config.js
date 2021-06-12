@@ -17,7 +17,7 @@ const config = {
     startService: "/start",
     processMessageService: "/processMessage",
     initialMessages: [
-        createChatBotMessage("Hi there. This is BURT."),
+        createChatBotMessage("Hi there, this is BURT."),
         createChatBotMessage("I am here to assist you in reporting any problem with your app."),
     ],
     widgets: [

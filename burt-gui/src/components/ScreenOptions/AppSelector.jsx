@@ -19,23 +19,24 @@ const AppSelector = (props) => {
     }
 
     const handleConfirmButton =() => {
-        // setTimeout(() => {
         console.log( props.messages)
         if (screen.length > 0) {
+
             setDisable(true);
-            let selectedValues = screen.map(s => s.value);
+            let selectedValues = screen.map(s => s.id);
             let message = props.actionProvider.createChatBotMessage(null, {selectedValues: selectedValues , disabled: true});
+
             const responsePromise = ApiClient.processUserMessage(message);
             processResponse(responsePromise, props.actionProvider);
+
             const idx = props.messages.findIndex(x => x.id === props.id);
             props.messages[idx].selectedValues = selectedValues;
             props.messages[idx].disabled = true;
 
             console.log(props.messages)
         }else{
-            alert("please select one screenshot!")
+            alert("Please select one option")
         }
-        // }, 1000)
     }
 
     const getImageStyle = (width, height) => {
@@ -46,20 +47,15 @@ const AppSelector = (props) => {
         }
     }
 
-    // console.log("All properties: ")
-    // console.log(props)
 
     const dataValues = props.allValues;
     const selectedValues = props.selectedValues
     const multiple = props.multiple
 
-
-
     return (
         <div className="center-screen">
             <ImagePicker
-                //images={imageList.map((image, i) => ({src: image, value: i}))}
-                images={dataValues.map((image, i) => ({src: logos("./" + image.value).default, value: image.key}))}
+                images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
                 onPick={pickImageHandler}
                 style={getImageStyle(100, 100)}
                 selected={selectedValues}

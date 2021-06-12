@@ -23,9 +23,9 @@ public class MessageParser {
     static {
         intentTokens = new ConcurrentHashMap<>();
 
-        addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah"));
+        addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah", "yep"));
         addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up"));
-        addIntentTokens(NEGATIVE_ANSWER, Arrays.asList("no", "nah"));
+        addIntentTokens(NEGATIVE_ANSWER, Arrays.asList("no", "nah", "nope"));
         addIntentTokens(THANKS, Arrays.asList("thanks", "thank you"));
         //....
     }

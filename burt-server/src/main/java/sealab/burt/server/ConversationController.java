@@ -53,7 +53,7 @@ class ConversationController {
             //--------APP SELECTION---------------//
 
             put(SELECT_APP, new SelectAppAction(APP_SELECTED));
-            put(CONFIRM_APP, new ConfirmAppAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            put(CONFIRM_APP, new ConfirmAppAction());
 
             //--------OB---------------//
 
@@ -127,7 +127,12 @@ class ConversationController {
 
     @PostMapping("/processMessage")
     public ConversationResponse processMessage(@RequestBody UserMessage userResponse) {
+        ConversationResponse response = getConversationResponse(userResponse);
+        log.debug("ChatBot response: " + response.toString());
+        return response;
+    }
 
+    private ConversationResponse getConversationResponse(UserMessage userResponse) {
         try {
 
             if (userResponse != null)
@@ -193,7 +198,6 @@ class ConversationController {
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +
                     "Please try again or contact the administrator.", 0);
         }
-
     }
 
 

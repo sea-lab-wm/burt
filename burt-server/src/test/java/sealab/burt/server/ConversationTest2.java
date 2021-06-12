@@ -48,7 +48,7 @@ class ConversationTest2 extends AbstractTest {
             String message = messObj.getMessage();
             ActionName currentAction = messObj.getCurrentAction();
 
-            log.debug("Sending message: " + messObj);
+//            log.debug("Sending message: " + messObj);
             ConversationResponse botResponse = null;
             switch (messObj.getType()) {
                 case REGULAR_RESPONSE:
@@ -60,7 +60,7 @@ class ConversationTest2 extends AbstractTest {
                     break;
             }
 
-            log.debug("Received response: " + botResponse);
+//            log.debug("Received response: " + botResponse);
 
             assert botResponse != null;
             assertNotEquals(-1, botResponse.getCode());

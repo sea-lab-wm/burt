@@ -28,7 +28,8 @@ public class ConfirmSelectedAmbiguousAction extends ChatBotAction {
 
     private List<ChatBotMessage> respondWithChoices(ConcurrentHashMap<StateVariable, Object> state, UserMessage msg) {
         String response = "";
-        if (!msg.getMessages().isEmpty()) {
+        //FIXME: this code is buggy, based on the last changes
+       /* if (!msg.getMessages().isEmpty()) {
             String confirmMessage = msg.getMessages().get(0).getMessage();
             if (confirmMessage.equals("done")) {
                  List<String> S2RScreens =  msg.getMessages().get(0).getSelectedValues();
@@ -49,7 +50,7 @@ public class ConfirmSelectedAmbiguousAction extends ChatBotAction {
                 state.remove(StateVariable.DISAMBIGUATE_S2R);
                 return createChatBotMessages(response);
             }
-        }
+        }*/
         return createChatBotMessages(response);
     }
 

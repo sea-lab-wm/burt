@@ -3,7 +3,7 @@ package sealab.burt.server.actions.ob;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValue;
+import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserMessage;
 import sealab.burt.server.msgparsing.Intent;
@@ -44,7 +44,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 state.remove(OB_SCREEN_SELECTED);
                 setNextExpectedIntents(Collections.singletonList(Intent.OB_SCREEN_SELECTED));
                 MessageObj messageObj = new MessageObj("then, is this screen that has the problem? Please hit the “Done” button after you have selected it.",  "OBScreenSelector");
-                List<KeyValue> OBScreen = Collections.singletonList(new KeyValue("OBScreen", "OBScreen.png"));
+                List<KeyValues> OBScreen = Collections.singletonList(new KeyValues("0", "OBScreen", "OBScreen.png"));
                 return createChatBotMessages(new ChatBotMessage(messageObj, OBScreen));
             }
         }

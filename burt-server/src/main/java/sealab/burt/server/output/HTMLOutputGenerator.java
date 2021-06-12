@@ -1,6 +1,7 @@
 package sealab.burt.server.output;
 import static sealab.burt.server.StateVariable.*;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import sealab.burt.server.StateVariable;
 
@@ -16,7 +17,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class HTMLOutputGenerator {
+public @Slf4j
+class HTMLOutputGenerator {
 
     public void generateOutput(File outputFile, ConcurrentHashMap<StateVariable, Object> state) throws Exception {
 
@@ -63,7 +65,7 @@ public class HTMLOutputGenerator {
             String message =  messageObj.getMessage();
             String screenshotPath = messageObj.getScreenshotPath();
             if (screenshotPath != null){
-                System.out.println("OB:" + screenshotPath);
+                log.debug("OB:" + screenshotPath);
                 obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
             }
             if (message != null && message.length() > 0){
@@ -81,7 +83,7 @@ public class HTMLOutputGenerator {
             String message =  messageObj.getMessage();
             String screenshotPath = messageObj.getScreenshotPath();
             if (screenshotPath != null){
-                System.out.println("EB:" + screenshotPath);
+                log.debug("EB:" + screenshotPath);
                 ebSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
             }
             if (message != null && message.length() > 0){
@@ -113,7 +115,7 @@ public class HTMLOutputGenerator {
             s2rRow.append("<div class=\"span4\" id=\"step" + (i+1) + "\">");
             Element s2rSpan = doc.getElementById("step" + (i+1));
             if (screenshotPath != null) {
-                System.out.println("S2R:" + screenshotPath);
+                log.debug("S2R:" + screenshotPath);
                 s2rSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
             }
             if (message != null && message.length() > 0) {

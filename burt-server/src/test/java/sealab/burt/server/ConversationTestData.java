@@ -35,16 +35,21 @@ public class ConversationTestData {
             add(new MessageObjectTest("P23", SELECT_APP, APP_SELECTED));
             //ChatBot: select an app from the list
             add(new MessageObjectTest(null, CONFIRM_APP,
-                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    APP_SELECTED,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("Mileage v. 3.1.1")));
+            //ChatBot: I didn't get that, select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("2"))); //"2" is Mileage v. 3.1.1 for now
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("no", SELECT_APP, APP_SELECTED));
             //ChatBot: ok, select an app from the list
             add(new MessageObjectTest(null, CONFIRM_APP,
                     Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("Mileage v. 3.1.1")));
+                    Collections.singletonList("2"))); //"2" is Mileage v. 3.1.1 for now
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
             //ChatBot: provide the OB
@@ -78,10 +83,14 @@ public class ConversationTestData {
             //ChatBot: I couldn't match the step to anything from the app, please rephrase it
             add(new MessageObjectTest("I entered 3 in the cost field", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
-            //ChatBot: ok, what is the next step?
+            //ChatBot: I didn't get that, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); // "0" means the first step
+            //ChatBot: ok, you selected some steps, what is the next step?
             add(new MessageObjectTest("I created an entry", REPHRASE_S2R, S2R_DESCRIPTION));
             //ChatBot: I couldn't match the step to anything from the app, please rephrase it
             add(new MessageObjectTest("I set tank", DISAMBIGUATE_S2R, S2R_AMBIGUOUS_SELECTED));
@@ -95,9 +104,13 @@ public class ConversationTestData {
             //ChatBot: this steps has no input, please provide it
             add(new MessageObjectTest("I entered 23 gallons", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
+            //ChatBot: I didn't get that, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); // "0" means the first step
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
