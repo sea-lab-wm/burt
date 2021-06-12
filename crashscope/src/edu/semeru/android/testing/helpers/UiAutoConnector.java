@@ -89,7 +89,7 @@ public class UiAutoConnector {
         // shell", "screencap", "-p", "/sdcard/screenshot.png
         // shell", "/system/bin/uiautomator", "dump", "/sdcard/uidump.xml
 
-        String androidSdk = "/Users/charlyb07/Applications/android-sdk-macosx/";
+        String androidSdk = "/Users/junayed/Library/Android/sdk";
 
         ArrayList<Integer> screenDimensions = Utilities.getScreenDimensions(androidSdk);
         StringBuilder builder = new StringBuilder();
