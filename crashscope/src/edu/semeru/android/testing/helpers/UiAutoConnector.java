@@ -112,7 +112,7 @@ public class UiAutoConnector {
         // }
         // 723 439
         GUIEventVO guiEventVO = new GUIEventVO(600, 693, StepByStepEngine.CLICK);
-        getComponent(androidSdk, guiEventVO, screenDimensions.get(0), screenDimensions.get(1));
+        //getComponent(androidSdk, guiEventVO, screenDimensions.get(0), screenDimensions.get(1));
         // setComponentAreas(guiEventVO, androidSdk, screenDimensions.get(0),
         // screenDimensions.get(1));
         System.out.println(guiEventVO.getHvInfoComponent());
@@ -870,8 +870,8 @@ public class UiAutoConnector {
         }
     }
 
-    public static void getComponent(String androidSDKPath, GUIEventVO guiEventVO, int widthScreen, int heightScreen) {
-        getComponent(androidSDKPath, guiEventVO, widthScreen, heightScreen, null);
+    public static void getComponent(String androidSDKPath, GUIEventVO guiEventVO, int widthScreen, int heightScreen, String name) {
+        getComponent(androidSDKPath, guiEventVO, widthScreen, heightScreen, null, name);
     }
 
     /**
@@ -879,13 +879,14 @@ public class UiAutoConnector {
      * @param guiEventVO
      */
     public static void getComponent(String androidSDKPath, GUIEventVO guiEventVO, int widthScreen, int heightScreen,
-            String device) {
+            String device, String name) {
         String deviceVersion = Utilities.getDeviceVersion(androidSDKPath, device);
         boolean keyboardActive = Utilities.isKeyboardActive(androidSDKPath, device);
         DynGuiComponentVO result = null;
         int area = Integer.MAX_VALUE;
         int orientation = Utilities.getOrientation(androidSDKPath, device);
             ArrayList<DynGuiComponentVO> screenInfo = null;
+
             // at least one component covering the
             boolean isHover = false;
             // check for the biggest component on the screen
@@ -895,7 +896,12 @@ public class UiAutoConnector {
                 // bit and avoid unnecessary calls to UIAutomator
                 // screenInfo = getScreenInfoCache(androidSDKPath, widthScreen,
                 // heightScreen, false, false, device);
-                screenInfo = getScreenInfoCache(androidSDKPath, widthScreen, heightScreen, true, false, device);
+                //screenInfo = getScreenInfoCache(androidSDKPath, widthScreen, heightScreen, true, false, device);
+            	
+            	screenInfo = getScreenInfoEmulator(androidSDKPath, widthScreen,
+                        heightScreen, true, false, false, "5554",
+                        "5037", name);
+            	
                 if (screenInfo.size() > 0) {
                     for (DynGuiComponentVO dynGuiComponent : screenInfo.subList(1, screenInfo.size())) {
                         if (dynGuiComponent.getPositionY()
@@ -931,7 +937,12 @@ public class UiAutoConnector {
             } else {
                 if (screenInfo == null) {
                     // Keyboard is not active
-                    screenInfo = getScreenInfoCache(androidSDKPath, widthScreen, heightScreen, true, false, device);
+                    //screenInfo = getScreenInfoCache(androidSDKPath, widthScreen, heightScreen, true, false, device);
+                            
+                    screenInfo = getScreenInfoEmulator(androidSDKPath, widthScreen,
+                            heightScreen, true, false, false, "5554",
+                            "5037", name);
+
                 }
                 if (guiEventVO.getRealInitialY() > heightScreen) {
                     try {
