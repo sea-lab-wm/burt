@@ -870,8 +870,8 @@ public class UiAutoConnector {
         }
     }
 
-    public static void getComponent(String androidSDKPath, GUIEventVO guiEventVO, int widthScreen, int heightScreen, String name) {
-        getComponent(androidSDKPath, guiEventVO, widthScreen, heightScreen, null, name);
+    public static void getComponent(String androidSDKPath, GUIEventVO guiEventVO, int widthScreen, int heightScreen, String name, String avdPort, String adbPort) {
+        getComponent(androidSDKPath, guiEventVO, widthScreen, heightScreen, null, name, avdPort, adbPort);
     }
 
     /**
@@ -879,7 +879,7 @@ public class UiAutoConnector {
      * @param guiEventVO
      */
     public static void getComponent(String androidSDKPath, GUIEventVO guiEventVO, int widthScreen, int heightScreen,
-            String device, String name) {
+            String device, String name, String avdPort, String adbPort) {
         String deviceVersion = Utilities.getDeviceVersion(androidSDKPath, device);
         boolean keyboardActive = Utilities.isKeyboardActive(androidSDKPath, device);
         DynGuiComponentVO result = null;
@@ -899,8 +899,8 @@ public class UiAutoConnector {
                 //screenInfo = getScreenInfoCache(androidSDKPath, widthScreen, heightScreen, true, false, device);
             	
             	screenInfo = getScreenInfoEmulator(androidSDKPath, widthScreen,
-                        heightScreen, true, false, false, "5554",
-                        "5037", name);
+                        heightScreen, true, false, false, avdPort,
+                        adbPort, name);
             	
                 if (screenInfo.size() > 0) {
                     for (DynGuiComponentVO dynGuiComponent : screenInfo.subList(1, screenInfo.size())) {
@@ -940,8 +940,8 @@ public class UiAutoConnector {
                     //screenInfo = getScreenInfoCache(androidSDKPath, widthScreen, heightScreen, true, false, device);
                             
                     screenInfo = getScreenInfoEmulator(androidSDKPath, widthScreen,
-                            heightScreen, true, false, false, "5554",
-                            "5037", name);
+                            heightScreen, true, false, false, avdPort,
+                            adbPort, name);
 
                 }
                 if (guiEventVO.getRealInitialY() > heightScreen) {
@@ -951,6 +951,8 @@ public class UiAutoConnector {
                         e.printStackTrace();
                     }
                 } else {
+
+                	DynGuiComponentVO prevComponent = new DynGuiComponentVO(null, 0, 0, 1080, 1920, "test");
                     for (DynGuiComponentVO component : screenInfo) {
                         // System.out.println(component);
                         if (guiEventVO.getRealInitialX() <= component.getPositionX() + component.getWidth() + THRESHOLD
@@ -964,7 +966,13 @@ public class UiAutoConnector {
                                         || (result != null && result.getName().endsWith(".View")
                                                 && !component.getName().endsWith(".View")))) {
                             area = component.getWidth() * component.getHeight();
-                            result = component;
+                            
+                            if(component.getPositionX()+component.getWidth() <= prevComponent.getPositionX()+prevComponent.getWidth()
+                            && component.getPositionY()+component.getHeight() <= prevComponent.getPositionY()+prevComponent.getHeight()) {
+                            	result = component;
+                            	prevComponent = result;
+                            }
+                           
                         }
                     }
                 }
