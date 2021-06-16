@@ -1,5 +1,8 @@
 package sealab.burt.server.statecheckers;
 
+import sealab.burt.qualitychecker.EBChecker;
+import sealab.burt.qualitychecker.OBChecker;
+import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
@@ -12,16 +15,16 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import static sealab.burt.server.StateVariable.REPORT_S2R;
+import static sealab.burt.server.StateVariable.*;
 
-public class S2RStateUpdater {
+public class QualityStateUpdater {
 
     //FIXME: change the default screenshot
     public static final String DEFAULT_SCREENSHOT = "S2RScreen1.png";
 
-    public static void addStepToState(ConcurrentHashMap<StateVariable, Object> state,
-                                      String step,
-                                      S2RQualityAssessment assessment) {
+    public static void addStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state,
+                                                  String step,
+                                                  S2RQualityAssessment assessment) {
         List<OutputMessageObj> outputMessageList = (List<OutputMessageObj>) state.get(REPORT_S2R);
         if (!state.containsKey(REPORT_S2R)) {
             String screenshotFile = assessment.getMatchedSteps().get(0).getScreenshotFile();
@@ -35,6 +38,15 @@ public class S2RStateUpdater {
                     screenshotFile == null ? DEFAULT_SCREENSHOT : screenshotFile));
         }
         state.put(REPORT_S2R, outputMessageList);
+
+        //---------------------
+
+        S2RChecker s2rChecker = (S2RChecker) state.get(S2R_CHECKER);
+//        OBChecker obChecker = (OBChecker) state.get(OB_CHECKER);
+//        EBChecker ebChecker = (EBChecker) state.get(EB_CHECKER);
+
+        s2rChecker.updateState(assessment.getMatchedSteps().get(0).getCurrentState());
+
     }
 
 

@@ -66,7 +66,7 @@ class JSONGraphReader {
         String dataLocation = Paths.get(baseFolder, String.join("-", packageName, appVersion)).toString();
 
         String key = getKey(appName, appVersion);
-        log.debug("Reading graph for " + key);
+        log.debug("Reading graph from JSON files for " + key);
 
         //----------------------
 

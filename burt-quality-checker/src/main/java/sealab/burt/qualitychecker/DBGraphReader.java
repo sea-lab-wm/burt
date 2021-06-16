@@ -29,7 +29,7 @@ class DBGraphReader {
 
     private static void readGraph(String appName, String appVersion) throws Exception {
         String key = getKey(appName, appVersion);
-        log.debug("Reading graph for " + key);
+        log.debug("Reading graph from DB for " + key);
         EntityManager em = DBUtils.createEntityManager(DBUtils.DEFAULT_EM);
         GraphGenerator generator = new GraphGenerator();
         AppGraphInfo appInfo = generator.generateGraph(em, appName, appVersion);

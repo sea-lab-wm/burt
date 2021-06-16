@@ -2,7 +2,7 @@ package sealab.burt.server.statecheckers;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 import seers.textanalyzer.TextProcessor;
 import seers.textanalyzer.entity.Token;
 
@@ -27,8 +27,8 @@ public class ParticipantIdStateChecker extends StateChecker {
     @Override
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
 
-        UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-        String message = userMessage.getMessages().get(0).getMessage();
+        UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
+        String message = userResponse.getFirstMessage().getMessage();
         List<Token> tokens = TextProcessor.processText(message).get(0).getTokens();
 
         Optional<Token> token = tokens.stream().filter(tok -> participants.stream()

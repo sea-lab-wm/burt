@@ -4,12 +4,9 @@ package sealab.burt.server.actions.s2r;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.output.OutputMessageObj;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,11 +19,11 @@ public class ConfirmSelectedAmbiguousAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
+        UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
         return respondWithChoices(state, msg);
     }
 
-    private List<ChatBotMessage> respondWithChoices(ConcurrentHashMap<StateVariable, Object> state, UserMessage msg) {
+    private List<ChatBotMessage> respondWithChoices(ConcurrentHashMap<StateVariable, Object> state, UserResponse msg) {
         String response = "";
         //FIXME: this code is buggy, based on the last changes
        /* if (!msg.getMessages().isEmpty()) {

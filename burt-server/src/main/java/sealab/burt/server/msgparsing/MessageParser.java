@@ -2,7 +2,7 @@ package sealab.burt.server.msgparsing;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,16 +36,16 @@ public class MessageParser {
         }
     }
 
-    public static Intent getIntent(UserMessage userMessage, ConcurrentHashMap<StateVariable, Object> state) {
+    public static Intent getIntent(UserResponse userResponse, ConcurrentHashMap<StateVariable, Object> state) {
 
         if (state.containsKey(REPORT_GENERATED))
             return END_CONVERSATION;
 
         //------------------------
 
-        if (userMessage.getMessages().get(0) != null) {
+        if (userResponse.getMessages().get(0) != null) {
 
-            MessageObj message = userMessage.getMessages().get(0);
+            MessageObj message = userResponse.getFirstMessage();
 
             if (message.getMessage() != null && Stream.of("bye", "good bye", "see ya", "see you")
                     .anyMatch(token -> message.getMessage().toLowerCase().contains(token)))
@@ -66,9 +66,9 @@ public class MessageParser {
 
         //------------------------
 
-        if (userMessage.getMessages() == null) return null;
+        if (userResponse.getMessages() == null) return null;
 
-        MessageObj message = userMessage.getMessages().get(0);
+        MessageObj message = userResponse.getMessages().get(0);
 
         if (message == null || message.getMessage() == null) return null;
         //determine the intent based on tokens

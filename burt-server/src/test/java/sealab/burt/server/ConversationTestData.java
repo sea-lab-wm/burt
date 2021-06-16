@@ -55,17 +55,23 @@ public class ConversationTestData {
             //ChatBot: provide the OB
             add(new MessageObjectTest("I don't know", PROVIDE_OB_NO_PARSE, OB_DESCRIPTION));
             //ChatBot: I couldn't parse that, pls provide the OB
-            add(new MessageObjectTest("the app crashed", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest("the app crashed", REPHRASE_OB, OB_DESCRIPTION));
+            //ChatBot: I couldn't parse that, pls provide the OB
+            add(new MessageObjectTest("the app crashed when entering fillup", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("OB_SCREEN")));
+            //ChatBot: Sorry, wrong optin, please select the screen that is having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); //"0" means the first option
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("no", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("OB_SCREEN")));
+                    Collections.singletonList("0"))); //"0" means the first option
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
@@ -102,15 +108,15 @@ public class ConversationTestData {
             //ChatBot: this steps is ambiguous, please rephrase it
             add(new MessageObjectTest("I entered gallons", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
             //ChatBot: this steps has no input, please provide it
-            add(new MessageObjectTest("I entered 23 gallons", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
-            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("I entered 23 gallons", PROVIDE_S2R, S2R_DESCRIPTION));
+           /* //ChatBot: there are missing steps, please select the ones are correct
             add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
             //ChatBot: I didn't get that, please select the ones are correct
             add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("0"))); // "0" means the first step
+                    Collections.singletonList("0"))); // "0" means the first step*/
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?

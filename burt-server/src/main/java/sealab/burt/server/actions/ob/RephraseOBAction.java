@@ -8,6 +8,7 @@ import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
 public class RephraseOBAction extends ChatBotAction {
 
     public RephraseOBAction(Intent nextExpectedIntent) {
@@ -16,8 +17,8 @@ public class RephraseOBAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        return createChatBotMessages("It seems the description you provided does not use a proper language.",
-                "Can you please rephrase the incorrect behavior?");
+        return createChatBotMessages("It seems your description is rather general or does not use a proper language.",
+                "Can you please rephrase the incorrect behavior more specifically?");
     }
 
 }

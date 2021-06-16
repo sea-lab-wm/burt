@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.ConversationResponse;
 import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 
 import java.util.Collections;
 import java.util.List;
@@ -71,7 +71,7 @@ class ConversationTest2 extends AbstractTest {
     }
 
     private ConversationResponse sendRegularRequest(String Message, ActionName currentAction) throws Exception {
-        UserMessage message = new UserMessage(sessionId, Collections.singletonList(new MessageObj(Message)));
+        UserResponse message = new UserResponse(sessionId, Collections.singletonList(new MessageObj(Message)));
         message.setCurrentAction(currentAction);
 
         MvcResult mvcResult = sendRequest(message);
@@ -82,7 +82,7 @@ class ConversationTest2 extends AbstractTest {
 
     private ConversationResponse sendRegularRequestWithMultipleValues(String Message, List<String> selectedValues,
                                                                       ActionName currentAction) throws Exception {
-        UserMessage message = new UserMessage(sessionId, Collections.singletonList(new MessageObj(Message,
+        UserResponse message = new UserResponse(sessionId, Collections.singletonList(new MessageObj(Message,
                 selectedValues)));
         message.setCurrentAction(currentAction);
         MvcResult mvcResult = sendRequest(message);
@@ -90,7 +90,7 @@ class ConversationTest2 extends AbstractTest {
         return mapFromJson(response, ConversationResponse.class);
     }
 
-    private MvcResult sendRequest(UserMessage message) throws Exception {
+    private MvcResult sendRequest(UserResponse message) throws Exception {
         MvcResult mvcResult3 =
                 mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/processMessage").
                         content(mapToJson(message)).contentType(MediaType.APPLICATION_JSON_VALUE).

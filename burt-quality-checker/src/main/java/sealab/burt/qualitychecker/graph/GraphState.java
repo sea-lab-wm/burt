@@ -1,5 +1,7 @@
 package sealab.burt.qualitychecker.graph;
 
+import edu.semeru.android.core.entity.model.fusion.Screen;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,7 +11,6 @@ import java.util.List;
  * @author Carlos Bernal
  */
 public class GraphState implements Serializable {
-
 
     public static final GraphState START_STATE = buildDummyState("Start state");
     public static final GraphState END_STATE = buildDummyState("End state");
@@ -23,7 +24,8 @@ public class GraphState implements Serializable {
     private List<AppGuiComponent> components;
     //	private String formattedXml;
     private String unformattedXml;
-    private Long screenId;
+    private Screen screen;
+    private String screenshotPath;
 
     /**
      * @return the name
@@ -94,7 +96,7 @@ public class GraphState implements Serializable {
 
     @Override
     public String toString() {
-        return "st [" + name + ", " + screenId + "]";
+        return "st [" + name + ", " + screen + "]";
     }
 
 	/*public String getFormattedXml() {
@@ -114,12 +116,12 @@ public class GraphState implements Serializable {
         this.unformattedXml = unformattedXml;
     }
 
-    public Long getScreenId() {
-        return screenId;
+    public Screen getScreen() {
+        return screen;
     }
 
-    public void setScreenId(Long screenId) {
-        this.screenId = screenId;
+    public void setScreen(Screen screen) {
+        this.screen = screen;
     }
 
     public static GraphState buildDummyState(String nameSuffixEnd) {
@@ -130,5 +132,13 @@ public class GraphState implements Serializable {
         endState.setUniqueHash(hashCodeEnd);
         endState.setName(stateNameEnd);
         return endState;
+    }
+
+    public String getScreenshotPath() {
+        return screenshotPath;
+    }
+
+    public void setScreenshotPath(String screenshotPath) {
+        this.screenshotPath = screenshotPath;
     }
 }

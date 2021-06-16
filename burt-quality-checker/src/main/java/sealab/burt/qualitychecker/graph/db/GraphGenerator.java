@@ -7,9 +7,8 @@ import edu.semeru.android.core.entity.model.fusion.Execution;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import edu.semeru.android.core.entity.model.fusion.Step;
 import edu.semeru.android.core.helpers.device.DeviceHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
@@ -36,9 +35,8 @@ import java.util.stream.Collectors;
  *
  * @author Carlos Bernal
  */
-public class GraphGenerator {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(GraphGenerator.class);
+public @Slf4j
+class GraphGenerator {
 
     private HashMap<Integer, GraphState> states;
     private HashMap<String, GraphTransition> transitions;
@@ -119,7 +117,7 @@ public class GraphGenerator {
                     // System.out.println("====================");
                 }
             } catch (Exception e) {
-                LOGGER.error("Error for execution " + execution.getId(), e);
+                log.error("Error for execution " + execution.getId(), e);
                 throw e;
             }
             // }
@@ -151,7 +149,7 @@ public class GraphGenerator {
                     // System.out.println("====================");
                 }
             } catch (Exception e) {
-                LOGGER.error("Error for execution " + execution.getId(), e);
+                log.error("Error for execution " + execution.getId(), e);
                 throw e;
             }
             // }
@@ -163,6 +161,7 @@ public class GraphGenerator {
         graphInfo.setGraph(graph);
         graphInfo.setSteps(allSteps);
         graphInfo.setApp(Transform.getAppl(app));
+        graphInfo.setStateIndex(this.states);
 
         return graphInfo;
     }
@@ -174,14 +173,14 @@ public class GraphGenerator {
         getStates().forEach((k, s) -> {
             boolean added = directedGraph.addVertex(s);
             if (!added) {
-                LOGGER.warn("Vertex not added: " + s);
+                log.warn("Vertex not added: " + s);
             }
         });
 
         getTransitions().forEach((k, t) -> {
             boolean added = directedGraph.addEdge(t.getSourceState(), t.getTargetState(), t);
             if (!added) {
-                LOGGER.warn("Edge not added: " + t);
+                log.warn("Edge not added: " + t);
             }
         });
 
@@ -268,7 +267,7 @@ public class GraphGenerator {
             }
 
             if (skip) {
-                LOGGER.warn(String.format("Skipping step %s-%s-%s, no src and/or tgt screens, " +
+                log.warn(String.format("Skipping step %s-%s-%s, no src and/or tgt screens, " +
                                 "action: (%s) %s",
                         executionId1, step.getId(), step.getSequenceStep(), stepAction,
                         GeneralUtils.getEventName(stepAction)));
@@ -325,7 +324,7 @@ public class GraphGenerator {
         }
 
         if (skip) {
-            LOGGER.warn(String.format("Skipping last step %s-%s-%s, no src and/or tgt screens, " +
+            log.warn(String.format("Skipping last step %s-%s-%s, no src and/or tgt screens, " +
                             "action: (%s) %s",
                     executionId1, step.getId(), step.getSequenceStep(), step.getAction(),
                     GeneralUtils.getEventName(step.getAction())));
@@ -576,7 +575,8 @@ public class GraphGenerator {
         GraphState currentState = new GraphState();
         currentState.setUniqueHash(hashCode);
         currentState.setName(stateName);
-        currentState.setScreenId(screen.getId());
+        currentState.setScreen(screen);
+        currentState.setScreenshotPath(screen.getScreenshot());
 
         // Transform components
         final List<AppGuiComponent> guiComponents = Transform.getGuiComponents(components);
@@ -587,7 +587,7 @@ public class GraphGenerator {
             currentState.setUnformattedXml(xml);
 //        	currentState.setFormattedXml(getFormattedXml(xml));
         } catch (Exception e) {
-            LOGGER.error("XML error for screen " + screen.getId() + ": " + xml);
+            log.error("XML error for screen " + screen.getId() + ": " + xml);
             throw e;
         }
         return currentState;
@@ -596,12 +596,7 @@ public class GraphGenerator {
     private DynGuiComponent findRootComponent(List<DynGuiComponent> components) {
         final Optional<DynGuiComponent> compOpt = components.stream().filter(c -> c.getParent() == null && "NO_ID"
                 .equals(c.getIdXml())).findFirst();
-
-        if (compOpt.isPresent())
-            return compOpt.get();
-
-        return null;
-
+        return compOpt.orElse(null);
     }
 
 

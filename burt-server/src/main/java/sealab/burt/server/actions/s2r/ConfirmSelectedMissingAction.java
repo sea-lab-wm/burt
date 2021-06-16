@@ -9,9 +9,9 @@ import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.statecheckers.S2RStateUpdater;
+import sealab.burt.server.statecheckers.QualityStateUpdater;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +30,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
-        UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
+        UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
 
         @SuppressWarnings("unchecked") final List<AppStep> allMissingSteps = (List<AppStep>) state.get(S2R_ALL_MISSING);
 
@@ -43,13 +43,13 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
         S2RQualityAssessment highQualityAssessment = feedback.getQualityAssessments().stream()
                 .filter(qa -> qa.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
-                .findFirst().get();
+                .findFirst().orElse(null);
         String s2rHQMissing = (String) state.get(S2R_HQ_MISSING);
 
         //------------------------------
         this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
 
-        MessageObj message = msg.getMessages().get(0);
+        MessageObj message = msg.getFirstMessage();
         StringBuilder response = new StringBuilder();
         if ("done".equals(message.getMessage())) {
 
@@ -61,10 +61,10 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
             if (selectedSteps.isEmpty() || selectedValues.size() != selectedSteps.size())
                 return getDefaultMessage(allMissingSteps);
 
-            S2RStateUpdater.addStepsToState(state, selectedSteps);
+            QualityStateUpdater.addStepsToState(state, selectedSteps);
 
             if (s2rHQMissing != null)
-                S2RStateUpdater.addStepToState(state, s2rHQMissing, highQualityAssessment);
+                QualityStateUpdater.addStepAndUpdateGraphState(state, s2rHQMissing, highQualityAssessment);
 
             //---------------------
 
@@ -75,7 +75,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         } else if ("none of above".equals(message.getMessage())) {
 
             if (s2rHQMissing != null)
-                S2RStateUpdater.addStepToState(state, s2rHQMissing, highQualityAssessment);
+                QualityStateUpdater.addStepAndUpdateGraphState(state, s2rHQMissing, highQualityAssessment);
 
             response.append("Got it, what is the next step?");
         } else {

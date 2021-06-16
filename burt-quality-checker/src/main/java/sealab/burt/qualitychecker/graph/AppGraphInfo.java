@@ -3,10 +3,7 @@ package sealab.burt.qualitychecker.graph;
 import org.jgrapht.traverse.DepthFirstIterator;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * {Insert class description here}
@@ -22,7 +19,17 @@ public class AppGraphInfo implements Serializable {
 
     private List<AppStep> steps = new ArrayList<>();
     private AppGraph<GraphState, GraphTransition> graph;
+
+    private Map<Integer, GraphState> stateIndex = new HashMap<>();
     private Appl appl;
+
+    public Map<Integer, GraphState> getStateIndex() {
+        return stateIndex;
+    }
+
+    public void setStateIndex(Map<Integer, GraphState> stateIndex) {
+        this.stateIndex = stateIndex;
+    }
 
     /**
      * @return the steps
@@ -77,7 +84,7 @@ public class AppGraphInfo implements Serializable {
         while (iterator.hasNext()) {
             final GraphState state = iterator.next();
 
-            statesBuilder.append(String.format("%s (%s): %s", state.getName(), state.getScreenId(), state
+            statesBuilder.append(String.format("%s (%s): %s", state.getName(), state.getScreen(), state
                     .getUnformattedXml()));
             statesBuilder.append("\n");
 
@@ -149,5 +156,9 @@ public class AppGraphInfo implements Serializable {
 
     public void setApp(Appl appl) {
         this.appl = appl;
+    }
+
+    public GraphState getState(Integer stateId) {
+        return this.getStateIndex().get(stateId);
     }
 }

@@ -1,30 +1,44 @@
 package sealab.burt.qualitychecker;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
-import sealab.burt.qualitychecker.graph.*;
+import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
+import sealab.burt.qualitychecker.actionparser.ScreenResolver;
+import sealab.burt.qualitychecker.graph.AppGraphInfo;
+import sealab.burt.qualitychecker.graph.GraphState;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import static sealab.burt.qualitychecker.QualityResult.Result.MULTIPLE_MATCH;
-import static sealab.burt.qualitychecker.QualityResult.Result.NO_PARSED;
+import static sealab.burt.qualitychecker.QualityResult.Result.*;
 
-public class OBChecker {
+public @Slf4j
+class OBChecker {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OBChecker.class);
+    private static final int GRAPH_MAX_DEPTH_CHECK = 30;
 
     private final String appName;
     private final String appVersion;
+    private final NLActionS2RParser s2rParser;
+    private final ScreenResolver resolver;
+    private final String crashScopeDataPath;
+    private final String parsersBaseFolder;
 
     private GraphState currentState;
-    private String parsersBaseFolder;
+    private AppGraphInfo executionGraph;
 
-    public OBChecker(String appName, String appVersion, String parsersBaseFolder) {
+    public OBChecker(String appName, String appVersion, String parsersBaseFolder, String resourcesPath,
+                     String crashScopeDataPath) {
         this.appName = appName;
         this.appVersion = appVersion;
         this.parsersBaseFolder = parsersBaseFolder;
+        this.crashScopeDataPath = crashScopeDataPath;
+
+
+        s2rParser = new NLActionS2RParser(null, resourcesPath, true);
+        resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 
     public QualityResult checkOb(String obDescription) throws Exception {
@@ -33,75 +47,37 @@ public class OBChecker {
         return matchActions(nlActions);
     }
 
+    private void readGraph() throws Exception {
+        if (crashScopeDataPath == null)
+            executionGraph = DBGraphReader.getGraph(appName, appVersion);
+        else
+            executionGraph = JSONGraphReader.getGraph(crashScopeDataPath, appName, appVersion);
+    }
+
     private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
-        AppGraphInfo graph = DBGraphReader.getGraph(appName, appVersion);
+        readGraph();
 
         if (currentState == null)
             currentState = GraphState.START_STATE;
 
+        log.debug("Current state: " + this.currentState);
 
-       /* LinkedHashMap<GraphState, Integer> stateCandidates = new LinkedHashMap<>();
-        getCandidateGraphStates(graph.getGraph(), stateCandidates, currentState, 0, 10);
+        //focus on the 1st action for now
+        NLAction nlAction = nlActions.get(0);
 
-        LOGGER.debug("State candidates (" + stateCandidates.size() + "): " + stateCandidates);
+        log.debug("Matching action: " + nlAction);
 
-        LinkedHashMap<GraphState, Integer> matchedStates = new LinkedHashMap<>();
+        List<ImmutablePair<GraphState, Double>> matchedStates =
+                resolver.resolveStateInGraph(nlAction, executionGraph, currentState);
 
-        //iterate over each candidate
-        for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
-            final GraphState candidateState = candidateEntry.getKey();
-            final Integer distance = candidateEntry.getValue();
-
-            LOGGER.debug("Checking candidate state/screen: " + candidateState.getUniqueHash());
-
-            //-------------------------------------
-            // Get the components of the current candidate screen
-
-            List<AppGuiComponent> stateComponents = candidateState.getComponents();
-            if (stateComponents == null)
-                continue;
-
-            //filter out those components associated with a step, which duplicate existing components
-            stateComponents = stateComponents.stream()
-                    .filter(c -> c.getParent() != null || "NO_ID".equals(c.getIdXml()))
-                    .collect(Collectors.toList());
-
-
-        }*/
-
-        //TODO: continue here
-        return new QualityResult(MULTIPLE_MATCH);
+        if (matchedStates == null || matchedStates.isEmpty())
+            return new QualityResult(NO_MATCH, Collections.emptyList());
+        else if (matchedStates.size() == 1)
+            return new QualityResult(MATCH, Collections.singletonList(matchedStates.get(0).getLeft()));
+        else
+            return new QualityResult(MULTIPLE_MATCH, matchedStates.stream()
+                    .map(ImmutablePair::getLeft)
+                    .collect(Collectors.toList()));
     }
 
-    private void getCandidateGraphStates(AppGraph<GraphState, GraphTransition> executionGraph,
-                                         LinkedHashMap<GraphState, Integer> stateCandidates,
-                                         GraphState currentState,
-                                         Integer currentDistance,
-                                         int maxDistanceToCheck) {
-        if (currentState == null) {
-            return;
-        }
-        if (currentDistance > maxDistanceToCheck) {
-            return;
-        }
-
-        if (stateCandidates.containsKey(currentState) || GraphState.END_STATE.equals(currentState))
-            return;
-
-        // If the node is not in the map then we add the state and the
-        // distance from the current state on the graph
-        stateCandidates.put(currentState, currentDistance);
-
-//        if (executionGraph.containsVertex(currentState)) {
-        Set<GraphTransition> outgoingEdges = executionGraph.outgoingEdgesOf(currentState);
-        final Set<GraphState> nextStates = outgoingEdges.stream()
-                .map(GraphTransition::getTargetState)
-                .collect(Collectors.toCollection(HashSet::new));
-        nextStates.remove(currentState);
-
-        for (GraphState state : nextStates) {
-            getCandidateGraphStates(executionGraph, stateCandidates, state, currentDistance + 1, maxDistanceToCheck);
-        }
-//        }
-    }
 }

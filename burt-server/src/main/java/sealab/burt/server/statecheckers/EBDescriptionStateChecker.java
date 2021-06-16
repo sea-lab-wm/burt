@@ -31,7 +31,7 @@ public class EBDescriptionStateChecker extends StateChecker {
     @Override
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
-            QualityResult result = runEBCheck(state);
+            QualityResult result = runEBQualityCheck(state);
 //            String description = result.getDescription();
 //            String screenshotPath= result.getScreenshotPath();
 //            state.put(EB_DESCRIPTION, description);

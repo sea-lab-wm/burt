@@ -581,7 +581,7 @@ public class GraphGenerator2 {
         GraphState currentState = new GraphState();
         currentState.setUniqueHash(hashCode);
         currentState.setName(stateName);
-        currentState.setScreenId(screen.getId());
+        currentState.setScreen(screen);
 
         // Transform components
         final List<AppGuiComponent> guiComponents = Transform.getGuiComponents(components);

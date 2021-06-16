@@ -3,7 +3,7 @@ package sealab.burt.server.actions.s2r;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.text.MessageFormat;
@@ -19,13 +19,13 @@ public class ConfirmPredictedS2RScreensSelectedAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
+        UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
         String response = "";
         if (!msg.getMessages().isEmpty()) {
-            String confirmMessage = msg.getMessages().get(0).getMessage();
+            String confirmMessage = msg.getFirstMessage().getMessage();
             if (confirmMessage.equals("done")) {
 
-                List<String> S2RScreens =  msg.getMessages().get(0).getSelectedValues();
+                List<String> S2RScreens =  msg.getFirstMessage().getSelectedValues();
 //                response = MessageFormat.format("Ok, you select {0} and {1}, what is the next step?",  S2RScreens.get(0), S2RScreens.get(1));
                 response = MessageFormat.format("Ok, you selected {0}, what is the next step?",
                         S2RScreens.get(0));

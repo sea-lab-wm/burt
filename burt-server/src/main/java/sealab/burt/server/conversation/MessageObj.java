@@ -12,14 +12,18 @@ public @Data
 @AllArgsConstructor
 class MessageObj {
 
+    //NOTE: don't rename the following fields are these are mapped to the GUI
     private String message;
     private String type;
     private double id;
     private String widget;
     private Boolean loading;
+    private boolean disabled;
+
+    //---------------
+
     private List<KeyValues> allValues;
     private List<String> selectedValues;
-    private boolean disabled;
 
     public MessageObj(){
     }

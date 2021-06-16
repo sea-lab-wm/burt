@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.output.OutputMessageObj;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,31 +33,8 @@ class OBDescriptionStateChecker extends StateChecker {
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
             QualityResult result = runOBQualityCheck(state);
-//            String screenshotPath = result.getScreenshotPath();
-//            String description = result.getDescription();
-//            String qualityFeedback = result.getQualityFeedback();
-//            state.put(OB_DESCRIPTION, description);
-//            state.put(OB_SCREEN, screenshotPath);
-//            state.put(OB_QUALITY_FEEDBACK, qualityFeedback);
-
-            // if result is MULTIPLE_MATCH, it will return multiple screenshots
-            String description = "OB description";
-            String screenshotPath = "app_logos/OBScreen.png";
-            state.put(OB_DESCRIPTION, description);
-            state.put(OB_SCREEN, screenshotPath);
-
-            if (result.getResult().equals(QualityResult.Result.MATCH)){
-                // UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-                //String message = userMessage.getMessages().get(0).getMessage();
-                if (!state.containsKey(REPORT_OB)){
-                    List<OutputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new OutputMessageObj(description, screenshotPath));
-                    state.put(REPORT_OB, outputMessageList);
-                }else{
-                    List<OutputMessageObj> outputMessage = (List<OutputMessageObj>) state.get(REPORT_OB);
-                    outputMessage.add(new OutputMessageObj(description, screenshotPath));
-                }
-            }
+            UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
+            state.put(OB_DESCRIPTION, userResponse.getFirstMessage().getMessage());
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             log.error("There was an error", e);

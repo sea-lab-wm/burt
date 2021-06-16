@@ -9,7 +9,8 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.UserResponse;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -26,28 +27,29 @@ abstract class StateChecker {
 
     public abstract ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state);
 
-    protected QualityFeedback runS2RChecker(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
-        UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+    protected QualityFeedback runS2RQualityCheck(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+        UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
-        QualityFeedback qualityResult = checker.checkS2R(userMessage.getMessages().get(0).getMessage());
+        MessageObj messageObj = userResponse.getFirstMessage();
+        QualityFeedback qualityResult = checker.checkS2R(messageObj.getMessage());
         state.put(S2R_QUALITY_RESULT, qualityResult);
         log.debug("S2R quality result: " + qualityResult.getAssessmentResults());
         return qualityResult;
     }
 
     protected QualityResult runOBQualityCheck(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
-        UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+        UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         OBChecker obChecker = (OBChecker) state.get(OB_CHECKER);
-        QualityResult result = obChecker.checkOb(userMessage.getMessages().get(0).getMessage());
+        QualityResult result = obChecker.checkOb(userResponse.getFirstMessage().getMessage());
         state.put(OB_QUALITY_RESULT, result);
         log.debug("OB quality check: " + result);
         return result;
     }
 
-    protected QualityResult runEBCheck(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
-        UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
+    protected QualityResult runEBQualityCheck(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+        UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         EBChecker ebChecker = (EBChecker) state.get(EB_CHECKER);
-        QualityResult result = ebChecker.checkEb(userMessage.getMessages().get(0).getMessage());
+        QualityResult result = ebChecker.checkEb(userResponse.getFirstMessage().getMessage());
         state.put(EB_QUALITY_RESULT, result);
         log.debug("EB quality check: " + result);
         return result;

@@ -25,7 +25,11 @@ public class ProvideOBAction extends ChatBotAction {
         String appVersion = state.get(APP_VERSION).toString();
         state.put(COLLECTING_OB, true);
         String parsersBaseFolder =  Path.of("..", "burt-nlparser").toString();
-        if (!state.containsKey(OB_CHECKER)) state.put(OB_CHECKER, new OBChecker(appName, appVersion, parsersBaseFolder));
+        String resourcesPath = Path.of("..", "burt-quality-checker", "src", "main", "resources").toString();
+//        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
+        String crashScopeDataPath = null;
+        if (!state.containsKey(OB_CHECKER))
+            state.put(OB_CHECKER, new OBChecker(appName, appVersion, parsersBaseFolder, resourcesPath, crashScopeDataPath));
         return createChatBotMessages(MessageFormat.format("Ok, can you please tell me the incorrect behavior that you " +
                 "observed on {0}?", appName));
     }

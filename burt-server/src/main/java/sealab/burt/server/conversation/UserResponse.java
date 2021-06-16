@@ -8,16 +8,21 @@ import java.util.List;
 
 public @Data
 @AllArgsConstructor
-class UserMessage {
+class UserResponse {
 
     private String sessionId;
     private List<MessageObj> messages;
     private ActionName CurrentAction;
 
-    public UserMessage(){}
-    public UserMessage(String sessionId, List<MessageObj> messages){
+    public UserResponse(){}
+    public UserResponse(String sessionId, List<MessageObj> messages){
         this.sessionId = sessionId;
         this.messages = messages;
     }
 
+    public MessageObj getFirstMessage() {
+        if(getMessages() == null || getMessages().isEmpty())
+            throw new RuntimeException("There are no messages in this response");
+        return getMessages().get(0);
+    }
 }

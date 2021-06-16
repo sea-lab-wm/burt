@@ -4,8 +4,7 @@ import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.UserMessage;
-import sealab.burt.server.msgparsing.Intent;
+import sealab.burt.server.conversation.UserResponse;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -21,7 +20,7 @@ public class ConfirmAppAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
-        UserMessage msg = (UserMessage) state.get(CURRENT_MESSAGE);
+        UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
 
         //-------------------------------------------
 
@@ -61,7 +60,7 @@ public class ConfirmAppAction extends ChatBotAction {
         state.put(APP_VERSION, tokens[1].trim());
 
         state.put(APP_CONFIRMATION, true);
-        return createChatBotMessages(MessageFormat.format("You selected {0}, is that right?", appNameVersion));
+        return createChatBotMessages(MessageFormat.format("You selected \"{0}\", is that right?", appNameVersion));
 
     }
 

@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sealab.burt.server.actions.*;
+import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.appselect.ConfirmAppAction;
 import sealab.burt.server.actions.appselect.SelectAppAction;
 import sealab.burt.server.actions.eb.ClarifyEBAction;
@@ -22,7 +23,7 @@ import sealab.burt.server.actions.s2r.*;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.ConversationResponse;
 import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
 import sealab.burt.server.statecheckers.*;
@@ -126,13 +127,13 @@ class ConversationController {
 
 
     @PostMapping("/processMessage")
-    public ConversationResponse processMessage(@RequestBody UserMessage userResponse) {
+    public ConversationResponse processMessage(@RequestBody UserResponse userResponse) {
         ConversationResponse response = getConversationResponse(userResponse);
         log.debug("ChatBot response: " + response.toString());
         return response;
     }
 
-    private ConversationResponse getConversationResponse(UserMessage userResponse) {
+    private ConversationResponse getConversationResponse(UserResponse userResponse) {
         try {
 
             if (userResponse != null)
@@ -143,6 +144,11 @@ class ConversationController {
             }
 
             String sessionId = userResponse.getSessionId();
+
+            if (sessionId == null) {
+                return ConversationResponse.createResponse("Thank you for using BURT. " +
+                        "Please reload the page and confirm the action to start a new conversation", 100);
+            }
 
             ConcurrentHashMap<StateVariable, Object> conversationState = conversationStates.get(sessionId);
 
@@ -202,7 +208,7 @@ class ConversationController {
 
 
     @PostMapping("/saveSingleMessage")
-    public void saveSingleMessage(@RequestBody UserMessage req) {
+    public void saveSingleMessage(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";
         log.debug(msg);
         List<MessageObj> sessionMsgs = messages.getOrDefault(req.getSessionId(), new ArrayList<>());
@@ -211,21 +217,21 @@ class ConversationController {
     }
 
     @PostMapping("/saveMessages")
-    public void saveMessages(@RequestBody UserMessage req) {
+    public void saveMessages(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";
         log.debug(msg);
         messages.put(req.getSessionId(), req.getMessages());
     }
 
     @PostMapping("/testResponse")
-    public ConversationResponse testResponse(@RequestBody UserMessage req) {
+    public ConversationResponse testResponse(@RequestBody UserResponse req) {
         MessageObj responseMessageObj = req.getMessages().get(0);
         return ConversationResponse.createResponse(responseMessageObj.getMessage());
 
     }
 
     @PostMapping("/loadMessages")
-    public List<MessageObj> loadMessages(@RequestBody UserMessage req) {
+    public List<MessageObj> loadMessages(@RequestBody UserResponse req) {
         String msg = "Returning the messages in the server...";
         log.debug(msg);
         return messages.get(req.getSessionId());

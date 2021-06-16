@@ -49,8 +49,8 @@ class S2RChecker {
     private GraphState currentState;
     private AppGraphInfo executionGraph;
     private HashMap<Integer, Integer> statesExecuted = new HashMap<>();
-    private String parsersBaseFolder;
-    private String crashScopeDataPath;
+    private final String parsersBaseFolder;
+    private final String crashScopeDataPath;
 
     public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder,
                       String crashScopeDataPath) {
@@ -59,7 +59,7 @@ class S2RChecker {
         this.parsersBaseFolder = parsersBaseFolder;
         this.crashScopeDataPath = crashScopeDataPath;
 
-        s2rParser = new NLActionS2RParser(null, resourcesPath);
+        s2rParser = new NLActionS2RParser(null, resourcesPath, false);
         resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 
@@ -93,9 +93,7 @@ class S2RChecker {
             this.currentState = GraphState.START_STATE;
 
         if (currentStateId != null) {
-            currentState = executionGraph.getStates().stream()
-                    .filter(s -> s.getUniqueHash().equals(currentStateId))
-                    .findFirst().get();
+            updateState(currentStateId);
         }
 
         log.debug("Current state: " + this.currentState);
@@ -160,6 +158,7 @@ class S2RChecker {
         // Check to see if we were able to match with a step, if not we should try to
         // match with a component.
         if (result.isStepNotMatched()) {
+
             // This contains the component and the action as well
             result2 = resolver.resolveActionInGraphBasedOnComponent(currNLAction,
                     executionGraph, currentState, currentScreen, lastStep);
@@ -167,7 +166,6 @@ class S2RChecker {
             // Get the steps to navigate to the screen where the GUI-component is displayed,
             // if it is not the one on the current screen
             if (result2.isStepNotMatched()) {
-
 
                 final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, result2);
                 if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);
@@ -594,7 +592,6 @@ class S2RChecker {
         return stepGroups;
     }
 
-
     private List<GraphTransition> filterAndSortTransitions(Set<GraphTransition> graphTransitions, List<AppGuiComponent>
             enabledComponents) {
 
@@ -737,4 +734,11 @@ class S2RChecker {
         return assessment;
     }
 
+    public void updateState(Integer currentStateId) {
+        this.currentState = executionGraph.getState(currentStateId);
+    }
+
+    public void updateState(GraphState state) {
+        this.currentState = state;
+    }
 }

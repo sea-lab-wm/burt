@@ -131,8 +131,8 @@ class NLParserTest {
                                      Function<ShortLabeledDescriptionSentence, Boolean> filter1,
                                      Function<ShortLabeledBugReportTitle, Boolean> filter2) throws Exception {
         String baseFolder = Path.of("..", "burt-nlparser").toString();
-        Float numErrors = 0.0f;
-        Integer totalNumSentences = 0;
+        float numErrors = 0.0f;
+        int totalNumSentences = 0;
         for (ImmutablePair<Path, ShortLabeledBugReport> brPair : bugReportPairs) {
 
             log.debug("-------------------------------------------------------------");
@@ -174,8 +174,8 @@ class NLParserTest {
 
         }
 
-        log.debug(numErrors.toString());
-        log.debug(totalNumSentences.toString());
+        log.debug(Float.toString(numErrors));
+        log.debug(Integer.toString(totalNumSentences));
         assertEquals(0, numErrors / totalNumSentences);
     }
 }

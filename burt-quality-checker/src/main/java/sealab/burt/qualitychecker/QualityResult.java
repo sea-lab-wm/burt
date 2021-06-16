@@ -2,48 +2,30 @@ package sealab.burt.qualitychecker;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.apache.commons.collections.KeyValue;
-import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
+import sealab.burt.qualitychecker.graph.GraphState;
 
-
-import java.security.KeyStore;
 import java.util.List;
-import java.util.Map;
 
-public @Data @AllArgsConstructor
+public @Data
+@AllArgsConstructor
 class QualityResult {
 
-    public enum Result{
-        MATCH, MULTIPLE_MATCH, NO_MATCH, NO_S2R_INPUT, MISSING_STEPS, NO_PARSED
-    }
-
-    QualityResult(Result result){
-        this.result = result;
-    }
-
     private Result result;
-    private QualityFeedback qualityFeedback;
-  /*  private String description;
-    private String screenshotPath;
-    private String qualityFeedback;
-    private List<KeyValue> descriptionScreenshotPath;
+    private List<GraphState> matchedStates;
 
-    public QualityResult( Result result,  List<KeyValue> descriptionScreenshotPath){
+    QualityResult(Result result) {
         this.result = result;
-        this.descriptionScreenshotPath = descriptionScreenshotPath;
     }
-    public QualityResult(Result result, String description, String screenshotPath, String qualityFeedback){
-        this.result = result;
-        this.description = description;
-        this.screenshotPath = screenshotPath;
-        this.qualityFeedback = qualityFeedback;
+
+    @Override
+    public String toString() {
+        return "QualityResult{" +
+                "result=" + result +
+                ", matchedStates=" + (matchedStates == null ? 0 : matchedStates.size()) +
+                '}';
     }
-    public QualityResult(Result result, String description, String screenshotPath){
-        this.result = result;
-        this.description = description;
-        this.screenshotPath = screenshotPath;
 
-    }*/
-
-
+    public enum Result {
+        MATCH, MULTIPLE_MATCH, NO_MATCH, NO_PARSED
+    }
 }

@@ -7,7 +7,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.UserMessage;
+import sealab.burt.server.conversation.UserResponse;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,8 +35,8 @@ public class S2RDescriptionStateChecker extends StateChecker {
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
 
         try {
-            UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-            String message = userMessage.getMessages().get(0).getMessage();
+            UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
+            String message = userResponse.getFirstMessage().getMessage();
 
             //-------------------------------
 
@@ -51,7 +51,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
 
             //------------------------
 
-            QualityFeedback qFeedback = runS2RChecker(state);
+            QualityFeedback qFeedback = runS2RQualityCheck(state);
 
             List<S2RQualityCategory> results = qFeedback.getAssessmentResults();
 
@@ -73,7 +73,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
 
             if (results.contains(S2RQualityCategory.HIGH_QUALITY)) {
                 S2RQualityAssessment assessment = qFeedback.getQualityAssessments().get(0);
-                S2RStateUpdater.addStepToState(state, message, assessment);
+                QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
             }
 
             return nextActions.get(assessmentCategory.name());

@@ -67,14 +67,16 @@ public class NLActionS2RParser {
     private static HashMap<ComponentType, Set<String>> generalComponentTypeClasses = new HashMap<>();
     private static HashMap<String, Set<String>> synonyms = new HashMap<>();
     private final String resourcesPath;
+    private final boolean useTokenSynonyms;
     private String token;
     private PreProcessedText preProcessedObj2;
 
-    public NLActionS2RParser(String token, String resourcesPath) {
+    public NLActionS2RParser(String token, String resourcesPath, boolean useTokenSynonyms) {
+        this.useTokenSynonyms = useTokenSynonyms;
         this.token = token;
         this.resourcesPath = resourcesPath;
         loadGeneralActionGroups();
-        loadGeneratComponentTypeClasses();
+        loadGeneralComponentTypeClasses();
         loadSpecificComponentTypes();
         loadSynonyms();
         loadAppActionGroups();
@@ -203,7 +205,7 @@ public class NLActionS2RParser {
 
     }
 
-    private void loadGeneratComponentTypeClasses() {
+    private void loadGeneralComponentTypeClasses() {
         synchronized (generalComponentTypeClasses) {
 
             if (!generalComponentTypeClasses.isEmpty())
@@ -622,9 +624,9 @@ public class NLActionS2RParser {
             //I commented the next if because we don't allow things like "I enter 23",
             //We require things like "I enter 23 gallons"
 //            if (!isObjectLiteral) {
-                componentFound = findComponent(currentScreen, preprocessedObject,
-                        componentTypes, false, true,
-                        event, skipFocused);
+            componentFound = findComponent(currentScreen, preprocessedObject,
+                    componentTypes, false, true,
+                    event, skipFocused);
 //            }
         }
         return componentFound;
@@ -973,7 +975,7 @@ public class NLActionS2RParser {
 
         //---------------------------------------------------------
 
-        Entry<AppGuiComponent, Double> component = null;
+        Entry<AppGuiComponent, Double> component;
         if (matchedComponents.size() == 1) {
             AppGuiComponent temp = handleOneMatch(skipTextViews, allowedComponents, matchedComponents.get(0), event);
             component = getEntry(temp, 1d);
@@ -1515,6 +1517,12 @@ public class NLActionS2RParser {
                 LOGGER.debug("Checking synonyms of \"" + textToMatch.original + "\": " + textSynonyms);
             }
 
+            //no synonyms? try with the synonyms of the tokens
+            if (useTokenSynonyms && textSynonyms == null) {
+                textSynonyms = getTextSynonymsOfTokens(textToMatch.otherText);
+                LOGGER.debug("Checking synonyms of \"" + textToMatch.otherText + "\": " + textSynonyms);
+            }
+
             if (textSynonyms != null) {
 
                 for (String textSynonym : textSynonyms) {
@@ -1540,6 +1548,7 @@ public class NLActionS2RParser {
         return component;
     }
 
+
     private boolean isAllowedComponent(boolean skipTextViews, List<String> allowedComponents, AppGuiComponent
             childComponent) {
         String componentType = childComponent.getType();
@@ -1548,6 +1557,25 @@ public class NLActionS2RParser {
         if (!allowedComponents.isEmpty() && !allowedComponents.contains(getComponentTypeClass(componentType)))
             return false;
         return true;
+    }
+
+
+    private Set<String> getTextSynonymsOfTokens(String text) {
+        if (StringUtils.isEmpty(text))
+            return null;
+
+        List<String> tokens = Arrays.asList(text.split(" "));
+
+        return tokens.stream()
+                .flatMap(token -> {
+                    Set<String> syn = synonyms.get(token);
+                    if (syn == null) return null;
+                    return syn.stream();
+                })
+                .filter(Objects::nonNull)
+                .map(String::toLowerCase)
+                .collect(Collectors.toSet());
+
     }
 
     private Set<String> getTextSynonyms(String text) {
@@ -1953,7 +1981,7 @@ public class NLActionS2RParser {
     }
 
     private boolean noLongClickableComponents(List<AppGuiComponent> currentScreen) {
-        return currentScreen.stream().noneMatch(c -> c.getLongClickable());
+        return currentScreen.stream().noneMatch(AppGuiComponent::getLongClickable);
     }
 
     private ComponentType getComponentType(String componentName) {
@@ -1985,6 +2013,26 @@ public class NLActionS2RParser {
         return true;
     }
 
+    public Entry<AppGuiComponent, Double> matchAnyComponent(NLAction nlAction, List<AppGuiComponent> stateComponents) {
+
+        String object = nlAction.getObject();
+        String object2 = nlAction.getObject2();
+        String preposition = nlAction.getPreposition();
+        final String action = nlAction.getAction();
+
+        //------------------------------------------------------
+
+        Map.Entry<AppGuiComponent, Double> componentFound;
+
+        PreProcessedText preprocessedAll = preprocessText(String.format("%s %s %s", action, object, object2));
+
+        PreProcessedText preprocessedObject = preprocessText(object);
+        PreProcessedText preprocessedObject2 = preprocessText(object2);
+
+
+        return null;
+    }
+
 
     public enum ActionGroup {
         OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE
@@ -1992,28 +2040,6 @@ public class NLActionS2RParser {
 
     public enum ComponentType {
         BUTTON, CHECKED_COMPONENT, IMAGE_VIEW, PICKER, BAR, TEXT_FIELD, TEXT_VIEW, WINDOW, OTHER
-    }
-
-    //--------------------------------
-
-    public static class PreProcessedText {
-        String original;
-        String lowerCased;
-        List<Token> allTokens = new ArrayList<>();
-        String lemmatized;
-        List<Token> preprocessedTokens = new ArrayList<>();
-        String preprocessed;
-        String otherText;
-        String componentType;
-
-        @Override
-        public String toString() {
-            return "prepTxt{" +
-                    "p='" + preprocessed + '\'' +
-                    ", o='" + otherText + '\'' +
-                    ", cT='" + componentType + '\'' +
-                    '}';
-        }
     }
 
 }

@@ -13,7 +13,7 @@ import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.statecheckers.S2RStateUpdater;
+import sealab.burt.server.statecheckers.QualityStateUpdater;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
                     String screenshotFile = step.getScreenshotFile();
                     return new KeyValues(step.getId().toString(),
                             UtilReporter.getNLStep(step, false),
-                            screenshotFile == null ? S2RStateUpdater.DEFAULT_SCREENSHOT :
+                            screenshotFile == null ? QualityStateUpdater.DEFAULT_SCREENSHOT :
                             screenshotFile);
                 })
                 .collect(Collectors.toList());
