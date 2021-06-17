@@ -1,5 +1,7 @@
 package sealab.burt.server.actions.appselect;
 
+import lombok.extern.slf4j.Slf4j;
+import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
@@ -7,23 +9,87 @@ import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
 
-import java.util.Arrays;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.APP_ASKED;
 import static sealab.burt.server.StateVariable.PARTICIPANT_ID;
 
-public class SelectAppAction extends ChatBotAction {
+public @Slf4j
+class SelectAppAction extends ChatBotAction {
 
-    public static final List<KeyValues> ALL_APPS = Arrays.asList(
-            new KeyValues("0", "Droid Weight v. 1.5.4", "droidweight.webp"),
-            new KeyValues("1", "GnuCash v. 2.1.3", "gnucash.png"),
-            new KeyValues("2", "Mileage v. 3.1.1", "milage.webp")
-    );
+
+    public static final List<KeyValues> ALL_APPS;
+
+    static {
+        Path crashScopePath = Paths.get("..", "data", "CrashScope-Data");
+        Path appLogosPath = Paths.get("..", "data", "app_logos");
+
+        List<Path> directories = null;
+        try {
+            directories = Files.walk(crashScopePath, 1)
+                    .filter(path -> Files.isDirectory(path) && !path.equals(crashScopePath))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("Could not read the list of apps", e);
+        }
+
+        if (directories == null)
+            ALL_APPS = new ArrayList<>();
+        else {
+            List<Path> finalDirectories = directories;
+            ALL_APPS = IntStream.range(0, directories.size())
+                    .mapToObj(i -> {
+                        Path dir = finalDirectories.get(i);
+                        return new KeyValues(Integer.toString(i),
+                                getAppNameVersion(dir), getLogoFileName(appLogosPath, dir));
+                    })
+                    .collect(Collectors.toList());
+        }
+    }
 
     public SelectAppAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
+    }
+
+    private static String getLogoFileName(Path appLogosPath, Path appDir) {
+        String fileName = appDir.getFileName().toString();
+
+        Path logoPath = appLogosPath.resolve("NO_APP_LOGO.png");
+        try {
+            logoPath = Files.find(appLogosPath, 1,
+                    (path, attr) -> path.getFileName().toString().startsWith(fileName))
+                    .findFirst().orElse(null);
+
+            if (logoPath == null)
+                logoPath = appLogosPath.resolve("NO_APP_LOGO.png");
+
+        } catch (IOException e) {
+            log.error("Could not find app logo file", e);
+        }
+        return logoPath.toFile().getName();
+    }
+
+    private static String getAppNameVersion(Path appDir) {
+        String fileName = appDir.getFileName().toString();
+
+        int i = fileName.indexOf("-");
+        String packageName = fileName.substring(0, i);
+        String appVersion = fileName.substring(i + 1);
+
+        List<String> appNames = AppNamesMappings.getAppNamesFromPackage(packageName);
+
+        if(appNames==null)
+            throw new RuntimeException("Could not find app name for package: " + packageName);
+
+        return String.format("%s v. %s", appNames.get(0), appVersion);
     }
 
     @Override

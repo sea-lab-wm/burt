@@ -19,8 +19,7 @@ import static sealab.burt.server.StateVariable.*;
 
 public class QualityStateUpdater {
 
-    //FIXME: change the default screenshot
-    public static final String DEFAULT_SCREENSHOT = "S2RScreen1.png";
+    public static final String DEFAULT_SCREENSHOT = "NO_SCREEN_AVAILABLE.png";
 
     public static void addStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state,
                                                   String step,

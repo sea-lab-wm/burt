@@ -41,7 +41,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
 
-//------------------------------------------
+        //------------------------------------------
 
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         List<GraphState> matchedStates = result.getMatchedStates();
@@ -94,6 +94,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
             response.append("Ok, you selected the screen \"");
             response.append(selectedScreenDescription);
+            response.append("\"");
 
             return createChatBotMessages(response.toString(), "Shall we continue?");
 

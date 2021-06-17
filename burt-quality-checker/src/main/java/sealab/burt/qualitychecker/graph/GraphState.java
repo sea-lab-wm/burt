@@ -96,7 +96,10 @@ public class GraphState implements Serializable {
 
     @Override
     public String toString() {
-        return "st [" + name + ", " + screen + "]";
+        return "st [" + name
+                //+ ", " + screen
+                +
+                "]";
     }
 
 	/*public String getFormattedXml() {

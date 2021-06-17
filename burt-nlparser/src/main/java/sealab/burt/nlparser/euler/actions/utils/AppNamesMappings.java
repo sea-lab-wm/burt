@@ -74,6 +74,7 @@ public class AppNamesMappings {
     //-----------------------------------------------
 
     private static final HashMap<String, List<String>> APP_NAMES_PACKAGES;
+    private static final HashMap<String, List<String>> PACKAGE_APP_NAMES;
 
     static {
         APP_NAMES_PACKAGES = new LinkedHashMap<>();
@@ -92,15 +93,17 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("document-viewer", Arrays.asList("org.sufficientlysecure.viewer"));
         APP_NAMES_PACKAGES.put("droid-comic-viewer", Arrays.asList("net.androidcomics.acv"));
 
+        APP_NAMES_PACKAGES.put("Droid Weight", Arrays.asList("de.delusions.measure"));
         APP_NAMES_PACKAGES.put("droidweight", Arrays.asList("de.delusions.measure"));
 
         APP_NAMES_PACKAGES.put("eyeCam", Arrays.asList("ch.hsr.eyecam"));
 
+        APP_NAMES_PACKAGES.put("GnuCash", Arrays.asList("org.gnucash.android"));
         APP_NAMES_PACKAGES.put("gnucash-android", Arrays.asList("org.gnucash.android"));
         APP_NAMES_PACKAGES.put("gnucash", Arrays.asList("org.gnucash.android"));
 
-        APP_NAMES_PACKAGES.put("mileage", Arrays.asList("com.evancharlton.mileage"));
         APP_NAMES_PACKAGES.put("Mileage", Arrays.asList("com.evancharlton.mileage"));
+        APP_NAMES_PACKAGES.put("mileage", Arrays.asList("com.evancharlton.mileage"));
         APP_NAMES_PACKAGES.put("android-mileage", Arrays.asList("com.evancharlton.mileage"));
 
         APP_NAMES_PACKAGES.put("netmbuddy", Arrays.asList("free.yhc.netmbuddy"));
@@ -111,10 +114,29 @@ public class AppNamesMappings {
 
         APP_NAMES_PACKAGES.put("schedule-campfahrplan",
                 Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
+
+        //----------------------------
+
+        PACKAGE_APP_NAMES = new LinkedHashMap<>();
+
+        APP_NAMES_PACKAGES.forEach((appName, packages) -> {
+            for (String pack : packages) {
+                List<String> appNames = PACKAGE_APP_NAMES.get(pack);
+                if (appNames == null)
+                    appNames = new ArrayList<>();
+                appNames.add(appName);
+                PACKAGE_APP_NAMES.put(pack, appNames);
+            }
+        });
     }
 
     public static List<String> getPackageNames(String appName){
        return APP_NAMES_PACKAGES.get(appName);
+    }
+
+
+    public static List<String> getAppNamesFromPackage(String packageName){
+        return PACKAGE_APP_NAMES.get(packageName);
     }
 
     /*public static App getApp(String appName, String appVersion, EntityManager em) throws SQLException {

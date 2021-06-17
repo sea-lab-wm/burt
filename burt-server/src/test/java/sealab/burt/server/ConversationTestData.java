@@ -1,5 +1,7 @@
 package sealab.burt.server;
 
+import sealab.burt.server.actions.appselect.SelectAppAction;
+import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.ArrayList;
@@ -26,6 +28,11 @@ public class ConversationTestData {
     }
 
     private static List<MessageObjectTest> getConversationFlow_1() {
+
+        KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Mileage v. 3.1.1"))
+                .findFirst().orElse(null);
+
         return new ArrayList<>() {{
             //ChatBot: hi this is burt
             add(new MessageObjectTest("what's up?", PROVIDE_PARTICIPANT_ID, PARTICIPANT_PROVIDED));
@@ -42,14 +49,14 @@ public class ConversationTestData {
             add(new MessageObjectTest(null, CONFIRM_APP,
                     Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("2"))); //"2" is Mileage v. 3.1.1 for now
+                    Collections.singletonList(mileageOption.getKey())));
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("no", SELECT_APP, APP_SELECTED));
             //ChatBot: ok, select an app from the list
             add(new MessageObjectTest(null, CONFIRM_APP,
                     Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("2"))); //"2" is Mileage v. 3.1.1 for now
+                    Collections.singletonList(mileageOption.getKey())));
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
             //ChatBot: provide the OB

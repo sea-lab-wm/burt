@@ -3,8 +3,9 @@ import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
 import ApiClient from "../../ApiClient";
 import processResponse from "../../ServerResponseProcessor";
+import config from "../../config";
 
-let logos = require.context('../../../../data/app_logos', true);
+//let logos = require.context('../../../../data/app_logos', true);
 
 const AppSelector = (props) => {
     //console.log(props.disabled);
@@ -55,7 +56,8 @@ const AppSelector = (props) => {
     return (
         <div className="center-screen">
             <ImagePicker
-                images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
+                // images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
+                images={dataValues.map((image, i) => ({src: config.serverEndpoint + "/app_logos/" + image.value2, text: image.value1, id: image.key}))}
                 onPick={pickImageHandler}
                 style={getImageStyle(100, 100)}
                 selected={selectedValues}
