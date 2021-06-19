@@ -93,31 +93,12 @@ public class TraceReplayer {
     private boolean lastStepRotated;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
-//    private String pythonScriptsPath;
-//    private String appName;
-//    private String appPackage;
-//    private String mainActivity;
-//    private String apkPath;
-//    private String geteventFile;
-//    private String outputFolder;
     
     
     public TraceReplayer() {
     	
     }
     
-//	public TraceReplayer(String pythonScriptsPath, String appName, String appPackage, 
-//			String mainActivity, String apkPath, String geteventFile, String outputFolder) {
-//		super();
-//		
-//		this.pythonScriptsPath = pythonScriptsPath;
-//		this.appName = appName;
-//		this.appPackage = appPackage;
-//		this.mainActivity = mainActivity;
-//		this.apkPath = apkPath;
-//		this.geteventFile = geteventFile;
-//		this.outputFolder = outputFolder;
-//	}
 	
 	
     /**
@@ -156,6 +137,7 @@ public class TraceReplayer {
         lastStepRotated = false;
         takeScreenshots = true;
         GUIEventVO oldComponent = null;
+        boolean isSearchActivity = false;
 
         ArrayList<Integer> screenDims = null;
         ArrayList<Integer> maxLinuxScreenDims = null;
@@ -251,11 +233,11 @@ public class TraceReplayer {
             //Thread.sleep(5000);
             
             WindowVO window = Utilities.detectTypeofWindow(androidSDKPath, screenDims.get(0),
-                                    screenDims.get(1), TypeDeviceEnum.DEVICE, device, null);
+                                    screenDims.get(1), TypeDeviceEnum.EMULATOR, device, null);
             // System.out.println(window.getTitle());
             // Set the best component matching
             UiAutoConnector.getComponent(androidSDKPath, guiEventVO, screenDims.get(0),
-                    screenDims.get(1), device, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);
+                    screenDims.get(1), device, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence, avdPort, adbPort);
             String title = ((window.getWindow() + (window.getTitle() != null
                     && !window.getTitle().isEmpty() ? window.getTitle() : ""))).trim();
             //guiEventVO.setActivity(title);
@@ -265,17 +247,20 @@ public class TraceReplayer {
             // Extract screenshot, DO NOT change the order
             // of these lines
             //String imageName = appPackage + "_" + (i + 1) + ".jpg";
+            
+            ArrayList<DynGuiComponentVO> screenInfo = UiAutoConnector.getScreenInfoCache(androidSDKPath, screenWidth, screenHeight, true, false, device);
+            
 
             System.out.println(guiEventVO.getHvInfoComponent());
 
+	        Screen screen = new Screen();
+	        screen.setActivity(Utilities.getCurrentActivity(androidSDKPath));
+	        screen.setWindow(window.getWindow());
+	        screen.setDynGuiComponents(StepByStepEngine.getEntityFromVO(screenInfo));
             
-            
-
-            
-            
-            replayerFeatures.setCorrectAugScreen(false);
             
             String textEntry = StepByStepEngine.executeEvent(guiEventVO, androidSDKPath, appPackage, null, false, device);
+          
             Thread.sleep(3000);
             
 
@@ -283,13 +268,6 @@ public class TraceReplayer {
             //Thread.sleep(1500);
             // Set screenshot
             //guiEventVO.getHvInfoComponent().setGuiScreenshot(imageName);
-            
-
-            
-//            Screen screen = new Screen();
-//            screen.setActivity(Utilities.getCurrentActivity(androidSDKPath));
-//            screen.setWindow(window.getWindow());
-//            screen.setDynGuiComponents(StepByStepEngine.getEntityFromVO(screenInfoCache));
                         
             // Is Keyboard component?
             if (guiEventVO != null
@@ -301,53 +279,69 @@ public class TraceReplayer {
                 keyboardActive = true;
             } else {
                 if (keyboardActive) {
-                    ArrayList<DynGuiComponentVO> screenInfoCache = UiAutoConnector
-                            .getScreenInfoNoCache(androidSDKPath, screenDims.get(0),
-                                    screenDims.get(1), true, false);
+//                    ArrayList<DynGuiComponentVO> screenInfoCache = UiAutoConnector
+//                            .getScreenInfoNoCache(androidSDKPath, screenDims.get(0),
+//                                    screenDims.get(1), true, false);
                     ArrayList<DynGuiComponentVO> screenInfoEmulator = UiAutoConnector.getScreenInfoEmulator(androidSDKPath, screenWidth,
                             screenHeight, true, false, false, avdPort,
                             adbPort, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);
                     
                     for (DynGuiComponentVO component : screenInfoEmulator) {
                         if (component.getIdXml().equals(vo.getHvInfoComponent().getIdXml())) {
-                            DynGuiComponentVO deepClone = ClonerHelper
-                                    .deepClone(DeviceInfo.NEXUS5X_KEYBOARD);
-                            deepClone.setTitleWindow(window.getTitle());
-                            deepClone.setGuiScreenshot(appPackage + "_" + i + ".jpg");
-                            deepClone.setActivity(component.getActivity());
-                            deepClone.setText(component.getText());
-
-                            vo.setHvInfoComponent(deepClone);
-                            vo.setText(component.getText());
-
-                            vo.setEventLabel("TYPE");
-                            vo.setEventTypeId(StepByStepEngine.TYPE);
-                            writer.write(EventsFormatter.format4Steps(vo));
-                            writer.newLine();
-                            writer.flush();
+                        	if (vo.getHvInfoComponent().getText().length()>0) {
+	                            DynGuiComponentVO deepClone = ClonerHelper
+	                                    .deepClone(DeviceInfo.NEXUS5X_KEYBOARD);
+	                            //System.out.println(deepClone);
+	                            //System.out.println(vo.getHvInfoComponent());
+	                            deepClone.setTitleWindow(window.getTitle());
+	                            deepClone.setGuiScreenshot(appPackage + "_" + i + ".jpg");
+	                            deepClone.setActivity(component.getActivity());
+	                            deepClone.setText(component.getText());
+	
+	                            vo.setHvInfoComponent(deepClone);
+	                            vo.setText(component.getText());
+	
+	                            vo.setEventLabel("TYPE");
+	                            vo.setEventTypeId(StepByStepEngine.TYPE);
+	                            writer.write(EventsFormatter.format4Steps(vo));
+	                            writer.newLine();
+	                            writer.flush();
+                        	} else { //for search
+                        		Thread.sleep(3000);
+                        		isSearchActivity = true;
+                        		steps.remove(steps.size()-1);
+                        		Step step = StepByStepEngine.getStepFromEvent(vo);
+                                step.setSequenceStep(sequence);
+                                step.setScreen(screen);
+                                steps.add(step);
+                                
+                        		String screenshot = appPackage + "_" + appVersion + "_gnucash" + sequence + ".png";  
+                                Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
+                                        + "screenshots", appPackage + "."
+                                                + executionCtr + "." + screenshot);
+                        	}
                             
-                            
+                                    
                             i++;
                             break;
                         }
                     }
-                    keyboardActive = false;
-                    
-                    
+                    keyboardActive = false;                      
                 }
+                    
+
             }
 
 
             
             
-            System.out.println("Step: " + (i+1));
-            
-            
-            
+            //System.out.println("Step: " + (i+1));
+            System.out.println("Step: " + (sequence+1));
             
             
             //Right now we are not recording keyboard events
-            if (!keyboardActive) {
+            //if (!keyboardActive && (vo==null || (vo == (GUIEventVO) Utilities.cloneObject(oldComponent)) && vo.getHvInfoComponent().getText().length()>0 )) {
+            if(!keyboardActive && !isSearchActivity) {
                 events.add(guiEventVO);
                 oldComponent = guiEventVO;
                 // writer.write(EventsFormatter.format4CollectorFile(guiEventVO));
@@ -355,28 +349,85 @@ public class TraceReplayer {
                 writer.newLine();
                 writer.flush();
                 
+                sequence++;
+                
 
+                
+                Step step = StepByStepEngine.getStepFromEvent(guiEventVO);
+                step.setSequenceStep(sequence);
+                step.setScreen(screen);
+                steps.add(step);
+                
+                String screenshot = appPackage + "_" + appVersion + "_gnucash" + sequence + ".png";     
+                
+                String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
+
+                String currscreenshot = appPackage + "_" + appVersion + "_gnucash" + currstep + ".png";
+
+                Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
+                        + "screenshots", appPackage + "."
+                                + executionCtr + "." + screenshot);
+                //Utilities.isKeyboardActive(androidSDKPath, device)
+                takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
+                
+                DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
+                
+                String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, currscreenshot, screenshot);
+                        
+
+                
+                
                 
                 i++;
             }
+            isSearchActivity = false;
             
-            sequence++;
-            
-            Step step = StepByStepEngine.getStepFromEvent(guiEventVO);
-            
-            String screenshot = appPackage + "_" + appVersion + "_gnucash" + sequence + ".png";     
-            
-            String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
+        }
+        
+        
+	
 
-            String currscreenshot = appPackage + "_" + appVersion + "_gnucash" + currstep + ".png";
 
-            Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                    + "screenshots", appPackage + "."
-                            + executionCtr + "." + screenshot);
+        writer.close();
+
+        System.out.println("- Final steps (pulling files from device and stopping profiler/app)");
+
+        
             
-            if (step != null) {
-                ScreenActionData data = null;
-                switch (step.getAction()) {
+
+        execution.setSteps(getSteps());
+        //execution.setCrash(false);
+        
+        long endTime = System.currentTimeMillis();
+        execution.setElapsedTime(endTime - startTime);
+        execution.setExecutionNum(executionCtr);
+        
+        //System.out.println(execution);
+        
+        Gson gson = new Gson();
+        String json = gson.toJson(execution);
+        PrintWriter gsonWriter = new PrintWriter(outputFolder + File.separator + "Execution-" + "3" + ".json");
+        gsonWriter.println(json);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        gsonWriter.close();
+        
+        StepByStepEngine.stopAPK(androidSDKPath, appPackage, device);
+
+        System.out.println("- DONE");
+        System.out.println("----------------------------------------------------");
+
+
+    }
+    
+    public void takeAugmentedScreenshot(Step step, int screenWidth, int screenHeight, String outputFolder, String appPackage, String currscreenshot, String screenshot) throws Exception{
+    	 if (step != null) {
+             ScreenActionData data = null;
+             switch (step.getAction()) {
 	                case StepByStepEngine.SWIPE:
 	                    data = new ScreenActionData(step.getAction(), screenWidth / 2, (int) (screenHeight * .1),
 	                            screenWidth / 2, (int) (screenHeight * .8), screenWidth, screenHeight);
@@ -406,109 +457,53 @@ public class TraceReplayer {
 	                        step.setScreenshot(appPackage + "."
 	                                + executionCtr + "." + screenshot);
 	                    }
-                }
-            }
-            
-            DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
-            
-            String guiScreenShot = null;
-            
-            if (dynGuiComponent != null) {
-                ScreenActionData data = null;
-                Image orig = null;
-                boolean ok = false;
-                do {
-                    try {
-                        //https://stackoverflow.com/questions/13796611/imageio-read-with-mac
-                    	System.out.println(outputFolder + File.separator + "screenshots" + File.separator + screenshot);
-                        orig = ImageIO.read(new File(outputFolder + File.separator + "screenshots" + File.separator +  appPackage + "."
-                                + executionCtr + "." + currscreenshot));
-                        ok = true;
-                    } catch (IOException e) {
-                        ok = false;
-                        e.printStackTrace();
-                    }
-                } while (!ok);
-
-                int x = dynGuiComponent.getPositionX();
-                int y = dynGuiComponent.getPositionY();
-                int w = dynGuiComponent.getWidth();
-                int h = dynGuiComponent.getHeight();
-
-                BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-                bi.getGraphics().drawImage(orig, 0, 0, w, h, x, y, x + w, y + h, null);
-
+             }
+         }
+    }
+    
+    public String takeGUIScreenshot(DynGuiComponent dynGuiComponent, String outputFolder, String appPackage, String currscreenshot, String screenshot) {
+    	String guiScreenShot = null;
+        
+        if (dynGuiComponent != null) {
+            ScreenActionData data = null;
+            Image orig = null;
+            boolean ok = false;
+            do {
                 try {
-                    ImageIO.write(bi, "png",
-                            new File( outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
-                                    + executionCtr + "."+  screenshot.replaceAll(".png", "_gui.png")));
+                    //https://stackoverflow.com/questions/13796611/imageio-read-with-mac
+                    orig = ImageIO.read(new File(outputFolder + File.separator + "screenshots" + File.separator +  appPackage + "."
+                            + executionCtr + "." + currscreenshot));
+                    ok = true;
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    ok = false;
                     e.printStackTrace();
                 }
+            } while (!ok);
 
-                guiScreenShot = screenshot.replaceAll(".png", "_gui.png");
+            int x = dynGuiComponent.getPositionX();
+            int y = dynGuiComponent.getPositionY();
+            int w = dynGuiComponent.getWidth();
+            int h = dynGuiComponent.getHeight();
 
+            BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+            bi.getGraphics().drawImage(orig, 0, 0, w, h, x, y, x + w, y + h, null);
+
+            try {
+                ImageIO.write(bi, "png",
+                        new File( outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+                                + executionCtr + "."+  screenshot.replaceAll(".png", "_gui.png")));
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
 
+            guiScreenShot = screenshot.replaceAll(".png", "_gui.png");
+
         }
-        
-        
-
-
-
-        writer.close();
-
-        System.out.println("- Final steps (pulling files from device and stopping profiler/app)");
-
-        
-            
-
-        execution.setSteps(getSteps());
-        execution.setCrash(false);
-        
-        long endTime = System.currentTimeMillis();
-        execution.setElapsedTime(endTime - startTime);
-        
-        System.out.println(execution);
-        
-        Gson gson = new Gson();
-        String json = gson.toJson(execution);
-        PrintWriter gsonWriter = new PrintWriter(outputFolder + File.separator + "Execution-" + "3" + ".json");
-        gsonWriter.println(json);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        gsonWriter.close();
-        
-        StepByStepEngine.stopAPK(androidSDKPath, appPackage, device);
-
-        System.out.println("- DONE");
-        System.out.println("----------------------------------------------------");
-
+        return guiScreenShot;
 
     }
     
-    public Step addStep(DynGuiComponent component, String textEntry, int action, Screen screen) {
-    	sequence++;
-    	Step step = new Step();
-
-        step.setSequenceStep(sequence);
-        step.setDynGuiComponent(component);
-        step.setAction(action);
-        step.setTextEntry(textEntry);
-        
-        if(screen!= null){
-            step.setScreen(screen);
-            screen.setStep(step);
-        }
-
-        steps.add(step);
-        return step;
-    }
     
     /**
      * @return the steps
