@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
+import sealab.burt.qualitychecker.graph.GraphState;
 import seers.appcore.xml.XMLHelper;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledBugReport;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledDescriptionSentence;
@@ -42,8 +43,8 @@ class OBCheckerTest {
 
         var app = new ImmutablePair<>("android-mileage", "3.1.1");
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-//        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
-        String crashScopeDataPath = null;
+        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
+//        String crashScopeDataPath = null;
         OBChecker checker = new OBChecker(app.getLeft(), app.getRight(), parsersBaseFolder, resourcesPath,
                 crashScopeDataPath);
 
@@ -62,6 +63,10 @@ class OBCheckerTest {
             log.debug(sentence);
             QualityResult result = checker.checkOb(sentence);
             log.debug(result.toString());
+
+            for (GraphState matchedState : result.getMatchedStates()) {
+                log.debug(matchedState.getScreenshotPath());
+            }
         }
 
     }

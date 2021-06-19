@@ -18,12 +18,12 @@ import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
-import java.io.File;
 import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -47,20 +47,20 @@ class JSONGraphReader {
         return MessageFormat.format("{0}-{1}", app, appVersion);
     }
 
-    private static String getFirstPackageName(String appName){
+    public static String getFirstPackageName(String appName) {
         String normalizedAppName = AppNamesMappings.normalizeAppName(appName);
 
-        if(normalizedAppName==null) throw new RuntimeException("Could not normalize app name: "+ appName);
+        if (normalizedAppName == null) throw new RuntimeException("Could not normalize app name: " + appName);
 
         List<String> packages = AppNamesMappings.getPackageNames(normalizedAppName.toLowerCase());
         if (packages == null || packages.isEmpty()) {
-            throw new RuntimeException("No packages found for: " + appName );
+            throw new RuntimeException("No packages found for: " + appName);
         }
 
         return packages.get(0);
     }
 
-    private static void readGraph(String baseFolder, String appName, String appVersion) throws Exception {
+    public static void readGraph(String baseFolder, String appName, String appVersion) throws Exception {
 
         String packageName = getFirstPackageName(appName);
         String dataLocation = Paths.get(baseFolder, String.join("-", packageName, appVersion)).toString();
@@ -68,79 +68,92 @@ class JSONGraphReader {
         String key = getKey(appName, appVersion);
         log.debug("Reading graph from JSON files for " + key);
 
+        //--------------------------
+
+        List<Path> executionFiles = Files.find(Paths.get(dataLocation), 1,
+                (path, attr) -> path.toFile().getName().startsWith("Execution-"))
+                .collect(Collectors.toList());
+
+
         //----------------------
+        List<Execution> executions = new ArrayList<>();
+        Long componentId = 0L;
+        App app = null;
 
-        //Set up a new Gson object and read it in.
-        // Currently this is set up to work for a single file
-        // TODO: Set up to read in and combine multiple json files for the same app.
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader(Paths.get(dataLocation, "Execution-1.json").toFile()));
+        for (int i = 0; i < executionFiles.size(); i++) {
+            Path executionFile = executionFiles.get(i);
 
-        // De-serialize the Execution object. I currently set a manual ID for testing purposes.
-        Execution exec = gson.fromJson(reader, Execution.class);
-        exec.setId((long) 1);
 
-        App app = exec.getApp();
-        app.setId(1L);
+            //Set up a new Gson object
+            JsonReader reader = new JsonReader(new FileReader(executionFile.toFile()));
 
-        //----------------------------------------
+            // De-serialize the Execution object.
+            Execution execution = gson.fromJson(reader, Execution.class);
+            execution.setId((long) i);
 
-        //Add IDs to steps
-        List<Step> steps = exec.getSteps();
-        for (int i = 0; i < exec.getSteps().size(); i++) {
+            app = execution.getApp();
+            app.setId(1L);
 
-            steps.get(i).setId((long) i);
-        }
-        exec.setSteps(steps);
+            //----------------------------------------
 
-        //----------------------------------------
+            //Add IDs to steps
+            List<Step> steps = execution.getSteps();
+            for (int j = 0; j < execution.getSteps().size(); j++) {
+                steps.get(j).setId((long) j);
+            }
+            execution.setSteps(steps);
 
-        //This for loop reads in the list of DynGuiComponentVOs for each screen
-        for (Step currStep : exec.getSteps()) {
+            //----------------------------------------
 
-            // Get the current screen and read in the corresponding xml file.
-            // Note that I decrement the "sequenceStep" by one since it is not zero indexed.
-            String xmlPath =
-                    dataLocation + File.separator + exec.getApp().getPackageName() + "-" +
-                            exec.getApp().getVersion() + "-" + exec.getExecutionNum() + "-" +
-                            exec.getExecutionType() + (currStep.getSequenceStep() - 1) + ".xml";
-//            System.out.println(xmlPath); //For debug
+            //This for loop reads in the list of DynGuiComponentVOs for each screen
+            for (Step currStep : execution.getSteps()) {
 
-            //Parse the xml file into a BasicTreeNode and then set up variables required by the visitNodes method.
-            UiHierarchyXmlLoader loader = new UiHierarchyXmlLoader();
-            BasicTreeNode tree = loader.parseXml(xmlPath);
-            StringBuilder builder = new StringBuilder();
-            ArrayList<DynGuiComponentVO> currComps = new ArrayList<>();
+                // Get the current screen and read in the corresponding xml file.
+                // Note that I decrement the "sequenceStep" by one since it is not zero indexed.
+                String xmlPath = Path.of(dataLocation, String.join("-",
+                        execution.getApp().getPackageName(),
+                        execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
+                        execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
+                        .toString();
 
-            //Visit the nodes. The list of components should be returned in the "currComps" ArrayList as
-            // DynGUIComponentVOs.
-            Screen screen = currStep.getScreen();
-            UiAutoConnector.visitNodes(screen.getActivity(), tree, currComps, 1080, 1920, true, null,
-                    true, 0, builder, 1);
+                //Parse the xml file into a BasicTreeNode and then set up variables required by the visitNodes method.
+                UiHierarchyXmlLoader loader = new UiHierarchyXmlLoader();
+                BasicTreeNode tree = loader.parseXml(xmlPath);
+                StringBuilder builder = new StringBuilder();
+                ArrayList<DynGuiComponentVO> currComps = new ArrayList<>();
 
-            List<DynGuiComponent> guiComponents = convertVOstoGUIComps(currComps, screen);
-            screen.setDynGuiComponents(guiComponents);
+                //Visit the nodes. The list of components should be returned in the "currComps" ArrayList as
+                // DynGUIComponentVOs.
+                Screen screen = currStep.getScreen();
+                UiAutoConnector.visitNodes(screen.getActivity(), tree, currComps, 1080, 1920, true, null,
+                        true, 0, builder, 1);
+
+                List<DynGuiComponent> guiComponents = convertVOstoGUIComps(currComps, screen, componentId);
+                screen.setDynGuiComponents(guiComponents);
 
 //            System.out.println(guiComponents);
+            }
+            executions.add(execution);
         }
 
         //----------------------------------------
-
 
         GraphGenerator generator = new GraphGenerator();
 
-        AppGraphInfo graphInfo = generator.generateGraph(Collections.singletonList(exec), app);
+        AppGraphInfo graphInfo = generator.generateGraph(executions, app);
         graphs.put(key, graphInfo);
     }
 
-    private static List<DynGuiComponent> convertVOstoGUIComps(ArrayList<DynGuiComponentVO> currComps, Screen screen) {
-        long compId = 0;
+    private static List<DynGuiComponent> convertVOstoGUIComps(ArrayList<DynGuiComponentVO> currComps, Screen screen,
+                                                              Long componentId) {
+
         HashMap<Long, Pair<DynGuiComponentVO, DynGuiComponent>> cache = new HashMap<>();
 
         for (DynGuiComponentVO voComp : currComps) {
             DynGuiComponent component = convertVOtoGUIComp(voComp);
             component.setScreen(screen);
-            component.setId(compId++);
+            component.setId(componentId++);
 
             voComp.setId(component.getId());
             cache.put(component.getId(), new ImmutablePair<>(voComp, component));

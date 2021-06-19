@@ -9,7 +9,7 @@ public class AppNamesMappings {
 
     static {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Aard Dictionary", "Aard-Dictionary", "aarddict", "Aard")));
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Mileage", "android-mileage")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Mileage", "android-mileage", "mileage")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Time Tracker", "A Time Tracker", "A-Time-Tracker",
                 "TimeTracker",
                 "ATimeTracker")));

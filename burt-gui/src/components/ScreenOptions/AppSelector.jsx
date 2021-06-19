@@ -57,7 +57,7 @@ const AppSelector = (props) => {
         <div className="center-screen">
             <ImagePicker
                 // images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
-                images={dataValues.map((image, i) => ({src: config.serverEndpoint + "/app_logos/" + image.value2, text: image.value1, id: image.key}))}
+                images={dataValues.map((image, i) => ({src: config.serverEndpoint + config.logosPath + image.value2, text: image.value1, id: image.key}))}
                 onPick={pickImageHandler}
                 style={getImageStyle(100, 100)}
                 selected={selectedValues}

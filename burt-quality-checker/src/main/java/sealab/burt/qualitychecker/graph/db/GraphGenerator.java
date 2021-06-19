@@ -53,7 +53,8 @@ class GraphGenerator {
         AppDao appDao = new AppDao();
         String normalizedAppName = AppNamesMappings.normalizeAppName(appName);
 
-        if(normalizedAppName==null) throw new RuntimeException("Could not normalize app name: "+ appName + "-" + appVersion);
+        if (normalizedAppName == null)
+            throw new RuntimeException("Could not normalize app name: " + appName + "-" + appVersion);
 
         List<String> packages = AppNamesMappings.getPackageNames(normalizedAppName.toLowerCase());
         if (packages == null || packages.isEmpty()) {
@@ -178,7 +179,14 @@ class GraphGenerator {
         });
 
         getTransitions().forEach((k, t) -> {
-            boolean added = directedGraph.addEdge(t.getSourceState(), t.getTargetState(), t);
+            GraphState sourceState = t.getSourceState();
+            String screenshotFile = t.getStep().getScreenshotFile();
+
+            if (sourceState.getScreenshotPath() == null && screenshotFile!=null) {
+                sourceState.setScreenshotPath(screenshotFile.replace("_augmented", ""));
+            }
+
+            boolean added = directedGraph.addEdge(sourceState, t.getTargetState(), t);
             if (!added) {
                 log.warn("Edge not added: " + t);
             }
@@ -576,7 +584,6 @@ class GraphGenerator {
         currentState.setUniqueHash(hashCode);
         currentState.setName(stateName);
         currentState.setScreen(screen);
-        currentState.setScreenshotPath(screen.getScreenshot());
 
         // Transform components
         final List<AppGuiComponent> guiComponents = Transform.getGuiComponents(components);
