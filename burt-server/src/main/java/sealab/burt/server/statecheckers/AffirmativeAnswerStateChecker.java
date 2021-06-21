@@ -46,6 +46,8 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
             state.remove(StateVariable.CONFIRM_LAST_STEP);
             // CHECK LAST STEP HERE
             nextAction = REPORT_SUMMARY;
+        } else if (!state.containsKey(PARTICIPANT_ASKED)) {
+            nextAction = PROVIDE_PARTICIPANT_ID;
         }
 
         return nextAction;

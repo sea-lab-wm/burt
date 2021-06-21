@@ -8,6 +8,7 @@ import sealab.burt.server.msgparsing.Intent;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static sealab.burt.server.StateVariable.PARTICIPANT_ASKED;
 import static sealab.burt.server.StateVariable.PARTICIPANT_VALIDATED;
 
 public class ProvideParticipantIdAction extends ChatBotAction {
@@ -20,6 +21,8 @@ public class ProvideParticipantIdAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
 
         Boolean validParticipant = (Boolean) state.get(PARTICIPANT_VALIDATED);
+
+        state.put(PARTICIPANT_ASKED, true);
 
         if (validParticipant == null)
             return createChatBotMessages("To start, " +

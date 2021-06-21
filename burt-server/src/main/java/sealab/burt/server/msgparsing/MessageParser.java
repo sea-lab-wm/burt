@@ -24,7 +24,7 @@ public class MessageParser {
         intentTokens = new ConcurrentHashMap<>();
 
         addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah", "yep"));
-        addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up"));
+        addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up", "hola"));
         addIntentTokens(NEGATIVE_ANSWER, Arrays.asList("no", "nah", "nope"));
         addIntentTokens(THANKS, Arrays.asList("thanks", "thank you"));
         //....
@@ -76,7 +76,7 @@ public class MessageParser {
         Set<Map.Entry<String, Intent>> entries = intentTokens.entrySet();
 
         //only consider the tokens of the expected intents
-        if(nextIntents != null && nextIntents.size()>1){
+        if (nextIntents != null && nextIntents.size() > 1) {
             entries = intentTokens.entrySet().stream()
                     .filter(entry -> nextIntents.contains(entry.getValue()))
                     .collect(Collectors.toSet());
