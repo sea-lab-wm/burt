@@ -85,12 +85,7 @@ public class TraceReplayer {
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private int sequence = 0;
     public boolean takeScreenshots = false;
-    private String guiStrat = "";   // Defines the strategy for interacting with GUI components
-    private String textStrat = "";  // Defines the text input generation strategy
-    private String featStrat = "";
     private int executionCtr = 1;
-    private boolean firststep;
-    private boolean lastStepRotated;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
     
@@ -123,7 +118,7 @@ public class TraceReplayer {
         String appVersion = "";
         String mainActivity = "com.zappos.android.activities.HomeActivity";
         String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/APKs/6pm.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/6pm/getevent-detail-1.log";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/6pm/getevent-detail-3.log";
         String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/test-output";
         
         String avdPort = "5554";
@@ -134,7 +129,6 @@ public class TraceReplayer {
         boolean install = true;
         
         boolean keyboardActive = false;
-        lastStepRotated = false;
         takeScreenshots = true;
         GUIEventVO oldComponent = null;
         boolean isSearchActivity = false;
@@ -177,9 +171,6 @@ public class TraceReplayer {
         List<GUIEventVO> events = new ArrayList<GUIEventVO>();
 
 
-        File stepsFile = new File(outputFolder + File.separator + appName + "-" + String.valueOf(System.currentTimeMillis()) + "-trace.txt");
-        BufferedWriter writer = new BufferedWriter(new FileWriter(stepsFile));
-
         System.out.println("- Setting up the app " + appName);
         if (install) {
             StepByStepEngine.unInstallAndInstallApp(androidSDKPath, apkPath, appPackage, device);
@@ -198,7 +189,7 @@ public class TraceReplayer {
         StepByStepEngine.startAPK(androidSDKPath, appPackage, mainActivity, device);
         
         if(takeScreenshots) {
-        	String screenshot = appPackage + "_" + appVersion + "_gnucash" + sequence + ".png";        
+        	String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";        
             Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
                     + "screenshots", appPackage + "."
                             + executionCtr + "." + screenshot);
@@ -238,16 +229,13 @@ public class TraceReplayer {
             // Set the best component matching
             UiAutoConnector.getComponent(androidSDKPath, guiEventVO, screenDims.get(0),
                     screenDims.get(1), device, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence, avdPort, adbPort);
-            String title = ((window.getWindow() + (window.getTitle() != null
+            String currentWindow = ((window.getWindow() + (window.getTitle() != null
                     && !window.getTitle().isEmpty() ? window.getTitle() : ""))).trim();
             //guiEventVO.setActivity(title);
             guiEventVO.getHvInfoComponent().setTitleWindow(window.getTitle());
             UiAutoConnector.setComponentAreas(guiEventVO, androidSDKPath, screenDims.get(0),
                     screenDims.get(1));
-            // Extract screenshot, DO NOT change the order
-            // of these lines
-            //String imageName = appPackage + "_" + (i + 1) + ".jpg";
-            
+
             ArrayList<DynGuiComponentVO> screenInfo = UiAutoConnector.getScreenInfoCache(androidSDKPath, screenWidth, screenHeight, true, false, device);
             
 
@@ -263,12 +251,6 @@ public class TraceReplayer {
           
             Thread.sleep(3000);
             
-
-            
-            //Thread.sleep(1500);
-            // Set screenshot
-            //guiEventVO.getHvInfoComponent().setGuiScreenshot(imageName);
-                        
             // Is Keyboard component?
             if (guiEventVO != null
                     && guiEventVO.getHvInfoComponent().getIdXml().equals("id/keyboard_view")) {
@@ -282,32 +264,55 @@ public class TraceReplayer {
 //                    ArrayList<DynGuiComponentVO> screenInfoCache = UiAutoConnector
 //                            .getScreenInfoNoCache(androidSDKPath, screenDims.get(0),
 //                                    screenDims.get(1), true, false);
+                	sequence++;
                     ArrayList<DynGuiComponentVO> screenInfoEmulator = UiAutoConnector.getScreenInfoEmulator(androidSDKPath, screenWidth,
                             screenHeight, true, false, false, avdPort,
                             adbPort, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);
                     
                     for (DynGuiComponentVO component : screenInfoEmulator) {
                         if (component.getIdXml().equals(vo.getHvInfoComponent().getIdXml())) {
-                        	if (vo.getHvInfoComponent().getText().length()>0) {
+                        	if (component.getText().length()>0) {
 	                            DynGuiComponentVO deepClone = ClonerHelper
 	                                    .deepClone(DeviceInfo.NEXUS5X_KEYBOARD);
-	                            //System.out.println(deepClone);
-	                            //System.out.println(vo.getHvInfoComponent());
+
 	                            deepClone.setTitleWindow(window.getTitle());
 	                            deepClone.setGuiScreenshot(appPackage + "_" + i + ".jpg");
 	                            deepClone.setActivity(component.getActivity());
 	                            deepClone.setText(component.getText());
 	
-	                            vo.setHvInfoComponent(deepClone);
+	                            vo.setHvInfoComponent(component);
 	                            vo.setText(component.getText());
 	
 	                            vo.setEventLabel("TYPE");
 	                            vo.setEventTypeId(StepByStepEngine.TYPE);
-	                            writer.write(EventsFormatter.format4Steps(vo));
-	                            writer.newLine();
-	                            writer.flush();
+	                            
+	                            Step step = StepByStepEngine.getStepFromEvent(vo);
+	                            step.setSequenceStep(sequence);
+	                            step.setScreen(screen);
+	                            step.setTextEntry("none");
+	                            Thread.sleep(5000);
+	                            
+	                            
+	                            String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
+	                            
+	                            String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
+
+	                            String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
+
+	                            Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
+	                                    + "screenshots", appPackage + "."
+	                                            + executionCtr + "." + screenshot);
+	                    
+	                            takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
+	                            
+	                            DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
+	                            
+	                            String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, screenshot, screenshot);
+	                            step.getDynGuiComponent().setGuiScreenshot(guiScreenShot);
+	                            steps.add(step);      
                         	} else { //for search
                         		Thread.sleep(3000);
+                        		sequence--;
                         		isSearchActivity = true;
                         		steps.remove(steps.size()-1);
                         		Step step = StepByStepEngine.getStepFromEvent(vo);
@@ -315,7 +320,7 @@ public class TraceReplayer {
                                 step.setScreen(screen);
                                 steps.add(step);
                                 
-                        		String screenshot = appPackage + "_" + appVersion + "_gnucash" + sequence + ".png";  
+                        		String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";  
                                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
                                         + "screenshots", appPackage + "."
                                                 + executionCtr + "." + screenshot);
@@ -340,15 +345,10 @@ public class TraceReplayer {
             
             
             //Right now we are not recording keyboard events
-            //if (!keyboardActive && (vo==null || (vo == (GUIEventVO) Utilities.cloneObject(oldComponent)) && vo.getHvInfoComponent().getText().length()>0 )) {
             if(!keyboardActive && !isSearchActivity) {
                 events.add(guiEventVO);
                 oldComponent = guiEventVO;
-                // writer.write(EventsFormatter.format4CollectorFile(guiEventVO));
-                writer.write(EventsFormatter.format4Steps(guiEventVO));
-                writer.newLine();
-                writer.flush();
-                
+
                 sequence++;
                 
 
@@ -356,26 +356,28 @@ public class TraceReplayer {
                 Step step = StepByStepEngine.getStepFromEvent(guiEventVO);
                 step.setSequenceStep(sequence);
                 step.setScreen(screen);
-                steps.add(step);
+                step.setTextEntry(textEntry);
+	            step.getDynGuiComponent().setCurrentWindow(currentWindow);
+                Thread.sleep(5000);
                 
-                String screenshot = appPackage + "_" + appVersion + "_gnucash" + sequence + ".png";     
+                String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
                 
                 String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
 
-                String currscreenshot = appPackage + "_" + appVersion + "_gnucash" + currstep + ".png";
+                String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
 
                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
                         + "screenshots", appPackage + "."
                                 + executionCtr + "." + screenshot);
-                //Utilities.isKeyboardActive(androidSDKPath, device)
+              
                 takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
                 
                 DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
                 
                 String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, currscreenshot, screenshot);
-                        
-
+                step.getDynGuiComponent().setGuiScreenshot(guiScreenShot);        
                 
+                steps.add(step);
                 
                 
                 i++;
@@ -384,16 +386,12 @@ public class TraceReplayer {
             
         }
         
+        UiAutoConnector.getScreenInfoEmulator(androidSDKPath, screenWidth,
+                screenHeight, true, false, false, avdPort,
+                adbPort, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);
         
-	
 
-
-        writer.close();
-
-        System.out.println("- Final steps (pulling files from device and stopping profiler/app)");
-
-        
-            
+        System.out.println("- Final steps (pulling files from device and stopping profiler/app)");                  
 
         execution.setSteps(getSteps());
         //execution.setCrash(false);
@@ -402,11 +400,10 @@ public class TraceReplayer {
         execution.setElapsedTime(endTime - startTime);
         execution.setExecutionNum(executionCtr);
         
-        //System.out.println(execution);
         
         Gson gson = new Gson();
         String json = gson.toJson(execution);
-        PrintWriter gsonWriter = new PrintWriter(outputFolder + File.separator + "Execution-" + "3" + ".json");
+        PrintWriter gsonWriter = new PrintWriter(outputFolder + File.separator + "Execution-" + executionCtr + ".json");
         gsonWriter.println(json);
         try {
             Thread.sleep(1000);
