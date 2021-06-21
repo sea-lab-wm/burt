@@ -3,9 +3,10 @@ import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
 import ApiClient from "../../ApiClient";
 import processResponse from "../../ServerResponseProcessor";
+import config from "../../config";
 
 
-let logos = require.context('../../../../data/app_logos', true);
+// let logos = require.context('../../../../data/app_logos', true);
 
 const S2RScreenSelector = (props) => {
 
@@ -58,8 +59,9 @@ const S2RScreenSelector = (props) => {
     return (
         <div className="center-screen">
             <ImagePicker
-                images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
-                style={getImageStyle(150, 300)}
+                // images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
+                images={dataValues.map((image, i) => ({src: config.serverEndpoint + config.crashScopeDataPath + image.value2, text: image.value1, id: image.key}))}
+                style={getImageStyle(180, 320)}
                 selected={selectedValues}
                 onPick={pickImageHandler}
                 multiple = {multiple}

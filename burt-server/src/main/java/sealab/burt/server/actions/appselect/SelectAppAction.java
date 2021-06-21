@@ -2,6 +2,7 @@ package sealab.burt.server.actions.appselect;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
+import sealab.burt.qualitychecker.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
@@ -27,15 +28,16 @@ class SelectAppAction extends ChatBotAction {
 
 
     public static final List<KeyValues> ALL_APPS;
+    private static final String NO_APP_LOGO = "NO_APP_LOGO.png";
 
     static {
-        Path crashScopePath = Paths.get("..", "data", "CrashScope-Data");
+        Path crashScopeDataPath = Paths.get("..", "data", "CrashScope-Data");
         Path appLogosPath = Paths.get("..", "data", "app_logos");
 
         List<Path> directories = null;
         try {
-            directories = Files.walk(crashScopePath, 1)
-                    .filter(path -> Files.isDirectory(path) && !path.equals(crashScopePath))
+            directories = Files.walk(crashScopeDataPath, 1)
+                    .filter(path -> Files.isDirectory(path) && !path.equals(crashScopeDataPath))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             log.error("Could not read the list of apps", e);
@@ -62,7 +64,7 @@ class SelectAppAction extends ChatBotAction {
     private static String getLogoFileName(Path appLogosPath, Path appDir) {
         String fileName = appDir.getFileName().toString();
 
-        Path logoPath = appLogosPath.resolve("NO_APP_LOGO.png");
+        Path logoPath = appLogosPath.resolve(NO_APP_LOGO);
         try {
             logoPath = Files.find(appLogosPath, 1,
                     (path, attr) -> path.getFileName().toString().startsWith(fileName))

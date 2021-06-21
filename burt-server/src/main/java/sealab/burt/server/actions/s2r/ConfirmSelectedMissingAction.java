@@ -35,7 +35,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         @SuppressWarnings("unchecked") final List<AppStep> allMissingSteps = (List<AppStep>) state.get(S2R_ALL_MISSING);
 
         if (msg.getMessages().isEmpty()) {
-            return getDefaultMessage(allMissingSteps);
+            return getDefaultMessage(allMissingSteps, state);
         }
 
         //-------------------------------
@@ -59,7 +59,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
                     .collect(Collectors.toList());
 
             if (selectedSteps.isEmpty() || selectedValues.size() != selectedSteps.size())
-                return getDefaultMessage(allMissingSteps);
+                return getDefaultMessage(allMissingSteps, state);
 
             QualityStateUpdater.addStepsToState(state, selectedSteps);
 
@@ -79,15 +79,16 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
             response.append("Got it, what is the next step?");
         } else {
-            return getDefaultMessage(allMissingSteps);
+            return getDefaultMessage(allMissingSteps, state);
         }
 
         return createChatBotMessages(response.toString());
     }
 
-    private List<ChatBotMessage> getDefaultMessage(List<AppStep> allMissingSteps) {
+    private List<ChatBotMessage> getDefaultMessage(List<AppStep> allMissingSteps,
+                                                   ConcurrentHashMap<StateVariable, Object> state) {
         this.nextExpectedIntents = Collections.singletonList(S2R_MISSING_SELECTED);
-        List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(allMissingSteps);
+        List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(allMissingSteps, state);
 
         MessageObj messageObj = new MessageObj(
                 "From the following options, select the steps you performed before this step", "S2RScreenSelector");

@@ -16,7 +16,7 @@ import static sealab.burt.server.StateVariable.*;
 
 public class ParticipantIdStateChecker extends StateChecker {
 
-    private static List<String> participants = IntStream.range(1, 30)
+    private static final List<String> PARTICIPANTS = IntStream.range(1, 100)
             .mapToObj(i -> "P" + i)
             .collect(Collectors.toList());
 
@@ -31,7 +31,7 @@ public class ParticipantIdStateChecker extends StateChecker {
         String message = userResponse.getFirstMessage().getMessage();
         List<Token> tokens = TextProcessor.processText(message).get(0).getTokens();
 
-        Optional<Token> token = tokens.stream().filter(tok -> participants.stream()
+        Optional<Token> token = tokens.stream().filter(tok -> PARTICIPANTS.stream()
                 .anyMatch(part -> tok.getWord().equalsIgnoreCase(part)))
                 .findFirst();
 

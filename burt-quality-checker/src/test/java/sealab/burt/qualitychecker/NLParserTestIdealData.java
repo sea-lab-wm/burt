@@ -55,8 +55,7 @@ class NLParserTestIdealData {
 
         String resourcesPath = "src/main/resources";
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
-
+        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
 
         S2RChecker checker = new S2RChecker(app.getKey(), app.getValue(),
                 resourcesPath, parsersBaseFolder, crashScopeDataPath);
@@ -79,7 +78,7 @@ class NLParserTestIdealData {
         };
         String resourcesPath = "src/main/resources";
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
+        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
 
         //------------------------------------
 

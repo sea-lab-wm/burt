@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.ob;
 
+import sealab.burt.qualitychecker.BurtConfigPaths;
 import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
@@ -21,13 +22,12 @@ public class ProvideOBAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        String appName = state.get(APP).toString();
+        String appName = state.get(APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
         state.put(COLLECTING_OB, true);
         String parsersBaseFolder =  Path.of("..", "burt-nlparser").toString();
         String resourcesPath = Path.of("..", "burt-quality-checker", "src", "main", "resources").toString();
-        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
-//        String crashScopeDataPath = null;
+        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
         if (!state.containsKey(OB_CHECKER))
             state.put(OB_CHECKER, new OBChecker(appName, appVersion, parsersBaseFolder, resourcesPath, crashScopeDataPath));
         return createChatBotMessages(MessageFormat.format("Ok, can you please tell me the incorrect behavior that you " +

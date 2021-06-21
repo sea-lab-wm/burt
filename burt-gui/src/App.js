@@ -40,7 +40,7 @@ function App() {
                 messages: messages,
             })
             .then(res => {
-                console.log(`Messages were saved sucessfully`)
+                console.log(`Messages were saved successfully`)
             })
             .catch(error => {
                 console.error(error)
@@ -108,7 +108,7 @@ function App() {
         );
     else
         return (
-            <div>I am sorry, BURT cannot be loaded</div>
+            <div>I am sorry, BURT cannot be loaded. Try loading the page in a few seconds.</div>
         );
 }
 

@@ -26,7 +26,7 @@ public class EBChecker {
     }
 
     private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
-        AppGraphInfo graph = DBGraphReader.getGraph(app, appVersion);
+//        AppGraphInfo graph = DBGraphReader.getGraph(app, appVersion);
         //TODO: continue here
         return new QualityResult(QualityResult.Result.MATCH);
     }

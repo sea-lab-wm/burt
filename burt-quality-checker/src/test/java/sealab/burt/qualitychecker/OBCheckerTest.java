@@ -43,8 +43,8 @@ class OBCheckerTest {
 
         var app = new ImmutablePair<>("android-mileage", "3.1.1");
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
-//        String crashScopeDataPath = null;
+        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
+
         OBChecker checker = new OBChecker(app.getLeft(), app.getRight(), parsersBaseFolder, resourcesPath,
                 crashScopeDataPath);
 

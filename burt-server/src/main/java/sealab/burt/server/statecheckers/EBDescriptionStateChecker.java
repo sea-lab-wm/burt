@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.output.OutputMessageObj;
+import sealab.burt.server.output.BugReportElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +46,12 @@ public class EBDescriptionStateChecker extends StateChecker {
 //                String message = userMessage.getMessages().get(0).getMessage();
                 if (!state.containsKey(REPORT_EB)){
 
-                    List<OutputMessageObj> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new OutputMessageObj(description,screenshotPath));
+                    List<BugReportElement> outputMessageList = new ArrayList<>();
+                    outputMessageList.add(new BugReportElement(description, null, screenshotPath));
                     state.put(REPORT_EB, outputMessageList);
                 }else{
-                    List<OutputMessageObj> outputMessage = (List<OutputMessageObj>) state.get(REPORT_EB);
-                    outputMessage.add(new OutputMessageObj(description, screenshotPath));
+                    List<BugReportElement> outputMessage = (List<BugReportElement>) state.get(REPORT_EB);
+                    outputMessage.add(new BugReportElement(description, null, screenshotPath));
                 }
             }
             return nextActions.get(result.getResult().name());

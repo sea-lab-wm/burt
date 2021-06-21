@@ -884,7 +884,7 @@ public class NLActionS2RParser {
 
         if (isQuoted(token)) return true;
 
-        return StringUtils.isNumeric(token) || TextProcessor.isNumber(token);
+        return StringUtils.isNumeric(token) || (token != null && TextProcessor.isNumber(token));
     }
 
     private boolean isQuoted(String token) {
@@ -977,11 +977,12 @@ public class NLActionS2RParser {
 
         Entry<AppGuiComponent, Double> component;
         if (matchedComponents.size() == 1) {
-            AppGuiComponent temp = handleOneMatch(skipTextViews, allowedComponents, matchedComponents.get(0), event);
+            AppGuiComponent temp = handleOneMatch(skipTextViews, allowedComponents, matchedComponents.get(0), event,
+                    currentScreenComponents);
             component = getEntry(temp, 1d);
         } else if (matchedComponents.size() > 1) {
             component = handleMultipleMatches(skipTextViews, textToMatch, allowedComponents, matchedComponents,
-                    event, matchFirst);
+                    event, matchFirst, currentScreenComponents);
         } else {
             component = handleNoMatches(currentScreenComponents, componentTypes, skipTextViews, checkSynonyms,
                     textToMatch, event, matchFirst);
@@ -1187,8 +1188,9 @@ public class NLActionS2RParser {
     }
 
     private AppGuiComponent handleOneMatch(boolean skipTextViews, List<String> allowedComponents,
-                                           Entry<AppGuiComponent, Double>
-                                                   entry, int event) throws ActionParsingException {
+                                           Entry<AppGuiComponent, Double> entry, int event,
+                                           List<AppGuiComponent> currentScreenComponents)
+            throws ActionParsingException {
         AppGuiComponent component = null;
 
         //--------------------------------------------
@@ -1214,7 +1216,7 @@ public class NLActionS2RParser {
             try {
 
                 //if the component is a text view, try to find the text field that corresponds to it
-                List<AppGuiComponent> siblings = getSiblings(entryComp);
+                List<AppGuiComponent> siblings = getSiblings(entryComp, currentScreenComponents);
                 List<AppGuiComponent> textFields = siblings.stream()
                         .filter(c -> isTextField(c.getType()))
                         .collect(Collectors.toList());
@@ -1247,7 +1249,7 @@ public class NLActionS2RParser {
             try {
 
                 //if the component is a text view, try to find the component that corresponds to it (not a text field!)
-                List<AppGuiComponent> siblings = getSiblings(entryComp);
+                List<AppGuiComponent> siblings = getSiblings(entryComp, currentScreenComponents);
                 if (siblings.size() == 1) {
                     AppGuiComponent sibling = siblings.get(0);
 
@@ -1289,7 +1291,8 @@ public class NLActionS2RParser {
     private Entry<AppGuiComponent, Double> handleMultipleMatches(boolean skipTextViews, PreProcessedText textToMatch,
                                                                  List<String> allowedComponents,
                                                                  List<Entry<AppGuiComponent, Double>> matchedComponents,
-                                                                 int event, boolean matchFirst)
+                                                                 int event, boolean matchFirst,
+                                                                 List<AppGuiComponent> currentScreenComponents)
             throws ActionParsingException {
 
         Entry<AppGuiComponent, Double> componentFound = null;
@@ -1331,7 +1334,8 @@ public class NLActionS2RParser {
                             (Function.identity(), component -> {
 
                                 try {
-                                    List<AppGuiComponent> siblingsComponents = getSiblings(component);
+                                    List<AppGuiComponent> siblingsComponents = getSiblings(component,
+                                            currentScreenComponents);
 
                                     return matchSiblings(siblingsComponents, textToMatch, skipTextViews,
                                             allowedComponents, matchFirst);
@@ -1437,10 +1441,23 @@ public class NLActionS2RParser {
         return result;
     }
 
-    private List<AppGuiComponent> getSiblings(AppGuiComponent component) throws SQLException {
-        DynGuiComponentDao dao = new DynGuiComponentDao();
-        EntityManager em = DBUtils.createEntityManager();
-        return Transform.getGuiComponents(dao.findSiblings(component.getDbId(), em));
+    private List<AppGuiComponent> getSiblings(AppGuiComponent component,
+                                              List<AppGuiComponent> currentScreenComponents) throws SQLException {
+
+        List<AppGuiComponent> siblings = currentScreenComponents.stream()
+                .filter(comp -> comp.getParent() !=null && comp.getParent().getDbId().equals(component.getParent().getDbId())
+                        && !comp.getDbId().equals(component.getDbId()))
+                .collect(Collectors.toList());
+        return siblings;
+
+
+
+        //------------------------------------
+
+//        DynGuiComponentDao dao = new DynGuiComponentDao();
+//        EntityManager em = DBUtils.createEntityManager();
+//        List<AppGuiComponent> guiComponents = Transform.getGuiComponents(dao.findSiblings(component.getDbId(), em));
+//        return guiComponents;
     }
 
     private double matchSiblings(List<AppGuiComponent> siblingsComponents, PreProcessedText textToMatch, boolean

@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.appselect;
 
+import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
@@ -56,8 +57,14 @@ public class ConfirmAppAction extends ChatBotAction {
 
         String appNameVersion = appOption.get().getValue1();
         String[] tokens = appNameVersion.split("v\\.");
-        state.put(APP, tokens[0].trim());
+        String appName = tokens[0].trim();
+        state.put(APP_NAME, appName);
         state.put(APP_VERSION, tokens[1].trim());
+
+        List<String> packageNames = AppNamesMappings.getPackageNames(appName);
+        if (packageNames==null || packageNames.isEmpty())
+            throw new RuntimeException("Could not find packages for " + appName);
+        state.put(APP_PACKAGE, packageNames.get(0));
 
         state.put(APP_CONFIRMATION, true);
         return createChatBotMessages(MessageFormat.format("You selected \"{0}\", is that right?", appNameVersion));

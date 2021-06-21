@@ -13,6 +13,7 @@ const config = {
     botName: "BURT",
     serverEndpoint: "http://localhost:8081",
     logosPath: "/app_logos/",
+    crashScopeDataPath: "/CrashScope-Data/",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
     startService: "/start",

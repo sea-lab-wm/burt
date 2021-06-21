@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.s2r;
 
+import sealab.burt.qualitychecker.BurtConfigPaths;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
@@ -23,12 +24,11 @@ public class ProvideS2RFirstAction extends ChatBotAction {
         state.put(COLLECTING_S2R, true);
         state.remove(COLLECTING_EB);
 
-        String appName = state.get(APP).toString();
+        String appName = state.get(APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
         String resourcesPath = Path.of("..", "burt-quality-checker", "src", "main", "resources").toString();
         String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-//        String crashScopeDataPath = Path.of("..", "data", "CrashScope-Data").toString();
-        String crashScopeDataPath = null;
+        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
 
         if (!state.containsKey(S2R_CHECKER))
             state.put(S2R_CHECKER,

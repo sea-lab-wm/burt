@@ -1,15 +1,11 @@
 package sealab.burt.server.statecheckers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserResponse;
-import sealab.burt.server.output.OutputMessageObj;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;

@@ -16,7 +16,7 @@ import sealab.burt.server.actions.eb.ProvideEBAction;
 import sealab.burt.server.actions.eb.ProvideEBNoParseAction;
 import sealab.burt.server.actions.ob.*;
 import sealab.burt.server.actions.others.EndConversationAction;
-import sealab.burt.server.actions.others.ProvideBugReportAction;
+import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.actions.others.ProvideParticipantIdAction;
 import sealab.burt.server.actions.others.UnexpectedErrorAction;
 import sealab.burt.server.actions.s2r.*;
@@ -87,7 +87,7 @@ class ConversationController {
 
             //--------OTHERS-----------//
 
-            put(REPORT_SUMMARY, new ProvideBugReportAction());
+            put(REPORT_SUMMARY, new GenerateBugReportAction());
             put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
             put(ENDING, new EndConversationAction());
 

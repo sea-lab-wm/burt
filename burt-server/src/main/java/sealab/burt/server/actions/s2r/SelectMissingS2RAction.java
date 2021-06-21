@@ -9,25 +9,40 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.actions.commons.ScreenshotPathUtils;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
+import sealab.burt.server.output.BugReportElement;
 import sealab.burt.server.statecheckers.QualityStateUpdater;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static sealab.burt.server.StateVariable.S2R_ALL_MISSING;
-import static sealab.burt.server.StateVariable.S2R_QUALITY_RESULT;
+import static sealab.burt.server.StateVariable.*;
+import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
 public class SelectMissingS2RAction extends ChatBotAction {
 
     public SelectMissingS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
+    }
+
+    public static List<KeyValues> getStepOptions(List<AppStep> cleanedInferredSteps,
+                                                 ConcurrentHashMap<StateVariable, Object> state) {
+        return cleanedInferredSteps.stream()
+                .map(step -> {
+
+                    String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(step, state);
+                    return new KeyValues(step.getId().toString(),
+                            UtilReporter.getNLStep(step, false), screenshotFile);
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -41,13 +56,31 @@ public class SelectMissingS2RAction extends ChatBotAction {
                 .findFirst().get();
 
         final List<AppStep> inferredSteps = assessment.getInferredSteps();
-        final List<AppStep> cleanedInferredSteps = cleanSteps(inferredSteps);
+        final List<AppStep> cleanedInferredSteps = cleanSteps(inferredSteps, state);
 
-        IntStream.range(0, cleanedInferredSteps.size()).forEach( i ->
+        //---------------------------------------------------
+
+        if (cleanedInferredSteps.isEmpty()) {
+
+            S2RQualityAssessment highQualityAssessment = feedback.getQualityAssessments().stream()
+                    .filter(qa -> qa.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
+                    .findFirst().orElse(null);
+            String s2rHQMissing = (String) state.get(S2R_HQ_MISSING);
+            this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
+
+            if (s2rHQMissing != null)
+                QualityStateUpdater.addStepAndUpdateGraphState(state, s2rHQMissing, highQualityAssessment);
+
+            return createChatBotMessages("Got it, what is the next step?");
+        }
+
+        //---------------------------------------------------
+
+        IntStream.range(0, cleanedInferredSteps.size()).forEach(i ->
                 cleanedInferredSteps.get(i).setId((long) i)
         );
 
-        List<KeyValues> stepOptions = getStepOptions(cleanedInferredSteps);
+        List<KeyValues> stepOptions = getStepOptions(cleanedInferredSteps, state);
 
         state.put(S2R_ALL_MISSING, cleanedInferredSteps);
 
@@ -63,22 +96,17 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
     }
 
-    public static List<KeyValues> getStepOptions(List<AppStep> cleanedInferredSteps) {
-        return cleanedInferredSteps.stream()
-                .map(step -> {
-                    String screenshotFile = step.getScreenshotFile();
-                    return new KeyValues(step.getId().toString(),
-                            UtilReporter.getNLStep(step, false),
-                            screenshotFile == null ? QualityStateUpdater.DEFAULT_SCREENSHOT :
-                            screenshotFile);
-                })
-                .collect(Collectors.toList());
-    }
-
-    private List<AppStep> cleanSteps(List<AppStep> steps) {
+    private List<AppStep> cleanSteps(List<AppStep> steps, ConcurrentHashMap<StateVariable, Object> state) {
 
         if (steps == null) return null;
         if (steps.isEmpty()) return steps;
+
+        List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
+
+        if (containsOpenAppStep(stepElements))
+            steps = steps.stream()
+                    .filter(appStep -> !DeviceUtils.isOpenApp(appStep.getAction()))
+                    .collect(Collectors.toList());
 
         List<AppStep> cleanedSteps = new ArrayList<>();
         for (int i = 0; i < steps.size(); ) {
@@ -129,6 +157,15 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
         }
         return cleanedSteps;
+    }
+
+    private boolean containsOpenAppStep(List<BugReportElement> stepElements) {
+
+        if(stepElements == null) return false;
+
+        return stepElements.stream()
+                .anyMatch(step -> step.getOriginalElement() != null
+                        && DeviceUtils.isOpenApp(((AppStep) step.getOriginalElement()).getAction()));
     }
 
 }

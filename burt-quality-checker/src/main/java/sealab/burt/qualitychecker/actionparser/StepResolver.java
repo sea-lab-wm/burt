@@ -229,7 +229,9 @@ class StepResolver {
         Integer event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
         final boolean isOpenApp = DeviceUtils.isOpenApp(event);
         if (isOpenApp) {
-            return new AppStep(event, null, app.getPackageName());
+            AppStep appStep = new AppStep(event, null, app.getPackageName());
+            appStep.setScreenshotFile(null); //FIXME: change the screenshot file for "open app"
+            return appStep;
         }
         return null;
     }
@@ -519,6 +521,9 @@ class StepResolver {
         step.setAction(event);
         step.setText(text);
         step.setCurrentState(state);
+        //FIXME: this one wouldn't have an annotated component,
+        // so setting the state screenshot may cause some confusion
+        step.setScreenshotFile(state.getScreenshotPath());
 
         //---------------------------
         //Determine the score of this step (based on the similarity score of the component) and set the component to it
