@@ -1,4 +1,4 @@
-package sealab.burt.qualitychecker;
+package sealab.burt.nlparser;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.nlparser.euler.actions.HeuristicsNLActionParser;

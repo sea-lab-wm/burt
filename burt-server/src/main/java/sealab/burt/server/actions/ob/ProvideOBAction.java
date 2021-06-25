@@ -1,13 +1,11 @@
 package sealab.burt.server.actions.ob;
 
-import sealab.burt.qualitychecker.BurtConfigPaths;
 import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.msgparsing.Intent;
 
-import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;

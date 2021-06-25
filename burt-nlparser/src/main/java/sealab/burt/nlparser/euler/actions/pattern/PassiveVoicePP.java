@@ -45,6 +45,13 @@ public class PassiveVoicePP extends NLActionPatternParser {
 					List<NLAction> actions3 = processVerb(dependencies, edge1.second);
 					allActions.addAll(actions3);
 				}
+
+				List<Pair<GrammaticalRelation, IndexedWord>> edges3 = DependenciesUtils.getChildRelations(dependencies,
+						verbToken, "parataxis");
+				for (Pair<GrammaticalRelation, IndexedWord> edge1 : edges3) {
+					List<NLAction> actions3 = processVerb(dependencies, edge1.second);
+					allActions.addAll(actions3);
+				}
 			}
 		}
 

@@ -1,4 +1,4 @@
-package sealab.burt.qualitychecker;
+package sealab.burt.nlparser;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -6,6 +6,8 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
+import sealab.burt.BurtConfigPaths;
+import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import seers.appcore.xml.XMLHelper;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledBugReport;
@@ -71,11 +73,24 @@ class NLParserTest {
 
 
     @Test
-    void parseS2R() throws Exception {
+    void parseSentencesTest() throws Exception {
 
         List<String> allSentences = Arrays.asList(
 //                "enter fill up",
-                "I entered 23 gallons"
+//                "Maximum Fillup cost under statistics is displaying incorrectly"
+//                "Links within Wikipedia don't work any more" //should not be parsed
+//                "Tried hitting recalculate in the statistics page but it still comes up with the incorrect Maximum Cost"
+//                "Actual:success dialog was shown without any text"
+//                "After I use the small plus to add a new record this symbol is gone"
+//                "The plus symbol is gone."
+//                "Transactions are deleted (!)"
+//                "No new file is anywhere in Google Drive" //should not be parsed
+//                "The color is unset."
+//                "4. Any further attempts to start the app cause crashes" // cannot be parse
+//                "Footer is removed (balance and date)."
+//                "Context Menus disappear on device rotation"
+
+//                "I entered 23 gallons"
 //                ,
 //                "Entered all the fillup data and goto History Tab",
 //                "Add Service Interval",
@@ -89,7 +104,6 @@ class NLParserTest {
     }
 
     private void parseSentences(List<String> allSentences) throws Exception {
-        String baseFolder = Path.of("..", "burt-nlparser").toString();
         Float numErrors = 0.0f;
         Integer totalNumSentences = allSentences.size();
 
@@ -98,7 +112,7 @@ class NLParserTest {
             log.debug("* Parsing sentence:");
             log.debug(sentence);
 
-            List<NLAction> actions = NLParser.parseText(baseFolder, null, sentence);
+            List<NLAction> actions = NLParser.parseText(BurtConfigPaths.nlParsersBaseFolder, null, sentence);
 
             if (actions == null || actions.isEmpty()) {
                 numErrors++;

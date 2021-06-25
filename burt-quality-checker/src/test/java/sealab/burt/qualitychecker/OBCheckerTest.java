@@ -35,7 +35,8 @@ class OBCheckerTest {
 
     @Test
     void testSingleOBChecking() throws Exception {
-        String ob = "the app crashed when entering fillup";
+//        String ob = "the app crashed when entering fillup";
+        String ob = "Maximum Fillup cost under statistics is displaying incorrectly";
         var app = new ImmutablePair<>("android-mileage", "3.1.1");
 
         var checker = new OBChecker(app.getKey(), app.getValue());

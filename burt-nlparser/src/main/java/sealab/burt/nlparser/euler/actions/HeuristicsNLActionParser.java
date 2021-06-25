@@ -1,5 +1,6 @@
 package sealab.burt.nlparser.euler.actions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,14 +33,14 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-public class HeuristicsNLActionParser extends NLActionParser {
+public @Slf4j
+class HeuristicsNLActionParser extends NLActionParser {
 
 	public static final String DEFAULT_PARAG_PATTERNS_FILE = "paragraph_patterns.csv";
 	public static final String DEFAULT_SENTCE_PATTERNS_CSV = "sentence_patterns.csv";
 	public static final String DEFAULT_PARSERS_FILE = "parsers.csv";
 
 	private static HashMap<String, NLActionPatternParser> patternParsers = new HashMap<>();
-	private static final Logger LOGGER = LoggerFactory.getLogger(HeuristicsNLActionParser.class);
 
 	static private List<PatternMatcher> paragraphPMs = new ArrayList<>();
 	static private List<PatternMatcher> sentencePMs = new ArrayList<>();
@@ -72,7 +73,7 @@ public class HeuristicsNLActionParser extends NLActionParser {
 					patternParsers = loadParsers(parsersFile);
 				}
 			} catch (Exception e) {
-				LOGGER.error("Error loading the parsers", e);
+				log.error("Error loading the parsers", e);
 			}
 		}
 
@@ -95,7 +96,7 @@ public class HeuristicsNLActionParser extends NLActionParser {
 				}
 			}
 		} catch (Exception e) {
-			LOGGER.error("Problem loading the patterns!", e);
+			log.error("Problem loading the patterns!", e);
 		}
 	}
 
@@ -137,6 +138,8 @@ public class HeuristicsNLActionParser extends NLActionParser {
 	public List<BugScenario> parseActions(String systemName, ParsedBugReport bugReport) throws Exception {
 
 		sentencesMatched = findS2RandOBSentences(bugReport);
+
+		log.debug("Sentences matched to the patterns: " + sentencesMatched.size());
 
 		List<HashMap<Sentence, List<String>>> groupedSentences = determineScenarios(sentencesMatched);
 
@@ -272,7 +275,7 @@ public class HeuristicsNLActionParser extends NLActionParser {
 
 	public static HashMap<String, NLActionPatternParser> loadParsers(String parsersFile) throws Exception {
 
-		LOGGER.debug("Loading NL parsers...");
+		log.debug("Loading NL parsers...");
 
 		HashMap<String, NLActionPatternParser> parsers = new LinkedHashMap<>();
 
@@ -395,7 +398,7 @@ public class HeuristicsNLActionParser extends NLActionParser {
 					parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_COND_NEG", "S_OB_NEG_COND");
 
 				} catch (Exception e) {
-					LOGGER.error("Error for sentence " + sentence.getId() + " [" + systemName + " #" + bugId + "]", e);
+					log.error("Error for sentence " + sentence.getId() + " [" + systemName + " #" + bugId + "]", e);
 				}
 
 			}
