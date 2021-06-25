@@ -7,6 +7,7 @@ import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
 import sealab.burt.qualitychecker.actionparser.ScreenResolver;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +30,18 @@ class OBChecker {
     private GraphState currentState;
     private AppGraphInfo executionGraph;
 
-    public OBChecker(String appName, String appVersion, String parsersBaseFolder, String resourcesPath,
+    public OBChecker(String appName, String appVersion) {
+        this.appName = appName;
+        this.appVersion = appVersion;
+        this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
+        this.crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
+
+
+        s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
+    }
+
+    /*public OBChecker(String appName, String appVersion, String parsersBaseFolder, String resourcesPath,
                      String crashScopeDataPath) {
         this.appName = appName;
         this.appVersion = appVersion;
@@ -39,11 +51,12 @@ class OBChecker {
 
         s2rParser = new NLActionS2RParser(null, resourcesPath, true);
         resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
-    }
+    }*/
 
     public QualityResult checkOb(String obDescription) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, obDescription);
-        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
+        if (nlActions.isEmpty()) return new QualityResult(NOT_PARSED);
+        if (nlActions.stream().noneMatch(NLAction::isOBAction)) return new QualityResult(NOT_PARSED);
         return matchActions(nlActions);
     }
 

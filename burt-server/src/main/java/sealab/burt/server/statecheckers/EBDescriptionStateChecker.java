@@ -21,7 +21,7 @@ public class EBDescriptionStateChecker extends StateChecker {
     private final static ConcurrentHashMap<String, ActionName> nextActions= new ConcurrentHashMap<>(){{
         put(QualityResult.Result.MATCH.name(), PROVIDE_S2R_FIRST);
         put(QualityResult.Result.NO_MATCH.name(), CLARIFY_EB);
-        put(QualityResult.Result.NO_PARSED.name(), PROVIDE_EB_NO_PARSE);
+        put(QualityResult.Result.NOT_PARSED.name(), PROVIDE_EB_NO_PARSE);
     }};
 
     public EBDescriptionStateChecker() {

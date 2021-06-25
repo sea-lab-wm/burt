@@ -7,7 +7,6 @@ import java.util.List;
 
 public class NegativeConditionalPP extends NLActionPatternParser {
 
-
 	private ConditionalPositivePP pp;
 
 	public NegativeConditionalPP(boolean debugEnabled) {

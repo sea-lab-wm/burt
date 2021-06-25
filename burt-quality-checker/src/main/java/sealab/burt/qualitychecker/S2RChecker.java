@@ -52,7 +52,17 @@ class S2RChecker {
     private AppGraphInfo executionGraph;
     private HashMap<Integer, Integer> statesExecuted = new HashMap<>();
 
-    public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder,
+    public S2RChecker(String appName, String appVersion) {
+        this.appName = appName;
+        this.appVersion = appVersion;
+        this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
+        this.crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
+
+        s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, false);
+        resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
+    }
+
+   /* public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder,
                       String crashScopeDataPath) {
         this.appName = appName;
         this.appVersion = appVersion;
@@ -61,20 +71,21 @@ class S2RChecker {
 
         s2rParser = new NLActionS2RParser(null, resourcesPath, false);
         resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
-    }
+    }*/
 
     public QualityFeedback checkS2R(String S2RDescription) throws Exception {
-        List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, S2RDescription);
-        if (nlActions.isEmpty()) return QualityFeedback.noParsedFeedback();
-        return matchActions(nlActions, null);
+        return checkS2R(S2RDescription, null);
     }
 
-    public QualityFeedback checkS2R(String S2RDescription, int currentState) throws Exception {
+    public QualityFeedback checkS2R(String S2RDescription, Integer currentState) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, S2RDescription);
         if (nlActions.isEmpty()) return QualityFeedback.noParsedFeedback();
+        List<NLAction> s2rActions = nlActions.stream().filter(NLAction::isSRAction).collect(Collectors.toList());
+        if (s2rActions.isEmpty()) return QualityFeedback.noParsedFeedback();
         return matchActions(nlActions, currentState);
     }
 
+/*
     public QualityFeedback checkS2R(NLAction action) throws Exception {
         readGraph();
 
@@ -84,7 +95,7 @@ class S2RChecker {
         log.debug("Current state: " + currentState);
 
         return matchAction(action);
-    }
+    }*/
 
     private QualityFeedback matchActions(List<NLAction> nlActions, Integer currentStateId) throws Exception {
         readGraph();
@@ -291,7 +302,7 @@ class S2RChecker {
 
         //no intermediate steps for open app
         if (DeviceUtils.isOpenApp(matchedStep.getAction())
-           || DeviceUtils.isCloseApp(matchedStep.getAction())) {
+                || DeviceUtils.isCloseApp(matchedStep.getAction())) {
             return;
         }
 

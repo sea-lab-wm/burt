@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Deprecated
 public @Slf4j
 class DBGraphReader {
 

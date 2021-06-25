@@ -29,8 +29,17 @@ public class GraphTransition implements Serializable {
 	private GraphState targetState;
 	private String name;
 	private String uniqueHash;
+	private double weight = 1.0;
 
 	private AppStep step;
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
 
 	/**
 	 * @return the sourceState

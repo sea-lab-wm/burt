@@ -29,12 +29,10 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Slf4j
-class NLParserTestIdealData {
+class S2RCheckerTestIdealScenarios {
 
     private final Path perfectScenariosPath = Path.of("..", "data",
             "euler_data", "2_ideal_scenarios", "perfect_scenarios");
-    private final Path parsedBugReportsPath = Path.of("..", "data",
-            "euler_data", "4_s2r_in_bug_reports_oracle");
 
     @BeforeAll
     static void setUp() {
@@ -42,9 +40,9 @@ class NLParserTestIdealData {
     }
 
     private static void disableLogging() {
-//        Logger.getLogger("sealab.burt.qualitychecker.actionparser").setLevel(Level.OFF);
-//        Logger.getLogger("sealab.burt.qualitychecker.S2RChecker").setLevel(Level.OFF);
-//        Logger.getLogger("sealab.burt.qualitychecker.graph").setLevel(Level.OFF);
+        Logger.getLogger("sealab.burt.qualitychecker.actionparser").setLevel(Level.OFF);
+        Logger.getLogger("sealab.burt.qualitychecker.S2RChecker").setLevel(Level.OFF);
+        Logger.getLogger("sealab.burt.qualitychecker.graph").setLevel(Level.OFF);
         Logger.getLogger("edu.stanford.nlp").setLevel(Level.OFF);
     }
 
@@ -54,12 +52,7 @@ class NLParserTestIdealData {
         String s2r = "I closed the app";
         var app = new ImmutablePair<>("android-mileage", "3.1.1");
 
-        String resourcesPath = "src/main/resources";
-        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
-
-        S2RChecker checker = new S2RChecker(app.getKey(), app.getValue(),
-                resourcesPath, parsersBaseFolder, crashScopeDataPath);
+        S2RChecker checker = new S2RChecker(app.getKey(), app.getValue());
 
         QualityFeedback feedback = checker.checkS2R(s2r);
 
@@ -68,105 +61,9 @@ class NLParserTestIdealData {
     }
 
     @Test
-    void testBugReports() throws Exception {
-
-        List<Pair<String, String>> apps = new LinkedList<>() {
-            {
-//                add(new ImmutablePair<>("gnucash-android", "2.1.3"));
-//                add(new ImmutablePair<>("droidweight", "1.5.4"));
-                add(new ImmutablePair<>("android-mileage", "3.1.1"));
-            }
-        };
-        String resourcesPath = "src/main/resources";
-        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
-
-        //------------------------------------
-
-        for (Pair<String, String> app : apps) {
-            String appName = app.getKey();
-            String appVersion = app.getValue();
-
-            try (Stream<Path> stream = Files.walk(parsedBugReportsPath)) {
-                List<Path> scenarioFiles = stream.filter(Files::isRegularFile)
-                        .filter(path -> path.getFileName().toString().contains(appName + "#" + appVersion))
-                        .collect(Collectors.toList());
-
-                for (Path bugReportFile : scenarioFiles) {
-
-                    log.debug("-------------------------------------------------------------");
-                    log.debug("Processing: " + bugReportFile);
-
-                    S2RChecker checker = new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder,
-                            crashScopeDataPath);
-
-                    ShortLabeledBugReport bugReport = XMLHelper.readXML(ShortLabeledBugReport.class,
-                            bugReportFile.toFile());
-
-                    LinkedList<String> allSentences =
-                            bugReport.getDescription().getAllSentences().stream()
-                                    .filter(s -> StringUtils.isNotBlank(s.getSr()))
-                                    .map(ShortLabeledDescriptionSentence::getValue)
-                                    .collect(Collectors.toCollection(LinkedList::new));
-
-                    if (StringUtils.isNotBlank(bugReport.getTitle().getSr())) {
-                        String title = bugReport.getTitle().getValue();
-                        allSentences.add(0, title);
-                    }
-
-                    for (String s2rSentence : allSentences) {
-
-                        log.debug("Action: " + s2rSentence);
-                        log.debug("S2R: " + s2rSentence);
-                        QualityFeedback qualityResult = checker.checkS2R(s2rSentence);
-
-                        List<S2RQualityCategory> assessmentResults = qualityResult.getAssessmentResults();
-                        log.debug("Quality results: " + assessmentResults.toString());
-
-                        if (Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED).equals(assessmentResults))
-                            log.warn(S2RQualityCategory.LOW_Q_NOT_PARSED.toString());
-                    }
-                }
-            }
-        }
-        //-------------------
-
-      /*  String file = "../data/euler_data" +
-                "/4_s2r_in_bug_reports_oracle/android-mileage#3.1.1_64.xml";
-        ShortLabeledBugReport bugReport = XMLHelper.readXML(ShortLabeledBugReport.class, file);
-
-//        System.out.println(bugReport);
-
-        String appName = "Mileage";
-        String appVersion = "3.1.1";
-        String resourcesPath = "src/main/resources";
-        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-        S2RChecker checker = new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder);
-
-        LinkedList<String> allSentences =
-                bugReport.getDescription().getAllSentences().stream()
-                        .filter(s -> StringUtils.isNotBlank(s.getSr()))
-                        .map(ShortLabeledDescriptionSentence::getValue)
-                        .collect(Collectors.toCollection(LinkedList::new));
-
-        if (StringUtils.isNotBlank(bugReport.getTitle().getOb())) {
-            String title = bugReport.getTitle().getValue();
-            allSentences.add(0, title);
-        }
-
-        for (String sentence : allSentences) {
-            System.out.println(sentence);
-            QualityResult qualityResult = checker.checkS2R(sentence);
-            System.out.println(qualityResult);
-        }*/
-    }
-
-    @Test
     void testOneIdealScenario() throws Exception {
         String appName = "android-mileage";
         String appVersion = "3.1.1";
-        String resourcesPath = "src/main/resources";
-        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
         boolean addPastTense = true;
         boolean includeSubject = true;
         boolean addPerfectTense = true;
@@ -174,7 +71,7 @@ class NLParserTestIdealData {
         Path scenarioFile = Path.of("..", "data", "euler_data",
                 "2_ideal_scenarios", "perfect_scenarios", "android-mileage#3.1.1_65.csv");
 
-        parseScenario(appName, appVersion, resourcesPath, parsersBaseFolder, addPastTense, includeSubject,
+        parseScenario(appName, appVersion, addPastTense, includeSubject,
                 scenarioFile, addPerfectTense, 5);
     }
 
@@ -222,13 +119,11 @@ class NLParserTestIdealData {
     private void testApps(boolean addPastTense, boolean includeSubject, boolean addPerfectTense) throws Exception {
         List<Pair<String, String>> apps = new LinkedList<>() {
             {
-                add(new ImmutablePair<>("gnucash-android", "2.1.3"));
+//                add(new ImmutablePair<>("gnucash-android", "2.1.3"));
                 add(new ImmutablePair<>("droidweight", "1.5.4"));
                 add(new ImmutablePair<>("android-mileage", "3.1.1"));
             }
         };
-        String resourcesPath = "src/main/resources";
-        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
 
         //------------------------------------
 
@@ -243,14 +138,14 @@ class NLParserTestIdealData {
 
                 for (Path scenarioFile : scenarioFiles) {
 
-                    parseScenario(appName, appVersion, resourcesPath, parsersBaseFolder, addPastTense, includeSubject,
+                    parseScenario(appName, appVersion, addPastTense, includeSubject,
                             scenarioFile, addPerfectTense, null);
                 }
             }
         }
     }
 
-    private void parseScenario(String appName, String appVersion, String resourcesPath, String parsersBaseFolder,
+    private void parseScenario(String appName, String appVersion,
                                boolean addPastTense, boolean includeSubject, Path scenarioFile, boolean addPerfectTense,
                                Integer sequence)
             throws Exception {
@@ -258,7 +153,7 @@ class NLParserTestIdealData {
         log.debug("-------------------------------------------------------------");
         log.debug("Processing: " + scenarioFile);
 
-        S2RChecker checker = new S2RChecker(appName, appVersion, resourcesPath, parsersBaseFolder, null);
+        S2RChecker checker = new S2RChecker(appName, appVersion);
 
         List<BugScenario> bugScenarios = DataReader.readScenarios(scenarioFile.toString());
 

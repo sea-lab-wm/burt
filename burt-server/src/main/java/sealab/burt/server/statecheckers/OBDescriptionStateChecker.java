@@ -18,7 +18,7 @@ class OBDescriptionStateChecker extends StateChecker {
         put(QualityResult.Result.MATCH.name(), PROVIDE_EB);
         put(QualityResult.Result.MULTIPLE_MATCH.name(), SELECT_OB_SCREEN);
         put(QualityResult.Result.NO_MATCH.name(), REPHRASE_OB);
-        put(QualityResult.Result.NO_PARSED.name(), PROVIDE_OB_NO_PARSE);
+        put(QualityResult.Result.NOT_PARSED.name(), PROVIDE_OB_NO_PARSE);
     }};
 
     public OBDescriptionStateChecker() {

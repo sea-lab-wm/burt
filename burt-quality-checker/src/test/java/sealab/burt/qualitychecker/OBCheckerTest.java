@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import seers.appcore.xml.XMLHelper;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledBugReport;
 import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledDescriptionSentence;
@@ -33,20 +34,29 @@ class OBCheckerTest {
 
 
     @Test
+    void testSingleOBChecking() throws Exception {
+        String ob = "the app crashed when entering fillup";
+        var app = new ImmutablePair<>("android-mileage", "3.1.1");
+
+        var checker = new OBChecker(app.getKey(), app.getValue());
+
+        QualityResult result = checker.checkOb(ob);
+
+        log.debug(result.toString());
+
+    }
+
+
+    @Test
     void checkOb() throws Exception {
 
         String file = "../data/euler_data" +
                 "/4_s2r_in_bug_reports_oracle/android-mileage#3.1.1_64.xml";
         ShortLabeledBugReport bugReport = XMLHelper.readXML(ShortLabeledBugReport.class, file);
 
-        String resourcesPath = "src/main/resources";
-
         var app = new ImmutablePair<>("android-mileage", "3.1.1");
-        String parsersBaseFolder = Path.of("..", "burt-nlparser").toString();
-        String crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
 
-        OBChecker checker = new OBChecker(app.getLeft(), app.getRight(), parsersBaseFolder, resourcesPath,
-                crashScopeDataPath);
+        OBChecker checker = new OBChecker(app.getLeft(), app.getRight());
 
         LinkedList<String> allObSentences =
                 bugReport.getDescription().getAllSentences().stream()

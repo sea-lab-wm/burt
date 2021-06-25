@@ -26,6 +26,6 @@ class QualityResult {
     }
 
     public enum Result {
-        MATCH, MULTIPLE_MATCH, NO_MATCH, NO_PARSED
+        MATCH, MULTIPLE_MATCH, NO_MATCH, NOT_PARSED
     }
 }

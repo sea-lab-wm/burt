@@ -25,9 +25,7 @@ public class ConditionalPositivePP extends NLActionPatternParser {
 
 		IndexedWord verbToken = dependencies.getFirstRoot();
 
-		List<NLAction> actions = processVerb(dependencies, verbToken);
-
-		return actions;
+		return processVerb(dependencies, verbToken);
 
 	}
 
@@ -38,7 +36,7 @@ public class ConditionalPositivePP extends NLActionPatternParser {
 		// check for the verb
 		if (!TextProcessor.checkGeneralPos(verbToken.tag(), "VB")) {
 
-			if (verbToken.lemma().toLowerCase().equals("crash")) {
+			if (verbToken.lemma().equalsIgnoreCase("crash")) {
 				actions = processCrash(dependencies, verbToken);
 			}
 			return actions;

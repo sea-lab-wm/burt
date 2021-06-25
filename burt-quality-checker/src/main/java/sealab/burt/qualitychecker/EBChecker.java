@@ -1,11 +1,10 @@
 package sealab.burt.qualitychecker;
 
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
-import sealab.burt.qualitychecker.graph.AppGraphInfo;
 
 import java.util.List;
 
-import static sealab.burt.qualitychecker.QualityResult.Result.NO_PARSED;
+import static sealab.burt.qualitychecker.QualityResult.Result.NOT_PARSED;
 
 public class EBChecker {
 
@@ -21,7 +20,7 @@ public class EBChecker {
 
     public QualityResult checkEb(String ebDescription) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, app, ebDescription);
-        if (nlActions.isEmpty()) return new QualityResult(NO_PARSED);
+        if (nlActions.isEmpty()) return new QualityResult(NOT_PARSED);
         return matchActions(nlActions);
     }
 

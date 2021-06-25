@@ -75,6 +75,10 @@ class JSONGraphReader {
                 .collect(Collectors.toList());
 
 
+        if(executionFiles.isEmpty())
+            throw new RuntimeException("There are no execution files in " + dataLocation);
+
+
         //----------------------
         List<Execution> executions = new ArrayList<>();
         Long componentId = 0L;
@@ -137,11 +141,19 @@ class JSONGraphReader {
             executions.add(execution);
         }
 
+
+        if(executions.isEmpty())
+            throw new RuntimeException("There is no execution data to build the graph");
+
         //----------------------------------------
 
         GraphGenerator generator = new GraphGenerator();
 
         AppGraphInfo graphInfo = generator.generateGraph(executions, app);
+
+        if(graphInfo == null || graphInfo.getGraph().vertexSet().isEmpty())
+            throw new RuntimeException("The graph is empty");
+
         graphs.put(key, graphInfo);
     }
 
