@@ -1,6 +1,7 @@
 package sealab.burt.nlparser.euler.actions.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 
 import java.io.*;
@@ -127,49 +128,52 @@ public class GeneralUtils {
     public static String getEventName(int event) {
         String eventName = "unknown";
         switch (event) {
-            case DeviceHelper.CLICK:
+            case DeviceActions.CLICK:
                 eventName = "click";
                 break;
-            case DeviceHelper.TYPE:
+            case DeviceActions.TYPE:
                 eventName = "type";
                 break;
-            case DeviceHelper.CLICK_TYPE:
+            case DeviceActions.CLICK_TYPE:
                 eventName = "click + type";
                 break;
-            case DeviceHelper.OPEN_APP:
+            case DeviceActions.OPEN_APP:
                 eventName = "open app";
                 break;
-            case DeviceHelper.LONG_CLICK:
+            case DeviceActions.CLOSE_APP:
+                eventName = "close app";
+                break;
+            case DeviceActions.LONG_CLICK:
                 eventName = "long click";
                 break;
-            case DeviceHelper.BACK:
+            case DeviceActions.BACK:
                 eventName = "back";
                 break;
-            case DeviceHelper.ROTATION:
+            case DeviceActions.ROTATION:
                 eventName = "rotate";
                 break;
-            case DeviceHelper.KEYEVENT:
+            case DeviceActions.KEYEVENT:
                 eventName = "key event";
                 break;
-            case DeviceHelper.MENU_BTN:
+            case DeviceActions.MENU_BTN:
                 eventName = "click menu";
                 break;
-            case DeviceHelper.DELETE_TEXT:
+            case DeviceActions.DELETE_TEXT:
                 eventName = "delete text";
                 break;
-            case DeviceHelper.SWIPE:
+            case DeviceActions.SWIPE:
                 eventName = "swipe";
                 break;
-            case DeviceHelper.SWIPE_UP:
+            case DeviceActions.SWIPE_UP:
                 eventName = "swipe up";
                 break;
-            case DeviceHelper.SWIPE_RIGHT:
+            case DeviceActions.SWIPE_RIGHT:
                 eventName = "swipe right";
                 break;
-            case DeviceHelper.SWIPE_DOWN:
+            case DeviceActions.SWIPE_DOWN:
                 eventName = "swipe down";
                 break;
-            case DeviceHelper.SWIPE_LEFT:
+            case DeviceActions.SWIPE_LEFT:
                 eventName = "swipe left";
                 break;
         }

@@ -5,3 +5,4 @@ CLICK: tap, tip, click, press, push, select, go, choose, check, pick, hit, click
 SWIPE: swipe, drag, sweep, scroll, scroll down, scroll up, scroll right, scroll left, swipe down, swipe up, swipe right, swipe left
 TYPE: type, edit, input, fill, typewrite, insert, infix, enter, introduce, write, set, add, change, press
 ROTATE: rotate, change, set, turn
+CLOSE: close, terminate, shut down

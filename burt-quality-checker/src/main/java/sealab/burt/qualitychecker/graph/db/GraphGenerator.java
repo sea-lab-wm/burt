@@ -6,13 +6,13 @@ import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
 import edu.semeru.android.core.entity.model.fusion.Execution;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import edu.semeru.android.core.entity.model.fusion.Step;
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.qualitychecker.graph.*;
 
 import javax.persistence.EntityManager;
@@ -250,7 +250,7 @@ class GraphGenerator {
             } else if (sourceScreen == null) {
                 //set the same screen of the previous step to "back" steps
                 if ((DeviceUtils.isClickBackButton(stepAction) ||
-                        DeviceUtils.isAnyType(stepAction) || DeviceHelper.CLICK_TYPE == stepAction)
+                        DeviceUtils.isAnyType(stepAction) || DeviceActions.CLICK_TYPE == stepAction)
                         && previousStep != null) {
                     final ImmutablePair<Screen, GraphState> screenPair = stepScreens.get(previousStep.getId());
                     //only if the previous step has a screen
@@ -266,7 +266,7 @@ class GraphGenerator {
                 }
             } else if (tgtScreen == null) {
                 //assume that types lead to the same screen, i.e., src screen == tgt screen
-                if (DeviceUtils.isAnyType(stepAction) || DeviceHelper.CLICK_TYPE == stepAction) {
+                if (DeviceUtils.isAnyType(stepAction) || DeviceActions.CLICK_TYPE == stepAction) {
                     tgtScreen = sourceScreen;
                     nextStep.setScreen(tgtScreen);
                 } else {
@@ -355,7 +355,7 @@ class GraphGenerator {
             states.put(sourceState.getUniqueHash(), sourceState);
 
             Step startAppStep = new Step();
-            startAppStep.setAction(DeviceHelper.OPEN_APP);
+            startAppStep.setAction(DeviceActions.OPEN_APP);
             startAppStep.setSequenceStep(0);
 
             final long executionId2 = executionId != null ? executionId : 0L;
@@ -490,9 +490,9 @@ class GraphGenerator {
 
         final int stepAction = step.getAction();
 
-        if (DeviceHelper.CLICK_TYPE == stepAction) {
-//            appSteps.add(getNewStep(executionId, previousStep, component, DeviceHelper.CLICK));
-            appSteps.add(getNewStep(executionId, step, component, DeviceHelper.TYPE));
+        if (DeviceActions.CLICK_TYPE == stepAction) {
+//            appSteps.add(getNewStep(executionId, previousStep, component, DeviceActions.CLICK));
+            appSteps.add(getNewStep(executionId, step, component, DeviceActions.TYPE));
         } else {
             appSteps.add(getNewStep(executionId, step, component, stepAction));
         }
@@ -526,7 +526,7 @@ class GraphGenerator {
 
     private String getStepText(Step step) {
 
-        if (step.getAction() == DeviceHelper.TYPE) {
+        if (step.getAction() == DeviceActions.TYPE) {
             String textEntry = step.getTextEntry();
             Pattern p = Pattern.compile("(?s).+shell input text (.+)");
             Matcher m = p.matcher(textEntry);

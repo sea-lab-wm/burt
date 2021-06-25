@@ -1,9 +1,9 @@
 package sealab.burt.qualitychecker.actionparser;
 
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.qualitychecker.graph.*;
 
 import java.util.*;
@@ -88,7 +88,7 @@ class ScreenResolver {
 
             try {
                 Map.Entry<AppGuiComponent, Double> component = s2rParser.determineComponent(currNLAction,
-                        stateComponents, DeviceHelper.CLICK, false);
+                        stateComponents, DeviceActions.CLICK, false);
                 matchedStates.put(candidateState, distance);
             } catch (ActionParsingException e) {
 //                log.debug("Could not find the component in the candidate state/screen: "

@@ -7,7 +7,6 @@ import edu.semeru.android.core.dao.exception.CRUDException;
 import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import edu.semeru.android.core.helpers.device.AndroidKeyEvents;
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import edu.semeru.android.core.helpers.device.KeyCode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
@@ -15,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.qualitychecker.graph.AppGuiComponent;
 import sealab.burt.qualitychecker.graph.Appl;
 import sealab.burt.qualitychecker.graph.db.DBUtils;
@@ -27,7 +27,6 @@ import seers.textanalyzer.TextProcessor;
 import seers.textanalyzer.entity.Sentence;
 import seers.textanalyzer.entity.Token;
 
-import javax.persistence.EntityManager;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -328,14 +327,14 @@ public class NLActionS2RParser {
     private List<DevServerCommand> getPreTypeAdditionalCommands(NLAction nlAction, AppGuiComponent component) {
         ArrayList<DevServerCommand> additionalCommands = new ArrayList<>();
         //click on the component
-        additionalCommands.add(new DevServerCommand(component.getDbId(), DeviceHelper.CLICK, null,
+        additionalCommands.add(new DevServerCommand(component.getDbId(), DeviceActions.CLICK, null,
                 component.getScreenId()));
 
         //delete the text
         //FIXME: externalize these words and add synonyms
         if (isTextField(component.getType()) && JavaUtils.getSet("change", "modify", "replace", "set").contains(nlAction
                 .getAction()))
-            additionalCommands.add(new DevServerCommand(component.getDbId(), DeviceHelper.DELETE_TEXT, null,
+            additionalCommands.add(new DevServerCommand(component.getDbId(), DeviceActions.DELETE_TEXT, null,
                     component.getScreenId()));
 
         return additionalCommands;
@@ -352,14 +351,14 @@ public class NLActionS2RParser {
             //case type 'x' in 'one line', then execute an "ENTER" key event
             if (preprocessedObject2.preprocessedTokens.stream().anyMatch(token1 -> "line".equalsIgnoreCase
                     (token1.getLemma()))) {
-                additionalCommands.add(new DevServerCommand(componentId, DeviceHelper.KEYEVENT, AndroidKeyEvents
+                additionalCommands.add(new DevServerCommand(componentId, DeviceActions.KEYEVENT, AndroidKeyEvents
                         .getStringKeyEvent(KeyCode.ENTER), screenId));
             }
         }
 
 
         //hack: if there is any popup suggesting words to type, a click would hide it (after the type)
-        additionalCommands.add(new DevServerCommand(componentId, DeviceHelper.CLICK, null, screenId));
+        additionalCommands.add(new DevServerCommand(componentId, DeviceActions.CLICK, null, screenId));
 
         return additionalCommands;
     }
@@ -452,15 +451,15 @@ public class NLActionS2RParser {
 
             if (componentFound != null) {
                 if (componentFound.getKey().getClickable())
-                    return DeviceHelper.CLICK;
+                    return DeviceActions.CLICK;
                 else if (componentFound.getKey().getLongClickable())
-                    return DeviceHelper.CLICK;
+                    return DeviceActions.CLICK;
                 else {
                     final AppGuiComponent parent = componentFound.getKey().getParent();
                     if (parent != null) {
                         final AppGuiComponent grandParent = parent.getParent();
                         if (parent.getClickable() || (grandParent != null && grandParent.getClickable()))
-                            return DeviceHelper.CLICK;
+                            return DeviceActions.CLICK;
                     }
                 }
             }
@@ -494,7 +493,7 @@ public class NLActionS2RParser {
             PreProcessedText preprocessedObject2 = preprocessText(nlAction.getObject2());
             if (StringUtils.isEmpty(object) && "outside".equalsIgnoreCase(preposition) && ComponentType.WINDOW.equals
                     (invIdxSpecificComponentTypes.get(preprocessedObject2.componentType))) {
-                event = DeviceHelper.BACK;
+                event = DeviceActions.BACK;
             }
         }
 
@@ -1724,12 +1723,12 @@ public class NLActionS2RParser {
             case OPEN:
                 //open the application
                 if (GeneralUtils.isAppWord(nlAction.getObject(), app.getName(), app.getPackageName()))
-                    return DeviceHelper.OPEN_APP;
+                    return DeviceActions.OPEN_APP;
                 else
-                    return DeviceHelper.CLICK;
+                    return DeviceActions.CLICK;
 
             case LONG_CLICK:
-                return DeviceHelper.LONG_CLICK;
+                return DeviceActions.LONG_CLICK;
             case CLICK:
             case TOGGLE:
 
@@ -1738,22 +1737,24 @@ public class NLActionS2RParser {
                 final PreProcessedText preProcessedObj2 = preprocessText(nlAction.getObject2());
 
                 if (isGoBack(preProcessedAction, preProcessedObj, preProcessedObj2)) {
-                    return DeviceHelper.BACK;
+                    return DeviceActions.BACK;
                 } else if (isMenuInActionOrObject(preProcessedObj, preProcessedObj2)) {
-                    return DeviceHelper.MENU_BTN;
+                    return DeviceActions.MENU_BTN;
                 }
-                return DeviceHelper.CLICK;
+                return DeviceActions.CLICK;
             case TYPE:
                 PreProcessedText preprocessedObject = preprocessText(nlAction.getObject());
                 if (containsBlankToken(preprocessedObject))
-                    return DeviceHelper.DELETE_TEXT;
+                    return DeviceActions.DELETE_TEXT;
                 if (getKeyValue(nlAction.getObject()) != null)
-                    return DeviceHelper.KEYEVENT;
-                return DeviceHelper.TYPE;
+                    return DeviceActions.KEYEVENT;
+                return DeviceActions.TYPE;
             case SWIPE:
                 return getSwipeDirection(nlAction);
             case ROTATE:
-                return DeviceHelper.ROTATION;
+                return DeviceActions.ROTATION;
+            case CLOSE:
+                return DeviceActions.CLOSE_APP;
         }
 
         return null;
@@ -1809,29 +1810,29 @@ public class NLActionS2RParser {
         }
 
         //FIXME: do something else for actions such as "swipe until costs" or "drag on all regions"
-        return DeviceHelper.SWIPE_UP;
+        return DeviceActions.SWIPE_UP;
 
     }
 
     private int getSwipeDirection(String action, String directionTok) {
         if (action.contains("scroll")) {
             if ("down".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_UP;
+                return DeviceActions.SWIPE_UP;
             if ("up".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_DOWN;
+                return DeviceActions.SWIPE_DOWN;
             if ("left".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_RIGHT;
+                return DeviceActions.SWIPE_RIGHT;
             if ("right".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_LEFT;
+                return DeviceActions.SWIPE_LEFT;
         } else {
             if ("down".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_DOWN;
+                return DeviceActions.SWIPE_DOWN;
             if ("up".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_UP;
+                return DeviceActions.SWIPE_UP;
             if ("left".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_LEFT;
+                return DeviceActions.SWIPE_LEFT;
             if ("right".equalsIgnoreCase(directionTok))
-                return DeviceHelper.SWIPE_RIGHT;
+                return DeviceActions.SWIPE_RIGHT;
         }
         return NO_SWIPE_DIRECTION;
     }
@@ -2052,7 +2053,7 @@ public class NLActionS2RParser {
 
 
     public enum ActionGroup {
-        OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE
+        OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE, CLOSE
     }
 
     public enum ComponentType {

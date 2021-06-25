@@ -29,8 +29,8 @@
 package sealab.burt.qualitychecker.actionparser;
 
 import edu.semeru.android.core.entity.model.App;
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 
 /**
  * {Insert class description here}
@@ -106,11 +106,11 @@ public class DevServerCommand {
     }
 
     public boolean isOpenAppCommand(){
-        return DeviceHelper.OPEN_APP == this.event;
+        return DeviceActions.OPEN_APP == this.event;
     }
 
     public static DevServerCommand getOpenAppCommand(App app){
-        return new DevServerCommand(0l, DeviceHelper.OPEN_APP, app.getPackageName(), null);
+        return new DevServerCommand(0l, DeviceActions.OPEN_APP, app.getPackageName(), null);
     }
 
     @Override

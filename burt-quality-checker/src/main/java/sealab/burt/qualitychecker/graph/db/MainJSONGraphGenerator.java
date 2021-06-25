@@ -25,24 +25,24 @@ import java.util.Set;
 public
 @Slf4j
 class MainJSONGraphGenerator {
-
-    private static final Set<ImmutablePair<String, String>> SYSTEMS_ALLOWED = JavaUtils.getSet(
-            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.0.8")
-            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.1.1")
-            //			new ImmutablePair<>("me.kuehle.carreport", "3.6.0"),
-            //			new ImmutablePair<>("me.kuehle.carreport", "3.11.2")
-            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.20")
-            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
-            //			new ImmutablePair<>("nerd.tuxmobil.fahrplan.camp", "1.32.2"),
-            //			new ImmutablePair<>("aarddict.android", "1.6.10")
-            //			new ImmutablePair<>("aarddict.android", "1.6.10")
-            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
-            //			new ImmutablePair<>("org.gnucash.android", "2.1.3")
-            //			new ImmutablePair<>("org.gnucash.android", "2.1.1")
-            //			new ImmutablePair<>("org.gnucash.android", "2.2.0")
-            //			new ImmutablePair<>("org.gnucash.android", "2.0.3")
-            new ImmutablePair<>("org.gnucash.android", "2.0.4")
-    );
+//
+//    private static final Set<ImmutablePair<String, String>> SYSTEMS_ALLOWED = JavaUtils.getSet(
+//            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.0.8")
+//            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.1.1")
+//            //			new ImmutablePair<>("me.kuehle.carreport", "3.6.0"),
+//            //			new ImmutablePair<>("me.kuehle.carreport", "3.11.2")
+//            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.20")
+//            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
+//            //			new ImmutablePair<>("nerd.tuxmobil.fahrplan.camp", "1.32.2"),
+//            //			new ImmutablePair<>("aarddict.android", "1.6.10")
+//            //			new ImmutablePair<>("aarddict.android", "1.6.10")
+//            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
+//            //			new ImmutablePair<>("org.gnucash.android", "2.1.3")
+//            //			new ImmutablePair<>("org.gnucash.android", "2.1.1")
+//            //			new ImmutablePair<>("org.gnucash.android", "2.2.0")
+//            //			new ImmutablePair<>("org.gnucash.android", "2.0.3")
+//            new ImmutablePair<>("org.gnucash.android", "2.0.4")
+//    );
 
     private static final String outFolder = Path.of("..", "data", "graphs_json_data").toString();
 

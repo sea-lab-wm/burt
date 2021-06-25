@@ -2,8 +2,8 @@ package sealab.burt.qualitychecker.graph.db;
 
 import edu.semeru.android.core.entity.model.fusion.Execution;
 import edu.semeru.android.core.entity.model.fusion.Step;
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import edu.semeru.android.core.service.PersistDataService;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,7 +35,7 @@ public class DBUtils {
 
     public static Step getOpenAppStep(String packageName, Execution execution, int sequence) {
         Step openApp = new Step();
-        openApp.setAction(DeviceHelper.OPEN_APP);
+        openApp.setAction(DeviceActions.OPEN_APP);
         openApp.setExecution(execution);
         openApp.setTextEntry(packageName);
         openApp.setSequenceStep(sequence);

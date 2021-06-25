@@ -126,6 +126,8 @@ public class ConversationTestData {
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step*/
             //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("I closed the app", PROVIDE_S2R, S2R_DESCRIPTION));
+            //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
             add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));

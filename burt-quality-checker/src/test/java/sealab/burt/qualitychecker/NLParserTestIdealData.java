@@ -50,7 +50,8 @@ class NLParserTestIdealData {
 
     @Test
     void testSingleS2RChecking() throws Exception {
-        String s2r = "I entered 23 gallons";
+//        String s2r = "I entered 23 gallons";
+        String s2r = "I closed the app";
         var app = new ImmutablePair<>("android-mileage", "3.1.1");
 
         String resourcesPath = "src/main/resources";

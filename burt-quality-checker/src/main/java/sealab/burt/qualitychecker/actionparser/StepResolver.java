@@ -3,18 +3,15 @@
  */
 package sealab.burt.qualitychecker.actionparser;
 
-import edu.semeru.android.core.entity.model.App;
 import edu.semeru.android.core.entity.model.fusion.Screen;
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.GraphPath;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
+import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.qualitychecker.graph.*;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
-
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -36,6 +33,137 @@ class StepResolver {
         this.graphMaxDepthCheck = graphMaxDepthCheck;
     }
 
+    private static boolean isValidStepOnComponent(Entry<AppGuiComponent, Double> foundComponentEntry, AppStep appStep) {
+
+        final AppGuiComponent stepComponent = appStep.getComponent();
+        final Integer event = appStep.getAction();
+
+        if (foundComponentEntry == null || stepComponent == null) {
+            return DeviceUtils.isChangeRotation(event) ||
+                    DeviceUtils.isClickMenuButton(event);
+        }
+
+//        GraphTransition transition = appStep.getTransition();
+        final AppGuiComponent foundComponent = foundComponentEntry.getKey();
+        final AppGuiComponent parent = foundComponent.getParent();
+        return stepComponent.equals(foundComponent) ||
+                //these conditions are needed because CrashScope may execute the layouts,
+                // which have the text of the child component
+                (stepComponent.getType().endsWith("Layout") && parent != null && stepComponent.getType().equals
+                        (parent.getType()) && stepComponent.getText().equals(foundComponent.getText()))
+
+                //&& (foundComponent.getKey().getState() == null
+                //|| (transition.getSourceState().equals(foundComponent.getKey().getState())))
+                ;
+    }
+
+    private static void getCandidateGraphStates(AppGraph<GraphState, GraphTransition> executionGraph,
+                                                LinkedHashMap<GraphState, Integer> stateCandidates,
+                                                GraphState currentState,
+                                                Integer currentDistance,
+                                                int maxDistanceToCheck) {
+        if (currentState == null) {
+            return;
+        }
+        if (currentDistance > maxDistanceToCheck) {
+            return;
+        }
+
+        if (stateCandidates.containsKey(currentState) || GraphState.END_STATE.equals(currentState))
+            return;
+
+        // If the node is not in the map then we add the state and the
+        // distance from the current state on the graph
+        stateCandidates.put(currentState, currentDistance);
+
+//        if (executionGraph.containsVertex(currentState)) {
+        Set<GraphTransition> outgoingEdges = executionGraph.outgoingEdgesOf(currentState);
+        final Set<GraphState> nextStates = outgoingEdges.stream().map(GraphTransition::getTargetState)
+                .collect(Collectors.toCollection(HashSet::new));
+        nextStates.remove(currentState);
+
+        for (GraphState state : nextStates) {
+            getCandidateGraphStates(executionGraph, stateCandidates, state, currentDistance + 1, maxDistanceToCheck);
+        }
+//        }
+    }
+
+    /**
+     * Returns a list of AppStep finding the shortest path from the
+     * current step's state to a target state's component
+     */
+    public static List<AppStep> findShortestPath(AppGraph<GraphState, GraphTransition> appGraph,
+                                                 AppStep currentStep, GraphState currentState) {
+
+        List<AppStep> intermediateSteps = new LinkedList<>();
+
+        //we wanna reach the state where the current step is executed!
+        final GraphState stepTargetState = currentStep.getCurrentState();
+
+        log.debug(String.format("Finding shortest path between %s and %s",
+                currentState, stepTargetState));
+
+        //FIXME: if it is the same state, are there loops than may be intermediate steps?
+        if (stepTargetState.equals(currentState)) {
+            return intermediateSteps;
+        }
+
+        //-------------------------------
+
+        List<GraphPath<GraphState, GraphTransition>> shortestPaths = GraphUtils.findPaths(appGraph, currentState,
+                stepTargetState, false, 1);
+
+        if (shortestPaths == null || shortestPaths.isEmpty()) {
+            return intermediateSteps;
+        }
+
+        log.debug("Found shortest path of size " + shortestPaths.get(0).getEdgeList().size());
+
+        Stream<GraphTransition> pathTransitions = shortestPaths.get(0).getEdgeList().stream();
+        intermediateSteps.addAll(pathTransitions
+                .map(GraphTransition::getStep)
+                .collect(Collectors.toList()));
+        return intermediateSteps;
+
+        //--------------------------------------
+
+
+
+
+      /*  List<GraphPath<GraphState, GraphTransition>> shortestPaths = GraphUtils.findPaths(appGraph, currentState,
+                stepTargetState, considerLoops, 1);
+        if (shortestPaths != null && !shortestPaths.isEmpty()) {
+
+            Stream<GraphTransition> pathTransitions = shortestPaths.get(0).getEdgeList().stream();
+
+            //remove the matched step from the path
+            final GraphTransition transition = matchedStep.getTransition();
+            if (considerLoops && transition != null) {
+                pathTransitions = pathTransitions.filter(t -> !t.equals(transition));
+            }
+
+            intermediateSteps.addAll(pathTransitions
+                    .map(GraphTransition::getStep)
+                    .collect(Collectors.toList()));
+        }*/
+
+    }
+
+    public static List<DevServerCommand> getCommandsFromGraphSteps(List<AppStep> steps) {
+        List<DevServerCommand> commandList = new ArrayList<>();
+        for (AppStep step : steps) {
+            // Create new component and add it to the list
+            commandList.add(getCommandFromGraphStep(step));
+        }
+        return commandList;
+    }
+
+    private static DevServerCommand getCommandFromGraphStep(AppStep step) {
+        Long componentId = step.getComponent() == null ? null : step.getComponent().getDbId();
+        final Long screenId = step.getComponent() == null ? null : step.getComponent().getScreenId();
+        return new DevServerCommand(componentId, step.getAction(), step.getText(), screenId);
+    }
+
     /**
      * TODO: We might need to return multiple steps
      */
@@ -49,8 +177,17 @@ class StepResolver {
         try {
             AppStep openAppStep = getOpenAppStep(currNLAction, app);
             if (openAppStep != null) return new ResolvedStepResult(openAppStep);
+
         } catch (ActionParsingException e) {
             //The open app step should not fail, if it does, then the action is not an open app step
+        }
+
+
+        try {
+            AppStep closeAppStep = getCloseAppStep(currNLAction, app);
+            if (closeAppStep != null) return new ResolvedStepResult(closeAppStep);
+        } catch (ActionParsingException e) {
+            //ok
         }
 
         // 1. Get all considered nodes that are in range of GRAPH_MAX_DEPTH_CHECK
@@ -224,8 +361,7 @@ class StepResolver {
 
     }
 
-    public AppStep getOpenAppStep(NLAction currNLAction, Appl app) throws
-            ActionParsingException {
+    private AppStep getOpenAppStep(NLAction currNLAction, Appl app) throws ActionParsingException {
         Integer event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
         final boolean isOpenApp = DeviceUtils.isOpenApp(event);
         if (isOpenApp) {
@@ -236,60 +372,16 @@ class StepResolver {
         return null;
     }
 
-
-    private static boolean isValidStepOnComponent(Entry<AppGuiComponent, Double> foundComponentEntry, AppStep appStep) {
-
-        final AppGuiComponent stepComponent = appStep.getComponent();
-        final Integer event = appStep.getAction();
-
-        if (foundComponentEntry == null || stepComponent == null) {
-            return DeviceUtils.isChangeRotation(event) ||
-                    DeviceUtils.isClickMenuButton(event);
+    public AppStep getCloseAppStep(NLAction currNLAction, Appl app) throws ActionParsingException {
+        Integer event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
+        final boolean isCloseEvent = DeviceUtils.isCloseApp(event);
+        final boolean isAppWord = GeneralUtils.isAppWord(currNLAction.getObject(), app.getName(), app.getPackageName());
+        if (isCloseEvent && isAppWord) {
+            AppStep appStep = new AppStep(event, null, app.getPackageName());
+            appStep.setScreenshotFile(null);
+            return appStep;
         }
-
-//        GraphTransition transition = appStep.getTransition();
-        final AppGuiComponent foundComponent = foundComponentEntry.getKey();
-        final AppGuiComponent parent = foundComponent.getParent();
-        return stepComponent.equals(foundComponent) ||
-                //these conditions are needed because CrashScope may execute the layouts,
-                // which have the text of the child component
-                (stepComponent.getType().endsWith("Layout") && parent != null && stepComponent.getType().equals
-                        (parent.getType()) && stepComponent.getText().equals(foundComponent.getText()))
-
-                //&& (foundComponent.getKey().getState() == null
-                //|| (transition.getSourceState().equals(foundComponent.getKey().getState())))
-                ;
-    }
-
-    private static void getCandidateGraphStates(AppGraph<GraphState, GraphTransition> executionGraph,
-                                                LinkedHashMap<GraphState, Integer> stateCandidates,
-                                                GraphState currentState,
-                                                Integer currentDistance,
-                                                int maxDistanceToCheck) {
-        if (currentState == null) {
-            return;
-        }
-        if (currentDistance > maxDistanceToCheck) {
-            return;
-        }
-
-        if (stateCandidates.containsKey(currentState) || GraphState.END_STATE.equals(currentState))
-            return;
-
-        // If the node is not in the map then we add the state and the
-        // distance from the current state on the graph
-        stateCandidates.put(currentState, currentDistance);
-
-//        if (executionGraph.containsVertex(currentState)) {
-        Set<GraphTransition> outgoingEdges = executionGraph.outgoingEdgesOf(currentState);
-        final Set<GraphState> nextStates = outgoingEdges.stream().map(GraphTransition::getTargetState)
-                .collect(Collectors.toCollection(HashSet::new));
-        nextStates.remove(currentState);
-
-        for (GraphState state : nextStates) {
-            getCandidateGraphStates(executionGraph, stateCandidates, state, currentDistance + 1, maxDistanceToCheck);
-        }
-//        }
+        return null;
     }
 
     /**
@@ -407,7 +499,7 @@ class StepResolver {
         //------------------------------------
         //Determine the event, but if there's an exception, the event is taken as CLICK by default
 
-        Integer event = DeviceHelper.CLICK;
+        Integer event = DeviceActions.CLICK;
         try {
             event = s2rParser.determineEvent(currNLAction, app, stateComponents);
         } catch (ActionParsingException e) {
@@ -479,16 +571,16 @@ class StepResolver {
         //-----------------------------
 
        /* try {
-            event = DeviceHelper.CLICK;
+            event = DeviceActions.CLICK;
             component = s2rParser.determineComponent(currNLAction, stateComponents,
                     event, true);
         } catch (ActionParsingException e) {
             try {
-                event = DeviceHelper.TYPE;
+                event = DeviceActions.TYPE;
                 component = s2rParser.determineComponent(currNLAction, stateComponents, event, true);
             } catch (ActionParsingException e1) {
                 try {
-                    event = DeviceHelper.SWIPE;
+                    event = DeviceActions.SWIPE;
                     component = s2rParser.determineComponent(currNLAction, stateComponents, event, true);
                 } catch (ActionParsingException e2) {
                     return null;
@@ -544,84 +636,6 @@ class StepResolver {
         }
 
         return new AbstractMap.SimpleEntry(step, compScore);
-    }
-
-
-    /**
-     * Returns a list of AppStep finding the shortest path from the
-     * current step's state to a target state's component
-     */
-    public static List<AppStep> findShortestPath(AppGraph<GraphState, GraphTransition> appGraph,
-                                                 AppStep currentStep, GraphState currentState) {
-
-        List<AppStep> intermediateSteps = new LinkedList<>();
-
-        //we wanna reach the state where the current step is executed!
-        final GraphState stepTargetState = currentStep.getCurrentState();
-
-        log.debug(String.format("Finding shortest path between %s and %s",
-                currentState, stepTargetState));
-
-        //FIXME: if it is the same state, are there loops than may be intermediate steps?
-        if (stepTargetState.equals(currentState)) {
-            return intermediateSteps;
-        }
-
-        //-------------------------------
-
-        List<GraphPath<GraphState, GraphTransition>> shortestPaths = GraphUtils.findPaths(appGraph, currentState,
-                stepTargetState, false, 1);
-
-        if (shortestPaths == null || shortestPaths.isEmpty()) {
-            return intermediateSteps;
-        }
-
-        log.debug("Found shortest path of size " + shortestPaths.get(0).getEdgeList().size());
-
-        Stream<GraphTransition> pathTransitions = shortestPaths.get(0).getEdgeList().stream();
-        intermediateSteps.addAll(pathTransitions
-                .map(GraphTransition::getStep)
-                .collect(Collectors.toList()));
-        return intermediateSteps;
-
-        //--------------------------------------
-
-
-
-
-      /*  List<GraphPath<GraphState, GraphTransition>> shortestPaths = GraphUtils.findPaths(appGraph, currentState,
-                stepTargetState, considerLoops, 1);
-        if (shortestPaths != null && !shortestPaths.isEmpty()) {
-
-            Stream<GraphTransition> pathTransitions = shortestPaths.get(0).getEdgeList().stream();
-
-            //remove the matched step from the path
-            final GraphTransition transition = matchedStep.getTransition();
-            if (considerLoops && transition != null) {
-                pathTransitions = pathTransitions.filter(t -> !t.equals(transition));
-            }
-
-            intermediateSteps.addAll(pathTransitions
-                    .map(GraphTransition::getStep)
-                    .collect(Collectors.toList()));
-        }*/
-
-    }
-
-
-    public static List<DevServerCommand> getCommandsFromGraphSteps(List<AppStep> steps) {
-        List<DevServerCommand> commandList = new ArrayList<>();
-        for (AppStep step : steps) {
-            // Create new component and add it to the list
-            commandList.add(getCommandFromGraphStep(step));
-        }
-        return commandList;
-    }
-
-    private static DevServerCommand getCommandFromGraphStep(AppStep step) {
-        Long componentId = step.getComponent() == null ? null : step.getComponent().getDbId();
-        final Long screenId = step.getComponent() == null ? null : step.getComponent().getScreenId();
-        return new DevServerCommand(componentId, step.getAction(), step.getText(), screenId);
     }
 
 }

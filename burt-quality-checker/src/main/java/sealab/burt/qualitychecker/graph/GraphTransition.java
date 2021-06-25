@@ -2,7 +2,7 @@ package sealab.burt.qualitychecker.graph;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.WordUtils;
-import sealab.burt.nlparser.euler.actions.utils.DeviceHelper;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import seers.textanalyzer.TextProcessor;
 
 import java.io.Serializable;
@@ -136,7 +136,7 @@ public class GraphTransition implements Serializable {
 		AppStep step = this.getStep();
 		Integer action = step.getAction();
 
-		if (DeviceHelper.OPEN_APP == action) {
+		if (DeviceActions.OPEN_APP == action) {
 			return getAction(action);
 		}
 
@@ -272,22 +272,22 @@ public class GraphTransition implements Serializable {
 	private static HashMap<Integer, String> actionStrings = new LinkedHashMap<>();
 
 	static {
-		actionStrings.put(DeviceHelper.CLICK, "tap");
-		actionStrings.put(DeviceHelper.LONG_CLICK, "long tap");
-		actionStrings.put(DeviceHelper.SWIPE, "swipe");
-		actionStrings.put(DeviceHelper.SWIPE_UP, "swipe up");
-		actionStrings.put(DeviceHelper.SWIPE_RIGHT, "swipe right");
-		actionStrings.put(DeviceHelper.SWIPE_DOWN, "swipe down");
-		actionStrings.put(DeviceHelper.SWIPE_LEFT, "swipe left");
-		actionStrings.put(DeviceHelper.CLICK_TYPE, "type");
-		actionStrings.put(DeviceHelper.BACK, "Go back");
-		actionStrings.put(DeviceHelper.TYPE, "type");
-		actionStrings.put(DeviceHelper.OPEN_APP, "open app");
-		actionStrings.put(DeviceHelper.ROTATION, "rotate");
-		actionStrings.put(DeviceHelper.GPS, "toggle gps");
-		actionStrings.put(DeviceHelper.NETWORK, "toggle network");
-		actionStrings.put(DeviceHelper.TYPE_RANDOM, "type random");
-		actionStrings.put(DeviceHelper.MENU_BTN, "Tap the menu button");
+		actionStrings.put(DeviceActions.CLICK, "tap");
+		actionStrings.put(DeviceActions.LONG_CLICK, "long tap");
+		actionStrings.put(DeviceActions.SWIPE, "swipe");
+		actionStrings.put(DeviceActions.SWIPE_UP, "swipe up");
+		actionStrings.put(DeviceActions.SWIPE_RIGHT, "swipe right");
+		actionStrings.put(DeviceActions.SWIPE_DOWN, "swipe down");
+		actionStrings.put(DeviceActions.SWIPE_LEFT, "swipe left");
+		actionStrings.put(DeviceActions.CLICK_TYPE, "type");
+		actionStrings.put(DeviceActions.BACK, "Go back");
+		actionStrings.put(DeviceActions.TYPE, "type");
+		actionStrings.put(DeviceActions.OPEN_APP, "open app");
+		actionStrings.put(DeviceActions.ROTATION, "rotate");
+		actionStrings.put(DeviceActions.GPS, "toggle gps");
+		actionStrings.put(DeviceActions.NETWORK, "toggle network");
+		actionStrings.put(DeviceActions.TYPE_RANDOM, "type random");
+		actionStrings.put(DeviceActions.MENU_BTN, "Tap the menu button");
 	}
 
 	public static boolean isTypeAction(Integer action) {
@@ -296,12 +296,12 @@ public class GraphTransition implements Serializable {
 			return false;
 		}
 
-		return DeviceHelper.CLICK_TYPE == action || DeviceHelper.TYPE == action
-				|| DeviceHelper.TYPE_RANDOM == action;
+		return DeviceActions.CLICK_TYPE == action || DeviceActions.TYPE == action
+				|| DeviceActions.TYPE_RANDOM == action;
 	}
 
 	public boolean isOpenApp() {
-		return DeviceHelper.OPEN_APP == step.getAction();
+		return DeviceActions.OPEN_APP == step.getAction();
 	}
 
 }

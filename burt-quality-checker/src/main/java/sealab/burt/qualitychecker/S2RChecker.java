@@ -3,10 +3,10 @@ package sealab.burt.qualitychecker;
 import edu.semeru.android.core.dao.DynGuiComponentDao;
 import edu.semeru.android.core.dao.exception.CRUDException;
 import edu.semeru.android.core.entity.model.fusion.Screen;
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.actionparser.*;
 import sealab.burt.qualitychecker.graph.*;
@@ -46,11 +46,11 @@ class S2RChecker {
     private final String appVersion;
     private final StepResolver resolver;
     private final NLActionS2RParser s2rParser;
+    private final String parsersBaseFolder;
+    private final String crashScopeDataPath;
     private GraphState currentState;
     private AppGraphInfo executionGraph;
     private HashMap<Integer, Integer> statesExecuted = new HashMap<>();
-    private final String parsersBaseFolder;
-    private final String crashScopeDataPath;
 
     public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder,
                       String crashScopeDataPath) {
@@ -290,7 +290,8 @@ class S2RChecker {
                                           List<AppStep> currentResolvedSteps) {
 
         //no intermediate steps for open app
-        if (DeviceUtils.isOpenApp(matchedStep.getAction())) {
+        if (DeviceUtils.isOpenApp(matchedStep.getAction())
+           || DeviceUtils.isCloseApp(matchedStep.getAction())) {
             return;
         }
 
@@ -485,7 +486,7 @@ class S2RChecker {
 
                 final AppGuiComponent component = appStep.getComponent();
 
-                final AppStep clickStep = new AppStep(DeviceHelper.CLICK, component);
+                final AppStep clickStep = new AppStep(DeviceActions.CLICK, component);
                 //add one click before the type if there isn't one already
                 if (!clickStep.equals(priorStep)) {
                     //add it
@@ -612,7 +613,7 @@ class S2RChecker {
     private S2RQualityAssessment addAdditionalSteps(AppStep appStep, List<AppStep> currentResolvedSteps2) {
         if (DeviceUtils.isAnyType(appStep.getAction())) {
 
-            final AppStep clickStep = new AppStep(DeviceHelper.CLICK, appStep.getComponent());
+            final AppStep clickStep = new AppStep(DeviceActions.CLICK, appStep.getComponent());
 
             currentResolvedSteps2.add(clickStep);
             currentResolvedSteps2.add(appStep);

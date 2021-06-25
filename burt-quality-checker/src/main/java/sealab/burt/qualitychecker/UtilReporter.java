@@ -28,10 +28,10 @@
  *******************************************************************************/
 package sealab.burt.qualitychecker;
 
-import edu.semeru.android.core.helpers.device.DeviceHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.graph.AppGuiComponent;
 import sealab.burt.qualitychecker.graph.AppStep;
@@ -75,19 +75,23 @@ public class UtilReporter {
     public static String getNLStep(ActionMatch actionMatch, AppStep step, boolean displayScreen) {
         Integer action = step.getAction();
 
-        if (DeviceHelper.OPEN_APP == action) {
+        if (DeviceActions.OPEN_APP == action) {
             return "Open the application";
         }
 
-        if (DeviceHelper.MENU_BTN == action) {
+        if (DeviceActions.CLOSE_APP == action) {
+            return "Close the application";
+        }
+
+        if (DeviceActions.MENU_BTN == action) {
             return "Press the menu button";
         }
 
-        if (DeviceHelper.BACK == action) {
+        if (DeviceActions.BACK == action) {
             return "Tap the back button";
         }
 
-        if (DeviceHelper.ROTATION == action) {
+        if (DeviceActions.ROTATION == action) {
             return "Rotate the screen";
         }
 
@@ -142,7 +146,7 @@ public class UtilReporter {
 
         if (component != null) {
 
-            if (DeviceHelper.TYPE == action) {
+            if (DeviceActions.TYPE == action) {
                 builder.append("on the ");
             } else {
                 builder.append("the ");

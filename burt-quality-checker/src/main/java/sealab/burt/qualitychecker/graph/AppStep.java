@@ -73,7 +73,7 @@ public class AppStep implements Serializable {
      * @param action the action to set
      */
     public void setAction(Integer action) {
-//        if (action != null && DeviceHelper.CLICK_TYPE == action) {
+//        if (action != null && DeviceActions.CLICK_TYPE == action) {
 //            throw new RuntimeException("Click-type is deprecated, hence it is not allowed!");
 //        }
         this.action = action;
