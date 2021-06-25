@@ -118,7 +118,7 @@ public class TraceReplayer {
         String appVersion = "";
         String mainActivity = "com.zappos.android.activities.HomeActivity";
         String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/APKs/6pm.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/6pm/getevent-detail-3.log";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/6pm/getevent-detail-2.log";
         String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/test-output";
         
         String avdPort = "5554";
@@ -267,70 +267,88 @@ public class TraceReplayer {
                 	sequence++;
                     ArrayList<DynGuiComponentVO> screenInfoEmulator = UiAutoConnector.getScreenInfoEmulator(androidSDKPath, screenWidth,
                             screenHeight, true, false, false, avdPort,
-                            adbPort, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);
+                            adbPort, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);                  
                     
+                    boolean isLoginInfo = false;
                     for (DynGuiComponentVO component : screenInfoEmulator) {
-                        if (component.getIdXml().equals(vo.getHvInfoComponent().getIdXml())) {
-                        	if (component.getText().length()>0) {
-	                            DynGuiComponentVO deepClone = ClonerHelper
-	                                    .deepClone(DeviceInfo.NEXUS5X_KEYBOARD);
+                        if (component.getIdXml().equals(vo.getHvInfoComponent().getIdXml()) && component.getText().length()>0) {
+                        	
+                        	isLoginInfo = true;
+                            vo.setHvInfoComponent(component);
+                            vo.setText(component.getText());
 
-	                            deepClone.setTitleWindow(window.getTitle());
-	                            deepClone.setGuiScreenshot(appPackage + "_" + i + ".jpg");
-	                            deepClone.setActivity(component.getActivity());
-	                            deepClone.setText(component.getText());
-	
-	                            vo.setHvInfoComponent(component);
-	                            vo.setText(component.getText());
-	
-	                            vo.setEventLabel("TYPE");
-	                            vo.setEventTypeId(StepByStepEngine.TYPE);
-	                            
-	                            Step step = StepByStepEngine.getStepFromEvent(vo);
-	                            step.setSequenceStep(sequence);
-	                            step.setScreen(screen);
-	                            step.setTextEntry("none");
-	                            Thread.sleep(5000);
-	                            
-	                            
-	                            String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
-	                            
-	                            String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
-
-	                            String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
-
-	                            Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-	                                    + "screenshots", appPackage + "."
-	                                            + executionCtr + "." + screenshot);
-	                    
-	                            takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
-	                            
-	                            DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
-	                            
-	                            String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, screenshot, screenshot);
-	                            step.getDynGuiComponent().setGuiScreenshot(guiScreenShot);
-	                            steps.add(step);      
-                        	} else { //for search
-                        		Thread.sleep(3000);
-                        		sequence--;
-                        		isSearchActivity = true;
-                        		steps.remove(steps.size()-1);
-                        		Step step = StepByStepEngine.getStepFromEvent(vo);
-                                step.setSequenceStep(sequence);
-                                step.setScreen(screen);
-                                steps.add(step);
-                                
-                        		String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";  
-                                Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                                        + "screenshots", appPackage + "."
-                                                + executionCtr + "." + screenshot);
-                        	}
+                            vo.setEventLabel("TYPE");
+                            vo.setEventTypeId(StepByStepEngine.TYPE);
                             
+                            Step step = StepByStepEngine.getStepFromEvent(vo);
+                            step.setSequenceStep(sequence);
+                            step.setScreen(screen);
+                            step.setTextEntry("none");
+                            Thread.sleep(1000);
+                            
+                            
+                            String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
+                            
+                            String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
+
+                            String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
+                            
+                            Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
+                                    + "screenshots", appPackage + "."
+                                            + executionCtr + "." + screenshot);
+                    
+                            takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
+                            
+                            DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
+                            
+                            String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, screenshot, screenshot);
+                            step.getDynGuiComponent().setGuiScreenshot(guiScreenShot);
+                            steps.add(step);      
                                     
                             i++;
                             break;
                         }
                     }
+                    
+                    if(!isLoginInfo) { //for search
+                        for (DynGuiComponentVO component : screenInfo) {
+                        	if(component.isFocused()) {
+                        		System.out.println(component);
+                        		isSearchActivity = true;
+                        		vo.setHvInfoComponent(component);
+                                vo.setText(component.getText());
+
+                                vo.setEventLabel("TYPE");
+                                vo.setEventTypeId(StepByStepEngine.TYPE);
+                                
+                                Step step = StepByStepEngine.getStepFromEvent(vo);
+                                step.setSequenceStep(sequence);
+                                step.setScreen(screen);
+                                step.setTextEntry("none");
+                                Thread.sleep(1000);
+                                
+                                
+                                String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
+                                
+                                String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
+
+                                String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
+
+                                Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
+                                        + "screenshots", appPackage + "."
+                                                + executionCtr + "." + screenshot);
+                        
+                                takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
+                                
+                                DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
+                                
+                                String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, currscreenshot, screenshot);
+                                step.getDynGuiComponent().setGuiScreenshot(guiScreenShot);
+                                steps.add(step);      
+                        	}
+                        }
+                    }
+                    
                     keyboardActive = false;                      
                 }
                     
@@ -381,6 +399,12 @@ public class TraceReplayer {
                 
                 
                 i++;
+            } else {
+            	//To capture the latest screenshot during typing
+                String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";  
+                Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
+                        + "screenshots", appPackage + "."
+                                + executionCtr + "." + screenshot);
             }
             isSearchActivity = false;
             
