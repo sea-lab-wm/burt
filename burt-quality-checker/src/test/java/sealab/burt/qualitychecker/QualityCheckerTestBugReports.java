@@ -48,7 +48,7 @@ class QualityCheckerTestBugReports {
         List<Pair<String, String>> apps = new LinkedList<>() {
             {
 //                add(new ImmutablePair<>("gnucash-android", "2.1.3"));
-//                add(new ImmutablePair<>("droidweight", "1.5.4"));
+                add(new ImmutablePair<>("droidweight", "1.5.4"));
                 add(new ImmutablePair<>("android-mileage", "3.1.1"));
             }
         };

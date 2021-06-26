@@ -1,4 +1,4 @@
-package sealab.burt.qualitychecker;
+package sealab.burt;
 
 import java.nio.file.Path;
 

@@ -2,12 +2,13 @@ package sealab.burt.qualitychecker;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import sealab.burt.BurtConfigPaths;
+import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
 import sealab.burt.qualitychecker.actionparser.ScreenResolver;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.GraphState;
-import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 
 import java.util.Collections;
 import java.util.List;

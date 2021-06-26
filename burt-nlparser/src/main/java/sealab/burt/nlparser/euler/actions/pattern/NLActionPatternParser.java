@@ -350,7 +350,7 @@ public abstract class NLActionPatternParser {
 			return false;
 		}
 
-		boolean anyMatch = lemmas.stream().anyMatch(t -> obj2.contains(t));
+		boolean anyMatch = lemmas.stream().anyMatch(obj2::contains);
 
 		if (!anyMatch) {
 
@@ -360,7 +360,7 @@ public abstract class NLActionPatternParser {
 
 				// check the quote
 				final String quote = sentences.get(0).getText();
-				if (quoteMap != null && lemmas.stream().anyMatch(t -> quote.contains(t))) {
+				if (quoteMap != null && lemmas.stream().anyMatch(quote::contains)) {
 					anyMatch = true;
 				}
 			}

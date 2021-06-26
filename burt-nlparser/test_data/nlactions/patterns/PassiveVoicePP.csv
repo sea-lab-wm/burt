@@ -1,3 +1,4 @@
+"+";"Actual:success dialog was shown without any text";"[{"sub":"app", "act":"show", "obj":"success dialog","prep":"without","obj2":"text"}]"
 "+";"By default current date is marked in date time picker";"[{"sub":"app", "act":"mark", "obj":"current date", "prep":"in", "obj2":"date time"}]"
 "+";"By default, current date is marked in date time picker";"[{"sub":"app", "act":"mark", "obj":"current date", "prep":"in", "obj2":"date time"}]"
 "//+";"Again By default current date is marked in date time picker";"[{"sub":"app", "act":"mark", "obj":"current date", "prep":"in", "obj2":"date time"}]"

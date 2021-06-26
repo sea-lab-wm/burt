@@ -2,7 +2,6 @@ package sealab.burt.server.actions.appselect;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
-import sealab.burt.qualitychecker.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;

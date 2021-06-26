@@ -69,7 +69,7 @@ public class NegativeAuxVerbPP extends NLActionPatternParser {
 			Pair<GrammaticalRelation, IndexedWord> subj = DependenciesUtils.getFirstChildByRelation(dependencies,
 					verbToken, "nsubj", "nsubjpass");
 
-			// no personal proponuns: I, we, and you
+			// no personal pronouns: I, we, and you
 			if (subj != null) {
 				IndexedWord subjToken = subj.second;
 				if (isPersonalPronoun(subjToken)) {

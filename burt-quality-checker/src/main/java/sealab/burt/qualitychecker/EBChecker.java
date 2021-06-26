@@ -1,5 +1,6 @@
 package sealab.burt.qualitychecker;
 
+import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 
 import java.util.List;

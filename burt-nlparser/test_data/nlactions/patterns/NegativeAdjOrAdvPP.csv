@@ -1,3 +1,6 @@
+"+";"The color is unset";"[{"sub":"color", "act":"is", "obj":"unset"}]"
+"+";"The plus symbol is gone";"[{"sub":"plus symbol", "act":"is", "obj":"gone"}]"
+"+";"Tried hitting recalculate in the statistics page but it still comes up with the incorrect Maximum Cost";"[{"sub":"app", "act":"come up", "prep":"with", "obj2":"incorrect Maximum Cost"}]"
 "+";"2. Encrypted notes appear at seemingly random places.";"[{"sub":"Encrypted notes", "act":"appear", "prep":"at", "obj2":"random places"}]"
 "-";"Expected: Both start and end range should be set as current date";""
 "-";"Actual: Start date was set as current date and end range is mapped to immediate next date.";""
