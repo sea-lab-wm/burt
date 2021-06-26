@@ -29,7 +29,7 @@ public class GraphTransition implements Serializable {
 	private GraphState targetState;
 	private String name;
 	private String uniqueHash;
-	private double weight = 1.0;
+	private double weight = 0.0;
 
 	private AppStep step;
 
@@ -313,4 +313,7 @@ public class GraphTransition implements Serializable {
 		return DeviceActions.OPEN_APP == step.getAction();
 	}
 
+	public void incrementWeightByOne() {
+		this.weight++;
+	}
 }

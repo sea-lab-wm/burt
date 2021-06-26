@@ -40,6 +40,7 @@ class GraphGenerator {
 
     private HashMap<Integer, GraphState> states;
     private HashMap<String, GraphTransition> transitions;
+    private boolean updateWeights = false;
 
     public GraphGenerator() {
         states = new LinkedHashMap<>();
@@ -106,6 +107,8 @@ class GraphGenerator {
 
         states.clear();
         transitions.clear();
+
+        updateWeights = false;
 
         List<AppStep> allSteps = new ArrayList<>();
         for (Execution execution : executions) {
@@ -448,9 +451,14 @@ class GraphGenerator {
         GraphTransition transition = null;
         if (transitions.containsKey(hashTransition)) {
             transition = transitions.get(hashTransition);
+            if(updateWeights)
+                transition.incrementWeightByOne();
+            else
+                transition.setWeight(1);
             // System.out.println(" found " + transition.getUniqueHash());
         } else {
             transition = getGraphTransition(sourceState, targetState, appStep, hashTransition);
+            transition.setWeight(1);
             transitions.put(hashTransition, transition);
         }
         // System.out.println("T - " + transition.getId() + ": " +
@@ -775,5 +783,36 @@ class GraphGenerator {
      */
     public void setTransitions(HashMap<String, GraphTransition> transitions) {
         this.transitions = transitions;
+    }
+
+    public AppGraphInfo updateGraphWithWeights(App app, List<Execution> executions) throws Exception {
+
+        this.updateWeights = true;
+
+        List<AppStep> allSteps = new ArrayList<>();
+        for (Execution execution : executions) {
+            // if (execution.getId() == 9) {
+            try {
+                if (!execution.getSteps().isEmpty()) {
+                    List<AppStep> steps = processExecution(execution);
+                    allSteps.addAll(steps);
+                    // System.out.println("=="+execution.getSteps().size()+"==");
+                    // System.out.println("====================");
+                }
+            } catch (Exception e) {
+                log.error("Error for execution " + execution.getId(), e);
+                throw e;
+            }
+            // }
+        }
+
+        AppGraph<GraphState, GraphTransition> graph = buildDirectedGraph();
+
+        AppGraphInfo graphInfo = new AppGraphInfo();
+        graphInfo.setGraph(graph);
+        graphInfo.setSteps(allSteps);
+        graphInfo.setApp(Transform.getAppl(app));
+
+        return graphInfo;
     }
 }

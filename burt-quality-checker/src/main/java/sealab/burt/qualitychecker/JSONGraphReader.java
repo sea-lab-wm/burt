@@ -18,6 +18,7 @@ import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -67,6 +68,37 @@ class JSONGraphReader {
 
         String key = getKey(appName, appVersion);
         log.debug("Reading graph from JSON files for " + key);
+
+        List<Execution> crashScopeExecutions = readExecutions(dataLocation);
+
+        App app = crashScopeExecutions.get(0).getApp();
+
+        //----------------------------------------
+
+        GraphGenerator generator = new GraphGenerator();
+
+        AppGraphInfo graphInfo = generator.generateGraph(crashScopeExecutions, app);
+
+        if(graphInfo == null || graphInfo.getGraph().vertexSet().isEmpty())
+            throw new RuntimeException("The graph is empty");
+
+        //add code here
+        //1. read execution files for TraceReplayer
+        String traceReplayerFolder = BurtConfigPaths.getCrashScopeDataPath();
+
+        String traceReplayerDataLocation=Paths.get(traceReplayerFolder, String.join("-", packageName, appVersion)).toString();;
+        List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
+
+        //2. update the graph (update the weights, and create new GraphStates and Transitions if needed
+        AppGraphInfo newgraph = generator.updateGraphWithWeights(app, traceReplayerExecutions);
+
+        if(newgraph == null || newgraph.getGraph().vertexSet().isEmpty())
+            throw new RuntimeException("The graph is empty");
+
+        graphs.put(key, newgraph);
+    }
+
+    private static List<Execution> readExecutions(String dataLocation) throws Exception {
 
         //--------------------------
 
@@ -145,16 +177,8 @@ class JSONGraphReader {
         if(executions.isEmpty())
             throw new RuntimeException("There is no execution data to build the graph");
 
-        //----------------------------------------
+        return executions;
 
-        GraphGenerator generator = new GraphGenerator();
-
-        AppGraphInfo graphInfo = generator.generateGraph(executions, app);
-
-        if(graphInfo == null || graphInfo.getGraph().vertexSet().isEmpty())
-            throw new RuntimeException("The graph is empty");
-
-        graphs.put(key, graphInfo);
     }
 
     private static List<DynGuiComponent> convertVOstoGUIComps(ArrayList<DynGuiComponentVO> currComps, Screen screen,

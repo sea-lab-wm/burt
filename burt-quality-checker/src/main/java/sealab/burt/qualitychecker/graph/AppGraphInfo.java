@@ -105,7 +105,7 @@ public class AppGraphInfo implements Serializable {
             numTransitions += transitions.size();
 
             transitions.forEach(t -> {
-                transitionsBuilder.append(t.getId() + ": " + t.getName());
+                transitionsBuilder.append(t.getId() + ": " + t.getName() + " weight="+t.getWeight());
                 transitionsBuilder.append("\n");
             });
 
