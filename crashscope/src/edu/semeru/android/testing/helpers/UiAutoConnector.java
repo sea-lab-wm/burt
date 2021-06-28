@@ -880,12 +880,19 @@ public class UiAutoConnector {
      */
     public static void getComponent(String androidSDKPath, GUIEventVO guiEventVO, int widthScreen, int heightScreen,
             String device, String name, String avdPort, String adbPort) {
+    	ArrayList<DynGuiComponentVO> screenInfo = null;
+    	if(guiEventVO.getEventTypeId()==StepByStepEngine.SWIPE) {
+        	screenInfo = getScreenInfoEmulator(androidSDKPath, widthScreen,
+                    heightScreen, true, false, false, avdPort,
+                    adbPort, name);
+    		return;
+    	}
         String deviceVersion = Utilities.getDeviceVersion(androidSDKPath, device);
         boolean keyboardActive = Utilities.isKeyboardActive(androidSDKPath, device);
         DynGuiComponentVO result = null;
         int area = Integer.MAX_VALUE;
         int orientation = Utilities.getOrientation(androidSDKPath, device);
-            ArrayList<DynGuiComponentVO> screenInfo = null;
+            
 
             // at least one component covering the
             boolean isHover = false;
