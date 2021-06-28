@@ -86,17 +86,6 @@ class GraphGenerator {
 
     }
 
-    public AppGraphInfo generateGraph(EntityManager em, Long idApp) throws Exception {
-
-        AppDao appDao = new AppDao();
-        App app = appDao.getById(idApp, em);
-        if (app != null) {
-            return generateGraph(app);
-        }
-
-        return null;
-    }
-
     public AppGraphInfo generateGraph(EntityManager em, String appName, String appVersion) throws Exception {
         App app = getApp(appName, appVersion, em);
         return generateGraph(app);
@@ -104,11 +93,16 @@ class GraphGenerator {
 
 
     public AppGraphInfo generateGraph(List<Execution> executions, App app) throws Exception {
+        return generateGraphWithNoWeights(executions, app, false);
+    }
+
+    public AppGraphInfo generateGraphWithNoWeights(List<Execution> executions, App app, boolean updateWeights)
+            throws Exception {
 
         states.clear();
         transitions.clear();
 
-        updateWeights = false;
+        this.updateWeights = updateWeights;
 
         List<AppStep> allSteps = new ArrayList<>();
         for (Execution execution : executions) {
@@ -138,39 +132,10 @@ class GraphGenerator {
     }
 
     public AppGraphInfo generateGraph(App app) throws Exception {
-
-        states.clear();
-        transitions.clear();
-
-        List<AppStep> allSteps = new ArrayList<>();
-        for (Execution execution : app.getExecutions()) {
-            // if (execution.getId() == 9) {
-            try {
-                if (!execution.getSteps().isEmpty()) {
-                    List<AppStep> steps = processExecution(execution);
-                    allSteps.addAll(steps);
-                    // System.out.println("=="+execution.getSteps().size()+"==");
-                    // System.out.println("====================");
-                }
-            } catch (Exception e) {
-                log.error("Error for execution " + execution.getId(), e);
-                throw e;
-            }
-            // }
-        }
-
-        AppGraph<GraphState, GraphTransition> graph = buildDirectedGraph();
-
-        AppGraphInfo graphInfo = new AppGraphInfo();
-        graphInfo.setGraph(graph);
-        graphInfo.setSteps(allSteps);
-        graphInfo.setApp(Transform.getAppl(app));
-        graphInfo.setStateIndex(this.states);
-
-        return graphInfo;
+        return generateGraphWithNoWeights(app.getExecutions(), app, false);
     }
 
-    public AppGraph<GraphState, GraphTransition> buildDirectedGraph() {
+    private AppGraph<GraphState, GraphTransition> buildDirectedGraph() {
 
         AppGraph<GraphState, GraphTransition> directedGraph = new AppGraph<>(GraphTransition.class);
 
@@ -192,6 +157,8 @@ class GraphGenerator {
             boolean added = directedGraph.addEdge(sourceState, t.getTargetState(), t);
             if (!added) {
                 log.warn("Edge not added: " + t);
+            }else{
+                directedGraph.setEdgeWeight(t, t.getWeight());
             }
         });
 
@@ -202,7 +169,7 @@ class GraphGenerator {
         return updateGraph(execution.getId(), execution.getSteps(), true, GraphState.END_STATE);
     }
 
-    public List<AppStep> updateGraph(Long executionId, List<Step> steps, boolean addOpenApp, GraphState endState)
+    private List<AppStep> updateGraph(Long executionId, List<Step> steps, boolean addOpenApp, GraphState endState)
             throws Exception {
 
         List<AppStep> appSteps = new ArrayList<>();
@@ -381,7 +348,7 @@ class GraphGenerator {
         return graphState;
     }
 
-    public GraphState addGraphState(Screen screen) {
+    private GraphState addGraphState(Screen screen) {
         List<DynGuiComponent> screenComponents = screen.getDynGuiComponents();
 
 //        HierarchyNode node = getUniqueState2(screenComponents);
@@ -451,14 +418,18 @@ class GraphGenerator {
         GraphTransition transition = null;
         if (transitions.containsKey(hashTransition)) {
             transition = transitions.get(hashTransition);
-            if(updateWeights)
+            transition.setType(GraphTransition.GraphTransitionType.CRASH_SCOPE);
+            if(updateWeights) {
                 transition.incrementWeightByOne();
-            else
+                transition.setType(GraphTransition.GraphTransitionType.TRACE_REPLAYER);
+            }else {
                 transition.setWeight(1);
+            }
             // System.out.println(" found " + transition.getUniqueHash());
         } else {
             transition = getGraphTransition(sourceState, targetState, appStep, hashTransition);
             transition.setWeight(1);
+            transition.setType(GraphTransition.GraphTransitionType.CRASH_SCOPE);
             transitions.put(hashTransition, transition);
         }
         // System.out.println("T - " + transition.getId() + ": " +
@@ -485,12 +456,6 @@ class GraphGenerator {
         transition.setUniqueHash(hashTransition);
         transition.setStep(appStep);
         return transition;
-    }
-
-    public List<AppStep> getAppSteps(Step step) {
-        AppGuiComponent component = Transform.getGuiComponent(step.getDynGuiComponent(), null);
-        return getAppSteps(step.getExecution().getId(), step, component);
-
     }
 
     private List<AppStep> getAppSteps(Long executionId, Step step, AppGuiComponent component) {
@@ -575,7 +540,7 @@ class GraphGenerator {
         return stateName;
     }
 
-    public GraphState getGraphState(Screen screen, int pHashCode) {
+    private GraphState getGraphState(Screen screen, int pHashCode) {
         List<DynGuiComponent> components = screen.getDynGuiComponents();
 
         DynGuiComponent root = findRootComponent(components);
@@ -613,82 +578,6 @@ class GraphGenerator {
                 .equals(c.getIdXml())).findFirst();
         return compOpt.orElse(null);
     }
-
-
-    /*private HierarchyNode getUniqueState2(List<DynGuiComponent> components) {
-
-        // Find root node
-        DynGuiComponent root = findRootComponent(components);
-        if (root == null) return null;
-        HierarchyNode node = visitComponents2(root);
-
-        return node;
-    }
-
-
-    private HierarchyNode visitComponents2(DynGuiComponent comp) {
-
-
-        List<HierarchyNode> childrenSet = new ArrayList<>();
-        for (DynGuiComponent child : comp.getChildren()) {
-            HierarchyNode childNode = visitComponents2(child);
-            childrenSet.add(childNode);
-        }
-
-        HierarchyNode node = new HierarchyNode(comp, childrenSet);
-
-        return node;
-
-    }
-
-    public static class HierarchyNode {
-
-        DynGuiComponent component;
-        List<HierarchyNode> children;
-
-        public HierarchyNode(DynGuiComponent component, List<HierarchyNode> children) {
-            super();
-            this.component = component;
-            this.children = children;
-        }
-
-        @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + ((children == null) ? 0 : children.hashCode());
-            result = prime * result + ((component == null) ? 0 : component.hashCode());
-            return result;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj)
-                return true;
-            if (obj == null)
-                return false;
-            if (getClass() != obj.getClass())
-                return false;
-            HierarchyNode other = (HierarchyNode) obj;
-            if (children == null) {
-                if (other.children != null)
-                    return false;
-            } else if (!children.equals(other.children))
-                return false;
-            if (component == null) {
-                if (other.component != null)
-                    return false;
-            } else if (!component.equals(other.component))
-                return false;
-            return true;
-        }
-
-        @Override
-        public String toString() {
-            return "HierarchyNode [comp=" + component + ", children=" + children + "]";
-        }
-
-    }*/
 
     /**
      * Gives a unique screen based on the hierarchy
@@ -786,33 +675,6 @@ class GraphGenerator {
     }
 
     public AppGraphInfo updateGraphWithWeights(App app, List<Execution> executions) throws Exception {
-
-        this.updateWeights = true;
-
-        List<AppStep> allSteps = new ArrayList<>();
-        for (Execution execution : executions) {
-            // if (execution.getId() == 9) {
-            try {
-                if (!execution.getSteps().isEmpty()) {
-                    List<AppStep> steps = processExecution(execution);
-                    allSteps.addAll(steps);
-                    // System.out.println("=="+execution.getSteps().size()+"==");
-                    // System.out.println("====================");
-                }
-            } catch (Exception e) {
-                log.error("Error for execution " + execution.getId(), e);
-                throw e;
-            }
-            // }
-        }
-
-        AppGraph<GraphState, GraphTransition> graph = buildDirectedGraph();
-
-        AppGraphInfo graphInfo = new AppGraphInfo();
-        graphInfo.setGraph(graph);
-        graphInfo.setSteps(allSteps);
-        graphInfo.setApp(Transform.getAppl(app));
-
-        return graphInfo;
+        return generateGraphWithNoWeights(executions, app, true);
     }
 }

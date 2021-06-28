@@ -2,6 +2,7 @@ package sealab.burt.qualitychecker.graph;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.WordUtils;
+import org.jgrapht.graph.DefaultWeightedEdge;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
 import seers.textanalyzer.TextProcessor;
 
@@ -18,7 +19,9 @@ import java.util.stream.Collectors;
  * @author Carlos Bernal
  */
 @SuppressWarnings("deprecation")
-public class GraphTransition implements Serializable {
+public class GraphTransition  extends DefaultWeightedEdge implements Serializable{
+
+	public enum GraphTransitionType{ CRASH_SCOPE, TRACE_REPLAYER};
 
 	/**
 	 *
@@ -30,8 +33,17 @@ public class GraphTransition implements Serializable {
 	private String name;
 	private String uniqueHash;
 	private double weight = 0.0;
+	private GraphTransitionType type;
 
 	private AppStep step;
+
+	public GraphTransitionType getType() {
+		return type;
+	}
+
+	public void setType(GraphTransitionType type) {
+		this.type = type;
+	}
 
 	public double getWeight() {
 		return weight;

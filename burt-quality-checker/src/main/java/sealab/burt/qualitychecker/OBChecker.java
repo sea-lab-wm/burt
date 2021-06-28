@@ -65,7 +65,7 @@ class OBChecker {
         if (crashScopeDataPath == null)
             executionGraph = DBGraphReader.getGraph(appName, appVersion);
         else
-            executionGraph = JSONGraphReader.getGraph(crashScopeDataPath, appName, appVersion);
+            executionGraph = JSONGraphReader.getGraph(appName, appVersion);
     }
 
     private QualityResult matchActions(List<NLAction> nlActions) throws Exception {

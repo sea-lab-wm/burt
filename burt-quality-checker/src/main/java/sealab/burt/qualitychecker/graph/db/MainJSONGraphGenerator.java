@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.JSONGraphReader;
 import sealab.burt.qualitychecker.actionparser.GraphLayout;
 import sealab.burt.qualitychecker.actionparser.GraphUtils;
@@ -46,12 +47,9 @@ class MainJSONGraphGenerator {
 
     private static final String outFolder = Path.of("..", "data", "graphs_json_data").toString();
 
-    //This is the location where the CrashScope data is stored (the .xmls and screenshots)
-    private static final String baseFolder = Path.of("..", "data", "CrashScope-Data").toString();
-
     public static void main(String[] args) throws Exception {
 
-        AppGraphInfo graphInfo = JSONGraphReader.getGraph(baseFolder, "mileage", "3.1.1");
+        AppGraphInfo graphInfo = JSONGraphReader.getGraph("mileage", "3.1.1");
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         Appl app = graphInfo.getApp();
 
@@ -86,7 +84,6 @@ class MainJSONGraphGenerator {
         // ------------------------------------------------------
 
         String packageName = app.getPackageName();
-        String dataLocation = Paths.get(baseFolder, String.join("-", packageName, app.getVersion())).toString();
 
         String pathnameStates = sysFolder + File.separator + "states";
         String pathnameTransitions = sysFolder + File.separator + "transitions";
@@ -104,6 +101,12 @@ class MainJSONGraphGenerator {
 //                log.error("Step has no screenshot: " + edge.getId());
                 continue;
             }
+
+            String dataLocation =
+                    Paths.get(BurtConfigPaths.getCrashScopeDataPath(), String.join("-", packageName, app.getVersion())).toString();
+            if (edge.getType().equals(GraphTransition.GraphTransitionType.TRACE_REPLAYER))
+                dataLocation =
+                        Paths.get(BurtConfigPaths.traceReplayerDataPath, String.join("-", packageName, app.getVersion())).toString();
 
             File srcFileStep = Path.of(dataLocation, "screenshots", screenshotFile).toFile();
             File srcFileState = Path.of(dataLocation, "screenshots", edge.getSourceState().getScreenshotPath()).toFile();

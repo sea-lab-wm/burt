@@ -14,11 +14,11 @@ import edu.semeru.android.testing.helpers.UiAutoConnector;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,10 +35,10 @@ class JSONGraphReader {
 
     private static final ConcurrentHashMap<String, AppGraphInfo> graphs = new ConcurrentHashMap<>();
 
-    public static AppGraphInfo getGraph(String baseFolder, String appName, String appVersion) throws Exception {
+    public static AppGraphInfo getGraph(String appName, String appVersion) throws Exception {
         AppGraphInfo graph = graphs.get(getKey(appName, appVersion));
         if (graph == null) {
-            readGraph(baseFolder, appName, appVersion);
+            readGraph(appName, appVersion);
             graph = graphs.get(getKey(appName, appVersion));
         }
         return graph;
@@ -61,10 +61,12 @@ class JSONGraphReader {
         return packages.get(0);
     }
 
-    public static void readGraph(String baseFolder, String appName, String appVersion) throws Exception {
+    public static void readGraph(String appName, String appVersion) throws Exception {
+
+        String crashScopeFolder = BurtConfigPaths.getCrashScopeDataPath();
 
         String packageName = getFirstPackageName(appName);
-        String dataLocation = Paths.get(baseFolder, String.join("-", packageName, appVersion)).toString();
+        String dataLocation = Paths.get(crashScopeFolder, String.join("-", packageName, appVersion)).toString();
 
         String key = getKey(appName, appVersion);
         log.debug("Reading graph from JSON files for " + key);
@@ -77,25 +79,27 @@ class JSONGraphReader {
 
         GraphGenerator generator = new GraphGenerator();
 
-        AppGraphInfo graphInfo = generator.generateGraph(crashScopeExecutions, app);
+        AppGraphInfo partialGraph = generator.generateGraph(crashScopeExecutions, app);
 
-        if(graphInfo == null || graphInfo.getGraph().vertexSet().isEmpty())
+        if (partialGraph == null || partialGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");
 
-        //add code here
-        //1. read execution files for TraceReplayer
-        String traceReplayerFolder = BurtConfigPaths.getCrashScopeDataPath();
+        ///-------------------------------------------------
 
-        String traceReplayerDataLocation=Paths.get(traceReplayerFolder, String.join("-", packageName, appVersion)).toString();;
+        //1. read execution files for TraceReplayer
+        String traceReplayerFolder = BurtConfigPaths.traceReplayerDataPath;
+
+        String traceReplayerDataLocation =
+                Paths.get(traceReplayerFolder, String.join("-", packageName, appVersion)).toString();
         List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
 
         //2. update the graph (update the weights, and create new GraphStates and Transitions if needed
-        AppGraphInfo newgraph = generator.updateGraphWithWeights(app, traceReplayerExecutions);
+        AppGraphInfo finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions);
 
-        if(newgraph == null || newgraph.getGraph().vertexSet().isEmpty())
+        if (finalGraph == null || finalGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");
 
-        graphs.put(key, newgraph);
+        graphs.put(key, finalGraph);
     }
 
     private static List<Execution> readExecutions(String dataLocation) throws Exception {
@@ -107,7 +111,7 @@ class JSONGraphReader {
                 .collect(Collectors.toList());
 
 
-        if(executionFiles.isEmpty())
+        if (executionFiles.isEmpty())
             throw new RuntimeException("There are no execution files in " + dataLocation);
 
 
@@ -174,7 +178,7 @@ class JSONGraphReader {
         }
 
 
-        if(executions.isEmpty())
+        if (executions.isEmpty())
             throw new RuntimeException("There is no execution data to build the graph");
 
         return executions;

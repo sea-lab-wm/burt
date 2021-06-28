@@ -123,7 +123,7 @@ class S2RChecker {
         if (crashScopeDataPath == null)
             executionGraph = DBGraphReader.getGraph(appName, appVersion);
         else
-            executionGraph = JSONGraphReader.getGraph(crashScopeDataPath, appName, appVersion);
+            executionGraph = JSONGraphReader.getGraph(appName, appVersion);
     }
 
     private QualityFeedback matchAction(NLAction nlAction) {
