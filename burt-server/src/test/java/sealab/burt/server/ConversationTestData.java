@@ -85,6 +85,8 @@ public class ConversationTestData {
             add(new MessageObjectTest("just don't know", PROVIDE_EB_NO_PARSE, EB_DESCRIPTION));
             //ChatBot: couldn't parse it, give me the EB
             add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+
+
             //ChatBot: give me a S2R
             add(new MessageObjectTest("I opened the app", PREDICT_S2R, S2R_PREDICTED_SELECTED));
             //ChatBot: please select the correct S2Rs

@@ -1,10 +1,18 @@
 package sealab.burt.qualitychecker;
 
 import lombok.extern.slf4j.Slf4j;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
+import sealab.burt.qualitychecker.actionparser.ActionParsingException;
+import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
+import sealab.burt.qualitychecker.graph.AppGuiComponent;
+import sealab.burt.qualitychecker.graph.GraphState;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static sealab.burt.qualitychecker.QualityResult.Result.NOT_PARSED;
 
@@ -13,26 +21,70 @@ class EBChecker {
 
     private final String app;
     private final String appVersion;
-    private String parsersBaseFolder;
+    private final NLActionS2RParser s2rParser;
 
-    public EBChecker(String app, String appVersion, String parsersBaseFolder) {
+    public EBChecker(String app, String appVersion) {
         this.app = app;
         this.appVersion = appVersion;
-        this.parsersBaseFolder = parsersBaseFolder;
+        this.s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
     }
 
-    public QualityResult checkEb(String ebDescription) throws Exception {
-        List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, app, ebDescription);
+    public QualityResult checkEb(String ebDescription, GraphState obState, String obDescription) throws Exception {
+        List<NLAction> nlActions = NLParser.parseText(BurtConfigPaths.nlParsersBaseFolder, app, ebDescription);
         if (nlActions.isEmpty()) return new QualityResult(NOT_PARSED);
-        return matchActions(nlActions);
+        if (nlActions.stream().noneMatch(nlAction -> nlAction.isOBAction() || nlAction.isEBAction()))
+            return new QualityResult(NOT_PARSED);
+        return matchActions(nlActions, obState, obDescription);
     }
 
-    private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
-//        AppGraphInfo graph = DBGraphReader.getGraph(app, appVersion);
-        //TODO: continue here
-
-        //FIXME: focus on the 1st action for now
+    private QualityResult matchActions(List<NLAction> nlActions, GraphState obState, String obDescription)
+            throws Exception {
         log.debug("All actions: " + nlActions);
-        return new QualityResult(QualityResult.Result.MATCH);
+
+        List<NLAction> obNlActions = NLParser.parseText(BurtConfigPaths.nlParsersBaseFolder, app, obDescription);
+
+        //------------------------------------------------
+
+        if (nlActions.stream().anyMatch(NLAction::containsCrashInfo) &&
+                obNlActions.stream().anyMatch(NLAction::containsCrashInfo))
+            return new QualityResult(QualityResult.Result.MATCH);
+
+        //---------------------------------------------------
+
+        for (NLAction nlAction : nlActions) {
+
+            Map.Entry<AppGuiComponent, Double> component = matchActionToState(obState, nlAction);
+
+            if (component != null)
+                return new QualityResult(QualityResult.Result.MATCH);
+
+        }
+
+        return new QualityResult(QualityResult.Result.NO_MATCH);
+    }
+
+    private Map.Entry<AppGuiComponent, Double> matchActionToState(GraphState obState, NLAction currNLAction) {
+        log.debug("Checking state/screen: " + obState.getUniqueHash());
+
+        //-------------------------------------
+        // Get the components of the current candidate screen
+
+        //filter out those components associated with a step, which duplicate existing components
+        List<AppGuiComponent> stateComponents = obState.getComponents();
+        stateComponents = stateComponents.stream()
+                .filter(c -> c.getParent() != null || "NO_ID".equals(c.getIdXml()))
+                .collect(Collectors.toList());
+
+        //-------------------------------------
+        // Determine the component
+        Map.Entry<AppGuiComponent, Double> component = null;
+        try {
+            //FIXME: may need other device actions
+            component = s2rParser.determineComponent(currNLAction,
+                    stateComponents, DeviceActions.CLICK, false);
+        } catch (ActionParsingException e) {
+            //OK if there is a parsing error
+        }
+        return component;
     }
 }

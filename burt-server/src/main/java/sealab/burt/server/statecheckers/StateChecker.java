@@ -6,6 +6,7 @@ import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
@@ -46,10 +47,13 @@ abstract class StateChecker {
         return result;
     }
 
-    protected QualityResult runEBQualityCheck(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    protected QualityResult runEBQualityCheck(ConcurrentHashMap<StateVariable, Object> state, GraphState obState,
+                                              String obDescription)
+            throws Exception {
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         EBChecker ebChecker = (EBChecker) state.get(EB_CHECKER);
-        QualityResult result = ebChecker.checkEb(userResponse.getFirstMessage().getMessage());
+        QualityResult result = ebChecker.checkEb(userResponse.getFirstMessage().getMessage(), obState,
+                obDescription);
         state.put(EB_QUALITY_RESULT, result);
         log.debug("EB quality check: " + result);
         return result;
