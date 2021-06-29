@@ -1,8 +1,10 @@
 package sealab.burt.server.statecheckers;
 
+import org.jgrapht.Graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
+import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.output.BugReportElement;
@@ -31,11 +33,15 @@ public class EBDescriptionStateChecker extends StateChecker {
     @Override
     public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
         try {
-            QualityResult result = runEBQualityCheck(state);
-//            String description = result.getDescription();
-//            String screenshotPath= result.getScreenshotPath();
-//            state.put(EB_DESCRIPTION, description);
-//            state.put(EB_SCREEN, screenshotPath);
+
+            List<BugReportElement> obReportElements = (List<BugReportElement>) state.get(REPORT_OB);
+
+            BugReportElement bugReportElement = obReportElements.get(0);
+            GraphState obState = (GraphState) bugReportElement.getOriginalElement();
+            String obDescription = bugReportElement.getStringElement();
+
+            QualityResult result = runEBQualityCheck(state, obState, obDescription);
+
             String description = "EB description";
             String screenshotPath = "app_logos/EBScreen.png";
             state.put(EB_DESCRIPTION, description);
