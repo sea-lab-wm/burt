@@ -86,7 +86,11 @@ public class ConversationTestData {
             //ChatBot: couldn't parse it, give me the EB
             add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
-            add(new MessageObjectTest("I opened the app", PROVIDE_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest("I opened the app", PREDICT_S2R, S2R_PREDICTED_SELECTED));
+            //ChatBot: please select the correct S2Rs
+            add(new MessageObjectTest("done", CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); //"0" means the first option
             //ChatBot: give me a S2R
             add(new MessageObjectTest("bla bla", PROVIDE_S2R_NO_PARSE, S2R_DESCRIPTION));
             //ChatBot: I couldn't parse the msg, please rephrase it
