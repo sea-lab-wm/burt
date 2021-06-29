@@ -2,6 +2,7 @@ P_SR_ACTIONS_INF;ActionsInfinitivePP
 P_SR_LABELED_LIST;LabeledListPP
 S_SR_COND_OBS;ConditionalObsBehaviorPP
 S_SR_IMPERATIVE_SEQUENCE;ImperativeSequencePP
+S_SR_IMPERATIVE_PAST_SEQUENCE;ImperativePastSequencePP
 P_SR_ACTIONS_MULTI_OBS_BEHAVIOR;ActionsMultiPP
 S_SR_ACTIONS_SEPARATOR;ActionsSeparatorPP
 S_SR_SIMPLE_PAST;SimplePastPP
@@ -18,3 +19,5 @@ S_OB_PASSIVE_VOICE;PassiveVoicePP
 S_OB_COND_POS;ConditionalPositivePP
 S_OB_NEG_ADV_ADJ;NegativeAdjOrAdvPP
 S_SR_GERUND_ACTION;GerundActionPP
+
+S_EB_SHOULD;ShouldPP

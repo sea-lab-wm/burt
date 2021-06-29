@@ -90,6 +90,10 @@ class NLParserTest {
 //                "Footer is removed (balance and date)."
 //                "Context Menus disappear on device rotation"
 
+                //EB
+//                "3. Account is created and account list is shown"
+                "got calculated \"Fuel economy\" stats"
+
 //                "I entered 23 gallons"
 //                ,
 //                "Entered all the fillup data and goto History Tab",

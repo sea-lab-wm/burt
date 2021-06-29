@@ -211,6 +211,7 @@ class HeuristicsNLActionParser extends NLActionParser {
         sentencesMatched = findS2RandOBSentences(bugReport);
 
         log.debug("Sentences matched to the patterns: " + sentencesMatched.size());
+        log.debug("Patterns matched: " + new ArrayList<>(sentencesMatched.values()));
 
         List<HashMap<Sentence, List<String>>> groupedSentences = determineScenarios(sentencesMatched);
 
@@ -367,6 +368,7 @@ class HeuristicsNLActionParser extends NLActionParser {
                     // S2R
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_SIMPLE_PRESENT_SUBORDINATES");
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_IMPERATIVE_SEQUENCE");
+                    parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_IMPERATIVE_PAST_SEQUENCE");
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_SIMPLE_PAST");
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_COND_OBS");
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_SR_ACTIONS_PRESENT_PERFECT");
@@ -391,6 +393,10 @@ class HeuristicsNLActionParser extends NLActionParser {
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_COND_POS");
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_NEG_COND");
                     parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_OB_COND_NEG", "S_OB_NEG_COND");
+
+                    //EB
+                    parseSentenceWithPattern(scenario, patternsMatched, stncParsed, "S_EB_SHOULD");
+
 
                 } catch (Exception e) {
                     log.error("Error for sentence " + sentence.getId() + " [" + systemName + " #" + bugId + "]", e);

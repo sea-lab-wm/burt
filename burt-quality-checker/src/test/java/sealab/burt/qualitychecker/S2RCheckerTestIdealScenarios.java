@@ -40,9 +40,9 @@ class S2RCheckerTestIdealScenarios {
     }
 
     private static void disableLogging() {
-        Logger.getLogger("sealab.burt.qualitychecker.actionparser").setLevel(Level.OFF);
-        Logger.getLogger("sealab.burt.qualitychecker.S2RChecker").setLevel(Level.OFF);
-        Logger.getLogger("sealab.burt.qualitychecker.graph").setLevel(Level.OFF);
+//        Logger.getLogger("sealab.burt.qualitychecker.actionparser").setLevel(Level.OFF);
+//        Logger.getLogger("sealab.burt.qualitychecker.S2RChecker").setLevel(Level.OFF);
+//        Logger.getLogger("sealab.burt.qualitychecker.graph").setLevel(Level.OFF);
         Logger.getLogger("edu.stanford.nlp").setLevel(Level.OFF);
     }
 
@@ -80,6 +80,15 @@ class S2RCheckerTestIdealScenarios {
     void testAppsPast() throws Exception {
         boolean addPastTense = true;
         boolean includeSubject = true;
+        boolean addPerfectTense = false;
+        testApps(addPastTense, includeSubject, addPerfectTense);
+    }
+
+
+    @Test
+    void testAppsPastImperative() throws Exception {
+        boolean addPastTense = true;
+        boolean includeSubject = false;
         boolean addPerfectTense = false;
         testApps(addPastTense, includeSubject, addPerfectTense);
     }

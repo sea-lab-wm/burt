@@ -82,7 +82,7 @@ public class ActionsInfinitivePP extends NLActionPatternParser {
             if (idx != -1) {
                 if (idx + 2 < tokens.size()) {
                     final List<Token> subTokens = tokens.subList(idx + 1, tokens.size());
-                    final boolean isImperative = SentenceUtils.isImperativeSentence(subTokens, false);
+                    final boolean isImperative = SentenceUtils.isImperativeSentence(subTokens, false, true);
 
                     if (isImperative) {
 

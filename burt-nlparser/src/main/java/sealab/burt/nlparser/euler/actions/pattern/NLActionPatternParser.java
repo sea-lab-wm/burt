@@ -6,8 +6,8 @@ import edu.stanford.nlp.trees.GrammaticalRelation;
 import edu.stanford.nlp.util.Pair;
 import org.apache.commons.lang3.StringUtils;
 import sealab.burt.nlparser.euler.actions.nl.ActionType;
-import seers.bugreppatterns.utils.SentenceUtils;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
+import seers.bugreppatterns.utils.SentenceUtils;
 import seers.textanalyzer.DependenciesUtils;
 import seers.textanalyzer.QuoteProcessor;
 import seers.textanalyzer.TextProcessor;
@@ -376,15 +376,21 @@ public abstract class NLActionPatternParser {
 		Pair<GrammaticalRelation, IndexedWord> negRelation = findNegatedRelation(dependencies, verbToken);
 		if (negRelation != null) {
 			action.setActionNegated(true);
+		} else {
+			Pair<GrammaticalRelation, IndexedWord> advmod = DependenciesUtils.getFirstChildByRelation(dependencies,
+					verbToken, "advmod");
+			if (advmod != null && advmod.second.lemma().equalsIgnoreCase("longer")) {
+				if (DependenciesUtils.getFirstChildByRelation(dependencies,
+						advmod.second, "neg") != null)
+					action.setActionNegated(true);
+			}
 		}
 	}
 
 	public Pair<GrammaticalRelation, IndexedWord> findNegatedRelation(SemanticGraph dependencies, IndexedWord verbToken) {
-		Pair<GrammaticalRelation, IndexedWord> negRelation = DependenciesUtils.getFirstChildByRelation(dependencies,
-				verbToken, "neg");
-		return negRelation;
+		return DependenciesUtils.getFirstChildByRelation(dependencies, verbToken, "neg");
 	}
-	
+
 	protected boolean isPassiveVoice(SemanticGraph dependencies, IndexedWord verbToken) {
 
 		Pair<GrammaticalRelation, IndexedWord> auxsPassRel = DependenciesUtils.getFirstChildByRelation(dependencies,

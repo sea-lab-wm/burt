@@ -1,5 +1,6 @@
 package sealab.burt.qualitychecker;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 
@@ -7,7 +8,8 @@ import java.util.List;
 
 import static sealab.burt.qualitychecker.QualityResult.Result.NOT_PARSED;
 
-public class EBChecker {
+public @Slf4j
+class EBChecker {
 
     private final String app;
     private final String appVersion;
@@ -28,6 +30,9 @@ public class EBChecker {
     private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
 //        AppGraphInfo graph = DBGraphReader.getGraph(app, appVersion);
         //TODO: continue here
+
+        //FIXME: focus on the 1st action for now
+        log.debug("All actions: " + nlActions);
         return new QualityResult(QualityResult.Result.MATCH);
     }
 }

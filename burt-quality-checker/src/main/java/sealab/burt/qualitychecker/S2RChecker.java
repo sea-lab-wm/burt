@@ -111,10 +111,11 @@ class S2RChecker {
 
         log.debug("Current state: " + this.currentState);
 
-        //focus on the 1st action for now
+        //FIXME: focus on the 1st action for now
         NLAction nlAction = nlActions.get(0);
 
-        log.debug("Matching action: " + nlAction);
+        log.debug("All actions: " + nlActions);
+        log.debug("Matching S2R action: " + nlAction);
 
         return matchAction(nlAction);
     }
