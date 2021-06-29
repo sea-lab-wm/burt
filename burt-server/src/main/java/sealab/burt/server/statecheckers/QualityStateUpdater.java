@@ -3,6 +3,7 @@ package sealab.burt.server.statecheckers;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
+import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
@@ -14,8 +15,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import static sealab.burt.server.StateVariable.REPORT_S2R;
-import static sealab.burt.server.StateVariable.S2R_CHECKER;
+import static sealab.burt.server.StateVariable.*;
 
 public class QualityStateUpdater {
 
@@ -27,7 +27,7 @@ public class QualityStateUpdater {
         String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(appStep, state);
         if (!state.containsKey(REPORT_S2R)) {
             stepElements = new ArrayList<>(Collections.singletonList(
-                    new BugReportElement(stringStep, appStep,  screenshotFile)
+                    new BugReportElement(stringStep, appStep, screenshotFile)
             ));
         } else {
             stepElements.add(new BugReportElement(stringStep, appStep, screenshotFile));
@@ -69,4 +69,23 @@ public class QualityStateUpdater {
     }
 
 
+    public static void updateOBState(ConcurrentHashMap<StateVariable, Object> state, GraphState obState) {
+
+        if (obState == null)
+            throw new RuntimeException("The state cannot be null");
+
+        String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(obState, state);
+        state.put(REPORT_OB, Collections.singletonList(
+                new BugReportElement((String) state.get(OB_DESCRIPTION), obState, screenshotFile)));
+    }
+
+
+    public static void updateEBState(ConcurrentHashMap<StateVariable, Object> state, GraphState ebState) {
+        if (ebState == null)
+            throw new RuntimeException("The state cannot be null");
+
+        String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(ebState, state);
+        state.put(REPORT_EB, Collections.singletonList(
+                new BugReportElement((String) state.get(EB_DESCRIPTION), ebState, screenshotFile)));
+    }
 }

@@ -2,15 +2,14 @@ package sealab.burt.server.statecheckers;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
-import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.UserResponse;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static sealab.burt.server.StateVariable.*;
+import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
+import static sealab.burt.server.StateVariable.OB_DESCRIPTION;
 import static sealab.burt.server.actions.ActionName.*;
 
 public @Slf4j
@@ -32,7 +31,13 @@ class OBDescriptionStateChecker extends StateChecker {
         try {
             QualityResult result = runOBQualityCheck(state);
             UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
+
             state.put(OB_DESCRIPTION, userResponse.getFirstMessage().getMessage());
+
+            if (result.getResult().equals(QualityResult.Result.MATCH)) {
+                QualityStateUpdater.updateOBState(state, result.getMatchedStates().get(0));
+            }
+
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {
             log.error("There was an error", e);

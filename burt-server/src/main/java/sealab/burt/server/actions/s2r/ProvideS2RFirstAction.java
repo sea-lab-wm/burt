@@ -20,7 +20,6 @@ public class ProvideS2RFirstAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
         state.put(COLLECTING_S2R, true);
-        state.remove(COLLECTING_EB);
 
         String appName = state.get(APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();

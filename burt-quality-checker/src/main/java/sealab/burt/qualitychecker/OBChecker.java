@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
+import sealab.burt.nlparser.euler.actions.HeuristicsNLActionParser;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
 import sealab.burt.qualitychecker.actionparser.ScreenResolver;
@@ -57,6 +58,11 @@ class OBChecker {
     public QualityResult checkOb(String obDescription) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, obDescription);
         if (nlActions.isEmpty()) return new QualityResult(NOT_PARSED);
+
+        // avoid actions such as "app not work"
+        if(nlActions.stream().noneMatch(act -> act.isOBAction() && !HeuristicsNLActionParser.isNotWorkAction(act)))
+            return new QualityResult(NO_MATCH, Collections.emptyList());
+
         if (nlActions.stream().noneMatch(NLAction::isOBAction)) return new QualityResult(NOT_PARSED);
         return matchActions(nlActions);
     }

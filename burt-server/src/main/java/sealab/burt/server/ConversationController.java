@@ -68,7 +68,7 @@ class ConversationController {
 
             put(PROVIDE_EB, new ProvideEBAction(EB_DESCRIPTION));
             put(PROVIDE_EB_NO_PARSE, new ProvideEBNoParseAction(EB_DESCRIPTION));
-            put(CLARIFY_EB, new ClarifyEBAction());
+            put(CLARIFY_EB, new ClarifyEBAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
 
             //--------S2R-----------//
 
@@ -154,8 +154,7 @@ class ConversationController {
 
             if (conversationState == null) {
                 log.error("The session does not exist: " + sessionId);
-                return ConversationResponse.createResponse("Thank you for using BURT. " +
-                        "The conversation will automatically end in a few seconds.", 100);
+                return getDefaultResponse();
             }
 
             conversationState.put(CURRENT_MESSAGE, userResponse);
@@ -170,8 +169,7 @@ class ConversationController {
 
             if (END_CONVERSATION.equals(intent)) {
                 endConversation(sessionId);
-                return ConversationResponse.createResponse("Thank you for using BURT. " +
-                        "The conversation will automatically end in a few seconds.", 100);
+                return getDefaultResponse();
             }
 
             StateChecker stateChecker = stateCheckers.get(intent);
@@ -204,6 +202,11 @@ class ConversationController {
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +
                     "Please try again or contact the administrator.", 0);
         }
+    }
+
+    private ConversationResponse getDefaultResponse() {
+        return ConversationResponse.createResponse("You got it. " +
+                "The conversation will automatically end in a few seconds.", 100);
     }
 
 
