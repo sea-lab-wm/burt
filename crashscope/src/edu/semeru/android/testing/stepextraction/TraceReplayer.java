@@ -118,7 +118,7 @@ public class TraceReplayer {
         String appVersion = "";
         String mainActivity = "com.zappos.android.activities.HomeActivity";
         String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/APKs/6pm.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/6pm/getevent-detail-2.log";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/6pm/getevent-detail-1.log";
         String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/test-output";
         
         String avdPort = "5554";
@@ -232,14 +232,17 @@ public class TraceReplayer {
             String currentWindow = ((window.getWindow() + (window.getTitle() != null
                     && !window.getTitle().isEmpty() ? window.getTitle() : ""))).trim();
             //guiEventVO.setActivity(title);
-            guiEventVO.getHvInfoComponent().setTitleWindow(window.getTitle());
+            if(guiEventVO.getEventTypeId()!=StepByStepEngine.SWIPE) {
+            	guiEventVO.getHvInfoComponent().setTitleWindow(window.getTitle());
+        	}
+            
             UiAutoConnector.setComponentAreas(guiEventVO, androidSDKPath, screenDims.get(0),
                     screenDims.get(1));
 
             ArrayList<DynGuiComponentVO> screenInfo = UiAutoConnector.getScreenInfoCache(androidSDKPath, screenWidth, screenHeight, true, false, device);
             
 
-            System.out.println(guiEventVO.getHvInfoComponent());
+            //System.out.println(guiEventVO.getHvInfoComponent());
 
 	        Screen screen = new Screen();
 	        screen.setActivity(Utilities.getCurrentActivity(androidSDKPath));
@@ -248,11 +251,12 @@ public class TraceReplayer {
             
             
             String textEntry = StepByStepEngine.executeEvent(guiEventVO, androidSDKPath, appPackage, null, false, device);
+            
           
             Thread.sleep(3000);
             
             // Is Keyboard component?
-            if (guiEventVO != null
+            if (guiEventVO.getHvInfoComponent() != null
                     && guiEventVO.getHvInfoComponent().getIdXml().equals("id/keyboard_view")) {
                 if (!keyboardActive && oldComponent != null) {
                     vo = (GUIEventVO) Utilities.cloneObject(oldComponent);
@@ -375,7 +379,9 @@ public class TraceReplayer {
                 step.setSequenceStep(sequence);
                 step.setScreen(screen);
                 step.setTextEntry(textEntry);
-	            step.getDynGuiComponent().setCurrentWindow(currentWindow);
+                if(guiEventVO.getEventTypeId()!=StepByStepEngine.SWIPE) {
+                	step.getDynGuiComponent().setCurrentWindow(currentWindow);
+                }
                 Thread.sleep(5000);
                 
                 String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
@@ -386,14 +392,16 @@ public class TraceReplayer {
 
                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
                         + "screenshots", appPackage + "."
-                                + executionCtr + "." + screenshot);
-              
-                takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
+                                + executionCtr + "." + screenshot);   
                 
-                DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
-                
-                String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, currscreenshot, screenshot);
-                step.getDynGuiComponent().setGuiScreenshot(guiScreenShot);        
+                if(guiEventVO.getEventTypeId()!=StepByStepEngine.SWIPE) {
+                	takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
+                	DynGuiComponent dynGuiComponent = step.getDynGuiComponent();
+	                String guiScreenShot = takeGUIScreenshot(dynGuiComponent, outputFolder, appPackage, currscreenshot, screenshot);
+	                step.getDynGuiComponent().setGuiScreenshot(guiScreenShot);     
+                } else {
+                	takeAugmentedScreenshotForSwipe(step, guiEventVO, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
+                }
                 
                 steps.add(step);
                 
@@ -445,41 +453,38 @@ public class TraceReplayer {
 
     }
     
+    public void takeAugmentedScreenshotForSwipe(Step step, GUIEventVO guiEventVO, int screenWidth, int screenHeight, String outputFolder, String appPackage, String currscreenshot, String screenshot) throws Exception{
+        ScreenActionData data = new ScreenActionData(step.getAction(), guiEventVO.getRealInitialX(), guiEventVO.getRealInitialY(),
+        		guiEventVO.getRealFinalX(), guiEventVO.getRealFinalY(), screenWidth, screenHeight);
+        ScreenshotModifier.augmentScreenShotTraceSwipe(step, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+                + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+                         + executionCtr + "."
+                        + screenshot.replace(".png", "_augmented.png"), data);
+        step.setScreenshot(appPackage + "."
+                + executionCtr + "." + screenshot.replace(".png", "_augmented.png"));
+   }
+    
     public void takeAugmentedScreenshot(Step step, int screenWidth, int screenHeight, String outputFolder, String appPackage, String currscreenshot, String screenshot) throws Exception{
     	 if (step != null) {
-             ScreenActionData data = null;
-             switch (step.getAction()) {
-	                case StepByStepEngine.SWIPE:
-	                    data = new ScreenActionData(step.getAction(), screenWidth / 2, (int) (screenHeight * .1),
-	                            screenWidth / 2, (int) (screenHeight * .8), screenWidth, screenHeight);
-	                    ScreenshotModifier.augmentScreenShot(outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
-	                            + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
-	                                     + executionCtr + "."
-	                                    + screenshot.replace(".png", "_augmented.png"), data);
-	                    step.setScreenshot(appPackage + "."
-	                            + executionCtr + "." + screenshot.replace(".png", "_augmented.png"));
-	                    break;
-	                default:
-	                    System.out.println("Augmenting the Previous Step # " + sequence + " Screenshot");
-	                    //System.out.println("--- Augmenting " + currscreenshot); //For debugging
-	                    if(step.getDynGuiComponent() != null){
-	                        data = new ScreenActionData(step.getAction(), (step.getDynGuiComponent().getWidth() / 2)
-	                                + step.getDynGuiComponent().getPositionX(), (step.getDynGuiComponent().getHeight() / 2)
-	                                + step.getDynGuiComponent().getPositionY(), screenWidth, screenHeight);
-	
-	                        ScreenshotModifier.augmentScreenShot(outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
-	                               + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
-	                                       + executionCtr + "."
-	                                        + screenshot.replace(".png", "_augmented.png"), data);
-	                        step.setScreenshot(appPackage + "."
-	                        		+ executionCtr + "." + screenshot.replace(".png", "_augmented.png"));
-	                        break;
-	                    } else{
-	                        step.setScreenshot(appPackage + "."
-	                                + executionCtr + "." + screenshot);
-	                    }
-             }
-         }
+			ScreenActionData data = null;
+			System.out.println("Augmenting the Previous Step # " + sequence + " Screenshot");
+			//System.out.println("--- Augmenting " + currscreenshot); //For debugging
+			if(step.getDynGuiComponent() != null){
+			    data = new ScreenActionData(step.getAction(), (step.getDynGuiComponent().getWidth() / 2)
+			            + step.getDynGuiComponent().getPositionX(), (step.getDynGuiComponent().getHeight() / 2)
+			            + step.getDynGuiComponent().getPositionY(), screenWidth, screenHeight);
+			
+			    ScreenshotModifier.augmentScreenShot(outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+			           + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+			                   + executionCtr + "."
+			                    + screenshot.replace(".png", "_augmented.png"), data);
+			    step.setScreenshot(appPackage + "."
+			    		+ executionCtr + "." + screenshot.replace(".png", "_augmented.png"));
+			} else{
+			    step.setScreenshot(appPackage + "."
+			            + executionCtr + "." + screenshot);
+			}
+    	 }
     }
     
     public String takeGUIScreenshot(DynGuiComponent dynGuiComponent, String outputFolder, String appPackage, String currscreenshot, String screenshot) {
