@@ -456,7 +456,7 @@ public class TraceReplayer {
     public void takeAugmentedScreenshotForSwipe(Step step, GUIEventVO guiEventVO, int screenWidth, int screenHeight, String outputFolder, String appPackage, String currscreenshot, String screenshot) throws Exception{
         ScreenActionData data = new ScreenActionData(step.getAction(), guiEventVO.getRealInitialX(), guiEventVO.getRealInitialY(),
         		guiEventVO.getRealFinalX(), guiEventVO.getRealFinalY(), screenWidth, screenHeight);
-        ScreenshotModifier.augmentScreenShotTraceSwipe(outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+        ScreenshotModifier.augmentScreenShotTraceSwipe(step, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
                 + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
                          + executionCtr + "."
                         + screenshot.replace(".png", "_augmented.png"), data);
