@@ -7,6 +7,7 @@ import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.ArrayList;
@@ -42,23 +43,11 @@ public class EBDescriptionStateChecker extends StateChecker {
 
             QualityResult result = runEBQualityCheck(state, obState, obDescription);
 
-            String description = "EB description";
-            String screenshotPath = "app_logos/EBScreen.png";
-            state.put(EB_DESCRIPTION, description);
-            state.put(EB_SCREEN, screenshotPath);
+            UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
+            state.put(EB_DESCRIPTION,  userResponse.getFirstMessage().getMessage());
 
             if (result.getResult().equals(QualityResult.Result.MATCH)){
-//                UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
-//                String message = userMessage.getMessages().get(0).getMessage();
-                if (!state.containsKey(REPORT_EB)){
-
-                    List<BugReportElement> outputMessageList = new ArrayList<>();
-                    outputMessageList.add(new BugReportElement(description, null, screenshotPath));
-                    state.put(REPORT_EB, outputMessageList);
-                }else{
-                    List<BugReportElement> outputMessage = (List<BugReportElement>) state.get(REPORT_EB);
-                    outputMessage.add(new BugReportElement(description, null, screenshotPath));
-                }
+                QualityStateUpdater.updateEBState(state, obState);
             }
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {

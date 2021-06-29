@@ -12,9 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
-import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.qualitychecker.graph.AppGuiComponent;
 import sealab.burt.qualitychecker.graph.Appl;
 import sealab.burt.qualitychecker.graph.db.DBUtils;
@@ -505,6 +505,46 @@ public class NLActionS2RParser {
         List<DynGuiComponent> dynGuiComponents = currentScreen.getDynGuiComponents();
         List<AppGuiComponent> guiComponents = Transform.getGuiComponents(dynGuiComponents);
         return determineComponent(nlAction, guiComponents, event, skipFocused);
+    }
+
+    public Entry<AppGuiComponent, Double> determineComponentForOb(NLAction nlAction,
+                                                                  List<AppGuiComponent> currentScreen,
+                                                                  Integer event,
+                                                                  boolean skipFocused) throws ActionParsingException {
+
+        Entry<AppGuiComponent, Double> componentFound;
+        try {
+            componentFound = findComponentToClick(nlAction, currentScreen, event, skipFocused);
+            return componentFound;
+        } catch (ActionParsingException e) {
+            //ok
+        }
+
+        //------------------------------------------------------
+
+        String subject = nlAction.getSubject();
+        String object = nlAction.getObject();
+        String object2 = nlAction.getObject2();
+        String action = nlAction.getAction();
+
+        Set<ComponentType> componentTypes = new HashSet<>();
+
+        PreProcessedText preprocessedAll = preprocessText(String.format("%s %s %s %s",
+                subject, action, object, object2));
+        try {
+            componentFound = findComponent(currentScreen, preprocessedAll,
+                    componentTypes, false, true, event, skipFocused, true);
+            return componentFound;
+        } catch (ActionParsingException e) {
+            //it's ok
+        }
+
+        //-----------------------------------------------------------
+
+        PreProcessedText preProcessedSubject = preprocessText(subject);
+
+        return findComponent(currentScreen, preProcessedSubject,
+                componentTypes, false, true, event, skipFocused, true);
     }
 
     public Entry<AppGuiComponent, Double> determineComponent(NLAction nlAction, List<AppGuiComponent> currentScreen,
@@ -1444,11 +1484,10 @@ public class NLActionS2RParser {
                                               List<AppGuiComponent> currentScreenComponents) throws SQLException {
 
         List<AppGuiComponent> siblings = currentScreenComponents.stream()
-                .filter(comp -> comp.getParent() !=null && comp.getParent().getDbId().equals(component.getParent().getDbId())
+                .filter(comp -> comp.getParent() != null && comp.getParent().getDbId().equals(component.getParent().getDbId())
                         && !comp.getDbId().equals(component.getDbId()))
                 .collect(Collectors.toList());
         return siblings;
-
 
 
         //------------------------------------

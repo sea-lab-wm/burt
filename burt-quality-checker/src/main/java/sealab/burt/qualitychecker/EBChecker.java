@@ -80,7 +80,7 @@ class EBChecker {
         Map.Entry<AppGuiComponent, Double> component = null;
         try {
             //FIXME: may need other device actions
-            component = s2rParser.determineComponent(currNLAction,
+            component = s2rParser.determineComponentForOb(currNLAction,
                     stateComponents, DeviceActions.CLICK, false);
         } catch (ActionParsingException e) {
             //OK if there is a parsing error

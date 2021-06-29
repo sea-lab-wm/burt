@@ -62,8 +62,10 @@ public class ConversationTestData {
             //ChatBot: provide the OB
             add(new MessageObjectTest("I don't know", PROVIDE_OB_NO_PARSE, OB_DESCRIPTION));
             //ChatBot: I couldn't parse that, pls provide the OB
-            add(new MessageObjectTest("the app crashed", REPHRASE_OB, OB_DESCRIPTION));
+            add(new MessageObjectTest("the app does not work", REPHRASE_OB, OB_DESCRIPTION));
             //ChatBot: I couldn't parse that, pls provide the OB
+            add(new MessageObjectTest("the app crashed", REPHRASE_OB, OB_DESCRIPTION));
+            //ChatBot: I couldn't match that, pls provide the OB
             add(new MessageObjectTest("the app crashed when entering fillup", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED,
@@ -84,9 +86,13 @@ public class ConversationTestData {
             //ChatBot: give me the EB
             add(new MessageObjectTest("just don't know", PROVIDE_EB_NO_PARSE, EB_DESCRIPTION));
             //ChatBot: couldn't parse it, give me the EB
-            add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
-
-
+            add(new MessageObjectTest("the app should run well", CLARIFY_EB, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: the eb is general, is this the screen is having the problem?
+            add(new MessageObjectTest("no", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: ok, give me the EB
+            add(new MessageObjectTest("the app should run well", CLARIFY_EB,  AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: the eb is general, is this the screen is having the problem?
+            add(new MessageObjectTest("yes", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
             add(new MessageObjectTest("I opened the app", PREDICT_S2R, S2R_PREDICTED_SELECTED));
             //ChatBot: please select the correct S2Rs

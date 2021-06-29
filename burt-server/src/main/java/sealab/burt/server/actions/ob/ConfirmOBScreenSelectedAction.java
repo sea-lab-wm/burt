@@ -12,6 +12,7 @@ import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
+import sealab.burt.server.statecheckers.QualityStateUpdater;
 
 import java.util.Collections;
 import java.util.List;
@@ -46,7 +47,6 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
         StringBuilder response = new StringBuilder();
         if ("done".equals(message.getMessage())) {
 
-
             List<String> selectedValues = message.getSelectedValues();
             if (selectedValues == null || selectedValues.isEmpty())
                 return getDefaultMessage(matchedStates, state);
@@ -65,10 +65,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
             setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
             state.put(OB_SCREEN_SELECTED, true);
 
-            String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(selectedState, state);
-
-            state.put(REPORT_OB, Collections.singletonList(
-                    new BugReportElement((String) state.get(OB_DESCRIPTION), selectedState, screenshotFile)));
+            state.put(StateVariable.OB_STATE, selectedState);
 
             //---------------------
 
@@ -98,6 +95,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
         }
 
     }
+
 
 
     private List<ChatBotMessage> getDefaultMessage(List<GraphState> matchedStates,

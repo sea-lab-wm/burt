@@ -22,7 +22,6 @@ public class ProvideOBAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
         String appName = state.get(APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
-        state.put(COLLECTING_OB, true);
         if (!state.containsKey(OB_CHECKER))
             state.put(OB_CHECKER, new OBChecker(appName, appVersion));
         return createChatBotMessages(MessageFormat.format("Ok, can you please tell me the incorrect behavior that you " +

@@ -88,7 +88,7 @@ class ScreenResolver {
 
             try {
                 //FIXME: may need other device actions
-                Map.Entry<AppGuiComponent, Double> component = s2rParser.determineComponent(currNLAction,
+                Map.Entry<AppGuiComponent, Double> component = s2rParser.determineComponentForOb(currNLAction,
                         stateComponents, DeviceActions.CLICK, false);
                 matchedStates.put(candidateState, distance);
             } catch (ActionParsingException e) {

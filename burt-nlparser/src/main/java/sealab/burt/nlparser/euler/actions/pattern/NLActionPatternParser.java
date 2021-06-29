@@ -219,7 +219,7 @@ public abstract class NLActionPatternParser {
 
 	}
 
-	private String getCompoundExpression(SemanticGraph dependencies, IndexedWord idxWord, String[] rels,
+	protected String getCompoundExpression(SemanticGraph dependencies, IndexedWord idxWord, String[] rels,
 			boolean isRelPrefix, boolean isLemma) {
 		if (idxWord == null) {
 			return null;

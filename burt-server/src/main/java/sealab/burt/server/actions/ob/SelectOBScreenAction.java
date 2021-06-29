@@ -25,6 +25,25 @@ public class SelectOBScreenAction extends ChatBotAction {
         super(nextExpectedIntent);
     }
 
+    @Override
+    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+
+        MessageObj messageObj = new MessageObj(
+                " Please hit the \"Done\" button after you have selected it.", "OBScreenSelector");
+
+        QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
+        List<GraphState> matchedStates = result.getMatchedStates();
+
+        List<KeyValues> options = getObScreenOptions(matchedStates, state);
+
+        if (options.isEmpty())
+            throw new RuntimeException("There are no options to show");
+
+        return createChatBotMessages(
+                "Got it. From the list below, can you please select the screen that is having the problem?",
+                new ChatBotMessage(messageObj, options, true));
+    }
+
     public static List<KeyValues> getObScreenOptions(List<GraphState> matchedStates,
                                                      ConcurrentHashMap<StateVariable, Object> state) {
         int maxNumOfResults = 5;
@@ -48,25 +67,6 @@ public class SelectOBScreenAction extends ChatBotAction {
                 )
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
-
-        MessageObj messageObj = new MessageObj(
-                " Please hit the \"Done\" button after you have selected it.", "OBScreenSelector");
-
-        QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
-        List<GraphState> matchedStates = result.getMatchedStates();
-
-        List<KeyValues> options = getObScreenOptions(matchedStates, state);
-
-        if (options.isEmpty())
-            throw new RuntimeException("There are no options to show");
-
-        return createChatBotMessages(
-                "Got it. From the list below, can you please select the screen that is having the problem?",
-                new ChatBotMessage(messageObj, options, true));
     }
 
 }

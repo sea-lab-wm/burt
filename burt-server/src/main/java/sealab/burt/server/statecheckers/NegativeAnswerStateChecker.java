@@ -25,8 +25,12 @@ public class NegativeAnswerStateChecker extends StateChecker {
             nextAction = SELECT_APP;
         } else if (state.containsKey(OB_SCREEN_SELECTED)){
             nextAction = SELECT_OB_SCREEN;
-        } else if (state.containsKey(COLLECTING_EB)){
+        }
+        /*else if (state.containsKey(COLLECTING_EB)){
             nextAction = CLARIFY_EB;
+        }*/
+        else if (state.containsKey(EB_SCREEN_CONFIRMATION)) {
+            nextAction = PROVIDE_EB;
         }
         return nextAction;
 

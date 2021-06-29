@@ -259,11 +259,6 @@ class HeuristicsNLActionParser extends NLActionParser {
 
         for (NLAction nlAction : actions) {
 
-            // avoid actions such as "app not work"
-            if (isNotWorkAction(nlAction)) {
-                continue;
-            }
-
             if (SentenceUtils.matchTermsByLemma(NOT_ALLOWED_ACTIONS, nlAction.getAction())) {
                 continue;
             }
@@ -290,7 +285,7 @@ class HeuristicsNLActionParser extends NLActionParser {
         return new BugScenario(scenario.getId(), finalActions, true);
     }
 
-    private boolean isNotWorkAction(NLAction nlAction) {
+    public static boolean isNotWorkAction(NLAction nlAction) {
         return nlAction.isActionNegated() != null && nlAction.isActionNegated()
                 && "work".equalsIgnoreCase(nlAction.getAction()) && nlAction.getPreposition() == null
                 && nlAction.getObject2() == null;
