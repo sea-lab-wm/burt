@@ -15,9 +15,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GraphUtils {
 

@@ -48,6 +48,19 @@ public class QualityStateUpdater {
     }
 
     /**
+     * add predicted step and update graph current state
+     */
+    public static void addPredictedStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state, AppStep appStep){
+        // add steps to state
+        List<AppStep> appStepList = Collections.singletonList(appStep);
+        addStepsToState(state, appStepList);
+        // update graph state
+        S2RChecker s2rChecker = (S2RChecker) state.get(S2R_CHECKER);
+        s2rChecker.updateState(appStep.getCurrentState());
+    }
+
+
+    /**
      * add the intermediate missing steps into state
      */
     public static void addStepsToState(ConcurrentHashMap<StateVariable, Object> state,
