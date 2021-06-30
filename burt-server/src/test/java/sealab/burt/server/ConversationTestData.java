@@ -20,11 +20,87 @@ public class ConversationTestData {
         List<List<MessageObjectTest>> conversationFlowList = new ArrayList<>();
         conversationFlowList.add(getConversationFlow_1());
         conversationFlowList.add(getConversationFlow_2());
+        conversationFlowList.add(getConversationFlow_3());
         return conversationFlowList;
-//        conversationFlowList.add(getConversationFlow_3());
 //        conversationFlowList.add(getConversationFlow_4());
 //        conversationFlowList.add(getConversationFlow_5());
 
+    }
+
+    private static List<MessageObjectTest> getConversationFlow_3() {
+        KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Mileage v. 3.1.1"))
+                .findFirst().orElse(null);
+
+        return new ArrayList<>() {{
+            //ChatBot: hi this is burt
+            add(new MessageObjectTest("what's up?", PROVIDE_PARTICIPANT_ID, PARTICIPANT_PROVIDED));
+            //ChatBot: what is you participant id?
+            add(new MessageObjectTest("no participant id", PROVIDE_PARTICIPANT_ID, PARTICIPANT_PROVIDED));
+            //ChatBot: didn't get that, please provide the participant id
+            add(new MessageObjectTest("P23", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    APP_SELECTED,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("Mileage v. 3.1.1")));
+            //ChatBot: I didn't get that, select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(mileageOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("no", SELECT_APP, APP_SELECTED));
+            //ChatBot: ok, select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(mileageOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("I don't know", PROVIDE_OB_NO_PARSE, OB_DESCRIPTION));
+            //ChatBot: I couldn't parse that, pls provide the OB
+            add(new MessageObjectTest("the app does not work", REPHRASE_OB, OB_DESCRIPTION));
+            //ChatBot: I couldn't parse that, pls provide the OB
+            add(new MessageObjectTest("the app crashed", REPHRASE_OB, OB_DESCRIPTION));
+            //ChatBot: I couldn't match that, pls provide the OB
+            add(new MessageObjectTest("the app crashed when entering fillup", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("OB_SCREEN")));
+            //ChatBot: Sorry, wrong option, please select the screen that is having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); //"0" means the first option
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("no", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); //"0" means the first option
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("just don't know", PROVIDE_EB_NO_PARSE, EB_DESCRIPTION));
+            //ChatBot: couldn't parse it, give me the EB
+            add(new MessageObjectTest("the app should run well", CLARIFY_EB, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: the eb is general, is this the screen is having the problem?
+            add(new MessageObjectTest("no", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: ok, give me the EB
+            add(new MessageObjectTest("the app should run well", CLARIFY_EB,  AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: the eb is general, is this the screen is having the problem?
+            add(new MessageObjectTest("yes", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot: give me a S2R
+            add(new MessageObjectTest("I clicked on \"edit vehicle types\"", PROVIDE_S2R, S2R_DESCRIPTION));
+            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));
+        }};
     }
 
     private static List<MessageObjectTest> getConversationFlow_1() {

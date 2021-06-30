@@ -192,18 +192,18 @@ class StepResolver {
 
         // 1. Get all considered nodes that are in range of GRAPH_MAX_DEPTH_CHECK
         // TODO: check previously executed or seen states
-        LinkedHashMap<GraphState, Integer> stateCandidates = new LinkedHashMap<>();
-        getCandidateGraphStates(executionGraph.getGraph(), stateCandidates, currentState, 0, graphMaxDepthCheck);
-        stateCandidates.remove(GraphState.START_STATE);
+        LinkedHashMap<GraphState, Integer> candidateStates = new LinkedHashMap<>();
+        getCandidateGraphStates(executionGraph.getGraph(), candidateStates, currentState, 0, graphMaxDepthCheck);
+        candidateStates.remove(GraphState.START_STATE);
 
-        log.debug("State candidates (" + stateCandidates.size() + "): " + stateCandidates);
+        log.debug("Candidate states (" + candidateStates.size() + "): " + candidateStates);
 
         final ResolvedStepResult result = new ResolvedStepResult();
 
         //-----------------------
 
         LinkedHashMap<AppStep, Integer> foundSteps = new LinkedHashMap<>();
-        for (Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
+        for (Entry<GraphState, Integer> candidateEntry : candidateStates.entrySet()) {
             final GraphState candidateState = candidateEntry.getKey();
             final Integer distance = candidateEntry.getValue();
 
