@@ -74,9 +74,11 @@ class ConversationController {
 
             put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
             put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
+            //
+            put(PREDICT_S2R_2, new ProvidePredictedS2RAction_2(S2R_PREDICTED_SELECTED));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
             put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
-            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RScreensSelectedAction(S2R_DESCRIPTION));
+//            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RAction(S2R_DESCRIPTION));
             put(ActionName.DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
             put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
             put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_DESCRIPTION));
@@ -108,8 +110,11 @@ class ConversationController {
         put(EB_DESCRIPTION, new EBDescriptionStateChecker());
         //--------S2R-----------//
         put(S2R_DESCRIPTION, new S2RDescriptionStateChecker());
-        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
+
+//        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
+        put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
         put(S2R_MISSING_SELECTED, new NStateChecker(CONFIRM_SELECTED_MISSING_S2R));
+
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//

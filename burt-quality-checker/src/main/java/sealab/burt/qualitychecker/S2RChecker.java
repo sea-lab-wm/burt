@@ -485,7 +485,7 @@ class S2RChecker {
 
     /**
      * Yang Song
-     * @description get all possible paths for S2R prediction
+     * Get all possible paths for S2R prediction
      *
      */
     public List<GraphPath<GraphState, GraphTransition>> getFirstKPaths(int k, GraphState matchedStep){
