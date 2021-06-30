@@ -75,7 +75,7 @@ class ConversationController {
             put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
             put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
             //
-            put(PREDICT_S2R_2, new ProvidePredictedS2RAction_2(S2R_PREDICTED_SELECTED));
+            put(PREDICT_S2R2, new ProvidePredictedS2RAction2(S2R_PREDICTED_SELECTED));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
             put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
 //            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RAction(S2R_DESCRIPTION));

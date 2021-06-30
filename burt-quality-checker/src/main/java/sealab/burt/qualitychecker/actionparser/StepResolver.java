@@ -176,7 +176,10 @@ class StepResolver {
 
         try {
             AppStep openAppStep = getOpenAppStep(currNLAction, app);
-            if (openAppStep != null) return new ResolvedStepResult(openAppStep);
+            if (openAppStep != null){
+                openAppStep.setCurrentState(currentState);
+                return new ResolvedStepResult(openAppStep);
+            }
 
         } catch (ActionParsingException e) {
             //The open app step should not fail, if it does, then the action is not an open app step
@@ -185,7 +188,10 @@ class StepResolver {
 
         try {
             AppStep closeAppStep = getCloseAppStep(currNLAction, app);
-            if (closeAppStep != null) return new ResolvedStepResult(closeAppStep);
+            if (closeAppStep != null){
+                closeAppStep.setCurrentState(currentState);
+                return new ResolvedStepResult(closeAppStep);
+            }
         } catch (ActionParsingException e) {
             //ok
         }
