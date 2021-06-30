@@ -1,8 +1,8 @@
 
 set CUR_DIR=%CD%
 
-set REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
-rem set REPOSITORIES_PATH=D:\Projects
+rem set REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
+set REPOSITORIES_PATH=D:\Projects
 
 set APPCORE_REPO_PATH=%REPOSITORIES_PATH%\appcore
 set TXT_ANALYZER_REPO_PATH=%REPOSITORIES_PATH%\text-analyzer

@@ -19,6 +19,9 @@ import static sealab.burt.server.StateVariable.*;
 
 public class QualityStateUpdater {
 
+    /**
+     * add the S2R (missing steps but HQ) after adding the selected missing S2Rs
+     */
     public static void addStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state,
                                                   String stringStep,
                                                   S2RQualityAssessment assessment) {
@@ -44,7 +47,9 @@ public class QualityStateUpdater {
 
     }
 
-
+    /**
+     * add the intermediate missing steps into state
+     */
     public static void addStepsToState(ConcurrentHashMap<StateVariable, Object> state,
                                        List<AppStep> selectedSteps) {
         List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);

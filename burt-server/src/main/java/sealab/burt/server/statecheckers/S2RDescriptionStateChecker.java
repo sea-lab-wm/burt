@@ -19,7 +19,9 @@ public class S2RDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
     private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
-        put(S2RQualityCategory.HIGH_QUALITY.name(), PROVIDE_S2R);
+        put(S2RQualityCategory.HIGH_QUALITY.name(), PREDICT_S2R);
+        // predict the next S2Rs
+//        put("PREDICT_S2R", PREDICT_S2R);
         put(S2RQualityCategory.LOW_Q_AMBIGUOUS.name(), ActionName.DISAMBIGUATE_S2R);
         put(S2RQualityCategory.LOW_Q_VOCAB_MISMATCH.name(), REPHRASE_S2R);
         put(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name(), SPECIFY_INPUT_S2R);
@@ -74,6 +76,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
             if (results.contains(S2RQualityCategory.HIGH_QUALITY)) {
                 S2RQualityAssessment assessment = qFeedback.getQualityAssessments().get(0);
                 QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
+
             }
 
             return nextActions.get(assessmentCategory.name());
