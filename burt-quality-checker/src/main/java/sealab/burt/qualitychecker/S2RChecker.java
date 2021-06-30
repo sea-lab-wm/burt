@@ -6,6 +6,7 @@ import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.jgrapht.GraphPath;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
@@ -317,8 +318,7 @@ class S2RChecker {
 
         if (!shortestPath.isEmpty()) {
 
-            executeIntermediateStepsInShortestPath(matchedStep, lastStep,
-                    executionResults, currentResolvedSteps, shortestPath, currentState.getComponents());
+            executeIntermediateStepsInShortestPath(matchedStep, lastStep, currentResolvedSteps, shortestPath, currentState.getComponents());
 
         } else {
 
@@ -401,8 +401,8 @@ class S2RChecker {
         currentResolvedSteps.addAll(stepsToExecute);
     }
 
-    private void executeIntermediateStepsInShortestPath(AppStep matchedStep, AppStep lastStep,
-                                                        List<DevServerCommandResult> executionResults,
+    public void executeIntermediateStepsInShortestPath(AppStep matchedStep, AppStep lastStep,
+//                                                        List<DevServerCommandResult> executionResults,
                                                         List<AppStep> currentResolvedSteps,
                                                         List<AppStep> shortestPath, List<AppGuiComponent> components) {
 
@@ -454,9 +454,11 @@ class S2RChecker {
                     }
                 } else if (i == shortestPath.size() - 1) {
                     //filter out the transitions after the matched step
-                    final int index = indexOf.apply(sortedTransitions, matchedStep);
-                    if (index != -1) {
-                        transitionsToExecute = sortedTransitions.subList(0, index);
+                    if (matchedStep != null) {
+                        final int index = indexOf.apply(sortedTransitions, matchedStep);
+                        if (index != -1) {
+                            transitionsToExecute = sortedTransitions.subList(0, index);
+                        }
                     }
                 }
 
@@ -479,6 +481,48 @@ class S2RChecker {
             currentResolvedSteps.addAll(stepsToExecute);
         }
     }
+
+
+    /**
+     * Yang Song
+     * @description get all possible paths for S2R prediction
+     *
+     */
+    public List<GraphPath<GraphState, GraphTransition>> getFirstKPaths(int k, GraphState matchedStep){
+
+        List<GraphPath<GraphState, GraphTransition>> Paths = GraphUtils.findPaths(executionGraph.getGraph(),
+                matchedStep, currentState, false, Integer.MAX_VALUE);
+        sortPathsByScores(Paths);
+
+        return Paths.subList(0, Math.min(k, Paths.size()));
+
+    }
+
+    private static void sortPathsByScores(List<GraphPath<GraphState, GraphTransition>> paths) {
+        paths.sort((P1, P2) -> {
+            double temp = computePathScore(P1) - computePathScore(P2);
+            int a = 0;
+            if (temp > 0) {
+                a = -1;
+            } else {
+                a = 1;
+            }
+            return a; //
+        });
+    }
+
+    private static double computePathScore(GraphPath<GraphState, GraphTransition> path){
+        List<GraphTransition> edgeList = path.getEdgeList();
+        double score = 0;
+        double weightSum = 0;
+        for (GraphTransition transition : edgeList) {
+            weightSum += transition.getWeight();
+        }
+        score += weightSum/edgeList.size();
+        score += 1.0/edgeList.size();
+        return score;
+    }
+
 
     private void addAdditionalIntermediateSteps(List<AppStep> steps) {
         for (int i = 0; i < steps.size(); i++) {
@@ -756,4 +800,9 @@ class S2RChecker {
     public void updateState(GraphState state) {
         this.currentState = state;
     }
+
+    public GraphState getCurrentState(){return this.currentState;};
+
+    public AppGraphInfo getExecutionGraph(){return this.executionGraph;};
+
 }
