@@ -113,16 +113,17 @@ public class TraceReplayer {
         String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScope/burt/crashscope/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "6pm";
-        String appPackage = "com.zappos.android.sixpmFlavor";
-        String appVersion = "";
-        String mainActivity = "com.zappos.android.activities.HomeActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/APKs/6pm.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/UserData/participant-16/6pm/getevent-detail-1.log";
+        String appName = "gnucash";
+        String appPackage = "org.gnucash.android";
+        String appVersion = "2.1.3";
+        String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/Apps/GnucashAndroid_v2.1.3.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CollectedUserData/getevent-gnuCash2.log";
         String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/test-output";
         
         String avdPort = "5554";
         String adbPort = "5037";
+        String executionType = "User-Trace-";
         TypeDeviceEnum deviceType = UiAutoConnector.TypeDeviceEnum.EMULATOR;
         DeviceHelper deviceHelper = new DeviceHelper(deviceType, androidSDKPath, avdPort, adbPort);
     	steps.clear();
@@ -142,6 +143,7 @@ public class TraceReplayer {
         app.setPackageName(appPackage);
         app.setMainActivity(mainActivity);
         app.setApkPath(apkPath);
+        app.setVersion(appVersion);
         
         execution.setApp(app);
         execution.setDeviceDimensions(Utilities.getScreenSize(androidSDKPath));
@@ -149,13 +151,13 @@ public class TraceReplayer {
         execution.setAndroidVersion(Utilities.getAndroidVersion(androidSDKPath));
         execution.setDeviceName(Utilities.getDeviceVersion(androidSDKPath));
         execution.setMainActivity(app.getMainActivity());
-        execution.setExecutionType("User-Trace");
+        execution.setExecutionType(executionType);
         
         replayerFeatures = new ReplayerFeatures();
         
         replayerFeatures.setWidthScreen(Integer.parseInt(execution.getDeviceDimensions().split("x")[0]));
         replayerFeatures.setHeightScreen(Integer.parseInt(execution.getDeviceDimensions().split("x")[1]));
-        replayerFeatures.setUiDumpLocation(outputFolder + File.separator + app.getPackageName() + "-" + executionCtr);
+        replayerFeatures.setUiDumpLocation(outputFolder + File.separator + app.getPackageName() + "-" + app.getVersion() + "-" + executionCtr + "-" + executionType);
 
         // Get dimensions
         screenDims = Utilities.getScreenDimensions(androidSDKPath, device);
@@ -191,13 +193,13 @@ public class TraceReplayer {
         if(takeScreenshots) {
         	String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";        
             Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                    + "screenshots", appPackage + "."
+                    + "screenshots", appPackage + "." + "User-Trace" + "." +
                             + executionCtr + "." + screenshot);
         }
         
         int screenWidth = replayerFeatures.getWidthScreen();
         int screenHeight = replayerFeatures.getHeightScreen();
-        String executionType = "User-Trace";
+        
 
         int i = 0;
         GUIEventVO vo = null;
@@ -228,7 +230,7 @@ public class TraceReplayer {
             // System.out.println(window.getTitle());
             // Set the best component matching
             UiAutoConnector.getComponent(androidSDKPath, guiEventVO, screenDims.get(0),
-                    screenDims.get(1), device, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence, avdPort, adbPort);
+                    screenDims.get(1), device, replayerFeatures.getUiDumpLocation() + sequence, avdPort, adbPort);
             String currentWindow = ((window.getWindow() + (window.getTitle() != null
                     && !window.getTitle().isEmpty() ? window.getTitle() : ""))).trim();
             //guiEventVO.setActivity(title);
@@ -271,7 +273,7 @@ public class TraceReplayer {
                 	sequence++;
                     ArrayList<DynGuiComponentVO> screenInfoEmulator = UiAutoConnector.getScreenInfoEmulator(androidSDKPath, screenWidth,
                             screenHeight, true, false, false, avdPort,
-                            adbPort, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);                  
+                            adbPort, replayerFeatures.getUiDumpLocation() + sequence);                  
                     
                     boolean isLoginInfo = false;
                     for (DynGuiComponentVO component : screenInfoEmulator) {
@@ -298,7 +300,7 @@ public class TraceReplayer {
                             String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
                             
                             Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                                    + "screenshots", appPackage + "."
+                                    + "screenshots", appPackage + "." + "User-Trace" + "." +
                                             + executionCtr + "." + screenshot);
                     
                             takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
@@ -339,7 +341,7 @@ public class TraceReplayer {
                                 String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
 
                                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                                        + "screenshots", appPackage + "."
+                                        + "screenshots", appPackage + "." + "User-Trace" + "." + 
                                                 + executionCtr + "." + screenshot);
                         
                                 takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
@@ -391,7 +393,7 @@ public class TraceReplayer {
                 String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
 
                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                        + "screenshots", appPackage + "."
+                        + "screenshots", appPackage + "." + "User-Trace" + "." +
                                 + executionCtr + "." + screenshot);   
                 
                 if(guiEventVO.getEventTypeId()!=StepByStepEngine.SWIPE) {
@@ -411,7 +413,7 @@ public class TraceReplayer {
             	//To capture the latest screenshot during typing
                 String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";  
                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                        + "screenshots", appPackage + "."
+                        + "screenshots", appPackage + "." + "User-Trace" + "." +
                                 + executionCtr + "." + screenshot);
             }
             isSearchActivity = false;
@@ -420,7 +422,7 @@ public class TraceReplayer {
         
         UiAutoConnector.getScreenInfoEmulator(androidSDKPath, screenWidth,
                 screenHeight, true, false, false, avdPort,
-                adbPort, replayerFeatures.getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + sequence);
+                adbPort, replayerFeatures.getUiDumpLocation() + sequence);
         
 
         System.out.println("- Final steps (pulling files from device and stopping profiler/app)");                  
@@ -456,8 +458,8 @@ public class TraceReplayer {
     public void takeAugmentedScreenshotForSwipe(Step step, GUIEventVO guiEventVO, int screenWidth, int screenHeight, String outputFolder, String appPackage, String currscreenshot, String screenshot) throws Exception{
         ScreenActionData data = new ScreenActionData(step.getAction(), guiEventVO.getRealInitialX(), guiEventVO.getRealInitialY(),
         		guiEventVO.getRealFinalX(), guiEventVO.getRealFinalY(), screenWidth, screenHeight);
-        ScreenshotModifier.augmentScreenShotTraceSwipe(step, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
-                + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+        ScreenshotModifier.augmentScreenShotTraceSwipe(step, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "." + "User-Trace" + "." +
+                + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "." + "User-Trace" + "." +
                          + executionCtr + "."
                         + screenshot.replace(".png", "_augmented.png"), data);
         step.setScreenshot(appPackage + "."
@@ -474,8 +476,8 @@ public class TraceReplayer {
 			            + step.getDynGuiComponent().getPositionX(), (step.getDynGuiComponent().getHeight() / 2)
 			            + step.getDynGuiComponent().getPositionY(), screenWidth, screenHeight);
 			
-			    ScreenshotModifier.augmentScreenShot(outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
-			           + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+			    ScreenshotModifier.augmentScreenShot(outputFolder + File.separator + "screenshots" + File.separator + appPackage + "." + "User-Trace" + "." +
+			           + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "." + "User-Trace" + "." +
 			                   + executionCtr + "."
 			                    + screenshot.replace(".png", "_augmented.png"), data);
 			    step.setScreenshot(appPackage + "."
@@ -497,7 +499,7 @@ public class TraceReplayer {
             do {
                 try {
                     //https://stackoverflow.com/questions/13796611/imageio-read-with-mac
-                    orig = ImageIO.read(new File(outputFolder + File.separator + "screenshots" + File.separator +  appPackage + "."
+                    orig = ImageIO.read(new File(outputFolder + File.separator + "screenshots" + File.separator +  appPackage + "." + "User-Trace" + "." +
                             + executionCtr + "." + currscreenshot));
                     ok = true;
                 } catch (IOException e) {
@@ -516,7 +518,7 @@ public class TraceReplayer {
 
             try {
                 ImageIO.write(bi, "png",
-                        new File( outputFolder + File.separator + "screenshots" + File.separator + appPackage + "."
+                        new File( outputFolder + File.separator + "screenshots" + File.separator + appPackage + "." + "User-Trace" + "." +
                                 + executionCtr + "."+  screenshot.replaceAll(".png", "_gui.png")));
             } catch (IOException e) {
                 // TODO Auto-generated catch block
