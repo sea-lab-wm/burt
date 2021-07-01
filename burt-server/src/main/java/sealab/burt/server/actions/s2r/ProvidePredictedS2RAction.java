@@ -55,6 +55,8 @@ public class ProvidePredictedS2RAction extends ChatBotAction {
 
             List<GraphPath<GraphState, GraphTransition>> Paths = s2rchecker.getFirstKPaths((Integer) state.get(PREDICTED_S2R_TRIES_LIMIT),
                     targetState);
+
+
             // if there are less 3 paths
             state.put(PREDICTED_S2R_TRIES_LIMIT, Math.min(3, Paths.size()));
 

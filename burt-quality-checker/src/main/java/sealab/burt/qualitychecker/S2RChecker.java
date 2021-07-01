@@ -497,6 +497,19 @@ class S2RChecker {
         return Paths.subList(0, Math.min(k, Paths.size()));
 
     }
+    public List<GraphPath<GraphState, GraphTransition>> getFirstKDummyPaths(int k, GraphState matchedStep){
+        Set<GraphTransition> outgoingEdges = executionGraph.getGraph().outgoingEdgesOf(currentState);
+
+
+
+//        List<GraphPath<GraphState, GraphTransition>> Paths = GraphUtils.findPaths(executionGraph.getGraph(),
+//                matchedStep, currentState, false, Integer.MAX_VALUE);
+        sortPathsByScores(Paths);
+
+        return Paths.subList(0, Math.min(k, Paths.size()));
+
+    }
+
 
     private static void sortPathsByScores(List<GraphPath<GraphState, GraphTransition>> paths) {
         paths.sort((P1, P2) -> {
