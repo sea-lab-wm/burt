@@ -42,8 +42,7 @@ public class S2RDescriptionStateChecker extends StateChecker {
 
             //-------------------------------
 
-            String targetString = "last step";
-            if (message.toLowerCase().contains(targetString.toLowerCase())) {
+            if (isLastStep(message)) {
                 //ask for the first step, if there was no first step provided
                 if (!state.containsKey(REPORT_S2R))
                     return PROVIDE_S2R_FIRST;
@@ -76,7 +75,6 @@ public class S2RDescriptionStateChecker extends StateChecker {
             if (results.contains(S2RQualityCategory.HIGH_QUALITY)) {
                 S2RQualityAssessment assessment = qFeedback.getQualityAssessments().get(0);
                 QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
-
             }
 
             return nextActions.get(assessmentCategory.name());
@@ -85,6 +83,11 @@ public class S2RDescriptionStateChecker extends StateChecker {
             return UNEXPECTED_ERROR;
         }
 
+    }
+
+    public static boolean isLastStep(String message) {
+        String targetString = "last step";
+        return message.toLowerCase().contains(targetString.toLowerCase());
     }
 
 }

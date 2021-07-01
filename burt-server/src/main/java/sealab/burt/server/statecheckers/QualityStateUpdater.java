@@ -67,16 +67,16 @@ public class QualityStateUpdater {
                                        List<AppStep> selectedSteps) {
         List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
         if (!state.containsKey(REPORT_S2R)) {
-            stepElements = getOutputMessagesFromSteps(selectedSteps, state);
+            stepElements = getBugReportElementsFromSteps(selectedSteps, state);
         } else {
-            stepElements.addAll(getOutputMessagesFromSteps(selectedSteps, state));
+            stepElements.addAll(getBugReportElementsFromSteps(selectedSteps, state));
         }
         state.put(REPORT_S2R, stepElements);
     }
 
 
-    private static List<BugReportElement> getOutputMessagesFromSteps(List<AppStep> selectedSteps,
-                                                                     ConcurrentHashMap<StateVariable, Object> state) {
+    private static List<BugReportElement> getBugReportElementsFromSteps(List<AppStep> selectedSteps,
+                                                                        ConcurrentHashMap<StateVariable, Object> state) {
         //we need to return a modifiable list
         return new ArrayList<>(selectedSteps.stream()
                 .map(step -> {

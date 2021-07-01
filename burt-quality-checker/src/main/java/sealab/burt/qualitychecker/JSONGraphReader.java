@@ -84,7 +84,8 @@ class JSONGraphReader {
         if (partialGraph == null || partialGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");
 
-        ///-------------------------------------------------
+//        graphs.put(key, partialGraph);
+       ///-------------------------------------------------
 
         //1. read execution files for TraceReplayer
         String traceReplayerFolder = BurtConfigPaths.traceReplayerDataPath;
@@ -110,9 +111,10 @@ class JSONGraphReader {
                 (path, attr) -> path.toFile().getName().startsWith("Execution-"))
                 .collect(Collectors.toList());
 
-
         if (executionFiles.isEmpty())
             throw new RuntimeException("There are no execution files in " + dataLocation);
+
+        log.debug("Reading execution data from : " + executionFiles);
 
 
         //----------------------
@@ -150,7 +152,6 @@ class JSONGraphReader {
             for (Step currStep : execution.getSteps()) {
 
                 // Get the current screen and read in the corresponding xml file.
-                // Note that I decrement the "sequenceStep" by one since it is not zero indexed.
                 String xmlPath = Path.of(dataLocation, String.join("-",
                         execution.getApp().getPackageName(),
                         execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),

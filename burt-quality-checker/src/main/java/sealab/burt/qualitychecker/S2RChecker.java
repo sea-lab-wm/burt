@@ -6,7 +6,9 @@ import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
+import org.jgrapht.graph.GraphWalk;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
@@ -22,6 +24,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import seers.appcore.utils.JavaUtils;
 
 import javax.persistence.EntityManager;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -392,7 +395,7 @@ class S2RChecker {
                 .collect(Collectors.toList());
 
         stepsToExecute = removeCheckedSteps(stepsToExecute, enabledComponents);
-        addAdditionalIntermediateSteps(stepsToExecute);
+        //addAdditionalIntermediateSteps(stepsToExecute);
 
      /*   log.debug("Executing intermediate steps: " + stepsToExecute);
         List<DevServerCommand> deviceCommands = StepResolver.getCommandsFromGraphSteps(stepsToExecute);
@@ -472,7 +475,7 @@ class S2RChecker {
             }
             stepsToExecute.add(currentStep);
 
-            addAdditionalIntermediateSteps(stepsToExecute);
+            //addAdditionalIntermediateSteps(stepsToExecute);
 
          /*   log.debug("Executing intermediate steps: " + stepsToExecute);
             List<DevServerCommand> deviceCommands = StepResolver.getCommandsFromGraphSteps(stepsToExecute);
@@ -488,28 +491,63 @@ class S2RChecker {
      * Get all possible paths for S2R prediction
      *
      */
-    public List<GraphPath<GraphState, GraphTransition>> getFirstKPaths(int k, GraphState matchedStep){
+    public List<GraphPath<GraphState, GraphTransition>> getFirstKPaths(int k, GraphState targetState){
 
         List<GraphPath<GraphState, GraphTransition>> Paths = GraphUtils.findPaths(executionGraph.getGraph(),
-                matchedStep, currentState, false, Integer.MAX_VALUE);
+                currentState,   targetState , false, Integer.MAX_VALUE);
         sortPathsByScores(Paths);
 
         return Paths.subList(0, Math.min(k, Paths.size()));
 
     }
-    public List<GraphPath<GraphState, GraphTransition>> getFirstKDummyPaths(int k, GraphState matchedStep){
+
+
+
+    public List<GraphPath<GraphState, GraphTransition>> getFirstKDummyPaths(Integer k, GraphState targetState) {
+
         Set<GraphTransition> outgoingEdges = executionGraph.getGraph().outgoingEdgesOf(currentState);
+        outgoingEdges = getNonLoops(outgoingEdges);
+        List<GraphPath<GraphState, GraphTransition>> paths = new ArrayList<>();
+        for (GraphTransition outgoingEdge : outgoingEdges) { //first level
+
+            GraphState tgtState = outgoingEdge.getTargetState();
+
+            Set<GraphTransition> outgoingEdges2 = executionGraph.getGraph().outgoingEdgesOf(tgtState);
+            outgoingEdges2 = getNonLoops(outgoingEdges2);
+
+            for (GraphTransition outgoingEdge2 : outgoingEdges2) { //second level
+                GraphState tgtState2 = outgoingEdge2.getTargetState();
+
+                Set<GraphTransition> outgoingEdges3 = executionGraph.getGraph().outgoingEdgesOf(tgtState2);
+                outgoingEdges3 = getNonLoops(outgoingEdges3);
+
+                for (GraphTransition outgoingEdge3 : outgoingEdges3) { //third level
+                    List<GraphTransition> onePath = new ArrayList<>();
+                    onePath.add(outgoingEdge);
+                    onePath.add(outgoingEdge2);
+                    onePath.add(outgoingEdge3);
 
 
+                    GraphWalk<GraphState, GraphTransition> path = new GraphWalk<>(
+                            executionGraph.getGraph(), currentState, targetState, onePath, 0.0);
+                    paths.add(path);
+                }
+            }
+        }
 
-//        List<GraphPath<GraphState, GraphTransition>> Paths = GraphUtils.findPaths(executionGraph.getGraph(),
-//                matchedStep, currentState, false, Integer.MAX_VALUE);
-        sortPathsByScores(Paths);
+        paths.addAll(paths);
 
-        return Paths.subList(0, Math.min(k, Paths.size()));
+        sortPathsByScores(paths);
+
+        return paths.subList(0, Math.min(k, paths.size()));
 
     }
 
+    private Set<GraphTransition> getNonLoops(Set<GraphTransition> outgoingEdges) {
+        return outgoingEdges.stream()
+                .filter(e -> !e.getSourceState().equals(e.getTargetState()))
+                .collect(Collectors.toSet());
+    }
 
     private static void sortPathsByScores(List<GraphPath<GraphState, GraphTransition>> paths) {
         paths.sort((P1, P2) -> {
@@ -537,7 +575,8 @@ class S2RChecker {
     }
 
 
-    private void addAdditionalIntermediateSteps(List<AppStep> steps) {
+  /*  private void addAdditionalIntermediateSteps(List<AppStep> steps) {
+
         for (int i = 0; i < steps.size(); i++) {
 
             final AppStep appStep = steps.get(i);
@@ -582,7 +621,7 @@ class S2RChecker {
                 }
             }
         }
-    }
+    }*/
 
     private List<AppStep> removeCheckedSteps(List<AppStep> stepsToExecute, List<AppGuiComponent> enabledComponents) {
         List<Integer> stepsToRemove = new ArrayList<>();
@@ -814,8 +853,8 @@ class S2RChecker {
         this.currentState = state;
     }
 
-    public GraphState getCurrentState(){return this.currentState;};
+    public GraphState getCurrentState(){return this.currentState;}
 
-    public AppGraphInfo getExecutionGraph(){return this.executionGraph;};
+    public AppGraphInfo getExecutionGraph(){return this.executionGraph;}
 
 }

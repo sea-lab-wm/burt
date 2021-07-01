@@ -1057,6 +1057,9 @@ public class NLActionS2RParser {
         if (rawText == null)
             return preprocessedText;
 
+        //filter out "null" tokens
+        rawText = rawText.replace("null", "").trim();
+
         String unquotedText = rawText;
         if (isQuoted(rawText))
             unquotedText = rawText.substring(1, rawText.length() - 1);
@@ -1064,6 +1067,7 @@ public class NLActionS2RParser {
         //--------------------------------
 
         List<Token> tokens = tokenize(unquotedText.toLowerCase(), new String[]{});
+
         Object[] lemmas = tokens.stream().map(Token::getLemma).toArray();
         String lemmatizedText = StringUtils.join(lemmas, ' ');
 
