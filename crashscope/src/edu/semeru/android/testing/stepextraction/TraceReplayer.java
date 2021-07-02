@@ -119,7 +119,7 @@ public class TraceReplayer {
         String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
         String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/Apps/GnucashAndroid_v2.1.3.apk";
         String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CollectedUserData/getevent-gnuCash2.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/test-output";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/Backup/TraceReplayer3/gnucash";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -462,7 +462,7 @@ public class TraceReplayer {
                 + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "." + "User-Trace" + "." +
                          + executionCtr + "."
                         + screenshot.replace(".png", "_augmented.png"), data);
-        step.setScreenshot(appPackage + "."
+        step.setScreenshot(appPackage + "." + "User-Trace" + "." +
                 + executionCtr + "." + screenshot.replace(".png", "_augmented.png"));
    }
     
@@ -480,10 +480,10 @@ public class TraceReplayer {
 			           + executionCtr + "." + currscreenshot, outputFolder + File.separator + "screenshots" + File.separator + appPackage + "." + "User-Trace" + "." +
 			                   + executionCtr + "."
 			                    + screenshot.replace(".png", "_augmented.png"), data);
-			    step.setScreenshot(appPackage + "."
+			    step.setScreenshot(appPackage + "." + "User-Trace" + "." +
 			    		+ executionCtr + "." + screenshot.replace(".png", "_augmented.png"));
 			} else{
-			    step.setScreenshot(appPackage + "."
+			    step.setScreenshot(appPackage + "." + "User-Trace" + "." +
 			            + executionCtr + "." + screenshot);
 			}
     	 }
@@ -525,7 +525,8 @@ public class TraceReplayer {
                 e.printStackTrace();
             }
 
-            guiScreenShot = screenshot.replaceAll(".png", "_gui.png");
+            guiScreenShot = appPackage + "." + "User-Trace" + "." +
+                    + executionCtr + "."+ screenshot.replaceAll(".png", "_gui.png");
 
         }
         return guiScreenShot;
