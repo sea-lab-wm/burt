@@ -11,7 +11,7 @@ public class UnexpectedErrorAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        return createChatBotMessages("I am sorry, there was an unexpected error in the server.",
+        return createChatBotMessages("I am sorry, there was an unexpected internal error.",
                 "Please try again or restart the conversation.");
     }
 

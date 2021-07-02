@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.s2r;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.GraphState;
@@ -17,7 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 
-public class ProvideNextPredictedS2RAction extends ChatBotAction {
+public @Slf4j
+class ProvideNextPredictedS2RAction extends ChatBotAction {
 
     public ProvideNextPredictedS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
@@ -40,13 +42,15 @@ public class ProvideNextPredictedS2RAction extends ChatBotAction {
 
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-            return createChatBotMessages("Ok, can you provide next step?");
+            return createChatBotMessages("Okay, can you provide next step?");
         }else{
             // increment the number of tries
             state.put(PREDICTED_S2R_CURRENT_PATH, (int) state.get(PREDICTED_S2R_CURRENT_PATH) + 1);
 
+            log.debug("Suggesting path #" + state.get(PREDICTED_S2R_CURRENT_PATH));
+
             return createChatBotMessages(
-                    "Ok, it seems the next steps that you performed are the following.",
+                    "Okay, it seems the next steps that you performed are the following.",
                     "Can you confirm which ones are correct?",
                     new ChatBotMessage(messageObj, stepOptions, true));
         }

@@ -32,7 +32,7 @@ const EBScreenSelector = (props) => {
         <div className="center-screen">
             <ImagePicker
                 // images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
-                images={dataValues.map((image, i) => ({src: config.serverEndpoint + config.crashScopeDataPath + image.value2, text: image.value1, id: image.key}))}
+                images={dataValues.map((image, i) => ({src: config.serverEndpoint + image.value2, text: image.value1, id: image.key}))}
                 style={getImageStyle(180, 320)}
                 selected={selectedValues}
                 onPick={pickImageHandler}

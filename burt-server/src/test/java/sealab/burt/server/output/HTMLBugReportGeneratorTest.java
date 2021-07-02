@@ -35,6 +35,6 @@ class HTMLBugReportGeneratorTest {
         S2R.add(new BugReportElement("Open the app", null, "S2RScreen1.png"));
         S2R.add(new BugReportElement("This a step", null, "NO_SCREEN_AVAILABLE.png"));
         state.put(REPORT_S2R, S2R);
-        new HTMLBugReportGenerator("screenshots_test").generateOutput(outputFolder, state);
+        new HTMLBugReportGenerator().generateOutput(outputFolder, state);
     }
 }

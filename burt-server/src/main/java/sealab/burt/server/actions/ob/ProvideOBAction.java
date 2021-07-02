@@ -24,7 +24,8 @@ public class ProvideOBAction extends ChatBotAction {
         String appVersion = state.get(APP_VERSION).toString();
         if (!state.containsKey(OB_CHECKER))
             state.put(OB_CHECKER, new OBChecker(appName, appVersion));
-        return createChatBotMessages(MessageFormat.format("Ok, can you please tell me the incorrect behavior that you " +
+        return createChatBotMessages(MessageFormat.format("Okay, can you please tell me the incorrect behavior that " +
+                "you " +
                 "observed on {0}?", appName));
     }
 

@@ -1,6 +1,7 @@
 package sealab.burt.server.actions.appselect;
 
 import lombok.extern.slf4j.Slf4j;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
@@ -30,8 +31,8 @@ class SelectAppAction extends ChatBotAction {
     private static final String NO_APP_LOGO = "NO_APP_LOGO.png";
 
     static {
-        Path crashScopeDataPath = Paths.get("..", "data", "CrashScope-Data");
-        Path appLogosPath = Paths.get("..", "data", "app_logos");
+        Path crashScopeDataPath = Paths.get(BurtConfigPaths.crashScopeDataPath);
+        Path appLogosPath = Paths.get(BurtConfigPaths.appLogosPath);
 
         List<Path> directories = null;
         try {

@@ -189,16 +189,16 @@ public class ConversationTestData {
             //ChatBot: I couldn't match the step to anything from the app, please rephrase it
             add(new MessageObjectTest("I entered that", REPHRASE_S2R, S2R_DESCRIPTION));
             //ChatBot: I couldn't match the step to anything from the app, please rephrase it
-            add(new MessageObjectTest("I entered 3 in the cost field", SELECT_MISSING_S2R, S2R_DESCRIPTION));
-//            //ChatBot: there are missing steps, please select the ones are correct
-//            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
-//                    WITH_SELECTED_VALUES,
-//                    Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
-//            //ChatBot: I didn't get that, please select the ones are correct
-//            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
-//                    WITH_SELECTED_VALUES,
-//                    Collections.singletonList("0"))); // "0" means the first step
-//            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("I entered 3 in the cost field", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
+            //ChatBot: I didn't get that, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); // "0" means the first step
+            //ChatBot: ok, you selected some steps, what is the next step?
             add(new MessageObjectTest("I created an entry", REPHRASE_S2R, S2R_DESCRIPTION));
             //ChatBot: I couldn't match the step to anything from the app, please rephrase it
             add(new MessageObjectTest("I set tank", DISAMBIGUATE_S2R, S2R_AMBIGUOUS_SELECTED));

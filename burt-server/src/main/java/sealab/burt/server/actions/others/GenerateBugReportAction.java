@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.others;
 
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
@@ -30,12 +31,12 @@ public class GenerateBugReportAction extends ChatBotAction {
         String reportName = String.join("-", participant, appName, appVersion, sessionId)
                 .replace(" ", "_") + ".html";
 
-        File outputFile = Paths.get("../data/generated_bug_reports", reportName).toFile();
-        new HTMLBugReportGenerator("CrashScope-Data").generateOutput(outputFile, state);
+        File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
+        new HTMLBugReportGenerator().generateOutput(outputFile, state);
         state.put(REPORT_GENERATED, true);
         ChatBotMessage chatBotMessage = new ChatBotMessage(messageObj, reportName);
 
-        return createChatBotMessages("Ok, great. This is all the information we need for now.",
+        return createChatBotMessages("Okay, great. This is all the information we need for now.",
                 chatBotMessage,
                 "We will redirect this information to our development team.",
                 "Thank you for using BURT."

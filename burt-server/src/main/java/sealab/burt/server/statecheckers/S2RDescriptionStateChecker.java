@@ -1,7 +1,9 @@
 package sealab.burt.server.statecheckers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
@@ -15,7 +17,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 
-public class S2RDescriptionStateChecker extends StateChecker {
+public @Slf4j
+class S2RDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
     private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
@@ -74,6 +77,10 @@ public class S2RDescriptionStateChecker extends StateChecker {
 
             if (results.contains(S2RQualityCategory.HIGH_QUALITY)) {
                 S2RQualityAssessment assessment = qFeedback.getQualityAssessments().get(0);
+
+                AppStep appStep = assessment.getMatchedSteps().get(0);
+                log.debug("High quality identified step: " + appStep);
+
                 QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
             }
 

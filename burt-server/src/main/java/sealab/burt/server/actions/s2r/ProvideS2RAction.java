@@ -16,8 +16,7 @@ public class ProvideS2RAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        return createChatBotMessages(" Ok, what is the next step?");
-
+        return createChatBotMessages(" Okay, what is the next step?");
     }
 
 }

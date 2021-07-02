@@ -4,6 +4,7 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
@@ -43,20 +44,35 @@ public class QualityStateUpdater {
 //        OBChecker obChecker = (OBChecker) state.get(OB_CHECKER);
 //        EBChecker ebChecker = (EBChecker) state.get(EB_CHECKER);
 
-        s2rChecker.updateState(appStep.getCurrentState());
+        updateStateBasedOnStep(appStep, s2rChecker);
+
+    }
+
+    private static void updateStateBasedOnStep(AppStep appStep, S2RChecker s2rChecker) {
+
+        //FIXME: some of the steps do not have transitions because they are built artificially, we should only update
+        // to the target state of the transition, but right now, as a workaround, I am updating to the current state
+        // of the step if the transition is null
+        GraphTransition transition = appStep.getTransition();
+        if (transition != null)
+            s2rChecker.updateState(transition.getTargetState());
+        else {
+            s2rChecker.updateState(appStep.getCurrentState());
+        }
 
     }
 
     /**
      * add predicted step and update graph current state
      */
-    public static void addPredictedStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state, AppStep appStep){
+    public static void addPredictedStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state,
+                                                           AppStep appStep) {
         // add steps to state
         List<AppStep> appStepList = Collections.singletonList(appStep);
         addStepsToState(state, appStepList);
         // update graph state
         S2RChecker s2rChecker = (S2RChecker) state.get(S2R_CHECKER);
-        s2rChecker.updateState(appStep.getCurrentState());
+        updateStateBasedOnStep(appStep, s2rChecker);
     }
 
 
