@@ -7,7 +7,7 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.actions.s2r.ProvidePredictedS2RAction;
+import sealab.burt.server.actions.s2r.ProvideFirstPredictedS2RAction;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserResponse;
 
@@ -42,7 +42,7 @@ public class S2RPredictionStateChecker extends StateChecker {
             GraphState currentState = s2rchecker.getCurrentState();
 
             // convert graph path to app steps
-            List<AppStep> steps = ProvidePredictedS2RAction.getPathWithLoops(s2rchecker, path, state, currentState);
+            List<AppStep> steps = ProvideFirstPredictedS2RAction.getPathWithLoops(s2rchecker, path, state, currentState);
 
             // get selected app steps
             List<String> selectedValues = message.getSelectedValues();
@@ -66,12 +66,12 @@ public class S2RPredictionStateChecker extends StateChecker {
             state.remove(PREDICTED_S2R_PATHS);
             state.remove(PREDICTING_S2R);
 
-            return ActionName.PREDICT_S2R;
+            return ActionName.PREDICT_FIRST_S2R;
 
         } else if ("none of above".equals(message.getMessage())) {
             // check the number of tries to decide if we continue to provide next predicted path
             if (isThereANextPath(state)) {
-                return ActionName.PREDICT_S2R2;
+                return ActionName.PREDICT_NEXT_S2R;
             } else {
 
                 state.remove(PREDICTED_S2R_CURRENT_PATH);
