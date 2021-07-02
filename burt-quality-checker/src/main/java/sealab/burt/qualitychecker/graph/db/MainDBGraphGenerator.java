@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
-import sealab.burt.qualitychecker.graph.AppGraph;
-import sealab.burt.qualitychecker.graph.AppGraphInfo;
-import sealab.burt.qualitychecker.graph.GraphState;
-import sealab.burt.qualitychecker.graph.GraphTransition;
+import sealab.burt.qualitychecker.graph.*;
 import seers.appcore.threads.ThreadExecutor;
 import seers.appcore.threads.processor.ThreadParameters;
 import seers.appcore.threads.processor.ThreadProcessor;
@@ -102,7 +99,7 @@ class MainDBGraphGenerator {
 
                     GraphGenerator generator = new GraphGenerator();
 
-                    AppGraphInfo graphInfo = generator.generateGraph(app);
+                    AppGraphInfo graphInfo = generator.generateGraph(app, GraphDataSource.CS);
                     AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
 
                     if (graph.vertexSet().isEmpty()) {

@@ -162,10 +162,8 @@
         </dependency>
         <dependency>
             <groupId>org.eclipse.jdt</groupId>
-            <artifactId>org.eclipse.jdt.core</artifactId>
+            <artifactId>core</artifactId>
             <version>3.8.1.v20120531-0637</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

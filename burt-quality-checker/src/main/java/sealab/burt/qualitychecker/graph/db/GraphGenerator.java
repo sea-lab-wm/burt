@@ -10,9 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
-import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.qualitychecker.graph.*;
 
 import javax.persistence.EntityManager;
@@ -41,6 +41,7 @@ class GraphGenerator {
     private HashMap<Integer, GraphState> states;
     private HashMap<String, GraphTransition> transitions;
     private boolean updateWeights = false;
+    private GraphDataSource currentDataSource;
 
     public GraphGenerator() {
         states = new LinkedHashMap<>();
@@ -86,23 +87,30 @@ class GraphGenerator {
 
     }
 
-    public AppGraphInfo generateGraph(EntityManager em, String appName, String appVersion) throws Exception {
+    public AppGraphInfo generateGraph(EntityManager em, String appName, String appVersion, GraphDataSource dataSource) throws Exception {
         App app = getApp(appName, appVersion, em);
-        return generateGraph(app);
+        return generateGraph(app, dataSource);
     }
 
 
-    public AppGraphInfo generateGraph(List<Execution> executions, App app) throws Exception {
-        return generateGraphWithNoWeights(executions, app, false);
+    public AppGraphInfo generateGraph(List<Execution> executions, App app, GraphDataSource dataSource) throws Exception {
+        return generateGraphWithNoWeights(executions, app, false, dataSource);
     }
 
-    public AppGraphInfo generateGraphWithNoWeights(List<Execution> executions, App app, boolean updateWeights)
+    public AppGraphInfo generateGraphWithNoWeights(List<Execution> executions, App app, boolean updateWeights,
+                                                   GraphDataSource dataSource)
             throws Exception {
 
         states.clear();
         transitions.clear();
 
+        return buildGraphFromExecutions(executions, app, updateWeights, dataSource);
+    }
+
+    private AppGraphInfo buildGraphFromExecutions(List<Execution> executions, App app, boolean updateWeights,
+                                         GraphDataSource dataSource) throws Exception {
         this.updateWeights = updateWeights;
+        this.currentDataSource = dataSource;
 
         List<AppStep> allSteps = new ArrayList<>();
         for (Execution execution : executions) {
@@ -131,8 +139,8 @@ class GraphGenerator {
         return graphInfo;
     }
 
-    public AppGraphInfo generateGraph(App app) throws Exception {
-        return generateGraphWithNoWeights(app.getExecutions(), app, false);
+    public AppGraphInfo generateGraph(App app, GraphDataSource dataSource) throws Exception {
+        return generateGraphWithNoWeights(app.getExecutions(), app, false, dataSource);
     }
 
     private AppGraph<GraphState, GraphTransition> buildDirectedGraph() {
@@ -150,14 +158,14 @@ class GraphGenerator {
             GraphState sourceState = t.getSourceState();
             String screenshotFile = t.getStep().getScreenshotFile();
 
-            if (sourceState.getScreenshotPath() == null && screenshotFile!=null) {
+            if (sourceState.getScreenshotPath() == null && screenshotFile != null) {
                 sourceState.setScreenshotPath(screenshotFile.replace("_augmented", ""));
             }
 
             boolean added = directedGraph.addEdge(sourceState, t.getTargetState(), t);
             if (!added) {
                 log.warn("Edge not added: " + t);
-            }else{
+            } else {
                 directedGraph.setEdgeWeight(t, t.getWeight());
             }
         });
@@ -403,35 +411,46 @@ class GraphGenerator {
         }
     }
 
-    /**
-     * @param sourceState
-     * @param targetState
-     * @param appStep
-     * @return
-     */
     private GraphTransition getGraphTransition(GraphState sourceState, GraphState targetState, AppStep appStep) {
         // ----------------------------------
 
         String hashTransition = getTransitionHash(sourceState, targetState, appStep);
 
         // System.out.print(hashTransition);
-        GraphTransition transition = null;
+        GraphTransition transition;
         if (transitions.containsKey(hashTransition)) {
+
             transition = transitions.get(hashTransition);
-            transition.setType(GraphTransition.GraphTransitionType.CRASH_SCOPE);
-            if(updateWeights) {
+
+            //update step if it comes from TR
+            if (GraphDataSource.TR.equals(currentDataSource))
+                transition.setStep(appStep);
+
+            //we only increase the weight by one if updateWeights == true
+            //and set the data source as TR
+            if (updateWeights) {
                 transition.incrementWeightByOne();
-                transition.setType(GraphTransition.GraphTransitionType.TRACE_REPLAYER);
-            }else {
-                transition.setWeight(1);
             }
+
             // System.out.println(" found " + transition.getUniqueHash());
         } else {
-            transition = getGraphTransition(sourceState, targetState, appStep, hashTransition);
-            transition.setWeight(1);
-            transition.setType(GraphTransition.GraphTransitionType.CRASH_SCOPE);
+
+            Double weight = null;
+            if (GraphDataSource.TR.equals(currentDataSource))
+                weight = 2d;
+            else if (GraphDataSource.CS.equals(currentDataSource))
+                weight = 1d;
+            else throw new RuntimeException("Not supported data source");
+
+            transition = createNewGraphTransition(sourceState, targetState, appStep, hashTransition, weight);
+
             transitions.put(hashTransition, transition);
         }
+
+        transition.setDataSource(currentDataSource);
+        sourceState.setDataSource(currentDataSource);
+        targetState.setDataSource(currentDataSource);
+
         // System.out.println("T - " + transition.getId() + ": " +
         // transition.getName());
         return transition;
@@ -442,19 +461,20 @@ class GraphGenerator {
      * @param targetState
      * @param appStep
      * @param hashTransition
+     * @param weight
      * @return
      */
-    private GraphTransition getGraphTransition(GraphState sourceState, GraphState targetState, AppStep
-            appStep, String hashTransition) {
-        GraphTransition transition;
-        // Create a new transition
-        transition = new GraphTransition();
+    private GraphTransition createNewGraphTransition(GraphState sourceState, GraphState targetState,
+                                                     AppStep appStep, String hashTransition, double weight) {
+        GraphTransition transition = new GraphTransition();
         transition.setId(hashTransition.hashCode());
         transition.setSourceState(sourceState);
         transition.setTargetState(targetState);
         transition.setName(getTransitionName(appStep, sourceState, targetState));
         transition.setUniqueHash(hashTransition);
         transition.setStep(appStep);
+        transition.setWeight(weight);
+
         return transition;
     }
 
@@ -674,7 +694,7 @@ class GraphGenerator {
         this.transitions = transitions;
     }
 
-    public AppGraphInfo updateGraphWithWeights(App app, List<Execution> executions) throws Exception {
-        return generateGraphWithNoWeights(executions, app, true);
+    public AppGraphInfo updateGraphWithWeights(App app, List<Execution> executions, GraphDataSource dataSource) throws Exception {
+        return buildGraphFromExecutions(executions, app, true, dataSource);
     }
 }

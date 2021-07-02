@@ -50,7 +50,6 @@ class ConversationController {
         {
             put(PROVIDE_PARTICIPANT_ID, new ProvideParticipantIdAction(PARTICIPANT_PROVIDED));
 
-
             //--------APP SELECTION---------------//
 
             put(SELECT_APP, new SelectAppAction(APP_SELECTED));
@@ -59,6 +58,8 @@ class ConversationController {
             //--------OB---------------//
 
             put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
+
+            //quality checking
             put(PROVIDE_OB_NO_PARSE, new ProvideOBNoParseAction(OB_DESCRIPTION));
             put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
             put(SELECT_OB_SCREEN, new SelectOBScreenAction(Intent.OB_SCREEN_SELECTED));
@@ -67,32 +68,42 @@ class ConversationController {
             //--------EB-------------//
 
             put(PROVIDE_EB, new ProvideEBAction(EB_DESCRIPTION));
+
+            //quality checking
             put(PROVIDE_EB_NO_PARSE, new ProvideEBNoParseAction(EB_DESCRIPTION));
             put(CLARIFY_EB, new ClarifyEBAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
 
             //--------S2R-----------//
 
+            //regular s2r prompt
             put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
-            put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
-            //
-            put(PREDICT_S2R2, new ProvidePredictedS2RAction2(S2R_PREDICTED_SELECTED));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
-            put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
+
+            //prediction
+            put(PREDICT_FIRST_S2R, new ProvideFirstPredictedS2RAction(S2R_PREDICTED_SELECTED));
+            put(PREDICT_NEXT_S2R, new ProvideNextPredictedS2RAction(S2R_PREDICTED_SELECTED));
 //            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RAction(S2R_DESCRIPTION));
-            put(ActionName.DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
+
+            //quality checking
+            put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
             put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
             put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_DESCRIPTION));
-            put(SELECT_MISSING_S2R, new SelectMissingS2RAction(S2R_MISSING_SELECTED));
+
+            put(ActionName.DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
             put(CONFIRM_SELECTED_AMBIGUOUS_S2R, new ConfirmSelectedAmbiguousAction(S2R_DESCRIPTION));
+
+            //quality checking: missing steps
+            put(SELECT_MISSING_S2R, new SelectMissingS2RAction(S2R_MISSING_SELECTED));
             put(CONFIRM_SELECTED_MISSING_S2R, new ConfirmSelectedMissingAction(S2R_DESCRIPTION));
+
+            //last step
             put(ActionName.CONFIRM_LAST_STEP, new ConfirmLastStepAction());
 
             //--------OTHERS-----------//
 
             put(REPORT_SUMMARY, new GenerateBugReportAction());
             put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
-            put(ENDING, new EndConversationAction());
-
+            put(ActionName.END_CONVERSATION, new EndConversationAction());
 
         }
     };
@@ -118,14 +129,14 @@ class ConversationController {
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
-        put(THANKS, new NStateChecker(ENDING));
+        put(THANKS, new NStateChecker(ActionName.END_CONVERSATION));
     }};
-    ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, List<MessageObj>> messageHistory = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, ConcurrentHashMap<StateVariable, Object>> conversationStates = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
-
-        //this call is required to load the stanford corenlp library since the start of the server:
+        //this call is required to load the stanford corenlp library since the start of the server
+        //to avoid the long delay
         TextProcessor.processTextFullPipeline("start", false);
         SpringApplication.run(ConversationController.class, args);
     }
@@ -172,7 +183,7 @@ class ConversationController {
 
             log.debug("Identified intent: " + intent);
 
-            if (END_CONVERSATION.equals(intent)) {
+            if (Intent.END_CONVERSATION.equals(intent)) {
                 endConversation(sessionId);
                 return getDefaultResponse();
             }
@@ -219,16 +230,16 @@ class ConversationController {
     public void saveSingleMessage(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";
         log.debug(msg);
-        List<MessageObj> sessionMsgs = messages.getOrDefault(req.getSessionId(), new ArrayList<>());
+        List<MessageObj> sessionMsgs = messageHistory.getOrDefault(req.getSessionId(), new ArrayList<>());
         sessionMsgs.add(req.getMessages().get(0));
-        messages.put(req.getSessionId(), sessionMsgs);
+        messageHistory.put(req.getSessionId(), sessionMsgs);
     }
 
     @PostMapping("/saveMessages")
     public void saveMessages(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";
         log.debug(msg);
-        messages.put(req.getSessionId(), req.getMessages());
+        messageHistory.put(req.getSessionId(), req.getMessages());
     }
 
     @PostMapping("/testResponse")
@@ -242,7 +253,7 @@ class ConversationController {
     public List<MessageObj> loadMessages(@RequestBody UserResponse req) {
         String msg = "Returning the messages in the server...";
         log.debug(msg);
-        return messages.get(req.getSessionId());
+        return messageHistory.get(req.getSessionId());
     }
 
     @PostMapping("/")
@@ -270,7 +281,7 @@ class ConversationController {
     @PostMapping("/end")
     public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
         Object obj = conversationStates.remove(sessionId);
-        messages.remove(sessionId);
+        messageHistory.remove(sessionId);
         return obj != null ? "true" : "false";
     }
 

@@ -48,12 +48,6 @@
 			<version>1.7</version>
 		</dependency>
 		<dependency>
-			<groupId>Android-Core</groupId>
-			<artifactId>Android-Core</artifactId>
-			<version>1.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>5.7.1</version>

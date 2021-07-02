@@ -26,7 +26,6 @@ class OBChecker {
     private final String appVersion;
     private final NLActionS2RParser s2rParser;
     private final ScreenResolver resolver;
-    private final String crashScopeDataPath;
     private final String parsersBaseFolder;
 
     private GraphState currentState;
@@ -36,8 +35,6 @@ class OBChecker {
         this.appName = appName;
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
-        this.crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
-
 
         s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
         resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
@@ -68,7 +65,7 @@ class OBChecker {
     }
 
     private void readGraph() throws Exception {
-        if (crashScopeDataPath == null)
+        if (BurtConfigPaths.crashScopeDataPath == null)
             executionGraph = DBGraphReader.getGraph(appName, appVersion);
         else
             executionGraph = JSONGraphReader.getGraph(appName, appVersion);

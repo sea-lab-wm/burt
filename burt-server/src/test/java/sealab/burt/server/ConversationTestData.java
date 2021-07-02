@@ -1,5 +1,6 @@
 package sealab.burt.server;
 
+import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.appselect.SelectAppAction;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.msgparsing.Intent;
@@ -170,13 +171,15 @@ public class ConversationTestData {
             //ChatBot: the eb is general, is this the screen is having the problem?
             add(new MessageObjectTest("yes", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
-            add(new MessageObjectTest("I opened the app", PREDICT_S2R, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest("I opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("done", PREDICT_S2R, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); //"0" means the first option
-            //ChatBot: please select the correct S2Rs
-            add(new MessageObjectTest("none of above", PREDICT_S2R2, S2R_PREDICTED_SELECTED));
+            //ChatBot: please select the correct predicted S2Rs
+            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
+            //ChatBot: please select the correct predicted S2Rs
+            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
             add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
@@ -208,7 +211,7 @@ public class ConversationTestData {
             //ChatBot: this steps is ambiguous, please rephrase it
             add(new MessageObjectTest("I entered gallons", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
             //ChatBot: this steps has no input, please provide it
-            add(new MessageObjectTest("I entered 23 gallons", PREDICT_S2R, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest("I entered 23 gallons", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
            /* //ChatBot: there are missing steps, please select the ones are correct
             add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
                     WITH_SELECTED_VALUES,
@@ -218,15 +221,17 @@ public class ConversationTestData {
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step*/
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("done", PREDICT_S2R, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); //"0" means the first option
-            //ChatBot: please select the correct S2Rs
-            add(new MessageObjectTest("none of above", PREDICT_S2R2, S2R_PREDICTED_SELECTED));
+            //ChatBot: please select the correct predicted S2Rs
+            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
+            //ChatBot: please select the correct predicted S2Rs
+            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
             add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: ok, what is the next step?
-            add(new MessageObjectTest("I closed the app", PREDICT_S2R, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest("I closed the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
@@ -283,7 +288,7 @@ public class ConversationTestData {
                 }}));
         conversationFlow.add(new MessageObjectTest("I closed the application, and this is the last step",
                 REPORT_SUMMARY, NO_EXPECTED_INTENT));
-        conversationFlow.add(new MessageObjectTest("Thanks", ENDING, NO_EXPECTED_INTENT));
+        conversationFlow.add(new MessageObjectTest("Thanks", ActionName.END_CONVERSATION, NO_EXPECTED_INTENT));
 
         return conversationFlow;
     }
