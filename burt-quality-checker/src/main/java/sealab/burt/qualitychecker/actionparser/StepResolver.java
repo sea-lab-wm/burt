@@ -178,13 +178,20 @@ class StepResolver {
             AppStep openAppStep = getOpenAppStep(currNLAction, app);
             if (openAppStep != null){
                 openAppStep.setCurrentState(currentState);
+
+                //if it is 'open app', there will be only one outgoing transition
+                GraphTransition outgoingEdge = executionGraph.getGraph().outgoingEdgesOf(currentState)
+                        .stream()
+                        .findFirst()
+                        .orElse(null);
+                openAppStep.setTransition(outgoingEdge);
+
                 return new ResolvedStepResult(openAppStep);
             }
 
         } catch (ActionParsingException e) {
             //The open app step should not fail, if it does, then the action is not an open app step
         }
-
 
         try {
             AppStep closeAppStep = getCloseAppStep(currNLAction, app);
@@ -195,6 +202,8 @@ class StepResolver {
         } catch (ActionParsingException e) {
             //ok
         }
+
+        //--------------------------------------------------------------
 
         // 1. Get all considered nodes that are in range of GRAPH_MAX_DEPTH_CHECK
         // TODO: check previously executed or seen states
@@ -503,7 +512,7 @@ class StepResolver {
         List<AppGuiComponent> stateComponents = state.getComponents();
 
         //------------------------------------
-        //Determine the event, but if there's an exception, the event is taken as CLICK by default
+        //Determine the event
 
         Integer event = DeviceActions.CLICK;
         try {

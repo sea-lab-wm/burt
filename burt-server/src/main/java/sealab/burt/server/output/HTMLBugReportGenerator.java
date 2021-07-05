@@ -21,11 +21,6 @@ public @Slf4j
 class HTMLBugReportGenerator {
 
     private static int bugReportId = 1;
-    private final String baseFolder;
-
-    public HTMLBugReportGenerator(String baseFolder) {
-        this.baseFolder = baseFolder;
-    }
 
     public void generateOutput(File outputFile, ConcurrentHashMap<StateVariable, Object> state) throws Exception {
         File htmlTemplate = new File(Path.of(".", "example", "template.html").toString());
@@ -119,7 +114,7 @@ class HTMLBugReportGenerator {
     }
 
     public String getLinkScreenshotPath(String screenshotPath) {
-        return FilenameUtils.separatorsToUnix(baseFolder + "/" + screenshotPath);
+        return FilenameUtils.separatorsToUnix(screenshotPath);
     }
 }
 

@@ -6,7 +6,6 @@ import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.graph.GraphWalk;
 import sealab.burt.BurtConfigPaths;
@@ -24,7 +23,6 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import seers.appcore.utils.JavaUtils;
 
 import javax.persistence.EntityManager;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -89,18 +87,6 @@ class S2RChecker {
         return matchActions(nlActions, currentState);
     }
 
-/*
-    public QualityFeedback checkS2R(NLAction action) throws Exception {
-        readGraph();
-
-        if (currentState == null)
-            currentState = GraphState.START_STATE;
-
-        log.debug("Current state: " + currentState);
-
-        return matchAction(action);
-    }*/
-
     private QualityFeedback matchActions(List<NLAction> nlActions, Integer currentStateId) throws Exception {
         readGraph();
 
@@ -119,7 +105,12 @@ class S2RChecker {
         log.debug("All actions: " + nlActions);
         log.debug("Matching S2R action: " + nlAction);
 
-        return matchAction(nlAction);
+        QualityFeedback qualityFeedback = new QualityFeedback();
+        qualityFeedback.setAction(nlAction);
+        List<AppStep> currentResolvedSteps = new LinkedList<>();
+        resolveNLAction(nlAction, currentResolvedSteps, currentState, null, null, null, qualityFeedback);
+
+        return qualityFeedback;
     }
 
     private void readGraph() throws Exception {
@@ -127,34 +118,6 @@ class S2RChecker {
             executionGraph = DBGraphReader.getGraph(appName, appVersion);
         else
             executionGraph = JSONGraphReader.getGraph(appName, appVersion);
-    }
-
-    private QualityFeedback matchAction(NLAction nlAction) {
-        QualityFeedback qualityFeedback = new QualityFeedback();
-        qualityFeedback.setAction(nlAction);
-        List<AppStep> currentResolvedSteps = new LinkedList<>();
-        resolveNLAction(nlAction, currentResolvedSteps, currentState, null, null, null, qualityFeedback);
-
-//
-//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_AMBIGUOUS)))
-//            return new QualityResult(MULTIPLE_MATCH);
-//
-//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_INCORRECT_INPUT)))
-//            return new QualityResult(NO_S2R_INPUT);
-//
-//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(LOW_Q_VOCAB_MISMATCH)))
-//            return new QualityResult(NO_MATCH);
-//
-//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(MISSING)))
-//            return new QualityResult(MISSING_STEPS);
-//
-//        if (assessments.stream().anyMatch(a -> a.getCategory().equals(HIGH_QUALITY))) {
-//            currentState = assessments.get(0).getMatchedSteps().get(0).getCurrentState();
-//            log.debug("New current state: " + currentState);
-//            return new QualityResult(MATCH);
-//        }
-//        throw new RuntimeException("Unknown quality assessment");
-        return qualityFeedback;
     }
 
     private List<DevServerCommandResult> resolveNLAction(NLAction currNLAction, List<AppStep> currentResolvedSteps,
@@ -176,7 +139,8 @@ class S2RChecker {
         if (result.isStepNotMatched()) {
 
             // This contains the component and the action as well
-            result2 = resolver.resolveActionInGraphBasedOnComponent(currNLAction,
+            //NOTE: we should not try to build a non-existing  against the current screen
+           result2 = resolver.resolveActionInGraphBasedOnComponent(currNLAction,
                     executionGraph, currentState, currentScreen, lastStep);
 
             // Get the steps to navigate to the screen where the GUI-component is displayed,
@@ -300,7 +264,6 @@ class S2RChecker {
         return text;
     }
 
-
     private void executeIntermediateSteps(AppStep matchedStep, AppStep lastStep, GraphState currentState,
                                           List<DevServerCommandResult> executionResults,
                                           List<AppStep> currentResolvedSteps) {
@@ -319,7 +282,8 @@ class S2RChecker {
 
         if (!shortestPath.isEmpty()) {
 
-            executeIntermediateStepsInShortestPath(matchedStep, lastStep, currentResolvedSteps, shortestPath, currentState.getComponents());
+            executeIntermediateStepsInShortestPath(matchedStep, lastStep, currentResolvedSteps, shortestPath,
+                    currentState.getComponents());
 
         } else {
 
@@ -404,8 +368,8 @@ class S2RChecker {
 
     public void executeIntermediateStepsInShortestPath(AppStep matchedStep, AppStep lastStep,
 //                                                        List<DevServerCommandResult> executionResults,
-                                                        List<AppStep> currentResolvedSteps,
-                                                        List<AppStep> shortestPath, List<AppGuiComponent> components) {
+                                                       List<AppStep> currentResolvedSteps,
+                                                       List<AppStep> shortestPath, List<AppGuiComponent> components) {
 
         log.debug("Adding intermediate steps in shortest path");
         //------------------------------
@@ -483,23 +447,19 @@ class S2RChecker {
         }
     }
 
-
     /**
      * Yang Song
      * Get all possible paths for S2R prediction
-     *
      */
-    public List<GraphPath<GraphState, GraphTransition>> getFirstKPaths(int k, GraphState targetState){
+    public List<GraphPath<GraphState, GraphTransition>> getFirstKPaths(int k, GraphState targetState) {
 
-        List<GraphPath<GraphState, GraphTransition>> Paths = GraphUtils.findPaths(executionGraph.getGraph(),
-                currentState,   targetState , false, Integer.MAX_VALUE);
-        sortPathsByScores(Paths);
+        List<GraphPath<GraphState, GraphTransition>> paths = GraphUtils.findPaths(executionGraph.getGraph(),
+                currentState, targetState, false, Integer.MAX_VALUE);
+        sortPathsByScores(paths);
 
-        return Paths.subList(0, Math.min(k, Paths.size()));
+        return paths.subList(0, Math.min(k, paths.size()));
 
     }
-
-
 
     public List<GraphPath<GraphState, GraphTransition>> getFirstKDummyPaths(Integer k, GraphState targetState) {
 
@@ -548,29 +508,41 @@ class S2RChecker {
     }
 
     private static void sortPathsByScores(List<GraphPath<GraphState, GraphTransition>> paths) {
-        paths.sort((P1, P2) -> {
-            double temp = computePathScore(P1) - computePathScore(P2);
+        paths.sort((p1, p2) -> {
+            double diff = computePathScore(p1) - computePathScore(p2);
             int a = 0;
-            if (temp > 0) {
+            if (diff > 0) {
                 a = -1;
-            } else {
+            } else if (diff < 0) {
                 a = 1;
             }
-            return a; //
+            return a;
         });
     }
 
-    private static double computePathScore(GraphPath<GraphState, GraphTransition> path){
+    private static double computePathScore(GraphPath<GraphState, GraphTransition> path) {
         List<GraphTransition> edgeList = path.getEdgeList();
         double score = 0;
         double weightSum = 0;
         for (GraphTransition transition : edgeList) {
             weightSum += transition.getWeight();
         }
-        score += weightSum/edgeList.size();
-        score += 1.0/edgeList.size();
+        score += weightSum / edgeList.size();
+        score += 1.0 / edgeList.size();
         return score;
     }
+
+/*
+    public QualityFeedback checkS2R(NLAction action) throws Exception {
+        readGraph();
+
+        if (currentState == null)
+            currentState = GraphState.START_STATE;
+
+        log.debug("Current state: " + currentState);
+
+        return matchAction(action);
+    }*/
 
 
   /*  private void addAdditionalIntermediateSteps(List<AppStep> steps) {
@@ -843,14 +815,16 @@ class S2RChecker {
         return assessment;
     }
 
-    public void updateState(Integer currentStateId) {
-        this.currentState = executionGraph.getState(currentStateId);
+    private void updateState(Integer currentStateId) {
+        updateState(executionGraph.getState(currentStateId));
     }
 
     public void updateState(GraphState state) {
         this.currentState = state;
     }
 
-    public GraphState getCurrentState(){return this.currentState;}
+    public GraphState getCurrentState() {
+        return this.currentState;
+    }
 
 }

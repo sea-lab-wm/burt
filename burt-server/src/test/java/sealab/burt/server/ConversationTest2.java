@@ -64,8 +64,8 @@ class ConversationTest2 extends AbstractTest {
 
             assert botResponse != null;
             assertNotEquals(-1, botResponse.getCode());
-            assertEquals(messObj.getCurrentAction(), botResponse.getCurrentAction());
-            assertEquals(messObj.getNextIntents(), botResponse.getNextIntents());
+            assertEquals(messObj.getCurrentAction(), botResponse.getCurrentAction(), "The actions differ");
+            assertEquals(messObj.getNextIntents(), botResponse.getNextIntents(), "The intents differ");
         }
 
     }

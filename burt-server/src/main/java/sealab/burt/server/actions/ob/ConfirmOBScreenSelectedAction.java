@@ -73,7 +73,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
                     selectedState.getScreen().getActivity(),
                     selectedState.getScreen().getWindow());
 
-            response.append("Ok, you selected the screen \"")
+            response.append("Okay, you selected the screen \"")
                     .append(id + 1)
                     .append(". ")
                     .append(selectedScreenDescription)

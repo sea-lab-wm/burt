@@ -87,7 +87,8 @@ class GraphGenerator {
 
     }
 
-    public AppGraphInfo generateGraph(EntityManager em, String appName, String appVersion, GraphDataSource dataSource) throws Exception {
+    public AppGraphInfo generateGraph(EntityManager em, String appName, String appVersion,
+                                      GraphDataSource dataSource) throws Exception {
         App app = getApp(appName, appVersion, em);
         return generateGraph(app, dataSource);
     }
@@ -108,7 +109,7 @@ class GraphGenerator {
     }
 
     private AppGraphInfo buildGraphFromExecutions(List<Execution> executions, App app, boolean updateWeights,
-                                         GraphDataSource dataSource) throws Exception {
+                                                  GraphDataSource dataSource) throws Exception {
         this.updateWeights = updateWeights;
         this.currentDataSource = dataSource;
 
@@ -154,19 +155,20 @@ class GraphGenerator {
             }
         });
 
-        getTransitions().forEach((k, t) -> {
-            GraphState sourceState = t.getSourceState();
-            String screenshotFile = t.getStep().getScreenshotFile();
+        getTransitions().forEach((k, transition) -> {
+            GraphState sourceState = transition.getSourceState();
+            String screenshotFile = transition.getStep().getScreenshotFile();
 
-            if (sourceState.getScreenshotPath() == null && screenshotFile != null) {
+            if ((sourceState.getScreenshotPath() == null || GraphDataSource.TR.equals(transition.getDataSource()))
+                    && screenshotFile != null) {
                 sourceState.setScreenshotPath(screenshotFile.replace("_augmented", ""));
             }
 
-            boolean added = directedGraph.addEdge(sourceState, t.getTargetState(), t);
+            boolean added = directedGraph.addEdge(sourceState, transition.getTargetState(), transition);
             if (!added) {
-                log.warn("Edge not added: " + t);
+                log.warn("Edge not added: " + transition);
             } else {
-                directedGraph.setEdgeWeight(t, t.getWeight());
+                directedGraph.setEdgeWeight(transition, transition.getWeight());
             }
         });
 
@@ -449,7 +451,7 @@ class GraphGenerator {
 
         transition.setDataSource(currentDataSource);
         sourceState.setDataSource(currentDataSource);
-        targetState.setDataSource(currentDataSource);
+//        targetState.setDataSource(currentDataSource);
 
         // System.out.println("T - " + transition.getId() + ": " +
         // transition.getName());

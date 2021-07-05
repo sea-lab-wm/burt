@@ -99,12 +99,14 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         List<GraphPath<GraphState, GraphTransition>> predictedPaths = s2rchecker.getFirstKDummyPaths(
                 MAX_NUMBER_OF_PATHS, targetState);
 
+        log.debug("Total number of predicted paths: " + predictedPaths.size());
+
         // if there are less 3 paths
         state.put(PREDICTED_S2R_NUMBER_OF_PATHS, Math.min(MAX_NUMBER_OF_PATHS, predictedPaths.size()));
 
         if (predictedPaths.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-            return createChatBotMessages("Ok, can you provide next step?");
+            return createChatBotMessages("Okay, can you please provide next step?");
         }
 
         //----------------------------------------
@@ -115,11 +117,13 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         List<KeyValues> stepOptions = getPredictedStepOptions(s2rchecker, predictedPaths.get(0), state, currentState);
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-            return createChatBotMessages("Ok, can you provide next step?");
+            return createChatBotMessages("Okay, can you please provide next step?");
         }
 
+        log.debug("Suggesting path #" + state.get(PREDICTED_S2R_CURRENT_PATH));
+
         return createChatBotMessages(
-                "Ok, it seems the next steps that you performed are the following.",
+                "Okay, it seems the next steps that you performed are the following.",
                 "Can you confirm which ones are correct?",
                 new ChatBotMessage(messageObj, stepOptions, true));
     }

@@ -37,7 +37,7 @@ public class ClarifyEBAction extends ChatBotAction {
         state.put(StateVariable.EB_SCREEN_CONFIRMATION, true);
         state.put(EB_STATE, bugReportElement.getOriginalElement());
 
-        return createChatBotMessages("Ok, the description of the expected behavior reads rather general.",
+        return createChatBotMessages("Okay, the description of the expected behavior reads rather general.",
                 optionMessage);
     }
 
