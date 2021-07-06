@@ -1,5 +1,6 @@
 package sealab.burt.server.statecheckers;
 
+import edu.semeru.android.core.entity.model.App;
 import org.jgrapht.GraphPath;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.AppStep;
@@ -53,9 +54,12 @@ public class S2RPredictionStateChecker extends StateChecker {
             if (selectedSteps.isEmpty() || selectedValues.size() != selectedSteps.size())
                 throw new RuntimeException("The selected steps and predicted steps do not match");
 
+
+
             // add all selected app steps to state and update graph
             if (selectedSteps.size() == 1) {
                 QualityStateUpdater.addPredictedStepAndUpdateGraphState(state, selectedSteps.get(0));
+
             } else {
                 QualityStateUpdater.addStepsToState(state, selectedSteps.subList(0, selectedSteps.size() - 1));
                 QualityStateUpdater.addPredictedStepAndUpdateGraphState(state,
@@ -66,6 +70,14 @@ public class S2RPredictionStateChecker extends StateChecker {
             state.remove(PREDICTED_S2R_PATHS);
             state.remove(PREDICTING_S2R);
 
+            // check if it is the last step
+            GraphState targetState = (GraphState) state.get(StateVariable.OB_STATE); // get OB state
+            AppStep lastSelectedStep = selectedSteps.get(selectedSteps.size() -1);  // get current state
+            //FIXME: target state is the current state of AppStep?
+            GraphState lastSelectedState = lastSelectedStep.getCurrentState();
+            if (targetState == lastSelectedState){
+                return ActionName.CONFIRM_LAST_STEP;
+            }
             return ActionName.PREDICT_FIRST_S2R;
 
         } else if ("none of above".equals(message.getMessage())) {
