@@ -15,6 +15,10 @@ class UserResponse {
     private ActionName currentAction;
 
     public UserResponse(){}
+    public UserResponse(String sessionId){
+        this.sessionId = sessionId;
+    }
+
     public UserResponse(String sessionId, List<MessageObj> messages){
         this.sessionId = sessionId;
         this.messages = messages;

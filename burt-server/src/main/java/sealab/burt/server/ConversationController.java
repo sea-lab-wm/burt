@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.appselect.ConfirmAppAction;
@@ -26,11 +27,15 @@ import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
+import sealab.burt.server.output.HTMLBugReportGenerator;
 import sealab.burt.server.statecheckers.*;
 import seers.textanalyzer.TextProcessor;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -39,6 +44,7 @@ import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
 import static sealab.burt.server.StateVariable.NEXT_INTENTS;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
+
 
 @SpringBootApplication
 @RestController
@@ -255,6 +261,29 @@ class ConversationController {
         log.debug(msg);
         return messageHistory.get(req.getSessionId());
     }
+
+    @PostMapping("/reportPreview")
+    public ConversationResponse reportPreview(@RequestBody UserResponse req) throws Exception {
+        String msg = "Returning the bug report preview in the server...";
+        log.debug(msg);
+        String sessionId = req.getSessionId();
+        ConcurrentHashMap<StateVariable, Object> conversationState = conversationStates.get(sessionId);
+
+        // generate bug report
+        String appName =  conversationState.get(StateVariable.APP_NAME).toString();
+        String appVersion =  conversationState.get(StateVariable.APP_VERSION).toString();
+        String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
+
+        String reportName = String.join("-", participant, appName, appVersion, sessionId)
+                .replace(" ", "_") + ".html";
+
+        File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
+        new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
+        MessageObj messageObj = new MessageObj();
+
+        return new ConversationResponse(Collections.singletonList(new ChatBotMessage(messageObj, reportName)),  0);
+    }
+
 
     @PostMapping("/")
     public String index() {

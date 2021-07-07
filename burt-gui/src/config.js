@@ -15,6 +15,7 @@ const config = {
     logosPath: "/app_logos/",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
+    getBugReportPreview: "/reportPreview",
     startService: "/start",
     processMessageService: "/processMessage",
     initialMessages: [

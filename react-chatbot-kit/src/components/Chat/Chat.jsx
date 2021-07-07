@@ -154,8 +154,6 @@ const Chat = ({
       inputElement.current.focus();
     }
   }, []);
-
-
   return (
     <div className="react-chatbot-kit-chat-container">
       <div className="react-chatbot-kit-chat-inner-container">
@@ -165,7 +163,9 @@ const Chat = ({
             customComponents.header && customComponents.header(actionProvider)
           }
           elseShow={
-            <div className="react-chatbot-kit-chat-header">{header}</div>
+            <div className="react-chatbot-kit-chat-header">{header}
+              <button className="bn632-hover bn18" id="reportPreview">View the bug report</button>
+            </div>
           }
         />
 

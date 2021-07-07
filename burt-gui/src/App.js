@@ -90,7 +90,28 @@ function App() {
         return input.trim().length > 0;
     }
 
-    if (sessionId != null && sessionId != undefined)
+    if (sessionId != null && sessionId != undefined) {
+        window.onload=function() {
+           let button = document.getElementById('reportPreview');
+                button.onclick = function () {
+                // alert("wtf");
+
+                const responsePromise = ApiClient.processReportPreview();
+                responsePromise.then(response => {
+                    let conversationResponse = response.data;
+                    if (conversationResponse.code === 0){
+                        let chatbotMsgs = conversationResponse.messages;
+                        let chatbotMsg= chatbotMsgs[0];
+                        let link = chatbotMsg.generatedReport;
+                        console.log(link);
+                        window.open( config.serverEndpoint +"/" + link, "_blank");
+                    }
+                }).catch(error => {
+                    console.error(`There was an unexpected error: ${error}`);
+                })
+            }
+        }
+
         return (
             <div className="App center-screen">
                 {
@@ -106,6 +127,7 @@ function App() {
                 }
             </div>
         );
+    }
     else
         return (
             <div>I am sorry, BURT cannot be loaded. Try loading the page in a few seconds.</div>

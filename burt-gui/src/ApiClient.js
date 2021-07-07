@@ -28,6 +28,18 @@ class ApiClient {
             .post(config.serverEndpoint + config.processMessageService, data);
     }
 
+    static processReportPreview(){
+        const sessionId = SessionManager.getSessionId();
+
+        const data = {
+            sessionId: sessionId,
+        }
+
+        return axios
+            .post(config.serverEndpoint + config.getBugReportPreview, data);
+
+    }
+
     static sendRequestAsync(service, data) {
         console.log("Sending request...")
 
