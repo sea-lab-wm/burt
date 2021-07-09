@@ -171,7 +171,7 @@ public class ConversationTestData {
             //ChatBot: the eb is general, is this the screen is having the problem?
             add(new MessageObjectTest("yes", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
-            add(new MessageObjectTest("I opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest("i opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
             add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
