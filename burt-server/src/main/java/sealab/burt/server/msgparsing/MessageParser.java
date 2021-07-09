@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,8 +24,10 @@ public class MessageParser {
     static {
         intentTokens = new ConcurrentHashMap<>();
 
+        //these could be regular expressions
         addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah", "yep"));
-        addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up", "hola"));
+        addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up", "hola",
+                "(report|describe|detail) .+ (bug|issue|problem)"));
         addIntentTokens(NEGATIVE_ANSWER, Arrays.asList("no", "nah", "nope"));
         addIntentTokens(THANKS, Arrays.asList("thanks", "thank you"));
         //....
@@ -82,11 +85,16 @@ public class MessageParser {
                     .collect(Collectors.toSet());
         }
 
+        //check the message
         for (Map.Entry<String, Intent> entry : entries) {
-            if (message.getMessage().toLowerCase().contains(entry.getKey())) return entry.getValue();
+            if (message.getMessage().toLowerCase().contains(entry.getKey()) || matchRegex(entry.getKey(), message)) return entry.getValue();
         }
 
         return null;
 
+    }
+
+    private static boolean matchRegex(String regex, MessageObj messageObj) {
+        return Pattern.compile(regex).matcher(messageObj.getMessage().toLowerCase()).find();
     }
 }

@@ -112,7 +112,8 @@ public class ConversationTestData {
 
         return new ArrayList<>() {{
             //ChatBot: hi this is burt
-            add(new MessageObjectTest("what's up?", PROVIDE_PARTICIPANT_ID, PARTICIPANT_PROVIDED));
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
             //ChatBot: what is you participant id?
             add(new MessageObjectTest("no participant id", PROVIDE_PARTICIPANT_ID, PARTICIPANT_PROVIDED));
             //ChatBot: didn't get that, please provide the participant id
