@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ConditionallyRender } from "react-util-kit";
 
 import ChatbotMessageAvatar from "./ChatBotMessageAvatar/ChatbotMessageAvatar";
-import ChatbotIcon from "../../assets/icons/chatbot.svg";
+import ChatbotIcon from "../../assets/icons/chatbot-2.svg";
 import Loader from "../Loader/Loader";
 
 import "./ChatbotMessage.css";
@@ -76,7 +76,14 @@ const ChatbotMessage = ({
               <ConditionallyRender
                 ifTrue={customComponents.botAvatar}
                 show={callIfExists(customComponents.botAvatar)}
-                elseShow={<ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon"/>}
+                elseShow={
+                  <ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon"/>
+                  // <object type="image/svg+xml" data="../../assets/icons/chatbot-2.svg" style="display:block;width:330px;height:240px" >
+                  // <param name="src" value="../../assets/icons/chatbot-2.svg" />
+                  // </object>
+                }
+
+
               />
             }
           />

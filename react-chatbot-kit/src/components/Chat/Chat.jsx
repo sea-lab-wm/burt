@@ -10,6 +10,7 @@ import { botMessage, createChatMessage } from "./chatUtils";
 import ChatIcon from "../../assets/icons/paper-plane.svg";
 
 import "./Chat.css";
+import ChatbotIcon from "../../assets/icons/chatbot-2.svg";
 
 const Chat = ({
   state,
@@ -137,7 +138,7 @@ const Chat = ({
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
   }
 
-  let header = `Conversation with ${botName}`;
+  let header = `Chat with ${botName}`;
   if (headerText) {
     header = headerText;
   }
@@ -163,8 +164,11 @@ const Chat = ({
             customComponents.header && customComponents.header(actionProvider)
           }
           elseShow={
-            <div className="react-chatbot-kit-chat-header">{header}
-              <button className="bn632-hover bn18" id="reportPreview">View the bug report</button>
+
+            <div className="react-chatbot-kit-chat-header">
+              <ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon"/>
+            {header}
+              <button className="bn632-hover bn22" id="reportPreview">View the bug report</button>
             </div>
           }
         />
