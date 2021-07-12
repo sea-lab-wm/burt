@@ -159,7 +159,7 @@ public class CrashScope extends GeneralStrategy {
 
         CrashScopeSettings strategy = new CrashScopeSettings();
         strategy.setTopDown(true);
-        strategy.setBottomUp(false);
+        strategy.setBottomUp(true);
         strategy.setContextFeatsEnabled(false);
         strategy.setContextFeatsDisabled(true);
         strategy.setUnexpectedText(false);
@@ -168,15 +168,18 @@ public class CrashScope extends GeneralStrategy {
 
 //      String adbPort = "5037";
 //      String avdPort = "0932890b";
-      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/scripts";
 //      String uiDumpLocation = "/Volumes/Macintosh_HD_3/Research-Files/Bug-Reproduction-CrashScope-Workspace/ui-dumps/";
-      String dataFolder = "/Users/KevinMoran/Desktop/CrashsCope-Data";
 //      String apkPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Bug-Report-Reproduction/Data/FUSION-Data/Apks/mileage.apk";
-      String androidSDKPath = "/Applications/AndroidSDK/sdk";
-              
 //      String androidSDKPath = "/Users/semeru/Applications/android-sdk";
 //      String dataFolder = "/Users/semeru/Documents/SEMERU/CrashScope/output/";
 //      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Core/scripts/";
+        
+        
+        String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/scripts";
+        String dataFolder = "/Users/KevinMoran/Desktop/CrashScope-Data-Evolving-GUIs";
+        String androidSDKPath = "/Applications/AndroidSDK/sdk";
+              
+
         String avdPort = "5554";
         String adbPort = "5037";
         TypeDeviceEnum deviceType = UiAutoConnector.TypeDeviceEnum.EMULATOR;
@@ -389,7 +392,7 @@ public class CrashScope extends GeneralStrategy {
                         deviceHelper.disposeKeyboard();
                     }
                     Step step = null;
-//                    setupGNUCash();
+                    setupGNUCash();
                     
                     // Update the initial stack of components that can recieve input, and get the current activity and window
                     updateAvailableStack(app.getPackageName(), deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), false);
@@ -602,7 +605,7 @@ public class CrashScope extends GeneralStrategy {
                     
                     Gson gson = new Gson();
                     String json = gson.toJson(execution);
-                    PrintWriter writer = new PrintWriter(dataFolder + File.separator + "Execution-" + executionCtr + ".json");
+                    PrintWriter writer = new PrintWriter(dataFolder + File.separator + "Execution-" + System.currentTimeMillis() + ".json");
                     writer.println(json);
                     try {
                         Thread.sleep(1000);
@@ -973,8 +976,8 @@ public class CrashScope extends GeneralStrategy {
             try {   // Try/catch for image processing
                 String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
 
-                String screenshot = appPackage + "_" + version + "_gnucash" + sequence + ".png";
-                String currscreenshot = appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                String screenshot = appPackage + "_" + version + "_" + sequence + ".png";
+                String currscreenshot = appPackage + "_" + version + "_" + currstep + ".png";
 
                 // Check if the last executed step was a rotation, if so we need to roll back the 
                 // sequences to get the proper existing screenshots
@@ -982,16 +985,16 @@ public class CrashScope extends GeneralStrategy {
                     //System.out.println("last step rotated fixing GUI screenshot"); //For Debugging
                     String step1 = Integer.toString(sequence - 1);
                     String step2 = Integer.toString(sequence - 2);
-                    screenshot = appPackage + "_" + version + "_gnucash" + step1 + ".png";
-                    currscreenshot = appPackage + "_" + version + "_gnucash" + step2 + ".png";
+                    screenshot = appPackage + "_" + version + "_" + step1 + ".png";
+                    currscreenshot = appPackage + "_" + version + "_" + step2 + ".png";
                     correctAugScreen = false;
                 }else if (step != null && step.getAction() == 3){
                     // If the last step was a typing step, we need to reset the screenshot paths
                     //System.out.println("last step was typing"); //For debugging
                     String step1 = Integer.toString(sequence);
                     String step2 = Integer.toString(sequence);
-                    screenshot = appPackage + "_" + version + "_gnucash" + step1 + ".png";
-                    currscreenshot = appPackage + "_" + version + "_gnucash" + step2 + ".png";
+                    screenshot = appPackage + "_" + version + "_" + step1 + ".png";
+                    currscreenshot = appPackage + "_" + version + "_" + step2 + ".png";
                     correctAugScreen = false;
                 }
 
@@ -1872,9 +1875,9 @@ public class CrashScope extends GeneralStrategy {
                 nextStep = Integer.toString(sequence);
             }
             String currscreenshot =  appPackage + "."
-                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + currstep + ".png";
             String guiscreenshot =  appPackage + "."
-                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + nextStep + ".png";
+                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + nextStep + ".png";
             //System.out.println(currscreenshot);   //For Debugging
             //System.out.println(guiscreenshot);        //For Debugging
             String ss = "";
@@ -1942,7 +1945,7 @@ public class CrashScope extends GeneralStrategy {
 
 
             String currscreenshot =  appPackage + "."
-                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + currstep + ".png";
             //System.out.println(currscreenshot);   //For Debugging
             String ss = "";
             try {
@@ -1970,7 +1973,7 @@ public class CrashScope extends GeneralStrategy {
                     if (step != null) {
                         currstep = Integer.toString(sequence);
                         currscreenshot =  appPackage + "."
-                                + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                                + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + currstep + ".png";
                     }
                     try {
                         ImageIO.write(
