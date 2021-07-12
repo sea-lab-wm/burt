@@ -66,7 +66,7 @@ public class ConfirmAppAction extends ChatBotAction {
             throw new RuntimeException("Could not find packages for " + appName);
         state.put(APP_PACKAGE, packageNames.get(0));
 
-        state.put(APP_CONFIRMATION, true);
+//        state.put(APP_CONFIRMATION, true);
         return createChatBotMessages(MessageFormat.format("You selected \"{0}\", is that right?", appNameVersion));
 
     }

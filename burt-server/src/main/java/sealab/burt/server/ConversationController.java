@@ -45,7 +45,6 @@ import static sealab.burt.server.StateVariable.NEXT_INTENTS;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
 
-
 @SpringBootApplication
 @RestController
 public
@@ -268,10 +267,14 @@ class ConversationController {
         log.debug(msg);
         String sessionId = req.getSessionId();
         ConcurrentHashMap<StateVariable, Object> conversationState = conversationStates.get(sessionId);
+        // check if state has APP
+        //
+        if ((!conversationState.containsKey(StateVariable.APP_ASKED) )&&
+                conversationState.containsKey(StateVariable.APP_NAME) && conversationState.containsKey(StateVariable.APP_VERSION)&&
+                conversationState.containsKey(StateVariable.PARTICIPANT_ID)){
 
-        // generate bug report
-        String appName =  conversationState.get(StateVariable.APP_NAME).toString();
-        String appVersion =  conversationState.get(StateVariable.APP_VERSION).toString();
+        String appName = conversationState.get(StateVariable.APP_NAME).toString();
+        String appVersion = conversationState.get(StateVariable.APP_VERSION).toString();
         String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
 
         String reportName = String.join("-", participant, appName, appVersion, sessionId)
@@ -281,7 +284,10 @@ class ConversationController {
         new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
         MessageObj messageObj = new MessageObj();
 
-        return new ConversationResponse(Collections.singletonList(new ChatBotMessage(messageObj, reportName)),  0);
+        return new ConversationResponse(Collections.singletonList(new ChatBotMessage(messageObj, reportName)), 0);
+        }else{
+            return new ConversationResponse(Collections.singletonList(new ChatBotMessage()), -1);
+        }
     }
 
 

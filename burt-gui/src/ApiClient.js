@@ -34,7 +34,6 @@ class ApiClient {
         const data = {
             sessionId: sessionId,
         }
-
         return axios
             .post(config.serverEndpoint + config.getBugReportPreview, data);
 

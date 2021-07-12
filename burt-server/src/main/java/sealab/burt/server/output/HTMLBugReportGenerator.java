@@ -31,61 +31,66 @@ class HTMLBugReportGenerator {
 
     String generateHTML(File htmlTemplate,
                         ConcurrentHashMap<StateVariable, Object> state) throws IOException {
+
         Document doc = Jsoup.parse(htmlTemplate, "UTF-8");
         //APP_VERSION
         Element contentAPP = doc.getElementById("appinfo");
         //Bug Report [1], App and Version: [2]
-        contentAPP.append("Bug Report #" + bugReportId + " for " +
-                state.get(APP_NAME) + " v. " + state.get(APP_VERSION));
+        if (!state.containsKey(APP_ASKED)) {
+            contentAPP.append("Bug Report #" + bugReportId + " for " +
+                    state.get(APP_NAME) + " v. " + state.get(APP_VERSION));
+        }
         Element content = doc.getElementById("bugreport");
-
-        content.append("<div class=\"row-fluid\" id=\"obeb\">");
-        Element obebRow = doc.getElementById("obeb");
-        //OB
-        obebRow.append("<div class=\"span5\" id=ob>");
-        Element obSpan = doc.getElementById("ob");
-        obSpan.append("<h2>Observed Behavior</h2>");
-
 
         List<BugReportElement> OBList = (List<BugReportElement>) state.get(REPORT_OB);
         List<BugReportElement> EBList = (List<BugReportElement>) state.get(REPORT_EB);
         List<BugReportElement> S2RList = (List<BugReportElement>) state.get(REPORT_S2R);
 
-        for (BugReportElement messageObj : OBList) {
-            String message = messageObj.getStringElement();
-            String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
+        content.append("<div class=\"row-fluid\" id=\"obeb\">");
+        Element obebRow = doc.getElementById("obeb");
+        //OB
+        if (OBList != null) {
+            obebRow.append("<div class=\"span5\" id=ob>");
+            Element obSpan = doc.getElementById("ob");
+            obSpan.append("<h2>Observed Behavior</h2>");
+            for (BugReportElement messageObj : OBList) {
+                String message = messageObj.getStringElement();
+                String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
 //            log.debug("OB:" + screenshotPath);
-            obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
-            if (message != null && message.length() > 0) {
-                obSpan.append("<p>" + message + "</p>");
-                obSpan.append("<div class=\"btn\" href=\"#\"  data=\"" + screenshotPath + "\"  title=\"" + message +
-                        "\"> Enlarge the screenshot <i class=\"fa fa-hand-o-up\" style=\"font-size:15px\"></i> " +
-                        "</div>\n");
+                obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
+                if (message != null && message.length() > 0) {
+                    obSpan.append("<p>" + message + "</p>");
+                    obSpan.append("<div class=\"btn\" href=\"#\"  data=\"" + screenshotPath + "\"  title=\"" + message +
+                            "\"> Enlarge the screenshot <i class=\"fa fa-hand-o-up\" style=\"font-size:15px\"></i> " +
+                            "</div>\n");
+                }
             }
         }
         //EB
-        obebRow.append("<div class=\"span5\" id=eb>");
-        Element ebSpan = doc.getElementById("eb");
-        ebSpan.append("<h2>Expected Behavior</h2>");
+        if( EBList != null) {
+            for (BugReportElement messageObj : EBList) {
+                obebRow.append("<div class=\"span5\" id=eb>");
+                Element ebSpan = doc.getElementById("eb");
+                ebSpan.append("<h2>Expected Behavior</h2>");
 
-        for (BugReportElement messageObj : EBList) {
-            String message = messageObj.getStringElement();
-            String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
+                String message = messageObj.getStringElement();
+                String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
 //                log.debug("EB:" + screenshotPath);
-            ebSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
+                ebSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
 
-            if (message != null && message.length() > 0) {
-                ebSpan.append("<p>" + message + "</p>");
-                ebSpan.append("<div class=\"btn\" href=\"#\"  data=\"" + screenshotPath + "\"  title=\"" + message +
-                        "\"> Enlarge the screenshot <i class=\"fa fa-hand-o-up\" style=\"font-size:15px\"></i> " +
-                        "</div>\n");
+                if (message != null && message.length() > 0) {
+                    ebSpan.append("<p>" + message + "</p>");
+                    ebSpan.append("<div class=\"btn\" href=\"#\"  data=\"" + screenshotPath + "\"  title=\"" + message +
+                            "\"> Enlarge the screenshot <i class=\"fa fa-hand-o-up\" style=\"font-size:15px\"></i> " +
+                            "</div>\n");
+                }
             }
         }
-        //
-        content.append("<h3>Steps to Reproduce </h3>");
 
         //S2R
         if (S2RList != null) {
+            content.append("<h3>Steps to Reproduce </h3>");
+
             int numOfRows = S2RList.size() / 5;
             for (int i = 0; i < numOfRows; i++) {
                 int indexOfRow = i + 1;

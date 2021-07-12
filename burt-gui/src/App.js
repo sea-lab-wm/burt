@@ -105,6 +105,11 @@ function App() {
                         let link = chatbotMsg.generatedReport;
                         console.log(link);
                         window.open( config.serverEndpoint +"/" + link, "_blank");
+                    }else if (conversationResponse.code === -1) {
+                        window.alert("Sorry, burt can't generate bug report preview now and we need more information, please go ahead and select the App" +
+                            " that has the bug first!");
+                    }else{
+                        window.alert("There was an unexpected error");
                     }
                 }).catch(error => {
                     console.error(`There was an unexpected error: ${error}`);
