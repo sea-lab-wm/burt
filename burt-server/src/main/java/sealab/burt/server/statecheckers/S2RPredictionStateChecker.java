@@ -71,13 +71,13 @@ public class S2RPredictionStateChecker extends StateChecker {
             state.remove(PREDICTING_S2R);
 
             // check if it is the last step
-            GraphState targetState = (GraphState) state.get(StateVariable.OB_STATE); // get OB state
-            AppStep lastSelectedStep = selectedSteps.get(selectedSteps.size() -1);  // get current state
-            //FIXME: target state is the current state of AppStep?
-            GraphState lastSelectedState = lastSelectedStep.getCurrentState();
-            if (targetState == lastSelectedState){
-                return ActionName.CONFIRM_LAST_STEP;
-            }
+//            GraphState targetState = (GraphState) state.get(StateVariable.OB_STATE); // get OB state
+//            AppStep lastSelectedStep = selectedSteps.get(selectedSteps.size() -1);  // get current state
+//            //FIXME: target state is the current state of AppStep?
+//            GraphState lastSelectedState = lastSelectedStep.getCurrentState();
+//            if (targetState == lastSelectedState){
+//                return ActionName.CONFIRM_LAST_STEP;
+//            }
             return ActionName.PREDICT_FIRST_S2R;
 
         } else if ("none of above".equals(message.getMessage())) {

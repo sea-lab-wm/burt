@@ -35,6 +35,12 @@ public class GenerateBugReportAction extends ChatBotAction {
         new HTMLBugReportGenerator().generateOutput(outputFile, state);
         state.put(REPORT_GENERATED, true);
         ChatBotMessage chatBotMessage = new ChatBotMessage(messageObj, reportName);
+        long endTime=System.currentTimeMillis();
+        state.put(END_TIME, endTime);
+        saveTimeAction.saveTime(state);
+
+
+
 
         return createChatBotMessages("Okay, great. This is all the information we need for now.",
                 chatBotMessage,

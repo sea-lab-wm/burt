@@ -310,6 +310,8 @@ class ConversationController {
         ConcurrentHashMap<StateVariable, Object> state = new ConcurrentHashMap<>();
         state.put(StateVariable.SESSION_ID, sessionId);
         conversationStates.putIfAbsent(sessionId, state);
+        long startTime=System.currentTimeMillis();
+        conversationStates.get(sessionId).put(StateVariable.START_TIME, startTime);
         return sessionId;
     }
 

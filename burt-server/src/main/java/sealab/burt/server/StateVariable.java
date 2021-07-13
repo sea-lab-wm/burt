@@ -23,6 +23,8 @@ public enum StateVariable {
 
     //report summary
     REPORT_OB, REPORT_EB, REPORT_S2R,  OB_QUALITY_FEEDBACK,
-      REPORT_GENERATED
+      REPORT_GENERATED,
+
+    START_TIME, END_TIME
 
 }
