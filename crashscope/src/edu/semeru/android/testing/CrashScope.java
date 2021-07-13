@@ -117,7 +117,7 @@ public class CrashScope extends GeneralStrategy {
     private String uiDumpLocation;  // Location for storing uiautomator .xml files during execution
     private ContextualFeatures contextFeats = new ContextualFeatures(); // Object that stores the current state of contextual features during execution
     private final static String PERSIST_UNIT = "CrashScope-eBug";   // Persistance unit for MySQL
-    private int executionCtr;   // Keeps track of the number of Executions (which represents one combination of strategies)
+    private int executionCtr = 1;   // Keeps track of the number of Executions (which represents one combination of strategies)
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private String dataFolder;  // Holds screenshots and uidumps
     private String apkPath; // Path to the AUT .apk file
@@ -168,18 +168,15 @@ public class CrashScope extends GeneralStrategy {
 
 //      String adbPort = "5037";
 //      String avdPort = "0932890b";
+      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/scripts";
 //      String uiDumpLocation = "/Volumes/Macintosh_HD_3/Research-Files/Bug-Reproduction-CrashScope-Workspace/ui-dumps/";
+      String dataFolder = "/Users/KevinMoran/Desktop/CrashsCope-Data";
 //      String apkPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Bug-Report-Reproduction/Data/FUSION-Data/Apks/mileage.apk";
+      String androidSDKPath = "/Applications/AndroidSDK/sdk";
+              
 //      String androidSDKPath = "/Users/semeru/Applications/android-sdk";
 //      String dataFolder = "/Users/semeru/Documents/SEMERU/CrashScope/output/";
 //      String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Core/scripts/";
-        
-        
-        String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/scripts";
-        String dataFolder = "/Users/KevinMoran/Desktop/CrashScope-Data-Evolving-GUIs";
-        String androidSDKPath = "/Applications/AndroidSDK/sdk";
-              
-
         String avdPort = "5554";
         String adbPort = "5037";
         TypeDeviceEnum deviceType = UiAutoConnector.TypeDeviceEnum.EMULATOR;
@@ -283,7 +280,7 @@ public class CrashScope extends GeneralStrategy {
         // Perform some setup before the execution begins
 
         takeScreenshots = true; // This variable determines whether or not screenshots are recorded for all executions
-        int executionCtr = 1; // The current Execution
+                            // The current Execution
         List<Execution> csExecutions = new ArrayList<Execution>();  // ArrayList to hold all of the CrashScope Executions. This will be returned at the end of the method
 
 
@@ -392,7 +389,7 @@ public class CrashScope extends GeneralStrategy {
                         deviceHelper.disposeKeyboard();
                     }
                     Step step = null;
-                    setupGNUCash();
+//                    setupGNUCash();
                     
                     // Update the initial stack of components that can recieve input, and get the current activity and window
                     updateAvailableStack(app.getPackageName(), deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), false);
@@ -432,6 +429,7 @@ public class CrashScope extends GeneralStrategy {
 
                         // take a screenshot before executing the next action
                         takeScreenshot(app.getPackageName(), dataFolder, getApp().getVersion(), getWidthScreen(), getHeightScreen(), step, getTextStrat(), executionCtr);
+                        takeXMLSnapshot();
 
                         //Get the next input event from the stack of unvisited component-action pairs
                         GUIEventVO event = getNextStep(app.getPackageName(), app.getMainActivity(), getTextStrat(), 0, executionCtr);
@@ -605,7 +603,7 @@ public class CrashScope extends GeneralStrategy {
                     
                     Gson gson = new Gson();
                     String json = gson.toJson(execution);
-                    PrintWriter writer = new PrintWriter(dataFolder + File.separator + "Execution-" + System.currentTimeMillis() + ".json");
+                    PrintWriter writer = new PrintWriter(dataFolder + File.separator + "Execution-" + executionCtr + ".json");
                     writer.println(json);
                     try {
                         Thread.sleep(1000);
@@ -644,11 +642,25 @@ public class CrashScope extends GeneralStrategy {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+        setExecutionCtr(getExecutionCtr()+1);
         return csExecutions;
 
     }// End executeDFS()
 
+    private void takeXMLSnapshot() {
+        
+       try {
+        Files.createDirectories(Paths.get(dataFolder + File.separator + "xmls"));
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+        
+       deviceHelper.getAndPullUIDump(dataFolder + File.separator + "xmls", app.getPackageName() + "-" + app.getVersion() + "-" + executionCtr + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence + ".xml");
+        
+    }
+    
+    
     private Step setupGNUCash() {
         
         gnuCash = true;
@@ -1277,6 +1289,7 @@ public class CrashScope extends GeneralStrategy {
                 if (takeScreenshots) {
                     takeScreenshot(appPackage, folderScreenshots, getApp().getVersion(),
                             getWidthScreen(), getHeightScreen(), lastStep, textStrat, executionCtr);
+                    takeXMLSnapshot();
                     String guiScreenshot = cropScreenshot(appPackage, androidSDKPath, folderScreenshots, getApp()
                             .getVersion(), getWidthScreen(), getHeightScreen(), lastStep, StepByStepEngine.getEntityFromVO(inputComponent, false), false,
                             textStrat, executionCtr, lastStepRotated);
@@ -1498,6 +1511,7 @@ public class CrashScope extends GeneralStrategy {
 
                                 takeScreenshot(appPackage, getFolderScreenshots(), getApp().getVersion(), getWidthScreen(), getHeightScreen(), stepTransition,
                                         textStrat, executionCtr);
+                                takeXMLSnapshot();
 
                                 //printAvailableStack();        //For debugging
                             }

@@ -705,10 +705,8 @@ public class StepByStepEngine {
 
     public static Step getStepFromEvent(GUIEventVO event) {
         Step step = new Step();
-        if(event.getEventTypeId()!=StepByStepEngine.SWIPE) {
-	        step.setDynGuiComponent(getEntityFromVO(event.getHvInfoComponent()));
-	        step.getDynGuiComponent().setCurrentWindow(event.getActivity());
-        }
+        step.setDynGuiComponent(getEntityFromVO(event.getHvInfoComponent()));
+        step.getDynGuiComponent().setCurrentWindow(event.getActivity());
         // Set the appropriate action
         if (event.getEventTypeId() == StepByStepEngine.CLICK
                 || (event.getEventLabel() != null && event.getEventLabel().equals("CLICK"))) {
