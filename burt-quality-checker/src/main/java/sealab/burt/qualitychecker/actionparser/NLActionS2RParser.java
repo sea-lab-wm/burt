@@ -1010,7 +1010,7 @@ public class NLActionS2RParser {
         List<Entry<AppGuiComponent, Double>> matchedComponents = getMatchedComponents(skipTextViews, textToMatch,
                 currentScreenComponents, allowedComponents, matchFirst);
 
-        LOGGER.debug("Matches [" + matchedComponents.size() + "]: " + matchedComponents.toString());
+        LOGGER.debug("Component matches [" + matchedComponents.size() + "]: " + matchedComponents.toString());
 
         //---------------------------------------------------------
 

@@ -17,4 +17,7 @@ public class BurtConfigPaths {
     public static final String appLogosPath = Paths.get("..", "data", "app_logos").toString();
     public static final String generatedBugReportsPath = Paths.get("..", "data", "generated_bug_reports").toString();
 
+    public static final String reportingTimeFilePath =
+            Paths.get(generatedBugReportsPath, "Reporting-Time.csv").toString();
+
 }

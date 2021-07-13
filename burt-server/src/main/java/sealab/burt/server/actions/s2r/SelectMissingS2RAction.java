@@ -89,9 +89,10 @@ public class SelectMissingS2RAction extends ChatBotAction {
         MessageObj messageObj = new MessageObj(
                 "From the following options, select the steps you performed before this step and click the " +
                         "\"done\" button", "S2RScreenSelector");
-
+        String highQualityStepMessage = (String) state.get(S2R_HQ_MISSING);
         return createChatBotMessages(
-                "It seems that before that step you had to perform additional steps. ",
+                "Got it! You reported the step \"" + highQualityStepMessage + "\"",
+                "However, it seems that before that step you had to perform additional steps. ",
                 new ChatBotMessage(messageObj, stepOptions, true));
 
     }
@@ -110,7 +111,8 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
         List<AppStep> cleanedSteps = new ArrayList<>();
         for (int i = 0; i < steps.size(); ) {
-            final AppStep appStep = steps.get(i);
+            final AppStep currentStep = steps.get(i);
+
             AppStep nextStep = null;
             if ((i + 1) < steps.size()) {
                 nextStep = steps.get(i + 1);
@@ -125,22 +127,25 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
                 if (nextNextStep != null) {
                     if (
-                            (DeviceUtils.isType(nextStep.getAction()) &&
-                                    DeviceUtils.isClick(appStep.getAction()) &&
+                            (DeviceUtils.isClick(currentStep.getAction()) &&
+                                    DeviceUtils.isType(nextStep.getAction()) &&
                                     DeviceUtils.isClick(nextNextStep.getAction())
                             ) &&
-                                    ((appStep.getComponent().getDbId().equals(nextStep.getComponent().getDbId())
-                                            && nextStep.getComponent().getDbId().equals(nextNextStep.getComponent().getDbId())
-                                            ||
-                                            ComponentUtils.equalsNoDimensions(appStep.getComponent(),
+                                    (
+                                            /*(currentStep.getComponent().getDbId().equals(nextStep.getComponent()
+                                            .getDbId())
+                                            && nextStep.getComponent().getDbId().equals(nextNextStep.getComponent()
+                                            .getDbId())
+                                            ||*/
+                                            ComponentUtils.equalsNoDimensions(currentStep.getComponent(),
                                                     nextStep.getComponent())
                                                     && ComponentUtils.equalsNoDimensions(nextStep.getComponent(),
                                                     nextNextStep.getComponent())
-                                    ))
+                                    )
                     ) {
 
 //                        if (generateClickBeforeType) {
-//                            cleanedSteps.add(appStep);
+//                            cleanedSteps.add(currentStep);
 //                            cleanedSteps.add(nextStep);
 //                        } else {
                         cleanedSteps.add(nextStep);
@@ -151,7 +156,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
                 }
             }
 
-            cleanedSteps.add(appStep);
+            cleanedSteps.add(currentStep);
 
             i++;
 
@@ -161,7 +166,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
     private boolean containsOpenAppStep(List<BugReportElement> stepElements) {
 
-        if(stepElements == null) return false;
+        if (stepElements == null) return false;
 
         return stepElements.stream()
                 .anyMatch(step -> step.getOriginalElement() != null

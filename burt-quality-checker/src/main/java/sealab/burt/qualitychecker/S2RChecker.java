@@ -137,7 +137,7 @@ class S2RChecker {
         // Check to see if we were able to match with a step, if not we should try to
         // match with a component.
         if (result.isStepNotMatched()) {
-
+/*
             // This contains the component and the action as well
             //NOTE: we should not try to build a non-existing  against the current screen
            result2 = resolver.resolveActionInGraphBasedOnComponent(currNLAction,
@@ -145,7 +145,8 @@ class S2RChecker {
 
             // Get the steps to navigate to the screen where the GUI-component is displayed,
             // if it is not the one on the current screen
-            if (result2.isStepNotMatched()) {
+            if (result2.isStepNotMatched()) {*/
+            result2 =  new ResolvedStepResult();
 
                 final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, result2);
                 if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);
@@ -154,12 +155,12 @@ class S2RChecker {
                     s2rQA.addQualityAssessment(assessment);
                 }
                 return executionResults;
-            } else {
+          /*  } else {
 
-               /* final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, result2);
-                if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);*/
+               *//* final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, result2);
+                if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);*//*
                 result = result2;
-            }
+            }*/
         } else {
          /*   final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, new ResolvedStepResult());
             if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);*/
@@ -207,7 +208,7 @@ class S2RChecker {
             List<AppStep> currentResolvedSteps2 = new ArrayList<>();
 
             //we need to execute additional commands for types
-            final S2RQualityAssessment assessment3 = addAdditionalSteps(matchedStep, currentResolvedSteps2);
+            final S2RQualityAssessment assessment3 = addAdditionalStepsAndCheckForInput(matchedStep, currentResolvedSteps2);
             if (assessment3 != null) s2rQA.addQualityAssessment(assessment3);
 
         /*    log.debug("Executing matched steps: " + currentResolvedSteps2);
@@ -297,18 +298,18 @@ class S2RChecker {
                 return;
             }
 
-            executeIntermediateStepsInCurrentScreen(matchedStep, currentState,
+            addIntermediateStepsInCurrentScreen(matchedStep, currentState,
                     executionResults, currentResolvedSteps, currentState.getComponents());
 
         }
 
     }
 
-    private void executeIntermediateStepsInCurrentScreen(AppStep matchedStep, GraphState currentState,
-                                                         List<DevServerCommandResult> executionResults,
-                                                         List<AppStep> currentResolvedSteps,
-                                                         List<AppGuiComponent> components) {
-        log.debug("Executing intermediate steps in the current state");
+    private void addIntermediateStepsInCurrentScreen(AppStep matchedStep, GraphState currentState,
+                                                     List<DevServerCommandResult> executionResults,
+                                                     List<AppStep> currentResolvedSteps,
+                                                     List<AppGuiComponent> components) {
+        log.debug("Adding intermediate steps in the current state");
 
         final Set<GraphTransition> stateLoopTransitions = executionGraph.getGraph()
                 .outgoingEdgesOf(currentState).stream()
@@ -690,7 +691,7 @@ class S2RChecker {
                 .collect(Collectors.toList());
     }
 
-    private S2RQualityAssessment addAdditionalSteps(AppStep appStep, List<AppStep> currentResolvedSteps2) {
+    private S2RQualityAssessment addAdditionalStepsAndCheckForInput(AppStep appStep, List<AppStep> currentResolvedSteps2) {
         if (DeviceUtils.isAnyType(appStep.getAction())) {
 
             final AppStep clickStep = new AppStep(DeviceActions.CLICK, appStep.getComponent());
@@ -820,6 +821,7 @@ class S2RChecker {
     }
 
     public void updateState(GraphState state) {
+        log.debug("Setting the current state: " + state);
         this.currentState = state;
     }
 

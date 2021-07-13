@@ -290,7 +290,7 @@ class StepResolver {
             //-------------------------------------
             // Determine the text
 
-            String text;
+            String text = null;
             try {
                 Long componentId = null;
                 if (component != null) {
@@ -302,7 +302,7 @@ class StepResolver {
                 log.debug("Could not determine the text for the candidate state/screen: "
                         + candidateState.getUniqueHash() + " - " + e.getResult());
                 result.addCount(e);
-                continue;
+//                continue; //it should be ok to not being able to identify the text as later this is checked
             }
 
             //-------------------------------------

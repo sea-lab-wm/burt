@@ -56,9 +56,9 @@ public class QualityStateUpdater {
         GraphTransition transition = appStep.getTransition();
         if (transition != null)
             s2rChecker.updateState(transition.getTargetState());
-        else {
-            s2rChecker.updateState(appStep.getCurrentState());
-        }
+//        else {
+//            s2rChecker.updateState(appStep.getCurrentState());
+//        }
 
     }
 
@@ -104,10 +104,6 @@ public class QualityStateUpdater {
 
 
     public static void updateOBState(ConcurrentHashMap<StateVariable, Object> state, GraphState obState) {
-
-        if (obState == null)
-            throw new RuntimeException("The state cannot be null");
-
         String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(obState, state);
         state.put(REPORT_OB, Collections.singletonList(
                 new BugReportElement((String) state.get(OB_DESCRIPTION), obState, screenshotFile)));
@@ -115,9 +111,6 @@ public class QualityStateUpdater {
 
 
     public static void updateEBState(ConcurrentHashMap<StateVariable, Object> state, GraphState ebState) {
-        if (ebState == null)
-            throw new RuntimeException("The state cannot be null");
-
         String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(ebState, state);
         state.put(REPORT_EB, Collections.singletonList(
                 new BugReportElement((String) state.get(EB_DESCRIPTION), ebState, screenshotFile)));

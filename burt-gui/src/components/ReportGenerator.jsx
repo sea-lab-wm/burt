@@ -8,7 +8,7 @@ const ReportGenerator = (props) => {
 
     return (
        <a target="_blank" href={link}>
-    <button className="bn633-hover bn28">bug report</button> </a>
+    <button className="bn633-hover bn28">View the bug report</button> </a>
     )
 
 }

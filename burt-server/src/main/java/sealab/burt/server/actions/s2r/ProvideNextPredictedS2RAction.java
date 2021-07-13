@@ -42,7 +42,7 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
 
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-            return createChatBotMessages("Okay, can you provide next step?");
+            return createChatBotMessages("Okay, can you provide the next step?");
         }else{
             // increment the number of tries
             state.put(PREDICTED_S2R_CURRENT_PATH, (int) state.get(PREDICTED_S2R_CURRENT_PATH) + 1);
@@ -50,8 +50,8 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
             log.debug("Suggesting path #" + state.get(PREDICTED_S2R_CURRENT_PATH));
 
             return createChatBotMessages(
-                    "Okay, it seems the next steps that you performed are the following.",
-                    "Can you confirm which ones are correct?",
+                    "Okay then, the next steps that you performed might be the following.",
+                    "Can you confirm which ones you actually performed next?",
                     new ChatBotMessage(messageObj, stepOptions, true));
         }
 

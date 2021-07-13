@@ -53,9 +53,9 @@ class HTMLBugReportGenerator {
             obebRow.append("<div class=\"span5\" id=ob>");
             Element obSpan = doc.getElementById("ob");
             obSpan.append("<h2>Observed Behavior</h2>");
-            for (BugReportElement messageObj : OBList) {
-                String message = messageObj.getStringElement();
-                String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
+            for (BugReportElement brElement : OBList) {
+                String message = brElement.getStringElement();
+                String screenshotPath = getLinkScreenshotPath(brElement.getScreenshotPath());
 //            log.debug("OB:" + screenshotPath);
                 obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
                 if (message != null && message.length() > 0) {
