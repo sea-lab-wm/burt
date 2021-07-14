@@ -85,19 +85,19 @@ class HTMLBugReportGenerator {
         if (S2RList != null) {
             content.append("<h3>Steps to Reproduce </h3>");
 
-            int numOfRows = S2RList.size() / 5;
+            int numOfRows = S2RList.size() / 4;
             for (int i = 0; i < numOfRows; i++) {
                 int indexOfRow = i + 1;
                 content.append("<div class=\"row-fluid\" id=\"row" + indexOfRow + "\">");
             }
-            if (S2RList.size() % 5 > 0) {
+            if (S2RList.size() % 4 > 0) {
                 content.append("<div class=\"row-fluid\" id=\"row" + (numOfRows + 1) + "\">");
             }
             for (int i = 0; i < S2RList.size(); i++) {
                 String message = S2RList.get(i).getStringElement();
 
                 String screenshotPath = getLinkScreenshotPath(S2RList.get(i).getScreenshotPath());
-                int rowIndex = i / 5 + 1;
+                int rowIndex = i / 4 + 1;
                 Element s2rRow = doc.getElementById("row" + rowIndex);
                 s2rRow.append("<div class=\"span4\" id=\"step" + (i + 1) + "\">");
                 Element s2rSpan = doc.getElementById("step" + (i + 1));
@@ -106,6 +106,14 @@ class HTMLBugReportGenerator {
                     s2rSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + message + "\" >");
                     s2rSpan.append("<p>" + message + "</p>");
                 }
+                if (i < S2RList.size() - 1) {
+                    s2rRow.append("<div class=\"span_arrow\"  id=\"arrow" + (i + 1) + "\">");
+                    Element arrowSpan = doc.getElementById("arrow" + (i + 1));
+                    arrowSpan.append("<img src=\"../bug_report_icons/right-arrow-svgrepo-com.svg\">");
+                }
+
+
+
             }
         }
         return doc.html();
