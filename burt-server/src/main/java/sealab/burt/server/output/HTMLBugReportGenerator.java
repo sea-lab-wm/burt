@@ -109,7 +109,7 @@ class HTMLBugReportGenerator {
                 if (i < S2RList.size() - 1) {
                     s2rRow.append("<div class=\"span_arrow\"  id=\"arrow" + (i + 1) + "\">");
                     Element arrowSpan = doc.getElementById("arrow" + (i + 1));
-                    arrowSpan.append("<img src=\"../bug_report_icons/right-arrow-svgrepo-com.svg\">");
+                    arrowSpan.append("<img src=\"bug_report_icons/right-arrow-svgrepo-com.svg\">");
                 }
 
 
