@@ -22,6 +22,7 @@ class ScreenshotPathUtils {
 
     public static String getScreenshotPathForGraphState(GraphState graphState,
                                                         ConcurrentHashMap<StateVariable, Object> state) {
+        if (graphState == null) return getScreenshotPath(state, null, null);
         String stateScreenshotPath = graphState.getScreenshotPath();
         return getScreenshotPath(state, stateScreenshotPath, graphState.getDataSource());
     }
@@ -43,7 +44,7 @@ class ScreenshotPathUtils {
 
         Path fullScreenshotPath = Path.of(BurtConfigPaths.crashScopeDataPath);
         String prefix = BurtConfigPaths.crashScopeDataFolder;
-        if (dataSource.equals(GraphDataSource.TR) && !screenshotPath.equals(Path.of(DEFAULT_SCREENSHOT))) {
+        if (GraphDataSource.TR.equals(dataSource) && !screenshotPath.equals(Path.of(DEFAULT_SCREENSHOT))) {
             prefix = BurtConfigPaths.traceReplayerDataFolder;
             fullScreenshotPath = Path.of(BurtConfigPaths.traceReplayerDataPath);
         }

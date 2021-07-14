@@ -44,7 +44,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         S2RQualityAssessment highQualityAssessment = feedback.getQualityAssessments().stream()
                 .filter(qa -> qa.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
                 .findFirst().orElse(null);
-        String s2rHQMissing = (String) state.get(S2R_HQ_MISSING);
+        String highQualityStepMessage = (String) state.get(S2R_HQ_MISSING);
 
         //------------------------------
         this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
@@ -63,19 +63,21 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
             QualityStateUpdater.addStepsToState(state, selectedSteps);
 
-            if (s2rHQMissing != null)
-                QualityStateUpdater.addStepAndUpdateGraphState(state, s2rHQMissing, highQualityAssessment);
+            if (highQualityStepMessage != null)
+                QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
 
             //---------------------
 
             response.append("Okay, you selected ");
             response.append(selectedSteps.size());
-            response.append(" step(s), what is the next step?");
+            response.append(" prior step(s), what did you do after the step \"")
+                    .append(highQualityStepMessage)
+                    .append("\"?");
 
         } else if ("none of above".equals(message.getMessage())) {
 
-            if (s2rHQMissing != null)
-                QualityStateUpdater.addStepAndUpdateGraphState(state, s2rHQMissing, highQualityAssessment);
+            if (highQualityStepMessage != null)
+                QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
 
             response.append("Got it, what is the next step?");
         } else {

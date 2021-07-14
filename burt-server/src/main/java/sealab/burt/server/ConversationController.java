@@ -262,30 +262,29 @@ class ConversationController {
     }
 
     @PostMapping("/reportPreview")
-    public ConversationResponse reportPreview(@RequestBody UserResponse req) throws Exception {
+    public ConversationResponse previewReport(@RequestBody UserResponse req) throws Exception {
         String msg = "Returning the bug report preview in the server...";
         log.debug(msg);
         String sessionId = req.getSessionId();
         ConcurrentHashMap<StateVariable, Object> conversationState = conversationStates.get(sessionId);
         // check if state has APP
-        //
-        if ((!conversationState.containsKey(StateVariable.APP_ASKED) )&&
-                conversationState.containsKey(StateVariable.APP_NAME) && conversationState.containsKey(StateVariable.APP_VERSION)&&
-                conversationState.containsKey(StateVariable.PARTICIPANT_ID)){
+        if (conversationState!=null && (!conversationState.containsKey(StateVariable.APP_ASKED)) &&
+                conversationState.containsKey(StateVariable.APP_NAME) && conversationState.containsKey(StateVariable.APP_VERSION) &&
+                conversationState.containsKey(StateVariable.PARTICIPANT_ID)) {
 
-        String appName = conversationState.get(StateVariable.APP_NAME).toString();
-        String appVersion = conversationState.get(StateVariable.APP_VERSION).toString();
-        String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
+            String appName = conversationState.get(StateVariable.APP_NAME).toString();
+            String appVersion = conversationState.get(StateVariable.APP_VERSION).toString();
+            String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
 
-        String reportName = String.join("-", participant, appName, appVersion, sessionId)
-                .replace(" ", "_") + ".html";
+            String reportName = String.join("-", participant, appName, appVersion, sessionId)
+                    .replace(" ", "_") + ".html";
 
-        File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
-        new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
-        MessageObj messageObj = new MessageObj();
+            File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
+            new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
+            MessageObj messageObj = new MessageObj();
 
-        return new ConversationResponse(Collections.singletonList(new ChatBotMessage(messageObj, reportName)), 0);
-        }else{
+            return new ConversationResponse(Collections.singletonList(new ChatBotMessage(messageObj, reportName)), 0);
+        } else {
             return new ConversationResponse(Collections.singletonList(new ChatBotMessage()), -1);
         }
     }
@@ -307,11 +306,14 @@ class ConversationController {
     @PostMapping("/start")
     public String startConversation() {
         String sessionId = UUID.randomUUID().toString();
+
         ConcurrentHashMap<StateVariable, Object> state = new ConcurrentHashMap<>();
         state.put(StateVariable.SESSION_ID, sessionId);
         conversationStates.putIfAbsent(sessionId, state);
-        long startTime=System.currentTimeMillis();
-        conversationStates.get(sessionId).put(StateVariable.START_TIME, startTime);
+
+        long startTime = System.currentTimeMillis();
+        state.put(StateVariable.START_TIME, startTime);
+
         return sessionId;
     }
 

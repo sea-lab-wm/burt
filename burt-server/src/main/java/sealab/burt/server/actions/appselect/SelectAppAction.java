@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -50,9 +51,15 @@ class SelectAppAction extends ChatBotAction {
             ALL_APPS = IntStream.range(0, directories.size())
                     .mapToObj(i -> {
                         Path dir = finalDirectories.get(i);
-                        return new KeyValues(Integer.toString(i),
-                                getAppNameVersion(dir), getLogoFileName(appLogosPath, dir));
+                        try {
+                            return new KeyValues(Integer.toString(i),
+                                    getAppNameVersion(dir), getLogoFileName(appLogosPath, dir));
+                        } catch (Exception e) {
+                            log.error("Error loading " + dir, e);
+                            return null;
+                        }
                     })
+                    .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
     }
@@ -88,7 +95,7 @@ class SelectAppAction extends ChatBotAction {
 
         List<String> appNames = AppNamesMappings.getAppNamesFromPackage(packageName);
 
-        if(appNames==null)
+        if (appNames == null)
             throw new RuntimeException("Could not find app name for package: " + packageName);
 
         return String.format("%s v. %s", appNames.get(0), appVersion);

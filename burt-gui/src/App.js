@@ -86,29 +86,31 @@ function App() {
     }
 
     //--------------------------------
+
     const emptyStringValidator = (input) => {
         return input.trim().length > 0;
     }
 
+    //--------------------------------
+
     if (sessionId != null && sessionId != undefined) {
-        window.onload=function() {
-           let button = document.getElementById('reportPreview');
-                button.onclick = function () {
-                // alert("wtf");
+        window.onload = function () {
+            let button = document.getElementById('reportPreview');
+            button.onclick = function () {
 
                 const responsePromise = ApiClient.processReportPreview();
                 responsePromise.then(response => {
                     let conversationResponse = response.data;
-                    if (conversationResponse.code === 0){
+                    if (conversationResponse.code === 0) {
                         let chatbotMsgs = conversationResponse.messages;
-                        let chatbotMsg= chatbotMsgs[0];
+                        let chatbotMsg = chatbotMsgs[0];
                         let link = chatbotMsg.generatedReport;
                         console.log(link);
-                        window.open( config.serverEndpoint +"/" + link, "_blank");
-                    }else if (conversationResponse.code === -1) {
-                        window.alert("Sorry, burt can't generate bug report preview now and we need more information, please go ahead and select the App" +
-                            " that has the bug first!");
-                    }else{
+                        window.open(config.serverEndpoint + "/" + link, "_blank");
+                    } else if (conversationResponse.code === -1) {
+                            window.alert("Oops, the bug report preview can't be generated at this moment as more" +
+                                " information is needed. Please select an app first.");
+                    } else {
                         window.alert("There was an unexpected error");
                     }
                 }).catch(error => {
@@ -132,8 +134,7 @@ function App() {
                 }
             </div>
         );
-    }
-    else
+    } else
         return (
             <div>I am sorry, BURT cannot be loaded. Try loading the page in a few seconds.</div>
         );

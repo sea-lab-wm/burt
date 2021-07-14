@@ -20,9 +20,8 @@ public class ProvideEBAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        String appName = state.get(StateVariable.APP_NAME).toString();
-        String appVersion = state.get(APP_VERSION).toString();
-        if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new EBChecker(appName, appVersion));
+        startEBChecker(state);
         return createChatBotMessages("Okay, can you please tell me how the app is supposed to work instead?");
     }
+
 }

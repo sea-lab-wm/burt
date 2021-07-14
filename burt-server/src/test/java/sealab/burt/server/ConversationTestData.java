@@ -5,10 +5,7 @@ import sealab.burt.server.actions.appselect.SelectAppAction;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.msgparsing.Intent;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static sealab.burt.server.MessageObjectTest.TestMessageType.WITH_SELECTED_VALUES;
 import static sealab.burt.server.actions.ActionName.*;
@@ -16,16 +13,107 @@ import static sealab.burt.server.msgparsing.Intent.*;
 
 public class ConversationTestData {
 
+    enum FlowName{
+        NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL
+    }
 
-    public static List<List<MessageObjectTest>> getConversationExamples() {
-        List<List<MessageObjectTest>> conversationFlowList = new ArrayList<>();
-        conversationFlowList.add(getConversationFlow_1());
-        conversationFlowList.add(getConversationFlow_2());
-        conversationFlowList.add(getConversationFlow_3());
-        return conversationFlowList;
-//        conversationFlowList.add(getConversationFlow_4());
-//        conversationFlowList.add(getConversationFlow_5());
+    public static HashMap<FlowName, List<MessageObjectTest>> conversationFlows = new HashMap<>(){{
+        put(FlowName.GENERAL, getConversationFlowGeneral());
+        put(FlowName.NO_OB_SCREENS_SELECTED, getConversationFlowNoOBScreensSelected());
+        put(FlowName.ISSUE36, getConversationFlowIssue36());
+//        conversationFlowList.add(getConversationFlow_2());
+//        conversationFlowList.add(getConversationFlow_3());
+    }};
 
+    private static List<MessageObjectTest> getConversationFlowNoOBScreensSelected() {
+
+        KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Mileage v. 3.1.1"))
+                .findFirst().orElse(null);
+
+        return new ArrayList<>() {{
+            //ChatBot: hi this is burt
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
+            //ChatBot: what is you participant id?
+            add(new MessageObjectTest("P5", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(mileageOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("the app crashed when I was entering a new vehicle", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            //ChatBot: ok, no more options, so please rephrase the OB
+            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            //ChatBot: ok, no more options, so please rephrase the OB
+            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("bla bla", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: wrong option, select the screen having the problem
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
+            //ChatBot: ok, that was the last attempt, so please give me the EB
+            add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot: give me the first S2R
+            add(new MessageObjectTest("I added \"bla bla\" as a comment", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); // "0" means the first step
+            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("I saved the fillup", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "3")));
+            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));
+
+          /*  //ChatBot: ok, select the screen having the problem from the new batch
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: ok, select the screen having the problem from the new batch
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: ok, select the screen having the problem from the new batch
+
+
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("5"))); //"0" means the fifth option
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot: give me the first S2R
+            add(new MessageObjectTest("I added \"bla bla\" as a comment", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); // "0" means the first step
+            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("I saved the fillup", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "3")));
+            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));*/
+        }};
     }
 
     private static List<MessageObjectTest> getConversationFlow_3() {
@@ -104,7 +192,7 @@ public class ConversationTestData {
         }};
     }
 
-    private static List<MessageObjectTest> getConversationFlow_1() {
+    private static List<MessageObjectTest> getConversationFlowGeneral() {
 
         KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
                 .filter(entry -> entry.getValue1().equals("Mileage v. 3.1.1"))
@@ -293,14 +381,54 @@ public class ConversationTestData {
 
         return conversationFlow;
     }
-//    private List<MessageObjectTest> getConversationFlow_3(){
-//
-//    }
-//    private List<MessageObjectTest> getConversationFlow_4() {
-//
-//    }
-//    private List<MessageObjectTest> getConversationFlow_5() {
-//
-//    }
 
+    private static List<MessageObjectTest> getConversationFlowIssue36() {
+
+        KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Mileage v. 3.1.1"))
+                .findFirst().orElse(null);
+
+        return new ArrayList<>() {{
+            //ChatBot: hi this is burt
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
+            //ChatBot: what is you participant id?
+            add(new MessageObjectTest("P5", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(mileageOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("crash when entering fillup", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("5"))); //"0" means the fifth option
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot: give me the first S2R
+            add(new MessageObjectTest("I added \"bla bla\" as a comment", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); // "0" means the first step
+            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("I saved the fillup", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "3")));
+            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));
+        }};
+    }
 }

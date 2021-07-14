@@ -161,7 +161,13 @@ class GraphGenerator {
 
             if ((sourceState.getScreenshotPath() == null || GraphDataSource.TR.equals(transition.getDataSource()))
                     && screenshotFile != null) {
-                sourceState.setScreenshotPath(screenshotFile.replace("_augmented", ""));
+                //FIXME: it should be the non-augmented screenshot, but right now I am reverting the change cause of
+                // a problem in the TraceReplayer data
+//                sourceState.setScreenshotPath(screenshotFile.replace("_augmented", ""));
+                sourceState.setScreenshotPath(screenshotFile);
+//                if(sourceState.getUniqueHash().equals(1863964359)){
+//                    log.debug(sourceState.getScreenshotPath());
+//                }
             }
 
             boolean added = directedGraph.addEdge(sourceState, transition.getTargetState(), transition);

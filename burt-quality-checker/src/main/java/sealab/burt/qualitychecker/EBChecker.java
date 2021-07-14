@@ -41,23 +41,28 @@ class EBChecker {
             throws Exception {
         log.debug("All actions: " + nlActions);
 
-        List<NLAction> obNlActions = NLParser.parseText(BurtConfigPaths.nlParsersBaseFolder, app, obDescription);
+        List<NLAction> obNlActions = null;
+        if (obDescription != null) {
+            obNlActions = NLParser.parseText(BurtConfigPaths.nlParsersBaseFolder, app, obDescription);
+        }
 
         //------------------------------------------------
 
-        if (nlActions.stream().anyMatch(NLAction::containsCrashInfo) &&
+        if (nlActions.stream().anyMatch(NLAction::containsCrashInfo) && obNlActions != null &&
                 obNlActions.stream().anyMatch(NLAction::containsCrashInfo))
             return new QualityResult(QualityResult.Result.MATCH);
 
         //---------------------------------------------------
 
-        for (NLAction nlAction : nlActions) {
+        if (obState != null) {
+            for (NLAction nlAction : nlActions) {
 
-            Map.Entry<AppGuiComponent, Double> component = matchActionToState(obState, nlAction);
+                Map.Entry<AppGuiComponent, Double> component = matchActionToState(obState, nlAction);
 
-            if (component != null)
-                return new QualityResult(QualityResult.Result.MATCH);
+                if (component != null)
+                    return new QualityResult(QualityResult.Result.MATCH);
 
+            }
         }
 
         return new QualityResult(QualityResult.Result.NO_MATCH);

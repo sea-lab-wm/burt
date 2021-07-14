@@ -84,19 +84,15 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         GraphState targetState = (GraphState) state.get(OB_STATE);
 
         //current state
-        S2RChecker s2rchecker = (S2RChecker) state.get(S2R_CHECKER);
-        GraphState currentState = s2rchecker.getCurrentState();
-
-        // FIXME: HOW TO DO WHEN CURRENT STATE IS NULL
-        if (currentState == null) {
-            currentState = GraphState.START_STATE;
-        }
+        S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
+        GraphState currentState = checker.getCurrentState();
 
         //FIXME:check target state equals to current state
 
         //get first k paths according to the score
-
-        List<GraphPath<GraphState, GraphTransition>> predictedPaths = s2rchecker.getFirstKDummyPaths(
+       /* List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKPaths(
+                MAX_NUMBER_OF_PATHS, targetState);*/
+        List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKDummyPaths(
                 MAX_NUMBER_OF_PATHS, targetState);
 
         log.debug("Total number of predicted paths: " + predictedPaths.size());
@@ -106,7 +102,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         if (predictedPaths.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-            return createChatBotMessages("Okay, can you please provide next step?");
+            return createChatBotMessages("Okay, can you please provide the next step?");
         }
 
         //----------------------------------------
@@ -114,17 +110,17 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         state.put(PREDICTED_S2R_PATHS, predictedPaths.subList(0, (int) state.get(PREDICTED_S2R_NUMBER_OF_PATHS)));
         state.put(PREDICTED_S2R_CURRENT_PATH, 0);
 
-        List<KeyValues> stepOptions = getPredictedStepOptions(s2rchecker, predictedPaths.get(0), state, currentState);
+        List<KeyValues> stepOptions = getPredictedStepOptions(checker, predictedPaths.get(0), state, currentState);
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-            return createChatBotMessages("Okay, can you please provide next step?");
+            return createChatBotMessages("Okay, can you please provide the next step?");
         }
 
         log.debug("Suggesting path #" + state.get(PREDICTED_S2R_CURRENT_PATH));
 
         return createChatBotMessages(
-                "Okay, it seems the next steps that you performed are the following.",
-                "Can you confirm which ones are correct?",
+                "Okay, it seems the next steps that you performed might be the following.",
+                "Can you confirm which ones you actually performed next?",
                 new ChatBotMessage(messageObj, stepOptions, true));
     }
 

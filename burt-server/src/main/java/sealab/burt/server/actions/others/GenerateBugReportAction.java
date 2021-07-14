@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.others;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
@@ -7,20 +8,25 @@ import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.output.HTMLBugReportGenerator;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import static sealab.burt.server.StateVariable.*;
 
-public class GenerateBugReportAction extends ChatBotAction {
+public @Slf4j
+class GenerateBugReportAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
 
         // provide the summary of bug report
-        String response = "The link below will take you to the summary of the problem you reported.";
+        String response = "The button below will take you to the summary of the problem you reported.";
         MessageObj messageObj = new MessageObj(response, "ReportGenerator");
 
         String appName = state.get(StateVariable.APP_NAME).toString();
@@ -35,12 +41,12 @@ public class GenerateBugReportAction extends ChatBotAction {
         new HTMLBugReportGenerator().generateOutput(outputFile, state);
         state.put(REPORT_GENERATED, true);
         ChatBotMessage chatBotMessage = new ChatBotMessage(messageObj, reportName);
-        long endTime=System.currentTimeMillis();
+
+        //-------------------------------------------
+
+        long endTime = System.currentTimeMillis();
         state.put(END_TIME, endTime);
-        saveTimeAction.saveTime(state);
-
-
-
+        TimeRecorder.recordTime(state);
 
         return createChatBotMessages("Okay, great. This is all the information we need for now.",
                 chatBotMessage,
@@ -48,4 +54,5 @@ public class GenerateBugReportAction extends ChatBotAction {
                 "Thank you for using BURT."
         );
     }
+
 }
