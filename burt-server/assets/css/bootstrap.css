@@ -392,6 +392,8 @@ a:focus {
 
 .row-fluid {
     width: 100%;
+    border-bottom: 2px solid #fff;
+    margin-top: 10px;
 }
 
 .row-fluid:before,

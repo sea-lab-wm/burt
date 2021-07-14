@@ -17,9 +17,9 @@
 
     <script type="text/javascript">
         $(function() {
-            $('.btn').on('click', function() {
+            $('.screenshot').on('click', function() {
                 const divElement = $(this);
-                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('.imagepreview').attr('src', divElement.attr('src'));
                 $('#imagemodal').modal('show');
                 $('#modal_title').html(divElement.attr('title'));
             });

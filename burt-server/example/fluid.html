@@ -17,9 +17,9 @@
 
     <script type="text/javascript">
         $(function() {
-            $('.btn').on('click', function() {
+            $('.screenshot').on('click', function() {
                 const divElement = $(this);
-                $('.imagepreview').attr('src', divElement.attr('data'));
+                $('.imagepreview').attr('src', divElement.attr('src'));
                 $('#imagemodal').modal('show');
                 $('#modal_title').html(divElement.attr('title'));
             });
@@ -75,9 +75,8 @@
                 <div class="row-fluid">
                     <div class="span5">
                         <h2>Observed Behavior</h2>
-                        <img class="screenshot" src="../../data/app_logos/S2RScreen1.png" >
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                        <div class="btn" href="#"  data="../../data/app_logos/S2RScreen1.png" title="t eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris co">Enlarge the screenshot <i class="fa fa-hand-o-up" style="font-size:15px"></i> </div>
+                        <img class="screenshot" src="../../data/screenshots_test/S2RScreen1.png" title="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus comm">
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus comm </p>
 
 
                     </div><!--/span-->

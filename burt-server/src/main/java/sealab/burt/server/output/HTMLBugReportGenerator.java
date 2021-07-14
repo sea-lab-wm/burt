@@ -57,12 +57,9 @@ class HTMLBugReportGenerator {
                 String message = messageObj.getStringElement();
                 String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
 //            log.debug("OB:" + screenshotPath);
-                obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
                 if (message != null && message.length() > 0) {
+                    obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + message + "\">");
                     obSpan.append("<p>" + message + "</p>");
-                    obSpan.append("<div class=\"btn\" href=\"#\"  data=\"" + screenshotPath + "\"  title=\"" + message +
-                            "\"> Enlarge the screenshot <i class=\"fa fa-hand-o-up\" style=\"font-size:15px\"></i> " +
-                            "</div>\n");
                 }
             }
         }
@@ -76,13 +73,10 @@ class HTMLBugReportGenerator {
                 String message = messageObj.getStringElement();
                 String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
 //                log.debug("EB:" + screenshotPath);
-                ebSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
 
                 if (message != null && message.length() > 0) {
+                    ebSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + message + "\">");
                     ebSpan.append("<p>" + message + "</p>");
-                    ebSpan.append("<div class=\"btn\" href=\"#\"  data=\"" + screenshotPath + "\"  title=\"" + message +
-                            "\"> Enlarge the screenshot <i class=\"fa fa-hand-o-up\" style=\"font-size:15px\"></i> " +
-                            "</div>\n");
                 }
             }
         }
@@ -108,10 +102,9 @@ class HTMLBugReportGenerator {
                 s2rRow.append("<div class=\"span4\" id=\"step" + (i + 1) + "\">");
                 Element s2rSpan = doc.getElementById("step" + (i + 1));
 //                log.debug("S2R:" + screenshotPath);
-                s2rSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" >");
                 if (message != null && message.length() > 0) {
+                    s2rSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + message + "\" >");
                     s2rSpan.append("<p>" + message + "</p>");
-                    s2rSpan.append("<div class=\"btn\" href=\"#\"  data=\"" + screenshotPath + "\"  title=\"" + message + "\"> Enlarge the screenshot <i class=\"fa fa-hand-o-up\" style=\"font-size:15px\"></i> </div>\n");
                 }
             }
         }
