@@ -64,7 +64,6 @@ public class StepByStepEngine {
     public final static int SWIPE_RIGHT = 21;
     public final static int SWIPE_DOWN = 22;
     public final static int SWIPE_LEFT = 23;
-    @Deprecated
     public final static int CLICK_TYPE = 3;
     public final static int BACK = 4;
     public final static int TYPE = 5;
@@ -724,6 +723,9 @@ public class StepByStepEngine {
                 || (event.getEventLabel() != null && event.getEventLabel().equals("TYPE"))) {
             step.setAction(StepByStepEngine.TYPE);
             step.setTextEntry("");
+        } else if (event.getEventTypeId() == StepByStepEngine.CLICK_TYPE
+                || (event.getEventLabel() != null && event.getEventLabel().equals("CLICK_TYPE"))) {
+            step.setAction(StepByStepEngine.CLICK_TYPE);
         }
 
         return step;

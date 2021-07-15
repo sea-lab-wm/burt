@@ -108,18 +108,18 @@ public class TraceReplayer {
     }
     
     public void runTraceReplayer() throws Exception{
-    	androidSDKPath = "/Users/junayed/Library/Android/sdk";
-        String pythonScriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScope/burt/crashscope/lib/python-scripts";
-        String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CrashScope/burt/crashscope/scripts";
+        androidSDKPath = "/Users/junayed/Library/Android/sdk";
+        String pythonScriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/BURT-git/burt/crashscope/lib/python-scripts";
+        String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/BURT-git/burt/crashscope/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "gnucash";
-        String appPackage = "org.gnucash.android";
-        String appVersion = "2.1.3";
-        String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/Apps/GnucashAndroid_v2.1.3.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CollectedUserData/getevent-gnuCash2.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/Backup/TraceReplayer3/gnucash";
+        String appName = "mileage";
+        String appPackage = "com.evancharlton.mileage";
+        String appVersion = "3.1.1";
+        String mainActivity = "com.evancharlton.mileage.Mileage";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/BURT-git/burt/trace-replayer/test-apks/mileage-3.1.1.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CollectedUserData/getevent-mileage3.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/test-output";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -283,8 +283,8 @@ public class TraceReplayer {
                             vo.setHvInfoComponent(component);
                             vo.setText(component.getText());
 
-                            vo.setEventLabel("TYPE");
-                            vo.setEventTypeId(StepByStepEngine.TYPE);
+                            vo.setEventLabel("CLICK_TYPE");
+                            vo.setEventTypeId(StepByStepEngine.CLICK_TYPE);
                             
                             Step step = StepByStepEngine.getStepFromEvent(vo);
                             step.setSequenceStep(sequence);
@@ -324,8 +324,8 @@ public class TraceReplayer {
                         		vo.setHvInfoComponent(component);
                                 vo.setText(component.getText());
 
-                                vo.setEventLabel("TYPE");
-                                vo.setEventTypeId(StepByStepEngine.TYPE);
+                                vo.setEventLabel("CLICK_TYPE");
+                                vo.setEventTypeId(StepByStepEngine.CLICK_TYPE);
                                 
                                 Step step = StepByStepEngine.getStepFromEvent(vo);
                                 step.setSequenceStep(sequence);
@@ -375,12 +375,15 @@ public class TraceReplayer {
 
                 sequence++;
                 
-
-                
                 Step step = StepByStepEngine.getStepFromEvent(guiEventVO);
                 step.setSequenceStep(sequence);
                 step.setScreen(screen);
                 step.setTextEntry(textEntry);
+                
+                if(guiEventVO.getHvInfoComponent().getName().endsWith("EditText")) {
+                	step.setAction(StepByStepEngine.CLICK_TYPE);
+                }
+
                 if(guiEventVO.getEventTypeId()!=StepByStepEngine.SWIPE) {
                 	step.getDynGuiComponent().setCurrentWindow(currentWindow);
                 }
