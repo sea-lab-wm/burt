@@ -95,17 +95,16 @@ class GraphGenerator {
 
 
     public AppGraphInfo generateGraph(List<Execution> executions, App app, GraphDataSource dataSource) throws Exception {
-        return generateGraphWithNoWeights(executions, app, false, dataSource);
+        return generateGraphWithNoWeights(executions, app, dataSource);
     }
 
-    public AppGraphInfo generateGraphWithNoWeights(List<Execution> executions, App app, boolean updateWeights,
-                                                   GraphDataSource dataSource)
+    public AppGraphInfo generateGraphWithNoWeights(List<Execution> executions, App app, GraphDataSource dataSource)
             throws Exception {
 
         states.clear();
         transitions.clear();
 
-        return buildGraphFromExecutions(executions, app, updateWeights, dataSource);
+        return buildGraphFromExecutions(executions, app, false, dataSource);
     }
 
     private AppGraphInfo buildGraphFromExecutions(List<Execution> executions, App app, boolean updateWeights,
@@ -141,7 +140,7 @@ class GraphGenerator {
     }
 
     public AppGraphInfo generateGraph(App app, GraphDataSource dataSource) throws Exception {
-        return generateGraphWithNoWeights(app.getExecutions(), app, false, dataSource);
+        return generateGraphWithNoWeights(app.getExecutions(), app, dataSource);
     }
 
     private AppGraph<GraphState, GraphTransition> buildDirectedGraph() {

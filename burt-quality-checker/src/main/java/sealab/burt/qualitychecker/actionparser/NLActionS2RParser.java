@@ -8,6 +8,7 @@ import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import edu.semeru.android.testing.helpers.AndroidKeyEvents;
 import edu.semeru.android.testing.helpers.KeyCode;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.slf4j.Logger;
@@ -37,9 +38,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class NLActionS2RParser {
+public @Slf4j
+class NLActionS2RParser {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(NLActionS2RParser.class);
     private static final int NO_SWIPE_DIRECTION = -100;
     /**
      * Inverted index of generalComponentTypeClasses, ie., [class: type]
@@ -91,7 +92,7 @@ public class NLActionS2RParser {
 
             try {
 
-                LOGGER.debug("Loading specific component types...");
+                log.debug("Loading specific component types...");
 
                 String fileName = "general_component_types.txt";
 
@@ -119,7 +120,7 @@ public class NLActionS2RParser {
                 allComponentTypes.sort((c1, c2) -> Integer.compare(c2.split(" ").length, c1.split(" ").length));
 
             } catch (Exception e) {
-                LOGGER.error("Could not load the component types", e);
+                log.error("Could not load the component types", e);
             }
         }
     }
@@ -140,7 +141,7 @@ public class NLActionS2RParser {
 
             try {
 
-                LOGGER.debug("Loading general action groups...");
+                log.debug("Loading general action groups...");
 
                 String fileName = "general_action_groups.txt";
 
@@ -167,7 +168,7 @@ public class NLActionS2RParser {
                     }
                 }
             } catch (Exception e) {
-                LOGGER.error("Could not load the action groups", e);
+                log.error("Could not load the action groups", e);
             }
         }
     }
@@ -182,7 +183,7 @@ public class NLActionS2RParser {
 
             try {
 
-                LOGGER.debug("Loading synonyms...");
+                log.debug("Loading synonyms...");
 
                 String fileName = "synonyms.txt";
 
@@ -198,7 +199,7 @@ public class NLActionS2RParser {
 
                 }
             } catch (Exception e) {
-                LOGGER.error("Could not load the synonyms", e);
+                log.error("Could not load the synonyms", e);
             }
         }
 
@@ -214,7 +215,7 @@ public class NLActionS2RParser {
 
             try {
 
-                LOGGER.debug("Loading component types...");
+                log.debug("Loading component types...");
 
                 String fileName = "general_component_types_classes.txt";
                 Path path = Paths.get(resourcesPath, fileName);
@@ -237,7 +238,7 @@ public class NLActionS2RParser {
 
                 }
             } catch (Exception e) {
-                LOGGER.error("Could not load the component types", e);
+                log.error("Could not load the component types", e);
             }
         }
     }
@@ -373,7 +374,7 @@ public class NLActionS2RParser {
         try {
             previousComponent = getDynGuiComponent(lastCommand.getComponentId());
         } catch (CRUDException e) {
-            LOGGER.error("Error", e);
+            log.error("Error", e);
             return;
         }
 
@@ -574,7 +575,7 @@ public class NLActionS2RParser {
                     componentFound = findComponent(currentScreen, preprocessedObject2, componentTypes, false,
                             true, event);
                 } catch (ActionParsingException e) {
-                    LOGGER.debug("Could not find component for swipe, skipping component...");
+                    log.debug("Could not find component for swipe, skipping component...");
                 }
             }*/
             componentSkipped = true;
@@ -801,7 +802,7 @@ public class NLActionS2RParser {
               //componentFound = getDynGuiComponent(lastCommand.getComponentId());
               //}
           } catch (CRUDException e) {
-              LOGGER.debug("Couldn't retrieve the focused component");
+              log.debug("Couldn't retrieve the focused component");
           }
           return Transform.getGuiComponent(componentFound, null);
       }
@@ -1010,7 +1011,7 @@ public class NLActionS2RParser {
         List<Entry<AppGuiComponent, Double>> matchedComponents = getMatchedComponents(skipTextViews, textToMatch,
                 currentScreenComponents, allowedComponents, matchFirst);
 
-        LOGGER.debug("Component matches [" + matchedComponents.size() + "]: " + matchedComponents.toString());
+        log.debug("Component matches [" + matchedComponents.size() + "]: " + matchedComponents.toString());
 
         //---------------------------------------------------------
 
@@ -1156,7 +1157,7 @@ public class NLActionS2RParser {
             List<Entry<AppGuiComponent, Double>> matchList = nonZeroMatches.stream()
                     .filter(entry -> entry.getValue() >= 0.5).collect(Collectors.toList());
 
-            LOGGER.debug("LCS matches:" + matchList);
+            log.debug("LCS matches:" + matchList);
 
             matchedComponents = matchList.stream().filter(m -> m.getValue() >= 1).collect
                     (Collectors.toList());
@@ -1283,7 +1284,7 @@ public class NLActionS2RParser {
                 }
 
             } catch (SQLException e) {
-                LOGGER.debug("Error", e);
+                log.debug("Error", e);
             }
 
         } else if (componentType.endsWith("TextView") && DeviceUtils.isClick(event)) {
@@ -1304,7 +1305,7 @@ public class NLActionS2RParser {
                 }
 
             } catch (SQLException e) {
-                LOGGER.debug("Error", e);
+                log.debug("Error", e);
             }
         } else
             //hack: for FAB buttons, there may be a View that gives the floating aspect to the FAB, then we pick the
@@ -1337,6 +1338,8 @@ public class NLActionS2RParser {
                                                                  int event, boolean matchFirst,
                                                                  List<AppGuiComponent> currentScreenComponents)
             throws ActionParsingException {
+        
+        log.debug("Handling multiple matched components...");
 
         Entry<AppGuiComponent, Double> componentFound = null;
         for (Entry<AppGuiComponent, Double> entry : matchedComponents) {
@@ -1369,7 +1372,6 @@ public class NLActionS2RParser {
         //is there a set of components that are the same?
         if (componentFound == null && hasSameComponents(matchedComponents)) {
 
-
             //score the components by looking at their sibling components
             LinkedHashMap<AppGuiComponent, Double> matchesScores = matchedComponents.stream()
                     .map(Entry::getKey)
@@ -1383,7 +1385,7 @@ public class NLActionS2RParser {
                                     return matchSiblings(siblingsComponents, textToMatch, skipTextViews,
                                             allowedComponents, matchFirst);
                                 } catch (SQLException e) {
-                                    LOGGER.error("Error getting the sibling components of " + component);
+                                    log.error("Error getting the sibling components of " + component);
                                 }
 
                                 return 0.0;
@@ -1397,7 +1399,7 @@ public class NLActionS2RParser {
                     .filter(entry -> entry.getValue() > 0.0)
                     .collect(Collectors.toList());
 
-            LOGGER.debug(String.format("Sibling matches (%s): %s", nonZeroMatches.size(), nonZeroMatches));
+            log.debug(String.format("Sibling matches (%s): %s", nonZeroMatches.size(), nonZeroMatches));
 
             if (!nonZeroMatches.isEmpty()) {
                 if (nonZeroMatches.size() == 1)
@@ -1407,7 +1409,7 @@ public class NLActionS2RParser {
             /*//take the first one, which has the highest score
             if (!nonZeroMatches.isEmpty()) {
                 if (nonZeroMatches.size() > 1)
-                    LOGGER.warn("Sibling matches greater than 1");
+                    log.warn("Sibling matches greater than 1");
                 componentFound = nonZeroMatches.get(0);
             } else {
                 //take the first one if the above fails
@@ -1459,14 +1461,15 @@ public class NLActionS2RParser {
 
         //--------------------------------------------------
 
-        if (componentFound == null)
+        if (componentFound == null) {
+            log.debug("Couldn't resolve multiple matched components");
             throw new ActionParsingException(ParsingResult.MULTIPLE_COMPONENTS_FOUND, textToMatch.original + " -> " +
                     matchedComponents.stream()
                             .map(Entry::getKey)
                             .map(AppGuiComponent::getDbId)
                             .collect(Collectors.toList()));
-        else
-            LOGGER.debug("Selected component: " + componentFound);
+        }else
+            log.debug("Selected component: " + componentFound);
         return componentFound;
     }
 
@@ -1568,18 +1571,18 @@ public class NLActionS2RParser {
         if (checkSynonyms) {
 
             Set<String> textSynonyms = getTextSynonyms(textToMatch.otherText);
-            LOGGER.debug("Checking synonyms of \"" + textToMatch.otherText + "\": " + textSynonyms);
+            log.debug("Checking synonyms of \"" + textToMatch.otherText + "\": " + textSynonyms);
 
             //no synonyms? try with the original text
             if (textSynonyms == null) {
                 textSynonyms = getTextSynonyms(textToMatch.original);
-                LOGGER.debug("Checking synonyms of \"" + textToMatch.original + "\": " + textSynonyms);
+                log.debug("Checking synonyms of \"" + textToMatch.original + "\": " + textSynonyms);
             }
 
             //no synonyms? try with the synonyms of the tokens
             if (useTokenSynonyms && textSynonyms == null) {
                 textSynonyms = getTextSynonymsOfTokens(textToMatch.otherText);
-                LOGGER.debug("Checking synonyms of \"" + textToMatch.otherText + "\": " + textSynonyms);
+                log.debug("Checking synonyms of \"" + textToMatch.otherText + "\": " + textSynonyms);
             }
 
             if (textSynonyms != null) {

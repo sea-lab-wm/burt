@@ -1,5 +1,6 @@
 package sealab.burt.server.statecheckers;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
@@ -18,7 +19,8 @@ import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;
 
-public class QualityStateUpdater {
+public @Slf4j
+class QualityStateUpdater {
 
     /**
      * add the S2R (missing steps but HQ) after adding the selected missing S2Rs
@@ -104,6 +106,9 @@ public class QualityStateUpdater {
 
 
     public static void updateOBState(ConcurrentHashMap<StateVariable, Object> state, GraphState obState) {
+
+        log.debug("Updating OB state to: " + obState);
+
         String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(obState, state);
         state.put(REPORT_OB, Collections.singletonList(
                 new BugReportElement((String) state.get(OB_DESCRIPTION), obState, screenshotFile)));
@@ -111,6 +116,9 @@ public class QualityStateUpdater {
 
 
     public static void updateEBState(ConcurrentHashMap<StateVariable, Object> state, GraphState ebState) {
+
+        log.debug("Updating EB state to: " + ebState);
+
         String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(ebState, state);
         state.put(REPORT_EB, Collections.singletonList(
                 new BugReportElement((String) state.get(EB_DESCRIPTION), ebState, screenshotFile)));

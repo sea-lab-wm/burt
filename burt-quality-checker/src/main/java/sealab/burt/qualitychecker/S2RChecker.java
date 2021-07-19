@@ -33,7 +33,7 @@ import static sealab.burt.qualitychecker.s2rquality.S2RQualityCategory.HIGH_QUAL
 public @Slf4j
 class S2RChecker {
 
-    private static final int GRAPH_MAX_DEPTH_CHECK = 3;
+    private static final int GRAPH_MAX_DEPTH_CHECK = 5;
     private static int textCounter = 1;
 
     //function that finds the index of stepToFind in the transition list
@@ -137,6 +137,8 @@ class S2RChecker {
         // Check to see if we were able to match with a step, if not we should try to
         // match with a component.
         if (result.isStepNotMatched()) {
+
+            log.debug("Could not match the action: " + currNLAction);
 /*
             // This contains the component and the action as well
             //NOTE: we should not try to build a non-existing  against the current screen

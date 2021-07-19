@@ -14,16 +14,62 @@ import static sealab.burt.server.msgparsing.Intent.*;
 public class ConversationTestData {
 
     enum FlowName{
-        NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL
+        NO_OB_SCREENS_SELECTED, ISSUE36, MATCHING_S2R, GENERAL
     }
 
     public static HashMap<FlowName, List<MessageObjectTest>> conversationFlows = new HashMap<>(){{
         put(FlowName.GENERAL, getConversationFlowGeneral());
         put(FlowName.NO_OB_SCREENS_SELECTED, getConversationFlowNoOBScreensSelected());
         put(FlowName.ISSUE36, getConversationFlowIssue36());
+        put(FlowName.MATCHING_S2R, getConversationFlowMatchingS2R());
 //        conversationFlowList.add(getConversationFlow_2());
 //        conversationFlowList.add(getConversationFlow_3());
     }};
+
+    private static List<MessageObjectTest> getConversationFlowMatchingS2R() {
+
+
+        KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Mileage v. 3.1.1"))
+                .findFirst().orElse(null);
+
+        return new ArrayList<>() {{
+            //ChatBot: hi this is burt
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
+            //ChatBot: what is you participant id?
+            add(new MessageObjectTest("P5", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(mileageOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("crash when I added a new vehicle", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("2"))); //"2" means the second option
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot: give me the first S2R
+            add(new MessageObjectTest("I clicked the vehicles tab", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0"))); // "0" means the first step
+            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));
+        }};
+    }
 
     private static List<MessageObjectTest> getConversationFlowNoOBScreensSelected() {
 
@@ -406,7 +452,7 @@ public class ConversationTestData {
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("5"))); //"0" means the fifth option
+                    Collections.singletonList("5"))); //"5" means the fifth option
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB

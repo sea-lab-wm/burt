@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>crashscope</groupId>
-    <artifactId>crashscope</artifactId>
+    <groupId>tracereplayer</groupId>
+    <artifactId>tracereplayer</artifactId>
     <version>0.0.1</version>
-    <name>crashscope</name>
+    <name>tracereplayer</name>
 
-    <description>CrashScope</description>
+    <description>Trace Replayer</description>
     <properties>
         <java.version>11</java.version>
     </properties>

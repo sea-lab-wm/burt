@@ -222,7 +222,9 @@ class StepResolver {
             final GraphState candidateState = candidateEntry.getKey();
             final Integer distance = candidateEntry.getValue();
 
-            log.debug("Checking candidate state/screen: " + candidateState.getUniqueHash());
+            log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+            log.debug("Resolving event and component in candidate state/screen: " + candidateState.getUniqueHash());
 
             //-------------------------------------
             // Get the components of the current candidate screen
@@ -241,6 +243,9 @@ class StepResolver {
             // Determine event
             Integer event;
             try {
+
+                log.debug("Resolving the event...");
+
                 event = s2rParser.determineEvent(currNLAction, app, stateComponents);
             } catch (ActionParsingException e) {
                 log.debug("Could not determine the event in the candidate state/screen: "
@@ -276,6 +281,8 @@ class StepResolver {
             Entry<AppGuiComponent, Double> component;
 
             try {
+                log.debug("Resolving the component...");
+
                 component = s2rParser.determineComponent(currNLAction, stateComponents, event, true);
             } catch (ActionParsingException e) {
                 log.debug("Could not find the component in the candidate state/screen: "
@@ -307,16 +314,24 @@ class StepResolver {
 
             //-------------------------------------
 
+            log.debug("--------------------------------");
             log.debug("Candidate transitions (" + candidateTransitions.size() + "):" + candidateTransitions);
             log.debug(String.format("Event identified: %s", event));
             log.debug(String.format("Component identified: %s", component));
             log.debug(String.format("Text identified: %s", text));
+            log.debug("--------------------------------");
+
+            log.debug("Checking if candidate transitions match the graph");
 
             // Get the step from the graph based on the <event, component> search above
             for (GraphTransition transition : candidateTransitions) {
                 AppStep transitionStep = transition.getStep();
 
                 if (!isValidStepOnComponent(component, transitionStep)) {
+                    log.debug("--------------------------------");
+                    log.debug("No valid transition on component");
+                    log.debug(String.format("Transition: %s - %s", transition, transitionStep));
+                    log.debug(String.format("Component: %s", component));
                     continue;
                 }
 
@@ -351,7 +366,7 @@ class StepResolver {
 
         }
 
-        log.debug("Candidate steps (" + foundSteps.size() + "):" + foundSteps);
+        log.debug("Candidate matched steps (" + foundSteps.size() + "):" + foundSteps);
 
         // sort base on the score
         List<ImmutablePair<AppStep, Double>> stepScores = new ArrayList<>();

@@ -67,9 +67,9 @@ class MainJSONGraphGenerator {
 
         // ------------------------------------------------------
 
-        File file = new File(pathname + "-graph.txt");
+        File graphFile = new File(pathname + "-graph.txt");
         String graphStr = graphInfo.graphToString();
-        FileUtils.write(file, graphStr, Charset.defaultCharset());
+        FileUtils.write(graphFile, graphStr, Charset.defaultCharset());
 
         // ------------------------------------------------------
 
