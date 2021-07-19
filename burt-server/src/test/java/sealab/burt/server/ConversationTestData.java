@@ -14,13 +14,14 @@ import static sealab.burt.server.msgparsing.Intent.*;
 public class ConversationTestData {
 
     enum FlowName{
-        NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL
+        NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL, PREDICTION
     }
 
     public static HashMap<FlowName, List<MessageObjectTest>> conversationFlows = new HashMap<>(){{
         put(FlowName.GENERAL, getConversationFlowGeneral());
         put(FlowName.NO_OB_SCREENS_SELECTED, getConversationFlowNoOBScreensSelected());
         put(FlowName.ISSUE36, getConversationFlowIssue36());
+        put(FlowName.PREDICTION, getConversationForPrediction());
 //        conversationFlowList.add(getConversationFlow_2());
 //        conversationFlowList.add(getConversationFlow_3());
     }};
@@ -90,7 +91,7 @@ public class ConversationTestData {
 
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("5"))); //"0" means the fifth option
+                    Collections.singletonList("5")));
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
@@ -424,6 +425,65 @@ public class ConversationTestData {
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "3")));
             //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));
+        }};
+    }
+
+    private static List<MessageObjectTest> getConversationForPrediction() {
+
+        KeyValues DroidWeightOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Droid Weight v. 1.5.4"))
+                .findFirst().orElse(null);
+
+        return new ArrayList<>() {{
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
+            //ChatBot: didn't get that, please provide the participant id
+            add(new MessageObjectTest("P23", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    APP_SELECTED,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("Droid Weight v. 1.5.4")));
+            //ChatBot: I didn't get that, select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(DroidWeightOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("I got some error when I tried to compute BMI", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("4")));
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("ye", null, null));
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("i should not get some error", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot:Okay. Now I need to know the steps that you performed and caused the problem.
+            //ChatBot:Can you please tell me the first step that you performed?
+            add(new MessageObjectTest("opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
+            //ChatBot: Okay, it seems the next steps that you performed might be the following.
+            //ChatBot: Can you confirm which ones you actually performed next?
+            //ChatBot: Please click the “done” button when you are done.
+            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("3","4")));
+            //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
+            //ChatBot: "Can you confirm which ones you actually performed next?"
+            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED, WITH_SELECTED_VALUES,
+                            Arrays.asList("1", "2")));
+            //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
+            //ChatBot: "Can you confirm which ones you actually performed next?"
+
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
             add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));

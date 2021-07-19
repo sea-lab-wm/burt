@@ -63,7 +63,7 @@ class SelectOBScreenAction extends ChatBotAction {
 
         return createChatBotMessages(
                 "Got it. From the list below, can you please select the screen that is having the problem?",
-                new ChatBotMessage(messageObj, options, true));
+                new ChatBotMessage(messageObj, options, false));
     }
 
     public static List<KeyValues> getObScreenOptions(List<GraphState> matchedStates,

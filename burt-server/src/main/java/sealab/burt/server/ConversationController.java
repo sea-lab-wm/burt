@@ -217,6 +217,9 @@ class ConversationController {
 
             log.debug("Expected next intent: " + nextIntents);
 
+            log.debug("State: ");
+            log.debug(conversationState.toString());
+
             return new ConversationResponse(nextMessages, nextIntents, action, 0);
         } catch (Exception e) {
             log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
@@ -321,6 +324,7 @@ class ConversationController {
     public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
         Object obj = conversationStates.remove(sessionId);
         messageHistory.remove(sessionId);
+
         return obj != null ? "true" : "false";
     }
 

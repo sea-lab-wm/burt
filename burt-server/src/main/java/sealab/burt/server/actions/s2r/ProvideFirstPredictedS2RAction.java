@@ -117,6 +117,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         }
 
         log.debug("Suggesting path #" + state.get(PREDICTED_S2R_CURRENT_PATH));
+        setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
         return createChatBotMessages(
                 "Okay, it seems the next steps that you performed might be the following.",

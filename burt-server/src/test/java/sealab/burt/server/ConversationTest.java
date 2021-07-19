@@ -41,6 +41,11 @@ class ConversationTest extends AbstractTest {
     public void testNoObScreensSelectedFlow() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.NO_OB_SCREENS_SELECTED);
     }
+    @org.junit.Test
+    public void testPredictionFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.PREDICTION);
+    }
+
 
     public void testConversationFlow(ConversationTestData.FlowName flowName) throws Exception {
 
