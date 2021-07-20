@@ -459,6 +459,9 @@ class NLActionS2RParser {
                     componentFound = findComponent(currentScreen, preprocessedObject2,
                             componentTypes, false, true, event, skipFocused);
                 } catch (ActionParsingException e) {
+
+                    if(StringUtils.isEmpty(object)) throw e;
+
                     // Use information of object since it could have matching words
                     componentFound = findComponent(currentScreen, preprocessedObject,
                             componentTypes, false, true, event, skipFocused);

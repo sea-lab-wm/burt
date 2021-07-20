@@ -5,7 +5,7 @@ import AppSelector from "./components/ScreenOptions/AppSelector";
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
-import OneScreenNoButtons from "./components/ScreenOptions/EBScreenSelector";
+import OneScreenNoButtons from "./components/ScreenOptions/OneScreenNoButtons";
 import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
 import ReportGenerator from "./components/ReportGenerator";
 

@@ -54,8 +54,10 @@ public class ConversationTestData {
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
             add(new MessageObjectTest("i should not get some error", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
-            //ChatBot:Can you please tell me the first step that you performed?
-            add(new MessageObjectTest("opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
+            //ChatBot: Can you please tell me the first step that you performed?
+            add(new MessageObjectTest("I input the weight", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
+            //ChatBot: Please specify input
+            add(new MessageObjectTest("I input 55 on the weight", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: Okay, it seems the next steps that you performed might be the following
         }};
     }

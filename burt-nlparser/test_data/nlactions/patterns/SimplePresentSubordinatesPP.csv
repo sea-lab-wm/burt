@@ -1,3 +1,5 @@
+"+";"I input 55 on the weight";"[{"sub":"user", "act":"input", "obj":"55", "prep":"on", "obj2":"weight"}]"
+"+";"I input the weight";"[{"sub":"user", "act":"input", "obj":"weight", "prep":null, "obj2":null}]"
 "+";"I enter fill up";"[{"sub":"user", "act":"enter", "obj":"fill", "prep":null, "obj2":null}]"
 "+";"I type one in odometer";"[{"sub":"user", "act":"type", "obj":"one", "prep":"in", "obj2":"odometer"}]"
 "+";"I click on back button";"[{"sub":"user", "act":"click", "prep":"on", "obj2":"back button"}]"
