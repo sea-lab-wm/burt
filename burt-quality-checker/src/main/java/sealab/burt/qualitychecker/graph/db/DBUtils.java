@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.HashMap;
 
+@Deprecated
 public class DBUtils {
 
     public static final String DEFAULT_EM = "CrashScope-Bug-Reporoduction";

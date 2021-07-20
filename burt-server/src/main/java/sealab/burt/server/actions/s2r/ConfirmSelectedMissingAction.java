@@ -67,7 +67,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
             response.append("Okay, you selected ");
             response.append(selectedSteps.size());
-            response.append(" prior step(s), what did you do after the step \"")
+            response.append(" prior step(s), what step did you perform after the step \"")
                     .append(highQualityStepMessage)
                     .append("\"?");
 

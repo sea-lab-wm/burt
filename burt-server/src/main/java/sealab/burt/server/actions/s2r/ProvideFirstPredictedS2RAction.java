@@ -6,7 +6,6 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.ConversationState;
@@ -18,9 +17,7 @@ import sealab.burt.server.output.BugReportElement;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static sealab.burt.server.StateVariable.*;
 
@@ -41,9 +38,9 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
     }
 
     public static List<AppStep> getPathWithLoops(S2RChecker s2rchecker, GraphPath<GraphState, GraphTransition> path,
-                                             ConversationState state, GraphState currentState) {
+                                                 ConversationState state, GraphState currentState) {
         // we convert the transitions to the steps
-        List<AppStep> steps =  convertGraphTransitionsToAppStep(path);
+        List<AppStep> steps = convertGraphTransitionsToAppStep(path);
 
         List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
 
@@ -118,6 +115,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         }
 
         log.debug("Suggesting path #" + state.get(PREDICTED_S2R_CURRENT_PATH));
+
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
         return createChatBotMessages(

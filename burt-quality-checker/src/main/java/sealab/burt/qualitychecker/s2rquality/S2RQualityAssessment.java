@@ -29,7 +29,6 @@ public class S2RQualityAssessment {
     private boolean objsVocabMismatch;
 
     // ambiguous cases (A-LQ)
-    private List<String> ambiguousCases;
     private List<AppGuiComponent> ambiguousComponents;
     private List<String> ambiguousActions;
 
@@ -47,14 +46,6 @@ public class S2RQualityAssessment {
 
     public void setAmbiguousActions(List<String> ambiguousActions) {
         this.ambiguousActions = ambiguousActions;
-    }
-
-    public List<String> getAmbiguousCases() {
-        return ambiguousCases;
-    }
-
-    public void setAmbiguousCases(List<String> ambiguousCases) {
-        this.ambiguousCases = ambiguousCases;
     }
 
     public boolean isVerbVocabMismatch() {

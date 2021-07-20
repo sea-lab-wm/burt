@@ -1,5 +1,6 @@
 package sealab.burt.server.conversation;
 
+import lombok.ToString;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
@@ -110,5 +111,12 @@ public class ConversationState {
 
     public ChatBotAction getAction(ActionName action) {
         return actions.get(action);
+    }
+
+    @Override
+    public String toString() {
+        return "ConversationState{" +
+                "vars=" + stateVariables +
+                '}';
     }
 }

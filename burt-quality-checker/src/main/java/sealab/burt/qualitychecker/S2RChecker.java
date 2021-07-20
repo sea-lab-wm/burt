@@ -23,8 +23,10 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import seers.appcore.utils.JavaUtils;
 
 import javax.persistence.EntityManager;
+import javax.validation.constraints.Max;
 import java.util.*;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -172,7 +174,6 @@ class S2RChecker {
         log.debug("Step found: " + matchedStep);
 
         //-------------------------------------------------
-        List<DevServerCommand> deviceCommands;
 
         try {
 
@@ -213,24 +214,6 @@ class S2RChecker {
             final S2RQualityAssessment assessment3 = addAdditionalStepsAndCheckForInput(matchedStep, currentResolvedSteps2);
             if (assessment3 != null) s2rQA.addQualityAssessment(assessment3);
 
-        /*    log.debug("Executing matched steps: " + currentResolvedSteps2);
-            deviceCommands = StepResolver.getCommandsFromGraphSteps(currentResolvedSteps2);
-            List<DevServerCommandResult> executionResults2 = new ArrayList<>();
-            executeCommands(executionResults2, deviceCommands);
-
-            if (matchedStep.getId() == null) {
-                int i = 0;
-                if (DeviceUtils.isAnyType(matchedStep.getAction())) {
-                    i = 1;
-                }
-                final Step dbStep = getStepFromId(executionResults2.get(i).getStepId());
-                matchedStep.setId(dbStep.getId());
-                matchedStep.setSequence(dbStep.getSequenceStep());
-                matchedStep.setScreenshotFile(dbStep.getScreenshot());
-            }
-
-            currentResolvedSteps.addAll(currentResolvedSteps2);
-            executionResults.addAll(executionResults2);*/
         } catch (Exception e) {
             log.debug("Could not execute the matched steps", e);
             throw e;
@@ -735,42 +718,23 @@ class S2RChecker {
         if (result.anyAmbiguousResultPresent() || result2.anyAmbiguousResultPresent()) {
 
             final S2RQualityAssessment assessment = new S2RQualityAssessment(S2RQualityCategory.LOW_Q_AMBIGUOUS);
-            Set<String> ambiguousElements = result.getAmbiguousElements();
-            final Set<String> ambiguousElements2 = result2.getAmbiguousElements();
-            ambiguousElements.addAll(ambiguousElements2);
-
-            assessment.setAmbiguousCases(new ArrayList<>(ambiguousElements));
 
             //------------------------------------
-            final Set<String> ambiguousComponents = result.getAmbiguousComponents();
+            final Set<Object> ambiguousComponents = result.getAmbiguousComponents();
             ambiguousComponents.addAll(result2.getAmbiguousComponents());
-            for (String ambiguousComponent : ambiguousComponents) {
-                final int i = ambiguousComponent.indexOf("[");
-                final String[] elements = ambiguousComponent.substring(i + 1, ambiguousComponent.length() - 1)
-                        .split(",");
-
-                final List<String> strComponents = Arrays.asList(elements);
-                int limit = 5;
-                if (strComponents.size() < limit) {
-                    limit = strComponents.size();
-                }
-                final List<String> firstComponents = strComponents.subList(0, limit);
-
-                List<AppGuiComponent> components = getComponents(firstComponents);
-                assessment.setAmbiguousComponents(components);
-            }
+            List<AppGuiComponent> components =
+                    (List<AppGuiComponent>) ambiguousComponents.stream()
+                            .flatMap(c -> ((List) c).stream())
+                            .collect(Collectors.toList());
+            components = components.subList(0, Math.min(5, components.size()));
+            assessment.setAmbiguousComponents(components);
 
             //-----------------------------
 
-            final Set<String> ambiguousActions = result.getAmbiguousActions();
+            final Set<Object> ambiguousActions = result.getAmbiguousActions();
             ambiguousActions.addAll(result2.getAmbiguousActions());
-            for (String ambiguousAction : ambiguousActions) {
-                final int i = ambiguousAction.indexOf("[");
-                final String[] elements = ambiguousAction.substring(i + 1, ambiguousAction.length() - 1)
-                        .split(",");
-
-                assessment.setAmbiguousActions(translateActions(Arrays.asList(elements)));
-            }
+            assessment.setAmbiguousActions(translateActions(ambiguousActions.stream().
+                    map(Object::toString).collect(Collectors.toList())));
 
             return assessment;
         }
@@ -785,7 +749,7 @@ class S2RChecker {
                 .map(s -> s.replace("_", " "))
                 .collect(Collectors.toList());
     }
-
+/*
     private List<AppGuiComponent> getComponents(List<String> firstComponents) {
         EntityManager em = DBUtils.createEntityManager();
         try {
@@ -803,8 +767,7 @@ class S2RChecker {
         } finally {
             em.close();
         }
-
-    }
+    }*/
 
     private S2RQualityAssessment buildVocabularyMismatchAssessment(ResolvedStepResult result,
                                                                    ResolvedStepResult result2) {

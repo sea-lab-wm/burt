@@ -1,6 +1,5 @@
 package sealab.burt.qualitychecker.actionparser;
 
-import org.apache.commons.lang3.StringUtils;
 import sealab.burt.qualitychecker.graph.AppStep;
 
 import java.util.*;
@@ -10,7 +9,7 @@ public class ResolvedStepResult {
 
     private AppStep step;
     private HashMap<ParsingResult, Integer> matchResultCounts = new HashMap<>();
-    private HashMap<ParsingResult, Set<String>> matchResultElements = new HashMap<>();
+    private HashMap<ParsingResult, Set<Object>> matchResultElements = new HashMap<>();
 
     public ResolvedStepResult() {
     }
@@ -37,8 +36,8 @@ public class ResolvedStepResult {
     }
 
     private void addElement(ActionParsingException e) {
-        final Set<String> elements = matchResultElements.getOrDefault(e.getResult(), new LinkedHashSet<>());
-        if (!StringUtils.isEmpty(e.getResultData()))
+        final Set<Object> elements = matchResultElements.getOrDefault(e.getResult(), new LinkedHashSet<>());
+        if (e.getResultData() != null)
             elements.add(e.getResultData());
         matchResultElements.put(e.getResult(), elements);
     }
@@ -50,7 +49,7 @@ public class ResolvedStepResult {
     }
 
 
-    public Set<String> getElements(ParsingResult... parsingResults) {
+    public Set<Object> getElements(ParsingResult... parsingResults) {
         return Arrays.stream(parsingResults)
                 .map(r -> matchResultElements.get(r))
                 .filter(Objects::nonNull)
@@ -84,15 +83,11 @@ public class ResolvedStepResult {
         return isAnyParsingResultsPresent(ParsingResult.AMBIGUOUS_ACTION, ParsingResult.MULTIPLE_COMPONENTS_FOUND);
     }
 
-    public Set<String> getAmbiguousElements() {
-        return getElements(ParsingResult.AMBIGUOUS_ACTION, ParsingResult.MULTIPLE_COMPONENTS_FOUND);
-    }
-
-    public Set<String> getAmbiguousComponents() {
+    public Set<Object> getAmbiguousComponents() {
         return getElements(ParsingResult.MULTIPLE_COMPONENTS_FOUND);
     }
 
-    public Set<String> getAmbiguousActions() {
+    public Set<Object> getAmbiguousActions() {
         return getElements(ParsingResult.AMBIGUOUS_ACTION);
     }
 }

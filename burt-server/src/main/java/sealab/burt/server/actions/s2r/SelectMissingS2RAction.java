@@ -38,7 +38,6 @@ public class SelectMissingS2RAction extends ChatBotAction {
                                                  ConversationState state) {
         return cleanedInferredSteps.stream()
                 .map(step -> {
-
                     String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(step, state);
                     return new KeyValues(step.getId().toString(),
                             UtilReporter.getNLStep(step, false), screenshotFile);
