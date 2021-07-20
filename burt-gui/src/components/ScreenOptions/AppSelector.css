@@ -1,3 +1,4 @@
+
 .image_picker {
     display: flex;
     align-items: center;
@@ -10,6 +11,9 @@
     flex-direction: row;
     font-size: 12px;
     position: center;
+
+
+
 }
 
 
