@@ -91,10 +91,10 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         //FIXME:check target state equals to current state
 
         //get first k paths according to the score
-       /* List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKPaths(
-                MAX_NUMBER_OF_PATHS, targetState);*/
-        List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKDummyPaths(
+        List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKPaths(
                 MAX_NUMBER_OF_PATHS, targetState);
+//        List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKDummyPaths(
+//                MAX_NUMBER_OF_PATHS, targetState);
 
         log.debug("Total number of predicted paths: " + predictedPaths.size());
 

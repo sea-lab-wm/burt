@@ -1,4 +1,6 @@
 import React , { useState, useEffect }  from "react";
+
+
 import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
 import ApiClient from "../../ApiClient";
@@ -54,6 +56,7 @@ const AppSelector = (props) => {
     const multiple = props.multiple
 
     return (
+
         <div className="center-screen">
             <ImagePicker
                 // images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
@@ -65,8 +68,11 @@ const AppSelector = (props) => {
                 disabled={disabled}
 
             />
+
             <button type="button" className="button" onClick={handleConfirmButton} disabled={disabled}>done</button>
+
         </div>
+
     )
 }
 

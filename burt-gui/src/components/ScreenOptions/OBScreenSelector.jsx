@@ -69,7 +69,6 @@ const OBScreenSelector = (props) => {
                 />
                 <button type="button" className="button" onClick={() => handleConfirmButton("done")} disabled={disabled}>done</button>
                 <button type="button" className="button" onClick={() => handleNegativeButton("none of above")} disabled={disabled}>none of above</button>
-
             </div>
         )
 
