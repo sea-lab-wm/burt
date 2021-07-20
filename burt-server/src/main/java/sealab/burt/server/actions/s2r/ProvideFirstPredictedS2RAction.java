@@ -73,9 +73,6 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
 
-        MessageObj messageObj = new MessageObj("Please click the “done” button when you are done.",
-                "S2RScreenSelector");
-
         state.put(PREDICTING_S2R, true);
 
         //target state
@@ -118,9 +115,12 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
+        MessageObj messageObj = new MessageObj("Please click the “done” button when you are done.",
+                "S2RScreenSelector");
         return createChatBotMessages(
                 "Okay, it seems the next steps that you performed might be the following.",
                 "Can you confirm which ones you actually performed next?",
+                "Remember that the screenshots below are for reference only.",
                 new ChatBotMessage(messageObj, stepOptions, true));
     }
 

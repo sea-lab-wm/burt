@@ -93,6 +93,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
         return createChatBotMessages(
                 "Got it! You reported the step \"" + highQualityStepMessage + "\"",
                 "However, it seems that before that step you had to perform additional steps. ",
+                "Remember that the displayed screenshots are for reference only.",
                 new ChatBotMessage(messageObj, stepOptions, true));
 
     }
