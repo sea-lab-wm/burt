@@ -250,170 +250,7 @@ class NLActionS2RParser {
         //TODO:
     }
 
-    public List<DevServerCommand> parse(NLAction nlAction, Appl app, Screen currentScreen, boolean skipInputType) throws
-            ActionParsingException {
-        return parse(nlAction, app, currentScreen, null, null, skipInputType);
-    }
-
-    public List<DevServerCommand> parse(NLAction nlAction, Appl app, Screen currentScreen,
-                                        List<DevServerCommand> previousCommands, NLAction previousNlAction) throws
-            ActionParsingException {
-        return parse(nlAction, app, currentScreen, previousCommands, previousNlAction, false);
-    }
-
     //-------------------------------------------------------------------------------------
-
-    public List<DevServerCommand> parse(NLAction nlAction, Appl app, Screen currentScreen, List<DevServerCommand>
-            previousCommands, NLAction previousNlAction, boolean skipInputType) throws
-            ActionParsingException {
-
-        currentScreen = currentScreen == null ? new Screen() : currentScreen;
-
-        List<DevServerCommand> commands = new LinkedList<>();
-
-        //get last command
-        DevServerCommand lastCommand = null;
-        if (previousCommands != null && previousCommands.size() > 0) {
-            lastCommand = previousCommands.get(previousCommands.size() - 1);
-
-            //-------------------------------
-
-            //case: set/change "x" as/to "y"
-            createAdditionalClickCommands(currentScreen, previousNlAction, commands, lastCommand);
-        }
-
-
-        //----------------------------------------------------
-        //Determine the event
-
-        Integer event = determineEvent(nlAction, app, currentScreen);
-
-        //--------------------------------------------------------
-        //determine the component
-
-        Entry<AppGuiComponent, Double> component = determineComponent(nlAction, currentScreen, event, false);
-        Long componentId = null;
-        Long screenId = null;
-        if (component != null && component.getKey() != null) {
-            componentId = component.getKey().getDbId();
-            screenId = component.getKey().getScreenId();
-        }
-
-        //--------------------------------------------------------
-        //set the text
-
-        String text = determineText(app, event, componentId, nlAction, lastCommand, skipInputType);
-        text = DeviceUtils.encodeText(text);
-
-        //--------------------------------------------------------
-        //create the command(s)
-
-        //we need to execute additional commands for types
-        if (DeviceUtils.isAnyType(event)) {
-            //add additional post-type commands
-            commands.addAll(getPreTypeAdditionalCommands(nlAction, component.getKey()));
-            //type command
-            commands.add(new DevServerCommand(componentId, event, text, screenId));
-            //add additional post-type commands
-            commands.addAll(getPostTypeAdditionalCommands(nlAction, componentId, screenId));
-        } else {
-            commands.add(new DevServerCommand(componentId, event, text, screenId));
-        }
-
-        //---------------------------------------------------------
-
-        return commands;
-    }
-
-    private List<DevServerCommand> getPreTypeAdditionalCommands(NLAction nlAction, AppGuiComponent component) {
-        ArrayList<DevServerCommand> additionalCommands = new ArrayList<>();
-        //click on the component
-        additionalCommands.add(new DevServerCommand(component.getDbId(), DeviceActions.CLICK, null,
-                component.getScreenId()));
-
-        //delete the text
-        //FIXME: externalize these words and add synonyms
-        if (isTextField(component.getType()) && JavaUtils.getSet("change", "modify", "replace", "set").contains(nlAction
-                .getAction()))
-            additionalCommands.add(new DevServerCommand(component.getDbId(), DeviceActions.DELETE_TEXT, null,
-                    component.getScreenId()));
-
-        return additionalCommands;
-    }
-
-    private List<DevServerCommand> getPostTypeAdditionalCommands(NLAction nlAction, Long componentId, Long screenId) {
-        String preposition = nlAction.getPreposition();
-        String object2 = nlAction.getObject2();
-        ArrayList<DevServerCommand> additionalCommands = new ArrayList<>();
-
-        //new line token?
-        if (JavaUtils.getSet("in").contains(preposition) && !StringUtils.isEmpty(object2)) {
-            PreProcessedText preprocessedObject2 = preprocessText(object2);
-            //case type 'x' in 'one line', then execute an "ENTER" key event
-            if (preprocessedObject2.preprocessedTokens.stream().anyMatch(token1 -> "line".equalsIgnoreCase
-                    (token1.getLemma()))) {
-                additionalCommands.add(new DevServerCommand(componentId, DeviceActions.KEYEVENT, AndroidKeyEvents
-                        .getStringKeyEvent(KeyCode.ENTER), screenId));
-            }
-        }
-
-
-        //hack: if there is any popup suggesting words to type, a click would hide it (after the type)
-        additionalCommands.add(new DevServerCommand(componentId, DeviceActions.CLICK, null, screenId));
-
-        return additionalCommands;
-    }
-
-    private void createAdditionalClickCommands(Screen currentScreen, NLAction previousNlAction, List<DevServerCommand
-            > commands, DevServerCommand lastCommand) {
-
-        if (previousNlAction == null || lastCommand.getComponentId() == null)
-            return;
-
-        DynGuiComponent previousComponent;
-        try {
-            previousComponent = getDynGuiComponent(lastCommand.getComponentId());
-        } catch (CRUDException e) {
-            log.error("Error", e);
-            return;
-        }
-
-        if (previousComponent == null || !ComponentType.PICKER.equals(getComponentType(previousComponent.getName()))) {
-            return;
-        }
-
-        if (DeviceUtils.isClick(lastCommand.getEvent()) && lastCommand.getComponentId() != null) {
-            //do we need more commands?
-
-            //case: set/change "x" as/to "y"
-            if (JavaUtils.getSet("as", "to").contains(previousNlAction.getPreposition()) && !StringUtils
-                    .isEmpty(previousNlAction.getObject2())) {
-                PreProcessedText preprocessedObject2 = preprocessText(previousNlAction.getObject2());
-                try {
-                    Entry<AppGuiComponent, Double> componentFound = findComponent(currentScreen, preprocessedObject2,
-                            JavaUtils.getSet(), false, true,
-                            lastCommand.getEvent());
-                    if (componentFound != null && !componentFound.getKey().getDbId().equals(lastCommand
-                            .getComponentId())) {
-                        commands.add(new DevServerCommand(componentFound.getKey().getDbId(), lastCommand.getEvent(),
-                                lastCommand.getText(), componentFound.getKey().getScreenId()));
-                    }
-                } catch (ActionParsingException e) {
-                    //it's ok to get an exception
-                }
-
-            }
-
-        }
-    }
-
-    public Integer determineEvent(NLAction nlAction, Appl app, Screen currentScreen) throws ActionParsingException {
-        List<AppGuiComponent> guiComponents = new ArrayList<>();
-        if (currentScreen != null) {
-            guiComponents = Transform.getGuiComponents(currentScreen.getDynGuiComponents());
-        }
-        return determineEvent(nlAction, app, guiComponents);
-    }
 
     public Integer determineEvent(NLAction nlAction, Appl app, List<AppGuiComponent> currentScreen) throws
             ActionParsingException {
@@ -476,7 +313,7 @@ class NLActionS2RParser {
 
         //could not disambiguate the action
         if (actionGroup == null) {
-            throw new ActionParsingException(ParsingResult.AMBIGUOUS_ACTION, actionGroups.toString());
+            throw new ActionParsingException(ParsingResult.AMBIGUOUS_ACTION, new ArrayList<>(actionGroups));
         }
 
         //transform the action group into an event
@@ -484,7 +321,7 @@ class NLActionS2RParser {
 
         //determine the event, ie. action not mapped
         if (event == null)
-            throw new ActionParsingException(ParsingResult.ACTION_NOT_MAPPED, actionGroup.toString());
+            throw new ActionParsingException(ParsingResult.ACTION_NOT_MAPPED, Collections.singletonList(actionGroup));
 
         if (DeviceUtils.isClick(event)) {
 
@@ -499,13 +336,6 @@ class NLActionS2RParser {
         }
 
         return event;
-    }
-
-    public Entry<AppGuiComponent, Double> determineComponent(NLAction nlAction, Screen currentScreen, Integer event,
-                                                             boolean skipFocused) throws ActionParsingException {
-        List<DynGuiComponent> dynGuiComponents = currentScreen.getDynGuiComponents();
-        List<AppGuiComponent> guiComponents = Transform.getGuiComponents(dynGuiComponents);
-        return determineComponent(nlAction, guiComponents, event, skipFocused);
     }
 
     public Entry<AppGuiComponent, Double> determineComponentForOb(NLAction nlAction,
@@ -594,7 +424,7 @@ class NLActionS2RParser {
         }
 
         if (componentFound == null && !componentSkipped) {
-            throw new ActionParsingException(ParsingResult.COMPONENT_NOT_FOUND, "");
+            throw new ActionParsingException(ParsingResult.COMPONENT_NOT_FOUND);
         }
 
         return componentFound;
@@ -761,9 +591,14 @@ class NLActionS2RParser {
                     componentFound = findComponent(currentScreen, preprocessedObject,
                             componentTypes, false, true, event, skipFocused);
                 } catch (ActionParsingException e) {
-                    final PreProcessedText preProcessedText = preprocessText(String.format("%s %s", action, object));
-                    componentFound = findComponent(currentScreen, preProcessedText,
-                            componentTypes, false, true, event, skipFocused);
+                    try {
+                        final PreProcessedText preProcessedText = preprocessText(String.format("%s %s", action, object));
+                        componentFound = findComponent(currentScreen, preProcessedText,
+                                componentTypes, false, true, event, skipFocused);
+                    } catch (ActionParsingException e2) {
+                        //FIXME: maybe in some cases, we would need to throw e2
+                      throw e;
+                    }
                   /*  componentFound = findComponent(currentScreen, preprocessedAll,
                             componentTypes, false, true, event, skipFocused, false);*/
                 }
@@ -791,25 +626,9 @@ class NLActionS2RParser {
         return specificComponentTypes.get(ComponentType.PICKER).contains(preprocessedObject.componentType);
     }
 
-    /*  private AppGuiComponent getFocusedComponent() {
-          DynGuiComponent componentFound = null;
-          try {
-              List<Long> components = DeviceServerClient.getFocusedComponents(token);
-              if (components.size() == 1) {
-                  componentFound = getDynGuiComponent(components.get(0));
-              }
-              //if (lastCommand != null) {
-              //componentFound = getDynGuiComponent(lastCommand.getComponentId());
-              //}
-          } catch (CRUDException e) {
-              log.debug("Couldn't retrieve the focused component");
-          }
-          return Transform.getGuiComponent(componentFound, null);
-      }
-  */
     public String determineText(Appl app, Integer event, Long componentId, NLAction nlAction)
             throws ActionParsingException {
-        return determineText(app, event, componentId, nlAction, null, true);
+        return determineText(app, event, componentId, nlAction, true);
     }
 
     /**
@@ -819,7 +638,7 @@ class NLActionS2RParser {
      * @param skipInputType true if you don't want to call deviceServerClient
      */
     public String determineText(Appl app, Integer event, Long componentId, NLAction nlAction,
-                                DevServerCommand lastCommand, boolean skipInputType)
+                                boolean skipInputType)
             throws ActionParsingException {
         String text = null;
 
@@ -829,7 +648,7 @@ class NLActionS2RParser {
         else if (DeviceUtils.isKeyEvent(event)) {
             String textVal = nlAction.getObject();
             if (textVal == null)
-                throw new ActionParsingException(ParsingResult.EMPTY_OBJECTS, "");
+                throw new ActionParsingException(ParsingResult.EMPTY_OBJECTS);
             String keyValue = getKeyValue(textVal);
             if (keyValue != null)
                 text = keyValue;
@@ -849,7 +668,7 @@ class NLActionS2RParser {
             String textVal = nlAction.getObject();
 
             if (textVal == null)
-                throw new ActionParsingException(ParsingResult.EMPTY_OBJECTS, "");
+                throw new ActionParsingException(ParsingResult.EMPTY_OBJECTS);
 
             //case: set xyz to/with 5
             String object2 = nlAction
@@ -887,7 +706,7 @@ class NLActionS2RParser {
                 }*/
 
             if (text == null)
-                throw new ActionParsingException(ParsingResult.EMPTY_TEXT, "");
+                throw new ActionParsingException(ParsingResult.EMPTY_TEXT);
         }
 
         return text;
@@ -992,7 +811,8 @@ class NLActionS2RParser {
 
             //not a text field? then which component should I find? -> throw exception
             if (!ComponentType.TEXT_FIELD.equals(invIdxSpecificComponentTypes.get(textToMatch.componentType)))
-                throw new ActionParsingException(ParsingResult.COMPONENT_NOT_SPECIFIED, textToMatch.original);
+                throw new ActionParsingException(ParsingResult.COMPONENT_NOT_SPECIFIED,
+                        Collections.singletonList(textToMatch.original));
 
 /*
             //get current focused component and check if it is a text field
@@ -1028,11 +848,6 @@ class NLActionS2RParser {
                     textToMatch, event, matchFirst);
         }
         return component;
-    }
-
-    private DynGuiComponent getDynGuiComponent(Long compId) throws CRUDException {
-        DynGuiComponentDao dao = new DynGuiComponentDao();
-        return dao.getById(compId, DBUtils.createEntityManager());
     }
 
     private boolean isButton(String componentName) {
@@ -1326,7 +1141,8 @@ class NLActionS2RParser {
 
         //only text fields are allowed for type events
         if (DeviceUtils.isAnyType(event) && !isTextField(component.getType())) {
-            throw new ActionParsingException(ParsingResult.INCORRECT_COMPONENT_FOUND, component.toString());
+            throw new ActionParsingException(ParsingResult.INCORRECT_COMPONENT_FOUND,
+                    Collections.singletonList(component));
         }
 
         return component;
@@ -1463,10 +1279,9 @@ class NLActionS2RParser {
 
         if (componentFound == null) {
             log.debug("Couldn't resolve multiple matched components");
-            throw new ActionParsingException(ParsingResult.MULTIPLE_COMPONENTS_FOUND, textToMatch.original + " -> " +
+            throw new ActionParsingException(ParsingResult.MULTIPLE_COMPONENTS_FOUND,
                     matchedComponents.stream()
                             .map(Entry::getKey)
-                            .map(AppGuiComponent::getDbId)
                             .collect(Collectors.toList()));
         }else
             log.debug("Selected component: " + componentFound);
@@ -1605,7 +1420,8 @@ class NLActionS2RParser {
         }
 
         if (component == null)
-            throw new ActionParsingException(ParsingResult.COMPONENT_NOT_FOUND, textToMatch.original);
+            throw new ActionParsingException(ParsingResult.COMPONENT_NOT_FOUND,
+                    Collections.singletonList(textToMatch.original));
 
         return component;
     }

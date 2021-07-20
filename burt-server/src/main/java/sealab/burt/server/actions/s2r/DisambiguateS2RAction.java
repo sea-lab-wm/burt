@@ -31,7 +31,8 @@ class DisambiguateS2RAction extends ChatBotAction {
 
         StringBuilder message = new StringBuilder("Oops, it seems ");
         message.append(getFeedbackMessage(feedback));
-        return createChatBotMessages(message.toString(), "Can you please rephrase the step more accurately?");
+        return createChatBotMessages(message.toString(), "Can you please rephrase the step more accurately or " +
+                "provide a different step?");
 
   /*      UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
         List<KeyValue> S2RScreens = Arrays.asList(
@@ -54,11 +55,11 @@ class DisambiguateS2RAction extends ChatBotAction {
 
         final String preFix = "this step refers to multiple ";
 
-        if (components != null && actions != null) {
+        if (!components.isEmpty() && !actions.isEmpty()) {
             final String assessmentTemplate = preFix + "UI components (e.g., %s) and multiple actions " +
                     "(e.g., %s).";
             return String.format(assessmentTemplate, getComponentsString(components), getActionsString(actions));
-        } else if (components != null) {
+        } else if (!components.isEmpty()) {
             final String assessmentTemplate = preFix + "UI components (e.g., %s).";
             return String.format(assessmentTemplate, getComponentsString(components));
         } else {

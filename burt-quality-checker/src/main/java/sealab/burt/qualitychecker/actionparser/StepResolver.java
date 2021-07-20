@@ -7,9 +7,9 @@ import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.GraphPath;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
-import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.qualitychecker.graph.*;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 
@@ -149,21 +149,6 @@ class StepResolver {
 
     }
 
-    public static List<DevServerCommand> getCommandsFromGraphSteps(List<AppStep> steps) {
-        List<DevServerCommand> commandList = new ArrayList<>();
-        for (AppStep step : steps) {
-            // Create new component and add it to the list
-            commandList.add(getCommandFromGraphStep(step));
-        }
-        return commandList;
-    }
-
-    private static DevServerCommand getCommandFromGraphStep(AppStep step) {
-        Long componentId = step.getComponent() == null ? null : step.getComponent().getDbId();
-        final Long screenId = step.getComponent() == null ? null : step.getComponent().getScreenId();
-        return new DevServerCommand(componentId, step.getAction(), step.getText(), screenId);
-    }
-
     /**
      * TODO: We might need to return multiple steps
      */
@@ -176,7 +161,7 @@ class StepResolver {
 
         try {
             AppStep openAppStep = getOpenAppStep(currNLAction, app);
-            if (openAppStep != null){
+            if (openAppStep != null) {
                 openAppStep.setCurrentState(currentState);
 
                 //if it is 'open app', there will be only one outgoing transition
@@ -195,7 +180,7 @@ class StepResolver {
 
         try {
             AppStep closeAppStep = getCloseAppStep(currNLAction, app);
-            if (closeAppStep != null){
+            if (closeAppStep != null) {
                 closeAppStep.setCurrentState(currentState);
                 return new ResolvedStepResult(closeAppStep);
             }
@@ -288,7 +273,7 @@ class StepResolver {
                 log.debug("Could not find the component in the candidate state/screen: "
                         + candidateState.getUniqueHash() + " - " + e.getResult());
                 if (e.getResult().equals(ParsingResult.MULTIPLE_COMPONENTS_FOUND)) {
-                    log.debug(e.getResultData());
+                    if (e.getResultData() != null) log.debug(e.getResultData().toString());
                 }
                 result.addCount(e);
                 continue;
@@ -552,6 +537,7 @@ class StepResolver {
                     event, true);
         } catch (ActionParsingException e) {
 
+            List<Object> resultData = e.getResultData();
             if (checkCurrentScreen) {
                 try {
 
@@ -578,7 +564,7 @@ class StepResolver {
                     log.debug("Could not find the component in candidate state/screen: "
                             + state.getUniqueHash() + " - " + e.getResult());
                     if (e.getResult().equals(ParsingResult.MULTIPLE_COMPONENTS_FOUND)) {
-                        log.debug(e.getResultData());
+                        if (resultData != null) log.debug(resultData.toString());
                     }
                 }
             } else {
@@ -586,7 +572,7 @@ class StepResolver {
                 log.debug("Could not find the component in candidate state/screen: "
                         + state.getUniqueHash() + " - " + e.getResult());
                 if (e.getResult().equals(ParsingResult.MULTIPLE_COMPONENTS_FOUND)) {
-                    log.debug(e.getResultData());
+                    if (resultData != null) log.debug(resultData.toString());
                 }
             }
         }
@@ -629,7 +615,7 @@ class StepResolver {
             Long componentId = null;
             if (component != null)
                 componentId = component.getKey().getDbId();
-            text = s2rParser.determineText(app, event, componentId, currNLAction, null, false);
+            text = s2rParser.determineText(app, event, componentId, currNLAction, false);
             text = DeviceUtils.encodeText(text);
         } catch (ActionParsingException e) {
             log.debug("Could not determine the text for the candidate state/screen: "

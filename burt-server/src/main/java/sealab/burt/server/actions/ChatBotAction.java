@@ -25,11 +25,6 @@ public abstract class ChatBotAction {
         addNextExpectedIntent(NO_EXPECTED_INTENT);
 
     }
-//
-//    public ChatBotAction(Intent nextExpectedIntent) {
-//        nextExpectedIntents = new ArrayList<>();
-//        addNextExpectedIntent(nextExpectedIntent);
-//    }
 
     public ChatBotAction(Intent... nextExpectedIntents) {
         this.nextExpectedIntents = Arrays.asList(nextExpectedIntents);

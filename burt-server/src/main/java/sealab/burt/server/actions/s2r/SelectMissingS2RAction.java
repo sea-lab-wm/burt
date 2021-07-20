@@ -38,7 +38,6 @@ public class SelectMissingS2RAction extends ChatBotAction {
                                                  ConversationState state) {
         return cleanedInferredSteps.stream()
                 .map(step -> {
-
                     String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(step, state);
                     return new KeyValues(step.getId().toString(),
                             UtilReporter.getNLStep(step, false), screenshotFile);
@@ -94,6 +93,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
         return createChatBotMessages(
                 "Got it! You reported the step \"" + highQualityStepMessage + "\"",
                 "However, it seems that before that step you had to perform additional steps. ",
+                "Remember that the displayed screenshots are for reference only.",
                 new ChatBotMessage(messageObj, stepOptions, true));
 
     }

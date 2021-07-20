@@ -1,24 +1,27 @@
 package sealab.burt.qualitychecker.actionparser;
 
-public class ActionParsingException extends Exception{
+import java.util.List;
+
+public class ActionParsingException extends Exception {
 
     private ParsingResult result;
-    private String resultData;
+    private List<Object> resultData;
 
     public ActionParsingException(ParsingResult result) {
         this(result, null);
     }
 
-    public ActionParsingException(ParsingResult result, String resultData) {
+    public ActionParsingException(ParsingResult result, List<Object> resultData) {
         this.result = result;
         this.resultData = resultData;
     }
+
 
     public ParsingResult getResult() {
         return result;
     }
 
-    public String getResultData() {
+    public List<Object> getResultData() {
         return resultData;
     }
 
