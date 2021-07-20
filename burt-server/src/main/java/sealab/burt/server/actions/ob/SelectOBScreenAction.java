@@ -6,10 +6,7 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
@@ -35,7 +32,7 @@ class SelectOBScreenAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state) {
 
         MessageObj messageObj = new MessageObj(
-                " Please hit the \"Done\" button after you have selected it.", "OBScreenSelector");
+                " Please hit the \"Done\" button after you have selected it.", WidgetName.OBScreenSelector);
 
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         List<GraphState> matchedStates = result.getMatchedStates();

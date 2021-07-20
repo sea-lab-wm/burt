@@ -90,7 +90,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(allMissingSteps, state);
 
         MessageObj messageObj = new MessageObj(
-                "From the following options, select the steps you performed before this step", "S2RScreenSelector");
+                "From the following options, select the steps you performed before this step", WidgetName.S2RScreenSelector);
 
         return createChatBotMessages(
                 "Sorry, the options you selected are incorrect.",

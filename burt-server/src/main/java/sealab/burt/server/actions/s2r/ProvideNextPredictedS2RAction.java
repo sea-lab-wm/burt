@@ -7,10 +7,7 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.Collections;
@@ -30,7 +27,7 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
         MessageObj messageObj = new MessageObj("Please click the “done” button when you are done.",
-                "S2RScreenSelector");
+                WidgetName.S2RScreenSelector);
         S2RChecker s2rchecker = (S2RChecker) state.get(S2R_CHECKER);
         GraphState currentState = s2rchecker.getCurrentState();
 

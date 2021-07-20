@@ -7,6 +7,7 @@ import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
 import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.WidgetName;
 import sealab.burt.server.output.HTMLBugReportGenerator;
 
 import java.io.BufferedWriter;
@@ -28,7 +29,7 @@ class GenerateBugReportAction extends ChatBotAction {
 
         // provide the summary of bug report
         String response = "The button below will take you to the summary of the problem you reported.";
-        MessageObj messageObj = new MessageObj(response, "ReportGenerator");
+        MessageObj messageObj = new MessageObj(response, WidgetName.ReportGenerator);
 
         String appName = state.get(StateVariable.APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();

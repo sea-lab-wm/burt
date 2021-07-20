@@ -2,10 +2,7 @@ package sealab.burt.server.actions.eb;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 
@@ -33,7 +30,7 @@ public class ClarifyEBAction extends ChatBotAction {
 
         List<KeyValues> optionList = Collections.singletonList(new KeyValues("0", "", screenshotPath));
         ChatBotMessage optionMessage = new ChatBotMessage(new MessageObj(
-                "Is this the screen that should work fine?", "EBScreenSelector"), optionList);
+                "Is this the screen that should work fine?", WidgetName.OneScreenNoButtons), optionList);
 
         state.put(StateVariable.EB_SCREEN_CONFIRMATION, true);
         state.put(EB_STATE, bugReportElement.getOriginalElement());

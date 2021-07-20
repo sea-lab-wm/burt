@@ -10,10 +10,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 import sealab.burt.server.statecheckers.QualityStateUpdater;
@@ -88,7 +85,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
         MessageObj messageObj = new MessageObj(
                 "From the following options, select the steps you performed before this step and click the " +
-                        "\"done\" button", "S2RScreenSelector");
+                        "\"done\" button", WidgetName.S2RScreenSelector);
         String highQualityStepMessage = (String) state.get(S2R_HQ_MISSING);
         return createChatBotMessages(
                 "Got it! You reported the step \"" + highQualityStepMessage + "\"",

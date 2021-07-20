@@ -32,6 +32,8 @@ public class NegativeAnswerStateChecker extends StateChecker {
         }*/
         else if (state.containsKey(EB_SCREEN_CONFIRMATION)) {
             nextAction = PROVIDE_EB;
+        } else if (state.containsKey(OB_MATCHED_CONFIRMATION)) {
+            nextAction = PROVIDE_OB;
         }
         return nextAction;
 

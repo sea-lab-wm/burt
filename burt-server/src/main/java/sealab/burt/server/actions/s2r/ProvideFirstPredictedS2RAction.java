@@ -7,10 +7,7 @@ import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 
@@ -116,7 +113,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
         MessageObj messageObj = new MessageObj("Please click the “done” button when you are done.",
-                "S2RScreenSelector");
+                WidgetName.S2RScreenSelector);
         return createChatBotMessages(
                 "Okay, it seems the next steps that you performed might be the following.",
                 "Can you confirm which ones you actually performed next?",

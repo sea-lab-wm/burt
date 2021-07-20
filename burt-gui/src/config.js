@@ -5,7 +5,7 @@ import AppSelector from "./components/ScreenOptions/AppSelector";
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
-import EBScreenSelector from "./components/ScreenOptions/EBScreenSelector";
+import OneScreenNoButtons from "./components/ScreenOptions/EBScreenSelector";
 import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
 import ReportGenerator from "./components/ReportGenerator";
 
@@ -34,8 +34,8 @@ const config = {
             mapStateToProps: []
         },
         {
-            widgetName: "EBScreenSelector",
-            widgetFunc: (props) => <EBScreenSelector {...props} />,
+            widgetName: "OneScreenNoButtons",
+            widgetFunc: (props) => <OneScreenNoButtons {...props} />,
             mapStateToProps: []
         },
         {

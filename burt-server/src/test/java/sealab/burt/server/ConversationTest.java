@@ -33,6 +33,11 @@ class ConversationTest extends AbstractTest {
     }
 
     @org.junit.Test
+    public void testMatchedOBFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.MATCHED_OB);
+    }
+
+    @org.junit.Test
     public void testGeneralMatchingS2R() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.MATCHING_S2R);
     }

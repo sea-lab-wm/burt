@@ -48,7 +48,9 @@ class MainJSONGraphGenerator {
 
     public static void main(String[] args) throws Exception {
 
-        AppGraphInfo graphInfo = JSONGraphReader.getGraph("mileage", "3.1.1");
+//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("mileage", "3.1.1");
+        AppGraphInfo graphInfo = JSONGraphReader.getGraph("droidweight", "1.5.4");
+
 //        AppGraphInfo graphInfo = JSONGraphReader.getGraph("GnuCash", "2.1.3");
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         Appl app = graphInfo.getApp();

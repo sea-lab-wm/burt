@@ -1,11 +1,10 @@
 package sealab.burt.server.statecheckers;
 
+import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.ConversationState;
-
-import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
@@ -37,6 +36,13 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
             nextAction = PROVIDE_S2R_FIRST;
 
             QualityStateUpdater.updateEBState(state, (GraphState) state.get(EB_STATE));
+        } else if (state.containsKey(OB_MATCHED_CONFIRMATION)) {
+            state.remove(OB_MATCHED_CONFIRMATION);
+            nextAction = PROVIDE_EB;
+
+            QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
+            QualityStateUpdater.updateOBState(state, result.getMatchedStates().get(0));
+
         } else if (!state.containsKey(PARTICIPANT_ASKED)) {
             nextAction = PROVIDE_PARTICIPANT_ID;
         }

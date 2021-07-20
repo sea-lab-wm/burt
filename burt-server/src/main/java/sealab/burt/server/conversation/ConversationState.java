@@ -38,6 +38,7 @@ public class ConversationState {
             put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
 
             //quality checking
+            put(CONFIRM_MATCHED_OB, new ConfirmMatchedOBAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             put(PROVIDE_OB_NO_PARSE, new ProvideOBNoParseAction(OB_DESCRIPTION));
             put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
             put(SELECT_OB_SCREEN, new SelectOBScreenAction(Intent.OB_SCREEN_SELECTED));
