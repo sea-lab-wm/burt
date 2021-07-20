@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ class QualityStateUpdater {
     /**
      * add the S2R (missing steps but HQ) after adding the selected missing S2Rs
      */
-    public static void addStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state,
+    public static void addStepAndUpdateGraphState(ConversationState state,
                                                   String stringStep,
                                                   S2RQualityAssessment assessment) {
         List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
@@ -67,7 +68,7 @@ class QualityStateUpdater {
     /**
      * add predicted step and update graph current state
      */
-    public static void addPredictedStepAndUpdateGraphState(ConcurrentHashMap<StateVariable, Object> state,
+    public static void addPredictedStepAndUpdateGraphState(ConversationState state,
                                                            AppStep appStep) {
         // add steps to state
         List<AppStep> appStepList = Collections.singletonList(appStep);
@@ -81,7 +82,7 @@ class QualityStateUpdater {
     /**
      * add the intermediate missing steps into state
      */
-    public static void addStepsToState(ConcurrentHashMap<StateVariable, Object> state,
+    public static void addStepsToState(ConversationState state,
                                        List<AppStep> selectedSteps) {
         List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
         if (!state.containsKey(REPORT_S2R)) {
@@ -94,7 +95,7 @@ class QualityStateUpdater {
 
 
     private static List<BugReportElement> getBugReportElementsFromSteps(List<AppStep> selectedSteps,
-                                                                        ConcurrentHashMap<StateVariable, Object> state) {
+                                                                        ConversationState state) {
         //we need to return a modifiable list
         return new ArrayList<>(selectedSteps.stream()
                 .map(step -> {
@@ -105,7 +106,7 @@ class QualityStateUpdater {
     }
 
 
-    public static void updateOBState(ConcurrentHashMap<StateVariable, Object> state, GraphState obState) {
+    public static void updateOBState(ConversationState state, GraphState obState) {
 
         log.debug("Updating OB state to: " + obState);
 
@@ -115,7 +116,7 @@ class QualityStateUpdater {
     }
 
 
-    public static void updateEBState(ConcurrentHashMap<StateVariable, Object> state, GraphState ebState) {
+    public static void updateEBState(ConversationState state, GraphState ebState) {
 
         log.debug("Updating EB state to: " + ebState);
 

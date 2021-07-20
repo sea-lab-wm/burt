@@ -5,6 +5,7 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.output.HTMLBugReportGenerator;
 
@@ -23,7 +24,7 @@ public @Slf4j
 class GenerateBugReportAction extends ChatBotAction {
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
         // provide the summary of bug report
         String response = "The button below will take you to the summary of the problem you reported.";

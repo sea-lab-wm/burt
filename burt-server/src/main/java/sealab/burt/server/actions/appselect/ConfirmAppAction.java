@@ -4,6 +4,7 @@ import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.UserResponse;
 
@@ -20,7 +21,7 @@ import static sealab.burt.server.msgparsing.Intent.*;
 public class ConfirmAppAction extends ChatBotAction {
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
 
         //-------------------------------------------

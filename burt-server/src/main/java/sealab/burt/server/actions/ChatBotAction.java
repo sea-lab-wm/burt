@@ -3,6 +3,7 @@ package sealab.burt.server.actions;
 import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public abstract class ChatBotAction {
         this.nextExpectedIntents = Arrays.asList(nextExpectedIntents);
     }
 
-    public abstract List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception;
+    public abstract List<ChatBotMessage> execute(ConversationState state) throws Exception;
 
     public final List<Intent> nextExpectedIntents() {
         return nextExpectedIntents;
@@ -62,7 +63,7 @@ public abstract class ChatBotAction {
         }).collect(Collectors.toList());
     }
 
-    protected void startEBChecker(ConcurrentHashMap<StateVariable, Object> state) {
+    protected void startEBChecker(ConversationState state) {
         String appName = state.get(StateVariable.APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
         if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new EBChecker(appName, appVersion));

@@ -11,6 +11,7 @@ import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
@@ -34,7 +35,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
     }
 
     public static List<KeyValues> getStepOptions(List<AppStep> cleanedInferredSteps,
-                                                 ConcurrentHashMap<StateVariable, Object> state) {
+                                                 ConversationState state) {
         return cleanedInferredSteps.stream()
                 .map(step -> {
 
@@ -46,7 +47,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 
@@ -97,7 +98,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
     }
 
-    private List<AppStep> cleanSteps(List<AppStep> steps, ConcurrentHashMap<StateVariable, Object> state) {
+    private List<AppStep> cleanSteps(List<AppStep> steps, ConversationState state) {
 
         if (steps == null) return null;
         if (steps.isEmpty()) return steps;

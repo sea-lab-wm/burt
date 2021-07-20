@@ -3,6 +3,7 @@ package sealab.burt.server.actions.others;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ProvideParticipantIdAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
         Boolean validParticipant = (Boolean) state.get(PARTICIPANT_VALIDATED);
 

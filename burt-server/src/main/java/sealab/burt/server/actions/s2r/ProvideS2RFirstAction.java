@@ -4,6 +4,7 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ProvideS2RFirstAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
         state.put(COLLECTING_S2R, true);
 
         String appName = state.get(APP_NAME).toString();

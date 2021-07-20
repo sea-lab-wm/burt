@@ -7,6 +7,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
@@ -31,7 +32,7 @@ class SelectOBScreenAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         MessageObj messageObj = new MessageObj(
                 " Please hit the \"Done\" button after you have selected it.", "OBScreenSelector");
@@ -67,7 +68,7 @@ class SelectOBScreenAction extends ChatBotAction {
     }
 
     public static List<KeyValues> getObScreenOptions(List<GraphState> matchedStates,
-                                                     ConcurrentHashMap<StateVariable, Object> state,
+                                                     ConversationState state,
                                                      int initialResult) {
         int maxNumOfResults = initialResult + MAX_OB_SCREENS_TO_SHOW;
         return IntStream.range(initialResult, maxNumOfResults)

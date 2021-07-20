@@ -1,6 +1,7 @@
 package sealab.burt.server;
 
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.statecheckers.StateChecker;
 
@@ -15,7 +16,7 @@ public class S2RDescriptionStateCheckerForTest extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
+    public ActionName nextAction(ConversationState state) {
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         return userResponse.getCurrentAction();
     }

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,7 +28,7 @@ class OBDescriptionStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
+    public ActionName nextAction(ConversationState state) {
         try {
             QualityResult result = runOBQualityCheck(state);
             UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);

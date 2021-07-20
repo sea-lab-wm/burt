@@ -7,6 +7,7 @@ import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphDataSource;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
+import sealab.burt.server.conversation.ConversationState;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,13 +22,13 @@ class ScreenshotPathUtils {
     public static final String DEFAULT_SCREENSHOT = "NO_SCREEN_AVAILABLE.png";
 
     public static String getScreenshotPathForGraphState(GraphState graphState,
-                                                        ConcurrentHashMap<StateVariable, Object> state) {
+                                                        ConversationState state) {
         if (graphState == null) return getScreenshotPath(state, null, null);
         String stateScreenshotPath = graphState.getScreenshotPath();
         return getScreenshotPath(state, stateScreenshotPath, graphState.getDataSource());
     }
 
-    private static String getScreenshotPath(ConcurrentHashMap<StateVariable, Object> state,
+    private static String getScreenshotPath(ConversationState state,
                                             String inputScreenshotPath,
                                             GraphDataSource dataSource) {
         Path screenshotPath;
@@ -61,7 +62,7 @@ class ScreenshotPathUtils {
         return FilenameUtils.separatorsToUnix("/" + prefix + "/" + screenshotPath.toString());
     }
 
-    public static String getScreenshotPathForStep(AppStep step, ConcurrentHashMap<StateVariable, Object> state) {
+    public static String getScreenshotPathForStep(AppStep step, ConversationState state) {
         String stepScreenshotPath = step.getScreenshotFile();
         GraphDataSource dataSource = step.getCurrentState().getDataSource();
         if (step.getTransition() != null)

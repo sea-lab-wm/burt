@@ -2,6 +2,7 @@ package sealab.burt.server.actions.others;
 
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
+import sealab.burt.server.conversation.ConversationState;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,7 +15,7 @@ import static sealab.burt.server.StateVariable.*;
 
 public class TimeRecorder {
 
-    public static void recordTime(ConcurrentHashMap<StateVariable, Object> state) throws IOException {
+    public static void recordTime(ConversationState state) throws IOException {
 
         long millis = (long) state.get(END_TIME) - (long) state.get(START_TIME);
 

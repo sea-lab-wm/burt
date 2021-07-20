@@ -10,6 +10,7 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserResponse;
 
@@ -26,9 +27,9 @@ abstract class StateChecker {
         this.defaultAction = defaultAction;
     }
 
-    public abstract ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state);
+    public abstract ActionName nextAction(ConversationState state);
 
-    protected QualityFeedback runS2RQualityCheck(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    protected QualityFeedback runS2RQualityCheck(ConversationState state) throws Exception {
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
         MessageObj messageObj = userResponse.getFirstMessage();
@@ -38,7 +39,7 @@ abstract class StateChecker {
         return qualityResult;
     }
 
-    protected QualityResult runOBQualityCheck(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    protected QualityResult runOBQualityCheck(ConversationState state) throws Exception {
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         OBChecker obChecker = (OBChecker) state.get(OB_CHECKER);
         QualityResult result = obChecker.checkOb(userResponse.getFirstMessage().getMessage());
@@ -47,7 +48,7 @@ abstract class StateChecker {
         return result;
     }
 
-    protected QualityResult runEBQualityCheck(ConcurrentHashMap<StateVariable, Object> state, GraphState obState,
+    protected QualityResult runEBQualityCheck(ConversationState state, GraphState obState,
                                               String obDescription)
             throws Exception {
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);

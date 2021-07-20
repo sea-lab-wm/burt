@@ -8,6 +8,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
@@ -26,7 +27,7 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
         MessageObj messageObj = new MessageObj("Please click the “done” button when you are done.",
                 "S2RScreenSelector");

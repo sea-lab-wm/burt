@@ -3,6 +3,7 @@ package sealab.burt.server.actions.eb;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
@@ -23,7 +24,7 @@ public class ClarifyEBAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         List<BugReportElement> obReportElements = (List<BugReportElement>) state.get(REPORT_OB);
         BugReportElement bugReportElement = obReportElements.get(0);

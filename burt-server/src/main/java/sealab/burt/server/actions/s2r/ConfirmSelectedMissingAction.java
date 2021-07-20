@@ -6,10 +6,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.statecheckers.QualityStateUpdater;
 
@@ -29,7 +26,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
 
         @SuppressWarnings("unchecked") final List<AppStep> allMissingSteps = (List<AppStep>) state.get(S2R_ALL_MISSING);
@@ -88,7 +85,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
     }
 
     private List<ChatBotMessage> getDefaultMessage(List<AppStep> allMissingSteps,
-                                                   ConcurrentHashMap<StateVariable, Object> state) {
+                                                   ConversationState state) {
         this.nextExpectedIntents = Collections.singletonList(S2R_MISSING_SELECTED);
         List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(allMissingSteps, state);
 

@@ -2,6 +2,7 @@ package sealab.burt.server.output;
 
 import org.junit.jupiter.api.Test;
 import sealab.burt.server.StateVariable;
+import sealab.burt.server.conversation.ConversationState;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -22,7 +23,7 @@ class HTMLBugReportGeneratorTest {
     @Test
     void generateOutput() throws Exception {
         File outputFolder = Paths.get("../data/generated_bug_reports", "test.html").toFile();
-        ConcurrentHashMap<StateVariable, Object> state = new ConcurrentHashMap<>();
+        ConversationState state = new ConversationState();
         state.put(APP_NAME, "Mileage");
         state.put(APP_VERSION, "3.1.1");
         List<BugReportElement> OB = new ArrayList<>();

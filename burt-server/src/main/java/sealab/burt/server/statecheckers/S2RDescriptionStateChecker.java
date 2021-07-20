@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
 
 import java.util.List;
@@ -37,7 +38,7 @@ class S2RDescriptionStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
+    public ActionName nextAction(ConversationState state) {
 
         try {
             UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);

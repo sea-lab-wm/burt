@@ -6,6 +6,7 @@ import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
 import sealab.burt.server.output.BugReportElement;
 
@@ -30,7 +31,7 @@ public class EBDescriptionStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
+    public ActionName nextAction(ConversationState state) {
         try {
 
             List<BugReportElement> obReportElements = (List<BugReportElement>) state.get(REPORT_OB);

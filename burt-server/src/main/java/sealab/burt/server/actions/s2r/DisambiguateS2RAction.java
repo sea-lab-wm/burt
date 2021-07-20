@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
@@ -25,7 +26,7 @@ class DisambiguateS2RAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 
         StringBuilder message = new StringBuilder("Oops, it seems ");

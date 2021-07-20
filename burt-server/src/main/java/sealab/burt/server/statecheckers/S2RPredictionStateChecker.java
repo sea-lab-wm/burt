@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.s2r.ProvideFirstPredictedS2RAction;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserResponse;
 
@@ -26,7 +27,7 @@ public class S2RPredictionStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
+    public ActionName nextAction(ConversationState state) {
 
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
         MessageObj message = msg.getFirstMessage();
@@ -104,7 +105,7 @@ public class S2RPredictionStateChecker extends StateChecker {
         return null;
     }
 
-    private boolean isThereANextPath(ConcurrentHashMap<StateVariable, Object> state) {
+    private boolean isThereANextPath(ConversationState state) {
         return ((int) state.get(PREDICTED_S2R_CURRENT_PATH) + 1) < (int) state.get(PREDICTED_S2R_NUMBER_OF_PATHS);
     }
 }

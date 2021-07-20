@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.KeyValues;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
@@ -33,14 +34,14 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
     }
 
     public static List<KeyValues> getPredictedStepOptions(S2RChecker s2rchecker, GraphPath<GraphState,
-            GraphTransition> path, ConcurrentHashMap<StateVariable, Object> state, GraphState currentState) {
+            GraphTransition> path, ConversationState state, GraphState currentState) {
         List<AppStep> pathWithLoops = getPathWithLoops(s2rchecker, path, state, currentState);
         return SelectMissingS2RAction.getStepOptions(pathWithLoops, state);
 
     }
 
     public static List<AppStep> getPathWithLoops(S2RChecker s2rchecker, GraphPath<GraphState, GraphTransition> path,
-                                             ConcurrentHashMap<StateVariable, Object> state, GraphState currentState) {
+                                             ConversationState state, GraphState currentState) {
         // we convert the transitions to the steps
         List<AppStep> steps =  convertGraphTransitionsToAppStep(path);
 
@@ -73,7 +74,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         MessageObj messageObj = new MessageObj("Please click the “done” button when you are done.",
                 "S2RScreenSelector");

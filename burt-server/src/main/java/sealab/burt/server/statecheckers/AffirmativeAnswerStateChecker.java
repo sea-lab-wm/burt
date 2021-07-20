@@ -3,6 +3,7 @@ package sealab.burt.server.statecheckers;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.ConversationState;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,7 +16,7 @@ public class AffirmativeAnswerStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConcurrentHashMap<StateVariable, Object> state) {
+    public ActionName nextAction(ConversationState state) {
         ActionName nextAction = null;
 
         if (state.containsKey(APP_ASKED)) {

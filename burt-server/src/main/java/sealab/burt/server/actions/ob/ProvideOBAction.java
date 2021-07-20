@@ -4,6 +4,7 @@ import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.text.MessageFormat;
@@ -19,7 +20,7 @@ public class ProvideOBAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
+    public List<ChatBotMessage> execute(ConversationState state){
         String appName = state.get(APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
         if (!state.containsKey(OB_CHECKER))

@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import sealab.burt.server.StateVariable;
+import sealab.burt.server.conversation.ConversationState;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +23,7 @@ class HTMLBugReportGenerator {
 
     private static int bugReportId = 1;
 
-    public void generateOutput(File outputFile, ConcurrentHashMap<StateVariable, Object> state) throws Exception {
+    public void generateOutput(File outputFile, ConversationState state) throws Exception {
         File htmlTemplate = new File(Path.of(".", "example", "template.html").toString());
         String finalReport = generateHTML(htmlTemplate, state);
         FileUtils.write(outputFile, finalReport, Charset.defaultCharset());
@@ -30,7 +31,7 @@ class HTMLBugReportGenerator {
     }
 
     String generateHTML(File htmlTemplate,
-                        ConcurrentHashMap<StateVariable, Object> state) throws IOException {
+                        ConversationState state) throws IOException {
 
         Document doc = Jsoup.parse(htmlTemplate, "UTF-8");
         //APP_VERSION

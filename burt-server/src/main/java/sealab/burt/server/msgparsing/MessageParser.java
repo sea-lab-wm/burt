@@ -1,6 +1,7 @@
 package sealab.burt.server.msgparsing;
 
 import sealab.burt.server.StateVariable;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserResponse;
 
@@ -39,7 +40,7 @@ public class MessageParser {
         }
     }
 
-    public static Intent getIntent(UserResponse userResponse, ConcurrentHashMap<StateVariable, Object> state) {
+    public static Intent getIntent(UserResponse userResponse, ConversationState state) {
 
         if (state.containsKey(REPORT_GENERATED))
             return END_CONVERSATION;

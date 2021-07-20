@@ -6,10 +6,7 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.statecheckers.QualityStateUpdater;
 
@@ -24,7 +21,7 @@ import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
 
@@ -145,7 +142,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
 
     private List<ChatBotMessage> getDefaultMessage(List<GraphState> matchedStates,
-                                                   ConcurrentHashMap<StateVariable, Object> state, int position) {
+                                                   ConversationState state, int position) {
         this.nextExpectedIntents = Collections.singletonList(Intent.OB_SCREEN_SELECTED);
 
         List<KeyValues> options = SelectOBScreenAction.getObScreenOptions(matchedStates, state, position);
