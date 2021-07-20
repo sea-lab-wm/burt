@@ -132,7 +132,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
                 return createChatBotMessages(
                         "Okay then, which of the following screens is having the problem?",
-                        new ChatBotMessage(messageObj, options, true));
+                        new ChatBotMessage(messageObj, options, false));
             }
         } else {
             return getDefaultMessage(matchedStates, state, currentObScreenPosition);
@@ -148,10 +148,10 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
         List<KeyValues> options = SelectOBScreenAction.getObScreenOptions(matchedStates, state, position);
 
         MessageObj messageObj = new MessageObj(
-                "From the following options, select the steps you performed before this step", "OBScreenSelector");
+                "From the list below, can you please select the screen that is having the problem", "OBScreenSelector");
 
         return createChatBotMessages(
                 "Sorry, the options you selected are incorrect.",
-                new ChatBotMessage(messageObj, options, true));
+                new ChatBotMessage(messageObj, options, false));
     }
 }
