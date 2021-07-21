@@ -10,9 +10,12 @@ import sealab.burt.server.msgparsing.Intent;
 import java.util.Collections;
 import java.util.List;
 
+import static sealab.burt.server.StateVariable.CURRENT_ATTEMPT_OB_MATCHED;
 import static sealab.burt.server.StateVariable.OB_QUALITY_RESULT;
 
 public class ConfirmMatchedOBAction extends ChatBotAction {
+
+    public static final Integer MAX_ATTEMPTS_OB_MATCHED = 3;
 
     public ConfirmMatchedOBAction(Intent... nextIntents) {
         super(nextIntents);
@@ -23,6 +26,10 @@ public class ConfirmMatchedOBAction extends ChatBotAction {
 
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         GraphState graphState = result.getMatchedStates().get(0);
+
+        Integer currentAttempt = (Integer) state.putIfAbsent(CURRENT_ATTEMPT_OB_MATCHED, 1);
+        if (currentAttempt != null)
+            state.put(CURRENT_ATTEMPT_OB_MATCHED, ++currentAttempt);
 
         List<KeyValues> optionList =
                 SelectOBScreenAction.getObScreenOptions(Collections.singletonList(graphState), state, 0);

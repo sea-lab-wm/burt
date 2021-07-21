@@ -12,7 +12,7 @@ import static sealab.burt.server.msgparsing.Intent.*;
 public class ConversationTestData {
 
     enum FlowName {
-        NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL, PREDICTION, MATCHED_OB, MATCHING_S2R
+        NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL, PREDICTION, MATCHED_OB, MATCHED_OB_MAX_ATTEMPTS, MATCHING_S2R
     }
 
     public static HashMap<FlowName, List<MessageObjectTest>> conversationFlows = new HashMap<>() {{
@@ -22,7 +22,66 @@ public class ConversationTestData {
         put(FlowName.PREDICTION, getConversationForPrediction());
         put(FlowName.MATCHING_S2R, getConversationFlowMatchingS2R());
         put(FlowName.MATCHED_OB, getConversationFlowMatchedOB());
+        put(FlowName.MATCHED_OB_MAX_ATTEMPTS, getConversationFlowMatchedOBMaxAttempts());
     }};
+
+    private static List<MessageObjectTest> getConversationFlowMatchedOBMaxAttempts() {
+
+        KeyValues DroidWeightOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Droid Weight v. 1.5.4"))
+                .findFirst().orElse(null);
+
+        return new ArrayList<>() {{
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
+            //ChatBot: didn't get that, please provide the participant id
+            add(new MessageObjectTest("P23", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(DroidWeightOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
+                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
+                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
+                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("no", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("i should not get some error", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot: Can you please tell me the first step that you performed?
+            add(new MessageObjectTest("I input the weight", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
+            //ChatBot: you didn't specify the input, please provide the step with input
+            add(new MessageObjectTest("I set the weight", SPECIFY_INPUT_S2R,
+                    S2R_DESCRIPTION));
+            //ChatBot: you didn't specify the input, please provide the step with input
+            add(new MessageObjectTest("I input the weight and set current weight in kg", SPECIFY_INPUT_S2R,
+                    S2R_DESCRIPTION));
+            //ChatBot: you didn't specify the input, please provide the step with input
+            add(new MessageObjectTest("I input 55 on the weight", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0")));
+            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));
+        }};
+    }
 
     private static List<MessageObjectTest> getConversationFlowMatchedOB() {
 
@@ -56,7 +115,13 @@ public class ConversationTestData {
             add(new MessageObjectTest("i should not get some error", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: Can you please tell me the first step that you performed?
             add(new MessageObjectTest("I input the weight", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
-            //ChatBot: Please specify input
+            //ChatBot: you didn't specify the input, please provide the step with input
+            add(new MessageObjectTest("I set the weight", SPECIFY_INPUT_S2R,
+                    S2R_DESCRIPTION));
+            //ChatBot: you didn't specify the input, please provide the step with input
+            add(new MessageObjectTest("I input the weight and set current weight in kg", SPECIFY_INPUT_S2R,
+                    S2R_DESCRIPTION));
+            //ChatBot: you didn't specify the input, please provide the step with input
             add(new MessageObjectTest("I input 55 on the weight", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: Okay, it seems the next steps that you performed might be the following
         }};

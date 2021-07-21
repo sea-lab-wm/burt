@@ -18,7 +18,7 @@ public class SpecifyInputS2RAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("It seems that no specific input or value was provided.",
-                "Can you please provide the input to make the step more accurate?");
+                "Can you please rephrase the step and provide an input?");
     }
 
 }
