@@ -1,17 +1,14 @@
 Transitions correctness: true
 
-Transitions (67):
+Transitions (64):
 -993287860: (s:-1659243725,t:1863964359): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
 
--1192826113: (s:1863964359,t:1863964359): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=EditText, idx=price, idnx=0, tx=, x=0, y=306, h=126, w=540, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--716648934: (s:1863964359,t:1863964359): [id=0, ex=0, sq=1, act=(5) type, cp=[, ty=EditText, idx=price, idnx=0, tx=, x=0, y=306, h=126, w=540, dsc=], txt=, exp=1546894226, tr=null] weight=2.0 ds=TR
--320910056: (s:1863964359,t:1863964359): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=EditText, idx=volume, idnx=1, tx=, x=540, y=306, h=126, w=540, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--803549155: (s:1863964359,t:1863964359): [id=1, ex=0, sq=2, act=(5) type, cp=[, ty=EditText, idx=volume, idnx=1, tx=, x=540, y=306, h=126, w=540, dsc=], txt=, exp=1546894226, tr=null] weight=2.0 ds=TR
+-716648934: (s:1863964359,t:1863964359): [id=0, ex=0, sq=1, act=(5) type, cp=[, ty=EditText, idx=price, idnx=0, tx=, x=0, y=306, h=126, w=540, dsc=], txt=, exp=1546894226, tr=null] weight=3.0 ds=TR
+-803549155: (s:1863964359,t:1863964359): [id=1, ex=0, sq=2, act=(5) type, cp=[, ty=EditText, idx=volume, idnx=1, tx=, x=540, y=306, h=126, w=540, dsc=], txt=, exp=1546894226, tr=null] weight=3.0 ds=TR
 -1289005938: (s:1863964359,t:1863964359): [id=3, ex=0, sq=4, act=(5) type, cp=[, ty=EditText, idx=, idnx=1, tx=, x=0, y=748, h=126, w=1080, dsc=], txt=, exp=1546894226, tr=null] weight=1.0 ds=CS
 -1517941029: (s:1863964359,t:1863964359): [id=4, ex=0, sq=5, act=(0) click, cp=[, ty=RelativeLayout, idx=, idnx=0, tx=, x=0, y=74, h=168, w=278, dsc=], txt=, exp=1546894226, tr=null] weight=1.0 ds=CS
--1418021537: (s:1863964359,t:1863964359): [id=4, ex=0, sq=5, act=(0) click, cp=[, ty=EditText, idx=odometer, idnx=0, tx=, x=0, y=432, h=126, w=540, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
 104875493: (s:1863964359,t:-1739857099): [id=5, ex=0, sq=6, act=(5) type, cp=[, ty=EditText, idx=odometer, idnx=0, tx=, x=0, y=432, h=126, w=540, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1900660636: (s:1863964359,t:1863964359): [id=2, ex=0, sq=3, act=(5) type, cp=[, ty=EditText, idx=odometer, idnx=0, tx=, x=0, y=432, h=126, w=540, dsc=], txt=, exp=1546894226, tr=null] weight=2.0 ds=TR
+-1900660636: (s:1863964359,t:1863964359): [id=2, ex=0, sq=3, act=(5) type, cp=[, ty=EditText, idx=odometer, idnx=0, tx=, x=0, y=432, h=126, w=540, dsc=], txt=, exp=1546894226, tr=null] weight=3.0 ds=TR
 1444975306: (s:1863964359,t:-1786966063): [id=9, ex=0, sq=10, act=(0) click, cp=[, ty=RelativeLayout, idx=, idnx=1, tx=, x=264, y=74, h=168, w=282, dsc=], txt=, exp=1546894226, tr=null] weight=1.0 ds=CS
 -50106028: (s:1863964359,t:578707929): [id=9, ex=0, sq=10, act=(0) click, cp=[, ty=Button, idx=save_btn, idnx=1, tx=Save Fillup, x=0, y=998, h=126, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
 22718951: (s:1863964359,t:578707929): [id=4, ex=1, sq=5, act=(0) click, cp=[, ty=Button, idx=save_btn, idnx=1, tx=Save Fillup, x=0, y=1668, h=126, w=1080, dsc=], txt=, exp=1546894226, tr=null] weight=1.0 ds=CS

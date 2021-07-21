@@ -25,32 +25,39 @@ import java.util.stream.Stream;
 public @Slf4j
 class StepResolver {
 
-    private NLActionS2RParser s2rParser;
-    private int graphMaxDepthCheck;
+    private final NLActionS2RParser s2rParser;
+    private final int graphMaxDepthCheck;
 
     public StepResolver(NLActionS2RParser s2rParser, int graphMaxDepthCheck) {
         this.s2rParser = s2rParser;
         this.graphMaxDepthCheck = graphMaxDepthCheck;
     }
 
-    private static boolean isValidStepOnComponent(Entry<AppGuiComponent, Double> foundComponentEntry, AppStep appStep) {
+    private static boolean checkIfComponentsMatch(Entry<AppGuiComponent, Double> foundComponentEntry, AppStep appStep) {
 
         final AppGuiComponent stepComponent = appStep.getComponent();
-        final Integer event = appStep.getAction();
+        final Integer stepEvent = appStep.getAction();
 
         if (foundComponentEntry == null || stepComponent == null) {
-            return DeviceUtils.isChangeRotation(event) ||
-                    DeviceUtils.isClickMenuButton(event);
+            return DeviceUtils.isChangeRotation(stepEvent) ||
+                    DeviceUtils.isClickMenuButton(stepEvent);
         }
 
 //        GraphTransition transition = appStep.getTransition();
         final AppGuiComponent foundComponent = foundComponentEntry.getKey();
-        final AppGuiComponent parent = foundComponent.getParent();
+        final AppGuiComponent foundComponentParent = foundComponent.getParent();
         return stepComponent.equals(foundComponent) ||
                 //these conditions are needed because CrashScope may execute the layouts,
                 // which have the text of the child component
-                (stepComponent.getType().endsWith("Layout") && parent != null && stepComponent.getType().equals
-                        (parent.getType()) && stepComponent.getText().equals(foundComponent.getText()))
+
+                //check if step component and the parent of the found component are layouts and if they show the same
+                // text
+                (stepComponent.getType().endsWith("Layout") && foundComponentParent != null && stepComponent.getType().equals
+                        (foundComponentParent.getType()) && stepComponent.getText().equals(foundComponent.getText()))
+
+
+                //check if the parent of the found component and the step component are the same
+                || (stepComponent.equals(foundComponentParent))
 
                 //&& (foundComponent.getKey().getState() == null
                 //|| (transition.getSourceState().equals(foundComponent.getKey().getState())))
@@ -312,7 +319,7 @@ class StepResolver {
             for (GraphTransition transition : candidateTransitions) {
                 AppStep transitionStep = transition.getStep();
 
-                if (!isValidStepOnComponent(component, transitionStep)) {
+                if (!checkIfComponentsMatch(component, transitionStep)) {
                     log.debug("--------------------------------");
                     log.debug("No valid transition on component");
                     log.debug(String.format("Transition: %s - %s", transition, transitionStep));

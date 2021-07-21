@@ -1,3 +1,7 @@
+//"+";"I input "5" on the "weight"";"[{"sub":"user", "act":"input", "obj":"\"5\"", "prep":"on", "obj2":"\"weight\""}]"
+"+";"I enter "5" on the "weight"";"[{"sub":"user", "act":"enter", "obj":"\"5\"", "prep":"on", "obj2":"\"weight\""}]"
+"+";"I enter "bla bla" on the "weight"";"[{"sub":"user", "act":"enter", "obj":"\"bla bla\"", "prep":"on", "obj2":"\"weight\""}]"
+"+";"I go back";"[{"sub":"user", "act":"go back"}]"
 "+";"I input 55 on the weight";"[{"sub":"user", "act":"input", "obj":"55", "prep":"on", "obj2":"weight"}]"
 "+";"I input the weight";"[{"sub":"user", "act":"input", "obj":"weight", "prep":null, "obj2":null}]"
 "+";"I enter fill up";"[{"sub":"user", "act":"enter", "obj":"fill", "prep":null, "obj2":null}]"

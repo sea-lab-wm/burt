@@ -18,10 +18,10 @@
     <script type="text/javascript">
         $(function() {
             $('.screenshot').on('click', function() {
-                const divElement = $(this);
-                $('.imagepreview').attr('src', divElement.attr('src'));
+                const imgElement = $(this);
+                $('.imagepreview').attr('src', imgElement.attr('src'));
                 $('#imagemodal').modal('show');
-                $('#modal_title').html(divElement.attr('title'));
+                $('#modal_title').html(imgElement.attr('title'));
             });
         });
     </script>

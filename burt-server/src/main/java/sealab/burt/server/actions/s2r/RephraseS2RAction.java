@@ -49,7 +49,7 @@ class RephraseS2RAction extends ChatBotAction {
         else {
             final String objs = getObjs(action);
             if (StringUtils.isEmpty(objs))
-                return "some vocabulary of this step is missing.";
+                return "some vocabulary in this step is missing or I wasn't able to identify it.";
             else
                 return String.format("the terms \"%s\" do not match a valid UI component from the app.", objs);
         }

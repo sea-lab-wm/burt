@@ -3,6 +3,7 @@ package sealab.burt.server.output;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -55,12 +56,12 @@ class HTMLBugReportGenerator {
             Element obSpan = doc.getElementById("ob");
             obSpan.append("<h2>Observed Behavior</h2>");
             for (BugReportElement brElement : OBList) {
-                String message = brElement.getStringElement();
+                String strElement = StringEscapeUtils.escapeHtml4(brElement.getStringElement());
                 String screenshotPath = getLinkScreenshotPath(brElement.getScreenshotPath());
 //            log.debug("OB:" + screenshotPath);
-                if (message != null && message.length() > 0) {
-                    obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + message + "\">");
-                    obSpan.append("<p>" + message + "</p>");
+                if (strElement != null && strElement.length() > 0) {
+                    obSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + strElement + "\">");
+                    obSpan.append("<p>" + strElement + "</p>");
                 }
             }
         }
@@ -71,13 +72,13 @@ class HTMLBugReportGenerator {
                 Element ebSpan = doc.getElementById("eb");
                 ebSpan.append("<h2>Expected Behavior</h2>");
 
-                String message = messageObj.getStringElement();
+                String strElement = StringEscapeUtils.escapeHtml4(messageObj.getStringElement());
                 String screenshotPath = getLinkScreenshotPath(messageObj.getScreenshotPath());
 //                log.debug("EB:" + screenshotPath);
 
-                if (message != null && message.length() > 0) {
-                    ebSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + message + "\">");
-                    ebSpan.append("<p>" + message + "</p>");
+                if (strElement != null && strElement.length() > 0) {
+                    ebSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + strElement + "\">");
+                    ebSpan.append("<p>" + strElement + "</p>");
                 }
             }
         }
@@ -95,7 +96,7 @@ class HTMLBugReportGenerator {
                 content.append("<div class=\"row-fluid\" id=\"row" + (numOfRows + 1) + "\">");
             }
             for (int i = 0; i < S2RList.size(); i++) {
-                String message = S2RList.get(i).getStringElement();
+                String strElement = StringEscapeUtils.escapeHtml4(S2RList.get(i).getStringElement());
 
                 String screenshotPath = getLinkScreenshotPath(S2RList.get(i).getScreenshotPath());
                 int rowIndex = i / 4 + 1;
@@ -103,9 +104,9 @@ class HTMLBugReportGenerator {
                 s2rRow.append("<div class=\"span4\" id=\"step" + (i + 1) + "\">");
                 Element s2rSpan = doc.getElementById("step" + (i + 1));
 //                log.debug("S2R:" + screenshotPath);
-                if (message != null && message.length() > 0) {
-                    s2rSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + message + "\" >");
-                    s2rSpan.append("<p>" + message + "</p>");
+                if (strElement != null && strElement.length() > 0) {
+                    s2rSpan.append("<img class=\"screenshot\" src=\"" + screenshotPath + "\" title=\"" + strElement + "\" >");
+                    s2rSpan.append("<p>" + strElement + "</p>");
                 }
                 if (i < S2RList.size() - 1) {
                     s2rRow.append("<div class=\"span_arrow\"  id=\"arrow" + (i + 1) + "\">");
