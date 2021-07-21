@@ -22,7 +22,7 @@ public @Slf4j
 class SelectOBScreenAction extends ChatBotAction {
 
     public static final int MAX_OB_SCREENS_TO_SHOW = 5;
-    public static final Integer MAX_OB_ATTEMPTS = 3;
+    public static final Integer MAX_OB_SCREEN_ATTEMPTS = 3;
 
     public SelectOBScreenAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);

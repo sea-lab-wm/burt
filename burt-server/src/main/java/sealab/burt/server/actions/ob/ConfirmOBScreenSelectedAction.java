@@ -1,6 +1,5 @@
 package sealab.burt.server.actions.ob;
 
-import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
@@ -12,7 +11,6 @@ import sealab.burt.server.statecheckers.QualityStateUpdater;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.OB_DESCRIPTION;
@@ -86,7 +84,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
             state.remove(OB_SCREEN_SELECTED);
 
             Integer currentAttempt = (Integer) state.get(StateVariable.CURRENT_ATTEMPT_OB_SCREENS);
-            if (currentAttempt >= SelectOBScreenAction.MAX_OB_ATTEMPTS) {
+            if (currentAttempt >= SelectOBScreenAction.MAX_OB_SCREEN_ATTEMPTS) {
                 state.remove(CURRENT_ATTEMPT_OB_SCREENS);
 
                 startEBChecker(state);
