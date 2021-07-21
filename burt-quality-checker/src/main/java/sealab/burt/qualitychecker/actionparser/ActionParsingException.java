@@ -4,20 +4,20 @@ import java.util.List;
 
 public class ActionParsingException extends Exception {
 
-    private ParsingResult result;
+    private MatchingResult result;
     private List<Object> resultData;
 
-    public ActionParsingException(ParsingResult result) {
+    public ActionParsingException(MatchingResult result) {
         this(result, null);
     }
 
-    public ActionParsingException(ParsingResult result, List<Object> resultData) {
+    public ActionParsingException(MatchingResult result, List<Object> resultData) {
         this.result = result;
         this.resultData = resultData;
     }
 
 
-    public ParsingResult getResult() {
+    public MatchingResult getResult() {
         return result;
     }
 

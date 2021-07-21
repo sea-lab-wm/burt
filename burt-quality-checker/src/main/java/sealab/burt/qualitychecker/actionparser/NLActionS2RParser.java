@@ -2,8 +2,6 @@ package sealab.burt.qualitychecker.actionparser;
 
 import com.googlecode.concurrenttrees.radix.node.concrete.DefaultCharSequenceNodeFactory;
 import com.googlecode.concurrenttrees.solver.LCSubstringSolver;
-import edu.semeru.android.core.dao.DynGuiComponentDao;
-import edu.semeru.android.core.dao.exception.CRUDException;
 import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import edu.semeru.android.testing.helpers.AndroidKeyEvents;
@@ -11,14 +9,11 @@ import edu.semeru.android.testing.helpers.KeyCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
 import sealab.burt.qualitychecker.graph.AppGuiComponent;
 import sealab.burt.qualitychecker.graph.Appl;
-import sealab.burt.qualitychecker.graph.db.DBUtils;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.graph.db.Transform;
 import seers.appcore.utils.JavaUtils;
@@ -302,7 +297,7 @@ class NLActionS2RParser {
                 }
             }
 
-            throw new ActionParsingException(ParsingResult.UNKNOWN_ACTION);
+            throw new ActionParsingException(MatchingResult.UNKNOWN_ACTION);
         }
 
         //** at this point we found the action group **//
@@ -313,7 +308,7 @@ class NLActionS2RParser {
 
         //could not disambiguate the action
         if (actionGroup == null) {
-            throw new ActionParsingException(ParsingResult.AMBIGUOUS_ACTION, new ArrayList<>(actionGroups));
+            throw new ActionParsingException(MatchingResult.AMBIGUOUS_ACTION, new ArrayList<>(actionGroups));
         }
 
         //transform the action group into an event
@@ -321,7 +316,7 @@ class NLActionS2RParser {
 
         //determine the event, ie. action not mapped
         if (event == null)
-            throw new ActionParsingException(ParsingResult.ACTION_NOT_MAPPED, Collections.singletonList(actionGroup));
+            throw new ActionParsingException(MatchingResult.ACTION_NOT_MAPPED, Collections.singletonList(actionGroup));
 
         if (DeviceUtils.isClick(event)) {
 
@@ -424,7 +419,7 @@ class NLActionS2RParser {
         }
 
         if (componentFound == null && !componentSkipped) {
-            throw new ActionParsingException(ParsingResult.COMPONENT_NOT_FOUND);
+            throw new ActionParsingException(MatchingResult.COMPONENT_NOT_FOUND);
         }
 
         return componentFound;
@@ -651,7 +646,7 @@ class NLActionS2RParser {
         else if (DeviceUtils.isKeyEvent(event)) {
             String textVal = nlAction.getObject();
             if (textVal == null)
-                throw new ActionParsingException(ParsingResult.EMPTY_OBJECTS);
+                throw new ActionParsingException(MatchingResult.EMPTY_OBJECTS);
             String keyValue = getKeyValue(textVal);
             if (keyValue != null)
                 text = keyValue;
@@ -671,7 +666,7 @@ class NLActionS2RParser {
             String textVal = nlAction.getObject();
 
             if (textVal == null)
-                throw new ActionParsingException(ParsingResult.EMPTY_OBJECTS);
+                throw new ActionParsingException(MatchingResult.EMPTY_OBJECTS);
 
             //case: set xyz to/with 5
             String object2 = nlAction
@@ -709,7 +704,7 @@ class NLActionS2RParser {
                 }*/
 
             if (text == null)
-                throw new ActionParsingException(ParsingResult.EMPTY_TEXT);
+                throw new ActionParsingException(MatchingResult.EMPTY_TEXT);
         }
 
         return text;
@@ -814,7 +809,7 @@ class NLActionS2RParser {
 
             //not a text field? then which component should I find? -> throw exception
             if (!ComponentType.TEXT_FIELD.equals(invIdxSpecificComponentTypes.get(textToMatch.componentType)))
-                throw new ActionParsingException(ParsingResult.COMPONENT_NOT_SPECIFIED,
+                throw new ActionParsingException(MatchingResult.COMPONENT_NOT_SPECIFIED,
                         Collections.singletonList(textToMatch.original));
 
 /*
@@ -1144,7 +1139,7 @@ class NLActionS2RParser {
 
         //only text fields are allowed for type events
         if (DeviceUtils.isAnyType(event) && !isTextField(component.getType())) {
-            throw new ActionParsingException(ParsingResult.INCORRECT_COMPONENT_FOUND,
+            throw new ActionParsingException(MatchingResult.INCORRECT_COMPONENT_FOUND,
                     Collections.singletonList(component));
         }
 
@@ -1282,7 +1277,7 @@ class NLActionS2RParser {
 
         if (componentFound == null) {
             log.debug("Couldn't resolve multiple matched components");
-            throw new ActionParsingException(ParsingResult.MULTIPLE_COMPONENTS_FOUND,
+            throw new ActionParsingException(MatchingResult.MULTIPLE_COMPONENTS_FOUND,
                     matchedComponents.stream()
                             .map(Entry::getKey)
                             .collect(Collectors.toList()));
@@ -1423,7 +1418,7 @@ class NLActionS2RParser {
         }
 
         if (component == null)
-            throw new ActionParsingException(ParsingResult.COMPONENT_NOT_FOUND,
+            throw new ActionParsingException(MatchingResult.COMPONENT_NOT_FOUND,
                     Collections.singletonList(textToMatch.original));
 
         return component;

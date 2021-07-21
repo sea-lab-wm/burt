@@ -134,7 +134,7 @@ class S2RChecker {
 
         // First try to match with a Step in the graph
         ResolvedStepResult result = resolver.resolveActionInGraph(currNLAction, executionGraph, currentState);
-        ResolvedStepResult result2;
+//        ResolvedStepResult result2;
 
         // Check to see if we were able to match with a step, if not we should try to
         // match with a component.
@@ -150,12 +150,12 @@ class S2RChecker {
             // Get the steps to navigate to the screen where the GUI-component is displayed,
             // if it is not the one on the current screen
             if (result2.isStepNotMatched()) {*/
-            result2 =  new ResolvedStepResult();
+//            result2 =  new ResolvedStepResult();
 
-                final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, result2);
+                final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result);
                 if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);
                 else {
-                    final S2RQualityAssessment assessment = buildVocabularyMismatchAssessment(result, result2);
+                    final S2RQualityAssessment assessment = buildVocabularyMismatchAssessment(result);
                     s2rQA.addQualityAssessment(assessment);
                 }
                 return executionResults;
@@ -713,15 +713,15 @@ class S2RChecker {
     }
 
 
-    private S2RQualityAssessment buildAmbiguousAssessment(ResolvedStepResult result, ResolvedStepResult result2) {
+    private S2RQualityAssessment buildAmbiguousAssessment(ResolvedStepResult result) {
 
-        if (result.anyAmbiguousResultPresent() || result2.anyAmbiguousResultPresent()) {
+        if (result.anyAmbiguousResultPresent() ) {
 
             final S2RQualityAssessment assessment = new S2RQualityAssessment(S2RQualityCategory.LOW_Q_AMBIGUOUS);
 
             //------------------------------------
             final Set<Object> ambiguousComponents = result.getAmbiguousComponents();
-            ambiguousComponents.addAll(result2.getAmbiguousComponents());
+//            ambiguousComponents.addAll(result2.getAmbiguousComponents());
             List<AppGuiComponent> components =
                     (List<AppGuiComponent>) ambiguousComponents.stream()
                             .flatMap(c -> ((List) c).stream())
@@ -732,7 +732,7 @@ class S2RChecker {
             //-----------------------------
 
             final Set<Object> ambiguousActions = result.getAmbiguousActions();
-            ambiguousActions.addAll(result2.getAmbiguousActions());
+//            ambiguousActions.addAll(result2.getAmbiguousActions());
             assessment.setAmbiguousActions(translateActions(ambiguousActions.stream().
                     map(Object::toString).collect(Collectors.toList())));
 
@@ -769,15 +769,15 @@ class S2RChecker {
         }
     }*/
 
-    private S2RQualityAssessment buildVocabularyMismatchAssessment(ResolvedStepResult result,
-                                                                   ResolvedStepResult result2) {
+    private S2RQualityAssessment buildVocabularyMismatchAssessment(ResolvedStepResult result) {
         final S2RQualityAssessment assessment = new S2RQualityAssessment(S2RQualityCategory.LOW_Q_VOCAB_MISMATCH);
 
-        if (result.anyActionResultPresent() || result2.anyActionResultPresent())
+        if (result.anyActionResultPresent() )
             assessment.setVerbVocabMismatch();
 
-        if (result.anyObjsResultPresent() || result2.anyObjsResultPresent())
+        if (( result.anyObjsResultPresent() && !result.isAnyMatchingResultsPresent(MatchingResult.COMPONENT_FOUND)))
             assessment.setObjsVocabMismatch();
+
         return assessment;
     }
 
