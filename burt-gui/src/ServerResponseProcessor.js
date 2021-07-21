@@ -4,10 +4,12 @@ const ERROR_CODE = -1;
 const END_CONVERSATION_CODE = 100;
 
 const processResponse = (responsePromise, actionProvider) => {
-    function processResponse2(httpReponse) {
+    function processResponse2(httpReponse, lastMsgId) {
         try {
             console.log("Response from the server: ")
             console.log(httpReponse)
+
+            actionProvider.removeMsg(lastMsgId)
 
             let conversationResponse = httpReponse.data;
             if (conversationResponse.code === ERROR_CODE)
@@ -71,8 +73,19 @@ const processResponse = (responsePromise, actionProvider) => {
         }
     }
 
+    //----------------------------------------------
+
+    //we show the dots showing the chatbot is processing
+    //15 mins limit before the message is deleted
+    let tempBotMsg = actionProvider.createChatBotMsg("",{delay: 15*60000});
+    actionProvider.updateChatbotState(tempBotMsg)
+
+    /*setTimeout(() => {
+        actionProvider.removeMsg(tempBotMsg.id)
+    }, 10000)*/
+
     responsePromise.then(response => {
-        processResponse2(response)
+        processResponse2(response, tempBotMsg.id)
 
     }).catch(error => {
         console.error(`There was an unexpected error: ${error}`);

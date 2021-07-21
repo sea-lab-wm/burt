@@ -2,8 +2,6 @@ import ApiClient from "./ApiClient";
 import SessionManager from "./SessionManager";
 import processResponse from "./ServerResponseProcessor";
 
-
-
 class MessageParser {
     constructor(actionProvider, state) {
         this.actionProvider = actionProvider;

@@ -19,12 +19,14 @@ const ChatbotMessage = ({
   delay,
   id,
 }) => {
-  const [show, toggleShow] = useState(false);
+  const [show, toggleShow] = useState(true);
 
   useEffect(() => {
     const disableLoading = (messages, setState) => {
-      let defaultDisableTime = 750;
-      if (delay) defaultDisableTime += delay;
+      let defaultDisableTime = 300;
+      if (delay) {
+        defaultDisableTime += delay;
+      }
 
       setTimeout(() => {
         const newMessages = [...messages];
@@ -49,13 +51,13 @@ const ChatbotMessage = ({
     disableLoading(messages, setState);
   }, [delay, id]);
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (delay) {
       setTimeout(() => toggleShow(true), delay);
     } else {
       toggleShow(true);
     }
-  }, [delay]);
+  }, [delay]);*/
 
   const chatBoxCustomStyles = {};
   const arrowCustomStyles = {};
