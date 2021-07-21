@@ -1,7 +1,5 @@
 // import Chatbot from "react-chatbot-kit";
 
-import {createChatBotMessage} from "react-chatbot-kit";
-
 const axios = require('axios')
 // ActionProvider starter code
 // import sessions from "./session/Session";
@@ -93,6 +91,24 @@ class ActionProvider{
 
         this.updateChatbotState(message);
     };
+
+    createChatBotMsg(msg, options){
+        return this.createChatBotMessage(
+           msg, options
+        )
+    }
+
+    removeMsg(lastMsgId){
+        let fn = prevState => {
+            const newMessages = [...prevState.messages];
+            const idx = newMessages.findIndex(x => x.id === lastMsgId)
+            newMessages.splice(idx, 1)
+            return {
+                ...prevState, messages: [...newMessages]
+            }
+        };
+        this.setState(fn)
+    }
 
     updateChatbotState2(message, values, values2) {
         const messageObj = this.createChatBotMessage(

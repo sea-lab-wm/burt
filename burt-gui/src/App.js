@@ -25,7 +25,6 @@ function App() {
         SessionManager.endSession()
     }
 
-
     //--------------------------------
 
     console.log("Current session id: ", sessionId)
