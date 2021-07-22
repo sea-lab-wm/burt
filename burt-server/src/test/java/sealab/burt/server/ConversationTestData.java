@@ -663,18 +663,23 @@ public class ConversationTestData {
             //ChatBot: the eb is general, is this the screen is having the problem?
             add(new MessageObjectTest("yes", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
-            add(new MessageObjectTest("i opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
-            //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
-                    WITH_SELECTED_VALUES,
-                    Collections.singletonList("0"))); //"0" means the first option
-            //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
-            //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
-            //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
-            //ChatBot: give me a S2R
+//            add(new MessageObjectTest("i opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
+//            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
+//                    WITH_SELECTED_VALUES,
+//                    Collections.singletonList("0"))); //"0" means the first option
+//            //ChatBot: please select the correct predicted S2Rs
+//            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
+//            //ChatBot: please select the correct predicted S2Rs
+//            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
+//            //ChatBot: please select the correct predicted S2Rs
+//            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+//            //ChatBot: give me a S2R
+// ----------------------------------------------------------------------
+            /*at this time, the predicted path does not consider loops, so if the first step is "i opened the app", there is no predicted paths,
+            because the OB is to fill up some text field in one screen.
+            */
+            add(new MessageObjectTest("i opened the app", PREDICT_FIRST_S2R, S2R_DESCRIPTION));
+            //ChatBot: Okay, can you please provide the next step?
             add(new MessageObjectTest("bla bla", PROVIDE_S2R_NO_PARSE, S2R_DESCRIPTION));
             //ChatBot: I couldn't parse the msg, please rephrase it
             add(new MessageObjectTest("I ate that", REPHRASE_S2R, S2R_DESCRIPTION));
@@ -703,7 +708,7 @@ public class ConversationTestData {
             //ChatBot: this steps is ambiguous, please rephrase it
             add(new MessageObjectTest("I entered gallons", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
             //ChatBot: this steps has no input, please provide it
-            add(new MessageObjectTest("I entered 23 gallons", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest("I entered 23 gallons", PREDICT_FIRST_S2R, S2R_DESCRIPTION));
            /* //ChatBot: there are missing steps, please select the ones are correct
             add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
                     WITH_SELECTED_VALUES,
@@ -713,17 +718,17 @@ public class ConversationTestData {
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step*/
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
-                    WITH_SELECTED_VALUES,
-                    Collections.singletonList("0"))); //"0" means the first option
+//            add(new MessageObjectTest("done", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED,
+//                    WITH_SELECTED_VALUES,
+//                    Collections.singletonList("0"))); //"0" means the first option
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
-            //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
-            //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
-            //ChatBot: ok, what is the next step?
-            add(new MessageObjectTest("I closed the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
+//            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
+//            //ChatBot: please select the correct predicted S2Rs
+//            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R, S2R_PREDICTED_SELECTED));
+//            //ChatBot: please select the correct predicted S2Rs
+//            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+//            //ChatBot: ok, what is the next step?
+            add(new MessageObjectTest("I closed the app", PREDICT_FIRST_S2R, S2R_DESCRIPTION));
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
