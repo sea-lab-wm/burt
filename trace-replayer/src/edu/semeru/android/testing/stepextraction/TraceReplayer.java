@@ -113,13 +113,13 @@ public class TraceReplayer {
         String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "antennapod";
-        String appPackage = "de.danoeh.antennapod.debug";
-        String appVersion = "1.6.2.3";
-        String mainActivity = "de.danoeh.antennapod.activity.MainActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/Apks_for_pilot/APOD-RB/antennapod.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/Antennapod/getevent-1.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/Antennapod1/getevent-1";
+        String appName = "gnucash";
+        String appPackage = "org.gnucash.android";
+        String appVersion = "2.1.3";
+        String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/GNU-CC9/gnucash.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/GNU-CC9/getevent-1.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/GNU-CC9/getevent-1";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -290,7 +290,7 @@ public class TraceReplayer {
                             step.setSequenceStep(sequence);
                             step.setScreen(screen);
                             step.setTextEntry("none");
-                            Thread.sleep(1000);
+                            Thread.sleep(8000);
                             
                             
                             String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
@@ -333,7 +333,7 @@ public class TraceReplayer {
                                 step.setSequenceStep(sequence);
                                 step.setScreen(screen);
                                 step.setTextEntry("none");
-                                Thread.sleep(1000);
+                                Thread.sleep(8000);
                                 
                                 
                                 String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";     
@@ -423,9 +423,7 @@ public class TraceReplayer {
                 
                 
                 i++;
-            } else if(isSearchActivity) {
-            	
-            }
+            } 
             else {
             	//To capture the latest screenshot during typing
                 String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";  
