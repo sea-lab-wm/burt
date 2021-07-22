@@ -7,7 +7,6 @@ import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
 import sealab.burt.server.conversation.*;
@@ -18,7 +17,6 @@ import sealab.burt.server.statecheckers.QualityStateUpdater;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -84,14 +82,15 @@ public class SelectMissingS2RAction extends ChatBotAction {
         //-----------------
 
         MessageObj messageObj = new MessageObj(
-                "From the following options, select the steps you performed before this step and click the " +
-                        "\"done\" button", WidgetName.S2RScreenSelector);
+                "Remember that the displayed screenshots are for reference only."
+                , WidgetName.S2RScreenSelector);
         String highQualityStepMessage = (String) state.get(S2R_HQ_MISSING);
         return createChatBotMessages(
                 "Got it! You reported the step \"" + highQualityStepMessage + "\"",
-                "However, it seems that before that step you had to perform additional steps. ",
-                "Remember that the displayed screenshots are for reference only.",
-                new ChatBotMessage(messageObj, stepOptions, true));
+                "It seems that before that step you had to perform additional steps. ",
+                "From the following options, select the steps you performed before this step and click the " +
+                        "\"done\" button"
+                , new ChatBotMessage(messageObj, stepOptions, true));
 
     }
 

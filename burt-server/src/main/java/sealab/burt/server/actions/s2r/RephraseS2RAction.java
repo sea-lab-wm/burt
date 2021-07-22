@@ -30,7 +30,8 @@ class RephraseS2RAction extends ChatBotAction {
 
         StringBuilder message = new StringBuilder("Oops, it seems ");
         message.append(getFeedbackMessage(feedback));
-        return createChatBotMessages(message.toString(), " Can you please rephrase the step more accurately?");
+        return createChatBotMessages(message.toString(),
+                " Can you please rephrase the step more accurately or provide a different one?");
 
     }
 
@@ -46,12 +47,14 @@ class RephraseS2RAction extends ChatBotAction {
         else if (assessment.isVerbVocabMismatch())
             return String.format("the terms \"%s\" do not match a valid action from the app.",
                     action.getAction());
-        else {
+        else if (assessment.isObjsVocabMismatch()){
             final String objs = getObjs(action);
             if (StringUtils.isEmpty(objs))
                 return "some vocabulary in this step is missing or I wasn't able to identify it.";
             else
                 return String.format("the terms \"%s\" do not match a valid UI component from the app.", objs);
+        }else {
+            return "I couldn't recognize the step.";
         }
     }
 

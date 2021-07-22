@@ -43,6 +43,11 @@ class ConversationTest extends AbstractTest {
     }
 
     @org.junit.Test
+    public void testFlowEulerIdealMileage53Second() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_MILEAGE_53_2);
+    }
+
+    @org.junit.Test
     public void testMatchedOBMaxAttemptFlow() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.MATCHED_OB_MAX_ATTEMPTS);
     }

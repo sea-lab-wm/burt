@@ -109,17 +109,17 @@ public class TraceReplayer {
     
     public void runTraceReplayer() throws Exception{
         androidSDKPath = "/Users/junayed/Library/Android/sdk";
-        String pythonScriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/BURT-git/burt/crashscope/lib/python-scripts";
-        String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/BURT-git/burt/crashscope/lib/scripts";
+        String pythonScriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/python-scripts";
+        String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "mileage";
-        String appPackage = "com.evancharlton.mileage";
-        String appVersion = "3.1.1";
-        String mainActivity = "com.evancharlton.mileage.Mileage";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/BURT-git/burt/trace-replayer/test-apks/mileage-3.1.1.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/CollectedUserData/getevent-mileage3.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/KevinMoran/BugReporting/test-output";
+        String appName = "antennapod";
+        String appPackage = "de.danoeh.antennapod.debug";
+        String appVersion = "1.6.2.3";
+        String mainActivity = "de.danoeh.antennapod.activity.MainActivity";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/Apks_for_pilot/APOD-RB/antennapod.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/Antennapod/getevent-2.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/Antennapod/getevent-2";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -380,7 +380,7 @@ public class TraceReplayer {
                 step.setScreen(screen);
                 step.setTextEntry(textEntry);
                 
-                if(guiEventVO.getHvInfoComponent().getName().endsWith("EditText")) {
+                if(guiEventVO.getHvInfoComponent() != null && guiEventVO.getHvInfoComponent().getName().endsWith("EditText")) {
                 	step.setAction(StepByStepEngine.CLICK_TYPE);
                 }
 

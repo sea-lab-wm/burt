@@ -233,12 +233,12 @@ class StepResolver {
             //-------------------------------------
 
             // Determine event
-            Integer event;
+            Integer detectedEvent;
             try {
 
                 log.debug("Resolving the event...");
 
-                event = s2rParser.determineEvent(currNLAction, app, stateComponents);
+                detectedEvent = s2rParser.determineEvent(currNLAction, app, stateComponents);
             } catch (ActionParsingException e) {
                 log.debug("Could not determine the event in the candidate state/screen: "
                         + candidateState.getUniqueHash() + " - " + e.getResult());
@@ -249,13 +249,12 @@ class StepResolver {
             //-------------------------------------
             // Determine the candidate transitions that match the event
 
-            Integer event2 = event;
-            final boolean isInputEvent = DeviceUtils.isAnyInputType(event2);
+            Integer detectedEvent2 = detectedEvent;
+            final boolean isInputEvent = DeviceUtils.isAnyInputType(detectedEvent2);
             final Predicate<GraphTransition> filterPredicate = transition -> {
                 final AppStep step = transition.getStep();
                 final Integer stepEvent = step.getAction();
-                return event2.equals(stepEvent) || (isInputEvent &&
-                        DeviceUtils.isAnyInputType(stepEvent) == isInputEvent);
+                return detectedEvent2.equals(stepEvent) || (isInputEvent && DeviceUtils.isAnyInputType(stepEvent));
             };
             final List<GraphTransition> candidateTransitions = executionGraph.getGraph().
                     outgoingEdgesOf(candidateState).stream().filter(filterPredicate).collect(Collectors.toList());
@@ -275,11 +274,12 @@ class StepResolver {
             try {
                 log.debug("Resolving the component...");
 
-                component = s2rParser.determineComponent(currNLAction, stateComponents, event, true);
+                component = s2rParser.determineComponent(currNLAction, stateComponents, detectedEvent, true);
+                result.addCount(MatchingResult.COMPONENT_FOUND);
             } catch (ActionParsingException e) {
                 log.debug("Could not find the component in the candidate state/screen: "
                         + candidateState.getUniqueHash() + " - " + e.getResult());
-                if (e.getResult().equals(ParsingResult.MULTIPLE_COMPONENTS_FOUND)) {
+                if (e.getResult().equals(MatchingResult.MULTIPLE_COMPONENTS_FOUND)) {
                     if (e.getResultData() != null) log.debug(e.getResultData().toString());
                 }
                 result.addCount(e);
@@ -295,7 +295,7 @@ class StepResolver {
                 if (component != null) {
                     componentId = component.getKey().getDbId();
                 }
-                text = s2rParser.determineText(app, event, componentId, currNLAction);
+                text = s2rParser.determineText(app, detectedEvent, componentId, currNLAction);
                 text = DeviceUtils.encodeText(text);
             } catch (ActionParsingException e) {
                 log.debug("Could not determine the text for the candidate state/screen: "
@@ -308,7 +308,8 @@ class StepResolver {
 
             log.debug("--------------------------------");
             log.debug("Candidate transitions (" + candidateTransitions.size() + "):" + candidateTransitions);
-            log.debug(String.format("Event identified: %s", event));
+            log.debug(String.format("Event identified: %s - %s", detectedEvent,
+                    GraphTransition.getAction(detectedEvent)));
             log.debug(String.format("Component identified: %s", component));
             log.debug(String.format("Text identified: %s", text));
             log.debug("--------------------------------");
@@ -328,7 +329,7 @@ class StepResolver {
                 }
 
                 //build the step
-                AppStep tempStep = new AppStep(event, transitionStep.getComponent(), text);
+                AppStep tempStep = new AppStep(detectedEvent, transitionStep.getComponent(), text);
                 tempStep.setId(transitionStep.getId());
                 tempStep.setExecution(transitionStep.getExecution());
                 tempStep.setException(transitionStep.getException());
@@ -570,7 +571,7 @@ class StepResolver {
                     result.addCount(e1);
                     log.debug("Could not find the component in candidate state/screen: "
                             + state.getUniqueHash() + " - " + e.getResult());
-                    if (e.getResult().equals(ParsingResult.MULTIPLE_COMPONENTS_FOUND)) {
+                    if (e.getResult().equals(MatchingResult.MULTIPLE_COMPONENTS_FOUND)) {
                         if (resultData != null) log.debug(resultData.toString());
                     }
                 }
@@ -578,7 +579,7 @@ class StepResolver {
                 result.addCount(e);
                 log.debug("Could not find the component in candidate state/screen: "
                         + state.getUniqueHash() + " - " + e.getResult());
-                if (e.getResult().equals(ParsingResult.MULTIPLE_COMPONENTS_FOUND)) {
+                if (e.getResult().equals(MatchingResult.MULTIPLE_COMPONENTS_FOUND)) {
                     if (resultData != null) log.debug(resultData.toString());
                 }
             }

@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class ResolvedStepResult {
 
     private AppStep step;
-    private HashMap<ParsingResult, Integer> matchResultCounts = new HashMap<>();
-    private HashMap<ParsingResult, Set<Object>> matchResultElements = new HashMap<>();
+    private HashMap<MatchingResult, Integer> matchResultCounts = new HashMap<>();
+    private HashMap<MatchingResult, Set<Object>> matchResultElements = new HashMap<>();
 
     public ResolvedStepResult() {
     }
@@ -29,7 +29,7 @@ public class ResolvedStepResult {
     public void addCount(ActionParsingException e) {
         if (matchResultCounts == null) matchResultCounts = new LinkedHashMap<>();
         if (e == null) return;
-        final ParsingResult result = e.getResult();
+        final MatchingResult result = e.getResult();
         addCount(result);
         addElement(e);
 
@@ -42,15 +42,15 @@ public class ResolvedStepResult {
         matchResultElements.put(e.getResult(), elements);
     }
 
-    public void addCount(ParsingResult result) {
+    public void addCount(MatchingResult result) {
         if (result == null) return;
         final Integer count = matchResultCounts.getOrDefault(result, 0);
         matchResultCounts.put(result, count + 1);
     }
 
 
-    public Set<Object> getElements(ParsingResult... parsingResults) {
-        return Arrays.stream(parsingResults)
+    public Set<Object> getElements(MatchingResult... matchingResults) {
+        return Arrays.stream(matchingResults)
                 .map(r -> matchResultElements.get(r))
                 .filter(Objects::nonNull)
                 .flatMap(Collection::stream)
@@ -61,33 +61,33 @@ public class ResolvedStepResult {
         return this.step == null;
     }
 
-    public boolean isAnyParsingResultsPresent(ParsingResult... parsingResults) {
-        for (ParsingResult parsingResult : parsingResults) {
-            if (matchResultCounts.containsKey(parsingResult)) return true;
+    public boolean isAnyMatchingResultsPresent(MatchingResult... matchingResults) {
+        for (MatchingResult matchingResult : matchingResults) {
+            if (matchResultCounts.containsKey(matchingResult)) return true;
         }
         return false;
     }
 
     public boolean anyActionResultPresent() {
-        return isAnyParsingResultsPresent(ParsingResult.ACTION_NOT_MAPPED,
-                ParsingResult.AMBIGUOUS_ACTION,
-                ParsingResult.ACTION_NOT_MATCHED, ParsingResult.UNKNOWN_ACTION);
+        return isAnyMatchingResultsPresent(MatchingResult.ACTION_NOT_MAPPED,
+                MatchingResult.AMBIGUOUS_ACTION,
+                MatchingResult.ACTION_NOT_MATCHED, MatchingResult.UNKNOWN_ACTION);
     }
 
     public boolean anyObjsResultPresent() {
-        return isAnyParsingResultsPresent(ParsingResult.EMPTY_OBJECTS, ParsingResult.COMPONENT_NOT_FOUND,
-                ParsingResult.COMPONENT_NOT_SPECIFIED, ParsingResult.INCORRECT_COMPONENT_FOUND);
+        return isAnyMatchingResultsPresent(MatchingResult.EMPTY_OBJECTS, MatchingResult.COMPONENT_NOT_FOUND,
+                MatchingResult.COMPONENT_NOT_SPECIFIED, MatchingResult.INCORRECT_COMPONENT_FOUND);
     }
 
     public boolean anyAmbiguousResultPresent() {
-        return isAnyParsingResultsPresent(ParsingResult.AMBIGUOUS_ACTION, ParsingResult.MULTIPLE_COMPONENTS_FOUND);
+        return isAnyMatchingResultsPresent(MatchingResult.AMBIGUOUS_ACTION, MatchingResult.MULTIPLE_COMPONENTS_FOUND);
     }
 
     public Set<Object> getAmbiguousComponents() {
-        return getElements(ParsingResult.MULTIPLE_COMPONENTS_FOUND);
+        return getElements(MatchingResult.MULTIPLE_COMPONENTS_FOUND);
     }
 
     public Set<Object> getAmbiguousActions() {
-        return getElements(ParsingResult.AMBIGUOUS_ACTION);
+        return getElements(MatchingResult.AMBIGUOUS_ACTION);
     }
 }
