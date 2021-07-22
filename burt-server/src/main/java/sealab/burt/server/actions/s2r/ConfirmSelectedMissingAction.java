@@ -72,7 +72,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
                     .append(highQualityStepMessage)
                     .append("\"?");
 
-            return createChatBotMessages(msg1.toString(), msg2);
+            return createChatBotMessages(msg1.toString(), msg2.toString());
 
         } else if ("none of above".equals(message.getMessage())) {
 
