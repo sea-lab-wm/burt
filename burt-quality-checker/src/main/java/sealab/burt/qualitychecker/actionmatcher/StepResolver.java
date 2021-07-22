@@ -1,7 +1,7 @@
 /**
  * Created by Kevin Moran on Mar 16, 2018
  */
-package sealab.burt.qualitychecker.actionparser;
+package sealab.burt.qualitychecker.actionmatcher;
 
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
@@ -25,10 +25,10 @@ import java.util.stream.Stream;
 public @Slf4j
 class StepResolver {
 
-    private final NLActionS2RParser s2rParser;
+    private final NLActionS2RMatcher s2rParser;
     private final int graphMaxDepthCheck;
 
-    public StepResolver(NLActionS2RParser s2rParser, int graphMaxDepthCheck) {
+    public StepResolver(NLActionS2RMatcher s2rParser, int graphMaxDepthCheck) {
         this.s2rParser = s2rParser;
         this.graphMaxDepthCheck = graphMaxDepthCheck;
     }
@@ -181,7 +181,7 @@ class StepResolver {
                 return new ResolvedStepResult(openAppStep);
             }
 
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             //The open app step should not fail, if it does, then the action is not an open app step
         }
 
@@ -191,7 +191,7 @@ class StepResolver {
                 closeAppStep.setCurrentState(currentState);
                 return new ResolvedStepResult(closeAppStep);
             }
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             //ok
         }
 
@@ -239,7 +239,10 @@ class StepResolver {
                 log.debug("Resolving the event...");
 
                 detectedEvent = s2rParser.determineEvent(currNLAction, app, stateComponents);
-            } catch (ActionParsingException e) {
+
+                log.debug(String.format("Resolved event: %s - %s", detectedEvent,
+                        GraphTransition.getAction(detectedEvent)));
+            } catch (ActionMatchingException e) {
                 log.debug("Could not determine the event in the candidate state/screen: "
                         + candidateState.getUniqueHash() + " - " + e.getResult());
                 result.addCount(e);
@@ -251,10 +254,12 @@ class StepResolver {
 
             Integer detectedEvent2 = detectedEvent;
             final boolean isInputEvent = DeviceUtils.isAnyInputType(detectedEvent2);
+            boolean clickMenuButton = DeviceUtils.isClickMenuButton(detectedEvent2);
             final Predicate<GraphTransition> filterPredicate = transition -> {
                 final AppStep step = transition.getStep();
                 final Integer stepEvent = step.getAction();
-                return detectedEvent2.equals(stepEvent) || (isInputEvent && DeviceUtils.isAnyInputType(stepEvent));
+                return detectedEvent2.equals(stepEvent) || (isInputEvent && DeviceUtils.isAnyInputType(stepEvent)) ||
+                        (clickMenuButton && DeviceUtils.isClick(stepEvent))  ;
             };
             final List<GraphTransition> candidateTransitions = executionGraph.getGraph().
                     outgoingEdgesOf(candidateState).stream().filter(filterPredicate).collect(Collectors.toList());
@@ -276,7 +281,10 @@ class StepResolver {
 
                 component = s2rParser.determineComponent(currNLAction, stateComponents, detectedEvent, true);
                 result.addCount(MatchingResult.COMPONENT_FOUND);
-            } catch (ActionParsingException e) {
+
+
+                log.debug(String.format("Resolved component: %s", component));
+            } catch (ActionMatchingException e) {
                 log.debug("Could not find the component in the candidate state/screen: "
                         + candidateState.getUniqueHash() + " - " + e.getResult());
                 if (e.getResult().equals(MatchingResult.MULTIPLE_COMPONENTS_FOUND)) {
@@ -297,7 +305,7 @@ class StepResolver {
                 }
                 text = s2rParser.determineText(app, detectedEvent, componentId, currNLAction);
                 text = DeviceUtils.encodeText(text);
-            } catch (ActionParsingException e) {
+            } catch (ActionMatchingException e) {
                 log.debug("Could not determine the text for the candidate state/screen: "
                         + candidateState.getUniqueHash() + " - " + e.getResult());
                 result.addCount(e);
@@ -306,13 +314,13 @@ class StepResolver {
 
             //-------------------------------------
 
-            log.debug("--------------------------------");
+            log.debug("<--------------------------------");
             log.debug("Candidate transitions (" + candidateTransitions.size() + "):" + candidateTransitions);
             log.debug(String.format("Event identified: %s - %s", detectedEvent,
                     GraphTransition.getAction(detectedEvent)));
             log.debug(String.format("Component identified: %s", component));
             log.debug(String.format("Text identified: %s", text));
-            log.debug("--------------------------------");
+            log.debug("-------------------------------->");
 
             log.debug("Checking if candidate transitions match the graph");
 
@@ -384,7 +392,7 @@ class StepResolver {
 
     }
 
-    private AppStep getOpenAppStep(NLAction currNLAction, Appl app) throws ActionParsingException {
+    private AppStep getOpenAppStep(NLAction currNLAction, Appl app) throws ActionMatchingException {
         Integer event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
         final boolean isOpenApp = DeviceUtils.isOpenApp(event);
         if (isOpenApp) {
@@ -395,7 +403,7 @@ class StepResolver {
         return null;
     }
 
-    public AppStep getCloseAppStep(NLAction currNLAction, Appl app) throws ActionParsingException {
+    public AppStep getCloseAppStep(NLAction currNLAction, Appl app) throws ActionMatchingException {
         Integer event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
         final boolean isCloseEvent = DeviceUtils.isCloseApp(event);
         final boolean isAppWord = GeneralUtils.isAppWord(currNLAction.getObject(), app.getName(), app.getPackageName());
@@ -525,7 +533,7 @@ class StepResolver {
         Integer event = DeviceActions.CLICK;
         try {
             event = s2rParser.determineEvent(currNLAction, app, stateComponents);
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             log.debug("Could not determine the event in candidate state/screen: "
                     + state.getUniqueHash() + " - " + e.getResult());
             result.addCount(e);
@@ -543,7 +551,7 @@ class StepResolver {
 
             component = s2rParser.determineComponent(currNLAction, stateComponents,
                     event, true);
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
 
             List<Object> resultData = e.getResultData();
             if (checkCurrentScreen) {
@@ -567,7 +575,7 @@ class StepResolver {
                                 throw new ActionParsingException(e.getResult(), e.getMessage());
                         }
                     }*/
-                } catch (ActionParsingException e1) {
+                } catch (ActionMatchingException e1) {
                     result.addCount(e1);
                     log.debug("Could not find the component in candidate state/screen: "
                             + state.getUniqueHash() + " - " + e.getResult());
@@ -625,7 +633,7 @@ class StepResolver {
                 componentId = component.getKey().getDbId();
             text = s2rParser.determineText(app, event, componentId, currNLAction, false);
             text = DeviceUtils.encodeText(text);
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             log.debug("Could not determine the text for the candidate state/screen: "
                     + state.getUniqueHash() + " - " + e.getResult());
         }

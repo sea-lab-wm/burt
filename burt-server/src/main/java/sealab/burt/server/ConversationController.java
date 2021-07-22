@@ -10,17 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.actions.appselect.ConfirmAppAction;
-import sealab.burt.server.actions.appselect.SelectAppAction;
-import sealab.burt.server.actions.eb.ClarifyEBAction;
-import sealab.burt.server.actions.eb.ProvideEBAction;
-import sealab.burt.server.actions.eb.ProvideEBNoParseAction;
-import sealab.burt.server.actions.ob.*;
-import sealab.burt.server.actions.others.EndConversationAction;
-import sealab.burt.server.actions.others.GenerateBugReportAction;
-import sealab.burt.server.actions.others.ProvideParticipantIdAction;
-import sealab.burt.server.actions.others.UnexpectedErrorAction;
-import sealab.burt.server.actions.s2r.*;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
@@ -105,7 +94,8 @@ class ConversationController {
 
             if (sessionId == null) {
                 return ConversationResponse.createResponse("Thank you for using BURT. " +
-                        "Please reload the page and confirm the action to start a new conversation", 100);
+                                "Please reload the page and confirm the action to start a new conversation",
+                        ResponseCode.END_CONVERSATION);
             }
 
             ConversationState conversationState = conversationStates.get(sessionId);
@@ -157,17 +147,17 @@ class ConversationController {
             log.debug("State: ");
             log.debug(conversationState.toString());
 
-            return new ConversationResponse(nextMessages, nextIntents, action, 0);
+            return new ConversationResponse(nextMessages, nextIntents, action, ResponseCode.SUCCESS);
         } catch (Exception e) {
             log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +
-                    "Please try again or contact the administrator.", 0);
+                    "Please try again or contact the administrator.", ResponseCode.SUCCESS);
         }
     }
 
     private ConversationResponse getDefaultResponse() {
         return ConversationResponse.createResponse("You got it. " +
-                "The conversation will automatically end in a few seconds.", 100);
+                "The conversation will automatically end in a few seconds.", ResponseCode.END_CONVERSATION);
     }
 
 
@@ -203,30 +193,40 @@ class ConversationController {
 
     @PostMapping("/reportPreview")
     public ConversationResponse previewReport(@RequestBody UserResponse req) throws Exception {
-        String msg = "Returning the bug report preview in the server...";
-        log.debug(msg);
+        log.debug("Returning the bug report preview in the server...");
+
         String sessionId = req.getSessionId();
-        ConversationState conversationState = conversationStates.get(sessionId);
-        // check if state has APP
-        if (conversationState!=null && (!conversationState.containsKey(StateVariable.APP_ASKED)) &&
-                conversationState.containsKey(StateVariable.APP_NAME) && conversationState.containsKey(StateVariable.APP_VERSION) &&
-                conversationState.containsKey(StateVariable.PARTICIPANT_ID)) {
 
-            String appName = conversationState.get(StateVariable.APP_NAME).toString();
-            String appVersion = conversationState.get(StateVariable.APP_VERSION).toString();
-            String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
-
-            String reportName = String.join("-", participant, appName, appVersion, sessionId)
-                    .replace(" ", "_") + ".html";
-
-            File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
-            new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
-            MessageObj messageObj = new MessageObj();
-
-            return new ConversationResponse(Collections.singletonList(new ChatBotMessage(messageObj, reportName)), 0);
-        } else {
-            return new ConversationResponse(Collections.singletonList(new ChatBotMessage()), -1);
+        if (sessionId == null) {
+            return ConversationResponse.createResponse("The session is inactive. " +
+                            "Please (re)start the conversation.",
+                    ResponseCode.UNEXPECTED_ERROR);
         }
+
+        ConversationState conversationState = conversationStates.get(sessionId);
+
+        // check if state has APP
+        if (conversationState == null || (conversationState.containsKey(StateVariable.APP_ASKED)) ||
+                !conversationState.containsKey(StateVariable.APP_NAME) || !conversationState.containsKey(StateVariable.APP_VERSION) ||
+                !conversationState.containsKey(StateVariable.PARTICIPANT_ID)) {
+            return ConversationResponse.createResponse(
+                    "There is no enough information to generate the report at this moment.",
+                    ResponseCode.NO_INFO_FOR_REPORT);
+        }
+
+        String appName = conversationState.get(StateVariable.APP_NAME).toString();
+        String appVersion = conversationState.get(StateVariable.APP_VERSION).toString();
+        String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
+
+        String reportName = String.join("-", participant, appName, appVersion, sessionId)
+                .replace(" ", "_") + ".html";
+
+        File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
+        new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
+        MessageObj messageObj = new MessageObj();
+
+        return new ConversationResponse(Collections.singletonList(
+                new ChatBotMessage(messageObj, reportName)), ResponseCode.SUCCESS);
     }
 
 

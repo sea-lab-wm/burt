@@ -1,4 +1,4 @@
-package sealab.burt.qualitychecker.actionparser;
+package sealab.burt.qualitychecker.actionmatcher;
 
 import com.googlecode.concurrenttrees.radix.node.concrete.DefaultCharSequenceNodeFactory;
 import com.googlecode.concurrenttrees.solver.LCSubstringSolver;
@@ -32,9 +32,10 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public @Slf4j
-class NLActionS2RParser {
+class NLActionS2RMatcher {
 
     private static final int NO_SWIPE_DIRECTION = -100;
     /**
@@ -66,7 +67,7 @@ class NLActionS2RParser {
     private String token;
     private PreProcessedText preProcessedObj2;
 
-    public NLActionS2RParser(String token, String resourcesPath, boolean useTokenSynonyms) {
+    public NLActionS2RMatcher(String token, String resourcesPath, boolean useTokenSynonyms) {
         this.useTokenSynonyms = useTokenSynonyms;
         this.token = token;
         this.resourcesPath = resourcesPath;
@@ -174,7 +175,7 @@ class NLActionS2RParser {
             if (!synonyms.isEmpty())
                 return;
 
-            synonyms = new HashMap<>();
+            synonyms = new LinkedHashMap<>();
 
             try {
 
@@ -248,7 +249,7 @@ class NLActionS2RParser {
     //-------------------------------------------------------------------------------------
 
     public Integer determineEvent(NLAction nlAction, Appl app, List<AppGuiComponent> currentScreen) throws
-            ActionParsingException {
+            ActionMatchingException {
 
         String action = nlAction.getAction();
 
@@ -273,12 +274,12 @@ class NLActionS2RParser {
             try {
                 componentFound = findComponent(currentScreen, preprocessedAll, JavaUtils.getSet(), false,
                         true, noEvent);
-            } catch (ActionParsingException e2) {
+            } catch (ActionMatchingException e2) {
                 preprocessedAll = preprocessText(action);
                 try {
                     componentFound = findComponent(currentScreen, preprocessedAll, JavaUtils.getSet(), false,
                             true, noEvent);
-                } catch (ActionParsingException e3) {
+                } catch (ActionMatchingException e3) {
                 }
             }
 
@@ -297,7 +298,7 @@ class NLActionS2RParser {
                 }
             }
 
-            throw new ActionParsingException(MatchingResult.UNKNOWN_ACTION);
+            throw new ActionMatchingException(MatchingResult.UNKNOWN_ACTION);
         }
 
         //** at this point we found the action group **//
@@ -308,7 +309,7 @@ class NLActionS2RParser {
 
         //could not disambiguate the action
         if (actionGroup == null) {
-            throw new ActionParsingException(MatchingResult.AMBIGUOUS_ACTION, new ArrayList<>(actionGroups));
+            throw new ActionMatchingException(MatchingResult.AMBIGUOUS_ACTION, new ArrayList<>(actionGroups));
         }
 
         //transform the action group into an event
@@ -316,7 +317,7 @@ class NLActionS2RParser {
 
         //determine the event, ie. action not mapped
         if (event == null)
-            throw new ActionParsingException(MatchingResult.ACTION_NOT_MAPPED, Collections.singletonList(actionGroup));
+            throw new ActionMatchingException(MatchingResult.ACTION_NOT_MAPPED, Collections.singletonList(actionGroup));
 
         if (DeviceUtils.isClick(event)) {
 
@@ -336,13 +337,13 @@ class NLActionS2RParser {
     public Entry<AppGuiComponent, Double> determineComponentForOb(NLAction nlAction,
                                                                   List<AppGuiComponent> currentScreen,
                                                                   Integer event,
-                                                                  boolean skipFocused) throws ActionParsingException {
+                                                                  boolean skipFocused) throws ActionMatchingException {
 
         Entry<AppGuiComponent, Double> componentFound;
         try {
             componentFound = findComponentToClick(nlAction, currentScreen, event, skipFocused);
             return componentFound;
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             //ok
         }
 
@@ -361,7 +362,7 @@ class NLActionS2RParser {
             componentFound = findComponent(currentScreen, preprocessedAll,
                     componentTypes, false, true, event, skipFocused, true);
             return componentFound;
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             //it's ok
         }
 
@@ -375,7 +376,7 @@ class NLActionS2RParser {
 
     public Entry<AppGuiComponent, Double> determineComponent(NLAction nlAction, List<AppGuiComponent> currentScreen,
                                                              Integer event,
-                                                             boolean skipFocused) throws ActionParsingException {
+                                                             boolean skipFocused) throws ActionMatchingException {
 
         boolean componentSkipped = false;
 
@@ -413,13 +414,13 @@ class NLActionS2RParser {
         else if (DeviceUtils.isClickMenuButton(event)) {
             try {
                 componentFound = findComponentToClick(nlAction, currentScreen, event, skipFocused);
-            } catch (ActionParsingException e) {
+            } catch (ActionMatchingException e) {
                 componentSkipped = true;
             }
         }
 
         if (componentFound == null && !componentSkipped) {
-            throw new ActionParsingException(MatchingResult.COMPONENT_NOT_FOUND);
+            throw new ActionMatchingException(MatchingResult.COMPONENT_NOT_FOUND);
         }
 
         return componentFound;
@@ -428,7 +429,7 @@ class NLActionS2RParser {
     private Entry<AppGuiComponent, Double> findComponentToType(NLAction nlAction,
                                                                List<AppGuiComponent> currentScreen,
                                                                Integer event,
-                                                               boolean skipFocused) throws ActionParsingException {
+                                                               boolean skipFocused) throws ActionMatchingException {
 
         String object = nlAction.getObject();
         String object2 = nlAction.getObject2();
@@ -453,9 +454,9 @@ class NLActionS2RParser {
                 try {
                     componentFound = findComponent(currentScreen, preprocessedObject2,
                             componentTypes, false, true, event, skipFocused);
-                } catch (ActionParsingException e) {
+                } catch (ActionMatchingException e) {
 
-                    if(StringUtils.isEmpty(object)) throw e;
+                    if (StringUtils.isEmpty(object)) throw e;
 
                     // Use information of object since it could have matching words
                     componentFound = findComponent(currentScreen, preprocessedObject,
@@ -502,7 +503,7 @@ class NLActionS2RParser {
 
     private Entry<AppGuiComponent, Double> findComponentToClick(NLAction nlAction, List<AppGuiComponent>
             currentScreen, Integer event, boolean skipFocused)
-            throws ActionParsingException {
+            throws ActionMatchingException {
 
         String object = nlAction.getObject();
         String object2 = nlAction.getObject2();
@@ -521,7 +522,7 @@ class NLActionS2RParser {
                     componentTypes, false, true, event, skipFocused, true);
 
             return componentFound;
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             //it's ok
         }
 
@@ -539,7 +540,7 @@ class NLActionS2RParser {
                     componentTypes, false, true, event, skipFocused, matchFirst);
 
             return componentFound;
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             //it's ok
         }*/
 
@@ -588,14 +589,15 @@ class NLActionS2RParser {
                 try {
                     componentFound = findComponent(currentScreen, preprocessedObject,
                             componentTypes, false, true, event, skipFocused);
-                } catch (ActionParsingException e) {
+                } catch (ActionMatchingException e) {
                     try {
-                        final PreProcessedText preProcessedText = preprocessText(String.format("%s %s", action, object));
+                        final PreProcessedText preProcessedText = preprocessText(String.format("%s %s", action,
+                                object));
                         componentFound = findComponent(currentScreen, preProcessedText,
                                 componentTypes, false, true, event, skipFocused);
-                    } catch (ActionParsingException e2) {
+                    } catch (ActionMatchingException e2) {
                         //FIXME: maybe in some cases, we would need to throw e2
-                      throw e;
+                        throw e;
                     }
                   /*  componentFound = findComponent(currentScreen, preprocessedAll,
                             componentTypes, false, true, event, skipFocused, false);*/
@@ -625,7 +627,7 @@ class NLActionS2RParser {
     }
 
     public String determineText(Appl app, Integer event, Long componentId, NLAction nlAction)
-            throws ActionParsingException {
+            throws ActionMatchingException {
         return determineText(app, event, componentId, nlAction, true);
     }
 
@@ -637,7 +639,7 @@ class NLActionS2RParser {
      */
     public String determineText(Appl app, Integer event, Long componentId, NLAction nlAction,
                                 boolean skipInputType)
-            throws ActionParsingException {
+            throws ActionMatchingException {
         String text = null;
 
         String preposition = nlAction.getPreposition();
@@ -646,7 +648,7 @@ class NLActionS2RParser {
         else if (DeviceUtils.isKeyEvent(event)) {
             String textVal = nlAction.getObject();
             if (textVal == null)
-                throw new ActionParsingException(MatchingResult.EMPTY_OBJECTS);
+                throw new ActionMatchingException(MatchingResult.EMPTY_OBJECTS);
             String keyValue = getKeyValue(textVal);
             if (keyValue != null)
                 text = keyValue;
@@ -666,7 +668,7 @@ class NLActionS2RParser {
             String textVal = nlAction.getObject();
 
             if (textVal == null)
-                throw new ActionParsingException(MatchingResult.EMPTY_OBJECTS);
+                throw new ActionMatchingException(MatchingResult.EMPTY_OBJECTS);
 
             //case: set xyz to/with 5
             String object2 = nlAction
@@ -704,7 +706,7 @@ class NLActionS2RParser {
                 }*/
 
             if (text == null)
-                throw new ActionParsingException(MatchingResult.EMPTY_TEXT);
+                throw new ActionMatchingException(MatchingResult.EMPTY_TEXT);
         }
 
         return text;
@@ -756,7 +758,7 @@ class NLActionS2RParser {
                                                          Set<ComponentType> componentTypes,
                                                          boolean skipTextViews,
                                                          boolean checkSynonyms,
-                                                         int event) throws ActionParsingException {
+                                                         int event) throws ActionMatchingException {
         List<AppGuiComponent> guiComponents = Transform.getGuiComponents(currentScreen.getDynGuiComponents());
         return findComponent(guiComponents, textToMatch, componentTypes, skipTextViews,
                 checkSynonyms, event, false);
@@ -767,7 +769,7 @@ class NLActionS2RParser {
                                                         Set<ComponentType> componentTypes,
                                                         boolean skipTextViews,
                                                         boolean checkSynonyms,
-                                                        int event) throws ActionParsingException {
+                                                        int event) throws ActionMatchingException {
         return findComponent(currentScreen, textToMatch, componentTypes, skipTextViews,
                 checkSynonyms, event, false);
     }
@@ -779,7 +781,7 @@ class NLActionS2RParser {
                                                          Set<ComponentType> componentTypes,
                                                          boolean skipTextViews, boolean checkSynonyms,
                                                          int event, boolean skipFocused)
-            throws ActionParsingException {
+            throws ActionMatchingException {
         return findComponent(currentScreenComponents, textToMatch, componentTypes, skipTextViews,
                 checkSynonyms, event, skipFocused, false);
     }
@@ -789,7 +791,7 @@ class NLActionS2RParser {
                                                          Set<ComponentType> componentTypes,
                                                          boolean skipTextViews, boolean checkSynonyms,
                                                          int event, boolean skipFocused, boolean matchFirst)
-            throws ActionParsingException {
+            throws ActionMatchingException {
 
         //-------------------------------------
 
@@ -809,7 +811,7 @@ class NLActionS2RParser {
 
             //not a text field? then which component should I find? -> throw exception
             if (!ComponentType.TEXT_FIELD.equals(invIdxSpecificComponentTypes.get(textToMatch.componentType)))
-                throw new ActionParsingException(MatchingResult.COMPONENT_NOT_SPECIFIED,
+                throw new ActionMatchingException(MatchingResult.COMPONENT_NOT_SPECIFIED,
                         Collections.singletonList(textToMatch.original));
 
 /*
@@ -1047,7 +1049,7 @@ class NLActionS2RParser {
     private AppGuiComponent handleOneMatch(boolean skipTextViews, List<String> allowedComponents,
                                            Entry<AppGuiComponent, Double> entry, int event,
                                            List<AppGuiComponent> currentScreenComponents)
-            throws ActionParsingException {
+            throws ActionMatchingException {
         AppGuiComponent component = null;
 
         //--------------------------------------------
@@ -1139,7 +1141,7 @@ class NLActionS2RParser {
 
         //only text fields are allowed for type events
         if (DeviceUtils.isAnyType(event) && !isTextField(component.getType())) {
-            throw new ActionParsingException(MatchingResult.INCORRECT_COMPONENT_FOUND,
+            throw new ActionMatchingException(MatchingResult.INCORRECT_COMPONENT_FOUND,
                     Collections.singletonList(component));
         }
 
@@ -1151,8 +1153,8 @@ class NLActionS2RParser {
                                                                  List<Entry<AppGuiComponent, Double>> matchedComponents,
                                                                  int event, boolean matchFirst,
                                                                  List<AppGuiComponent> currentScreenComponents)
-            throws ActionParsingException {
-        
+            throws ActionMatchingException {
+
         log.debug("Handling multiple matched components...");
 
         Entry<AppGuiComponent, Double> componentFound = null;
@@ -1277,11 +1279,11 @@ class NLActionS2RParser {
 
         if (componentFound == null) {
             log.debug("Couldn't resolve multiple matched components");
-            throw new ActionParsingException(MatchingResult.MULTIPLE_COMPONENTS_FOUND,
+            throw new ActionMatchingException(MatchingResult.MULTIPLE_COMPONENTS_FOUND,
                     matchedComponents.stream()
                             .map(Entry::getKey)
                             .collect(Collectors.toList()));
-        }else
+        } else
             log.debug("Selected component: " + componentFound);
         return componentFound;
     }
@@ -1378,25 +1380,52 @@ class NLActionS2RParser {
                                                            PreProcessedText textToMatch,
                                                            int event,
                                                            boolean matchFirst)
-            throws ActionParsingException {
+            throws ActionMatchingException {
 
         Entry<AppGuiComponent, Double> component = null;
         if (checkSynonyms) {
 
-            Set<String> textSynonyms = getTextSynonyms(textToMatch.otherText);
-            log.debug("Checking synonyms of \"" + textToMatch.otherText + "\": " + textSynonyms);
+            List<String> queries = Arrays.asList(textToMatch.otherText, textToMatch.original);
+            Set<String> textSynonyms = queries.stream().flatMap(
+                    q -> {
+                        Set<String> synonymsForQuery = getTextSynonyms(q);
+
+                        log.debug(String.format("Synonyms of \"%s\": %s", q, synonymsForQuery));
+                        if (synonymsForQuery == null)
+                            return Stream.empty();
+                        else {
+                            return synonymsForQuery.stream();
+                        }
+                    }
+            ).collect(Collectors.toSet());
+
+            if (useTokenSynonyms) {
+                Set<String> tokenSynonyms = getTextSynonymsOfTokens(textToMatch.otherText);
+                log.debug(String.format("Token synonyms of \"%s\": %s", textToMatch.otherText, tokenSynonyms));
+                if (tokenSynonyms != null)
+                    textSynonyms.addAll(tokenSynonyms);
+            }
+
+
+            log.debug("Checking synonyms: " + textSynonyms);
+
+            //--------------------------
+
+
+    /*        Set<String> textSynonyms = getTextSynonyms(textToMatch.otherText);
+            log.debug("Checking synonyms of \"" + textToMatch.otherText + "\" [other text]: " + textSynonyms);
 
             //no synonyms? try with the original text
             if (textSynonyms == null) {
                 textSynonyms = getTextSynonyms(textToMatch.original);
-                log.debug("Checking synonyms of \"" + textToMatch.original + "\": " + textSynonyms);
+                log.debug("Checking synonyms of \"" + textToMatch.original + "\" [original]: " + textSynonyms);
             }
 
             //no synonyms? try with the synonyms of the tokens
             if (useTokenSynonyms && textSynonyms == null) {
                 textSynonyms = getTextSynonymsOfTokens(textToMatch.otherText);
-                log.debug("Checking synonyms of \"" + textToMatch.otherText + "\": " + textSynonyms);
-            }
+                log.debug("Checking synonyms of \"" + textToMatch.otherText + "\" [tokens]: " + textSynonyms);
+            }*/
 
             if (textSynonyms != null) {
 
@@ -1407,7 +1436,7 @@ class NLActionS2RParser {
                                 skipTextViews, false, event, false, matchFirst);
                         if (component != null)
                             break;
-                    } catch (ActionParsingException e) {
+                    } catch (ActionMatchingException e) {
                         //it is ok not to find any match
                     }
                 }
@@ -1418,7 +1447,7 @@ class NLActionS2RParser {
         }
 
         if (component == null)
-            throw new ActionParsingException(MatchingResult.COMPONENT_NOT_FOUND,
+            throw new ActionMatchingException(MatchingResult.COMPONENT_NOT_FOUND,
                     Collections.singletonList(textToMatch.original));
 
         return component;
@@ -1445,7 +1474,10 @@ class NLActionS2RParser {
         return tokens.stream()
                 .flatMap(token -> {
                     Set<String> syn = synonyms.get(token);
-                    if (syn == null) return null;
+                    if (syn == null) {
+                        syn = synonyms.get(token.replace("\"", "").trim().toLowerCase());
+                        if (syn == null) return null;
+                    }
                     return syn.stream();
                 })
                 .filter(Objects::nonNull)
@@ -1763,17 +1795,17 @@ class NLActionS2RParser {
             try {
                 componentFound = findComponent(currentScreen, preprocessedAction, JavaUtils.getSet(), false,
                         true, noEvent);
-            } catch (ActionParsingException e2) {
+            } catch (ActionMatchingException e2) {
                 PreProcessedText preprocessedObject = preprocessText(nlAction.getObject());
                 try {
                     componentFound = findComponent(currentScreen, preprocessedObject, JavaUtils.getSet(), false,
                             true, noEvent);
-                } catch (ActionParsingException e) {
+                } catch (ActionMatchingException e) {
                     PreProcessedText preprocessedObject2 = preprocessText(nlAction.getObject2());
                     try {
                         componentFound = findComponent(currentScreen, preprocessedObject2, JavaUtils.getSet(), false,
                                 true, noEvent);
-                    } catch (ActionParsingException e1) {
+                    } catch (ActionMatchingException e1) {
                         //It's ok to have the exception
                     }
 
@@ -1810,11 +1842,11 @@ class NLActionS2RParser {
             try {
                 componentFound = findComponent(currentScreen, preprocessedObject, JavaUtils.getSet(), false,
                         true, noEvent);
-            } catch (ActionParsingException e) {
+            } catch (ActionMatchingException e) {
                 try {
                     componentFound = findComponent(currentScreen, preprocessedObject2, JavaUtils.getSet(), false,
                             true, noEvent);
-                } catch (ActionParsingException e1) {
+                } catch (ActionMatchingException e1) {
                     //It's ok to have the exception
                 }
 

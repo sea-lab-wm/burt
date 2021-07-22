@@ -1,7 +1,5 @@
 package sealab.burt.qualitychecker;
 
-import edu.semeru.android.core.dao.DynGuiComponentDao;
-import edu.semeru.android.core.dao.exception.CRUDException;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -12,21 +10,16 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
-import sealab.burt.qualitychecker.actionparser.*;
+import sealab.burt.qualitychecker.actionmatcher.*;
 import sealab.burt.qualitychecker.graph.*;
-import sealab.burt.qualitychecker.graph.db.DBUtils;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
-import sealab.burt.qualitychecker.graph.db.Transform;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import seers.appcore.utils.JavaUtils;
 
-import javax.persistence.EntityManager;
-import javax.validation.constraints.Max;
 import java.util.*;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -35,7 +28,7 @@ import static sealab.burt.qualitychecker.s2rquality.S2RQualityCategory.HIGH_QUAL
 public @Slf4j
 class S2RChecker {
 
-    private static final int GRAPH_MAX_DEPTH_CHECK = 5;
+    private static final int GRAPH_MAX_DEPTH_CHECK = 7;
     private static int textCounter = 1;
 
     //function that finds the index of stepToFind in the transition list
@@ -51,7 +44,7 @@ class S2RChecker {
     private final String appName;
     private final String appVersion;
     private final StepResolver resolver;
-    private final NLActionS2RParser s2rParser;
+    private final NLActionS2RMatcher s2rParser;
     private final String parsersBaseFolder;
     private GraphState currentState;
     private AppGraphInfo executionGraph;
@@ -62,20 +55,9 @@ class S2RChecker {
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
-        s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, false);
+        s2rParser = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
         resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
-
-   /* public S2RChecker(String appName, String appVersion, String resourcesPath, String parsersBaseFolder,
-                      String crashScopeDataPath) {
-        this.appName = appName;
-        this.appVersion = appVersion;
-        this.parsersBaseFolder = parsersBaseFolder;
-        this.crashScopeDataPath = crashScopeDataPath;
-
-        s2rParser = new NLActionS2RParser(null, resourcesPath, false);
-        resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
-    }*/
 
     public QualityFeedback checkS2R(String S2RDescription) throws Exception {
         return checkS2R(S2RDescription, null);
@@ -109,6 +91,9 @@ class S2RChecker {
 
         QualityFeedback qualityFeedback = new QualityFeedback();
         qualityFeedback.setAction(nlAction);
+
+
+
         List<AppStep> currentResolvedSteps = new LinkedList<>();
         resolveNLAction(nlAction, currentResolvedSteps, currentState, null, null, null, qualityFeedback);
 

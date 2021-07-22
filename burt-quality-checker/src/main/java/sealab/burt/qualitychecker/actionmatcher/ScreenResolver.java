@@ -1,4 +1,4 @@
-package sealab.burt.qualitychecker.actionparser;
+package sealab.burt.qualitychecker.actionmatcher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 public @Slf4j
 class ScreenResolver {
 
-    private NLActionS2RParser s2rParser;
+    private NLActionS2RMatcher s2rParser;
     private int graphMaxDepthCheck;
 
-    public ScreenResolver(NLActionS2RParser s2rParser, int graphMaxDepthCheck) {
+    public ScreenResolver(NLActionS2RMatcher s2rParser, int graphMaxDepthCheck) {
         this.s2rParser = s2rParser;
         this.graphMaxDepthCheck = graphMaxDepthCheck;
     }
@@ -91,7 +91,7 @@ class ScreenResolver {
                 Map.Entry<AppGuiComponent, Double> component = s2rParser.determineComponentForOb(currNLAction,
                         stateComponents, DeviceActions.CLICK, false);
                 matchedStates.put(candidateState, distance);
-            } catch (ActionParsingException e) {
+            } catch (ActionMatchingException e) {
 //                log.debug("Could not find the component in the candidate state/screen: "
 //                        + candidateState.getUniqueHash() + " - " + e.getResult());
 //                if (e.getResult().equals(ParsingResult.MULTIPLE_COMPONENTS_FOUND)) {

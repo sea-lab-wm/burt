@@ -1,7 +1,5 @@
 import SessionManager from "./SessionManager";
-
-const ERROR_CODE = -1;
-const END_CONVERSATION_CODE = 100;
+import {END_CONVERSATION_CODE, ERROR_CODE} from "./App";
 
 const processResponse = (responsePromise, actionProvider) => {
     function processResponse2(httpReponse, lastMsgId) {
@@ -31,6 +29,8 @@ const processResponse = (responsePromise, actionProvider) => {
 
                 return
             }
+
+            //-------------------------------------------
 
             let chatBotMsgs = conversationResponse.messages;
 

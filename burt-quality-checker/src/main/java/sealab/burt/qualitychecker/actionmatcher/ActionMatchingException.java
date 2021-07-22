@@ -1,17 +1,17 @@
-package sealab.burt.qualitychecker.actionparser;
+package sealab.burt.qualitychecker.actionmatcher;
 
 import java.util.List;
 
-public class ActionParsingException extends Exception {
+public class ActionMatchingException extends Exception {
 
-    private MatchingResult result;
-    private List<Object> resultData;
+    private final MatchingResult result;
+    private final List<Object> resultData;
 
-    public ActionParsingException(MatchingResult result) {
+    public ActionMatchingException(MatchingResult result) {
         this(result, null);
     }
 
-    public ActionParsingException(MatchingResult result, List<Object> resultData) {
+    public ActionMatchingException(MatchingResult result, List<Object> resultData) {
         this.result = result;
         this.resultData = resultData;
     }
@@ -27,7 +27,7 @@ public class ActionParsingException extends Exception {
 
     @Override
     public String toString() {
-        return "ape{" +
+        return "AME{" +
                 "r=" + result +
                 ", d='" + resultData + '\'' +
                 '}';

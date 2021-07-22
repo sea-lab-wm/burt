@@ -1,4 +1,4 @@
-package sealab.burt.qualitychecker.actionparser;
+package sealab.burt.qualitychecker.actionmatcher;
 
 public enum MatchingResult {
 

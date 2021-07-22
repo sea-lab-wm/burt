@@ -13,7 +13,7 @@ public class ConversationTestData {
 
     enum FlowName {
         NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL, PREDICTION, MATCHED_OB, MATCHED_OB_MAX_ATTEMPTS,
-        OB_NO_MATCH_MAX_ATTEMPTS, EULER_IDEAL_MILEAGE_53, EULER_IDEAL_MILEAGE_53_2, MATCHING_S2R
+        OB_NO_MATCH_MAX_ATTEMPTS, EULER_IDEAL_MILEAGE_53, EULER_IDEAL_MILEAGE_53_2, EULER_IDEAL_GNUCASH_616, MATCHING_S2R
     }
 
     public static HashMap<FlowName, List<MessageObjectTest>> conversationFlows = new HashMap<>() {{
@@ -27,7 +27,65 @@ public class ConversationTestData {
         put(FlowName.OB_NO_MATCH_MAX_ATTEMPTS, getConversationFlowOBNoMatchMaxAttempts());
         put(FlowName.EULER_IDEAL_MILEAGE_53, getFlowEulerIdealMileage53());
         put(FlowName.EULER_IDEAL_MILEAGE_53_2, getFlowEulerIdealMileage53Second());
+        put(FlowName.EULER_IDEAL_GNUCASH_616, getFlowEulerIdealGnuCash616());
     }};
+
+    private static List<MessageObjectTest> getFlowEulerIdealGnuCash616() {
+
+        KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("GnuCash v. 2.1.3"))
+                .findFirst().orElse(null);
+
+        //The transactions are deleted, I get a message of success, and the QIF file is in the appropriate directory in Google Drive
+
+        return new ArrayList<>() {{
+            //ChatBot: hi this is burt
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
+            //ChatBot: what is you participant id?
+            add(new MessageObjectTest("P5", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(mileageOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+
+
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
+                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
+
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
+                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
+
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
+                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("no", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("The transactions are deleted", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+
+            //ChatBot: give me the first S2R
+            add(new MessageObjectTest("Tap on the \"Menu\" button at the top left of the screen", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+
+            /*
+            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));*/
+        }};
+
+    }
 
     private static List<MessageObjectTest> getFlowEulerIdealMileage53() {
 

@@ -1,12 +1,9 @@
-package sealab.burt.qualitychecker.actionparser;
+package sealab.burt.qualitychecker.actionmatcher;
 
-import org.apache.commons.lang3.StringUtils;
-import seers.textanalyzer.PreprocessingOptionsParser;
 import seers.textanalyzer.entity.Token;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PreProcessedText {
 

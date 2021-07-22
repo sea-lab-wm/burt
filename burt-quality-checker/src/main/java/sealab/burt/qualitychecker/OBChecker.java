@@ -6,8 +6,8 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.HeuristicsNLActionParser;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
-import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
-import sealab.burt.qualitychecker.actionparser.ScreenResolver;
+import sealab.burt.qualitychecker.actionmatcher.NLActionS2RMatcher;
+import sealab.burt.qualitychecker.actionmatcher.ScreenResolver;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.GraphState;
 
@@ -24,7 +24,7 @@ class OBChecker {
 
     private final String appName;
     private final String appVersion;
-    private final NLActionS2RParser s2rParser;
+    private final NLActionS2RMatcher s2rParser;
     private final ScreenResolver resolver;
     private final String parsersBaseFolder;
 
@@ -36,7 +36,7 @@ class OBChecker {
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
-        s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        s2rParser = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
         resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 

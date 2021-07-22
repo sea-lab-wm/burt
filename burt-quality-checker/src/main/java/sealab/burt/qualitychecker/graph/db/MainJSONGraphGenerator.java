@@ -7,8 +7,8 @@ import org.apache.commons.io.FileUtils;
 import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.JSONGraphReader;
-import sealab.burt.qualitychecker.actionparser.GraphLayout;
-import sealab.burt.qualitychecker.actionparser.GraphUtils;
+import sealab.burt.qualitychecker.actionmatcher.GraphLayout;
+import sealab.burt.qualitychecker.actionmatcher.GraphUtils;
 import sealab.burt.qualitychecker.graph.*;
 
 import javax.imageio.ImageIO;

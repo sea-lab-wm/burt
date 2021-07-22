@@ -1,4 +1,4 @@
-package sealab.burt.qualitychecker.actionparser;
+package sealab.burt.qualitychecker.actionmatcher;
 
 import sealab.burt.qualitychecker.graph.AppStep;
 
@@ -26,7 +26,7 @@ public class ResolvedStepResult {
         this.step = step;
     }
 
-    public void addCount(ActionParsingException e) {
+    public void addCount(ActionMatchingException e) {
         if (matchResultCounts == null) matchResultCounts = new LinkedHashMap<>();
         if (e == null) return;
         final MatchingResult result = e.getResult();
@@ -35,7 +35,7 @@ public class ResolvedStepResult {
 
     }
 
-    private void addElement(ActionParsingException e) {
+    private void addElement(ActionMatchingException e) {
         final Set<Object> elements = matchResultElements.getOrDefault(e.getResult(), new LinkedHashSet<>());
         if (e.getResultData() != null)
             elements.add(e.getResultData());

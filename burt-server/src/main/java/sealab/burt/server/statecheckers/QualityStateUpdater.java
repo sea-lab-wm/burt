@@ -44,25 +44,14 @@ class QualityStateUpdater {
         //---------------------
 
         S2RChecker s2rChecker = (S2RChecker) state.get(S2R_CHECKER);
-//        OBChecker obChecker = (OBChecker) state.get(OB_CHECKER);
-//        EBChecker ebChecker = (EBChecker) state.get(EB_CHECKER);
-
         updateStateBasedOnStep(appStep, s2rChecker);
 
     }
 
     private static void updateStateBasedOnStep(AppStep appStep, S2RChecker s2rChecker) {
-
-        //FIXME: some of the steps do not have transitions because they are built artificially, we should only update
-        // to the target state of the transition, but right now, as a workaround, I am updating to the current state
-        // of the step if the transition is null
         GraphTransition transition = appStep.getTransition();
         if (transition != null)
             s2rChecker.updateState(transition.getTargetState());
-//        else {
-//            s2rChecker.updateState(appStep.getCurrentState());
-//        }
-
     }
 
     /**

@@ -5,8 +5,8 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
-import sealab.burt.qualitychecker.actionparser.ActionParsingException;
-import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
+import sealab.burt.qualitychecker.actionmatcher.ActionMatchingException;
+import sealab.burt.qualitychecker.actionmatcher.NLActionS2RMatcher;
 import sealab.burt.qualitychecker.graph.AppGuiComponent;
 import sealab.burt.qualitychecker.graph.GraphState;
 
@@ -21,12 +21,12 @@ class EBChecker {
 
     private final String app;
     private final String appVersion;
-    private final NLActionS2RParser s2rParser;
+    private final NLActionS2RMatcher s2rParser;
 
     public EBChecker(String app, String appVersion) {
         this.app = app;
         this.appVersion = appVersion;
-        this.s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        this.s2rParser = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
     }
 
     public QualityResult checkEb(String ebDescription, GraphState obState, String obDescription) throws Exception {
@@ -87,7 +87,7 @@ class EBChecker {
             //FIXME: may need other device actions
             component = s2rParser.determineComponentForOb(currNLAction,
                     stateComponents, DeviceActions.CLICK, false);
-        } catch (ActionParsingException e) {
+        } catch (ActionMatchingException e) {
             //OK if there is a parsing error
         }
         return component;

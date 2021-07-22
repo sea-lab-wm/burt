@@ -99,16 +99,19 @@ function App() {
 
                 const responsePromise = ApiClient.processReportPreview();
                 responsePromise.then(response => {
+
                     let conversationResponse = response.data;
-                    if (conversationResponse.code === 0) {
-                        let chatbotMsgs = conversationResponse.messages;
-                        let chatbotMsg = chatbotMsgs[0];
+                    let chatbotMsgs = conversationResponse.messages;
+                    let chatbotMsg = chatbotMsgs[0];
+
+                    if (conversationResponse.code === SUCCESS_CODE) {
                         let link = chatbotMsg.generatedReport;
                         console.log(link);
                         window.open(config.serverEndpoint + "/" + link, "_blank");
-                    } else if (conversationResponse.code === -1) {
-                            window.alert("Oops, the bug report preview can't be generated at this moment as more" +
-                                " information is needed. Please select an app first.");
+                    } else if (conversationResponse.code === REPORT_NO_INFO_CODE) {
+                        window.alert(chatbotMsg.messageObj.message);
+                    } else if (conversationResponse.code === ERROR_CODE) {
+                        window.alert(chatbotMsg.messageObj.message);
                     } else {
                         window.alert("There was an unexpected error");
                     }
@@ -168,3 +171,7 @@ function loadMessagesAsync(setState) {
 */
 
 export default App;
+export const ERROR_CODE = -1;
+export const SUCCESS_CODE = 0;
+export const END_CONVERSATION_CODE = 100;
+export const REPORT_NO_INFO_CODE = -2;

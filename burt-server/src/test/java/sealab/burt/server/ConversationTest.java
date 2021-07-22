@@ -33,6 +33,11 @@ class ConversationTest extends AbstractTest {
     }
 
     @org.junit.Test
+    public void testFlowEulerIdealGnuCash616() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_GNUCASH_616);
+    }
+
+    @org.junit.Test
     public void testOBNoMatchMaxAttemptFlow() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.OB_NO_MATCH_MAX_ATTEMPTS);
     }

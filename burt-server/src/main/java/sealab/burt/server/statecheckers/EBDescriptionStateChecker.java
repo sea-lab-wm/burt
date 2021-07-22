@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
@@ -51,11 +50,13 @@ public class EBDescriptionStateChecker extends StateChecker {
 
             if (result.getResult().equals(QualityResult.Result.MATCH)) {
                 QualityStateUpdater.updateEBState(state, obState);
-            } else if (obReportElements == null && result.getResult().equals(QualityResult.Result.NO_MATCH)) {
-                //FIXME: what should we do if there is no OB match? Right now we just "skip" EB quality checking if
-                // there is no match
-                QualityStateUpdater.updateEBState(state, null);
-                return PROVIDE_S2R_FIRST;
+            } else if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
+                //if there is no OB match, we "skip" EB quality checking (only if there no EB match)
+                if (obReportElements == null || obReportElements.get(0).getOriginalElement() == null) {
+
+                    QualityStateUpdater.updateEBState(state, null);
+                    return PROVIDE_S2R_FIRST;
+                }
             }
             return nextActions.get(result.getResult().name());
         } catch (Exception e) {

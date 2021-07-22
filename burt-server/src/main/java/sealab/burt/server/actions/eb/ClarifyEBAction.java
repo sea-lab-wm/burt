@@ -33,7 +33,8 @@ public class ClarifyEBAction extends ChatBotAction {
                 "Is this the screen that should work fine?", WidgetName.OneScreenNoButtons), optionList);
 
         state.put(StateVariable.EB_SCREEN_CONFIRMATION, true);
-        state.put(EB_STATE, bugReportElement.getOriginalElement());
+        if(bugReportElement.getOriginalElement() !=null)
+            state.put(EB_STATE, bugReportElement.getOriginalElement());
 
         return createChatBotMessages("Okay, the description of the expected behavior reads rather general.",
                 optionMessage);
