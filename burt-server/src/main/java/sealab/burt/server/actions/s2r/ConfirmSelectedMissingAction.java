@@ -4,7 +4,6 @@ import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
@@ -12,7 +11,6 @@ import sealab.burt.server.statecheckers.QualityStateUpdater;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;
@@ -47,7 +45,6 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
 
         MessageObj message = msg.getFirstMessage();
-        StringBuilder response = new StringBuilder();
         if ("done".equals(message.getMessage())) {
 
             List<String> selectedValues = message.getSelectedValues();
@@ -65,23 +62,28 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
             //---------------------
 
-            response.append("Okay, you selected ");
-            response.append(selectedSteps.size());
-            response.append(" prior step(s), what step did you perform after the step \"")
+            StringBuilder msg1 = new StringBuilder();
+            msg1.append("Okay, you selected ")
+                    .append(selectedSteps.size())
+                    .append(" prior step(s).");
+
+            StringBuilder msg2 = new StringBuilder();
+            msg2.append("What step did you perform after the step \"")
                     .append(highQualityStepMessage)
                     .append("\"?");
+
+            return createChatBotMessages(msg1.toString(), msg2);
 
         } else if ("none of above".equals(message.getMessage())) {
 
             if (highQualityStepMessage != null)
                 QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
 
-            response.append("Got it, what is the next step?");
+            return createChatBotMessages("Got it, what is the next step?");
         } else {
             return getDefaultMessage(allMissingSteps, state);
         }
 
-        return createChatBotMessages(response.toString());
     }
 
     private List<ChatBotMessage> getDefaultMessage(List<AppStep> allMissingSteps,
@@ -90,7 +92,8 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(allMissingSteps, state);
 
         MessageObj messageObj = new MessageObj(
-                "From the following options, select the steps you performed before this step", WidgetName.S2RScreenSelector);
+                "From the following options, select the steps you performed before this step",
+                WidgetName.S2RScreenSelector);
 
         return createChatBotMessages(
                 "Sorry, the options you selected are incorrect.",

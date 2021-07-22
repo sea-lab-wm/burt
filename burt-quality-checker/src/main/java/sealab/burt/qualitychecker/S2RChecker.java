@@ -422,11 +422,13 @@ class S2RChecker {
      * Yang Song
      * Get all possible paths for S2R prediction
      */
-    public List<GraphPath<GraphState, GraphTransition>> getFirstKPaths(GraphState targetState) {
+    public List<GraphPath<GraphState, GraphTransition>> getAllPaths(GraphState targetState) {
+
+        log.debug(String.format("Getting the paths between %s and %s", currentState, targetState));
+
         List<GraphPath<GraphState, GraphTransition>> paths = GraphUtils.findPaths(executionGraph.getGraph(),
                 currentState, targetState, false, Integer.MAX_VALUE);
         sortPathsByScores(paths);
-
         return paths;
 
     }
