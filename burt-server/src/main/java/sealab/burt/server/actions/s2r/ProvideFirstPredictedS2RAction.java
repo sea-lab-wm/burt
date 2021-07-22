@@ -1,19 +1,19 @@
 package sealab.burt.server.actions.s2r;
 
+import edu.semeru.android.core.entity.model.App;
 import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;
@@ -21,17 +21,22 @@ import static sealab.burt.server.StateVariable.*;
 @Slf4j
 public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
-    public final static int MAX_NUMBER_OF_PATHS = 3;
+    public final static int MAX_NUMBER_OF_PATHS_TO_PROVIDE = 3;
 
     public ProvideFirstPredictedS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
-    public static List<KeyValues> getPredictedStepOptions(S2RChecker s2rchecker, GraphPath<GraphState,
-            GraphTransition> path, ConversationState state, GraphState currentState) {
-        List<AppStep> pathWithLoops = getPathWithLoops(s2rchecker, path, state, currentState);
-        return SelectMissingS2RAction.getStepOptions(pathWithLoops, state);
+//    public static List<KeyValues> getPredictedStepOptions(S2RChecker s2rchecker, GraphPath<GraphState,
+//            GraphTransition> path, ConversationState state, GraphState currentState) {
+//        List<AppStep> pathWithLoops = getPathWithLoops(s2rchecker, path, state, currentState);
+//
+//        return SelectMissingS2RAction.getStepOptions(pathWithLoops, state);
+//
+//    }
 
+    public static List<KeyValues> getPredictedStepOptionsFromAppSteps(List<AppStep> path, ConversationState state){
+        return SelectMissingS2RAction.getStepOptions(path, state);
     }
 
     public static List<AppStep> getPathWithLoops(S2RChecker s2rchecker, GraphPath<GraphState, GraphTransition> path,
@@ -51,6 +56,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         //Show the first 5 steps of the path to the user
 
         List<AppStep> pathWithLoops = currentResolvedSteps.subList(0, Math.min(5, currentResolvedSteps.size()));
+        log.debug(String.valueOf(pathWithLoops.size()));
 
         //setting the id, for testing purposes
         for (int i = 0; i < pathWithLoops.size(); i++) {
@@ -81,16 +87,13 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         //FIXME:check target state equals to current state
 
-        //get first k paths according to the score
-        List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKPaths(
-                MAX_NUMBER_OF_PATHS, targetState);
+        //get all the paths according to the score
+        List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKPaths(targetState);
 //        List<GraphPath<GraphState, GraphTransition>> predictedPaths = checker.getFirstKDummyPaths(
 //                MAX_NUMBER_OF_PATHS, targetState);
 
         log.debug("Total number of predicted paths: " + predictedPaths.size());
 
-        // if there are less 3 paths
-        state.put(PREDICTED_S2R_NUMBER_OF_PATHS, Math.min(MAX_NUMBER_OF_PATHS, predictedPaths.size()));
 
         if (predictedPaths.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
@@ -99,10 +102,22 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         //----------------------------------------
 
-        state.put(PREDICTED_S2R_PATHS, predictedPaths.subList(0, (int) state.get(PREDICTED_S2R_NUMBER_OF_PATHS)));
+        state.put(PREDICTED_S2R_PATHS, predictedPaths);
         state.put(PREDICTED_S2R_CURRENT_PATH, 0);
 
-        List<KeyValues> stepOptions = getPredictedStepOptions(checker, predictedPaths.get(0), state, currentState);
+
+        // the method getPathWithLoops() only returns 5 steps
+        List<List<AppStep>> pathsWithLoops = predictedPaths.stream()
+                .map(path -> getPathWithLoops(checker, path, state, currentState))
+                .collect(Collectors.toList());
+        log.debug(String.valueOf(pathsWithLoops.get(0).size()));
+        List<List<AppStep>> pathsWithLoopsRemoveDuplicated = new ArrayList<>(new LinkedHashSet<>(pathsWithLoops));
+        state.put(StateVariable.PREDICTED_S2R_PATHS_WITH_LOOPS, pathsWithLoopsRemoveDuplicated);
+        state.put(PREDICTED_S2R_NUMBER_OF_PATHS, Math.min(MAX_NUMBER_OF_PATHS_TO_PROVIDE, pathsWithLoopsRemoveDuplicated.size()));
+
+        // get the first predicted path
+        List<KeyValues> stepOptions = getPredictedStepOptionsFromAppSteps(
+                pathsWithLoopsRemoveDuplicated.get((int)state.get(PREDICTED_S2R_CURRENT_PATH)), state); // it is 0, first step
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
             return createChatBotMessages("Okay, can you please provide the next step?");

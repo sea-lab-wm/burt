@@ -70,6 +70,10 @@ class ConversationTest extends AbstractTest {
     public void testPredictionFlow() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.PREDICTION);
     }
+    @org.junit.Test
+    public void testDuplicatedPredictionFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.DUPLICATED_PREDICTED_PATH_MILEAGE);
+    }
 
 
     public void testConversationFlow(ConversationTestData.FlowName flowName) throws Exception {
