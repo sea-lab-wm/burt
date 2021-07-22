@@ -118,8 +118,8 @@ public class TraceReplayer {
         String appVersion = "1.6.2.3";
         String mainActivity = "de.danoeh.antennapod.activity.MainActivity";
         String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/Apks_for_pilot/APOD-RB/antennapod.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/Antennapod/getevent-2.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/Antennapod/getevent-2";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/Antennapod/getevent-1.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/Antennapod1/getevent-1";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -320,7 +320,9 @@ public class TraceReplayer {
                         for (DynGuiComponentVO component : screenInfo) {
                         	if(component.isFocused()) {
                         		System.out.println(component);
-                        		isSearchActivity = true;
+                        		if(guiEventVO.getRealInitialY()>1128) {
+                        			isSearchActivity = true;
+                        		}
                         		vo.setHvInfoComponent(component);
                                 vo.setText(component.getText());
 
@@ -339,10 +341,19 @@ public class TraceReplayer {
                                 String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
 
                                 String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
-
-                                Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                                        + "screenshots", appPackage + "." + "User-Trace" + "." + 
-                                                + executionCtr + "." + screenshot);
+                                
+                                if(isSearchActivity) {
+	                                Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
+	                                        + "screenshots", appPackage + "." + "User-Trace" + "." + 
+	                                                + executionCtr + "." + screenshot);
+                                } else {
+                                	Utilities.copyFiles(replayerFeatures.getUiDumpLocation() + (sequence-1), replayerFeatures.getUiDumpLocation() + sequence);
+                                	Utilities.copyFiles(outputFolder + File.separator
+	                                        + "screenshots" + File.separator +  appPackage + "." + "User-Trace" + "." + 
+	                                                + executionCtr + "." + currscreenshot, outputFolder + File.separator
+	                                        + "screenshots" + File.separator +  appPackage + "." + "User-Trace" + "." + 
+	                                                + executionCtr + "." + screenshot);
+                                }
                         
                                 takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
                                 
@@ -394,10 +405,10 @@ public class TraceReplayer {
                 String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
 
                 String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
-
+                
                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
                         + "screenshots", appPackage + "." + "User-Trace" + "." +
-                                + executionCtr + "." + screenshot);   
+                                + executionCtr + "." + screenshot); 
                 
                 if(guiEventVO.getEventTypeId()!=StepByStepEngine.SWIPE) {
                 	takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
@@ -412,7 +423,10 @@ public class TraceReplayer {
                 
                 
                 i++;
-            } else {
+            } else if(isSearchActivity) {
+            	
+            }
+            else {
             	//To capture the latest screenshot during typing
                 String screenshot = appPackage + "_" + appVersion + "_" + appName + sequence + ".png";  
                 Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator

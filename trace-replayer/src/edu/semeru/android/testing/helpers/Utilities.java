@@ -1403,4 +1403,9 @@ public class Utilities {
         String output_emma = TerminalHelper.executeCommand(command_emma);
         System.out.println(output_emma);
     }
+    
+    public static void copyFiles(String originalFile, String newFile) {
+    	String command = "cp " + originalFile + " " + newFile;
+    	TerminalHelper.executeCommand(command);
+    }
 }
