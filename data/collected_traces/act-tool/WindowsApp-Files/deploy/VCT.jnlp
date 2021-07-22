@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="VCT.jnlp">
+  <information>
+    <title>VCT</title>
+    <vendor>Unknown</vendor>
+    <description>VCT</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="VCT.jar" size="11987940" download="null" />
+    <nativelib href="libs/pid-windows/FreeImage.dll"/>
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="edu.semeru.android.capture.gui.MainScreen"  name="VCT" />
+  <update check="background"/>
+</jnlp>
