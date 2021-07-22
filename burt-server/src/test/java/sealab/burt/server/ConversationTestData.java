@@ -13,7 +13,8 @@ public class ConversationTestData {
 
     enum FlowName {
         NO_OB_SCREENS_SELECTED, ISSUE36, GENERAL, PREDICTION, MATCHED_OB, MATCHED_OB_MAX_ATTEMPTS,
-        OB_NO_MATCH_MAX_ATTEMPTS, EULER_IDEAL_MILEAGE_53, EULER_IDEAL_MILEAGE_53_2, EULER_IDEAL_GNUCASH_616, MATCHING_S2R
+        OB_NO_MATCH_MAX_ATTEMPTS, EULER_IDEAL_MILEAGE_53, MATCHING_S2R, DUPLICATED_PREDICTED_PATH_MILEAGE,
+        EULER_IDEAL_GNUCASH_616, EULER_IDEAL_MILEAGE_53_2
     }
 
     public static HashMap<FlowName, List<MessageObjectTest>> conversationFlows = new HashMap<>() {{
@@ -26,6 +27,7 @@ public class ConversationTestData {
         put(FlowName.MATCHED_OB_MAX_ATTEMPTS, getConversationFlowMatchedOBMaxAttempts());
         put(FlowName.OB_NO_MATCH_MAX_ATTEMPTS, getConversationFlowOBNoMatchMaxAttempts());
         put(FlowName.EULER_IDEAL_MILEAGE_53, getFlowEulerIdealMileage53());
+        put(FlowName.DUPLICATED_PREDICTED_PATH_MILEAGE, getDuplicatedPredictedPathMileage());
         put(FlowName.EULER_IDEAL_MILEAGE_53_2, getFlowEulerIdealMileage53Second());
         put(FlowName.EULER_IDEAL_GNUCASH_616, getFlowEulerIdealGnuCash616());
     }};
@@ -86,6 +88,67 @@ public class ConversationTestData {
         }};
 
     }
+
+    private static List<MessageObjectTest> getDuplicatedPredictedPathMileage () {
+
+        KeyValues mileageOption = SelectAppAction.ALL_APPS.stream()
+                .filter(entry -> entry.getValue1().equals("Mileage v. 3.1.1"))
+                .findFirst().orElse(null);
+
+        return new ArrayList<>() {{
+            //ChatBot: hi this is burt
+            add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
+                    PARTICIPANT_PROVIDED));
+            //ChatBot: what is you participant id?
+            add(new MessageObjectTest("P5", SELECT_APP, APP_SELECTED));
+            //ChatBot: select an app from the list
+            add(new MessageObjectTest(null, CONFIRM_APP,
+                    Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER),
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList(mileageOption.getKey())));
+            //ChatBot: is that the app you selected?
+            add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
+            //ChatBot: provide the OB
+            add(new MessageObjectTest("the app crashed when I add a new vehicle",
+                    SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("1")));
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: give me the EB
+            add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
+            //ChatBot: give me the first S2R
+            add(new MessageObjectTest("I opened the app", PREDICT_FIRST_S2R, S2R_PREDICTED_SELECTED));
+            //ChatBot: Okay, it seems the next steps that you performed might be the following.
+            //ChatBot: Can you confirm which ones you actually performed next?
+            //ChatBot: Remember that the screenshots below are for reference only.
+            //ChatBot: Please click the “done” button when you are done.
+            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+            //ChatBot: give me the next S2R
+            add(new MessageObjectTest("i clicked the Vehicles", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: please select the correct predicted S2Rs
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+           /* //ChatBot: give me the next S2R
+            add(new MessageObjectTest("Go back", REPHRASE_S2R, S2R_DESCRIPTION));
+*/
+/*
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "1", "2", "3")));
+            //ChatBot: ok, you selected some steps, what is the next step?
+            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+            //ChatBot: is that the last step?
+            add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
+            //ChatBot: ok, this is the report
+            add(new MessageObjectTest("Ok, bye", null, null));*/
+        }};
+
+    }
+
+
 
     private static List<MessageObjectTest> getFlowEulerIdealMileage53() {
 

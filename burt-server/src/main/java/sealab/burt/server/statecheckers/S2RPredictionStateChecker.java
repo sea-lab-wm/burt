@@ -33,22 +33,24 @@ public class S2RPredictionStateChecker extends StateChecker {
         MessageObj message = msg.getFirstMessage();
 
         if ("done".equals(message.getMessage())) {
-
-            List<GraphPath<GraphState, GraphTransition>> predictedPaths = (List<GraphPath<GraphState,
-                    GraphTransition>>) state.get(PREDICTED_S2R_PATHS);
-            GraphPath<GraphState, GraphTransition> path =
-                    predictedPaths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
-
-            //current state
-            S2RChecker s2rchecker = (S2RChecker) state.get(S2R_CHECKER);
-            GraphState currentState = s2rchecker.getCurrentState();
+            // get current predicted path
+            List<List<AppStep>> paths = (List<List<AppStep>>) state.get(PREDICTED_S2R_PATHS_WITH_LOOPS);
+            List<AppStep> path = paths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
+//            List<GraphPath<GraphState, GraphTransition>> predictedPaths = (List<GraphPath<GraphState,
+//                    GraphTransition>>) state.get(PREDICTED_S2R_PATHS);
+//            GraphPath<GraphState, GraphTransition> path =
+//                    predictedPaths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
+//
+//            //current state
+//            S2RChecker s2rchecker = (S2RChecker) state.get(S2R_CHECKER);
+//            GraphState currentState = s2rchecker.getCurrentState();
 
             // convert graph path to app steps
-            List<AppStep> steps = ProvideFirstPredictedS2RAction.getPathWithLoops(s2rchecker, path, state, currentState);
+//            List<AppStep> steps = ProvideFirstPredictedS2RAction.getPathWithLoops(s2rchecker, path, state, currentState);
 
-            // get selected app steps
+//             get selected app steps
             List<String> selectedValues = message.getSelectedValues();
-            List<AppStep> selectedSteps = steps.stream()
+            List<AppStep> selectedSteps = path.stream()
                     .filter(step -> selectedValues.contains(step.getId().toString()))
                     .collect(Collectors.toList());
 
@@ -70,6 +72,8 @@ public class S2RPredictionStateChecker extends StateChecker {
             state.remove(PREDICTED_S2R_CURRENT_PATH);
             state.remove(PREDICTED_S2R_PATHS);
             state.remove(PREDICTING_S2R);
+            state.remove(PREDICTED_S2R_PATHS_WITH_LOOPS);
+            state.remove(PREDICTED_S2R_NUMBER_OF_PATHS);
 
             // check if it is the last step
 //            GraphState targetState = (GraphState) state.get(StateVariable.OB_STATE); // get OB state
@@ -90,6 +94,8 @@ public class S2RPredictionStateChecker extends StateChecker {
                 state.remove(PREDICTED_S2R_CURRENT_PATH);
                 state.remove(PREDICTED_S2R_PATHS);
                 state.remove(PREDICTING_S2R);
+                state.remove(PREDICTED_S2R_PATHS_WITH_LOOPS);
+                state.remove(PREDICTED_S2R_NUMBER_OF_PATHS);
 
                 return ActionName.PROVIDE_S2R;
             }
@@ -98,6 +104,8 @@ public class S2RPredictionStateChecker extends StateChecker {
             state.remove(PREDICTED_S2R_CURRENT_PATH);
             state.remove(PREDICTED_S2R_PATHS);
             state.remove(PREDICTING_S2R);
+            state.remove(PREDICTED_S2R_NUMBER_OF_PATHS);
+            state.remove(PREDICTED_S2R_PATHS_WITH_LOOPS);
 
             return ActionName.CONFIRM_LAST_STEP;
         }
