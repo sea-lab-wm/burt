@@ -1,0 +1,6 @@
+JAVA_VERSION="1.8.0_151"
+OS_NAME="Darwin"
+OS_VERSION="11.2"
+OS_ARCH="x86_64"
+SOURCE=" .:f87bdb05cdf5 corba:806915813923 deploy:edda04b809ff hotspot:0b0cc47443c4 hotspot/make/closed:53375e6bbd5d hotspot/src/closed:fd21b5a4cafe hotspot/test/closed:fab8ceabb361 install:e6f0f809e076 jaxp:e8563bf8401f jaxws:f413ead0b46a jdk:6e02d1974296 jdk/make/closed:cc5a820da356 jdk/src/closed:baf5e4de7d34 jdk/test/closed:69a93f0f4ffb langtools:3ae1330eb988 nashorn:ea1233a9d4bb pubs:8bfffde64b2e sponsors:7d96dc413ad5"
+BUILD_TYPE="commercial"
