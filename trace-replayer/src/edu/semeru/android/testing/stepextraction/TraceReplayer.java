@@ -117,9 +117,9 @@ public class TraceReplayer {
         String appPackage = "org.gnucash.android";
         String appVersion = "2.1.3";
         String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/GNU-CC9/gnucash.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/GNU-CC9/getevent-1.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/GNU-CC9/getevent-1";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTraces/GnucashAndroid_v2.1.3.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/GNU-CC9/getevent-2.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/GNU-CC9/getevent-2";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -244,7 +244,7 @@ public class TraceReplayer {
             ArrayList<DynGuiComponentVO> screenInfo = UiAutoConnector.getScreenInfoCache(androidSDKPath, screenWidth, screenHeight, true, false, device);
             
 
-            //System.out.println(guiEventVO.getHvInfoComponent());
+            System.out.println(guiEventVO.getHvInfoComponent());
 
 	        Screen screen = new Screen();
 	        screen.setActivity(Utilities.getCurrentActivity(androidSDKPath));
@@ -259,7 +259,8 @@ public class TraceReplayer {
             
             // Is Keyboard component?
             if (guiEventVO.getHvInfoComponent() != null
-                    && guiEventVO.getHvInfoComponent().getIdXml().equals("id/keyboard_view")) {
+                    && (guiEventVO.getHvInfoComponent().getIdXml().equals("id/keyboard_view") 
+                    		|| guiEventVO.getHvInfoComponent().getIdXml().endsWith("id/calculator_keyboard"))) {
                 if (!keyboardActive && oldComponent != null) {
                     vo = (GUIEventVO) Utilities.cloneObject(oldComponent);
                     events.add(events.size(), vo);
@@ -527,6 +528,13 @@ public class TraceReplayer {
             int y = dynGuiComponent.getPositionY();
             int w = dynGuiComponent.getWidth();
             int h = dynGuiComponent.getHeight();
+            
+            if(dynGuiComponent.getIdXml().equals("BACK_MODAL")) {
+            	x = 0;
+            	y = 1794;
+            	w = 400;
+            	h = 126;
+            }
 
             BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
             bi.getGraphics().drawImage(orig, 0, 0, w, h, x, y, x + w, y + h, null);
