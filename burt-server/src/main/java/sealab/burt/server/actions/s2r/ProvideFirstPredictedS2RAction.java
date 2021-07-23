@@ -6,6 +6,7 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
+import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.s2r.prediction.S2RPredictor;
@@ -107,10 +108,13 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         List<List<AppStep>> pathsWithLoops;
         if (currentState.equals(targetState)) {
 
-            log.debug("Predicting S2R (loops");
+            log.debug("Predicting S2R (loops)");
 
             List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
             AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
+
+            if(DeviceUtils.isCloseApp(lastStep.getAction()))
+                return getNextStepMessage();
 
             List<AppStep> stateLoops = predictor.getStateLoops(currentState, lastStep);
             modifyIds(stateLoops);
