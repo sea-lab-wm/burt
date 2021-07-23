@@ -7,7 +7,10 @@ import sealab.burt.qualitychecker.S2RCheckerUtils;
 import sealab.burt.qualitychecker.actionmatcher.GraphUtils;
 import sealab.burt.qualitychecker.graph.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public @Slf4j
@@ -112,10 +115,10 @@ class S2RPredictor {
         //---------------------------
 
         List<AppGuiComponent> components = sourceState.getComponents();
-        List<AppStep> stepsToExecute = new LinkedList<>();
-        //for each loop
+        List<AppStep> pathSteps = new LinkedList<>();
+
         if (stateLoops.isEmpty()) {
-            return stepsToExecute;
+            return pathSteps;
         }
 
         //get the enabled components
@@ -133,21 +136,21 @@ class S2RPredictor {
 
         //----------------------------------
 
-        List<GraphTransition> transitionsToExecute = sortedTransitions;
+        List<GraphTransition> filteredTransitions = sortedTransitions;
         //filter out the transitions prior to the last step
         final int index = S2RCheckerUtils.indexOf.apply(sortedTransitions, lastStep);
         if (index != -1) {
-            transitionsToExecute = sortedTransitions.subList(index + 1, sortedTransitions.size());
+            filteredTransitions = sortedTransitions.subList(index + 1, sortedTransitions.size());
         }
 
         //------------------------------------
 
-        stepsToExecute = transitionsToExecute.stream()
+        pathSteps = filteredTransitions.stream()
                 .map(GraphTransition::getStep)
                 .collect(Collectors.toList());
 
-        stepsToExecute = S2RCheckerUtils.removeCheckedSteps(stepsToExecute, enabledComponents);
+        pathSteps = S2RCheckerUtils.removeCheckedSteps(pathSteps, enabledComponents);
 
-        return stepsToExecute;
+        return pathSteps;
     }
 }
