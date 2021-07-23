@@ -98,12 +98,6 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
         S2RPredictor predictor = new S2RPredictor(checker.getGraph());
         GraphState currentState = checker.getCurrentState();
-/*
-        List<GraphPath<GraphState, GraphTransition>> predictedPaths;
-        if (currentState.equals(targetState)) {
-            predictedPaths = predictor.getArtificialPathWithOneLoop(currentState);
-        } else {
-        }*/
 
         List<List<AppStep>> pathsWithLoops;
         if (currentState.equals(targetState)) {

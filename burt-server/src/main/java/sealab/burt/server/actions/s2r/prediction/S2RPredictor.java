@@ -150,21 +150,4 @@ class S2RPredictor {
 
         return stepsToExecute;
     }
-
-
-    public List<GraphPath<GraphState, GraphTransition>> getArtificialPathWithOneLoop(GraphState sourceState) {
-
-        //get the 1st loop of the current source state
-        final GraphTransition firstLoop = graph
-                .outgoingEdgesOf(sourceState).stream()
-                .filter(tr -> tr.getTargetState().equals(sourceState))
-                .findFirst().orElse(null);
-
-        if (firstLoop == null) return Collections.emptyList();
-
-        List<GraphTransition> pathElements = Collections.singletonList(firstLoop);
-        GraphWalk<GraphState, GraphTransition> path = new GraphWalk<>(
-                graph, sourceState, sourceState, pathElements, 0.0);
-        return Collections.singletonList(path);
-    }
 }
