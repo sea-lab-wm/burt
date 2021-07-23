@@ -854,7 +854,7 @@ class NLActionS2RMatcher {
         return ComponentType.BUTTON.equals(getComponentType(componentName));
     }
 
-    public boolean isCheckedComponent(String componentName) {
+    public static boolean isCheckedComponent(String componentName) {
         return ComponentType.CHECKED_COMPONENT.equals(getComponentType(componentName));
     }
 
@@ -1894,7 +1894,7 @@ class NLActionS2RMatcher {
         return currentScreen.stream().noneMatch(AppGuiComponent::getLongClickable);
     }
 
-    private ComponentType getComponentType(String componentName) {
+    private static ComponentType getComponentType(String componentName) {
         String componentTypeClass = getComponentTypeClass(componentName);
         return generalComponentClasses.get(componentTypeClass);
     }
@@ -1910,7 +1910,7 @@ class NLActionS2RMatcher {
         });
     }
 
-    private String getComponentTypeClass(String componentClassType) {
+    private static String getComponentTypeClass(String componentClassType) {
         return componentClassType.substring(componentClassType.lastIndexOf(".") + 1);
     }
 

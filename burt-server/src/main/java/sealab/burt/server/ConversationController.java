@@ -124,6 +124,8 @@ class ConversationController {
             if (stateChecker == null)
                 return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
 
+            log.debug("Identified state checker: " + stateChecker);
+
             ActionName action = stateChecker.nextAction(conversationState);
 
             if (action == null)
@@ -144,8 +146,8 @@ class ConversationController {
 
             log.debug("Expected next intent: " + nextIntents);
 
-            log.debug("State: ");
-            log.debug(conversationState.toString());
+//            log.debug("State: ");
+//            log.debug(conversationState.toString());
 
             return new ConversationResponse(nextMessages, nextIntents, action, ResponseCode.SUCCESS);
         } catch (Exception e) {

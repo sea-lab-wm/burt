@@ -4,8 +4,6 @@ import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.jgrapht.GraphPath;
-import org.jgrapht.graph.GraphWalk;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
@@ -19,9 +17,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import seers.appcore.utils.JavaUtils;
 
 import java.util.*;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static sealab.burt.qualitychecker.s2rquality.S2RQualityCategory.HIGH_QUALITY;
 
@@ -30,21 +26,10 @@ class S2RChecker {
 
     private static final int GRAPH_MAX_DEPTH_CHECK = 7;
     private static int textCounter = 1;
-
-    //function that finds the index of stepToFind in the transition list
-    private static BiFunction<List<GraphTransition>, AppStep, Integer> indexOf = (transitions, stepToFind)
-            -> IntStream.range(0, transitions.size())
-            .filter(j -> {
-                final AppStep step = transitions.get(j).getStep();
-                return stepToFind.equals(step);
-            })
-            .findFirst()
-            .orElse(-1);
-
     private final String appName;
     private final String appVersion;
     private final StepResolver resolver;
-    private final NLActionS2RMatcher s2rParser;
+    private final NLActionS2RMatcher s2rMatcher;
     private final String parsersBaseFolder;
     private GraphState currentState;
     private AppGraphInfo executionGraph;
@@ -55,8 +40,8 @@ class S2RChecker {
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
-        s2rParser = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
-        resolver = new StepResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
+        s2rMatcher = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        resolver = new StepResolver(s2rMatcher, GRAPH_MAX_DEPTH_CHECK);
     }
 
     public QualityFeedback checkS2R(String S2RDescription) throws Exception {
@@ -93,7 +78,6 @@ class S2RChecker {
         qualityFeedback.setAction(nlAction);
 
 
-
         List<AppStep> currentResolvedSteps = new LinkedList<>();
         resolveNLAction(nlAction, currentResolvedSteps, currentState, null, null, null, qualityFeedback);
 
@@ -107,15 +91,12 @@ class S2RChecker {
             executionGraph = JSONGraphReader.getGraph(appName, appVersion);
     }
 
-    private List<DevServerCommandResult> resolveNLAction(NLAction currNLAction, List<AppStep> currentResolvedSteps,
-                                                         GraphState currentState, Screen currentScreen,
-                                                         NLAction previousS2RNlAction,
-                                                         AppStep lastStep, QualityFeedback s2rQA) {
+    private void resolveNLAction(NLAction currNLAction, List<AppStep> currentResolvedSteps,
+                                 GraphState currentState, Screen currentScreen,
+                                 NLAction previousS2RNlAction,
+                                 AppStep lastStep, QualityFeedback s2rQA) {
 
         log.debug("Resolving action: " + currNLAction);
-
-        // Holds the target matched step and any intermediate steps
-        List<DevServerCommandResult> executionResults = new ArrayList<>();
 
         // First try to match with a Step in the graph
         ResolvedStepResult result = resolver.resolveActionInGraph(currNLAction, executionGraph, currentState);
@@ -137,16 +118,16 @@ class S2RChecker {
             if (result2.isStepNotMatched()) {*/
 //            result2 =  new ResolvedStepResult();
 
-                final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result);
-                if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);
-                else {
-                    final S2RQualityAssessment assessment = buildVocabularyMismatchAssessment(result);
-                    s2rQA.addQualityAssessment(assessment);
-                }
-                return executionResults;
-          /*  } else {
+            final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result);
+            if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);
+            else {
+                final S2RQualityAssessment assessment = buildVocabularyMismatchAssessment(result);
+                s2rQA.addQualityAssessment(assessment);
+            }
+            return;
+            /*  } else {
 
-               *//* final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, result2);
+             *//* final S2RQualityAssessment assessment2 = buildAmbiguousAssessment(result, result2);
                 if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);*//*
                 result = result2;
             }*/
@@ -163,7 +144,7 @@ class S2RChecker {
         try {
 
             //find and execute the intermediate steps
-            executeIntermediateSteps(matchedStep, lastStep, currentState, executionResults, currentResolvedSteps);
+            addIntermediateSteps(matchedStep, lastStep, currentState, currentResolvedSteps);
 
         } catch (Exception e) {
             log.debug("Could not execute all the intermediate steps", e);
@@ -196,7 +177,8 @@ class S2RChecker {
             List<AppStep> currentResolvedSteps2 = new ArrayList<>();
 
             //we need to execute additional commands for types
-            final S2RQualityAssessment assessment3 = addAdditionalStepsAndCheckForInput(matchedStep, currentResolvedSteps2);
+            final S2RQualityAssessment assessment3 = addAdditionalStepsAndCheckForInput(matchedStep,
+                    currentResolvedSteps2);
             if (assessment3 != null) s2rQA.addQualityAssessment(assessment3);
 
         } catch (Exception e) {
@@ -205,8 +187,6 @@ class S2RChecker {
         }
 
         //-------------------------------------------------
-
-        return executionResults;
 
     }
 
@@ -223,21 +203,20 @@ class S2RChecker {
             //case: type 'x' on 'y'
             if (JavaUtils.getSet("on", "in", "into", "for", "of", "as", "to", "with").contains(preposition)) {
 
-                final boolean isObjectLiteral = s2rParser.isLiteralValue(object)
-                        || s2rParser.getLiteralValue(object) != null;
+                final boolean isObjectLiteral = s2rMatcher.isLiteralValue(object)
+                        || s2rMatcher.getLiteralValue(object) != null;
                 if (isObjectLiteral)
                     text = object;
             }
 
         } else if (!StringUtils.isEmpty(object)) {
-            text = s2rParser.getLiteralValue(object);
+            text = s2rMatcher.getLiteralValue(object);
         }
         return text;
     }
 
-    private void executeIntermediateSteps(AppStep matchedStep, AppStep lastStep, GraphState currentState,
-                                          List<DevServerCommandResult> executionResults,
-                                          List<AppStep> currentResolvedSteps) {
+    private void addIntermediateSteps(AppStep matchedStep, AppStep lastStep, GraphState currentState,
+                                      List<AppStep> currentResolvedSteps) {
 
         //no intermediate steps for open app
         if (DeviceUtils.isOpenApp(matchedStep.getAction())
@@ -253,7 +232,7 @@ class S2RChecker {
 
         if (!shortestPath.isEmpty()) {
 
-            executeIntermediateStepsInShortestPath(matchedStep, lastStep, currentResolvedSteps, shortestPath,
+            addIntermediateStepsInShortestPath(matchedStep, lastStep, currentResolvedSteps, shortestPath,
                     currentState.getComponents());
 
         } else {
@@ -269,14 +248,13 @@ class S2RChecker {
             }
 
             addIntermediateStepsInCurrentScreen(matchedStep, currentState,
-                    executionResults, currentResolvedSteps, currentState.getComponents());
+                    currentResolvedSteps, currentState.getComponents());
 
         }
 
     }
 
     private void addIntermediateStepsInCurrentScreen(AppStep matchedStep, GraphState currentState,
-                                                     List<DevServerCommandResult> executionResults,
                                                      List<AppStep> currentResolvedSteps,
                                                      List<AppGuiComponent> components) {
         log.debug("Adding intermediate steps in the current state");
@@ -310,11 +288,11 @@ class S2RChecker {
 //                .map(c -> Transform.getGuiComponent(c, null))
                     .collect(Collectors.toList());
 
-        List<GraphTransition> sortedTransitions = filterAndSortTransitions(stateLoopTransitions,
+        List<GraphTransition> sortedTransitions = S2RCheckerUtils.filterAndSortTransitions(stateLoopTransitions,
                 enabledComponents);
         //----------------------------------
 
-        final Integer index = indexOf.apply(sortedTransitions, matchedStep);
+        final Integer index = S2RCheckerUtils.indexOf.apply(sortedTransitions, matchedStep);
         List<GraphTransition> transitionsToExecute = sortedTransitions;
         if (index != -1) {
             //filter out the transitions after the step
@@ -327,7 +305,7 @@ class S2RChecker {
                 .map(GraphTransition::getStep)
                 .collect(Collectors.toList());
 
-        stepsToExecute = removeCheckedSteps(stepsToExecute, enabledComponents);
+        stepsToExecute = S2RCheckerUtils.removeCheckedSteps(stepsToExecute, enabledComponents);
         //addAdditionalIntermediateSteps(stepsToExecute);
 
      /*   log.debug("Executing intermediate steps: " + stepsToExecute);
@@ -337,10 +315,9 @@ class S2RChecker {
         currentResolvedSteps.addAll(stepsToExecute);
     }
 
-    public void executeIntermediateStepsInShortestPath(AppStep matchedStep, AppStep lastStep,
-//                                                        List<DevServerCommandResult> executionResults,
-                                                       List<AppStep> currentResolvedSteps,
-                                                       List<AppStep> shortestPath, List<AppGuiComponent> components) {
+    public void addIntermediateStepsInShortestPath(AppStep matchedStep, AppStep lastStep,
+                                                   List<AppStep> currentResolvedSteps,
+                                                   List<AppStep> shortestPath, List<AppGuiComponent> components) {
 
         log.debug("Adding intermediate steps in shortest path");
         //------------------------------
@@ -355,7 +332,8 @@ class S2RChecker {
             //get the loops of the current source state
             final Set<GraphTransition> stateLoopTransitions = executionGraph.getGraph()
                     .outgoingEdgesOf(sourceState).stream()
-                    .filter(tr -> tr.getTargetState().equals(sourceState))
+                    .filter(tr -> tr.getTargetState().equals(sourceState)
+                    )
                     .collect(Collectors.toSet());
 
             //---------------------------
@@ -366,7 +344,7 @@ class S2RChecker {
             if (!stateLoopTransitions.isEmpty()) {
 
                 //get the enabled components
-                //FIXME: should we consider all the components? this was a copy/past from EULER
+                //FIXME: should we consider all the components? this was a copy/paste from EULER
                 List<AppGuiComponent> enabledComponents = null;
                 if (components != null)
                     enabledComponents = components.stream()
@@ -376,7 +354,7 @@ class S2RChecker {
 
                 //filter the loops that operate on the enabled components and sort them based on their appearance in
                 // the screen: top-down
-                List<GraphTransition> sortedTransitions = filterAndSortTransitions(stateLoopTransitions,
+                List<GraphTransition> sortedTransitions = S2RCheckerUtils.filterAndSortTransitions(stateLoopTransitions,
                         enabledComponents);
 
                 //----------------------------------
@@ -384,14 +362,14 @@ class S2RChecker {
                 List<GraphTransition> transitionsToExecute = sortedTransitions;
                 if (i == 0 && lastStep != null) {
                     //filter out the transitions prior to the last step
-                    final int index = indexOf.apply(sortedTransitions, lastStep);
+                    final int index = S2RCheckerUtils.indexOf.apply(sortedTransitions, lastStep);
                     if (index != -1) {
                         transitionsToExecute = sortedTransitions.subList(index + 1, sortedTransitions.size());
                     }
                 } else if (i == shortestPath.size() - 1) {
                     //filter out the transitions after the matched step
                     if (matchedStep != null) {
-                        final int index = indexOf.apply(sortedTransitions, matchedStep);
+                        final int index = S2RCheckerUtils.indexOf.apply(sortedTransitions, matchedStep);
                         if (index != -1) {
                             transitionsToExecute = sortedTransitions.subList(0, index);
                         }
@@ -404,7 +382,7 @@ class S2RChecker {
                         .map(GraphTransition::getStep)
                         .collect(Collectors.toList());
 
-                stepsToExecute = removeCheckedSteps(stepsToExecute, enabledComponents);
+                stepsToExecute = S2RCheckerUtils.removeCheckedSteps(stepsToExecute, enabledComponents);
             }
             stepsToExecute.add(currentStep);
 
@@ -418,251 +396,10 @@ class S2RChecker {
         }
     }
 
-    /**
-     * Yang Song
-     * Get all possible paths for S2R prediction
-     */
-    public List<GraphPath<GraphState, GraphTransition>> getAllPaths(GraphState targetState) {
-
-        log.debug(String.format("Getting the paths between %s and %s", currentState, targetState));
-
-        List<GraphPath<GraphState, GraphTransition>> paths = GraphUtils.findPaths(executionGraph.getGraph(),
-                currentState, targetState, false, Integer.MAX_VALUE);
-        sortPathsByScores(paths);
-        return paths;
-
-    }
-
-    public List<GraphPath<GraphState, GraphTransition>> getFirstKDummyPaths(Integer k, GraphState targetState) {
-
-        Set<GraphTransition> outgoingEdges = executionGraph.getGraph().outgoingEdgesOf(currentState);
-        outgoingEdges = getNonLoops(outgoingEdges);
-        List<GraphPath<GraphState, GraphTransition>> paths = new ArrayList<>();
-        for (GraphTransition outgoingEdge : outgoingEdges) { //first level
-
-            GraphState tgtState = outgoingEdge.getTargetState();
-
-            Set<GraphTransition> outgoingEdges2 = executionGraph.getGraph().outgoingEdgesOf(tgtState);
-            outgoingEdges2 = getNonLoops(outgoingEdges2);
-
-            for (GraphTransition outgoingEdge2 : outgoingEdges2) { //second level
-                GraphState tgtState2 = outgoingEdge2.getTargetState();
-
-                Set<GraphTransition> outgoingEdges3 = executionGraph.getGraph().outgoingEdgesOf(tgtState2);
-                outgoingEdges3 = getNonLoops(outgoingEdges3);
-
-                for (GraphTransition outgoingEdge3 : outgoingEdges3) { //third level
-                    List<GraphTransition> onePath = new ArrayList<>();
-                    onePath.add(outgoingEdge);
-                    onePath.add(outgoingEdge2);
-                    onePath.add(outgoingEdge3);
 
 
-                    GraphWalk<GraphState, GraphTransition> path = new GraphWalk<>(
-                            executionGraph.getGraph(), currentState, targetState, onePath, 0.0);
-                    paths.add(path);
-                }
-            }
-        }
-
-        paths.addAll(paths);
-
-        sortPathsByScores(paths);
-
-        return paths.subList(0, Math.min(k, paths.size()));
-
-    }
-
-    private Set<GraphTransition> getNonLoops(Set<GraphTransition> outgoingEdges) {
-        return outgoingEdges.stream()
-                .filter(e -> !e.getSourceState().equals(e.getTargetState()))
-                .collect(Collectors.toSet());
-    }
-
-    private static void sortPathsByScores(List<GraphPath<GraphState, GraphTransition>> paths) {
-        paths.sort((p1, p2) -> {
-            double diff = computePathScore(p1) - computePathScore(p2);
-            int a = 0;
-            if (diff > 0) {
-                a = -1;
-            } else if (diff < 0) {
-                a = 1;
-            }
-            return a;
-        });
-    }
-
-    private static double computePathScore(GraphPath<GraphState, GraphTransition> path) {
-        List<GraphTransition> edgeList = path.getEdgeList();
-        double score = 0;
-        double weightSum = 0;
-        for (GraphTransition transition : edgeList) {
-            weightSum += transition.getWeight();
-        }
-        score += weightSum / edgeList.size();
-        score += 1.0 / edgeList.size();
-        return score;
-    }
-
-/*
-    public QualityFeedback checkS2R(NLAction action) throws Exception {
-        readGraph();
-
-        if (currentState == null)
-            currentState = GraphState.START_STATE;
-
-        log.debug("Current state: " + currentState);
-
-        return matchAction(action);
-    }*/
-
-
-  /*  private void addAdditionalIntermediateSteps(List<AppStep> steps) {
-
-        for (int i = 0; i < steps.size(); i++) {
-
-            final AppStep appStep = steps.get(i);
-
-            if (DeviceUtils.isAnyType(appStep.getAction())) {
-
-                AppStep priorStep = null;
-                if (i - 1 >= 0) {
-                    priorStep = steps.get(i - 1);
-                }
-                AppStep nextStep = null;
-                if (i + 1 < steps.size()) {
-                    nextStep = steps.get(i + 1);
-                }
-
-                //----------------------------------
-
-                final AppGuiComponent component = appStep.getComponent();
-
-                final AppStep clickStep = new AppStep(DeviceActions.CLICK, component);
-                //add one click before the type if there isn't one already
-                if (!clickStep.equals(priorStep)) {
-                    //add it
-                    steps.add(i, clickStep);
-                    //leave the index where the type is
-                    i++;
-                }
-                //add one click after the type if there isn't one already
-                if (!clickStep.equals(nextStep)) {
-                    //add it after the type
-                    steps.add(i + 1, clickStep);
-                    //leave the index where the new click is
-                    i++;
-                }
-
-                //--------------------------------
-
-                //add the text in case it is empty
-                if (StringUtils.isEmpty(appStep.getText())) {
-                    String text = getTextForType();
-                    appStep.setText(text);
-                }
-            }
-        }
-    }*/
-
-    private List<AppStep> removeCheckedSteps(List<AppStep> stepsToExecute, List<AppGuiComponent> enabledComponents) {
-        List<Integer> stepsToRemove = new ArrayList<>();
-
-        //-------------------------------
-        List<ImmutablePair<Integer, Integer>> stepGroups = getStepGroupsWithCheckComponent(stepsToExecute);
-
-        if (stepGroups.isEmpty())
-            return stepsToExecute;
-
-        for (ImmutablePair<Integer, Integer> stepGroup : stepGroups) {
-            Integer selected = getSelected(stepGroup, enabledComponents, stepsToExecute);
-            if (selected != null) {
-                IntStream.range(stepGroup.left, selected).forEach(stepsToRemove::add);
-                IntStream.range(selected + 1, stepGroup.right).forEach(stepsToRemove::add);
-            } else {
-                IntStream.range(stepGroup.left + 1, stepGroup.right).forEach(stepsToRemove::add);
-            }
-        }
-
-        //-------------------------------
-
-        return IntStream.range(0, stepsToExecute.size())
-                .filter(i -> !stepsToRemove.contains(i))
-                .mapToObj(stepsToExecute::get)
-                .collect(Collectors.toList());
-    }
-
-    private Integer getSelected(ImmutablePair<Integer, Integer> stepGroup,
-                                List<AppGuiComponent> enabledComponents,
-                                List<AppStep> stepsToExecute) {
-
-        final List<AppStep> appSteps = stepsToExecute.subList(stepGroup.left, stepGroup.right);
-
-        final List<AppGuiComponent> checkedComponents = enabledComponents.stream()
-                .filter(AppGuiComponent::getChecked)
-                .collect(Collectors.toList());
-
-        final int idx = IntStream.range(0, appSteps.size())
-                .filter(j -> {
-                    final AppGuiComponent component = appSteps.get(j).getComponent();
-                    return checkedComponents.contains(component);
-                })
-                .findFirst()
-                .orElse(-1);
-
-        if (idx == -1)
-            return null;
-
-        return idx + stepGroup.left;
-    }
-
-    private List<ImmutablePair<Integer, Integer>> getStepGroupsWithCheckComponent(List<AppStep> stepsToExecute) {
-        List<ImmutablePair<Integer, Integer>> stepGroups = new ArrayList<>();
-
-        int ini = -1;
-        int end;
-        for (int i = 0; i < stepsToExecute.size(); i++) {
-            final AppStep appStep = stepsToExecute.get(i);
-            final AppGuiComponent component = appStep.getComponent();
-
-            if (s2rParser.isCheckedComponent(component.getType())) {
-                if (ini == -1)
-                    ini = i;
-            } else {
-                if (ini != -1) {
-                    end = i;
-                    stepGroups.add(new ImmutablePair<>(ini, end));
-                    ini = -1;
-                }
-            }
-        }
-
-        if (ini != -1) {
-            end = stepsToExecute.size();
-            stepGroups.add(new ImmutablePair<>(ini, end));
-        }
-
-        return stepGroups;
-    }
-
-    private List<GraphTransition> filterAndSortTransitions(Set<GraphTransition> graphTransitions, List<AppGuiComponent>
-            enabledComponents) {
-
-        if (enabledComponents == null) return new ArrayList<>();
-
-        final List<ImmutablePair<GraphTransition, Integer>> indexedComponents = graphTransitions.stream()
-                .map(t -> new ImmutablePair<>(t,
-                        enabledComponents.indexOf(t.getStep().getComponent())))
-                .filter(tp -> tp.right != -1)
-                .collect(Collectors.toList());
-
-        return indexedComponents.stream()
-                .sorted(Comparator.comparing(ImmutablePair::getRight))
-                .map(ImmutablePair::getLeft)
-                .collect(Collectors.toList());
-    }
-
-    private S2RQualityAssessment addAdditionalStepsAndCheckForInput(AppStep appStep, List<AppStep> currentResolvedSteps2) {
+    private S2RQualityAssessment addAdditionalStepsAndCheckForInput(AppStep appStep,
+                                                                    List<AppStep> currentResolvedSteps2) {
         if (DeviceUtils.isAnyType(appStep.getAction())) {
 
             final AppStep clickStep = new AppStep(DeviceActions.CLICK, appStep.getComponent());
@@ -693,15 +430,13 @@ class S2RChecker {
 
 
     private String getTextForType() {
-
-
         return String.valueOf(textCounter++);
     }
 
 
     private S2RQualityAssessment buildAmbiguousAssessment(ResolvedStepResult result) {
 
-        if (result.anyAmbiguousResultPresent() ) {
+        if (result.anyAmbiguousResultPresent()) {
 
             final S2RQualityAssessment assessment = new S2RQualityAssessment(S2RQualityCategory.LOW_Q_AMBIGUOUS);
 
@@ -735,33 +470,14 @@ class S2RChecker {
                 .map(s -> s.replace("_", " "))
                 .collect(Collectors.toList());
     }
-/*
-    private List<AppGuiComponent> getComponents(List<String> firstComponents) {
-        EntityManager em = DBUtils.createEntityManager();
-        try {
-            DynGuiComponentDao dao = new DynGuiComponentDao();
-            return firstComponents.stream().map(id -> {
-                try {
-                    return dao.getById(Long.valueOf(id.trim()), em);
-                } catch (CRUDException e) {
-                    log.error("Error", e);
-                }
-                return null;
-            }).filter(Objects::nonNull)
-                    .map(c -> Transform.getGuiComponent(c, null))
-                    .collect(Collectors.toList());
-        } finally {
-            em.close();
-        }
-    }*/
 
     private S2RQualityAssessment buildVocabularyMismatchAssessment(ResolvedStepResult result) {
         final S2RQualityAssessment assessment = new S2RQualityAssessment(S2RQualityCategory.LOW_Q_VOCAB_MISMATCH);
 
-        if (result.anyActionResultPresent() )
+        if (result.anyActionResultPresent())
             assessment.setVerbVocabMismatch();
 
-        if (( result.anyObjsResultPresent() && !result.isAnyMatchingResultsPresent(MatchingResult.COMPONENT_FOUND)))
+        if ((result.anyObjsResultPresent() && !result.isAnyMatchingResultsPresent(MatchingResult.COMPONENT_FOUND)))
             assessment.setObjsVocabMismatch();
 
         return assessment;
@@ -780,4 +496,7 @@ class S2RChecker {
         return this.currentState;
     }
 
+    public AppGraph<GraphState, GraphTransition> getGraph() {
+        return executionGraph.getGraph();
+    }
 }
