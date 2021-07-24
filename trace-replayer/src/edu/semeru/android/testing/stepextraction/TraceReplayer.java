@@ -77,7 +77,7 @@ import edu.semeru.android.core.entity.model.fusion.Execution;
  * a list of tuples that contain information about each step performed
  * on a device.
  *
- * @author Kevin Moran & Carlos Bernal
+ * @author Kevin Moran, Carlos Bernal & Junayed Mahmud
  * @since Feb 1, 2015
  */
 public class TraceReplayer {
@@ -85,7 +85,7 @@ public class TraceReplayer {
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private int sequence = 0;
     public boolean takeScreenshots = false;
-    private int executionCtr = 1;
+    private int executionCtr = 2;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
     
@@ -113,13 +113,13 @@ public class TraceReplayer {
         String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "gnucash";
-        String appPackage = "org.gnucash.android";
-        String appVersion = "2.1.3";
-        String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTraces/GnucashAndroid_v2.1.3.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesModified/GNU-CC9/getevent-2.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/KristenTracesOutput/GNU-CC9/getevent-2";
+        String appName = "atimetracker";
+        String appPackage = "com.markuspage.android.atimetracker";
+        String appVersion = "0.20";
+        String mainActivity = "com.markuspage.android.atimetracker.Tasks";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/Apks_for_pilot/TIME-CC1/atimetracker.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTracesModified/atimetracker/getevent_general_exploration_2.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTracesOutput/atimetrackerAll/atimetracker";
         
         String avdPort = "5554";
         String adbPort = "5037";
