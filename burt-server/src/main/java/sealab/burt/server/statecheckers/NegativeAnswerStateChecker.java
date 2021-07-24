@@ -42,6 +42,9 @@ public class NegativeAnswerStateChecker extends StateChecker {
 
             } else
                 nextAction = PROVIDE_OB;
+        } else if (state.containsKey(S2R_MATCHED_CONFIRMATION)) {
+            state.remove(S2R_MATCHED_CONFIRMATION);
+            nextAction = PROVIDE_S2R_NO_MATCH;
         }
         return nextAction;
 

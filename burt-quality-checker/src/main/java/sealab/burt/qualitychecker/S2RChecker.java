@@ -1,14 +1,14 @@
 package sealab.burt.qualitychecker;
 
-import edu.semeru.android.core.entity.model.fusion.Screen;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
-import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
-import sealab.burt.qualitychecker.actionmatcher.*;
+import sealab.burt.qualitychecker.actionmatcher.MatchingResult;
+import sealab.burt.qualitychecker.actionmatcher.NLActionS2RMatcher;
+import sealab.burt.qualitychecker.actionmatcher.ResolvedStepResult;
+import sealab.burt.qualitychecker.actionmatcher.StepResolver;
 import sealab.burt.qualitychecker.graph.*;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
@@ -24,8 +24,7 @@ import static sealab.burt.qualitychecker.s2rquality.S2RQualityCategory.HIGH_QUAL
 public @Slf4j
 class S2RChecker {
 
-    private static final int GRAPH_MAX_DEPTH_CHECK = 7;
-    private static int textCounter = 1;
+    private static final int GRAPH_MAX_DEPTH_CHECK = Integer.MAX_VALUE;
     private final String appName;
     private final String appVersion;
     private final StepResolver resolver;
@@ -33,7 +32,7 @@ class S2RChecker {
     private final String parsersBaseFolder;
     private GraphState currentState;
     private AppGraphInfo executionGraph;
-    private HashMap<Integer, Integer> statesExecuted = new HashMap<>();
+    private final HashMap<Integer, Integer> statesExecuted = new HashMap<>();
 
     public S2RChecker(String appName, String appVersion) {
         this.appName = appName;
@@ -78,8 +77,7 @@ class S2RChecker {
         qualityFeedback.setAction(nlAction);
 
 
-        List<AppStep> currentResolvedSteps = new LinkedList<>();
-        resolveNLAction(nlAction, currentResolvedSteps, currentState, null, null, null, qualityFeedback);
+        resolveNLAction(nlAction, currentState, qualityFeedback);
 
         return qualityFeedback;
     }
@@ -91,10 +89,7 @@ class S2RChecker {
             executionGraph = JSONGraphReader.getGraph(appName, appVersion);
     }
 
-    private void resolveNLAction(NLAction currNLAction, List<AppStep> currentResolvedSteps,
-                                 GraphState currentState, Screen currentScreen,
-                                 NLAction previousS2RNlAction,
-                                 AppStep lastStep, QualityFeedback s2rQA) {
+    private void resolveNLAction(NLAction currNLAction, GraphState currentState, QualityFeedback s2rQA) {
 
         log.debug("Resolving action: " + currNLAction);
 
@@ -141,10 +136,12 @@ class S2RChecker {
 
         //-------------------------------------------------
 
+
+        List<AppStep> inferredSteps = new LinkedList<>();
         try {
 
             //find and execute the intermediate steps
-            addIntermediateSteps(matchedStep, lastStep, currentState, currentResolvedSteps);
+            addIntermediateSteps(matchedStep, null, currentState, inferredSteps);
 
         } catch (Exception e) {
             log.debug("Could not execute all the intermediate steps", e);
@@ -156,11 +153,11 @@ class S2RChecker {
         S2RQualityAssessment assessment1 = new S2RQualityAssessment(HIGH_QUALITY);
         S2RQualityAssessment assessment2 = null;
         assessment1.addMatchedStep(matchedStep);
-        if (!currentResolvedSteps.isEmpty()) {
+        if (!inferredSteps.isEmpty()) {
             //---------------------------------------------------
             assessment2 = new S2RQualityAssessment();
             assessment2.setQualityCategory(S2RQualityCategory.MISSING);
-            assessment2.addInferredSteps(currentResolvedSteps);
+            assessment2.addInferredSteps(inferredSteps);
         }
         s2rQA.addQualityAssessment(assessment1);
         if (assessment2 != null) s2rQA.addQualityAssessment(assessment2);
@@ -174,11 +171,9 @@ class S2RChecker {
 
         //execute the matched step
         try {
-            List<AppStep> currentResolvedSteps2 = new ArrayList<>();
 
             //we need to execute additional commands for types
-            final S2RQualityAssessment assessment3 = addAdditionalStepsAndCheckForInput(matchedStep,
-                    currentResolvedSteps2);
+            final S2RQualityAssessment assessment3 = checkForIncorrectInputValue(matchedStep);
             if (assessment3 != null) s2rQA.addQualityAssessment(assessment3);
 
         } catch (Exception e) {
@@ -397,42 +392,20 @@ class S2RChecker {
     }
 
 
+    private S2RQualityAssessment checkForIncorrectInputValue(AppStep appStep) {
 
-    private S2RQualityAssessment addAdditionalStepsAndCheckForInput(AppStep appStep,
-                                                                    List<AppStep> currentResolvedSteps2) {
-        if (DeviceUtils.isAnyType(appStep.getAction())) {
+        if (!DeviceUtils.isAnyType(appStep.getAction())) {
+            return null;
+        }
 
-            final AppStep clickStep = new AppStep(DeviceActions.CLICK, appStep.getComponent());
+        //--------------------------------
 
-            currentResolvedSteps2.add(clickStep);
-            currentResolvedSteps2.add(appStep);
-            currentResolvedSteps2.add(clickStep);
-
-            //--------------------------------
-
-            //add the text in case it is empty
-            if (StringUtils.isEmpty(appStep.getText())) {
-                String text = getTextForType();
-                appStep.setText(text);
-
-
-                S2RQualityAssessment assessment3 = new S2RQualityAssessment(S2RQualityCategory.LOW_Q_INCORRECT_INPUT);
-                assessment3.setInputValue(text);
-
-                return assessment3;
-            }
-        } else {
-            currentResolvedSteps2.add(appStep);
+        if (StringUtils.isEmpty(appStep.getText())) {
+            return new S2RQualityAssessment(S2RQualityCategory.LOW_Q_INCORRECT_INPUT);
         }
 
         return null;
     }
-
-
-    private String getTextForType() {
-        return String.valueOf(textCounter++);
-    }
-
 
     private S2RQualityAssessment buildAmbiguousAssessment(ResolvedStepResult result) {
 

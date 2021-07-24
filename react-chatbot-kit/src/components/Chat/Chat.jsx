@@ -138,7 +138,7 @@ const Chat = ({
     customButtonStyle.backgroundColor = customStyles.chatButton.backgroundColor;
   }
 
-  let header = `Chat with ${botName}`;
+  let header = `${botName}`;
   if (headerText) {
     header = headerText;
   }

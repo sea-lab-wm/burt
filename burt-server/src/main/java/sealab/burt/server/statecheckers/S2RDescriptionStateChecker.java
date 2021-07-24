@@ -12,9 +12,11 @@ import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static sealab.burt.qualitychecker.s2rquality.S2RQualityCategory.*;
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 
@@ -23,13 +25,9 @@ class S2RDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
     private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
-        put(S2RQualityCategory.HIGH_QUALITY.name(), PREDICT_FIRST_S2R);
-        // predict the next S2Rs
-//        put("PREDICT_S2R", PREDICT_S2R);
+        put(S2RQualityCategory.HIGH_QUALITY.name(), CONFIRM_MATCHED_S2R);
         put(S2RQualityCategory.LOW_Q_AMBIGUOUS.name(), ActionName.DISAMBIGUATE_S2R);
         put(S2RQualityCategory.LOW_Q_VOCAB_MISMATCH.name(), REPHRASE_S2R);
-        put(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name(), SPECIFY_INPUT_S2R);
-        put(S2RQualityCategory.MISSING.name(), SELECT_MISSING_S2R);
         put(S2RQualityCategory.LOW_Q_NOT_PARSED.name(), PROVIDE_S2R_NO_PARSE);
     }};
 
@@ -62,30 +60,24 @@ class S2RDescriptionStateChecker extends StateChecker {
 
             if (results.isEmpty()) throw new RuntimeException("No quality assessment");
 
-            if (results.size() > 1) {
-                //FIXME: what if there is high quality result?
-                if (results.contains(S2RQualityCategory.LOW_Q_INCORRECT_INPUT))
-                    return nextActions.get(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name());
-                else if (results.contains(S2RQualityCategory.MISSING)) {
-                    if(results.contains(S2RQualityCategory.HIGH_QUALITY))
-                        state.put(S2R_HQ_MISSING, message);
-                    return nextActions.get(S2RQualityCategory.MISSING.name());
-                } else
-                    throw new RuntimeException("Unsupported quality assessment combination: " + results);
+            //-------------------------------------------
+
+            //Note: HIGH-QUALITY could be combined with all the other quality tags except for LOW_Q_VOCAB_MISMATCH,
+            // LOW_Q_AMBIGUOUS, and LOW_Q_NOT_PARSED
+
+            //if high quality -> confirm S2R
+            if(results.contains(S2RQualityCategory.HIGH_QUALITY)){
+                return nextActions.get(S2RQualityCategory.HIGH_QUALITY.name());
             }
 
             S2RQualityCategory assessmentCategory = results.get(0);
 
-            if (results.contains(S2RQualityCategory.HIGH_QUALITY)) {
-                S2RQualityAssessment assessment = qFeedback.getQualityAssessments().get(0);
-
-                AppStep appStep = assessment.getMatchedSteps().get(0);
-                log.debug("High quality identified step: " + appStep);
-
-                QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
-            }
+            if(!Arrays.asList(LOW_Q_VOCAB_MISMATCH, LOW_Q_AMBIGUOUS, LOW_Q_NOT_PARSED)
+                    .contains(assessmentCategory))
+                throw new RuntimeException("Unsupported quality assessment combination: " + results);
 
             return nextActions.get(assessmentCategory.name());
+
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
             return UNEXPECTED_ERROR;

@@ -71,7 +71,7 @@ class ImagePicker extends Component {
                     style={style}
                     disabled = {disabled}
                 />
-                <p>{image.text}</p>
+                <p className={`message_item`}>{image.text}</p>
             </div>
         )
     }

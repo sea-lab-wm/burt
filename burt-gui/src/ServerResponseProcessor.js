@@ -25,7 +25,7 @@ const processResponse = (responsePromise, actionProvider) => {
 
                 setTimeout(() => {
                     window.location.reload(false);
-                }, 3000);
+                }, 2000);
 
                 return
             }

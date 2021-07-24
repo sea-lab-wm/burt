@@ -64,6 +64,8 @@ public class ConversationState {
 //            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RAction(S2R_DESCRIPTION));
 
             //quality checking
+            put(CONFIRM_MATCHED_S2R, new ConfirmMatchedS2RAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            put(ActionName.PROVIDE_S2R_NO_MATCH, new ProvideS2RNoMatchAction(S2R_DESCRIPTION));
             put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
             put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
             put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_DESCRIPTION));

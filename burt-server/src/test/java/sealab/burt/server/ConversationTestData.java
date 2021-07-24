@@ -111,18 +111,18 @@ public class ConversationTestData {
 
 
             //ChatBot: provide the OB
-            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
-
+            add(new MessageObjectTest("Export to Google Drive silently fails", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
+         /*   //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));*/
+/*
             //ChatBot: provide the OB
             add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
                     AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
+            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));*/
 
-            //ChatBot: provide the OB
+         /*   //ChatBot: provide the OB
             add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
                     AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             //ChatBot: is this the OB screen?
@@ -131,7 +131,7 @@ public class ConversationTestData {
             add(new MessageObjectTest("The transactions are deleted", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
 
             //ChatBot: give me the first S2R
-            add(new MessageObjectTest("Tap on the \"Menu\" button at the top left of the screen", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            add(new MessageObjectTest("Tap on the \"Menu\" button at the top left of the screen", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));*/
 
             /*
             //ChatBot: ok, you selected some steps, what is the next step?

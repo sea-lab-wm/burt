@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
@@ -35,10 +36,16 @@ class RephraseS2RAction extends ChatBotAction {
 
     }
 
-    private String getFeedbackMessage(QualityFeedback feedback){
+    private String getFeedbackMessage(QualityFeedback qFeedback){
 
-        S2RQualityAssessment assessment = feedback.getQualityAssessments().get(0);
-        NLAction action = feedback.getAction();
+        S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
+                .filter(f -> f.getCategory().equals(S2RQualityCategory.LOW_Q_VOCAB_MISMATCH))
+                .findFirst().orElse(null);
+
+        if (assessment == null)
+            throw new RuntimeException("A vocabulary mismatch assessment is required");
+
+        NLAction action = qFeedback.getAction();
 
         log.debug("Action: " + action);
 
