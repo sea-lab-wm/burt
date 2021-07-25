@@ -79,7 +79,7 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
 
             //------------------
-            //decide the next step
+            //decide the next action
 
             List<S2RQualityCategory> results = qFeedback.getAssessmentResults();
 

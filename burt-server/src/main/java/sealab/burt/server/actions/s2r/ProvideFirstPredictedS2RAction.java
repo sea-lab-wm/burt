@@ -31,16 +31,15 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         super(nextExpectedIntent);
     }
 
-    public static List<KeyValues> getPredictedStepOptionsFromAppSteps(List<AppStep> path, ConversationState state) {
-        return SelectMissingS2RAction.getStepOptions(path, state);
-    }
-
     public static List<AppStep> getPathWithLoops(S2RChecker s2rchecker, GraphPath<GraphState, GraphTransition> path,
                                                  ConversationState state, GraphState currentState) {
         // we convert the transitions to the steps
         List<AppStep> steps = convertGraphTransitionsToAppStep(path);
 
         List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
+
+        if(bugReportElements==null)
+            throw new RuntimeException("The S2R bug report elements are required");
 
         // Add the state loops in order to the path
         AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
@@ -146,7 +145,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         state.put(PREDICTED_S2R_CURRENT_PATH, currentPath);
 
         // get the first predicted path
-        List<KeyValues> stepOptions = getPredictedStepOptionsFromAppSteps(pathsWithLoops.get(currentPath), state);
+        List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(pathsWithLoops.get(currentPath), state);
 
         if (stepOptions.isEmpty()) {
             return getNextStepMessage();

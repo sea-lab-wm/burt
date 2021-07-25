@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.graph.AppStep;
+import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
@@ -67,7 +68,21 @@ class S2RDescriptionStateChecker extends StateChecker {
 
             //if high quality -> confirm S2R
             if(results.contains(S2RQualityCategory.HIGH_QUALITY)){
-                return nextActions.get(S2RQualityCategory.HIGH_QUALITY.name());
+
+
+                S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
+                        .filter(f -> f.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
+                        .findFirst().orElse(null);
+
+                if (assessment == null)
+                    throw new RuntimeException("The high quality assessment is required");
+
+                if (DeviceUtils.isOpenApp(assessment.getMatchedSteps().get(0).getAction())) {
+                    QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
+
+                    return PREDICT_FIRST_S2R;
+                }else
+                    return nextActions.get(S2RQualityCategory.HIGH_QUALITY.name());
             }
 
             S2RQualityCategory assessmentCategory = results.get(0);

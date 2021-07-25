@@ -34,7 +34,7 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
         List<AppStep> path = graphPaths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
 
         // get screenshots
-        List<KeyValues> stepOptions = ProvideFirstPredictedS2RAction.getPredictedStepOptionsFromAppSteps(path, state);
+        List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(path, state);
 
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
