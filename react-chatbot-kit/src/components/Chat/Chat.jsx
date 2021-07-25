@@ -32,14 +32,28 @@ const Chat = ({
 
   const scrollIntoView = () => {
     setTimeout(() => {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
+      // get div element by chatContainerRef.current
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight - chatContainerRef.current.clientHeight;
     }, 50);
   };
 
+  const scrollIntoViewNotToBottom = () => {
+
+    setTimeout(() => {
+      setInputValue("");
+      // get div element by chatContainerRef.current
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight - 30;
+    }, 50);
+  };
+
+  useEffect(() =>{
+    scrollIntoViewNotToBottom();
+  }, [messages])
+
   useEffect(() => {
     scrollIntoView();
-  });
+  },[input]);
+
 
   const showAvatar = (messages, index) => {
     if (index === 0) return true;
@@ -86,7 +100,6 @@ const Chat = ({
         return (
           <ChatBotMessageWithWidget
             customStyles={customStyles}
-            scrollIntoView={scrollIntoView}
             withAvatar={withAvatar}
             {...chatBotMessageProps}
             key={messageObject.id}
@@ -128,9 +141,8 @@ const Chat = ({
       ...state,
       messages: [...state.messages, userMsg],
     }));
-
-    scrollIntoView();
-    setInputValue("");
+    // scroll down to the bottom when submit some message, because we empty the input here
+    scrollIntoViewNotToBottom();
   };
 
   const customButtonStyle = {};
@@ -175,6 +187,7 @@ const Chat = ({
 
         <div
           className="react-chatbot-kit-chat-message-container"
+          // this div element is referred as chatContainerRef
           ref={chatContainerRef}
         >
           {renderMessages()}

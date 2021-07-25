@@ -20,7 +20,7 @@ class WidgetRegistry {
     if (!widgetObject) return;
 
     let props = {
-      scrollIntoView: state.scrollIntoView,
+      // scrollIntoView: state.scrollIntoView,
       ...getObject(widgetObject.props),
       ...this.mapStateToProps(widgetObject.mapStateToProps, state),
       setState: this.setState,
