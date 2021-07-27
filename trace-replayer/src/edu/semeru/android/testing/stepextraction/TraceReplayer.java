@@ -85,7 +85,7 @@ public class TraceReplayer {
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private int sequence = 0;
     public boolean takeScreenshots = false;
-    private int executionCtr = 10;
+    private int executionCtr = 7;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
     
@@ -117,9 +117,9 @@ public class TraceReplayer {
         String appPackage = "de.danoeh.antennapod.debug";
         String appVersion = "1.6.2.3";
         String mainActivity = "de.danoeh.antennapod.activity.MainActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P2TracesModified/GNU-RC/gnu_cash_GNU-RC.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesModified/Antennapod/getevent-1.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTracesOutput/gnucashAll-1.0.3/gnucash-1.0.3";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesModified/Antennapod/antennapod.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesModified/Antennapod/getevent-5.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTracesOutput/antennapodAll/antennapod";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -317,13 +317,16 @@ public class TraceReplayer {
                         }
                     }
                     
+                    boolean error = true; // to check if there is any error in the UI implementation
+                    
                     if(!isLoginInfo) { //for search
                         for (DynGuiComponentVO component : screenInfo) {
-                        	if(component.isFocused()) {
+                        	if(component.isFocused() || component.getIdXml().endsWith("id/search_src_text")) {
                         		System.out.println(component);
                         		if(guiEventVO.getRealInitialY()>1128 && Utilities.isKeyboardActive(androidSDKPath)) {
                         			isSearchActivity = true;
                         		}
+                        		error = false;
                         		vo.setHvInfoComponent(component);
                                 vo.setText(component.getText());
 
@@ -365,6 +368,10 @@ public class TraceReplayer {
                                 steps.add(step);      
                         	}
                         }
+                    } 
+                    
+                    if(error) {
+                    	sequence--;
                     }
                     
                     keyboardActive = false;                      

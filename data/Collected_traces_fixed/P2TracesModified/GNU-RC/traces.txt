@@ -1,0 +1,17 @@
+GNU-RC
+
+trace 1
+check all accounts -> select "Create Accounts" -> Select "+" next to "Assets" -> enter 50,000,000 for "Amount" -> select "CREDIT" -> select check mark to save
+
+
+trace 2
+check all accounts -> select "Create Accounts" -> Select "+" next to "Insurance" -> enter "small nj office building collapse" for "Description" -> enter 200,000 -> select "DEBIT" -> set date to "14 Dec 2020" -> select check mark to save 
+
+trace 3
+check all accounts -> select "Create Accounts" -> go to "Settings" -> select "Transactions" -> set "Default Transaction Type" to "CREDIT"
+
+trace 4
+check all accounts -> select "Create Accounts" -> go to "Settings" -> select "General" -> set to "Always delete..."
+
+trace 5
+check all accounts -> select "Create Accounts" -> go to "Export OFX" -> check "Export all transactions" -> select "Export" -> click out of file pop up 
