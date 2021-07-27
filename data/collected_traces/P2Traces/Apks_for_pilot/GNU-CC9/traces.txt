@@ -1,0 +1,16 @@
+GNU-CC9
+
+trace 1
+select "NEXT" -> select "USD" -> select "NEXT" -> select "Let me handle it" -> select "Automatically send crash reports" -> select "DONE" -> select "Allow" -> Reopen App -> Select "+" widget -> make account name "Doggy Bag" -> select "Income" for the account "Type" and pick neon purple for "Color" -> put "crypto money" for "Account description -> check "Placeholder account" and "Default Transfer Account" -> select "SAVE"
+
+trace 2
+select "NEXT" -> select "CHF" -> select "NEXT" -> select "Let me handle it" -> select "Automatically send crash reports" -> select "DONE" -> select "Allow" -> Reopen App -> Select "+" widget -> make account name "Swiss" -> select "Income" for the account "Type" and pick light green for "Color" -> put "launder" for "Account description -> check "Placeholder account" and "Default Transfer Account" -> select "SAVE" -> open hamburger menu -> select "Reports" -> select "PIE CHART" -> select last 12 months in "Period"
+
+trace 3
+select "NEXT" -> select "GBP" -> select "NEXT" -> select "Create default account" -> select "Disable crash reports" -> select "DONE" -> select "Allow" ->  select "Liabilities" -> select "+" under "Credit Card" sub account -> enter "Quantum Computer" for "Description" -> enter 500,000 for "Amount" -> toggle to "Charge" -> select "SAVE" -> add to favorites
+
+trace 4
+select "NEXT" -> select "GBP" -> select "NEXT" -> select "Create default account" -> select "Disable crash reports" -> select "DONE" ->  -> select "Allow" -> select "Assests" -> select "Edit Account" -> change color to brown -> select "SAVE" 
+
+trace 5
+select "NEXT" -> select "GBP" -> select "NEXT" -> select "Create default account" -> select "Disable crash reports" -> select "DONE" -> select "Allow" -> favorite "Income" and "Liabilities" -> open hamburger menu -> select "favorites" -> go to "All" then back to "Favorites"

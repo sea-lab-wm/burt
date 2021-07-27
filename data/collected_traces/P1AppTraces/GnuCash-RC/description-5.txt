@@ -1,0 +1,1 @@
+Change the default transaction type to credit.

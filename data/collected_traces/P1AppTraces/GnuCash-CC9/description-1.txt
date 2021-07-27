@@ -1,0 +1,1 @@
+Created a new book and checked in the menu that the book was created.

@@ -1,0 +1,1 @@
+Add a podcast from the main menu by searching iTunes podcasts.
