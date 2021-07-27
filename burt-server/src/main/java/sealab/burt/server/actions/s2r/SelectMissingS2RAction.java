@@ -1,8 +1,10 @@
 package sealab.burt.server.actions.s2r;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.ComponentUtils;
+import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
@@ -23,7 +25,8 @@ import java.util.stream.IntStream;
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
-public class SelectMissingS2RAction extends ChatBotAction {
+public @Slf4j
+class SelectMissingS2RAction extends ChatBotAction {
 
     public SelectMissingS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
@@ -33,11 +36,19 @@ public class SelectMissingS2RAction extends ChatBotAction {
                                                  ConversationState state) {
         return cleanedInferredSteps.stream()
                 .map(step -> {
+                    GraphTransition transition = step.getTransition();
                     String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(step, state);
-                    return new KeyValues(step.getId().toString(),
-                            UtilReporter.getNLStep(step, false), screenshotFile);
+                    String nlStep = UtilReporter.getNLStep(step, false);
+                    KeyValues keyValues = new KeyValues(step.getId().toString(),
+                            nlStep + " ("+ getUniqueHashFromTransition2(transition) +")", screenshotFile);
+                    log.debug(keyValues +": "+ (getUniqueHashFromTransition2(transition)));
+                    return keyValues;
                 })
                 .collect(Collectors.toList());
+    }
+
+    private static String getUniqueHashFromTransition2(GraphTransition transition) {
+        return (transition == null) ? "null" : transition.getId().toString();
     }
 
     @Override
