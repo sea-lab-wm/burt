@@ -82,7 +82,8 @@ class SelectOBScreenAction extends ChatBotAction {
 
                             String screenshotFile = getScreenshotPathForGraphState(graphState, state);
                             return new KeyValues(Integer.toString(optionPosition),
-                                    (optionPosition + 1) + ". " + description, screenshotFile);
+                                    (optionPosition + 1) + ". " + description +
+                                            " ("+ graphState.getUniqueHash().toString() +")", screenshotFile);
                         }
 
                 )
