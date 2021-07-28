@@ -54,35 +54,30 @@ public class ConversationTestData {
 
 
             //ChatBot: provide the OB
-            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
-
-            //ChatBot: provide the OB
-            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
-
-            //ChatBot: provide the OB
-            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_EB, EB_DESCRIPTION));
+            add(new MessageObjectTest("crash when opening the settings", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("1")));
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
-            add(new MessageObjectTest("The transactions are deleted", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
-
+            add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me the first S2R
-            add(new MessageObjectTest("Tap on the \"Menu\" button at the top left of the screen", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
-
-            /*
+            add(new MessageObjectTest("open the settings", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the S2R you mean to report?
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "1", "2", "3", "4", "5", "6")));
             //ChatBot: ok, you selected some steps, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
             add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
             //ChatBot: ok, this is the report
-            add(new MessageObjectTest("Ok, bye", null, null));*/
+            add(new MessageObjectTest("Ok, bye", null, null));
         }};
 
     }

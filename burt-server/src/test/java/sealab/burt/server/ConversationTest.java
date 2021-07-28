@@ -33,6 +33,11 @@ class ConversationTest extends AbstractTest {
     }
 
     @org.junit.Test
+    public void testFlowGnuCashIssue60() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.GNUCASH_ISSUE60);
+    }
+
+    @org.junit.Test
     public void testFlowEulerIdealGnuCash616() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_GNUCASH_616);
     }
