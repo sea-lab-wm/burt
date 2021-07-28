@@ -88,8 +88,6 @@ public class ConversationTestData {
                 .filter(entry -> entry.getValue1().equals("GnuCash v. 2.1.3"))
                 .findFirst().orElse(null);
 
-        //The transactions are deleted, I get a message of success, and the QIF file is in the appropriate directory in Google Drive
-
         return new ArrayList<>() {{
             //ChatBot: hi this is burt
             add(new MessageObjectTest("I'd like to report some problem", PROVIDE_PARTICIPANT_ID,
@@ -108,33 +106,62 @@ public class ConversationTestData {
             //ChatBot: provide the OB
             add(new MessageObjectTest("Export to Google Drive silently fails", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
-         /*   //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));*/
-/*
-            //ChatBot: provide the OB
-            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));*/
-
-         /*   //ChatBot: provide the OB
-            add(new MessageObjectTest("Export to Google Drive silently fails", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_EB, EB_DESCRIPTION));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("3")));
+            //ChatBot: you selected X, correct?
+            add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
-            add(new MessageObjectTest("The transactions are deleted", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
-
+            add(new MessageObjectTest(" The transactions are deleted and the QIF file is in the appropriate directory in Google Drive",
+                    CLARIFY_EB, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: the eb is general, is this the screen is having the problem?
+            add(new MessageObjectTest("yes", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me the first S2R
-            add(new MessageObjectTest("Tap on the \"Menu\" button at the top left of the screen", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));*/
+            add(new MessageObjectTest("Tap on the \"Menu\" button at the top left of the screen",   CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the S2R you mean to report?
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0","1", "2", "3", "4", "5")));
+            //ChatBot: give me the NEXT S2R
+            add(new MessageObjectTest("Tap on the \"Export\" Menu item",   CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the S2R you mean to report?
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+            //ChatBot: give me the NEXT S2R
+            add(new MessageObjectTest("Tap on \"Export To\"",   CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the S2R you mean to report?
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0")));
+            //ChatBot: give me the NEXT S2R
+            add(new MessageObjectTest("Tap on the \"Google Drive\" Dropdown menu option",   CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the S2R you mean to report?
+            add(new MessageObjectTest("yes",  PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0")));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("0")));
 
-            /*
+            //ChatBot: give me the NEXT S2R
+            add(new MessageObjectTest("Tap on the \"Export\" button",   CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            //ChatBot: is this the S2R you mean to report?
+            add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION));
             //ChatBot: ok, you selected some steps, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
             add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
             //ChatBot: ok, this is the report
-            add(new MessageObjectTest("Ok, bye", null, null));*/
+            add(new MessageObjectTest("Ok, bye", null, null));
         }};
 
     }
