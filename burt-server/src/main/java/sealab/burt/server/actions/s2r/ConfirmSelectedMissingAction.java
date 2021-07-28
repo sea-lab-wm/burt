@@ -12,6 +12,7 @@ import sealab.burt.server.statecheckers.QualityStateUpdater;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
@@ -48,9 +49,14 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         if ("done".equals(message.getMessage())) {
 
             List<String> selectedValues = message.getSelectedValues();
-            List<AppStep> selectedSteps = allMissingSteps.stream()
-                    .filter(step -> selectedValues.contains(step.getId().toString()))
+
+            List<AppStep> selectedSteps = selectedValues.stream()
+                    .map(selectedValue -> allMissingSteps.get(Integer.parseInt(selectedValue)))
                     .collect(Collectors.toList());
+
+        /*    List<AppStep> selectedSteps = allMissingSteps.stream()
+                    .filter(step -> selectedValues.contains(step.getId().toString()))
+                    .collect(Collectors.toList());*/
 
             if (selectedSteps.isEmpty() || selectedValues.size() != selectedSteps.size())
                 return getDefaultMessage(allMissingSteps, state);

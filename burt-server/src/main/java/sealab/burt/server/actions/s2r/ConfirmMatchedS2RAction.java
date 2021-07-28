@@ -37,7 +37,6 @@ public class ConfirmMatchedS2RAction extends ChatBotAction {
         //----------------------------------------------
 
         AppStep matchedStep = highQualityAssessment.getMatchedSteps().get(0);
-        matchedStep.setId(0L); //we set the id in case it is null
 
         List<KeyValues> optionList = SelectMissingS2RAction.getStepOptions(
                 Collections.singletonList(matchedStep), state);

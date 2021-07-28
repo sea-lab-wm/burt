@@ -9,8 +9,10 @@ import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -68,6 +70,7 @@ class SelectOBScreenAction extends ChatBotAction {
                                                      ConversationState state,
                                                      int initialResult) {
         int maxNumOfResults = initialResult + MAX_OB_SCREENS_TO_SHOW;
+        Set<String> uniqueOptionKeys = new LinkedHashSet<>();
         return IntStream.range(initialResult, maxNumOfResults)
                 .mapToObj(optionPosition -> {
                             if (matchedStates.size() <= optionPosition) return null;
@@ -81,7 +84,14 @@ class SelectOBScreenAction extends ChatBotAction {
                             }
 
                             String screenshotFile = getScreenshotPathForGraphState(graphState, state);
-                            return new KeyValues(Integer.toString(optionPosition),
+                    String key = Integer.toString(optionPosition);
+
+                    if(uniqueOptionKeys.contains(key))
+                        throw new RuntimeException(String.format("An option with the key %s already exists", key));
+                    else
+                        uniqueOptionKeys.add(key);
+
+                    return new KeyValues(key,
                                     (optionPosition + 1) + ". " + description +
                                             " ("+ graphState.getUniqueHash().toString() +")", screenshotFile);
                         }

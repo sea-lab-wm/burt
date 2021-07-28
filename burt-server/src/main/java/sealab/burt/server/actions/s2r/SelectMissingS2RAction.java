@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.ComponentUtils;
+import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
@@ -16,13 +17,12 @@ import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 import sealab.burt.server.statecheckers.QualityStateUpdater;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.*;
+import static sealab.burt.server.actions.commons.ScreenshotPathUtils.getScreenshotPathForGraphState;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
 public @Slf4j
@@ -32,19 +32,30 @@ class SelectMissingS2RAction extends ChatBotAction {
         super(nextExpectedIntent);
     }
 
-    public static List<KeyValues> getStepOptions(List<AppStep> cleanedInferredSteps,
-                                                 ConversationState state) {
-        return cleanedInferredSteps.stream()
-                .map(step -> {
+    public static List<KeyValues> getStepOptions(List<AppStep> steps, ConversationState state) {
+
+        Set<String> uniqueOptionKeys = new LinkedHashSet<>();
+        return IntStream.range(0, steps.size())
+                .mapToObj(optionPosition -> {
+                    AppStep step = steps.get(optionPosition);
                     GraphTransition transition = step.getTransition();
                     String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(step, state);
                     String nlStep = UtilReporter.getNLStep(step, false);
-                    KeyValues keyValues = new KeyValues(step.getId().toString(),
-                            nlStep + " ("+ getUniqueHashFromTransition2(transition) +")", screenshotFile);
-                    log.debug(keyValues +": "+ (getUniqueHashFromTransition2(transition)));
-                    return keyValues;
-                })
+
+                    String key = Integer.toString(optionPosition);
+
+                    if (uniqueOptionKeys.contains(key))
+                        throw new RuntimeException(String.format("An option with the key %s already exists", key));
+                    else
+                        uniqueOptionKeys.add(key);
+
+                    return new KeyValues(key,
+                            nlStep + " (" + getUniqueHashFromTransition2(transition) + ")", screenshotFile);
+                        }
+
+                )
                 .collect(Collectors.toList());
+
     }
 
     private static String getUniqueHashFromTransition2(GraphTransition transition) {
@@ -81,10 +92,6 @@ class SelectMissingS2RAction extends ChatBotAction {
         }
 
         //---------------------------------------------------
-
-        IntStream.range(0, cleanedInferredSteps.size()).forEach(i ->
-                cleanedInferredSteps.get(i).setId((long) i)
-        );
 
         List<KeyValues> stepOptions = getStepOptions(cleanedInferredSteps, state);
 

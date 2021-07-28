@@ -33,6 +33,7 @@ public class NegativeAnswerStateChecker extends StateChecker {
         else if (state.containsKey(EB_SCREEN_CONFIRMATION)) {
             nextAction = PROVIDE_EB;
         } else if (state.containsKey(OB_MATCHED_CONFIRMATION)) {
+            state.remove(StateVariable.OB_MATCHED_CONFIRMATION);
             Integer currentAttempt = (Integer) state.get(CURRENT_ATTEMPT_OB_MATCHED);
             if (currentAttempt >= MAX_ATTEMPTS_OB_MATCHED) {
                 state.remove(CURRENT_ATTEMPT_OB_MATCHED);

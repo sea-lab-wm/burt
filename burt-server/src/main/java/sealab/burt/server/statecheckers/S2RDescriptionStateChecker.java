@@ -3,12 +3,10 @@ package sealab.burt.server.statecheckers;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
@@ -77,10 +75,11 @@ class S2RDescriptionStateChecker extends StateChecker {
                 if (assessment == null)
                     throw new RuntimeException("The high quality assessment is required");
 
-                if (DeviceUtils.isOpenApp(assessment.getMatchedSteps().get(0).getAction())) {
+                Integer action = assessment.getMatchedSteps().get(0).getAction();
+                if (DeviceUtils.isOpenApp(action) || DeviceUtils.isCloseApp(action)) {
                     QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
 
-                    return PREDICT_FIRST_S2R;
+                    return PREDICT_FIRST_S2R_PATH;
                 }else
                     return nextActions.get(S2RQualityCategory.HIGH_QUALITY.name());
             }

@@ -29,19 +29,19 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
-        // get the next predicted path
+        // get the next predicted currentPath
         List<List<AppStep>> graphPaths = (List<List<AppStep>>) state.get(PREDICTED_S2R_PATHS_WITH_LOOPS);
-        List<AppStep> path = graphPaths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
+        List<AppStep> currentPath = graphPaths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
 
         // get screenshots
-        List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(path, state);
+        List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(currentPath, state);
 
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
             return createChatBotMessages("Okay, can you provide the next step?");
         }else{
             // increment the number of tries
-            log.debug("Suggesting path #" + state.get(PREDICTED_S2R_CURRENT_PATH));
+            log.debug("Suggesting currentPath #" + state.get(PREDICTED_S2R_CURRENT_PATH));
 
             MessageObj messageObj = new MessageObj( "Can you select the ones you actually performed next?",
                     WidgetName.S2RScreenSelector);

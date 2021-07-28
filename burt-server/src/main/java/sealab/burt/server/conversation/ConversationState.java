@@ -1,6 +1,5 @@
 package sealab.burt.server.conversation;
 
-import lombok.ToString;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
@@ -59,8 +58,8 @@ public class ConversationState {
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
 
             //prediction
-            put(PREDICT_FIRST_S2R, new ProvideFirstPredictedS2RAction(S2R_PREDICTED_SELECTED));
-            put(PREDICT_NEXT_S2R, new ProvideNextPredictedS2RAction(S2R_PREDICTED_SELECTED));
+            put(PREDICT_FIRST_S2R_PATH, new ProvideFirstPredictedS2RAction(S2R_PREDICTED_SELECTED));
+            put(PREDICT_NEXT_S2R_PATH, new ProvideNextPredictedS2RAction(S2R_PREDICTED_SELECTED));
 //            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RAction(S2R_DESCRIPTION));
 
             //quality checking

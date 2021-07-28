@@ -34,7 +34,6 @@ public class SimplePastPP extends NLActionPatternParser {
         if (!TextProcessor.checkGeneralPos(subj.second.tag(), "PRP"))
             return actions;
 
-
         // find the object of the verb
         Pair<GrammaticalRelation, IndexedWord> objRelation = DependenciesUtils.getFirstChildByRelation(dependencies,
                 verbToken, "dobj", "nsubjpass");

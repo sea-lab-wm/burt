@@ -314,7 +314,7 @@ class S2RChecker {
                                                    List<AppStep> currentResolvedSteps,
                                                    List<AppStep> shortestPath, List<AppGuiComponent> components) {
 
-        log.debug("Adding intermediate steps in shortest path");
+//        log.debug("Adding intermediate steps in shortest path");
         //------------------------------
 
         for (int i = 0; i < shortestPath.size(); i++) {
