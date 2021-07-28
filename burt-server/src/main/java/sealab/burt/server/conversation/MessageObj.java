@@ -32,9 +32,9 @@ class MessageObj {
         this.message = message;
     }
 
-    public MessageObj(String message, String widget) {
+    public MessageObj(String message, WidgetName widget) {
         this.message = message;
-        this.widget = widget;
+        this.widget = widget.toString();
     }
 
     public MessageObj(String message, String type, double id) {

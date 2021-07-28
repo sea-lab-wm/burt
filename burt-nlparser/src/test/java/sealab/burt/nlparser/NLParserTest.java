@@ -92,8 +92,9 @@ class NLParserTest {
 
                 //EB
 //                "3. Account is created and account list is shown"
-                "got calculated \"Fuel economy\" stats"
-
+//                "got calculated \"Fuel economy\" stats",
+//                    "I input the weight",
+                    "Go back"
 //                "I entered 23 gallons"
 //                ,
 //                "Entered all the fillup data and goto History Tab",

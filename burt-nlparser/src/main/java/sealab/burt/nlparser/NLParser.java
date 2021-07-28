@@ -30,9 +30,17 @@ class NLParser {
     }
 
     private static String preprocessText(String text) {
-        text =  text.replace("I type ", "I enter ");
-        if(text.toLowerCase().startsWith("enter"))
+        text = text.replace("I type ", "I enter ")
+                .replace("i type", "I enter")
+                .replace("i input", "I enter")
+                .replace("I input", "I enter");
+        if (text.toLowerCase().startsWith("enter"))
             text = "I " + text;
+        else if (text.trim().startsWith("i ")) {
+            StringBuilder builder = new StringBuilder(text.trim());
+            builder.setCharAt(0, 'I');
+            text = builder.toString();
+        }
 
         return text;
     }

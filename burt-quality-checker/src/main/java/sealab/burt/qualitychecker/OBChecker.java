@@ -6,8 +6,8 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.NLParser;
 import sealab.burt.nlparser.euler.actions.HeuristicsNLActionParser;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
-import sealab.burt.qualitychecker.actionparser.NLActionS2RParser;
-import sealab.burt.qualitychecker.actionparser.ScreenResolver;
+import sealab.burt.qualitychecker.actionmatcher.NLActionS2RMatcher;
+import sealab.burt.qualitychecker.actionmatcher.ScreenResolver;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.GraphState;
 
@@ -24,9 +24,8 @@ class OBChecker {
 
     private final String appName;
     private final String appVersion;
-    private final NLActionS2RParser s2rParser;
+    private final NLActionS2RMatcher s2rParser;
     private final ScreenResolver resolver;
-    private final String crashScopeDataPath;
     private final String parsersBaseFolder;
 
     private GraphState currentState;
@@ -36,10 +35,8 @@ class OBChecker {
         this.appName = appName;
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
-        this.crashScopeDataPath = BurtConfigPaths.getCrashScopeDataPath();
 
-
-        s2rParser = new NLActionS2RParser(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        s2rParser = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
         resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 
@@ -68,7 +65,7 @@ class OBChecker {
     }
 
     private void readGraph() throws Exception {
-        if (crashScopeDataPath == null)
+        if (BurtConfigPaths.crashScopeDataPath == null)
             executionGraph = DBGraphReader.getGraph(appName, appVersion);
         else
             executionGraph = JSONGraphReader.getGraph(appName, appVersion);

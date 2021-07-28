@@ -37,6 +37,8 @@ class ChatBotMessage {
     }
 
 
+
+
     public ChatBotMessage(String message) {
         this.messageObj = new MessageObj((message));
     }

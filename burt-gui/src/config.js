@@ -5,7 +5,7 @@ import AppSelector from "./components/ScreenOptions/AppSelector";
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
-import EBScreenSelector from "./components/ScreenOptions/EBScreenSelector";
+import OneScreenNoButtons from "./components/ScreenOptions/OneScreenNoButtons";
 import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
 import ReportGenerator from "./components/ReportGenerator";
 
@@ -13,9 +13,9 @@ const config = {
     botName: "BURT",
     serverEndpoint: "http://localhost:8081",
     logosPath: "/app_logos/",
-    crashScopeDataPath: "/CrashScope-Data/",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
+    getBugReportPreview: "/reportPreview",
     startService: "/start",
     processMessageService: "/processMessage",
     initialMessages: [
@@ -34,8 +34,8 @@ const config = {
             mapStateToProps: []
         },
         {
-            widgetName: "EBScreenSelector",
-            widgetFunc: (props) => <EBScreenSelector {...props} />,
+            widgetName: "OneScreenNoButtons",
+            widgetFunc: (props) => <OneScreenNoButtons {...props} />,
             mapStateToProps: []
         },
         {

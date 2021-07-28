@@ -16,30 +16,79 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
-/**
- * test conversation flow
- * [Hi, send selected app, yes(confirm app selection), provide OB, done(select OB screenshots), provide EB, provide
- * the first step, done(select predicted S2R screens), ]
- */
 public @Slf4j
 class ConversationTest extends AbstractTest {
 
-    private static final List<List<MessageObjectTest>> conversationFlowList =
-            ConversationTestData.getConversationExamples();
-    private static final List<MessageObjectTest> conversationFlow = conversationFlowList.get(1);
-
     private static String sessionId;
 
-    @Override
     @Before
     public void setUp() {
         super.setUp();
     }
 
     @org.junit.Test
-    public void test1() throws Exception {
+    public void testGeneralFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.GENERAL);
+    }
+
+    @org.junit.Test
+    public void testFlowEulerIdealGnuCash616() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_GNUCASH_616);
+    }
+
+    @org.junit.Test
+    public void testOBNoMatchMaxAttemptFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.OB_NO_MATCH_MAX_ATTEMPTS);
+    }
+
+    @org.junit.Test
+    public void testFlowEulerIdealMileage53() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_MILEAGE_53);
+    }
+
+    @org.junit.Test
+    public void testFlowEulerIdealMileage53Second() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_MILEAGE_53_2);
+    }
+
+    @org.junit.Test
+    public void testMatchedOBMaxAttemptFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.MATCHED_OB_MAX_ATTEMPTS);
+    }
+
+    @org.junit.Test
+    public void testMatchedOBFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.MATCHED_OB);
+    }
+
+    @org.junit.Test
+    public void testGeneralMatchingS2R() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.MATCHING_S2R);
+    }
+
+    @org.junit.Test
+    public void testIssue36Flow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.ISSUE36);
+    }
+
+    @org.junit.Test
+    public void testNoObScreensSelectedFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.NO_OB_SCREENS_SELECTED);
+    }
+    @org.junit.Test
+    public void testPredictionFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.PREDICTION);
+    }
+    @org.junit.Test
+    public void testDuplicatedPredictionFlow() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.DUPLICATED_PREDICTED_PATH_MILEAGE);
+    }
+
+
+    public void testConversationFlow(ConversationTestData.FlowName flowName) throws Exception {
+
+        List<MessageObjectTest> conversationFlow = ConversationTestData.conversationFlows.get(flowName);
 
         //start the conversation
         MvcResult mvcResult1 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/start")
@@ -50,15 +99,13 @@ class ConversationTest extends AbstractTest {
 
         log.debug("Conversation started: " + sessionId);
 
-        ConversationController.stateCheckers.put(S2R_DESCRIPTION, new S2RDescriptionStateCheckerForTest(null));
-
         //send each message
 
         for (MessageObjectTest messObj : conversationFlow) {
             String message = messObj.getMessage();
             ActionName currentAction = messObj.getCurrentAction();
 
-            log.debug("Sending message: " + messObj);
+//            log.debug("Sending message: " + messObj);
             ConversationResponse botResponse = null;
             switch (messObj.getType()) {
                 case REGULAR_RESPONSE:
@@ -70,13 +117,12 @@ class ConversationTest extends AbstractTest {
                     break;
             }
 
-            log.debug("Received response: " + botResponse);
+//            log.debug("Received response: " + botResponse);
 
             assert botResponse != null;
-//            System.out.println(botResponse.getMessage().getMessageObj().getMessage());
             assertNotEquals(-1, botResponse.getCode());
-            assertEquals(messObj.getCurrentAction(), botResponse.getCurrentAction());
-            assertEquals(messObj.getNextIntents(), botResponse.getNextIntents(), String.format("bla bla"));
+            assertEquals(messObj.getCurrentAction(), botResponse.getCurrentAction(), "The actions differ");
+            assertEquals(messObj.getNextIntents(), botResponse.getNextIntents(), "The intents differ");
         }
 
     }
@@ -112,17 +158,23 @@ class ConversationTest extends AbstractTest {
         return mvcResult3;
     }
 
-    @org.junit.Test
     @After
-    public void test2() throws Exception {
-        MvcResult mvcResult2 = mvc.perform(MockMvcRequestBuilders.post(END_POINT + "/end").param("sessionId",
-                sessionId).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+    public void endConversation() throws Exception {
 
-        int status2 = mvcResult2.getResponse().getStatus();
-        assertEquals(200, status2);
-        String response = mvcResult2.getResponse().getContentAsString();
+        if (sessionId != null) {
+            log.debug("Ending the conversation...");
 
-        System.out.println(response);
+            MvcResult mvcResult2 = mvc.perform(MockMvcRequestBuilders
+                    .post(END_POINT + "/end")
+                    .param("sessionId", sessionId)
+                    .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+            int status2 = mvcResult2.getResponse().getStatus();
+            assertEquals(200, status2);
+            String response = mvcResult2.getResponse().getContentAsString();
+
+            log.debug(response);
+        }
     }
 
 }

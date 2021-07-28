@@ -2,9 +2,7 @@ package sealab.burt.server.actions.eb;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 
@@ -23,7 +21,7 @@ public class ClarifyEBAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         List<BugReportElement> obReportElements = (List<BugReportElement>) state.get(REPORT_OB);
         BugReportElement bugReportElement = obReportElements.get(0);
@@ -32,12 +30,13 @@ public class ClarifyEBAction extends ChatBotAction {
 
         List<KeyValues> optionList = Collections.singletonList(new KeyValues("0", "", screenshotPath));
         ChatBotMessage optionMessage = new ChatBotMessage(new MessageObj(
-                "Is this the screen that should work fine?", "EBScreenSelector"), optionList);
+                "Is this the screen that should work fine?", WidgetName.OneScreenNoButtons), optionList);
 
         state.put(StateVariable.EB_SCREEN_CONFIRMATION, true);
-        state.put(EB_STATE, bugReportElement.getOriginalElement());
+        if(bugReportElement.getOriginalElement() !=null)
+            state.put(EB_STATE, bugReportElement.getOriginalElement());
 
-        return createChatBotMessages("Ok, the description of the expected behavior reads rather general.",
+        return createChatBotMessages("Okay, the description of the expected behavior reads rather general.",
                 optionMessage);
     }
 

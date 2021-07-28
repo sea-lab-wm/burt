@@ -1,18 +1,17 @@
 package sealab.burt.server.actions.s2r;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.ComponentUtils;
+import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 import sealab.burt.server.statecheckers.QualityStateUpdater;
@@ -20,33 +19,40 @@ import sealab.burt.server.statecheckers.QualityStateUpdater;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
-public class SelectMissingS2RAction extends ChatBotAction {
+public @Slf4j
+class SelectMissingS2RAction extends ChatBotAction {
 
     public SelectMissingS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
     public static List<KeyValues> getStepOptions(List<AppStep> cleanedInferredSteps,
-                                                 ConcurrentHashMap<StateVariable, Object> state) {
+                                                 ConversationState state) {
         return cleanedInferredSteps.stream()
                 .map(step -> {
-
+                    GraphTransition transition = step.getTransition();
                     String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(step, state);
-                    return new KeyValues(step.getId().toString(),
-                            UtilReporter.getNLStep(step, false), screenshotFile);
+                    String nlStep = UtilReporter.getNLStep(step, false);
+                    KeyValues keyValues = new KeyValues(step.getId().toString(),
+                            nlStep + " ("+ getUniqueHashFromTransition2(transition) +")", screenshotFile);
+                    log.debug(keyValues +": "+ (getUniqueHashFromTransition2(transition)));
+                    return keyValues;
                 })
                 .collect(Collectors.toList());
     }
 
+    private static String getUniqueHashFromTransition2(GraphTransition transition) {
+        return (transition == null) ? "null" : transition.getId().toString();
+    }
+
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 
@@ -87,16 +93,19 @@ public class SelectMissingS2RAction extends ChatBotAction {
         //-----------------
 
         MessageObj messageObj = new MessageObj(
-                "From the following options, select the steps you performed before this step and click the " +
-                        "\"done\" button", "S2RScreenSelector");
-
+                "Remember that the displayed screenshots are for reference only."
+                , WidgetName.S2RScreenSelector);
+        String highQualityStepMessage = (String) state.get(S2R_HQ_MISSING);
         return createChatBotMessages(
+                "Got it! You reported the step \"" + highQualityStepMessage + "\"",
                 "It seems that before that step you had to perform additional steps. ",
-                new ChatBotMessage(messageObj, stepOptions, true));
+                "From the following options, select the steps you performed before this step and click the " +
+                        "\"done\" button"
+                , new ChatBotMessage(messageObj, stepOptions, true));
 
     }
 
-    private List<AppStep> cleanSteps(List<AppStep> steps, ConcurrentHashMap<StateVariable, Object> state) {
+    private List<AppStep> cleanSteps(List<AppStep> steps, ConversationState state) {
 
         if (steps == null) return null;
         if (steps.isEmpty()) return steps;
@@ -110,7 +119,8 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
         List<AppStep> cleanedSteps = new ArrayList<>();
         for (int i = 0; i < steps.size(); ) {
-            final AppStep appStep = steps.get(i);
+            final AppStep currentStep = steps.get(i);
+
             AppStep nextStep = null;
             if ((i + 1) < steps.size()) {
                 nextStep = steps.get(i + 1);
@@ -125,22 +135,25 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
                 if (nextNextStep != null) {
                     if (
-                            (DeviceUtils.isType(nextStep.getAction()) &&
-                                    DeviceUtils.isClick(appStep.getAction()) &&
+                            (DeviceUtils.isClick(currentStep.getAction()) &&
+                                    DeviceUtils.isType(nextStep.getAction()) &&
                                     DeviceUtils.isClick(nextNextStep.getAction())
                             ) &&
-                                    ((appStep.getComponent().getDbId().equals(nextStep.getComponent().getDbId())
-                                            && nextStep.getComponent().getDbId().equals(nextNextStep.getComponent().getDbId())
-                                            ||
-                                            ComponentUtils.equalsNoDimensions(appStep.getComponent(),
+                                    (
+                                            /*(currentStep.getComponent().getDbId().equals(nextStep.getComponent()
+                                            .getDbId())
+                                            && nextStep.getComponent().getDbId().equals(nextNextStep.getComponent()
+                                            .getDbId())
+                                            ||*/
+                                            ComponentUtils.equalsNoDimensions(currentStep.getComponent(),
                                                     nextStep.getComponent())
                                                     && ComponentUtils.equalsNoDimensions(nextStep.getComponent(),
                                                     nextNextStep.getComponent())
-                                    ))
+                                    )
                     ) {
 
 //                        if (generateClickBeforeType) {
-//                            cleanedSteps.add(appStep);
+//                            cleanedSteps.add(currentStep);
 //                            cleanedSteps.add(nextStep);
 //                        } else {
                         cleanedSteps.add(nextStep);
@@ -151,7 +164,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
                 }
             }
 
-            cleanedSteps.add(appStep);
+            cleanedSteps.add(currentStep);
 
             i++;
 
@@ -161,7 +174,7 @@ public class SelectMissingS2RAction extends ChatBotAction {
 
     private boolean containsOpenAppStep(List<BugReportElement> stepElements) {
 
-        if(stepElements == null) return false;
+        if (stepElements == null) return false;
 
         return stepElements.stream()
                 .anyMatch(step -> step.getOriginalElement() != null

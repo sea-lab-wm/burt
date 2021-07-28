@@ -7,30 +7,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.actions.appselect.ConfirmAppAction;
-import sealab.burt.server.actions.appselect.SelectAppAction;
-import sealab.burt.server.actions.eb.ClarifyEBAction;
-import sealab.burt.server.actions.eb.ProvideEBAction;
-import sealab.burt.server.actions.eb.ProvideEBNoParseAction;
-import sealab.burt.server.actions.ob.*;
-import sealab.burt.server.actions.others.EndConversationAction;
-import sealab.burt.server.actions.others.GenerateBugReportAction;
-import sealab.burt.server.actions.others.ProvideParticipantIdAction;
-import sealab.burt.server.actions.others.UnexpectedErrorAction;
-import sealab.burt.server.actions.s2r.*;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationResponse;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
+import sealab.burt.server.output.HTMLBugReportGenerator;
 import sealab.burt.server.statecheckers.*;
 import seers.textanalyzer.TextProcessor;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,57 +37,7 @@ public
 @Slf4j
 class ConversationController {
 
-    public static final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
-        {
-            put(PROVIDE_PARTICIPANT_ID, new ProvideParticipantIdAction(PARTICIPANT_PROVIDED));
-
-
-            //--------APP SELECTION---------------//
-
-            put(SELECT_APP, new SelectAppAction(APP_SELECTED));
-            put(CONFIRM_APP, new ConfirmAppAction());
-
-            //--------OB---------------//
-
-            put(PROVIDE_OB, new ProvideOBAction(OB_DESCRIPTION));
-            put(PROVIDE_OB_NO_PARSE, new ProvideOBNoParseAction(OB_DESCRIPTION));
-            put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
-            put(SELECT_OB_SCREEN, new SelectOBScreenAction(Intent.OB_SCREEN_SELECTED));
-            put(CONFIRM_SELECTED_OB_SCREEN, new ConfirmOBScreenSelectedAction());
-
-            //--------EB-------------//
-
-            put(PROVIDE_EB, new ProvideEBAction(EB_DESCRIPTION));
-            put(PROVIDE_EB_NO_PARSE, new ProvideEBNoParseAction(EB_DESCRIPTION));
-            put(CLARIFY_EB, new ClarifyEBAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-
-            //--------S2R-----------//
-
-            put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
-            put(PREDICT_S2R, new ProvidePredictedS2RAction(S2R_PREDICTED_SELECTED));
-            //
-            put(PREDICT_S2R2, new ProvidePredictedS2RAction2(S2R_PREDICTED_SELECTED));
-            put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
-            put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
-//            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RAction(S2R_DESCRIPTION));
-            put(ActionName.DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
-            put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
-            put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_DESCRIPTION));
-            put(SELECT_MISSING_S2R, new SelectMissingS2RAction(S2R_MISSING_SELECTED));
-            put(CONFIRM_SELECTED_AMBIGUOUS_S2R, new ConfirmSelectedAmbiguousAction(S2R_DESCRIPTION));
-            put(CONFIRM_SELECTED_MISSING_S2R, new ConfirmSelectedMissingAction(S2R_DESCRIPTION));
-            put(ActionName.CONFIRM_LAST_STEP, new ConfirmLastStepAction());
-
-            //--------OTHERS-----------//
-
-            put(REPORT_SUMMARY, new GenerateBugReportAction());
-            put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
-            put(ENDING, new EndConversationAction());
-
-
-        }
-    };
-    public static final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
+    public final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
         put(GREETING, new NStateChecker(PROVIDE_PARTICIPANT_ID));
         put(PARTICIPANT_PROVIDED, new ParticipantIdStateChecker());
         //--------------------
@@ -118,14 +59,15 @@ class ConversationController {
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
-        put(THANKS, new NStateChecker(ENDING));
+        put(THANKS, new NStateChecker(ActionName.END_CONVERSATION));
     }};
-    ConcurrentHashMap<String, List<MessageObj>> messages = new ConcurrentHashMap<>();
-    ConcurrentHashMap<String, ConcurrentHashMap<StateVariable, Object>> conversationStates = new ConcurrentHashMap<>();
+
+    ConcurrentHashMap<String, List<MessageObj>> messageHistory = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, ConversationState> conversationStates = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
-
-        //this call is required to load the stanford corenlp library since the start of the server:
+        //this call is required to load the stanford corenlp library since the start of the server
+        //to avoid the long delay
         TextProcessor.processTextFullPipeline("start", false);
         SpringApplication.run(ConversationController.class, args);
     }
@@ -152,10 +94,11 @@ class ConversationController {
 
             if (sessionId == null) {
                 return ConversationResponse.createResponse("Thank you for using BURT. " +
-                        "Please reload the page and confirm the action to start a new conversation", 100);
+                                "Please reload the page and confirm the action to start a new conversation",
+                        ResponseCode.END_CONVERSATION);
             }
 
-            ConcurrentHashMap<StateVariable, Object> conversationState = conversationStates.get(sessionId);
+            ConversationState conversationState = conversationStates.get(sessionId);
 
             if (conversationState == null) {
                 log.error("The session does not exist: " + sessionId);
@@ -172,7 +115,7 @@ class ConversationController {
 
             log.debug("Identified intent: " + intent);
 
-            if (END_CONVERSATION.equals(intent)) {
+            if (Intent.END_CONVERSATION.equals(intent)) {
                 endConversation(sessionId);
                 return getDefaultResponse();
             }
@@ -181,13 +124,15 @@ class ConversationController {
             if (stateChecker == null)
                 return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
 
+            log.debug("Identified state checker: " + stateChecker);
+
             ActionName action = stateChecker.nextAction(conversationState);
 
             if (action == null)
                 throw new RuntimeException("The state checker returned a null action. It cannot be null!");
 
             log.debug("Identified action name: " + action);
-            ChatBotAction nextAction = actions.get(action);
+            ChatBotAction nextAction = conversationState.getAction(action);
 //        log.debug(conversationState.get("CONVERSATION_STATE").toString());
 
             if (nextAction == null)
@@ -201,17 +146,20 @@ class ConversationController {
 
             log.debug("Expected next intent: " + nextIntents);
 
-            return new ConversationResponse(nextMessages, nextIntents, action, 0);
+//            log.debug("State: ");
+//            log.debug(conversationState.toString());
+
+            return new ConversationResponse(nextMessages, nextIntents, action, ResponseCode.SUCCESS);
         } catch (Exception e) {
             log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +
-                    "Please try again or contact the administrator.", 0);
+                    "Please try again or contact the administrator.", ResponseCode.SUCCESS);
         }
     }
 
     private ConversationResponse getDefaultResponse() {
         return ConversationResponse.createResponse("You got it. " +
-                "The conversation will automatically end in a few seconds.", 100);
+                "The conversation will automatically end in a few seconds.", ResponseCode.END_CONVERSATION);
     }
 
 
@@ -219,16 +167,16 @@ class ConversationController {
     public void saveSingleMessage(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";
         log.debug(msg);
-        List<MessageObj> sessionMsgs = messages.getOrDefault(req.getSessionId(), new ArrayList<>());
+        List<MessageObj> sessionMsgs = messageHistory.getOrDefault(req.getSessionId(), new ArrayList<>());
         sessionMsgs.add(req.getMessages().get(0));
-        messages.put(req.getSessionId(), sessionMsgs);
+        messageHistory.put(req.getSessionId(), sessionMsgs);
     }
 
     @PostMapping("/saveMessages")
     public void saveMessages(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";
         log.debug(msg);
-        messages.put(req.getSessionId(), req.getMessages());
+        messageHistory.put(req.getSessionId(), req.getMessages());
     }
 
     @PostMapping("/testResponse")
@@ -242,8 +190,47 @@ class ConversationController {
     public List<MessageObj> loadMessages(@RequestBody UserResponse req) {
         String msg = "Returning the messages in the server...";
         log.debug(msg);
-        return messages.get(req.getSessionId());
+        return messageHistory.get(req.getSessionId());
     }
+
+    @PostMapping("/reportPreview")
+    public ConversationResponse previewReport(@RequestBody UserResponse req) throws Exception {
+        log.debug("Returning the bug report preview in the server...");
+
+        String sessionId = req.getSessionId();
+
+        if (sessionId == null) {
+            return ConversationResponse.createResponse("The session is inactive. " +
+                            "Please (re)start the conversation.",
+                    ResponseCode.UNEXPECTED_ERROR);
+        }
+
+        ConversationState conversationState = conversationStates.get(sessionId);
+
+        // check if state has APP
+        if (conversationState == null || (conversationState.containsKey(StateVariable.APP_ASKED)) ||
+                !conversationState.containsKey(StateVariable.APP_NAME) || !conversationState.containsKey(StateVariable.APP_VERSION) ||
+                !conversationState.containsKey(StateVariable.PARTICIPANT_ID)) {
+            return ConversationResponse.createResponse(
+                    "There is no enough information to generate the report at this moment.",
+                    ResponseCode.NO_INFO_FOR_REPORT);
+        }
+
+        String appName = conversationState.get(StateVariable.APP_NAME).toString();
+        String appVersion = conversationState.get(StateVariable.APP_VERSION).toString();
+        String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
+
+        String reportName = String.join("-", participant, appName, appVersion, sessionId)
+                .replace(" ", "_") + ".html";
+
+        File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
+        new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
+        MessageObj messageObj = new MessageObj();
+
+        return new ConversationResponse(Collections.singletonList(
+                new ChatBotMessage(messageObj, reportName)), ResponseCode.SUCCESS);
+    }
+
 
     @PostMapping("/")
     public String index() {
@@ -261,16 +248,22 @@ class ConversationController {
     @PostMapping("/start")
     public String startConversation() {
         String sessionId = UUID.randomUUID().toString();
-        ConcurrentHashMap<StateVariable, Object> state = new ConcurrentHashMap<>();
+
+        ConversationState state = new ConversationState();
         state.put(StateVariable.SESSION_ID, sessionId);
         conversationStates.putIfAbsent(sessionId, state);
+
+        long startTime = System.currentTimeMillis();
+        state.put(StateVariable.START_TIME, startTime);
+
         return sessionId;
     }
 
     @PostMapping("/end")
     public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
         Object obj = conversationStates.remove(sessionId);
-        messages.remove(sessionId);
+        messageHistory.remove(sessionId);
+
         return obj != null ? "true" : "false";
     }
 

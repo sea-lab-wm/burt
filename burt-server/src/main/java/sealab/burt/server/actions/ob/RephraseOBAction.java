@@ -4,6 +4,7 @@ package sealab.burt.server.actions.ob;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class RephraseOBAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
+    public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("It seems your description is rather general or does not use a proper language.",
                 "Can you please rephrase the incorrect behavior more specifically?");
     }

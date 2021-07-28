@@ -1,7 +1,9 @@
 package sealab.burt.server.actions;
 
+import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+import static sealab.burt.server.StateVariable.APP_VERSION;
+import static sealab.burt.server.StateVariable.EB_CHECKER;
 import static sealab.burt.server.msgparsing.Intent.NO_EXPECTED_INTENT;
 
 public abstract class ChatBotAction {
@@ -21,17 +25,12 @@ public abstract class ChatBotAction {
         addNextExpectedIntent(NO_EXPECTED_INTENT);
 
     }
-//
-//    public ChatBotAction(Intent nextExpectedIntent) {
-//        nextExpectedIntents = new ArrayList<>();
-//        addNextExpectedIntent(nextExpectedIntent);
-//    }
 
     public ChatBotAction(Intent... nextExpectedIntents) {
         this.nextExpectedIntents = Arrays.asList(nextExpectedIntents);
     }
 
-    public abstract List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) throws Exception;
+    public abstract List<ChatBotMessage> execute(ConversationState state) throws Exception;
 
     public final List<Intent> nextExpectedIntents() {
         return nextExpectedIntents;
@@ -57,5 +56,11 @@ public abstract class ChatBotAction {
                 return (ChatBotMessage) msg;
             throw new RuntimeException("Type not supported: " + msg.getClass().getSimpleName());
         }).collect(Collectors.toList());
+    }
+
+    protected void startEBChecker(ConversationState state) {
+        String appName = state.get(StateVariable.APP_NAME).toString();
+        String appVersion = state.get(APP_VERSION).toString();
+        if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new EBChecker(appName, appVersion));
     }
 }

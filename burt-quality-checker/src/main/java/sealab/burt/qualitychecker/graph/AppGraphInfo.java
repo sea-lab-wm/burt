@@ -67,14 +67,18 @@ public class AppGraphInfo implements Serializable {
     public String graphToString() {
         StringBuilder statesBuilder = new StringBuilder();
 
-        statesBuilder.append("States (" + graph.vertexSet().size() + "):");
+        statesBuilder.append("States (")
+                .append(graph.vertexSet().size())
+                .append("):");
         statesBuilder.append("\n");
 
         //---------------------------------------------
 
         StringBuilder transitionsBuilder = new StringBuilder();
 
-        transitionsBuilder.append("Transitions (" + graph.edgeSet().size() + "):");
+        transitionsBuilder.append("Transitions (")
+                .append(graph.edgeSet().size())
+                .append("):");
         transitionsBuilder.append("\n");
 
         int numTransitions = 0;
@@ -84,8 +88,9 @@ public class AppGraphInfo implements Serializable {
         while (iterator.hasNext()) {
             final GraphState state = iterator.next();
 
-            statesBuilder.append(String.format("%s (%s): %s", state.getName(), state.getScreen(), state
-                    .getUnformattedXml()));
+            statesBuilder.append(String.format("%s, %s, (%s): %s", state.getName(), state.getDataSource(),
+                    state.getScreen(),
+                    state.getUnformattedXml()));
             statesBuilder.append("\n");
 
             final List<GraphTransition> transitions = new LinkedList<>(graph.outgoingEdgesOf(state));
@@ -105,7 +110,12 @@ public class AppGraphInfo implements Serializable {
             numTransitions += transitions.size();
 
             transitions.forEach(t -> {
-                transitionsBuilder.append(t.getId() + ": " + t.getName() + " weight="+t.getWeight());
+                transitionsBuilder.append(t.getId()).append(": ")
+                        .append(t.getName())
+                        .append(" weight=")
+                        .append(t.getWeight())
+                        .append(" ds=")
+                        .append(t.getDataSource());
                 transitionsBuilder.append("\n");
             });
 
@@ -116,7 +126,7 @@ public class AppGraphInfo implements Serializable {
 
         StringBuilder checkBuilder = new StringBuilder();
         checkBuilder.append(String.format("Transitions correctness: %s",
-                String.valueOf(numTransitions == graph.edgeSet().size()))
+                (numTransitions == graph.edgeSet().size()))
         );
         checkBuilder.append("\n");
         checkBuilder.append("\n");

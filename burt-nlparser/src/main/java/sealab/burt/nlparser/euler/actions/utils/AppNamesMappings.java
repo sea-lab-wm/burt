@@ -20,7 +20,8 @@ public class AppNamesMappings {
                 Arrays.asList("Document Viewer", "Document-Viewer", "document-viewer", "Dokumentenbetrachter",
                         "Document Viewer", "DocumentViewer")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("DroidWeight", "droidweight", "Droid Weight")));
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("GnuCash", "gnucash-android", "GnuCash - beta", "Gnucash")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("GnuCash", "gnucash-android", "GnuCash - beta", "Gnucash",
+                "gnucash")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("NetMBuddy", "netmbuddy")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("NotePad", "notepad_banderlabs")));
         APP_NAMES.add(
@@ -50,7 +51,6 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("OCReader", "ocreader")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("AnkiDroid", "Anki-Android")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("ScreenRecorder", "screenrecorder")));
-
 
     }
 

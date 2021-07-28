@@ -47,8 +47,6 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
-import edu.semeru.android.core.entity.model.fusion.Step;
-
 /**
  *
  * @author Mario Linares & Kevin Moran
@@ -100,118 +98,6 @@ public class ScreenshotModifier {
         ImageIO.write(img, "png", new File(outputPath));
 
     }
-    
-    public static void augmentScreenShotTraceSwipe(Step step, String imagePath, String outputPath, ScreenActionData vo) throws IOException {
-        //System.out.println(imagePath);    //For Debugging
-        //System.out.println(outputPath);   //For Debugging
-        BufferedImage img = ImageIO.read(new File(imagePath));
-        int width = img.getWidth();
-        int height = img.getHeight();
-        int min = (width < height ? width : height);
-        int markWidth = (int) (min * 0.12);
-        int markHeight = (int) (min * 0.05);
-
-        double xRatio = ((vo.getX1()) - (markWidth / 2d)) / vo.getScreenWidth();
-        double yRatio = ((vo.getY1()) - (markHeight / 2d)) / vo.getScreenHeight();
-        Graphics2D g = img.createGraphics();
-
-        float dash1[] = { 5.0f };
-        BasicStroke dashed = new BasicStroke(10.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f);
-
-        g.setStroke(dashed);
-
-        g.setColor(Color.YELLOW);
-
-        //markWidth = (int) (min * 0.14);
-        //markHeight = (int) (min * 0.04);
-
-        g.drawOval((int) (xRatio * width), (int) (yRatio * height), markWidth, markHeight);
-
-        double xRatio2 = (vo.getX2() - (markWidth / 2d)) / vo.getScreenWidth();
-        double yRatio2 = (vo.getY2() - (markHeight / 2d)) / vo.getScreenHeight();
-        
-        updateAction(step, (int) (xRatio * width) + (markWidth / 2), (int) (yRatio * height) + (markHeight / 2),
-            	(int) (xRatio2 * width) + (markWidth / 2), (int) (yRatio2 * height) + (markHeight / 2));
-        drawArrowLine(g, (int) (xRatio * width) + (markWidth / 2), (int) (yRatio * height) + (markHeight / 2),
-            	(int) (xRatio2 * width) + (markWidth / 2), (int) (yRatio2 * height) + (markHeight / 2), 40, 40);
-
-        g.drawOval((int) (xRatio2 * width), (int) (yRatio2 * height), markWidth, markHeight);
-
-
-        g.dispose();
-
-        ImageIO.write(img, "png", new File(outputPath));
-
-    }
-    
-    // https://stackoverflow.com/questions/2027613/how-to-draw-a-directed-arrow-line-in-java
-    /**
-     * Draw an arrow line between two points.
-     * @param g the graphics component.
-     * @param x1 x-position of first point.
-     * @param y1 y-position of first point.
-     * @param x2 x-position of second point.
-     * @param y2 y-position of second point.
-     * @param d  the width of the arrow.
-     * @param h  the height of the arrow.
-     */
-    private static void drawArrowLine(Graphics2D g, int x1, int y1, int x2, int y2, int d, int h) {
-        int dx = x2 - x1, dy = y2 - y1;
-        double D = Math.sqrt(dx*dx + dy*dy);
-        double xm = D - d, xn = xm, ym = h, yn = -h, x;
-        double sin = dy / D, cos = dx / D;
-
-        x = xm*cos - ym*sin + x1;
-        ym = xm*sin + ym*cos + y1;
-        xm = x;
-
-        x = xn*cos - yn*sin + x1;
-        yn = xn*sin + yn*cos + y1;
-        xn = x;
-
-        int[] xpoints = {x2, (int) xm, (int) xn};
-        int[] ypoints = {y2, (int) ym, (int) yn};
-
-        g.drawLine(x1, y1, x2, y2);
-        g.fillPolygon(xpoints, ypoints, 3);
-    }
-    
-    private static void updateAction(Step step, int x1, int y1, int x2, int y2) {
-        double dy = y2 - y1; // multiplied by -1 cause of the coordinates systems in the device
-        double dx = x2 - x1;
-    	double angle = getAngle(dx, dy);
-    	double distance = Math.sqrt(dx*dx + dy*dy);
-    	
-    	double errorMargin = 0;
-    	
-		 if (distance < 100) {
-	         errorMargin = 28;
-	     } else { 
-	    	 errorMargin = 50;
-	     }
-		 int direction = StepByStepEngine.SWIPE;
-         if (Math.abs(90 - Math.abs(angle)) <= errorMargin) {
-             if (angle > 0) direction = StepByStepEngine.SWIPE_DOWN; //down
-             else if (angle < 0) direction = StepByStepEngine.SWIPE_UP; //up
-         } else {
-             //left
-             if (Math.abs(180 - Math.abs(angle)) <= errorMargin) {
-                 direction = StepByStepEngine.SWIPE_LEFT;
-             } else {
-                 //right
-                 if (Math.abs(angle) <= errorMargin) {
-                	 direction = StepByStepEngine.SWIPE_RIGHT;
-                 }
-             }
-         }
-         step.setAction(direction);
-         
-    }
-    
-    public static double getAngle(double dx, double dy) {
-        return Math.atan2(dy, dx) * 180 / Math.PI;
-    }
-    
 
     public static void augmentScreenShot(String imagePath, String outputPath, int x1, int y1, int compWidth, int compHeight) throws IOException {
         System.out.println(imagePath);

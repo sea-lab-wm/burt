@@ -1,0 +1,1 @@
+Check income account and add a new transaction.

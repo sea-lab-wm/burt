@@ -25,7 +25,6 @@ function App() {
         SessionManager.endSession()
     }
 
-
     //--------------------------------
 
     console.log("Current session id: ", sessionId)
@@ -86,11 +85,42 @@ function App() {
     }
 
     //--------------------------------
+
     const emptyStringValidator = (input) => {
         return input.trim().length > 0;
     }
 
-    if (sessionId != null && sessionId != undefined)
+    //--------------------------------
+
+    if (sessionId != null && sessionId != undefined) {
+        window.onload = function () {
+            let button = document.getElementById('reportPreview');
+            button.onclick = function () {
+
+                const responsePromise = ApiClient.processReportPreview();
+                responsePromise.then(response => {
+
+                    let conversationResponse = response.data;
+                    let chatbotMsgs = conversationResponse.messages;
+                    let chatbotMsg = chatbotMsgs[0];
+
+                    if (conversationResponse.code === SUCCESS_CODE) {
+                        let link = chatbotMsg.generatedReport;
+                        console.log(link);
+                        window.open(config.serverEndpoint + "/" + link, "_blank");
+                    } else if (conversationResponse.code === REPORT_NO_INFO_CODE) {
+                        window.alert(chatbotMsg.messageObj.message);
+                    } else if (conversationResponse.code === ERROR_CODE) {
+                        window.alert(chatbotMsg.messageObj.message);
+                    } else {
+                        window.alert("There was an unexpected error");
+                    }
+                }).catch(error => {
+                    console.error(`There was an unexpected error: ${error}`);
+                })
+            }
+        }
+
         return (
             <div className="App center-screen">
                 {
@@ -106,7 +136,7 @@ function App() {
                 }
             </div>
         );
-    else
+    } else
         return (
             <div>I am sorry, BURT cannot be loaded. Try loading the page in a few seconds.</div>
         );
@@ -141,3 +171,7 @@ function loadMessagesAsync(setState) {
 */
 
 export default App;
+export const ERROR_CODE = -1;
+export const SUCCESS_CODE = 0;
+export const END_CONVERSATION_CODE = 100;
+export const REPORT_NO_INFO_CODE = -2;

@@ -127,7 +127,7 @@ public class UtilReporter {
 
             builder.append("a valid input");
             builder.append(" ");
-            if (!stepText.trim().isEmpty()) {
+            if (stepText != null && !stepText.trim().isEmpty()) {
                 builder.append("(e.g., ");
                 if (actionMatch != null) {
                     builder.append("one from the bug report or ");
@@ -283,14 +283,14 @@ public class UtilReporter {
         } else {
             if (addPerfectTense) {
                 if (pastVerbs != null)
-                        builder.append(pastVerbs.getValue());
+                    builder.append(pastVerbs.getValue());
                 else {
                     if (nlAction.getAction().endsWith("e"))
                         builder.append(nlAction.getAction()).append("d");
                     else
                         builder.append(nlAction.getAction()).append("ed");
                 }
-            }else
+            } else
                 builder.append(nlAction.getAction());
         }
         builder.append(" ");

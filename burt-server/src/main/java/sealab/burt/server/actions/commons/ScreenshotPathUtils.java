@@ -1,9 +1,13 @@
 package sealab.burt.server.actions.commons;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.graph.AppStep;
+import sealab.burt.qualitychecker.graph.GraphDataSource;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
+import sealab.burt.server.conversation.ConversationState;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,17 +16,21 @@ import java.util.concurrent.ConcurrentHashMap;
 import static sealab.burt.server.StateVariable.APP_PACKAGE;
 import static sealab.burt.server.StateVariable.APP_VERSION;
 
-public class ScreenshotPathUtils {
+public @Slf4j
+class ScreenshotPathUtils {
 
     public static final String DEFAULT_SCREENSHOT = "NO_SCREEN_AVAILABLE.png";
 
     public static String getScreenshotPathForGraphState(GraphState graphState,
-                                                        ConcurrentHashMap<StateVariable, Object> state) {
+                                                        ConversationState state) {
+        if (graphState == null) return getScreenshotPath(state, null, null);
         String stateScreenshotPath = graphState.getScreenshotPath();
-        return getScreenshotPath(state, stateScreenshotPath);
+        return getScreenshotPath(state, stateScreenshotPath, graphState.getDataSource());
     }
 
-    private static String getScreenshotPath(ConcurrentHashMap<StateVariable, Object> state, String inputScreenshotPath) {
+    private static String getScreenshotPath(ConversationState state,
+                                            String inputScreenshotPath,
+                                            GraphDataSource dataSource) {
         Path screenshotPath;
         if (inputScreenshotPath != null) {
             String packageName = (String) state.get(APP_PACKAGE);
@@ -33,21 +41,32 @@ public class ScreenshotPathUtils {
             screenshotPath = Path.of(DEFAULT_SCREENSHOT);
         }
 
-        //-------------------
+        //--------------------------
 
-        Path fullScreenshotPath = Path.of("..", "data", "CrashScope-Data");
+        Path fullScreenshotPath = Path.of(BurtConfigPaths.crashScopeDataPath);
+        String prefix = BurtConfigPaths.crashScopeDataFolder;
+        if (GraphDataSource.TR.equals(dataSource) && !screenshotPath.equals(Path.of(DEFAULT_SCREENSHOT))) {
+            prefix = BurtConfigPaths.traceReplayerDataFolder;
+            fullScreenshotPath = Path.of(BurtConfigPaths.traceReplayerDataPath);
+        }
         fullScreenshotPath = fullScreenshotPath.resolve(screenshotPath);
 
-        if (!Files.exists(fullScreenshotPath))
+        if (!Files.exists(fullScreenshotPath)) {
+            log.warn("Screenshot file does not exist: " + fullScreenshotPath);
+            prefix = BurtConfigPaths.crashScopeDataFolder;
             screenshotPath = Path.of(DEFAULT_SCREENSHOT);
+        }
 
         //-------------------
 
-        return FilenameUtils.separatorsToUnix(screenshotPath.toString());
+        return FilenameUtils.separatorsToUnix("/" + prefix + "/" + screenshotPath.toString());
     }
 
-    public static String getScreenshotPathForStep(AppStep step, ConcurrentHashMap<StateVariable, Object> state) {
+    public static String getScreenshotPathForStep(AppStep step, ConversationState state) {
         String stepScreenshotPath = step.getScreenshotFile();
-        return getScreenshotPath(state, stepScreenshotPath);
+        GraphDataSource dataSource = step.getCurrentState().getDataSource();
+        if (step.getTransition() != null)
+            dataSource = step.getTransition().getDataSource();
+        return getScreenshotPath(state, stepScreenshotPath, dataSource);
     }
 }

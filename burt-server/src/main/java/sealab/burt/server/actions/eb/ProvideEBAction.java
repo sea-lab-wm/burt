@@ -4,6 +4,7 @@ import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.nio.file.Path;
@@ -19,10 +20,9 @@ public class ProvideEBAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
-        String appName = state.get(StateVariable.APP_NAME).toString();
-        String appVersion = state.get(APP_VERSION).toString();
-        if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new EBChecker(appName, appVersion));
-        return createChatBotMessages("Ok, can you please tell me how the app is supposed to work instead?");
+    public List<ChatBotMessage> execute(ConversationState state){
+        startEBChecker(state);
+        return createChatBotMessages("Okay, can you please tell me how the app is supposed to work instead?");
     }
+
 }

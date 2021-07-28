@@ -1,3 +1,5 @@
+$item-width: 400px;
+
 .image_picker {
   width: 100%;
 
@@ -6,7 +8,7 @@
     margin: 0 6px;
     float: left;
     opacity: 1;
-    width: 400px; /* Set a width for each item */
+    width: $item-width; /* Set a width for each item */
 
     .thumbnail {
       border: 1px solid #ddd; /* Gray border */
@@ -56,4 +58,8 @@
   .clear {
     clear: both;
   }
+}
+
+.message_item{
+  width: $item-width;
 }

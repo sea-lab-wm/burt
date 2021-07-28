@@ -117,7 +117,7 @@ public class CrashScope extends GeneralStrategy {
     private String uiDumpLocation;  // Location for storing uiautomator .xml files during execution
     private ContextualFeatures contextFeats = new ContextualFeatures(); // Object that stores the current state of contextual features during execution
     private final static String PERSIST_UNIT = "CrashScope-eBug";   // Persistance unit for MySQL
-    private int executionCtr;   // Keeps track of the number of Executions (which represents one combination of strategies)
+    private int executionCtr = 1;   // Keeps track of the number of Executions (which represents one combination of strategies)
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private String dataFolder;  // Holds screenshots and uidumps
     private String apkPath; // Path to the AUT .apk file
@@ -159,7 +159,7 @@ public class CrashScope extends GeneralStrategy {
 
         CrashScopeSettings strategy = new CrashScopeSettings();
         strategy.setTopDown(true);
-        strategy.setBottomUp(false);
+        strategy.setBottomUp(true);
         strategy.setContextFeatsEnabled(false);
         strategy.setContextFeatsDisabled(true);
         strategy.setUnexpectedText(false);
@@ -280,7 +280,7 @@ public class CrashScope extends GeneralStrategy {
         // Perform some setup before the execution begins
 
         takeScreenshots = true; // This variable determines whether or not screenshots are recorded for all executions
-        int executionCtr = 1; // The current Execution
+                            // The current Execution
         List<Execution> csExecutions = new ArrayList<Execution>();  // ArrayList to hold all of the CrashScope Executions. This will be returned at the end of the method
 
 
@@ -429,6 +429,7 @@ public class CrashScope extends GeneralStrategy {
 
                         // take a screenshot before executing the next action
                         takeScreenshot(app.getPackageName(), dataFolder, getApp().getVersion(), getWidthScreen(), getHeightScreen(), step, getTextStrat(), executionCtr);
+                        takeXMLSnapshot();
 
                         //Get the next input event from the stack of unvisited component-action pairs
                         GUIEventVO event = getNextStep(app.getPackageName(), app.getMainActivity(), getTextStrat(), 0, executionCtr);
@@ -641,11 +642,25 @@ public class CrashScope extends GeneralStrategy {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+        setExecutionCtr(getExecutionCtr()+1);
         return csExecutions;
 
     }// End executeDFS()
 
+    private void takeXMLSnapshot() {
+        
+       try {
+        Files.createDirectories(Paths.get(dataFolder + File.separator + "xmls"));
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+        
+       deviceHelper.getAndPullUIDump(dataFolder + File.separator + "xmls", app.getPackageName() + "-" + app.getVersion() + "-" + executionCtr + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence + ".xml");
+        
+    }
+    
+    
     private Step setupGNUCash() {
         
         gnuCash = true;
@@ -973,8 +988,8 @@ public class CrashScope extends GeneralStrategy {
             try {   // Try/catch for image processing
                 String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
 
-                String screenshot = appPackage + "_" + version + "_gnucash" + sequence + ".png";
-                String currscreenshot = appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                String screenshot = appPackage + "_" + version + "_" + sequence + ".png";
+                String currscreenshot = appPackage + "_" + version + "_" + currstep + ".png";
 
                 // Check if the last executed step was a rotation, if so we need to roll back the 
                 // sequences to get the proper existing screenshots
@@ -982,16 +997,16 @@ public class CrashScope extends GeneralStrategy {
                     //System.out.println("last step rotated fixing GUI screenshot"); //For Debugging
                     String step1 = Integer.toString(sequence - 1);
                     String step2 = Integer.toString(sequence - 2);
-                    screenshot = appPackage + "_" + version + "_gnucash" + step1 + ".png";
-                    currscreenshot = appPackage + "_" + version + "_gnucash" + step2 + ".png";
+                    screenshot = appPackage + "_" + version + "_" + step1 + ".png";
+                    currscreenshot = appPackage + "_" + version + "_" + step2 + ".png";
                     correctAugScreen = false;
                 }else if (step != null && step.getAction() == 3){
                     // If the last step was a typing step, we need to reset the screenshot paths
                     //System.out.println("last step was typing"); //For debugging
                     String step1 = Integer.toString(sequence);
                     String step2 = Integer.toString(sequence);
-                    screenshot = appPackage + "_" + version + "_gnucash" + step1 + ".png";
-                    currscreenshot = appPackage + "_" + version + "_gnucash" + step2 + ".png";
+                    screenshot = appPackage + "_" + version + "_" + step1 + ".png";
+                    currscreenshot = appPackage + "_" + version + "_" + step2 + ".png";
                     correctAugScreen = false;
                 }
 
@@ -1274,6 +1289,7 @@ public class CrashScope extends GeneralStrategy {
                 if (takeScreenshots) {
                     takeScreenshot(appPackage, folderScreenshots, getApp().getVersion(),
                             getWidthScreen(), getHeightScreen(), lastStep, textStrat, executionCtr);
+                    takeXMLSnapshot();
                     String guiScreenshot = cropScreenshot(appPackage, androidSDKPath, folderScreenshots, getApp()
                             .getVersion(), getWidthScreen(), getHeightScreen(), lastStep, StepByStepEngine.getEntityFromVO(inputComponent, false), false,
                             textStrat, executionCtr, lastStepRotated);
@@ -1495,6 +1511,7 @@ public class CrashScope extends GeneralStrategy {
 
                                 takeScreenshot(appPackage, getFolderScreenshots(), getApp().getVersion(), getWidthScreen(), getHeightScreen(), stepTransition,
                                         textStrat, executionCtr);
+                                takeXMLSnapshot();
 
                                 //printAvailableStack();        //For debugging
                             }
@@ -1872,9 +1889,9 @@ public class CrashScope extends GeneralStrategy {
                 nextStep = Integer.toString(sequence);
             }
             String currscreenshot =  appPackage + "."
-                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + currstep + ".png";
             String guiscreenshot =  appPackage + "."
-                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + nextStep + ".png";
+                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + nextStep + ".png";
             //System.out.println(currscreenshot);   //For Debugging
             //System.out.println(guiscreenshot);        //For Debugging
             String ss = "";
@@ -1942,7 +1959,7 @@ public class CrashScope extends GeneralStrategy {
 
 
             String currscreenshot =  appPackage + "."
-                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                    + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + currstep + ".png";
             //System.out.println(currscreenshot);   //For Debugging
             String ss = "";
             try {
@@ -1970,7 +1987,7 @@ public class CrashScope extends GeneralStrategy {
                     if (step != null) {
                         currstep = Integer.toString(sequence);
                         currscreenshot =  appPackage + "."
-                                + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_gnucash" + currstep + ".png";
+                                + guiStrat + "." + textStrat + "." + featStrat + "." + executionCtr + "." + appPackage + "_" + version + "_" + currstep + ".png";
                     }
                     try {
                         ImageIO.write(

@@ -27,6 +27,16 @@ public class GraphState implements Serializable {
     private Screen screen;
     private String screenshotPath;
 
+    private GraphDataSource dataSource;
+
+    public GraphDataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(GraphDataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     /**
      * @return the name
      */
@@ -98,7 +108,7 @@ public class GraphState implements Serializable {
     public String toString() {
         return "st [" + name
                 //+ ", " + screen
-                +
+                + ", " +  dataSource +
                 "]";
     }
 

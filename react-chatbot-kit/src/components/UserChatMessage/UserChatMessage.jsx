@@ -3,7 +3,7 @@ import { ConditionallyRender } from "react-util-kit";
 
 import { callIfExists } from "../Chat/chatUtils";
 
-import UserIcon from "../../assets/icons/user-alt.svg";
+import UserIcon from "../../assets/icons/user-icon.svg";
 
 import "./UserChatMessage.css";
 

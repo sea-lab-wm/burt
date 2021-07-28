@@ -1,12 +1,11 @@
 package sealab.burt.server.actions.appselect;
 
 import lombok.extern.slf4j.Slf4j;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.io.IOException;
@@ -15,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,8 +30,8 @@ class SelectAppAction extends ChatBotAction {
     private static final String NO_APP_LOGO = "NO_APP_LOGO.png";
 
     static {
-        Path crashScopeDataPath = Paths.get("..", "data", "CrashScope-Data");
-        Path appLogosPath = Paths.get("..", "data", "app_logos");
+        Path crashScopeDataPath = Paths.get(BurtConfigPaths.crashScopeDataPath);
+        Path appLogosPath = Paths.get(BurtConfigPaths.appLogosPath);
 
         List<Path> directories = null;
         try {
@@ -49,9 +49,15 @@ class SelectAppAction extends ChatBotAction {
             ALL_APPS = IntStream.range(0, directories.size())
                     .mapToObj(i -> {
                         Path dir = finalDirectories.get(i);
-                        return new KeyValues(Integer.toString(i),
-                                getAppNameVersion(dir), getLogoFileName(appLogosPath, dir));
+                        try {
+                            return new KeyValues(Integer.toString(i),
+                                    getAppNameVersion(dir), getLogoFileName(appLogosPath, dir));
+                        } catch (Exception e) {
+                            log.error("Error loading " + dir, e);
+                            return null;
+                        }
                     })
+                    .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
     }
@@ -87,18 +93,18 @@ class SelectAppAction extends ChatBotAction {
 
         List<String> appNames = AppNamesMappings.getAppNamesFromPackage(packageName);
 
-        if(appNames==null)
+        if (appNames == null)
             throw new RuntimeException("Could not find app name for package: " + packageName);
 
         return String.format("%s v. %s", appNames.get(0), appVersion);
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
         state.put(APP_ASKED, true);
         String participant = state.get(PARTICIPANT_ID).toString();
         MessageObj messageObj = new MessageObj(
-                participant + ", please select the app that is having the problem", "AppSelector");
+                participant + ", please select the app that is having the problem", WidgetName.AppSelector);
         return createChatBotMessages(
                 new ChatBotMessage(messageObj, ALL_APPS, false)
         );

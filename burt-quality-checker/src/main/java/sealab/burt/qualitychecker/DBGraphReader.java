@@ -2,6 +2,7 @@ package sealab.burt.qualitychecker;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
+import sealab.burt.qualitychecker.graph.GraphDataSource;
 import sealab.burt.qualitychecker.graph.db.DBUtils;
 import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
@@ -33,7 +34,7 @@ class DBGraphReader {
         log.debug("Reading graph from DB for " + key);
         EntityManager em = DBUtils.createEntityManager(DBUtils.DEFAULT_EM);
         GraphGenerator generator = new GraphGenerator();
-        AppGraphInfo appInfo = generator.generateGraph(em, appName, appVersion);
+        AppGraphInfo appInfo = generator.generateGraph(em, appName, appVersion, GraphDataSource.CS);
         graphs.put(key, appInfo);
     }
 }

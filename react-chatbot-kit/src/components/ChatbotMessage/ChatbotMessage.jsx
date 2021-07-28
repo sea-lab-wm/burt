@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ConditionallyRender } from "react-util-kit";
 
 import ChatbotMessageAvatar from "./ChatBotMessageAvatar/ChatbotMessageAvatar";
+import ChatbotIcon from "../../assets/icons/chatbot-2.svg";
 import Loader from "../Loader/Loader";
 
 import "./ChatbotMessage.css";
@@ -18,12 +19,14 @@ const ChatbotMessage = ({
   delay,
   id,
 }) => {
-  const [show, toggleShow] = useState(false);
+  const [show, toggleShow] = useState(true);
 
   useEffect(() => {
     const disableLoading = (messages, setState) => {
-      let defaultDisableTime = 750;
-      if (delay) defaultDisableTime += delay;
+      let defaultDisableTime = 300;
+      if (delay) {
+        defaultDisableTime += delay;
+      }
 
       setTimeout(() => {
         const newMessages = [...messages];
@@ -48,13 +51,13 @@ const ChatbotMessage = ({
     disableLoading(messages, setState);
   }, [delay, id]);
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (delay) {
       setTimeout(() => toggleShow(true), delay);
     } else {
       toggleShow(true);
     }
-  }, [delay]);
+  }, [delay]);*/
 
   const chatBoxCustomStyles = {};
   const arrowCustomStyles = {};
@@ -75,7 +78,14 @@ const ChatbotMessage = ({
               <ConditionallyRender
                 ifTrue={customComponents.botAvatar}
                 show={callIfExists(customComponents.botAvatar)}
-                elseShow={<ChatbotMessageAvatar />}
+                elseShow={
+                  <ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon"/>
+                  // <object type="image/svg+xml" data="../../assets/icons/chatbot-2.svg" style="display:block;width:330px;height:240px" >
+                  // <param name="src" value="../../assets/icons/chatbot-2.svg" />
+                  // </object>
+                }
+
+
               />
             }
           />

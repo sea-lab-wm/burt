@@ -3,6 +3,7 @@ package sealab.burt.server.actions.s2r;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;
+import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class ProvideS2RNoParseAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state){
+    public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("I am sorry, it seems the language of the step is a little odd and I am not able " +
                 "to understand it.",
                 " Can you please rephrase the step and provide it one more time?");

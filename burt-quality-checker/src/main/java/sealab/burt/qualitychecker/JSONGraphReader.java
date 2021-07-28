@@ -16,9 +16,11 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
-import sealab.burt.qualitychecker.graph.AppGraphInfo;
+import sealab.burt.qualitychecker.graph.*;
+import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
+import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +29,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -63,10 +66,9 @@ class JSONGraphReader {
 
     public static void readGraph(String appName, String appVersion) throws Exception {
 
-        String crashScopeFolder = BurtConfigPaths.getCrashScopeDataPath();
-
         String packageName = getFirstPackageName(appName);
-        String dataLocation = Paths.get(crashScopeFolder, String.join("-", packageName, appVersion)).toString();
+        String dataLocation = Paths.get(BurtConfigPaths.crashScopeDataPath,
+                String.join("-", packageName, appVersion)).toString();
 
         String key = getKey(appName, appVersion);
         log.debug("Reading graph from JSON files for " + key);
@@ -79,13 +81,13 @@ class JSONGraphReader {
 
         GraphGenerator generator = new GraphGenerator();
 
-        AppGraphInfo partialGraph = generator.generateGraph(crashScopeExecutions, app);
+        AppGraphInfo partialGraph = generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
 
         if (partialGraph == null || partialGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");
 
 //        graphs.put(key, partialGraph);
-       ///-------------------------------------------------
+        ///-------------------------------------------------
 
         //1. read execution files for TraceReplayer
         String traceReplayerFolder = BurtConfigPaths.traceReplayerDataPath;
@@ -94,13 +96,46 @@ class JSONGraphReader {
                 Paths.get(traceReplayerFolder, String.join("-", packageName, appVersion)).toString();
         List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
 
-        //2. update the graph (update the weights, and create new GraphStates and Transitions if needed
-        AppGraphInfo finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions);
+        //2. update the graph (update the weights, and create new GraphStates and Transitions if needed)
+        AppGraphInfo finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
 
         if (finalGraph == null || finalGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");
 
+        checkScreenshots(finalGraph);
+
         graphs.put(key, finalGraph);
+    }
+
+    private static void checkScreenshots(AppGraphInfo graphInfo) {
+        AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
+        Appl app = graphInfo.getApp();
+        String packageName = app.getPackageName();
+
+        Set<GraphTransition> edgeSet = graph.edgeSet();
+        for (GraphTransition edge : edgeSet) {
+
+            String screenshotFile = edge.getStep().getScreenshotFile();
+
+            if (screenshotFile == null) {
+                if (!DeviceUtils.isOpenApp(edge.getStep().getAction()))
+                    log.warn("Step has no screenshot: " + edge.getName());
+                continue;
+            }
+
+            String dataLocation =
+                    Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName,
+                            app.getVersion())).toString();
+            if (edge.getDataSource().equals(GraphDataSource.TR))
+                dataLocation = Paths.get(BurtConfigPaths.traceReplayerDataPath, String.join("-", packageName,
+                        app.getVersion())).toString();
+
+            File srcFileStep = Path.of(dataLocation, "screenshots", screenshotFile).toFile();
+
+            if (!screenshotFile.endsWith(".png") || !srcFileStep.exists() || !srcFileStep.isFile()) {
+                log.warn("The screenshot file may not exist: " + srcFileStep);
+            }
+        }
     }
 
     private static List<Execution> readExecutions(String dataLocation) throws Exception {

@@ -1,0 +1,1 @@
+Added a transaction for groceries to the expenses sub-account for groceries.

@@ -4,19 +4,18 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.view.mxGraph;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.JSONGraphReader;
-import sealab.burt.qualitychecker.actionparser.GraphLayout;
-import sealab.burt.qualitychecker.actionparser.GraphUtils;
+import sealab.burt.qualitychecker.actionmatcher.GraphLayout;
+import sealab.burt.qualitychecker.actionmatcher.GraphUtils;
 import sealab.burt.qualitychecker.graph.*;
-import seers.appcore.utils.JavaUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,8 +48,11 @@ class MainJSONGraphGenerator {
 
     public static void main(String[] args) throws Exception {
 
+        AppGraphInfo graphInfo = JSONGraphReader.getGraph("gnucash", "2.1.3");
 //        AppGraphInfo graphInfo = JSONGraphReader.getGraph("mileage", "3.1.1");
-        AppGraphInfo graphInfo = JSONGraphReader.getGraph("GnuCash", "2.1.3");
+//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("droidweight", "1.5.4");
+
+//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("GnuCash", "2.1.3");
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         Appl app = graphInfo.getApp();
 
@@ -68,9 +70,9 @@ class MainJSONGraphGenerator {
 
         // ------------------------------------------------------
 
-        File file = new File(pathname + "-graph.txt");
+        File graphFile = new File(pathname + "-graph.txt");
         String graphStr = graphInfo.graphToString();
-        FileUtils.write(file, graphStr);
+        FileUtils.write(graphFile, graphStr, Charset.defaultCharset());
 
         // ------------------------------------------------------
 
@@ -104,8 +106,8 @@ class MainJSONGraphGenerator {
             }
 
             String dataLocation =
-                    Paths.get(BurtConfigPaths.getCrashScopeDataPath(), String.join("-", packageName, app.getVersion())).toString();
-            if (edge.getType().equals(GraphTransition.GraphTransitionType.TRACE_REPLAYER))
+                    Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName, app.getVersion())).toString();
+            if (edge.getDataSource().equals(GraphDataSource.TR))
                 dataLocation =
                         Paths.get(BurtConfigPaths.traceReplayerDataPath, String.join("-", packageName, app.getVersion())).toString();
 

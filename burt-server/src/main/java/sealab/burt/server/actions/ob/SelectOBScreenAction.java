@@ -1,13 +1,12 @@
 package sealab.burt.server.actions.ob;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.KeyValues;
-import sealab.burt.server.conversation.MessageObj;
+import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
@@ -19,39 +18,60 @@ import java.util.stream.IntStream;
 import static sealab.burt.server.StateVariable.OB_QUALITY_RESULT;
 import static sealab.burt.server.actions.commons.ScreenshotPathUtils.getScreenshotPathForGraphState;
 
-public class SelectOBScreenAction extends ChatBotAction {
+public @Slf4j
+class SelectOBScreenAction extends ChatBotAction {
+
+    public static final int MAX_OB_SCREENS_TO_SHOW = 5;
+    public static final Integer MAX_OB_SCREEN_ATTEMPTS = 3;
 
     public SelectOBScreenAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConcurrentHashMap<StateVariable, Object> state) {
+    public List<ChatBotMessage> execute(ConversationState state) {
 
         MessageObj messageObj = new MessageObj(
-                " Please hit the \"Done\" button after you have selected it.", "OBScreenSelector");
+                " Please hit the \"Done\" button after you have selected it.", WidgetName.OBScreenSelector);
 
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         List<GraphState> matchedStates = result.getMatchedStates();
+        //--------------------------------
 
-        List<KeyValues> options = getObScreenOptions(matchedStates, state);
+        int currentObScreenPosition = 0;
+        state.put(StateVariable.CURRENT_OB_SCREEN_POSITION, currentObScreenPosition);
 
+        Integer currentAttempt = (Integer) state.putIfAbsent(StateVariable.CURRENT_ATTEMPT_OB_SCREENS, 1);
+        if (currentAttempt != null) {
+            state.put(StateVariable.CURRENT_ATTEMPT_OB_SCREENS, ++currentAttempt);
+        }
+
+        //-----------------------------------
+
+        log.debug("Multiple matched states: " + matchedStates.size());
+        log.debug("Current attempt for OB screen selection: " + currentAttempt);
+
+        //----------------------------------------
+
+        List<KeyValues> options = getObScreenOptions(matchedStates, state, currentObScreenPosition);
+
+        //it is guaranteed there are initial options
         if (options.isEmpty())
             throw new RuntimeException("There are no options to show");
 
         return createChatBotMessages(
                 "Got it. From the list below, can you please select the screen that is having the problem?",
-                new ChatBotMessage(messageObj, options, true));
+                new ChatBotMessage(messageObj, options, false));
     }
 
     public static List<KeyValues> getObScreenOptions(List<GraphState> matchedStates,
-                                                     ConcurrentHashMap<StateVariable, Object> state) {
-        int maxNumOfResults = 5;
-        int initialResult = 0;
+                                                     ConversationState state,
+                                                     int initialResult) {
+        int maxNumOfResults = initialResult + MAX_OB_SCREENS_TO_SHOW;
         return IntStream.range(initialResult, maxNumOfResults)
-                .mapToObj(i -> {
-                            if (matchedStates.size() <= i) return null;
-                            GraphState graphState = matchedStates.get(i);
+                .mapToObj(optionPosition -> {
+                            if (matchedStates.size() <= optionPosition) return null;
+                            GraphState graphState = matchedStates.get(optionPosition);
 
                             String description = GraphTransition.getWindowString(graphState.getScreen().getActivity(),
                                     graphState.getScreen().getWindow());
@@ -61,7 +81,9 @@ public class SelectOBScreenAction extends ChatBotAction {
                             }
 
                             String screenshotFile = getScreenshotPathForGraphState(graphState, state);
-                            return new KeyValues(Integer.toString(i), (i + 1) + ". " + description, screenshotFile);
+                            return new KeyValues(Integer.toString(optionPosition),
+                                    (optionPosition + 1) + ". " + description +
+                                            " ("+ graphState.getUniqueHash().toString() +")", screenshotFile);
                         }
 
                 )
