@@ -1,0 +1,25 @@
+APOD-RB
+
+trace 1
+select "Add Podcast" -> select "Search ITUNES" -> select "Search" bar -> search "Darknet Diaries" -> select "Darknet Diaries: -> select "SUBSCRIBE" -> select "OPEN PODCAST" -> select most recent episode (top of list) -> select "Stream" -> play for 6 seconds -> select pause
+
+
+trace 2
+select "Add Podcast" -> select "SEARCH FYYD" -> search "1908" -> select "RETRY"
+
+
+trace 3
+select "Add Podcast" -> select "BROWSE GPODDER.NET" -> select podcast at the top of list -> select "SUBSCRIBE" -> go back -> search "1908" -> select podcast -> select "Subscribe" -> go back to "Subscriptions" -> select "1908" podcast
+
+
+trace 4
+select "Add Podcast" -> select "BROWSE GPODDER.NET" -> search "Linux Outlaws -> select "SUBSCRIBE" -> select "OPEN PODCAST" -> search "Important Message" -> select "Download" -> select "Equeue" -> Go to "Queue" 
+
+trace 5
+go to "Settings" -> select "Select Theme" -> choose "Dark"
+
+
+
+
+
+

@@ -1,13 +1,16 @@
 package sealab.burt.server.statecheckers;
 
 import sealab.burt.qualitychecker.graph.AppStep;
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.MessageObj;
 import sealab.burt.server.conversation.UserResponse;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.*;
 
@@ -24,32 +27,42 @@ public class S2RPredictionStateChecker extends StateChecker {
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
         MessageObj message = msg.getFirstMessage();
 
+        state.remove(StateVariable.NON_SELECTED_PREDICTED_S2R);
+
         if ("done".equals(message.getMessage())) {
+
             // get current predicted path
             List<List<AppStep>> paths = (List<List<AppStep>>) state.get(PREDICTED_S2R_PATHS_WITH_LOOPS);
-            List<AppStep> path = paths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
-//            List<GraphPath<GraphState, GraphTransition>> predictedPaths = (List<GraphPath<GraphState,
-//                    GraphTransition>>) state.get(PREDICTED_S2R_PATHS);
-//            GraphPath<GraphState, GraphTransition> path =
-//                    predictedPaths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
-//
-//            //current state
-//            S2RChecker s2rchecker = (S2RChecker) state.get(S2R_CHECKER);
-//            GraphState currentState = s2rchecker.getCurrentState();
-
-            // convert graph path to app steps
-//            List<AppStep> steps = ProvideFirstPredictedS2RAction.getPathWithLoops(s2rchecker, path, state,
-//            currentState);
+            List<AppStep> currentPath = paths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
 
 //             get selected app steps
             List<String> selectedValues = message.getSelectedValues();
-            List<AppStep> selectedSteps = path.stream()
-                    .filter(step -> selectedValues.contains(step.getId().toString()))
+            List<AppStep> selectedSteps = selectedValues.stream()
+                    .map(selectedValue -> {
+                        int index = Integer.parseInt(selectedValue);
+                        if(index < currentPath.size())
+                            return currentPath.get(index);
+                        return null;
+                    })
+                    .filter(Objects::nonNull)
                     .collect(Collectors.toList());
 
             if (selectedSteps.isEmpty() || selectedValues.size() != selectedSteps.size())
                 throw new RuntimeException("The selected steps and predicted steps do not match");
 
+            //------------------------------
+
+            List<AppStep> nonSelectedSteps = IntStream.range(0, currentPath.size())
+                    .mapToObj(i -> {
+                        if (selectedValues.contains(String.valueOf(i))) return null;
+                        return currentPath.get(i);
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+
+            state.put(StateVariable.NON_SELECTED_PREDICTED_S2R, nonSelectedSteps);
+
+            //------------------------------
 
             // add all selected app steps to state and update graph
             if (selectedSteps.size() == 1) {
@@ -74,13 +87,13 @@ public class S2RPredictionStateChecker extends StateChecker {
 //            if (targetState == lastSelectedState){
 //                return ActionName.CONFIRM_LAST_STEP;
 //            }
-            return ActionName.PREDICT_FIRST_S2R;
+            return ActionName.PREDICT_FIRST_S2R_PATH;
 
         } else if ("none of above".equals(message.getMessage())) {
             // check the number of tries to decide if we continue to provide next predicted path
             if (isThereANextPath(state)) {
                 state.put(PREDICTED_S2R_CURRENT_PATH, (int) state.get(PREDICTED_S2R_CURRENT_PATH) + 1);
-                return ActionName.PREDICT_NEXT_S2R;
+                return ActionName.PREDICT_NEXT_S2R_PATH;
             } else {
 
                 state.remove(PREDICTED_S2R_CURRENT_PATH);
@@ -99,7 +112,7 @@ public class S2RPredictionStateChecker extends StateChecker {
 
             return ActionName.CONFIRM_LAST_STEP;
         } else {
-            return ActionName.PREDICT_NEXT_S2R;
+            return ActionName.PREDICT_NEXT_S2R_PATH;
         }
 
     }

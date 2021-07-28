@@ -89,7 +89,7 @@ class AffirmativeAnswerStateChecker extends StateChecker {
                 state.put(S2R_HQ_MISSING, message);
                 nextAction = nextActions.get(S2RQualityCategory.MISSING.name());
             } else {
-                nextAction = PREDICT_FIRST_S2R;
+                nextAction = PREDICT_FIRST_S2R_PATH;
             }
 
         } else if (!state.containsKey(PARTICIPANT_ASKED)) {
