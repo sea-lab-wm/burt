@@ -62,7 +62,7 @@ class SelectOBScreenAction extends ChatBotAction {
             throw new RuntimeException("There are no options to show");
 
         return createChatBotMessages(
-                "Got it. From the list below, can you please select the screen that is" +
+                "Got it. From the list below, can you please select the screen that is " +
                         "showing the problem or that triggered the problem when you performed some action on it?",
 
         new ChatBotMessage(messageObj, options, false));
