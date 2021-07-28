@@ -33,7 +33,15 @@ const Chat = ({
   const scrollIntoView = () => {
     setTimeout(() => {
       // get div element by chatContainerRef.current
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight - chatContainerRef.current.clientHeight;
+      // add animation to make scroll to the bottom slowly
+      // chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight - chatContainerRef.current.clientHeight;
+      const startTop = chatContainerRef.current.scrollTop;
+      const endTop = chatContainerRef.current.scrollHeight - chatContainerRef.current.clientHeight;
+      let  scrollAnimationFn=doAnimation(startTop,endTop,300);
+      let interval=setInterval(()=>{
+        scrollAnimationFn(interval)
+      },10)
+
     }, 50);
   };
 
@@ -45,6 +53,17 @@ const Chat = ({
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight - 30;
     }, 50);
   };
+  function doAnimation(startValue,endValue,duration){
+    let dy=0;
+    let step=(endValue-startValue)/(duration/10);
+    return function(interval){
+      dy+=step;
+      if(dy>=endValue-startValue){
+        clearInterval(interval);
+      }
+      chatContainerRef.current.scrollTop+=step;
+    }
+  }
 
   useEffect(() =>{
     scrollIntoViewNotToBottom();
