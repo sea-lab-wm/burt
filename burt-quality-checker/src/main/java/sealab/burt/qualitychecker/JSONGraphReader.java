@@ -78,20 +78,14 @@ class JSONGraphReader {
         GraphGenerator generator = new GraphGenerator();
 
         // changed code: check if crashScopeExecutions is empty
-        if (crashScopeExecutions.size() > 0) {
+        if (!crashScopeExecutions.isEmpty()) {
             App app = crashScopeExecutions.get(0).getApp();
 
             //----------------------------------------
 
-
-
-            AppGraphInfo partialGraph = generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
+            generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
         }
 
-//        if (partialGraph == null || partialGraph.getGraph().vertexSet().isEmpty())
-//            throw new RuntimeException("The graph is empty");
-
-//        graphs.put(key, partialGraph);
         ///-------------------------------------------------
 
         //1. read execution files for TraceReplayer
@@ -103,8 +97,11 @@ class JSONGraphReader {
 
         //2. update the graph (update the weights, and create new GraphStates and Transitions if needed)
 
-        App app = traceReplayerExecutions.get(0).getApp();
-        AppGraphInfo finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+        AppGraphInfo finalGraph = null;
+        if (!traceReplayerExecutions.isEmpty()) {
+            App app = traceReplayerExecutions.get(0).getApp();
+            finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+        }
 
         if (finalGraph == null || finalGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");

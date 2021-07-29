@@ -1004,6 +1004,9 @@ class NLActionS2RMatcher {
                     String name = component.getType();
                     String text = component.getText();
                     String description = component.getContentDescription();
+                    String idXml = component.getIdXml();
+
+//                    log.debug(String.format("%s %s %s %s", name, text, description, idXml));
 
                     if (skipTextViews && !StringUtils.isEmpty(name) && name.endsWith(".TextView"))
                         return 0.0;
@@ -1012,9 +1015,8 @@ class NLActionS2RMatcher {
                     matchingScore = computeLcsScore(textToMatch, description, matchFirst);
                     if (matchingScore != 0) return matchingScore;
 
-                    String idXml = component.getIdXml();
                     if (!StringUtils.isEmpty(idXml) && idXml.contains("/")) {
-                        String compId = idXml.substring(idXml.indexOf("/") + 1, idXml.length());
+                        String compId = idXml.substring(idXml.indexOf("/") + 1);
                         matchingScore = computeLcsScore(textToMatch, compId, matchFirst);
                         if (matchingScore != 0) return matchingScore;
                     }
@@ -1566,11 +1568,11 @@ class NLActionS2RMatcher {
         String lcs = solver.getLongestCommonSubstring().toString();
 
         //-----------------------------
-        if (matchFirst && !lcs.isEmpty()) {
+  /*      if (matchFirst && !lcs.isEmpty()) {
             if (lcs.charAt(0) != encodePosition(0) || lcs.length() <= 1) {
                 return 0;
             }
-        }
+        }*/
 
         double lengthAvg = ((double) (encodedText1.length() + encodedText2.length())) / 2;
         return ((double) lcs.length()) / lengthAvg;

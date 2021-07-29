@@ -14,6 +14,8 @@ import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.actions.others.ProvideParticipantIdAction;
 import sealab.burt.server.actions.others.UnexpectedErrorAction;
 import sealab.burt.server.actions.s2r.*;
+import sealab.burt.server.actions.s2r.prediction.ProvideFirstPredictedS2RAction;
+import sealab.burt.server.actions.s2r.prediction.ProvideNextPredictedS2RAction;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.concurrent.ConcurrentHashMap;
