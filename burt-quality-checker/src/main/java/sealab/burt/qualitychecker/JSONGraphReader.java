@@ -97,8 +97,11 @@ class JSONGraphReader {
 
         //2. update the graph (update the weights, and create new GraphStates and Transitions if needed)
 
-        App app = traceReplayerExecutions.get(0).getApp();
-        AppGraphInfo finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+        AppGraphInfo finalGraph = null;
+        if (!traceReplayerExecutions.isEmpty()) {
+            App app = traceReplayerExecutions.get(0).getApp();
+            finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+        }
 
         if (finalGraph == null || finalGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");

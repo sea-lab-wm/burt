@@ -13,23 +13,6 @@ class ActionProvider{
         this.sessionId = sessionIdObj
     }
 
-    saveSingleMessage(messageObj){
-
-        console.log("Saving single message for ", this.sessionId, ": ", messageObj)
-        //calling the API
-        axios
-            .post('http://localhost:8081/saveSingleMessage', {
-                sessionId: this.sessionId,
-                messages : [messageObj]
-            })
-            .then(res => {
-                console.log(`Done`)
-            })
-            .catch(error => {
-                console.error(error)
-            })
-    }
-
     selectApp(){
         const msg = this.createChatBotMessage(
             "Sure. To start, please select the app that is having the problem",

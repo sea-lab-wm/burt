@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.prediction;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.actions.s2r.SelectMissingS2RAction;
 import sealab.burt.server.actions.s2r.prediction.S2RPredictor;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
@@ -24,6 +25,13 @@ import static sealab.burt.server.StateVariable.*;
 
 @Slf4j
 public class ProvideFirstPredictedS2RAction extends ChatBotAction {
+
+    public final static BiPredicate<AppStep, AppStep> matchByTransitionId = (step, nonStep) -> {
+        GraphTransition stepTransition = step.getTransition();
+        GraphTransition nonStepTransition = nonStep.getTransition();
+        if (stepTransition == null || nonStepTransition == null) return false;
+        return stepTransition.getId().equals(nonStepTransition.getId());
+    };
 
     public final static int MAX_NUMBER_OF_PATHS_TO_SHOW = 3;
     private final static int MAX_STEPS_TO_SHOW_IN_PATH = 5;
@@ -54,13 +62,6 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         if (nonSelectedSteps != null) {
 
             //remove the predicted S2R that the user deemed not correct in the last prediction session
-
-            BiPredicate<AppStep, AppStep> matchByTransitionId = (step, nonStep) -> {
-                GraphTransition stepTransition = step.getTransition();
-                GraphTransition nonStepTransition = nonStep.getTransition();
-                if (stepTransition == null || nonStepTransition == null) return false;
-                return stepTransition.getId().equals(nonStepTransition.getId());
-            };
 
             stepsWithLoops = stepsWithLoops.stream()
                     .filter(step -> nonSelectedSteps.stream()

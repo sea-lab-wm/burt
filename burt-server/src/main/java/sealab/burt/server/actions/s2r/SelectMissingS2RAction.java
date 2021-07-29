@@ -12,6 +12,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
+import sealab.burt.server.actions.s2r.prediction.ProvideFirstPredictedS2RAction;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
@@ -77,7 +78,24 @@ class SelectMissingS2RAction extends ChatBotAction {
 
         //---------------------------------------------------
 
-        if (cleanedInferredSteps.isEmpty()) {
+        //remove the last five "report" steps from the missing steps
+        List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
+
+        List<AppStep> lastSteps = stepElements
+                .subList(Math.max(stepElements.size() - 5, 0), stepElements.size())
+                .stream()
+                .map(el -> (AppStep) el.getOriginalElement())
+                .collect(Collectors.toList());
+
+        List<AppStep> cleanedInferredSteps2 = cleanedInferredSteps.stream()
+                .filter(step -> lastSteps.stream().noneMatch(
+                        lasStep -> ProvideFirstPredictedS2RAction.matchByTransitionId.test(step, lasStep)
+                ))
+                .collect(Collectors.toList());
+
+        //---------------------------------------------------
+
+        if (cleanedInferredSteps2.isEmpty()) {
 
             S2RQualityAssessment highQualityAssessment = feedback.getQualityAssessments().stream()
                     .filter(qa -> qa.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
@@ -93,9 +111,9 @@ class SelectMissingS2RAction extends ChatBotAction {
 
         //---------------------------------------------------
 
-        List<KeyValues> stepOptions = getStepOptions(cleanedInferredSteps, state);
+        List<KeyValues> stepOptions = getStepOptions(cleanedInferredSteps2, state);
 
-        state.put(S2R_ALL_MISSING, cleanedInferredSteps);
+        state.put(S2R_ALL_MISSING, cleanedInferredSteps2);
 
         //-----------------
 

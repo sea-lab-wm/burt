@@ -74,7 +74,7 @@ public class ConversationTestData {
             //ChatBot: there are missing steps, please select the ones are correct
             add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
-                    Arrays.asList("0", "1", "2", "3", "4", "5", "6", "10")));
+                    Arrays.asList("0", "1", "2", "3", "4", "5", "6")));
             //ChatBot: give me the NEXT S2R
             add(new MessageObjectTest("Tap on the orange color selector on the left side of the screen",
                     CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
@@ -178,7 +178,7 @@ public class ConversationTestData {
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
-            add(new MessageObjectTest(" The transactions are deleted and the QIF file is in the appropriate directory" +
+            add(new MessageObjectTest("The transactions are deleted and the QIF file is in the appropriate directory" +
                     " in Google Drive",
                     CLARIFY_EB, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             //ChatBot: the eb is general, is this the screen is having the problem?
@@ -196,9 +196,9 @@ public class ConversationTestData {
             add(new MessageObjectTest("Tap on the \"Export\" Menu item", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
-            //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest("no", PROVIDE_S2R_NO_MATCH, S2R_DESCRIPTION));
+       /*     //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));*/
             //ChatBot: give me the NEXT S2R
             add(new MessageObjectTest("Tap on \"Export To\"", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
@@ -226,7 +226,7 @@ public class ConversationTestData {
             add(new MessageObjectTest("Tap on the \"Export\" button", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION));
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_DESCRIPTION));
             //ChatBot: ok, you selected some steps, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
