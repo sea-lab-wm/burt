@@ -13,7 +13,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -62,10 +61,9 @@ class SelectOBScreenAction extends ChatBotAction {
             throw new RuntimeException("There are no options to show");
 
         return createChatBotMessages(
-                "Got it. From the list below, can you please select the screen that is " +
-                        "showing the problem or that triggered the problem when you performed some action on it?",
-
-        new ChatBotMessage(messageObj, options, false));
+                "Got it. From the list below, can you please select the screen that is having or triggering the " +
+                        "problem?",
+                new ChatBotMessage(messageObj, options, false));
     }
 
     public static List<KeyValues> getObScreenOptions(List<GraphState> matchedStates,
@@ -86,16 +84,17 @@ class SelectOBScreenAction extends ChatBotAction {
                             }
 
                             String screenshotFile = getScreenshotPathForGraphState(graphState, state);
-                    String key = Integer.toString(optionPosition);
+                            String key = Integer.toString(optionPosition);
 
-                    if(uniqueOptionKeys.contains(key))
-                        throw new RuntimeException(String.format("An option with the key %s already exists", key));
-                    else
-                        uniqueOptionKeys.add(key);
+                            if (uniqueOptionKeys.contains(key))
+                                throw new RuntimeException(String.format("An option with the key %s already exists",
+                                        key));
+                            else
+                                uniqueOptionKeys.add(key);
 
-                    return new KeyValues(key,
+                            return new KeyValues(key,
                                     (optionPosition + 1) + ". " + description +
-                                            " ("+ graphState.getUniqueHash().toString() +")", screenshotFile);
+                                            " (" + graphState.getUniqueHash().toString() + ")", screenshotFile);
                         }
 
                 )
