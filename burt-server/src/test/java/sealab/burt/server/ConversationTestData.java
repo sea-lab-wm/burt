@@ -745,10 +745,10 @@ public class ConversationTestData {
             add(new MessageObjectTest("the app crashed when I was entering a new vehicle", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: ok, no more options, so please rephrase the OB
-            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
-                    OB_SCREEN_SELECTED));
+//            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
+//                    OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
             //ChatBot: ok, no more options, so please rephrase the OB
@@ -757,7 +757,12 @@ public class ConversationTestData {
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("bla bla", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: wrong option, select the screen having the problem
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", CONFIRM_SELECTED_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
             add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
+
             //ChatBot: ok, that was the last attempt, so please give me the EB
             add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me the first S2R
@@ -776,7 +781,7 @@ public class ConversationTestData {
             //ChatBot: there are missing steps, please select the ones are correct
             add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
-                    Arrays.asList("0", "3")));
+                    Arrays.asList("0")));
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
