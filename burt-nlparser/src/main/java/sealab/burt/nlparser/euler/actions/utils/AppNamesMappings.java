@@ -13,6 +13,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Time Tracker", "A Time Tracker", "A-Time-Tracker",
                 "TimeTracker",
                 "ATimeTracker")));
+
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Card Game Scores", "cardgamescores", "CardGameScores",
                 "Card Games", "Cardgames", "Card-Game-Scores")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Car Report", "Car-Report", "car-report")));
@@ -84,6 +85,8 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("AnagramSolver", Arrays.asList("com.as.anagramsolver"));
         APP_NAMES_PACKAGES.put("ATimeTracker", Arrays.asList("com.markuspage.android.atimetracker", "net.ser1" +
                 ".timetracker"));
+        APP_NAMES_PACKAGES.put("time tracker", Arrays.asList("com.markuspage.android.atimetracker", "net.ser1" +
+                ".timetracker"));
 
         APP_NAMES_PACKAGES.put("BMI_Calculator", Arrays.asList("com.zola.bmi"));
 
@@ -114,6 +117,9 @@ public class AppNamesMappings {
 
         APP_NAMES_PACKAGES.put("schedule-campfahrplan",
                 Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
+        APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod.debug"));
+        APP_NAMES_PACKAGES.put("antennapod", Arrays.asList("de.danoeh.antennapod.debug"));
+
 
         //----------------------------
 
