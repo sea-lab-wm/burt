@@ -404,6 +404,12 @@ public class ConversationTestData {
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("4")));
+            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("none of above", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: select the screen having the problem
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Collections.singletonList("5")));
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
@@ -432,9 +438,9 @@ public class ConversationTestData {
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
             add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
-            //ChatBot: give me the next S2R
+ /*           //ChatBot: give me the next S2R
             add(new MessageObjectTest("Tap on \"Price per Gallons\" Edit Text\"", REPHRASE_S2R,
-                    S2R_DESCRIPTION));
+                    S2R_DESCRIPTION));*/
             //ChatBot: give me the next S2R
             add(new MessageObjectTest("Type 1.6 on \"Price per Gallons\"", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
@@ -456,10 +462,14 @@ public class ConversationTestData {
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "1", "3")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
-            //ChatBot: "Can you confirm which ones you actually performed next?"
+/*            //ChatBot: "Can you confirm which ones you actually performed next?"
             add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("2")));
+                    Collections.singletonList("2")));*/
+
+            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R_PATH, S2R_PREDICTED_SELECTED));
+
+            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
 
             //-------------------------------------------
 
