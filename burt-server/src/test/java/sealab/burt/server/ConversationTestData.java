@@ -632,14 +632,18 @@ public class ConversationTestData {
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
             //ChatBot: provide the OB
-            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
-            //ChatBot: provide the OB
-            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
+            add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
+            //ChatBot: Got it. From the list below, can you please select the screen that is having or triggering the problem?
+            //ChatBot: Please hit the "Done" button after you have selected it.
+            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("3")));
+            //ChatBot: Okay, you selected the screen "4. Measure Edit"
+            //ChatBot: Shall we continue?
+//            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
+//                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+//            //ChatBot: is this the OB screen?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
             add(new MessageObjectTest("i should not get some error", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
