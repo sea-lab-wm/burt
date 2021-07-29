@@ -53,8 +53,12 @@ class MainJSONGraphGenerator {
 //        AppGraphInfo graphInfo = JSONGraphReader.getGraph("droidweight", "1.5.4");
 
 //        AppGraphInfo graphInfo = JSONGraphReader.getGraph("GnuCash", "2.1.3");
+        AppGraphInfo graphInfo = JSONGraphReader.getGraph("GnuCash", "1.0.3");
 //        AppGraphInfo graphInfo = JSONGraphReader.getGraph("AntennaPod", "1.6.2.3");
-        AppGraphInfo graphInfo = JSONGraphReader.getGraph("ATimeTracker", "0.20");
+//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("ATimeTracker", "0.20");
+//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("growtracker", "2.3.1");
+//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("androidtoken", "2.10");
+
 
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         Appl app = graphInfo.getApp();
