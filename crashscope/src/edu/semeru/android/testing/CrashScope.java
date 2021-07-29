@@ -306,6 +306,8 @@ public class CrashScope extends GeneralStrategy {
 
         deviceHelper.clearLogcat();
         
+        int executionCounter = 1;
+        
         Process logcat = deviceHelper.startLogcatCollection(dataFolder + File.separator + app.getPackageName() + "-" + app.getVersion() + ".log");
         
         // For loop for iterating through all GUI-Traversal Strategies 
@@ -510,60 +512,60 @@ public class CrashScope extends GeneralStrategy {
 
                         // If there was a crash restart the execution from the current step.
                         if (crash) {
-
-                            System.out.println("Collecting and Saving Execution Data to JSON");
-
-                            setExecutionCtr(getExecutionCtr()+1);   // Increment the Execution Counter
-                            addStep(null, DeviceHelper.BACK, null, "none", null, null); // Add step for crash
-
-                            // Set crash information and steps to execution and persist to database
-                            execution.setCrash(true);
-                            execution.setSteps(getSteps());
-                            for (Step listStep : getSteps()) {
-                                listStep.setExecution(execution);
-                            }
-                            csExecutions.add(execution);
-                            
-                            Gson gson = new Gson();
-                            
-                            try {
-                                gson.toJson(execution, new FileWriter(dataFolder + File.separator + "Execution-" + executionCtr + ".json"));
-                            } catch (JsonIOException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            }
-                            
-                           
-                            
-//                            if(storeInDb){
-//                                PersistDataService.saveExecutionData(execution, PERSIST_UNIT, dpProperties);
+                            break;
+//                            System.out.println("Collecting and Saving Execution Data to JSON");
+//
+//                            executionCounter = executionCounter++;   // Increment the Execution Counter
+//                            addStep(null, DeviceHelper.BACK, null, "none", null, null); // Add step for crash
+//
+//                            // Set crash information and steps to execution and persist to database
+//                            execution.setCrash(true);
+//                            execution.setSteps(getSteps());
+//                            for (Step listStep : getSteps()) {
+//                                listStep.setExecution(execution);
 //                            }
-
-
-                            //Set up new execution to continue from point where the app crashed
-                            Execution execution_crash = new Execution();
-                            execution_crash.setDeviceDimensions(deviceHelper.getScreenSize());
-                            execution_crash.setOrientation(deviceHelper.getOrientation());
-                            execution_crash.setDate(Calendar.getInstance().getTime());
-                            execution_crash.setApp(app);
-                            app.addExecution(execution_crash);
-                            execution_crash.setMainActivity(app.getMainActivity());
-                            execution_crash.setAndroidVersion(deviceHelper.getAndroidVersion());
-                            execution_crash.setExecutionNum(executionCtr);
-                            execution_crash.setDeviceName(deviceHelper.getDeviceVersion());
-                            execution_crash.setSteps(new ArrayList<Step>());
-                            setExecutionStrategies(execution_crash, guiStrat, textStrat, featStrat);
-                            execution = execution_crash;
-                            //System.out.println("--Execution: " + execution.getSteps());
-                            setSteps(new ArrayList<Step>());
-                            step = null;
-                            // checkNewState(app.getPackageName(), app.getMainActivity(), dynComponent,
-                            // event.getEventTypeId());
-                            //coverageCtr = 1;
-                            crash = false;
+//                            csExecutions.add(execution);
+//                            
+//                            Gson gson = new Gson();
+//                            
+//                            try {
+//                                gson.toJson(execution, new FileWriter(dataFolder + File.separator + "Execution-" + executionCounter  + getGuiStrat() + "-" + getTextStrat() + "-" + getFeatStrat() + ".json"));
+//                            } catch (JsonIOException e) {
+//                                // TODO Auto-generated catch block
+//                                e.printStackTrace();
+//                            } catch (IOException e) {
+//                                // TODO Auto-generated catch block
+//                                e.printStackTrace();
+//                            }
+//                            
+//                           
+//                            
+////                            if(storeInDb){
+////                                PersistDataService.saveExecutionData(execution, PERSIST_UNIT, dpProperties);
+////                            }
+//
+//
+//                            //Set up new execution to continue from point where the app crashed
+//                            Execution execution_crash = new Execution();
+//                            execution_crash.setDeviceDimensions(deviceHelper.getScreenSize());
+//                            execution_crash.setOrientation(deviceHelper.getOrientation());
+//                            execution_crash.setDate(Calendar.getInstance().getTime());
+//                            execution_crash.setApp(app);
+//                            app.addExecution(execution_crash);
+//                            execution_crash.setMainActivity(app.getMainActivity());
+//                            execution_crash.setAndroidVersion(deviceHelper.getAndroidVersion());
+//                            execution_crash.setExecutionNum(executionCtr);
+//                            execution_crash.setDeviceName(deviceHelper.getDeviceVersion());
+//                            execution_crash.setSteps(new ArrayList<Step>());
+//                            setExecutionStrategies(execution_crash, guiStrat, textStrat, featStrat);
+//                            execution = execution_crash;
+//                            //System.out.println("--Execution: " + execution.getSteps());
+//                            setSteps(new ArrayList<Step>());
+//                            step = null;
+//                            // checkNewState(app.getPackageName(), app.getMainActivity(), dynComponent,
+//                            // event.getEventTypeId());
+//                            //coverageCtr = 1;
+//                            crash = false;
 
                         }// End conditional to check for crash if 
 
@@ -603,7 +605,7 @@ public class CrashScope extends GeneralStrategy {
                     
                     Gson gson = new Gson();
                     String json = gson.toJson(execution);
-                    PrintWriter writer = new PrintWriter(dataFolder + File.separator + "Execution-" + executionCtr + ".json");
+                    PrintWriter writer = new PrintWriter(dataFolder + File.separator + "Execution-" + executionCounter + getGuiStrat() + "-" + getTextStrat() + "-" + getFeatStrat() + ".json");
                     writer.println(json);
                     try {
                         Thread.sleep(1000);
@@ -629,6 +631,7 @@ public class CrashScope extends GeneralStrategy {
         } // End for loop for GUI-Traversal Strategy
         deviceHelper.stopLogcatCollection(logcat);
         deviceHelper.unInstallApp(app.getPackageName());
+        executionCounter = executionCounter++;
         
         long appEndTime = System.currentTimeMillis();
         long appElapsedTime = appEndTime - appStartTime;
@@ -642,7 +645,7 @@ public class CrashScope extends GeneralStrategy {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        setExecutionCtr(getExecutionCtr()+1);
+        
         return csExecutions;
 
     }// End executeDFS()
@@ -706,6 +709,7 @@ public class CrashScope extends GeneralStrategy {
 
             if(i==3) {
                 takeScreenshot(app.getPackageName(), dataFolder, getApp().getVersion(), getWidthScreen(), getHeightScreen(), gnuStep, getTextStrat(), executionCtr);
+                takeXMLSnapshot();
                 currentActivity = deviceHelper.getCurrentActivityImproved();
                 currentWindow = getcurrentWindow(deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), true);
                 gnuComp2.setActivity(currentActivity);
@@ -734,6 +738,7 @@ public class CrashScope extends GeneralStrategy {
 
             }else {
                 takeScreenshot(app.getPackageName(), dataFolder, getApp().getVersion(), getWidthScreen(), getHeightScreen(), gnuStep, getTextStrat(), executionCtr);
+                takeXMLSnapshot();
                 currentActivity = deviceHelper.getCurrentActivityImproved();
                 gnuComp1.setActivity(currentActivity);
                 currentWindow = getcurrentWindow(deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), true);
@@ -771,6 +776,7 @@ public class CrashScope extends GeneralStrategy {
 
         }
         takeScreenshot(app.getPackageName(), dataFolder, getApp().getVersion(), getWidthScreen(), getHeightScreen(), gnuStep, getTextStrat(), executionCtr);
+        takeXMLSnapshot();
         gnuCash = false;
         return gnuStep;
 
@@ -1584,7 +1590,9 @@ public class CrashScope extends GeneralStrategy {
         // TODO #1 Kevin here you use the one you need
         // Activity 
         System.out.println("Name: " + getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence);
-        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
+//        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
+        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
+
         // Layout
         //ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoLayout(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence, deviceType);
         // Actionable components
