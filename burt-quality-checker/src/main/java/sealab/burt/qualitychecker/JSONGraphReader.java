@@ -75,6 +75,7 @@ class JSONGraphReader {
 //        log.debug("Reading graph from JSON files for " + key);
 
         List<Execution> crashScopeExecutions = readExecutions(dataLocation);
+        GraphGenerator generator = new GraphGenerator();
 
         // changed code: check if crashScopeExecutions is empty
         if (crashScopeExecutions.size() > 0) {
@@ -82,7 +83,7 @@ class JSONGraphReader {
 
             //----------------------------------------
 
-            GraphGenerator generator = new GraphGenerator();
+
 
             AppGraphInfo partialGraph = generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
         }
@@ -102,7 +103,6 @@ class JSONGraphReader {
 
         //2. update the graph (update the weights, and create new GraphStates and Transitions if needed)
 
-        GraphGenerator generator = new GraphGenerator();
         App app = traceReplayerExecutions.get(0).getApp();
         AppGraphInfo finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
 
