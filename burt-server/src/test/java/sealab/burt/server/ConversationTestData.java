@@ -758,8 +758,12 @@ public class ConversationTestData {
             add(new MessageObjectTest("bla bla", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: wrong option, select the screen having the problem
             add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            //ChatBot: wrong option, select the screen having the problem
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+
+
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", CONFIRM_SELECTED_OB_SCREEN,
+            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
 
