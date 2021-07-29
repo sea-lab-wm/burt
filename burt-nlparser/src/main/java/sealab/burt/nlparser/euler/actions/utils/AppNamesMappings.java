@@ -121,6 +121,7 @@ public class AppNamesMappings {
                 Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
         APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod.debug"));
         APP_NAMES_PACKAGES.put("antennapod", Arrays.asList("de.danoeh.antennapod.debug"));
+        APP_NAMES_PACKAGES.put("Android Token", Arrays.asList("uk.co.bitethebullet.android.token"));
         APP_NAMES_PACKAGES.put("android token", Arrays.asList("uk.co.bitethebullet.android.token"));
         APP_NAMES_PACKAGES.put("growtracker", Arrays.asList("me.anon.grow"));
 
