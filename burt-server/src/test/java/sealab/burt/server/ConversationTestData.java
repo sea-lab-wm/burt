@@ -471,26 +471,31 @@ public class ConversationTestData {
             //ChatBot: is that the app you selected?
             add(new MessageObjectTest("yes", PROVIDE_OB, OB_DESCRIPTION));
             //ChatBot: provide the OB
-            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+            add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
             //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
-            //ChatBot: provide the OB
-            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_OB, OB_DESCRIPTION));
-            //ChatBot: provide the OB
-            add(new MessageObjectTest("the app crashed when I tried to change date", CONFIRM_MATCHED_OB,
-                    AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("no", PROVIDE_EB, EB_DESCRIPTION));
-            //ChatBot: give me the EB
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            //Chatbot: All right. Then, your description of the problem does not seem to match any screen from the app.
+            //ChatBot: Can you tell me the incorrect behavior one more time?
+            add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
+            //ChatBot: Got it. From the list below, can you please select the screen that is showing the problem or that triggered the problem when you performed some action on it?
+            //ChatBot: Please hit the "Done" button after you have selected it.
+            add(new MessageObjectTest("none of above",  CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            //Chatbot: All right. Then, your description of the problem does not seem to match any screen from the app.
+            //ChatBot: Can you tell me the incorrect behavior one more time?
+            add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
+                    OB_SCREEN_SELECTED));
+            ///ChatBot: Got it. From the list below, can you please select the screen that is showing the problem or that triggered the problem when you performed some action on it?
+            //ChatBot: Please hit the "Done" button after you have selected it.
+            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
+            //ChatBot: All right. Let's continue.
+            //ChatBot: Can you please tell me how the app is supposed to work instead?
             add(new MessageObjectTest("i should not get some error", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: Can you please tell me the first step that you performed?
-            add(new MessageObjectTest("I input the weight", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
-            //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
+//            add(new MessageObjectTest("c", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
+//            //ChatBot: is this the S2R you mean to report?
+//            add(new MessageObjectTest("yes", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
             //ChatBot: you didn't specify the input, please provide the step with input
             add(new MessageObjectTest("I set the weight", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
@@ -930,7 +935,7 @@ public class ConversationTestData {
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("4")));
+                    Collections.singletonList("3")));
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("ye", null, null));
             //ChatBot: you selected X, correct?
@@ -948,7 +953,7 @@ public class ConversationTestData {
                     Arrays.asList("3", "4")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED, WITH_SELECTED_VALUES,
+            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION, WITH_SELECTED_VALUES,
                     Arrays.asList("1", "2")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
