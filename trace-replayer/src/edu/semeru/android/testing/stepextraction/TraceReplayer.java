@@ -85,7 +85,7 @@ public class TraceReplayer {
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private int sequence = 0;
     public boolean takeScreenshots = false;
-    private int executionCtr = 5;
+    private int executionCtr = 10;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
     
@@ -113,13 +113,13 @@ public class TraceReplayer {
         String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "token";
-        String appPackage = "uk.co.bitethebullet.android.token";
-        String appVersion = "2.10";
-        String mainActivity = "uk.co.bitethebullet.android.token.TokenList";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesForModifiedEvaluation/TOKEN/token.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesForModifiedEvaluation/TOKEN/getevent-5.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTracesOutput/tokenAll-2.10/token-2.10";
+        String appName = "gnucash";
+        String appPackage = "org.gnucash.android";
+        String appVersion = "2.1.3";
+        String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/P2TracesModified/GNU-CC9/gnucash.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/gnucash/getevent_enableCompactView.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/TracesOutputv2/gnucash-2.1.3";
         
         String avdPort = "5554";
         String adbPort = "5037";
