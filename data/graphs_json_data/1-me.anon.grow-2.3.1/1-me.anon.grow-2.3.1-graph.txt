@@ -1,61 +1,61 @@
 Transitions correctness: true
 
 Transitions (37):
--985609370: (s:-1659243725,t:-701998865): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=6.0 ds=TR
+-985609370: (s:-1659243725,t:-701998865): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=6.0 ds=TR sc=null ex=4
 
--209336389: (s:-701998865,t:1962736951): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=Button, idx=permission_allow_button, idnx=1, tx=ALLOW, x=691, y=1017, h=126, w=185, dsc=], txt=, exp=, tr=null] weight=6.0 ds=TR
+-209336389: (s:-701998865,t:1962736951): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=Button, idx=permission_allow_button, idnx=1, tx=ALLOW, x=691, y=1017, h=126, w=185, dsc=], txt=, exp=, tr=null] weight=6.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker1_augmented.png ex=4
 
-1179352868: (s:1962736951,t:44661218): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=TextView, idx=filter, idnx=0, tx=, x=849, y=73, h=126, w=126, dsc=Filter], txt=, exp=, tr=null] weight=4.0 ds=TR
-1289222760: (s:1962736951,t:-107318219): [id=1, ex=1, sq=2, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-1126732244: (s:1962736951,t:497702222): [id=1, ex=2, sq=2, act=(0) click, cp=[, ty=ImageView, idx=, idnx=1, tx=, x=930, y=1639, h=63, w=63, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
+1179352868: (s:1962736951,t:44661218): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=TextView, idx=filter, idnx=0, tx=, x=849, y=73, h=126, w=126, dsc=Filter], txt=, exp=, tr=null] weight=4.0 ds=TR sc=me.anon.grow.User-Trace.5.me.anon.grow_2.3.1_growtracker6_augmented.png ex=0
+1289222760: (s:1962736951,t:-107318219): [id=1, ex=1, sq=2, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=me.anon.grow.User-Trace.2.me.anon.grow_2.3.1_growtracker2_augmented.png ex=3
+1126732244: (s:1962736951,t:497702222): [id=1, ex=2, sq=2, act=(0) click, cp=[, ty=ImageView, idx=, idnx=1, tx=, x=930, y=1639, h=63, w=63, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker2_augmented.png ex=4
 
-621133247: (s:497702222,t:-586560180): [id=5, ex=2, sq=6, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
--819361677: (s:497702222,t:497702222): [id=2, ex=2, sq=3, act=(5) type, cp=[, ty=TextView, idx=, idnx=1, tx=Add new plant, x=189, y=101, h=71, w=337, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-991297922: (s:497702222,t:497702222): [id=3, ex=2, sq=4, act=(5) type, cp=[, ty=EditText, idx=plant_strain, idnx=1, tx=, x=42, y=699, h=112, w=996, dsc=], txt=, exp=, tr=null] weight=5.0 ds=TR
--339552174: (s:497702222,t:-1836406647): [id=5, ex=4, sq=6, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+621133247: (s:497702222,t:-586560180): [id=5, ex=2, sq=6, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker6_augmented.png ex=2
+-819361677: (s:497702222,t:497702222): [id=2, ex=2, sq=3, act=(5) type, cp=[, ty=TextView, idx=, idnx=1, tx=Add new plant, x=189, y=101, h=71, w=337, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker3_augmented.png ex=4
+991297922: (s:497702222,t:497702222): [id=3, ex=2, sq=4, act=(5) type, cp=[, ty=EditText, idx=plant_strain, idnx=1, tx=, x=42, y=699, h=112, w=996, dsc=], txt=, exp=, tr=null] weight=5.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker5_augmented.png ex=4
+-339552174: (s:497702222,t:-1836406647): [id=5, ex=4, sq=6, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker6_augmented.png ex=4
 
--1759339472: (s:-1836406647,t:-1587207079): [id=6, ex=4, sq=7, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+-1759339472: (s:-1836406647,t:-1587207079): [id=6, ex=4, sq=7, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker7_augmented.png ex=4
 
-1334900227: (s:-1587207079,t:-1587207079): [id=7, ex=4, sq=8, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
--1898292324: (s:-1587207079,t:-493107894): [id=8, ex=4, sq=9, act=(0) click, cp=[, ty=TextView, idx=plant_stage, idnx=1, tx=Planted, x=42, y=899, h=57, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-179859381: (s:-1587207079,t:-2142752532): [id=10, ex=4, sq=11, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+1334900227: (s:-1587207079,t:-1587207079): [id=7, ex=4, sq=8, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker8_augmented.png ex=4
+-1898292324: (s:-1587207079,t:-493107894): [id=8, ex=4, sq=9, act=(0) click, cp=[, ty=TextView, idx=plant_stage, idnx=1, tx=Planted, x=42, y=899, h=57, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker9_augmented.png ex=4
+179859381: (s:-1587207079,t:-2142752532): [id=10, ex=4, sq=11, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker11_augmented.png ex=4
 
 
--914881602: (s:-493107894,t:-1587207079): [id=9, ex=4, sq=10, act=(0) click, cp=[, ty=Spinner, idx=actions, idnx=0, tx=, x=112, y=762, h=126, w=856, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-914881602: (s:-493107894,t:-1587207079): [id=9, ex=4, sq=10, act=(0) click, cp=[, ty=Spinner, idx=actions, idnx=0, tx=, x=112, y=762, h=126, w=856, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker10_augmented.png ex=4
 
-667923578: (s:-586560180,t:-1250038611): [id=6, ex=2, sq=7, act=(0) click, cp=[, ty=TextView, idx=name, idnx=0, tx=H, x=517, y=273, h=85, w=45, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+667923578: (s:-586560180,t:-1250038611): [id=6, ex=2, sq=7, act=(0) click, cp=[, ty=TextView, idx=name, idnx=0, tx=H, x=517, y=273, h=85, w=45, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker7_augmented.png ex=2
 
--1086332686: (s:-1250038611,t:-377105253): [id=7, ex=2, sq=8, act=(0) click, cp=[, ty=TextView, idx=feeding, idnx=0, tx=Feed, x=0, y=210, h=135, w=237, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-2128291156: (s:-1250038611,t:-2142752532): [id=15, ex=2, sq=16, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1086332686: (s:-1250038611,t:-377105253): [id=7, ex=2, sq=8, act=(0) click, cp=[, ty=TextView, idx=feeding, idnx=0, tx=Feed, x=0, y=210, h=135, w=237, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker8_augmented.png ex=2
+2128291156: (s:-1250038611,t:-2142752532): [id=15, ex=2, sq=16, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker16_augmented.png ex=2
 
--574050281: (s:-377105253,t:-1779857747): [id=8, ex=2, sq=9, act=(5) type, cp=[, ty=EditText, idx=water_ph, idnx=1, tx=, x=42, y=434, h=112, w=303, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-574050281: (s:-377105253,t:-1779857747): [id=8, ex=2, sq=9, act=(5) type, cp=[, ty=EditText, idx=water_ph, idnx=1, tx=, x=42, y=434, h=112, w=303, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker9_augmented.png ex=2
 
-739481292: (s:-1779857747,t:-1779857747): [id=9, ex=2, sq=10, act=(5) type, cp=[, ty=EditText, idx=water_ph, idnx=1, tx=, x=42, y=434, h=112, w=303, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-2128019188: (s:-1779857747,t:-1779857747): [id=10, ex=2, sq=11, act=(5) type, cp=[, ty=EditText, idx=water_ppm, idnx=1, tx=, x=388, y=434, h=112, w=303, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-362217506: (s:-1779857747,t:-1779857747): [id=12, ex=2, sq=13, act=(5) type, cp=[, ty=EditText, idx=runoff_ph, idnx=1, tx=, x=734, y=434, h=112, w=304, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-979084034: (s:-1779857747,t:-1250038611): [id=14, ex=2, sq=15, act=(0) click, cp=[, ty=ImageView, idx=, idnx=1, tx=, x=930, y=969, h=63, w=63, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+739481292: (s:-1779857747,t:-1779857747): [id=9, ex=2, sq=10, act=(5) type, cp=[, ty=EditText, idx=water_ph, idnx=1, tx=, x=42, y=434, h=112, w=303, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker10_augmented.png ex=2
+2128019188: (s:-1779857747,t:-1779857747): [id=10, ex=2, sq=11, act=(5) type, cp=[, ty=EditText, idx=water_ppm, idnx=1, tx=, x=388, y=434, h=112, w=303, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker12_augmented.png ex=2
+362217506: (s:-1779857747,t:-1779857747): [id=12, ex=2, sq=13, act=(5) type, cp=[, ty=EditText, idx=runoff_ph, idnx=1, tx=, x=734, y=434, h=112, w=304, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker14_augmented.png ex=2
+979084034: (s:-1779857747,t:-1250038611): [id=14, ex=2, sq=15, act=(0) click, cp=[, ty=ImageView, idx=, idnx=1, tx=, x=930, y=969, h=63, w=63, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.3.me.anon.grow_2.3.1_growtracker15_augmented.png ex=2
 
-1476676267: (s:-107318219,t:-19657190): [id=2, ex=1, sq=3, act=(0) click, cp=[, ty=CheckedTextView, idx=design_menu_item_text, idnx=0, tx=Settings, x=42, y=486, h=126, w=651, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--791436184: (s:-107318219,t:937209487): [id=2, ex=3, sq=3, act=(0) click, cp=[, ty=CheckedTextView, idx=design_menu_item_text, idnx=0, tx=New garden, x=42, y=210, h=126, w=651, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1476676267: (s:-107318219,t:-19657190): [id=2, ex=1, sq=3, act=(0) click, cp=[, ty=CheckedTextView, idx=design_menu_item_text, idnx=0, tx=Settings, x=42, y=486, h=126, w=651, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.4.me.anon.grow_2.3.1_growtracker3_augmented.png ex=1
+-791436184: (s:-107318219,t:937209487): [id=2, ex=3, sq=3, act=(0) click, cp=[, ty=CheckedTextView, idx=design_menu_item_text, idnx=0, tx=New garden, x=42, y=210, h=126, w=651, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.2.me.anon.grow_2.3.1_growtracker3_augmented.png ex=3
 
-665864042: (s:937209487,t:-1576095418): [id=3, ex=3, sq=4, act=(5) type, cp=[, ty=EditText, idx=name, idnx=0, tx=, x=112, y=794, h=118, w=856, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+665864042: (s:937209487,t:-1576095418): [id=3, ex=3, sq=4, act=(5) type, cp=[, ty=EditText, idx=name, idnx=0, tx=, x=112, y=794, h=118, w=856, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.2.me.anon.grow_2.3.1_growtracker4_augmented.png ex=3
 
-249370953: (s:-1576095418,t:-1576095418): [id=4, ex=3, sq=5, act=(5) type, cp=[, ty=EditText, idx=name, idnx=0, tx=, x=112, y=407, h=118, w=856, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-916021314: (s:-1576095418,t:-1576095418): [id=5, ex=3, sq=6, act=(0) click, cp=[, ty=Button, idx=button3, idnx=0, tx=SELECT ALL, x=102, y=698, h=126, w=265, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--677846006: (s:-1576095418,t:-2142752532): [id=6, ex=3, sq=7, act=(0) click, cp=[, ty=Button, idx=button1, idnx=2, tx=OK, x=810, y=698, h=126, w=168, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+249370953: (s:-1576095418,t:-1576095418): [id=4, ex=3, sq=5, act=(5) type, cp=[, ty=EditText, idx=name, idnx=0, tx=, x=112, y=407, h=118, w=856, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.2.me.anon.grow_2.3.1_growtracker5_augmented.png ex=3
+916021314: (s:-1576095418,t:-1576095418): [id=5, ex=3, sq=6, act=(0) click, cp=[, ty=Button, idx=button3, idnx=0, tx=SELECT ALL, x=102, y=698, h=126, w=265, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.2.me.anon.grow_2.3.1_growtracker6_augmented.png ex=3
+-677846006: (s:-1576095418,t:-2142752532): [id=6, ex=3, sq=7, act=(0) click, cp=[, ty=Button, idx=button1, idnx=2, tx=OK, x=810, y=698, h=126, w=168, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.2.me.anon.grow_2.3.1_growtracker7_augmented.png ex=3
 
-1611757148: (s:-19657190,t:1115203029): [id=3, ex=1, sq=4, act=(0) click, cp=[, ty=TextView, idx=summary, idnx=1, tx=Default delivery measurement unit to use, currently l, x=42, y=891, h=51, w=850, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1298227249: (s:-19657190,t:1115203029): [id=5, ex=1, sq=6, act=(0) click, cp=[, ty=TextView, idx=summary, idnx=1, tx=Default additive measurement unit to use, currently ml, x=42, y=1086, h=51, w=884, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--2074171828: (s:-19657190,t:-1885610193): [id=7, ex=1, sq=8, act=(0) click, cp=[, ty=RelativeLayout, idx=, idnx=0, tx=, x=42, y=1182, h=192, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--949544310: (s:-19657190,t:-2142752532): [id=9, ex=1, sq=10, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=225, y=1859, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR
+1611757148: (s:-19657190,t:1115203029): [id=3, ex=1, sq=4, act=(0) click, cp=[, ty=TextView, idx=summary, idnx=1, tx=Default delivery measurement unit to use, currently l, x=42, y=891, h=51, w=850, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.4.me.anon.grow_2.3.1_growtracker4_augmented.png ex=1
+-1298227249: (s:-19657190,t:1115203029): [id=5, ex=1, sq=6, act=(0) click, cp=[, ty=TextView, idx=summary, idnx=1, tx=Default additive measurement unit to use, currently ml, x=42, y=1086, h=51, w=884, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.4.me.anon.grow_2.3.1_growtracker6_augmented.png ex=1
+-2074171828: (s:-19657190,t:-1885610193): [id=7, ex=1, sq=8, act=(0) click, cp=[, ty=RelativeLayout, idx=, idnx=0, tx=, x=42, y=1182, h=192, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.4.me.anon.grow_2.3.1_growtracker8_augmented.png ex=1
+-949544310: (s:-19657190,t:-2142752532): [id=9, ex=1, sq=10, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=225, y=1859, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.4.me.anon.grow_2.3.1_growtracker10_augmented.png ex=1
 
--292159200: (s:-1885610193,t:-19657190): [id=8, ex=1, sq=9, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=2, tx=F, x=70, y=1050, h=126, w=940, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-292159200: (s:-1885610193,t:-19657190): [id=8, ex=1, sq=9, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=2, tx=F, x=70, y=1050, h=126, w=940, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.4.me.anon.grow_2.3.1_growtracker9_augmented.png ex=1
 
--371199870: (s:1115203029,t:-19657190): [id=4, ex=1, sq=5, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=5, tx=us gal, x=70, y=1113, h=126, w=940, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
+-371199870: (s:1115203029,t:-19657190): [id=4, ex=1, sq=5, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=5, tx=us gal, x=70, y=1113, h=126, w=940, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=me.anon.grow.User-Trace.4.me.anon.grow_2.3.1_growtracker7_augmented.png ex=1
 
--703740172: (s:44661218,t:1962736951): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=CheckBox, idx=checkbox, idnx=1, tx=, x=954, y=976, h=84, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1491357777: (s:44661218,t:1962736951): [id=4, ex=0, sq=5, act=(0) click, cp=[, ty=CheckBox, idx=checkbox, idnx=1, tx=, x=954, y=850, h=84, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--743153330: (s:44661218,t:-2142752532): [id=6, ex=0, sq=7, act=(0) click, cp=[, ty=CheckBox, idx=checkbox, idnx=1, tx=, x=954, y=724, h=84, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-703740172: (s:44661218,t:1962736951): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=CheckBox, idx=checkbox, idnx=1, tx=, x=954, y=976, h=84, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.5.me.anon.grow_2.3.1_growtracker3_augmented.png ex=0
+-1491357777: (s:44661218,t:1962736951): [id=4, ex=0, sq=5, act=(0) click, cp=[, ty=CheckBox, idx=checkbox, idnx=1, tx=, x=954, y=850, h=84, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.5.me.anon.grow_2.3.1_growtracker5_augmented.png ex=0
+-743153330: (s:44661218,t:-2142752532): [id=6, ex=0, sq=7, act=(0) click, cp=[, ty=CheckBox, idx=checkbox, idnx=1, tx=, x=954, y=724, h=84, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=me.anon.grow.User-Trace.5.me.anon.grow_2.3.1_growtracker7_augmented.png ex=0
 
 States (19):
 -1659243725, Start state, TR, (null): null

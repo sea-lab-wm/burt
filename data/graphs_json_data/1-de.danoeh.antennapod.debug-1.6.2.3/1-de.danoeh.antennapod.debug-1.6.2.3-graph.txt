@@ -1,211 +1,211 @@
 Transitions correctness: true
 
 Transitions (130):
-634634449: (s:-1659243725,t:-295652100): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=13.0 ds=TR
+634634449: (s:-1659243725,t:-295652100): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=13.0 ds=TR sc=null ex=11
 
--1567028094: (s:-295652100,t:134665791): [id=0, ex=1, sq=1, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Subscriptions, x=184, y=368, h=57, w=257, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--320552011: (s:-295652100,t:-691690555): [id=0, ex=2, sq=1, act=(0) click, cp=[, ty=TextView, idx=, idnx=1, tx=Settings, x=189, y=1702, h=57, w=546, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
--342437132: (s:-295652100,t:781439405): [id=0, ex=9, sq=1, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Downloads, x=184, y=493, h=57, w=210, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--124422876: (s:-295652100,t:290473846): [id=0, ex=10, sq=1, act=(0) click, cp=[, ty=TextView, idx=, idnx=1, tx=Queue, x=157, y=101, h=71, w=151, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-256133940: (s:-295652100,t:-1407732013): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Add Podcast, x=184, y=743, h=57, w=241, dsc=], txt=, exp=, tr=null] weight=8.0 ds=TR
+-1567028094: (s:-295652100,t:134665791): [id=0, ex=1, sq=1, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Subscriptions, x=184, y=368, h=57, w=257, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod1_augmented.png ex=1
+-320552011: (s:-295652100,t:-691690555): [id=0, ex=2, sq=1, act=(0) click, cp=[, ty=TextView, idx=, idnx=1, tx=Settings, x=189, y=1702, h=57, w=546, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.12.de.danoeh.antennapod.debug_1.6.2.3_antennapod1_augmented.png ex=4
+-342437132: (s:-295652100,t:781439405): [id=0, ex=9, sq=1, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Downloads, x=184, y=493, h=57, w=210, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.7.de.danoeh.antennapod.debug_1.6.2.3_antennapod1_augmented.png ex=9
+-124422876: (s:-295652100,t:290473846): [id=0, ex=10, sq=1, act=(0) click, cp=[, ty=TextView, idx=, idnx=1, tx=Queue, x=157, y=101, h=71, w=151, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.6.de.danoeh.antennapod.debug_1.6.2.3_antennapod1_augmented.png ex=10
+256133940: (s:-295652100,t:-1407732013): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Add Podcast, x=184, y=743, h=57, w=241, dsc=], txt=, exp=, tr=null] weight=8.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod1_augmented.png ex=11
 
-503780150: (s:290473846,t:1153912081): [id=1, ex=10, sq=2, act=(0) click, cp=[, ty=ImageView, idx=, idnx=2, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR
-1688182350: (s:290473846,t:-2142752532): [id=4, ex=10, sq=5, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+503780150: (s:290473846,t:1153912081): [id=1, ex=10, sq=2, act=(0) click, cp=[, ty=ImageView, idx=, idnx=2, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.6.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=10
+1688182350: (s:290473846,t:-2142752532): [id=4, ex=10, sq=5, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.6.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=10
 
 
--1740394271: (s:1153912081,t:112895285): [id=33, ex=6, sq=34, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=481, y=164, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR
--1578246271: (s:1153912081,t:-963437739): [id=2, ex=10, sq=3, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Clear Queue, x=597, y=359, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1740394271: (s:1153912081,t:112895285): [id=33, ex=6, sq=34, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=481, y=164, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod34_augmented.png ex=6
+-1578246271: (s:1153912081,t:-963437739): [id=2, ex=10, sq=3, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Clear Queue, x=597, y=359, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.6.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=10
 
-1056269884: (s:-963437739,t:290473846): [id=3, ex=10, sq=4, act=(0) click, cp=[, ty=Button, idx=button1, idnx=1, tx=CONFIRM, x=663, y=1025, h=126, w=223, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1056269884: (s:-963437739,t:290473846): [id=3, ex=10, sq=4, act=(0) click, cp=[, ty=Button, idx=button1, idnx=1, tx=CONFIRM, x=663, y=1025, h=126, w=223, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.6.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=10
 
-158574320: (s:112895285,t:1153912081): [id=32, ex=6, sq=33, act=(0) click, cp=[, ty=ImageView, idx=, idnx=2, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR
--902052299: (s:112895285,t:594547086): [id=34, ex=6, sq=35, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
-152542487: (s:112895285,t:120648095): [id=40, ex=6, sq=41, act=(0) click, cp=[, ty=ImageButton, idx=butPlay, idnx=4, tx=, x=943, y=1658, h=136, w=137, dsc=Play], txt=, exp=, tr=null] weight=2.0 ds=TR
+158574320: (s:112895285,t:1153912081): [id=32, ex=6, sq=33, act=(0) click, cp=[, ty=ImageView, idx=, idnx=2, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod33_augmented.png ex=6
+-902052299: (s:112895285,t:594547086): [id=34, ex=6, sq=35, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod35_augmented.png ex=6
+152542487: (s:112895285,t:120648095): [id=40, ex=6, sq=41, act=(0) click, cp=[, ty=ImageButton, idx=butPlay, idnx=4, tx=, x=943, y=1658, h=136, w=137, dsc=Play], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod41_augmented.png ex=6
 
--1119532024: (s:120648095,t:842341988): [id=41, ex=6, sq=42, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1119532024: (s:120648095,t:842341988): [id=41, ex=6, sq=42, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod42_augmented.png ex=6
 
-1625166319: (s:842341988,t:1902808291): [id=42, ex=6, sq=43, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Downloads, x=184, y=493, h=57, w=210, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1625166319: (s:842341988,t:1902808291): [id=42, ex=6, sq=43, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Downloads, x=184, y=493, h=57, w=210, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod43_augmented.png ex=6
 
--357409235: (s:1902808291,t:1902808291): [id=43, ex=6, sq=44, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=COMPLETED, x=433, y=247, h=51, w=214, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1139884599: (s:1902808291,t:1902808291): [id=44, ex=6, sq=45, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=LOG, x=865, y=247, h=51, w=70, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-498474184: (s:1902808291,t:1357421472): [id=45, ex=6, sq=46, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
+-357409235: (s:1902808291,t:1902808291): [id=43, ex=6, sq=44, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=COMPLETED, x=433, y=247, h=51, w=214, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod44_augmented.png ex=6
+1139884599: (s:1902808291,t:1902808291): [id=44, ex=6, sq=45, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=LOG, x=865, y=247, h=51, w=70, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod45_augmented.png ex=6
+498474184: (s:1902808291,t:1357421472): [id=45, ex=6, sq=46, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod46_augmented.png ex=6
 
--1379546337: (s:1357421472,t:1132626441): [id=46, ex=6, sq=47, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Playback History, x=184, y=618, h=57, w=313, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1379546337: (s:1357421472,t:1132626441): [id=46, ex=6, sq=47, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Playback History, x=184, y=618, h=57, w=313, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod47_augmented.png ex=6
 
--1006487696: (s:1132626441,t:-263867078): [id=47, ex=6, sq=48, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1006487696: (s:1132626441,t:-263867078): [id=47, ex=6, sq=48, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod48_augmented.png ex=6
 
--800158589: (s:-263867078,t:-1788369904): [id=48, ex=6, sq=49, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Classical 95.9-FM WCRI, x=184, y=909, h=57, w=464, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-800158589: (s:-263867078,t:-1788369904): [id=48, ex=6, sq=49, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Classical 95.9-FM WCRI, x=184, y=909, h=57, w=464, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod49_augmented.png ex=6
 
-933827139: (s:-1788369904,t:410929713): [id=49, ex=6, sq=50, act=(0) click, cp=[, ty=TextView, idx=filter_items, idnx=1, tx=, x=594, y=73, h=126, w=127, dsc=Filter], txt=, exp=, tr=null] weight=2.0 ds=TR
-1281819762: (s:-1788369904,t:1998094318): [id=51, ex=6, sq=52, act=(0) click, cp=[, ty=TextView, idx=episode_actions, idnx=2, tx=, x=721, y=73, h=126, w=127, dsc=Apply actions], txt=, exp=, tr=null] weight=2.0 ds=TR
-233662045: (s:-1788369904,t:-1788369904): [id=53, ex=6, sq=54, act=(0) click, cp=[, ty=TextView, idx=refresh_item, idnx=3, tx=, x=848, y=73, h=126, w=127, dsc=Refresh], txt=, exp=, tr=null] weight=2.0 ds=TR
-1685659426: (s:-1788369904,t:-2142752532): [id=54, ex=6, sq=55, act=(0) click, cp=[, ty=ImageView, idx=, idnx=4, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR
+933827139: (s:-1788369904,t:410929713): [id=49, ex=6, sq=50, act=(0) click, cp=[, ty=TextView, idx=filter_items, idnx=1, tx=, x=594, y=73, h=126, w=127, dsc=Filter], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod50_augmented.png ex=6
+1281819762: (s:-1788369904,t:1998094318): [id=51, ex=6, sq=52, act=(0) click, cp=[, ty=TextView, idx=episode_actions, idnx=2, tx=, x=721, y=73, h=126, w=127, dsc=Apply actions], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod52_augmented.png ex=6
+233662045: (s:-1788369904,t:-1788369904): [id=53, ex=6, sq=54, act=(0) click, cp=[, ty=TextView, idx=refresh_item, idnx=3, tx=, x=848, y=73, h=126, w=127, dsc=Refresh], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod54_augmented.png ex=6
+1685659426: (s:-1788369904,t:-2142752532): [id=54, ex=6, sq=55, act=(0) click, cp=[, ty=ImageView, idx=, idnx=4, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod55_augmented.png ex=6
 
-2089400760: (s:1998094318,t:-1788369904): [id=52, ex=6, sq=53, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+2089400760: (s:1998094318,t:-1788369904): [id=52, ex=6, sq=53, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod53_augmented.png ex=6
 
-1165831178: (s:410929713,t:-1788369904): [id=50, ex=6, sq=51, act=(0) click, cp=[, ty=Button, idx=button2, idnx=0, tx=CANCEL, x=461, y=1449, h=126, w=202, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1165831178: (s:410929713,t:-1788369904): [id=50, ex=6, sq=51, act=(0) click, cp=[, ty=Button, idx=button2, idnx=0, tx=CANCEL, x=461, y=1449, h=126, w=202, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod51_augmented.png ex=6
 
-980422004: (s:594547086,t:-691690555): [id=35, ex=6, sq=36, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=2, tx=07-18-21  -  Jane Robbins & Haley Swindal  at Theatre by the Sea  -  Conducting Conversations, x=189, y=1675, h=51, w=754, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+980422004: (s:594547086,t:-691690555): [id=35, ex=6, sq=36, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=2, tx=07-18-21  -  Jane Robbins & Haley Swindal  at Theatre by the Sea  -  Conducting Conversations, x=189, y=1675, h=51, w=754, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod36_augmented.png ex=6
 
--1092848869: (s:-691690555,t:171619994): [id=1, ex=2, sq=2, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
-410436650: (s:-691690555,t:1443765778): [id=1, ex=4, sq=2, act=(0) click, cp=[, ty=TextView, idx=summary, idnx=1, tx=Change the appearance of AntennaPod., x=42, y=405, h=51, w=650, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-880822306: (s:-691690555,t:949387043): [id=36, ex=6, sq=37, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Customize Navigation Drawer, x=42, y=543, h=57, w=552, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-217566463: (s:-691690555,t:-488269254): [id=38, ex=6, sq=39, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+-1092848869: (s:-691690555,t:171619994): [id=1, ex=2, sq=2, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.4.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=2
+410436650: (s:-691690555,t:1443765778): [id=1, ex=4, sq=2, act=(0) click, cp=[, ty=TextView, idx=summary, idnx=1, tx=Change the appearance of AntennaPod., x=42, y=405, h=51, w=650, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.12.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=4
+880822306: (s:-691690555,t:949387043): [id=36, ex=6, sq=37, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Customize Navigation Drawer, x=42, y=543, h=57, w=552, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod37_augmented.png ex=6
+217566463: (s:-691690555,t:-488269254): [id=38, ex=6, sq=39, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod39_augmented.png ex=6
 
-249549240: (s:-488269254,t:112895285): [id=39, ex=6, sq=40, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+249549240: (s:-488269254,t:112895285): [id=39, ex=6, sq=40, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod40_augmented.png ex=6
 
--1690235217: (s:949387043,t:-691690555): [id=37, ex=6, sq=38, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=259, y=1872, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1690235217: (s:949387043,t:-691690555): [id=37, ex=6, sq=38, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=259, y=1872, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod38_augmented.png ex=6
 
-2051642109: (s:1443765778,t:-2142752532): [id=2, ex=4, sq=3, act=(0) click, cp=[, ty=RadioButton, idx=control, idnx=0, tx=, x=133, y=919, h=126, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+2051642109: (s:1443765778,t:-2142752532): [id=2, ex=4, sq=3, act=(0) click, cp=[, ty=RadioButton, idx=control, idnx=0, tx=, x=133, y=919, h=126, w=84, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.12.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=4
 
--34971514: (s:171619994,t:87254323): [id=2, ex=2, sq=3, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+-34971514: (s:171619994,t:87254323): [id=2, ex=2, sq=3, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.4.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=2
 
--2058912609: (s:87254323,t:-2142752532): [id=3, ex=2, sq=4, act=(0) click, cp=[, ty=LinearLayout, idx=widget_frame, idnx=1, tx=, x=874, y=1086, h=235, w=164, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-2058912609: (s:87254323,t:-2142752532): [id=3, ex=2, sq=4, act=(0) click, cp=[, ty=LinearLayout, idx=widget_frame, idnx=1, tx=, x=874, y=1086, h=235, w=164, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.4.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=2
 
-952458947: (s:781439405,t:781439405): [id=1, ex=9, sq=2, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=COMPLETED, x=433, y=247, h=51, w=214, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-597696097: (s:781439405,t:781439405): [id=2, ex=9, sq=3, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=LOG, x=865, y=247, h=51, w=70, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1238926998: (s:781439405,t:-2142752532): [id=3, ex=9, sq=4, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+952458947: (s:781439405,t:781439405): [id=1, ex=9, sq=2, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=COMPLETED, x=433, y=247, h=51, w=214, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.7.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=9
+597696097: (s:781439405,t:781439405): [id=2, ex=9, sq=3, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=LOG, x=865, y=247, h=51, w=70, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.7.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=9
+-1238926998: (s:781439405,t:-2142752532): [id=3, ex=9, sq=4, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.7.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=9
 
--162265822: (s:134665791,t:-26530199): [id=1, ex=1, sq=2, act=(0) click, cp=[, ty=ImageView, idx=imgvCover, idnx=1, tx=, x=0, y=210, h=356, w=356, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-162265822: (s:134665791,t:-26530199): [id=1, ex=1, sq=2, act=(0) click, cp=[, ty=ImageView, idx=imgvCover, idnx=1, tx=, x=0, y=210, h=356, w=356, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=1
 
--1163657948: (s:-26530199,t:-1803401735): [id=2, ex=1, sq=3, act=(0) click, cp=[, ty=Button, idx=butSearchFyyd, idnx=3, tx=SEARCH FYYD, x=42, y=619, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1163657948: (s:-26530199,t:-1803401735): [id=2, ex=1, sq=3, act=(0) click, cp=[, ty=Button, idx=butSearchFyyd, idnx=3, tx=SEARCH FYYD, x=42, y=619, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=1
 
-603157346: (s:-1803401735,t:314515780): [id=3, ex=1, sq=4, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
+603157346: (s:-1803401735,t:314515780): [id=3, ex=1, sq=4, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=6
 
-1052070867: (s:314515780,t:314515780): [id=4, ex=1, sq=5, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--734738023: (s:314515780,t:-1204787785): [id=5, ex=1, sq=5, act=(5) type, cp=[, ty=GridView, idx=gridView, idnx=0, tx=, x=0, y=210, h=1584, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1054635037: (s:314515780,t:-1968418880): [id=3, ex=6, sq=4, act=(5) type, cp=[, ty=GridView, idx=gridView, idnx=0, tx=, x=0, y=210, h=1584, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1302253769: (s:314515780,t:-1407732013): [id=11, ex=6, sq=12, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Collapse], txt=, exp=, tr=null] weight=2.0 ds=TR
--2075727405: (s:314515780,t:-1968418880): [id=3, ex=5, sq=4, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
+1052070867: (s:314515780,t:314515780): [id=4, ex=1, sq=5, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=1
+-734738023: (s:314515780,t:-1204787785): [id=5, ex=1, sq=5, act=(5) type, cp=[, ty=GridView, idx=gridView, idnx=0, tx=, x=0, y=210, h=1584, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=1
+1054635037: (s:314515780,t:-1968418880): [id=3, ex=6, sq=4, act=(5) type, cp=[, ty=GridView, idx=gridView, idnx=0, tx=, x=0, y=210, h=1584, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=6
+1302253769: (s:314515780,t:-1407732013): [id=11, ex=6, sq=12, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Collapse], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod12_augmented.png ex=6
+-2075727405: (s:314515780,t:-1968418880): [id=3, ex=5, sq=4, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=7
 
-1449591170: (s:-1407732013,t:-469696980): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=Button, idx=butSearchFyyd, idnx=3, tx=SEARCH FYYD, x=42, y=619, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-796785671: (s:-1407732013,t:-1803401735): [id=1, ex=6, sq=2, act=(0) click, cp=[, ty=Button, idx=butSearchFyyd, idnx=3, tx=SEARCH FYYD, x=42, y=619, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-2045346857: (s:-1407732013,t:1585597646): [id=1, ex=3, sq=2, act=(0) click, cp=[, ty=Button, idx=butSearchItunes, idnx=2, tx=SEARCH ITUNES, x=42, y=493, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR
-574432026: (s:-1407732013,t:241280677): [id=12, ex=6, sq=13, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=3.0 ds=TR
-1451589841: (s:-1407732013,t:1992548970): [id=1, ex=8, sq=2, act=(0) click, cp=[, ty=Button, idx=butBrowseGpoddernet, idnx=4, tx=BROWSE GPODDER.NET, x=42, y=745, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
+1449591170: (s:-1407732013,t:-469696980): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=Button, idx=butSearchFyyd, idnx=3, tx=SEARCH FYYD, x=42, y=619, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=0
+796785671: (s:-1407732013,t:-1803401735): [id=1, ex=6, sq=2, act=(0) click, cp=[, ty=Button, idx=butSearchFyyd, idnx=3, tx=SEARCH FYYD, x=42, y=619, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=6
+2045346857: (s:-1407732013,t:1585597646): [id=1, ex=3, sq=2, act=(0) click, cp=[, ty=Button, idx=butSearchItunes, idnx=2, tx=SEARCH ITUNES, x=42, y=493, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=7
+574432026: (s:-1407732013,t:241280677): [id=12, ex=6, sq=13, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod10_augmented.png ex=7
+1451589841: (s:-1407732013,t:1992548970): [id=1, ex=8, sq=2, act=(0) click, cp=[, ty=Button, idx=butBrowseGpoddernet, idnx=4, tx=BROWSE GPODDER.NET, x=42, y=745, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png ex=11
 
--1755442415: (s:1992548970,t:1361619263): [id=2, ex=8, sq=3, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR
-2121819995: (s:1992548970,t:-1204787785): [id=2, ex=11, sq=3, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=2, tx=http://feeds.feedburner.com/linuxoutlaws, x=231, y=427, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--121796768: (s:1992548970,t:1322921951): [id=5, ex=11, sq=6, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR
--1765733492: (s:1992548970,t:-890761541): [id=10, ex=11, sq=11, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1755442415: (s:1992548970,t:1361619263): [id=2, ex=8, sq=3, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=8
+2121819995: (s:1992548970,t:-1204787785): [id=2, ex=11, sq=3, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=2, tx=http://feeds.feedburner.com/linuxoutlaws, x=231, y=427, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=11
+-121796768: (s:1992548970,t:1322921951): [id=5, ex=11, sq=6, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod6_augmented.png ex=11
+-1765733492: (s:1992548970,t:-890761541): [id=10, ex=11, sq=11, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod11_augmented.png ex=11
 
-85275484: (s:-890761541,t:1377148393): [id=11, ex=11, sq=12, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
+85275484: (s:-890761541,t:1377148393): [id=11, ex=11, sq=12, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod12_augmented.png ex=11
 
-1820825066: (s:1377148393,t:614959519): [id=12, ex=11, sq=13, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Subscriptions, x=184, y=368, h=57, w=257, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1820825066: (s:1377148393,t:614959519): [id=12, ex=11, sq=13, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Subscriptions, x=184, y=368, h=57, w=257, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod13_augmented.png ex=11
 
-1075885915: (s:614959519,t:-2142752532): [id=13, ex=11, sq=14, act=(0) click, cp=[, ty=ImageView, idx=imgvCover, idnx=1, tx=, x=0, y=210, h=356, w=356, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1075885915: (s:614959519,t:-2142752532): [id=13, ex=11, sq=14, act=(0) click, cp=[, ty=ImageView, idx=imgvCover, idnx=1, tx=, x=0, y=210, h=356, w=356, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod14_augmented.png ex=11
 
--1116038298: (s:1322921951,t:-2142104745): [id=6, ex=11, sq=7, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=2, tx=https://audio.liferadio.at/show/lask/feed/mp3/, x=231, y=301, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1688336679: (s:1322921951,t:1992548970): [id=9, ex=11, sq=10, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1116038298: (s:1322921951,t:-2142104745): [id=6, ex=11, sq=7, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=2, tx=https://audio.liferadio.at/show/lask/feed/mp3/, x=231, y=301, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod7_augmented.png ex=11
+-1688336679: (s:1322921951,t:1992548970): [id=9, ex=11, sq=10, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod10_augmented.png ex=11
 
-492011422: (s:-2142104745,t:-2142104745): [id=7, ex=11, sq=8, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=1, tx=SUBSCRIBE, x=42, y=641, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1635867458: (s:-2142104745,t:1322921951): [id=8, ex=11, sq=9, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+492011422: (s:-2142104745,t:-2142104745): [id=7, ex=11, sq=8, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=1, tx=SUBSCRIBE, x=42, y=641, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod8_augmented.png ex=11
+1635867458: (s:-2142104745,t:1322921951): [id=8, ex=11, sq=9, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod9_augmented.png ex=11
 
--1780461900: (s:-1204787785,t:-1204787785): [id=6, ex=1, sq=6, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=0, tx=Welcome to St. Paxton, x=231, y=513, h=57, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1051399165: (s:-1204787785,t:-2142752532): [id=7, ex=1, sq=7, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-809912875: (s:-1204787785,t:840195867): [id=5, ex=8, sq=6, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=OPEN PODCAST, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1199728931: (s:-1204787785,t:-1204787785): [id=4, ex=8, sq=5, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
--2146781974: (s:-1204787785,t:1992548970): [id=4, ex=11, sq=5, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1780461900: (s:-1204787785,t:-1204787785): [id=6, ex=1, sq=6, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=0, tx=Welcome to St. Paxton, x=231, y=513, h=57, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod6_augmented.png ex=1
+-1051399165: (s:-1204787785,t:-2142752532): [id=7, ex=1, sq=7, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod7_augmented.png ex=1
+809912875: (s:-1204787785,t:840195867): [id=5, ex=8, sq=6, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=OPEN PODCAST, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod6_augmented.png ex=8
+-1199728931: (s:-1204787785,t:-1204787785): [id=4, ex=8, sq=5, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=11
+-2146781974: (s:-1204787785,t:1992548970): [id=4, ex=11, sq=5, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.10.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=11
 
--805546977: (s:840195867,t:-1720636385): [id=6, ex=8, sq=7, act=(0) click, cp=[, ty=ImageView, idx=search_button, idnx=0, tx=, x=467, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR
+-805546977: (s:840195867,t:-1720636385): [id=6, ex=8, sq=7, act=(0) click, cp=[, ty=ImageView, idx=search_button, idnx=0, tx=, x=467, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod7_augmented.png ex=8
 
-1601636415: (s:-1720636385,t:1222316472): [id=7, ex=8, sq=8, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1601636415: (s:-1720636385,t:1222316472): [id=7, ex=8, sq=8, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod8_augmented.png ex=8
 
-1329634310: (s:1222316472,t:592318224): [id=8, ex=8, sq=9, act=(0) click, cp=[, ty=LinearLayout, idx=, idnx=1, tx=, x=247, y=273, h=210, w=367, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1329634310: (s:1222316472,t:592318224): [id=8, ex=8, sq=9, act=(0) click, cp=[, ty=LinearLayout, idx=, idnx=1, tx=, x=247, y=273, h=210, w=367, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod9_augmented.png ex=8
 
--1850357257: (s:592318224,t:-3732753): [id=9, ex=8, sq=10, act=(0) click, cp=[, ty=Button, idx=butAction1, idnx=0, tx=  Download, x=42, y=425, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--711537646: (s:592318224,t:532745662): [id=11, ex=8, sq=12, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1850357257: (s:592318224,t:-3732753): [id=9, ex=8, sq=10, act=(0) click, cp=[, ty=Button, idx=butAction1, idnx=0, tx=  Download, x=42, y=425, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod10_augmented.png ex=8
+-711537646: (s:592318224,t:532745662): [id=11, ex=8, sq=12, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod12_augmented.png ex=8
 
-1373078287: (s:532745662,t:2111937331): [id=12, ex=8, sq=13, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+1373078287: (s:532745662,t:2111937331): [id=12, ex=8, sq=13, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod13_augmented.png ex=8
 
--1481872174: (s:2111937331,t:-1390930883): [id=13, ex=8, sq=14, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1481872174: (s:2111937331,t:-1390930883): [id=13, ex=8, sq=14, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod14_augmented.png ex=8
 
-504119403: (s:-1390930883,t:-2142752532): [id=14, ex=8, sq=15, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Queue, x=184, y=118, h=57, w=119, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+504119403: (s:-1390930883,t:-2142752532): [id=14, ex=8, sq=15, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Queue, x=184, y=118, h=57, w=119, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod15_augmented.png ex=8
 
--511157271: (s:-3732753,t:592318224): [id=10, ex=8, sq=11, act=(0) click, cp=[, ty=TextView, idx=buttonDefaultNeutral, idnx=3, tx=ENQUEUE, x=102, y=1199, h=126, w=225, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-511157271: (s:-3732753,t:592318224): [id=10, ex=8, sq=11, act=(0) click, cp=[, ty=TextView, idx=buttonDefaultNeutral, idnx=3, tx=ENQUEUE, x=102, y=1199, h=126, w=225, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod11_augmented.png ex=8
 
--871503540: (s:1361619263,t:-1204787785): [id=3, ex=8, sq=4, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=2, tx=http://feeds.feedburner.com/linuxoutlaws, x=231, y=301, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-871503540: (s:1361619263,t:-1204787785): [id=3, ex=8, sq=4, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=2, tx=http://feeds.feedburner.com/linuxoutlaws, x=231, y=301, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=8
 
-1038772393: (s:241280677,t:605712367): [id=13, ex=6, sq=14, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Subscriptions, x=184, y=368, h=57, w=257, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
+1038772393: (s:241280677,t:605712367): [id=13, ex=6, sq=14, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=1, tx=Subscriptions, x=184, y=368, h=57, w=257, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod11_augmented.png ex=7
 
--1566421100: (s:605712367,t:-25135567): [id=14, ex=6, sq=15, act=(0) click, cp=[, ty=ImageView, idx=imgvCover, idnx=1, tx=, x=0, y=210, h=356, w=356, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
+-1566421100: (s:605712367,t:-25135567): [id=14, ex=6, sq=15, act=(0) click, cp=[, ty=ImageView, idx=imgvCover, idnx=1, tx=, x=0, y=210, h=356, w=356, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod12_augmented.png ex=7
 
-1762460257: (s:-25135567,t:-516905556): [id=15, ex=6, sq=16, act=(0) click, cp=[, ty=RelativeLayout, idx=, idnx=0, tx=, x=42, y=815, h=252, w=909, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-2139677847: (s:-25135567,t:1137802429): [id=12, ex=7, sq=13, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+1762460257: (s:-25135567,t:-516905556): [id=15, ex=6, sq=16, act=(0) click, cp=[, ty=RelativeLayout, idx=, idnx=0, tx=, x=42, y=815, h=252, w=909, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod16_augmented.png ex=6
+2139677847: (s:-25135567,t:1137802429): [id=12, ex=7, sq=13, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod13_augmented.png ex=7
 
-934563685: (s:1137802429,t:-1362315508): [id=13, ex=7, sq=14, act=(0) click, cp=[, ty=TextView, idx=txtvItemname, idnx=0, tx=PLEDGE WEEK: “Farmer John” by Don and Dewey, x=42, y=498, h=106, w=798, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+934563685: (s:1137802429,t:-1362315508): [id=13, ex=7, sq=14, act=(0) click, cp=[, ty=TextView, idx=txtvItemname, idnx=0, tx=PLEDGE WEEK: “Farmer John” by Don and Dewey, x=42, y=498, h=106, w=798, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod14_augmented.png ex=7
 
-412437297: (s:-1362315508,t:-1038944679): [id=14, ex=7, sq=15, act=(0) click, cp=[, ty=Button, idx=butAction2, idnx=1, tx=  Stream, x=561, y=460, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+412437297: (s:-1362315508,t:-1038944679): [id=14, ex=7, sq=15, act=(0) click, cp=[, ty=Button, idx=butAction2, idnx=1, tx=  Stream, x=561, y=460, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod15_augmented.png ex=7
 
--451747400: (s:-1038944679,t:-2142752532): [id=9, ex=3, sq=10, act=(0) click, cp=[, ty=ImageButton, idx=butPlay, idnx=3, tx=, x=477, y=1631, h=126, w=126, dsc=Pause], txt=, exp=, tr=null] weight=2.0 ds=TR
--388653710: (s:-1038944679,t:-231538015): [id=17, ex=6, sq=18, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
-1112991326: (s:-1038944679,t:-1722113956): [id=15, ex=7, sq=16, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+-451747400: (s:-1038944679,t:-2142752532): [id=9, ex=3, sq=10, act=(0) click, cp=[, ty=ImageButton, idx=butPlay, idnx=3, tx=, x=477, y=1631, h=126, w=126, dsc=Pause], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod10_augmented.png ex=3
+-388653710: (s:-1038944679,t:-231538015): [id=17, ex=6, sq=18, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod18_augmented.png ex=6
+1112991326: (s:-1038944679,t:-1722113956): [id=15, ex=7, sq=16, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod16_augmented.png ex=7
 
--945926825: (s:-1722113956,t:-810712744): [id=16, ex=7, sq=17, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+-945926825: (s:-1722113956,t:-810712744): [id=16, ex=7, sq=17, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod17_augmented.png ex=7
 
--1585121976: (s:-810712744,t:-810712744): [id=17, ex=7, sq=18, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
--529956145: (s:-810712744,t:-2142752532): [id=18, ex=7, sq=19, act=(0) click, cp=[, ty=TextView, idx=add_to_favorites_item, idnx=0, tx=, x=594, y=73, h=126, w=127, dsc=Add to Favorites], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1585121976: (s:-810712744,t:-810712744): [id=17, ex=7, sq=18, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod18_augmented.png ex=7
+-529956145: (s:-810712744,t:-2142752532): [id=18, ex=7, sq=19, act=(0) click, cp=[, ty=TextView, idx=add_to_favorites_item, idnx=0, tx=, x=594, y=73, h=126, w=127, dsc=Add to Favorites], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod19_augmented.png ex=7
 
--1575576481: (s:-231538015,t:398666682): [id=18, ex=6, sq=19, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1575576481: (s:-231538015,t:398666682): [id=18, ex=6, sq=19, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod19_augmented.png ex=6
 
--926213835: (s:398666682,t:-148566107): [id=19, ex=6, sq=20, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+-926213835: (s:398666682,t:-148566107): [id=19, ex=6, sq=20, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod20_augmented.png ex=6
 
-34811489: (s:-148566107,t:-1740173538): [id=20, ex=6, sq=21, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
+34811489: (s:-148566107,t:-1740173538): [id=20, ex=6, sq=21, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod21_augmented.png ex=6
 
-1779315798: (s:-1740173538,t:-1269639054): [id=21, ex=6, sq=22, act=(0) click, cp=[, ty=View, idx=triangleCountView, idnx=2, tx=, x=240, y=210, h=82, w=116, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+1779315798: (s:-1740173538,t:-1269639054): [id=21, ex=6, sq=22, act=(0) click, cp=[, ty=View, idx=triangleCountView, idnx=2, tx=, x=240, y=210, h=82, w=116, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod22_augmented.png ex=6
 
-538105275: (s:-1269639054,t:1838997511): [id=22, ex=6, sq=23, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=ALL, x=507, y=247, h=51, w=65, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+538105275: (s:-1269639054,t:1838997511): [id=22, ex=6, sq=23, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=ALL, x=507, y=247, h=51, w=65, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod23_augmented.png ex=6
 
--1964982814: (s:1838997511,t:-289564697): [id=23, ex=6, sq=24, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+-1964982814: (s:1838997511,t:-289564697): [id=23, ex=6, sq=24, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod24_augmented.png ex=6
 
-589043810: (s:-289564697,t:488766422): [id=24, ex=6, sq=25, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=FAVORITES, x=806, y=247, h=51, w=187, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+589043810: (s:-289564697,t:488766422): [id=24, ex=6, sq=25, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=FAVORITES, x=806, y=247, h=51, w=187, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod25_augmented.png ex=6
 
-645455352: (s:488766422,t:5338786): [id=25, ex=6, sq=26, act=(0) click, cp=[, ty=ImageView, idx=imgvInPlaylist, idnx=3, tx=, x=877, y=505, h=53, w=53, dsc=Episode is in the queue], txt=, exp=, tr=null] weight=2.0 ds=TR
+645455352: (s:488766422,t:5338786): [id=25, ex=6, sq=26, act=(0) click, cp=[, ty=ImageView, idx=imgvInPlaylist, idnx=3, tx=, x=877, y=505, h=53, w=53, dsc=Episode is in the queue], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod26_augmented.png ex=6
 
-568916081: (s:5338786,t:-852586760): [id=26, ex=6, sq=27, act=(0) click, cp=[, ty=ImageButton, idx=butPlay, idnx=4, tx=, x=943, y=1658, h=136, w=137, dsc=Pause], txt=, exp=, tr=null] weight=2.0 ds=TR
+568916081: (s:5338786,t:-852586760): [id=26, ex=6, sq=27, act=(0) click, cp=[, ty=ImageButton, idx=butPlay, idnx=4, tx=, x=943, y=1658, h=136, w=137, dsc=Pause], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod27_augmented.png ex=6
 
-27744837: (s:-852586760,t:233323439): [id=27, ex=6, sq=28, act=(0) click, cp=[, ty=ImageView, idx=, idnx=1, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR
-715058415: (s:-852586760,t:-16330452): [id=29, ex=6, sq=30, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+27744837: (s:-852586760,t:233323439): [id=27, ex=6, sq=28, act=(0) click, cp=[, ty=ImageView, idx=, idnx=1, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod28_augmented.png ex=6
+715058415: (s:-852586760,t:-16330452): [id=29, ex=6, sq=30, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod30_augmented.png ex=6
 
--487188188: (s:-16330452,t:1651910527): [id=30, ex=6, sq=31, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR
+-487188188: (s:-16330452,t:1651910527): [id=30, ex=6, sq=31, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open menu], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod31_augmented.png ex=6
 
--723444421: (s:1651910527,t:112895285): [id=31, ex=6, sq=32, act=(0) click, cp=[, ty=TextView, idx=, idnx=1, tx=Episodes, x=157, y=101, h=71, w=216, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-723444421: (s:1651910527,t:112895285): [id=31, ex=6, sq=32, act=(0) click, cp=[, ty=TextView, idx=, idnx=1, tx=Episodes, x=157, y=101, h=71, w=216, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod32_augmented.png ex=6
 
--1674827068: (s:233323439,t:-852586760): [id=28, ex=6, sq=29, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=487, y=143, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1674827068: (s:233323439,t:-852586760): [id=28, ex=6, sq=29, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=487, y=143, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod29_augmented.png ex=6
 
--484026795: (s:-516905556,t:-1038944679): [id=16, ex=6, sq=17, act=(0) click, cp=[, ty=Button, idx=butAction2, idnx=1, tx=  Stream, x=561, y=509, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-484026795: (s:-516905556,t:-1038944679): [id=16, ex=6, sq=17, act=(0) click, cp=[, ty=Button, idx=butAction2, idnx=1, tx=  Stream, x=561, y=509, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod17_augmented.png ex=6
 
-1430424811: (s:1585597646,t:-1495655772): [id=2, ex=3, sq=3, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR
-991875847: (s:1585597646,t:314515780): [id=2, ex=5, sq=3, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=3.0 ds=TR
-5124655: (s:1585597646,t:-1407732013): [id=8, ex=7, sq=9, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
+1430424811: (s:1585597646,t:-1495655772): [id=2, ex=3, sq=3, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=3
+991875847: (s:1585597646,t:314515780): [id=2, ex=5, sq=3, act=(0) click, cp=[, ty=TextView, idx=action_search, idnx=0, tx=, x=953, y=73, h=126, w=127, dsc=Search], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=7
+5124655: (s:1585597646,t:-1407732013): [id=8, ex=7, sq=9, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod9_augmented.png ex=7
 
--980524880: (s:-1495655772,t:-951783377): [id=3, ex=3, sq=4, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-980524880: (s:-1495655772,t:-951783377): [id=3, ex=3, sq=4, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=3
 
-490763442: (s:-951783377,t:-951783377): [id=4, ex=3, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=1, tx=https://feeds.megaphone.fm/darknetdiaries, x=231, y=339, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--386266519: (s:-951783377,t:-951783377): [id=5, ex=3, sq=6, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1602744765: (s:-951783377,t:948503664): [id=6, ex=3, sq=7, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=OPEN PODCAST, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+490763442: (s:-951783377,t:-951783377): [id=4, ex=3, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=1, tx=https://feeds.megaphone.fm/darknetdiaries, x=231, y=339, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=3
+-386266519: (s:-951783377,t:-951783377): [id=5, ex=3, sq=6, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod6_augmented.png ex=3
+1602744765: (s:-951783377,t:948503664): [id=6, ex=3, sq=7, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=OPEN PODCAST, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod7_augmented.png ex=3
 
--1495186986: (s:948503664,t:-476448316): [id=7, ex=3, sq=8, act=(0) click, cp=[, ty=TextView, idx=txtvItemname, idnx=0, tx=97: The Pizza Problem, x=42, y=602, h=106, w=798, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1495186986: (s:948503664,t:-476448316): [id=7, ex=3, sq=8, act=(0) click, cp=[, ty=TextView, idx=txtvItemname, idnx=0, tx=97: The Pizza Problem, x=42, y=602, h=106, w=798, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod8_augmented.png ex=3
 
--767682993: (s:-476448316,t:-1038944679): [id=8, ex=3, sq=9, act=(0) click, cp=[, ty=Button, idx=butAction2, idnx=1, tx=  Stream, x=561, y=425, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-767682993: (s:-476448316,t:-1038944679): [id=8, ex=3, sq=9, act=(0) click, cp=[, ty=Button, idx=butAction2, idnx=1, tx=  Stream, x=561, y=425, h=126, w=477, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.8.de.danoeh.antennapod.debug_1.6.2.3_antennapod9_augmented.png ex=3
 
--1484395025: (s:-469696980,t:-469696980): [id=2, ex=0, sq=3, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1801010731: (s:-469696980,t:-2142752532): [id=3, ex=0, sq=4, act=(0) click, cp=[, ty=Button, idx=butRetry, idnx=1, tx=RETRY, x=424, y=1111, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1484395025: (s:-469696980,t:-469696980): [id=2, ex=0, sq=3, act=(5) type, cp=[, ty=EditText, idx=search_src_text, idnx=0, tx=, x=168, y=87, h=95, w=693, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png ex=0
+-1801010731: (s:-469696980,t:-2142752532): [id=3, ex=0, sq=4, act=(0) click, cp=[, ty=Button, idx=butRetry, idnx=1, tx=RETRY, x=424, y=1111, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod4_augmented.png ex=0
 
-1276470932: (s:-1968418880,t:-1968418880): [id=4, ex=5, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=1, tx=https://feeds.redcircle.com/3c2aa750-ea6e-4791-a28a-3cd37afba185, x=231, y=317, h=94, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--703325305: (s:-1968418880,t:-2142752532): [id=5, ex=5, sq=6, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--2013541863: (s:-1968418880,t:-1968418880): [id=4, ex=6, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=0, tx=Classical 95.9-FM WCRI, x=231, y=975, h=57, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-121254382: (s:-1968418880,t:-191609206): [id=5, ex=6, sq=6, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
-723460897: (s:-1968418880,t:-1968418880): [id=8, ex=6, sq=9, act=(0) click, cp=[, ty=TextView, idx=txtvDescription, idnx=2, tx=In this weeks 95.9 Company Break program Mike talks with Charlie Leonard Vice President of Janney Montgomery Scott Financial Advisers. Putting clients first is the way they do business! They provide individuals, families, businesses, and institutions with tailored financial advice. Whether you have questions about an investment strategy, comprehensive financial planning, or raising capital, they are committed to understanding and responding to your needs. You’ll find the size of their firm and experience of their professionals make them approachable, accessible, and accountable. With a history of strength and stability, an ability to execute, and a culture of service and collaboration, they continue to deliver on their mission of offering the highest standard of success in financial relationships., x=42, y=1034, h=137, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1122637648: (s:-1968418880,t:314515780): [id=10, ex=6, sq=11, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR
--474913753: (s:-1968418880,t:-1968418880): [id=4, ex=7, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=1, tx=https://500songs.com/feed/podcast, x=231, y=339, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--138142747: (s:-1968418880,t:-1968418880): [id=9, ex=6, sq=10, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
--264126517: (s:-1968418880,t:-1938632264): [id=6, ex=7, sq=7, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=263, y=1841, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR
+1276470932: (s:-1968418880,t:-1968418880): [id=4, ex=5, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=1, tx=https://feeds.redcircle.com/3c2aa750-ea6e-4791-a28a-3cd37afba185, x=231, y=317, h=94, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.3.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=5
+-703325305: (s:-1968418880,t:-2142752532): [id=5, ex=5, sq=6, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.3.de.danoeh.antennapod.debug_1.6.2.3_antennapod6_augmented.png ex=5
+-2013541863: (s:-1968418880,t:-1968418880): [id=4, ex=6, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvTitle, idnx=0, tx=Classical 95.9-FM WCRI, x=231, y=975, h=57, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=6
+121254382: (s:-1968418880,t:-191609206): [id=5, ex=6, sq=6, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod6_augmented.png ex=6
+723460897: (s:-1968418880,t:-1968418880): [id=8, ex=6, sq=9, act=(0) click, cp=[, ty=TextView, idx=txtvDescription, idnx=2, tx=In this weeks 95.9 Company Break program Mike talks with Charlie Leonard Vice President of Janney Montgomery Scott Financial Advisers. Putting clients first is the way they do business! They provide individuals, families, businesses, and institutions with tailored financial advice. Whether you have questions about an investment strategy, comprehensive financial planning, or raising capital, they are committed to understanding and responding to your needs. You’ll find the size of their firm and experience of their professionals make them approachable, accessible, and accountable. With a history of strength and stability, an ability to execute, and a culture of service and collaboration, they continue to deliver on their mission of offering the highest standard of success in financial relationships., x=42, y=1034, h=137, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod9_augmented.png ex=6
+-1122637648: (s:-1968418880,t:314515780): [id=10, ex=6, sq=11, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Navigate up], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod11_augmented.png ex=6
+-474913753: (s:-1968418880,t:-1968418880): [id=4, ex=7, sq=5, act=(0) click, cp=[, ty=TextView, idx=txtvUrl, idnx=1, tx=https://500songs.com/feed/podcast, x=231, y=339, h=51, w=807, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png ex=7
+-138142747: (s:-1968418880,t:-1968418880): [id=9, ex=6, sq=10, act=(0) click, cp=[, ty=Button, idx=butSubscribe, idnx=0, tx=SUBSCRIBE, x=42, y=557, h=126, w=996, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod6_augmented.png ex=7
+-264126517: (s:-1968418880,t:-1938632264): [id=6, ex=7, sq=7, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=263, y=1841, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod7_augmented.png ex=7
 
-2035267875: (s:-1938632264,t:1585597646): [id=7, ex=7, sq=8, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Collapse], txt=, exp=, tr=null] weight=2.0 ds=TR
+2035267875: (s:-1938632264,t:1585597646): [id=7, ex=7, sq=8, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Collapse], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod8_augmented.png ex=7
 
--2069896710: (s:-191609206,t:-191609206): [id=6, ex=6, sq=7, act=(0) click, cp=[, ty=TextView, idx=txtvDescription, idnx=2, tx=Theatre By The Sea is the subject of this week's program with Jana Robbins and Haley Swindal. We talk about their concert on July 24th and listen to some of the music they will perform that night. For more information you can call (401) 782-8587, or go to www.theatrebythesea.com​ <http://www.theatrebythesea.xn--com-7m0a>, x=42, y=736, h=137, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-496786388: (s:-191609206,t:-1968418880): [id=7, ex=6, sq=8, act=(22) swipe down, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR
+-2069896710: (s:-191609206,t:-191609206): [id=6, ex=6, sq=7, act=(0) click, cp=[, ty=TextView, idx=txtvDescription, idnx=2, tx=Theatre By The Sea is the subject of this week's program with Jana Robbins and Haley Swindal. We talk about their concert on July 24th and listen to some of the music they will perform that night. For more information you can call (401) 782-8587, or go to www.theatrebythesea.com​ <http://www.theatrebythesea.xn--com-7m0a>, x=42, y=736, h=137, w=996, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod7_augmented.png ex=6
+496786388: (s:-191609206,t:-1968418880): [id=7, ex=6, sq=8, act=(22) swipe down, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod8_augmented.png ex=6
 
 States (76):
 -1659243725, Start state, TR, (null): null

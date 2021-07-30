@@ -1,44 +1,44 @@
 Transitions correctness: true
 
 Transitions (28):
--887213525: (s:-1659243725,t:-1865291420): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=6.0 ds=TR
+-887213525: (s:-1659243725,t:-1865291420): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=6.0 ds=TR sc=null ex=4
 
--1583881812: (s:-1865291420,t:-1331436002): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=7.0 ds=TR
+-1583881812: (s:-1865291420,t:-1331436002): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=, tr=null] weight=7.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token1_augmented.png ex=4
 
--681175999: (s:-1331436002,t:1551361471): [id=6, ex=0, sq=7, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Remove Pin, x=597, y=359, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1574909510: (s:-1331436002,t:1589344295): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Change PIN, x=597, y=233, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-930063727: (s:-1331436002,t:-277241117): [id=9, ex=3, sq=10, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Delete Token, x=597, y=485, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-449119491: (s:-1331436002,t:-872261461): [id=1, ex=2, sq=2, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Add Token, x=597, y=107, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR
+-681175999: (s:-1331436002,t:1551361471): [id=6, ex=0, sq=7, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Remove Pin, x=597, y=359, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.5.uk.co.bitethebullet.android.token_2.10_token7_augmented.png ex=0
+-1574909510: (s:-1331436002,t:1589344295): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Change PIN, x=597, y=233, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.4.uk.co.bitethebullet.android.token_2.10_token2_augmented.png ex=1
+930063727: (s:-1331436002,t:-277241117): [id=9, ex=3, sq=10, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Delete Token, x=597, y=485, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token10_augmented.png ex=3
+449119491: (s:-1331436002,t:-872261461): [id=1, ex=2, sq=2, act=(0) click, cp=[, ty=TextView, idx=title, idnx=0, tx=Add Token, x=597, y=107, h=57, w=431, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token2_augmented.png ex=4
 
--302678845: (s:-277241117,t:-277241117): [id=10, ex=3, sq=11, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=0, tx=h, x=70, y=861, h=126, w=940, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1213663108: (s:-277241117,t:-2142752532): [id=11, ex=3, sq=12, act=(0) click, cp=[, ty=Button, idx=button1, idnx=1, tx=OK, x=810, y=998, h=126, w=168, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-302678845: (s:-277241117,t:-277241117): [id=10, ex=3, sq=11, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=0, tx=h, x=70, y=861, h=126, w=940, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token11_augmented.png ex=3
+-1213663108: (s:-277241117,t:-2142752532): [id=11, ex=3, sq=12, act=(0) click, cp=[, ty=Button, idx=button1, idnx=1, tx=OK, x=810, y=998, h=126, w=168, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token12_augmented.png ex=3
 
 
-496202116: (s:-872261461,t:-872261461): [id=2, ex=2, sq=3, act=(5) type, cp=[, ty=EditText, idx=tokenNameEdit, idnx=3, tx=, x=13, y=388, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=5.0 ds=TR
-263877141: (s:-872261461,t:-872261461): [id=3, ex=2, sq=4, act=(5) type, cp=[, ty=EditText, idx=tokenSerialEdit, idnx=5, tx=, x=13, y=557, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=7.0 ds=TR
-2119184127: (s:-872261461,t:83870192): [id=6, ex=4, sq=7, act=(0) click, cp=[, ty=Spinner, idx=tokenOtpSpinner, idnx=7, tx=, x=13, y=726, h=63, w=192, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1382300187: (s:-872261461,t:1796820486): [id=5, ex=2, sq=6, act=(0) click, cp=[, ty=Button, idx=btnAddStep2, idnx=8, tx=NEXT >, x=13, y=903, h=116, w=231, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR
+496202116: (s:-872261461,t:-872261461): [id=2, ex=2, sq=3, act=(5) type, cp=[, ty=EditText, idx=tokenNameEdit, idnx=3, tx=, x=13, y=388, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=5.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token4_augmented.png ex=4
+263877141: (s:-872261461,t:-872261461): [id=3, ex=2, sq=4, act=(5) type, cp=[, ty=EditText, idx=tokenSerialEdit, idnx=5, tx=, x=13, y=557, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=7.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token6_augmented.png ex=4
+2119184127: (s:-872261461,t:83870192): [id=6, ex=4, sq=7, act=(0) click, cp=[, ty=Spinner, idx=tokenOtpSpinner, idnx=7, tx=, x=13, y=726, h=63, w=192, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token7_augmented.png ex=4
+-1382300187: (s:-872261461,t:1796820486): [id=5, ex=2, sq=6, act=(0) click, cp=[, ty=Button, idx=btnAddStep2, idnx=8, tx=NEXT >, x=13, y=903, h=116, w=231, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token9_augmented.png ex=4
 
--1172869986: (s:83870192,t:-872261461): [id=7, ex=4, sq=8, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=2, tx=8, x=13, y=600, h=126, w=66, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1172869986: (s:83870192,t:-872261461): [id=7, ex=4, sq=8, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=2, tx=8, x=13, y=600, h=126, w=66, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token8_augmented.png ex=4
 
--1144013812: (s:1796820486,t:1796820486): [id=9, ex=2, sq=10, act=(0) click, cp=[, ty=ViewGroup, idx=decor_content_parent, idnx=0, tx=, x=0, y=0, h=1794, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-356385938: (s:1796820486,t:1796820486): [id=8, ex=2, sq=9, act=(0) click, cp=[, ty=RadioButton, idx=rbSeedManual, idnx=0, tx=Direct Seed Entry, x=13, y=274, h=84, w=366, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
--860926047: (s:1796820486,t:-2142752532): [id=11, ex=2, sq=12, act=(0) click, cp=[, ty=ViewGroup, idx=decor_content_parent, idnx=0, tx=, x=0, y=0, h=1794, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1654102777: (s:1796820486,t:1796820486): [id=7, ex=2, sq=8, act=(0) click, cp=[, ty=Button, idx=tokenAddComplete, idnx=5, tx=COMPLETE, x=13, y=758, h=126, w=252, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-1735362067: (s:1796820486,t:-1331436002): [id=8, ex=3, sq=9, act=(0) click, cp=[, ty=ViewGroup, idx=action_bar, idnx=0, tx=, x=0, y=63, h=147, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1711494833: (s:1796820486,t:1796820486): [id=6, ex=2, sq=7, act=(0) click, cp=[, ty=RadioButton, idx=rbSeedRandom, idnx=1, tx=Generate Random Seed, x=13, y=358, h=84, w=471, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR
-1410767919: (s:1796820486,t:1457469927): [id=10, ex=4, sq=11, act=(0) click, cp=[, ty=TextView, idx=text1, idnx=0, tx=Base 32, x=13, y=698, h=57, w=928, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
--1176462002: (s:1796820486,t:-2142752532): [id=12, ex=4, sq=13, act=(0) click, cp=[, ty=Button, idx=tokenAddComplete, idnx=5, tx=COMPLETE, x=13, y=758, h=126, w=252, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1144013812: (s:1796820486,t:1796820486): [id=9, ex=2, sq=10, act=(0) click, cp=[, ty=ViewGroup, idx=decor_content_parent, idnx=0, tx=, x=0, y=0, h=1794, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.3.uk.co.bitethebullet.android.token_2.10_token10_augmented.png ex=2
+356385938: (s:1796820486,t:1796820486): [id=8, ex=2, sq=9, act=(0) click, cp=[, ty=RadioButton, idx=rbSeedManual, idnx=0, tx=Direct Seed Entry, x=13, y=274, h=84, w=366, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.3.uk.co.bitethebullet.android.token_2.10_token11_augmented.png ex=2
+-860926047: (s:1796820486,t:-2142752532): [id=11, ex=2, sq=12, act=(0) click, cp=[, ty=ViewGroup, idx=decor_content_parent, idnx=0, tx=, x=0, y=0, h=1794, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.3.uk.co.bitethebullet.android.token_2.10_token12_augmented.png ex=2
+1654102777: (s:1796820486,t:1796820486): [id=7, ex=2, sq=8, act=(0) click, cp=[, ty=Button, idx=tokenAddComplete, idnx=5, tx=COMPLETE, x=13, y=758, h=126, w=252, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token8_augmented.png ex=3
+1735362067: (s:1796820486,t:-1331436002): [id=8, ex=3, sq=9, act=(0) click, cp=[, ty=ViewGroup, idx=action_bar, idnx=0, tx=, x=0, y=63, h=147, w=1080, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token9_augmented.png ex=3
+1711494833: (s:1796820486,t:1796820486): [id=6, ex=2, sq=7, act=(0) click, cp=[, ty=RadioButton, idx=rbSeedRandom, idnx=1, tx=Generate Random Seed, x=13, y=358, h=84, w=471, dsc=], txt=, exp=, tr=null] weight=4.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token10_augmented.png ex=4
+1410767919: (s:1796820486,t:1457469927): [id=10, ex=4, sq=11, act=(0) click, cp=[, ty=TextView, idx=text1, idnx=0, tx=Base 32, x=13, y=698, h=57, w=928, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token11_augmented.png ex=4
+-1176462002: (s:1796820486,t:-2142752532): [id=12, ex=4, sq=13, act=(0) click, cp=[, ty=Button, idx=tokenAddComplete, idnx=5, tx=COMPLETE, x=13, y=758, h=126, w=252, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token13_augmented.png ex=4
 
-690676356: (s:1457469927,t:1796820486): [id=11, ex=4, sq=12, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=0, tx=Hex, x=13, y=317, h=126, w=928, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+690676356: (s:1457469927,t:1796820486): [id=11, ex=4, sq=12, act=(0) click, cp=[, ty=CheckedTextView, idx=text1, idnx=0, tx=Hex, x=13, y=317, h=126, w=928, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.1.uk.co.bitethebullet.android.token_2.10_token12_augmented.png ex=4
 
--1472734445: (s:1551361471,t:1551361471): [id=7, ex=0, sq=8, act=(5) type, cp=[, ty=EditText, idx=pinRemoveExistingPinEdit, idnx=1, tx=, x=13, y=274, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-211781230: (s:1551361471,t:-2142752532): [id=9, ex=0, sq=10, act=(0) click, cp=[, ty=Button, idx=pinRemoveSubmit, idnx=2, tx=REMOVE, x=13, y=392, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+-1472734445: (s:1551361471,t:1551361471): [id=7, ex=0, sq=8, act=(5) type, cp=[, ty=EditText, idx=pinRemoveExistingPinEdit, idnx=1, tx=, x=13, y=274, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.5.uk.co.bitethebullet.android.token_2.10_token9_augmented.png ex=0
+211781230: (s:1551361471,t:-2142752532): [id=9, ex=0, sq=10, act=(0) click, cp=[, ty=Button, idx=pinRemoveSubmit, idnx=2, tx=REMOVE, x=13, y=392, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.5.uk.co.bitethebullet.android.token_2.10_token10_augmented.png ex=0
 
-380135388: (s:1589344295,t:-1865291420): [id=4, ex=0, sq=5, act=(0) click, cp=[, ty=Button, idx=pinChangeSubmit, idnx=6, tx=SAVE, x=13, y=730, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
-1288839378: (s:1589344295,t:1589344295): [id=2, ex=0, sq=3, act=(5) type, cp=[, ty=EditText, idx=pinChangeNew1Edit, idnx=3, tx=, x=13, y=443, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-281925835: (s:1589344295,t:1589344295): [id=3, ex=0, sq=4, act=(5) type, cp=[, ty=EditText, idx=pinChangeNew2Edit, idnx=5, tx=, x=13, y=612, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR
-1734371533: (s:1589344295,t:-2142752532): [id=4, ex=1, sq=5, act=(0) click, cp=[, ty=Button, idx=pinChangeSubmit, idnx=6, tx=SAVE, x=13, y=730, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR
+380135388: (s:1589344295,t:-1865291420): [id=4, ex=0, sq=5, act=(0) click, cp=[, ty=Button, idx=pinChangeSubmit, idnx=6, tx=SAVE, x=13, y=730, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.5.uk.co.bitethebullet.android.token_2.10_token5_augmented.png ex=0
+1288839378: (s:1589344295,t:1589344295): [id=2, ex=0, sq=3, act=(5) type, cp=[, ty=EditText, idx=pinChangeNew1Edit, idnx=3, tx=, x=13, y=443, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.4.uk.co.bitethebullet.android.token_2.10_token3_augmented.png ex=1
+281925835: (s:1589344295,t:1589344295): [id=3, ex=0, sq=4, act=(5) type, cp=[, ty=EditText, idx=pinChangeNew2Edit, idnx=5, tx=, x=13, y=612, h=118, w=1054, dsc=], txt=, exp=, tr=null] weight=3.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.4.uk.co.bitethebullet.android.token_2.10_token4_augmented.png ex=1
+1734371533: (s:1589344295,t:-2142752532): [id=4, ex=1, sq=5, act=(0) click, cp=[, ty=Button, idx=pinChangeSubmit, idnx=6, tx=SAVE, x=13, y=730, h=126, w=231, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=uk.co.bitethebullet.android.token.User-Trace.4.uk.co.bitethebullet.android.token_2.10_token5_augmented.png ex=1
 
 States (11):
 -1659243725, Start state, TR, (null): null
