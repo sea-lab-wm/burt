@@ -196,4 +196,24 @@ public class ConversationState {
     public boolean checkNextAttemptAndResetObNotParsed() {
         return attemptManager.checkNextAttemptAndResetObNotParsed();
     }
+
+    //-----------------------------------------
+
+    public void initOrIncreaseCurrentAttemptEbNoMatch() {
+        attemptManager.initOrIncreaseCurrentAttemptEbNoMatch();
+    }
+
+    public boolean checkNextAttemptAndResetEbNoMatch() {
+        return attemptManager.checkNextAttemptAndResetEbNoMatch();
+    }
+
+    //-----------------------------------------
+
+    public void initOrIncreaseCurrentAttemptEbNotParsed() {
+        attemptManager.initOrIncreaseCurrentAttemptEbNotParsed();
+    }
+
+    public boolean checkNextAttemptAndResetEbNotParsed() {
+        return attemptManager.checkNextAttemptAndResetEbNotParsed();
+    }
 }

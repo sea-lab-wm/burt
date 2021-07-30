@@ -8,22 +8,51 @@ import java.util.LinkedHashMap;
 
 public @Slf4j
 class AttemptManager {
-
     public enum AttemptType {
-        OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS
+        //OB
+        OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS,
+        //EB
+        EB_NO_MATCH, EB_NOT_PARSED,
+        //S2R
     }
 
     public static final Integer MAX_ATTEMPTS_OB = 3;
+    public static final Integer MAX_ATTEMPTS_EB = 3;
     public static final Integer MAX_ATTEMPTS_S2R = 2;
 
     private final HashMap<AttemptType, MutablePair<Integer, Integer>> attempts = new LinkedHashMap<>() {
         {
+            //OB
             put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
             put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
             put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
             put(AttemptType.OB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
+
+            //EB
+            put(AttemptType.EB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_EB, -1));
+            put(AttemptType.EB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_EB, -1));
+
         }
     };
+
+
+    public void initOrIncreaseCurrentAttemptEbNoMatch() {
+        initOrIncreaseCurrentAttempt(AttemptType.EB_NO_MATCH);
+    }
+
+    public boolean checkNextAttemptAndResetEbNoMatch() {
+        return checkNextAttemptAndReset(AttemptType.EB_NO_MATCH);
+    }
+
+    //-------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptEbNotParsed() {
+        initOrIncreaseCurrentAttempt(AttemptType.EB_NOT_PARSED);
+    }
+
+    public boolean checkNextAttemptAndResetEbNotParsed() {
+        return checkNextAttemptAndReset(AttemptType.EB_NOT_PARSED);
+    }
 
     //-------------------------------------------------
 

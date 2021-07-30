@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.entity.UserResponse;
-import sealab.burt.server.output.BugReportElement;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.state.QualityStateUpdater;
+import sealab.burt.server.output.BugReportElement;
 import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.ob.OBDescriptionStateChecker;
 
@@ -51,6 +51,7 @@ public class EBDescriptionStateChecker extends StateChecker {
             UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
             state.put(EB_DESCRIPTION, userResponse.getFirstMessage().getMessage());
 
+            ActionName nextAction = nextActions.get(result.getResult().name());
             if (result.getResult().equals(QualityResult.Result.MATCH)) {
                 QualityStateUpdater.updateEBState(state, obState);
             } else if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
@@ -58,10 +59,30 @@ public class EBDescriptionStateChecker extends StateChecker {
                 if (obReportElements == null || obReportElements.get(0).getOriginalElement() == null) {
 
                     QualityStateUpdater.updateEBState(state, null);
-                    return PROVIDE_S2R_FIRST;
+                    nextAction = PROVIDE_S2R_FIRST;
+                } else {
+
+                    state.initOrIncreaseCurrentAttemptEbNoMatch();
+
+                    boolean nextAttempt = state.checkNextAttemptAndResetEbNoMatch();
+
+                    if (!nextAttempt) {
+                        nextAction = PROVIDE_S2R_FIRST;
+                        QualityStateUpdater.updateEBState(state, null);
+                    }
+                }
+            } else if (result.getResult().equals(QualityResult.Result.NOT_PARSED)) {
+                state.initOrIncreaseCurrentAttemptEbNotParsed();
+
+                boolean nextAttempt = state.checkNextAttemptAndResetEbNotParsed();
+
+                if (!nextAttempt) {
+                    nextAction = PROVIDE_S2R_FIRST;
+                    QualityStateUpdater.updateEBState(state, null);
                 }
             }
-            return nextActions.get(result.getResult().name());
+
+            return nextAction;
         } catch (Exception e) {
             LOGGER.error("There was an error", e);
             return UNEXPECTED_ERROR;
