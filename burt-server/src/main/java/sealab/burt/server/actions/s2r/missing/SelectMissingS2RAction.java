@@ -1,10 +1,9 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.missing;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.ComponentUtils;
-import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
@@ -13,6 +12,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
 import sealab.burt.server.actions.s2r.prediction.ProvideFirstPredictedS2RAction;
+import sealab.burt.server.actions.s2r.prediction.S2RPredictor;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.*;
-import static sealab.burt.server.actions.commons.ScreenshotPathUtils.getScreenshotPathForGraphState;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
 public @Slf4j
@@ -78,20 +77,13 @@ class SelectMissingS2RAction extends ChatBotAction {
 
         //---------------------------------------------------
 
-        //remove the last five "report" steps from the missing steps
-        List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
+        List<AppStep> cleanedInferredSteps2 = removeLastReportSteps(state, cleanedInferredSteps);
 
-        List<AppStep> lastSteps = stepElements
-                .subList(Math.max(stepElements.size() - 5, 0), stepElements.size())
-                .stream()
-                .map(el -> (AppStep) el.getOriginalElement())
-                .collect(Collectors.toList());
+        //---------------------------------------------------
 
-        List<AppStep> cleanedInferredSteps2 = cleanedInferredSteps.stream()
-                .filter(step -> lastSteps.stream().noneMatch(
-                        lasStep -> ProvideFirstPredictedS2RAction.matchByTransitionId.test(step, lasStep)
-                ))
-                .collect(Collectors.toList());
+
+        UserResponse msg = (UserResponse) state.get(S2R_MATCHED_MSG);
+        String highQualityStepMessage = msg.getMessages().get(0).getMessage();
 
         //---------------------------------------------------
 
@@ -100,11 +92,13 @@ class SelectMissingS2RAction extends ChatBotAction {
             S2RQualityAssessment highQualityAssessment = feedback.getQualityAssessments().stream()
                     .filter(qa -> qa.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
                     .findFirst().orElse(null);
-            String s2rHQMissing = (String) state.get(S2R_HQ_MISSING);
+
+            if (highQualityAssessment == null)
+                throw new RuntimeException("The high quality assessment is required");
+
             this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
 
-            if (s2rHQMissing != null)
-                QualityStateUpdater.addStepAndUpdateGraphState(state, s2rHQMissing, highQualityAssessment);
+            QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
 
             return createChatBotMessages("Got it, what is the next step?");
         }
@@ -120,14 +114,34 @@ class SelectMissingS2RAction extends ChatBotAction {
         MessageObj messageObj = new MessageObj(
                 "Remember that the displayed screenshots are for reference only."
                 , WidgetName.S2RScreenSelector);
-        String highQualityStepMessage = (String) state.get(S2R_HQ_MISSING);
         return createChatBotMessages(
                 "Got it! You reported the step \"" + highQualityStepMessage + "\"",
                 "It seems that before that step you had to perform additional steps. ",
-                "From the following options, select the steps you performed before this step and click the " +
-                        "\"done\" button"
-                , new ChatBotMessage(messageObj, stepOptions, true));
+                "From the following options, please select the steps that you performed before this step and click " +
+                        "the \"done\" button", new ChatBotMessage(messageObj, stepOptions, true));
 
+    }
+
+    private List<AppStep> removeLastReportSteps(ConversationState state, List<AppStep> cleanedInferredSteps) {
+
+        //remove the last five "report" steps from the missing steps
+        List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
+
+        List<AppStep> cleanedInferredSteps2 = cleanedInferredSteps;
+        if (stepElements !=null ) {
+            List<AppStep> lastSteps = stepElements
+                    .subList(Math.max(stepElements.size() - 5, 0), stepElements.size())
+                    .stream()
+                    .map(el -> (AppStep) el.getOriginalElement())
+                    .collect(Collectors.toList());
+
+            cleanedInferredSteps2 = cleanedInferredSteps.stream()
+                    .filter(step -> lastSteps.stream().noneMatch(
+                            lasStep -> S2RPredictor.matchByTransitionId.test(step, lasStep)
+                    ))
+                    .collect(Collectors.toList());
+        }
+        return cleanedInferredSteps2;
     }
 
     private List<AppStep> cleanSteps(List<AppStep> steps, ConversationState state) {

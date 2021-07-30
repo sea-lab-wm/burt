@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.otherquality;
 
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.ChatBotMessage;

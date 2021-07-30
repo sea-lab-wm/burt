@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.otherquality;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
@@ -19,7 +19,7 @@ public class ProvideS2RNoParseAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("I am sorry, it seems the language of the step is a little odd and I am not able " +
                 "to understand it.",
-                " Can you please rephrase the step and provide it one more time?");
+                " Can you please rephrase and provide the step one more time?");
     }
 
 }

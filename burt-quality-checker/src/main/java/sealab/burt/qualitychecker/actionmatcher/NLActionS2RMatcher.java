@@ -726,7 +726,7 @@ class NLActionS2RMatcher {
         return null;
     }
 
-    public String getLiteralValue(String textVal) {
+    public static String getLiteralValue(String textVal) {
         PreProcessedText preProcessedText = preprocessText(textVal);
         if (preProcessedText.preprocessedTokens.size() != 2) return null;
         String firstToken = preProcessedText.preprocessedTokens.get(0).getWord();
@@ -739,14 +739,14 @@ class NLActionS2RMatcher {
         return null;
     }
 
-    public boolean isLiteralValue(String token) {
+    public static boolean isLiteralValue(String token) {
 
         if (isQuoted(token)) return true;
 
         return StringUtils.isNumeric(token) || (token != null && TextProcessor.isNumber(token));
     }
 
-    private boolean isQuoted(String token) {
+    private static boolean isQuoted(String token) {
         if (token == null)
             return false;
 
@@ -866,7 +866,7 @@ class NLActionS2RMatcher {
         return ComponentType.TEXT_FIELD.equals(getComponentType(componentName));
     }
 
-    private PreProcessedText preprocessText(String rawText) {
+    private static PreProcessedText preprocessText(String rawText) {
 
         PreProcessedText preprocessedText = new PreProcessedText();
 
@@ -1597,7 +1597,7 @@ class NLActionS2RMatcher {
         return (char) (i + 33);
     }
 
-    private List<Token> tokenize(String text, String[] preprocessingOptions) {
+    private static List<Token> tokenize(String text, String[] preprocessingOptions) {
         List<Sentence> sentences = TextProcessor.preprocessText(text, null, preprocessingOptions);
 
         //must be only one sentence

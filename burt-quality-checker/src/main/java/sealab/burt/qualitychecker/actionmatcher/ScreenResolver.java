@@ -114,7 +114,7 @@ class ScreenResolver {
 
         log.debug("Matched states (" + matchedStates.size() + "):" + matchedStates);
 
-        if (matchedStates.isEmpty()) {
+      /*  if (matchedStates.isEmpty()) {
 
             for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
                 final GraphState candidateState = candidateEntry.getKey();
@@ -141,11 +141,11 @@ class ScreenResolver {
                     matchedStates.put(candidateState, distance);
 
             }
-        }
+        }*/
 
         //---------------------------------------------
 
-        // sort base on the score
+        // sort based on the score
         List<ImmutablePair<GraphState, Double>> stateScores = new ArrayList<>();
 
         // Give priority to components based on how far they are from the current

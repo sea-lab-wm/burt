@@ -14,6 +14,16 @@ import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.actions.others.ProvideParticipantIdAction;
 import sealab.burt.server.actions.others.UnexpectedErrorAction;
 import sealab.burt.server.actions.s2r.*;
+import sealab.burt.server.actions.s2r.ambiguous.ConfirmSelectedAmbiguousAction;
+import sealab.burt.server.actions.s2r.ambiguous.DisambiguateS2RAction;
+import sealab.burt.server.actions.s2r.highquality.ConfirmMatchedS2RAction;
+import sealab.burt.server.actions.s2r.input.SpecifyInputS2RAction;
+import sealab.burt.server.actions.s2r.input.SpecifyNextInputS2RAction;
+import sealab.burt.server.actions.s2r.missing.ConfirmSelectedMissingAction;
+import sealab.burt.server.actions.s2r.missing.SelectMissingS2RAction;
+import sealab.burt.server.actions.s2r.otherquality.ProvideS2RNoMatchAction;
+import sealab.burt.server.actions.s2r.otherquality.ProvideS2RNoParseAction;
+import sealab.burt.server.actions.s2r.otherquality.RephraseS2RAction;
 import sealab.burt.server.actions.s2r.prediction.ProvideFirstPredictedS2RAction;
 import sealab.burt.server.actions.s2r.prediction.ProvideNextPredictedS2RAction;
 import sealab.burt.server.msgparsing.Intent;
@@ -69,7 +79,8 @@ public class ConversationState {
             put(ActionName.PROVIDE_S2R_NO_MATCH, new ProvideS2RNoMatchAction(S2R_DESCRIPTION));
             put(PROVIDE_S2R_NO_PARSE, new ProvideS2RNoParseAction(S2R_DESCRIPTION));
             put(REPHRASE_S2R, new RephraseS2RAction(S2R_DESCRIPTION));
-            put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_DESCRIPTION));
+            put(SPECIFY_INPUT_S2R, new SpecifyInputS2RAction(S2R_INPUT));
+            put(SPECIFY_NEXT_INPUT_S2R, new SpecifyNextInputS2RAction(S2R_INPUT));
 
             put(ActionName.DISAMBIGUATE_S2R, new DisambiguateS2RAction(S2R_AMBIGUOUS_SELECTED));
             put(CONFIRM_SELECTED_AMBIGUOUS_S2R, new ConfirmSelectedAmbiguousAction(S2R_DESCRIPTION));

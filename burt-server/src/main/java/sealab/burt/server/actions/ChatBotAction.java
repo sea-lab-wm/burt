@@ -18,6 +18,9 @@ import static sealab.burt.server.msgparsing.Intent.NO_EXPECTED_INTENT;
 
 public abstract class ChatBotAction {
 
+    public final static String DONE = "done";
+    public final static String NONE = "none of the above";
+
     public List<Intent> nextExpectedIntents;
 
     public ChatBotAction() {

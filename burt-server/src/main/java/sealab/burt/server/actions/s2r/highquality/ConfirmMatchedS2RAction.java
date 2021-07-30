@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.highquality;
 
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
@@ -6,6 +6,7 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.actions.s2r.missing.SelectMissingS2RAction;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 
@@ -42,7 +43,7 @@ public class ConfirmMatchedS2RAction extends ChatBotAction {
                 Collections.singletonList(matchedStep), state);
 
         ChatBotMessage optionMessage = new ChatBotMessage(
-                new MessageObj("Ok, just to double check, is this the step you are reporting?",
+                new MessageObj("Ok, just to double check, is this the step that you are reporting?",
                         WidgetName.OneScreenNoButtons),
                 optionList, false);
 

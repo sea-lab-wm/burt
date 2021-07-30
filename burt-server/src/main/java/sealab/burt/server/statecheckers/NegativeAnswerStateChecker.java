@@ -20,6 +20,7 @@ public class NegativeAnswerStateChecker extends StateChecker {
         ActionName nextAction = null;
 
         if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
+            state.remove(StateVariable.CONFIRM_LAST_STEP);
             nextAction = PROVIDE_S2R;
             state.putIfAbsent(COLLECTING_S2R, true);
         } else if (state.containsKey(APP_ASKED)) {

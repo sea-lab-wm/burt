@@ -1,5 +1,6 @@
 package sealab.burt.server;
 
+import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.appselect.SelectAppAction;
 import sealab.burt.server.conversation.KeyValues;
 
@@ -56,9 +57,9 @@ public class ConversationTestData {
             add(new MessageObjectTest("When an account is edited, its color is lost", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("7")));
             //ChatBot: you selected X, correct?
@@ -72,7 +73,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "1", "2", "3", "4", "5", "6")));
             //ChatBot: give me the NEXT S2R
@@ -81,7 +82,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
             //ChatBot: there are predicted steps, please select the ones are correct
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0")));
             //ChatBot: give me the NEXT S2R
@@ -122,7 +123,7 @@ public class ConversationTestData {
             add(new MessageObjectTest("crash when opening the settings", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("1")));
             //ChatBot: you selected X, correct?
@@ -134,7 +135,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "1", "2", "3", "4", "5", "6")));
             //ChatBot: ok, you selected some steps, what is the next step?
@@ -172,7 +173,7 @@ public class ConversationTestData {
             add(new MessageObjectTest("Export to Google Drive silently fails", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("3")));
             //ChatBot: you selected X, correct?
@@ -189,7 +190,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "1", "2", "3", "4", "5")));
             //ChatBot: give me the NEXT S2R
@@ -198,14 +199,14 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("no", PROVIDE_S2R_NO_MATCH, S2R_DESCRIPTION));
        /*     //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));*/
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));*/
             //ChatBot: give me the NEXT S2R
             add(new MessageObjectTest("Tap on \"Export To\"", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0")));
             //ChatBot: give me the NEXT S2R
@@ -214,11 +215,11 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0")));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0")));
 
@@ -260,7 +261,7 @@ public class ConversationTestData {
             add(new MessageObjectTest("the app crashed when I add a new vehicle",
                     SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("1")));
             //ChatBot: you selected X, correct?
@@ -273,20 +274,20 @@ public class ConversationTestData {
             //ChatBot: Can you confirm which ones you actually performed next?
             //ChatBot: Remember that the screenshots below are for reference only.
             //ChatBot: Please click the “done” button when you are done.
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: give me the next S2R
             add(new MessageObjectTest("i clicked the Vehicles", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
            /* //ChatBot: give me the next S2R
             add(new MessageObjectTest("Go back", REPHRASE_S2R, S2R_DESCRIPTION));
 */
 /*
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "1", "2", "3")));
             //ChatBot: ok, you selected some steps, what is the next step?
@@ -322,14 +323,10 @@ public class ConversationTestData {
             //ChatBot: provide the OB
             add(new MessageObjectTest("Fuel economy stats are not calculated when all fillups are \"not to the top\"",
                     SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
-            //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
-                    WITH_SELECTED_VALUES,
-                    Collections.singletonList("4")));
             //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("none of above", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("5")));
             //ChatBot: you selected X, correct?
@@ -340,35 +337,36 @@ public class ConversationTestData {
             add(new MessageObjectTest("I opened the app", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
             //ChatBot: Okay, it seems the next steps that you performed might be the following.
             //ChatBot: Can you confirm which ones you actually performed next?
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("1", "2", "3", "4")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES, Collections.singletonList("1")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R_PATH, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, PREDICT_NEXT_S2R_PATH, S2R_PREDICTED_SELECTED));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: give me the next S2R
             add(new MessageObjectTest("Tap on the \"Fillup\" button", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
             //ChatBot: give me the next S2R
             add(new MessageObjectTest("I saved another fillup", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
-                    Arrays.asList("1", "2", "3", "4")));
+                    Arrays.asList("1")));
+//                    Arrays.asList("1", "2", "3", "4")));
             //ChatBot: give me the next S2R
             add(new MessageObjectTest("Tap on the \"Statistics\" button\"", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
@@ -407,13 +405,13 @@ public class ConversationTestData {
             add(new MessageObjectTest("Fuel economy stats are not calculated when all fillups are \"not to the top\"",
                     SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("4")));
             //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("none of above", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("5")));
             //ChatBot: you selected X, correct?
@@ -424,26 +422,26 @@ public class ConversationTestData {
             add(new MessageObjectTest("I opened the app", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
             //ChatBot: Okay, it seems the next steps that you performed might be the following.
             //ChatBot: Can you confirm which ones you actually performed next?
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("1", "2", "3", "4")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES, Collections.singletonList("1")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R_PATH, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, PREDICT_NEXT_S2R_PATH, S2R_PREDICTED_SELECTED));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: give me the next S2R
             add(new MessageObjectTest("Tap on the \"Fillup\" button", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
  /*           //ChatBot: give me the next S2R
             add(new MessageObjectTest("Tap on \"Price per Gallons\" Edit Text\"", REPHRASE_S2R,
                     S2R_DESCRIPTION));*/
@@ -454,7 +452,7 @@ public class ConversationTestData {
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R,
                     S2R_MISSING_SELECTED));
             //ChatBot: please select the correct missing S2Rs
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
 
             //------------------------------------------------
 
@@ -464,18 +462,18 @@ public class ConversationTestData {
             add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "1", "3")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
 /*            //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("2")));*/
 
-            add(new MessageObjectTest("none of above", PREDICT_NEXT_S2R_PATH, S2R_PREDICTED_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, PREDICT_NEXT_S2R_PATH, S2R_PREDICTED_SELECTED));
 
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, PROVIDE_S2R, S2R_DESCRIPTION));
 
             //-------------------------------------------
 
@@ -536,7 +534,11 @@ public class ConversationTestData {
             add(new MessageObjectTest("I input \"55\" on the \"weight\"", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION));
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "1", "2")));
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
@@ -568,21 +570,21 @@ public class ConversationTestData {
             add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: is this the OB screen?
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
             //Chatbot: All right. Then, your description of the problem does not seem to match any screen from the app.
             //ChatBot: Can you tell me the incorrect behavior one more time?
             add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: Got it. From the list below, can you please select the screen that is showing the problem or that triggered the problem when you performed some action on it?
-            //ChatBot: Please hit the "Done" button after you have selected it.
-            add(new MessageObjectTest("none of above",  CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            //ChatBot: Please hit the ChatBotAction.DONE button after you have selected it.
+            add(new MessageObjectTest(ChatBotAction.NONE,  CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
             //Chatbot: All right. Then, your description of the problem does not seem to match any screen from the app.
             //ChatBot: Can you tell me the incorrect behavior one more time?
             add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             ///ChatBot: Got it. From the list below, can you please select the screen that is showing the problem or that triggered the problem when you performed some action on it?
-            //ChatBot: Please hit the "Done" button after you have selected it.
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
+            //ChatBot: Please hit the ChatBotAction.DONE button after you have selected it.
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
             //ChatBot: All right. Let's continue.
             //ChatBot: Can you please tell me how the app is supposed to work instead?
             add(new MessageObjectTest("i should not get some error", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
@@ -603,7 +605,11 @@ public class ConversationTestData {
             add(new MessageObjectTest("I input 55 on the weight", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION));
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "1", "2")));
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
@@ -635,8 +641,8 @@ public class ConversationTestData {
             add(new MessageObjectTest("the app crashed when I tried to change date", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: Got it. From the list below, can you please select the screen that is having or triggering the problem?
-            //ChatBot: Please hit the "Done" button after you have selected it.
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            //ChatBot: Please hit the ChatBotAction.DONE button after you have selected it.
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("3")));
             //ChatBot: Okay, you selected the screen "4. Measure Edit"
@@ -650,11 +656,13 @@ public class ConversationTestData {
             //ChatBot: Can you please tell me the first step that you performed?
             add(new MessageObjectTest("I input the weight", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest("yes", SPECIFY_INPUT_S2R, S2R_INPUT));
+            add(new MessageObjectTest("55", PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: you didn't specify the input, please provide the step with input
             add(new MessageObjectTest("I set the weight", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", SPECIFY_INPUT_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest("yes", SPECIFY_INPUT_S2R, S2R_INPUT));
+            add(new MessageObjectTest("55", PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: you didn't specify the input, please provide the step with input
             add(new MessageObjectTest("I input the weight and set current weight in kg", CONFIRM_MATCHED_S2R,
                     AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
@@ -664,7 +672,11 @@ public class ConversationTestData {
             add(new MessageObjectTest("I input 55 on the weight", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION));
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+                    WITH_SELECTED_VALUES,
+                    Arrays.asList("0", "1", "2")));
         }};
     }
 
@@ -690,7 +702,7 @@ public class ConversationTestData {
             //ChatBot: provide the OB
             add(new MessageObjectTest("crash when I added a new vehicle", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("2")));
             //ChatBot: you selected X, correct?
@@ -703,14 +715,14 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: please select the correct missing S2Rs
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
             //ChatBot: give me the first S2R
             add(new MessageObjectTest("I added a new vehicle", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0")));
             //ChatBot: ok, you selected some steps, what is the next step?
@@ -745,27 +757,27 @@ public class ConversationTestData {
             add(new MessageObjectTest("the app crashed when I was entering a new vehicle", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: ok, no more options, so please rephrase the OB
 //            add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
 //                    OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
             //ChatBot: ok, no more options, so please rephrase the OB
             add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("bla bla", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: wrong option, select the screen having the problem
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: wrong option, select the screen having the problem
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_DESCRIPTION));
 
 
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest("the app crashed when I was adding a new vehicle", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, EB_DESCRIPTION));
 
             //ChatBot: ok, that was the last attempt, so please give me the EB
             add(new MessageObjectTest("the app should not crash", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
@@ -775,7 +787,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step
             //ChatBot: ok, you selected some steps, what is the next step?
@@ -783,7 +795,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0")));
             //ChatBot: ok, what is the next step?
@@ -794,13 +806,13 @@ public class ConversationTestData {
             add(new MessageObjectTest("Ok, bye", null, null));
 
           /*  //ChatBot: ok, select the screen having the problem from the new batch
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: ok, select the screen having the problem from the new batch
-            add(new MessageObjectTest("none of above", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: ok, select the screen having the problem from the new batch
 
 
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("5")));
             //ChatBot: you selected X, correct?
@@ -810,13 +822,13 @@ public class ConversationTestData {
             //ChatBot: give me the first S2R
             add(new MessageObjectTest("I added \"bla bla\" as a comment", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step
             //ChatBot: ok, you selected some steps, what is the next step?
             add(new MessageObjectTest("I saved the fillup", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "3")));
             //ChatBot: ok, what is the next step?
@@ -870,17 +882,17 @@ public class ConversationTestData {
             //ChatBot: I couldn't match that, pls provide the OB
             add(new MessageObjectTest("the app crashed when entering fillup", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, OB_SCREEN_SELECTED,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("OB_SCREEN")));
             //ChatBot: Sorry, wrong option, please select the screen that is having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); //"0" means the first option
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("no", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); //"0" means the first option
             //ChatBot: you selected X, correct?
@@ -897,11 +909,11 @@ public class ConversationTestData {
             add(new MessageObjectTest("yes", PROVIDE_S2R_FIRST, S2R_DESCRIPTION));
             //ChatBot: give me a S2R
             add(new MessageObjectTest("i opened the app", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("1", "2", "3")));
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: Okay, can you please provide the next step?
             add(new MessageObjectTest("bla bla", PROVIDE_S2R_NO_PARSE, S2R_DESCRIPTION));
             //ChatBot: I couldn't parse the msg, please rephrase it
@@ -917,7 +929,7 @@ public class ConversationTestData {
 
             //ChatBot: there are missing steps, please select the ones are correct
             //ChatBot: I didn't get that, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step
             //ChatBot: ok, you selected some steps, what is the next step?
@@ -941,19 +953,19 @@ public class ConversationTestData {
                     NEGATIVE_ANSWER));
             add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED));
            /* //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_MISSING_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("S2R_SCREEN1", "S2R_SCREEN2")));
             //ChatBot: I didn't get that, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step*/
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); //"0" means the first option
             //ChatBot: please select the correct predicted S2Rs
-            add(new MessageObjectTest("none of above", PROVIDE_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest(ChatBotAction.NONE, PROVIDE_S2R, S2R_DESCRIPTION));
             //ChatBot: ok, what is the next step?
             add(new MessageObjectTest("I closed the app", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION));
             //ChatBot: ok, what is the next step?
@@ -987,7 +999,7 @@ public class ConversationTestData {
             //ChatBot: provide the OB
             add(new MessageObjectTest("crash when entering fillup", SELECT_OB_SCREEN, OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("5"))); //"5" means the fifth option
             //ChatBot: you selected X, correct?
@@ -1000,7 +1012,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0"))); // "0" means the first step
             //ChatBot: ok, you selected some steps, what is the next step?
@@ -1008,7 +1020,7 @@ public class ConversationTestData {
             //ChatBot: is this the S2R you mean to report?
             add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("0", "3")));
             //ChatBot: ok, what is the next step?
@@ -1047,7 +1059,7 @@ public class ConversationTestData {
             add(new MessageObjectTest("I got some error when I tried to compute BMI", SELECT_OB_SCREEN,
                     OB_SCREEN_SELECTED));
             //ChatBot: select the screen having the problem
-            add(new MessageObjectTest("done", CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
+            add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("3")));
             //ChatBot: you selected X, correct?
@@ -1062,12 +1074,12 @@ public class ConversationTestData {
             //ChatBot: Okay, it seems the next steps that you performed might be the following.
             //ChatBot: Can you confirm which ones you actually performed next?
             //ChatBot: Please click the “done” button when you are done.
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_PREDICTED_SELECTED,
                     WITH_SELECTED_VALUES,
                     Arrays.asList("3", "4")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"
-            add(new MessageObjectTest("done", PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION, WITH_SELECTED_VALUES,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION, WITH_SELECTED_VALUES,
                     Arrays.asList("1", "2")));
             //ChatBot: "Okay, it seems the next steps that you performed might be the following.",
             //ChatBot: "Can you confirm which ones you actually performed next?"

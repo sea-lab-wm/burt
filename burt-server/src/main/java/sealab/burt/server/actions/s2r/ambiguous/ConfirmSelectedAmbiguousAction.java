@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.ambiguous;
 
 
 import sealab.burt.server.StateVariable;

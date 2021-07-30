@@ -9,16 +9,13 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.actions.s2r.SelectMissingS2RAction;
-import sealab.burt.server.actions.s2r.prediction.S2RPredictor;
+import sealab.burt.server.actions.s2r.missing.SelectMissingS2RAction;
 import sealab.burt.server.conversation.*;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;
@@ -26,72 +23,11 @@ import static sealab.burt.server.StateVariable.*;
 @Slf4j
 public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
-    public final static BiPredicate<AppStep, AppStep> matchByTransitionId = (step, nonStep) -> {
-        GraphTransition stepTransition = step.getTransition();
-        GraphTransition nonStepTransition = nonStep.getTransition();
-        if (stepTransition == null || nonStepTransition == null) return false;
-        return stepTransition.getId().equals(nonStepTransition.getId());
-    };
-
     public final static int MAX_NUMBER_OF_PATHS_TO_SHOW = 3;
     private final static int MAX_STEPS_TO_SHOW_IN_PATH = 5;
 
     public ProvideFirstPredictedS2RAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
-    }
-
-    public static List<AppStep> getPathWithLoops(S2RChecker s2rchecker, GraphPath<GraphState, GraphTransition> path,
-                                                 ConversationState state, GraphState currentState,
-                                                 List<AppStep> nonSelectedSteps) {
-        // we convert the transitions to the steps
-        List<AppStep> pathSteps = convertGraphTransitionsToAppStep(path);
-
-        List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
-
-        if (bugReportElements == null)
-            throw new RuntimeException("The S2R bug report elements are required");
-
-        // Add the state loops in order to the path
-        AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
-        List<AppStep> stepsWithLoops = new LinkedList<>();
-        s2rchecker.addIntermediateStepsInShortestPath(null, lastStep, stepsWithLoops, pathSteps,
-                currentState.getComponents());
-
-        //-----------------
-
-        if (nonSelectedSteps != null) {
-
-            //remove the predicted S2R that the user deemed not correct in the last prediction session
-
-            stepsWithLoops = stepsWithLoops.stream()
-                    .filter(step -> nonSelectedSteps.stream()
-                            .noneMatch(nonStep -> matchByTransitionId.test(step, nonStep)
-                    ))
-                    .collect(Collectors.toList());
-        }
-
-        //-----------------
-
-        List<AppStep> stepSubSetWithLoops = stepsWithLoops.subList(0, Math.min(MAX_STEPS_TO_SHOW_IN_PATH,
-                stepsWithLoops.size()));
-
-        modifyStepsIds(stepSubSetWithLoops);
-        return stepSubSetWithLoops;
-    }
-
-    private static void modifyStepsIds(List<AppStep> steps) {
-        //setting the id, for testing purposes
-       /* for (int i = 0; i < steps.size(); i++) {
-            AppStep step = steps.get(i);
-            step.setId((long) i);
-        }*/
-    }
-
-    public static List<AppStep> convertGraphTransitionsToAppStep(GraphPath<GraphState, GraphTransition> path) {
-        // get app steps
-        return path.getEdgeList().stream()
-                .map(GraphTransition::getStep)
-                .collect(Collectors.toList());
     }
 
     @Override
@@ -121,6 +57,8 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         S2RPredictor predictor = new S2RPredictor(checker.getGraph());
         GraphState currentState = checker.getCurrentState();
 
+        List<AppStep> nonSelectedSteps = (List<AppStep>) state.get(StateVariable.NON_SELECTED_PREDICTED_S2R);
+
         List<List<AppStep>> pathsWithLoops;
         if (currentState.equals(targetState)) {
 
@@ -132,18 +70,14 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             if (DeviceUtils.isCloseApp(lastStep.getAction()))
                 return getNextStepMessage();
 
-            List<AppStep> stateLoops = predictor.getStateLoops(currentState, lastStep);
-            modifyStepsIds(stateLoops);
+            List<AppStep> stateLoops = predictor.getStateLoops(currentState, lastStep, nonSelectedSteps);
 
             if (stateLoops.isEmpty()) {
-                return getNextStepMessage();
+                return getLastStepMessage(state);
             }
 
             pathsWithLoops = Collections.singletonList(stateLoops);
         } else {
-
-            List<AppStep> nonSelectedSteps = (List<AppStep>) state.get(StateVariable.NON_SELECTED_PREDICTED_S2R);
-
 
             //get all the paths sorted according  to the scoring mechanism
             List<GraphPath<GraphState, GraphTransition>> predictedPaths = predictor.getAllRankedPaths(currentState,
@@ -158,7 +92,8 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
             // the method getPathWithLoops() only returns a subset of the steps for each path
             pathsWithLoops = predictedPaths.stream()
-                    .map(path -> getPathWithLoops(checker, path, state, currentState, nonSelectedSteps))
+                    .map(path -> predictor.getPathWithLoops(checker, path, state, currentState, nonSelectedSteps,
+                            MAX_STEPS_TO_SHOW_IN_PATH))
                     .distinct()
                     .collect(Collectors.toList());
 
@@ -189,6 +124,12 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
                 "Okay, it seems the next steps that you performed might be the following.",
                 "Can you select the ones you actually performed next?",
                 new ChatBotMessage(messageObj, stepOptions, true));
+    }
+
+    private List<ChatBotMessage> getLastStepMessage(ConversationState state) {
+        setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
+        state.put(StateVariable.CONFIRM_LAST_STEP, true);
+        return createChatBotMessages("Okay, is this the last step that you performed?");
     }
 
     private List<ChatBotMessage> getNextStepMessage() {

@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.missing;
 
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
@@ -12,7 +12,6 @@ import sealab.burt.server.statecheckers.QualityStateUpdater;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
@@ -26,27 +25,33 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
-        UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
+        UserResponse currentMessage = (UserResponse) state.get(CURRENT_MESSAGE);
 
         @SuppressWarnings("unchecked") final List<AppStep> allMissingSteps = (List<AppStep>) state.get(S2R_ALL_MISSING);
 
-        if (msg.getMessages().isEmpty()) {
+        if (currentMessage.getMessages().isEmpty()) {
             return getDefaultMessage(allMissingSteps, state);
         }
 
         //-------------------------------
 
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
-        S2RQualityAssessment highQualityAssessment = feedback.getQualityAssessments().stream()
+        S2RQualityAssessment assessment = feedback.getQualityAssessments().stream()
                 .filter(qa -> qa.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
                 .findFirst().orElse(null);
-        String highQualityStepMessage = (String) state.get(S2R_HQ_MISSING);
+
+        if (assessment == null)
+            throw new RuntimeException("The high quality assessment is required");
+
+
+        UserResponse highQualityMessage = (UserResponse) state.get(S2R_MATCHED_MSG);
+        String highQualityStepMessage = highQualityMessage.getMessages().get(0).getMessage();
 
         //------------------------------
         this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
 
-        MessageObj message = msg.getFirstMessage();
-        if ("done".equals(message.getMessage())) {
+        MessageObj message = currentMessage.getFirstMessage();
+        if (DONE.equals(message.getMessage())) {
 
             List<String> selectedValues = message.getSelectedValues();
 
@@ -63,8 +68,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
             QualityStateUpdater.addStepsToState(state, selectedSteps);
 
-            if (highQualityStepMessage != null)
-                QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
+            QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, assessment);
 
             //---------------------
 
@@ -80,10 +84,9 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
             return createChatBotMessages(msg1.toString(), msg2.toString());
 
-        } else if ("none of above".equals(message.getMessage())) {
+        } else if (NONE.equals(message.getMessage())) {
 
-            if (highQualityStepMessage != null)
-                QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
+            QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, assessment);
 
             return createChatBotMessages("Got it, what is the next step?");
         } else {

@@ -12,19 +12,12 @@ import sealab.burt.server.conversation.ConversationState;
 import sealab.burt.server.conversation.UserResponse;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 
 public @Slf4j
 class AffirmativeAnswerStateChecker extends StateChecker {
-
-    ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
-        put(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name(), SPECIFY_INPUT_S2R);
-        put(S2RQualityCategory.MISSING.name(), SELECT_MISSING_S2R);
-    }};
-
 
     public AffirmativeAnswerStateChecker() {
         super(null);
@@ -68,27 +61,28 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             //get the quality result, we must exist in the state
             QualityFeedback qFeedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 
-            S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
-                    .filter(f -> f.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
-                    .findFirst().orElse(null);
-
-            if (assessment == null)
-                throw new RuntimeException("The high quality assessment is required");
-            UserResponse msg = (UserResponse) state.get(S2R_MATCHED_MSG);
-            String message = msg.getMessages().get(0).getMessage();
-            QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
-
             //------------------
             //decide the next action
 
             List<S2RQualityCategory> results = qFeedback.getAssessmentResults();
 
             if (results.contains(S2RQualityCategory.LOW_Q_INCORRECT_INPUT))
-                nextAction = nextActions.get(S2RQualityCategory.LOW_Q_INCORRECT_INPUT.name());
+                nextAction = SPECIFY_INPUT_S2R;
             else if (results.contains(S2RQualityCategory.MISSING)) {
-                state.put(S2R_HQ_MISSING, message);
-                nextAction = nextActions.get(S2RQualityCategory.MISSING.name());
+                nextAction = SELECT_MISSING_S2R;
             } else {
+
+                S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
+                        .filter(f -> f.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
+                        .findFirst().orElse(null);
+
+                if (assessment == null)
+                    throw new RuntimeException("The high quality assessment is required");
+
+                UserResponse msg = (UserResponse) state.get(S2R_MATCHED_MSG);
+                String message = msg.getMessages().get(0).getMessage();
+                QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
+
                 nextAction = PREDICT_FIRST_S2R_PATH;
             }
 

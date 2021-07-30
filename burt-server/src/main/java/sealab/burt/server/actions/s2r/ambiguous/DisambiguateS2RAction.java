@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.s2r;
+package sealab.burt.server.actions.s2r.ambiguous;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;

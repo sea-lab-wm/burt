@@ -88,6 +88,8 @@ const processResponse = (responsePromise, actionProvider) => {
         processResponse2(response, tempBotMsg.id)
 
     }).catch(error => {
+        actionProvider.removeMsg(tempBotMsg.id)
+        alert("There was an unexpected error, please try again in few moments or refresh the page.")
         console.error(`There was an unexpected error: ${error}`);
     })
 

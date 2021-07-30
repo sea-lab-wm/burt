@@ -193,7 +193,6 @@ class S2RChecker {
 
         String text = null;
 
-        Map.Entry<AppGuiComponent, Double> componentFound = null;
         if (!StringUtils.isEmpty(object2)) {
             //case: type 'x' on 'y'
             if (JavaUtils.getSet("on", "in", "into", "for", "of", "as", "to", "with").contains(preposition)) {

@@ -41,7 +41,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
         MessageObj message = msg.getFirstMessage();
         StringBuilder response = new StringBuilder();
-        if ("done".equals(message.getMessage())) {
+        if (DONE.equals(message.getMessage())) {
 
             List<String> selectedValues = message.getSelectedValues();
             if (selectedValues == null || selectedValues.isEmpty())
@@ -79,7 +79,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
             return createChatBotMessages(response.toString(), "Shall we continue?");
 
-        } else if ("none of above".equals(message.getMessage())) {
+        } else if (NONE.equals(message.getMessage())) {
 
             state.remove(OB_SCREEN_SELECTED);
 
