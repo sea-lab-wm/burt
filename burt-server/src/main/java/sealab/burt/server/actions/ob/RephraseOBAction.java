@@ -16,8 +16,9 @@ public class RephraseOBAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
-        return createChatBotMessages("It seems your description is rather general or does not use a proper language.",
-                "Can you please rephrase the incorrect behavior more specifically?");
+        return createChatBotMessages("It seems your description does not use a language that matches the one " +
+                        "of the application.",
+                "Can you please rephrase the incorrect behavior differently or more specifically?");
     }
 
 }

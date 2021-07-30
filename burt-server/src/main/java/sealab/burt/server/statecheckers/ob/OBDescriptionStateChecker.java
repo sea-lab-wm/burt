@@ -3,14 +3,15 @@ package sealab.burt.server.statecheckers.ob;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.entity.UserResponse;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.state.QualityStateUpdater;
 import sealab.burt.server.statecheckers.StateChecker;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static sealab.burt.server.StateVariable.*;
+import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
+import static sealab.burt.server.StateVariable.OB_DESCRIPTION;
 import static sealab.burt.server.actions.ActionName.*;
 
 public @Slf4j
@@ -36,13 +37,23 @@ class OBDescriptionStateChecker extends StateChecker {
         ActionName nextAction = nextActions.get(result.getResult().name());
 
         //we ask for the rephrase only 3 times, otherwise we skip the OB
-        if(result.getResult().equals(QualityResult.Result.NO_MATCH)){
+        if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
 
             state.initOrIncreaseCurrentAttemptObNoMatch();
 
             boolean nextAttempt = state.checkNextAttemptAndResetObNoMatch();
 
-            if(!nextAttempt){
+            if (!nextAttempt) {
+                nextAction = PROVIDE_EB;
+                QualityStateUpdater.updateOBState(state, null);
+            }
+        } else if (result.getResult().equals(QualityResult.Result.NOT_PARSED)) {
+
+            state.initOrIncreaseCurrentAttemptObNotParsed();
+
+            boolean nextAttempt = state.checkNextAttemptAndResetObNotParsed();
+
+            if (!nextAttempt) {
                 nextAction = PROVIDE_EB;
                 QualityStateUpdater.updateOBState(state, null);
             }

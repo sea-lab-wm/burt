@@ -186,4 +186,14 @@ public class ConversationState {
     public void increaseCurrentAttemptObScreens() {
         attemptManager.increaseCurrentAttemptObScreens();
     }
+
+    //---------------------------------------
+
+    public void initOrIncreaseCurrentAttemptObNotParsed() {
+        attemptManager.initOrIncreaseCurrentAttemptObNotParsed();
+    }
+
+    public boolean checkNextAttemptAndResetObNotParsed() {
+        return attemptManager.checkNextAttemptAndResetObNotParsed();
+    }
 }

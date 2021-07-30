@@ -10,20 +10,30 @@ public @Slf4j
 class AttemptManager {
 
     public enum AttemptType {
-        OB_MATCHED, OB_NO_MATCH, OB_SCREENS
+        OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS
     }
 
-    public static final Integer MAX_ATTEMPTS_OB_MATCHED = 3;
-    public static final Integer MAX_ATTEMPTS_OB_NO_MATCH = 3;
-    public static final Integer MAX_ATTEMPTS_OB_SCREENS = 3;
+    public static final Integer MAX_ATTEMPTS_OB = 3;
+    public static final Integer MAX_ATTEMPTS_S2R = 2;
 
     private final HashMap<AttemptType, MutablePair<Integer, Integer>> attempts = new LinkedHashMap<>() {
         {
-            put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_OB_MATCHED, -1));
-            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_OB_NO_MATCH, -1));
-            put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_OB_SCREENS, -1));
+            put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
+            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
+            put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
+            put(AttemptType.OB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
         }
     };
+
+    //-------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptObNotParsed() {
+        initOrIncreaseCurrentAttempt(AttemptType.OB_NOT_PARSED);
+    }
+
+    public boolean checkNextAttemptAndResetObNotParsed() {
+        return checkNextAttemptAndReset(AttemptType.OB_NOT_PARSED);
+    }
 
     //-------------------------------------------------
 
