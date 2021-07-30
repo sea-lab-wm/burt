@@ -1,13 +1,15 @@
 package sealab.burt.server.actions.ob;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.*;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.statecheckers.QualityStateUpdater;
+import sealab.burt.server.conversation.state.QualityStateUpdater;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +18,8 @@ import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.OB_DESCRIPTION;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
-public class ConfirmOBScreenSelectedAction extends ChatBotAction {
+public @Slf4j
+class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
@@ -83,9 +86,11 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
             state.remove(OB_SCREEN_SELECTED);
 
-            Integer currentAttempt = (Integer) state.get(StateVariable.CURRENT_ATTEMPT_OB_SCREENS);
-            if (currentAttempt >= SelectOBScreenAction.MAX_OB_SCREEN_ATTEMPTS) {
-                state.remove(CURRENT_ATTEMPT_OB_SCREENS);
+            boolean nextAttempt = state.checkNextAttemptAndResetObScreens();
+
+            log.debug("Current attempt (OB_SCREENS): " + state.getCurrentAttemptObScreens());
+
+            if (!nextAttempt) {
 
                 startEBChecker(state);
                 this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
@@ -96,6 +101,8 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
                         "Can you please tell me how the app is supposed to work instead?"
                 );
             }
+
+            state.increaseCurrentAttemptObScreens();
 
             //---------------------------
 
@@ -109,6 +116,8 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
 
             if (options.isEmpty()) {
+
+                //FIXME: would this lead to a infinite loop in the conversation?
 
                 state.remove(StateVariable.CURRENT_OB_SCREEN_POSITION);
                 this.setNextExpectedIntents(Collections.singletonList(OB_DESCRIPTION));

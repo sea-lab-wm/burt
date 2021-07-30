@@ -7,9 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.ConversationResponse;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.entity.ConversationResponse;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.UserResponse;
 
 import java.util.Collections;
 import java.util.List;

@@ -11,12 +11,12 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
-import sealab.burt.server.actions.s2r.prediction.ProvideFirstPredictedS2RAction;
 import sealab.burt.server.actions.s2r.prediction.S2RPredictor;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.*;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
-import sealab.burt.server.statecheckers.QualityStateUpdater;
+import sealab.burt.server.conversation.state.QualityStateUpdater;
 
 import java.util.*;
 import java.util.stream.Collectors;

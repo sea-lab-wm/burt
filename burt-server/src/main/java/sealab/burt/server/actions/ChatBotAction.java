@@ -2,14 +2,13 @@ package sealab.burt.server.actions;
 
 import sealab.burt.qualitychecker.EBChecker;
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.APP_VERSION;

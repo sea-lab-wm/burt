@@ -1,4 +1,4 @@
-package sealab.burt.server.conversation;
+package sealab.burt.server.conversation.state;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
@@ -34,6 +34,9 @@ import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
 
 public class ConversationState {
+
+    private final ConcurrentHashMap<StateVariable, Object> stateVariables = new ConcurrentHashMap<>();
+    private final AttemptManager attemptManager = new AttemptManager();
 
     public final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
         {
@@ -101,8 +104,6 @@ public class ConversationState {
         }
     };
 
-    ConcurrentHashMap<StateVariable, Object> stateVariables = new ConcurrentHashMap<>();
-
 
     public boolean containsKey(StateVariable var) {
         return stateVariables.containsKey(var);
@@ -133,5 +134,56 @@ public class ConversationState {
         return "ConversationState{" +
                 "vars=" + stateVariables +
                 '}';
+    }
+
+    //---------------------------------
+
+    public void initAttemptObMatched() {
+        attemptManager.initAttemptObMatched();
+    }
+
+    public Integer getCurrentAttemptObMatched() {
+        return attemptManager.getCurrentAttemptObMatched();
+    }
+
+    public boolean checkNextAttemptAndResetObMatched() {
+        return attemptManager.checkNextAttemptAndResetObMatched();
+    }
+
+    public void initOrIncreaseCurrentAttemptObMatched() {
+        attemptManager.initOrIncreaseCurrentAttemptObMatched();
+    }
+
+    public boolean isCurrentAttemptInitiatedObMatched() {
+        return attemptManager.isCurrentAttemptInitiatedObMatched();
+    }
+
+    //---------------------------------
+
+
+    public void initOrIncreaseCurrentAttemptObNoMatch() {
+        attemptManager.initOrIncreaseCurrentAttemptObNoMatch();
+    }
+
+    public boolean checkNextAttemptAndResetObNoMatch() {
+        return attemptManager.checkNextAttemptAndResetObNoMatch();
+    }
+
+    //---------------------------------
+
+    public void initOrIncreaseCurrentAttemptObScreens() {
+        attemptManager.initOrIncreaseCurrentAttemptObScreens();
+    }
+
+    public boolean checkNextAttemptAndResetObScreens() {
+        return attemptManager.checkNextAttemptAndResetObScreens();
+    }
+
+    public Integer getCurrentAttemptObScreens() {
+        return attemptManager.getCurrentAttemptObScreens();
+    }
+
+    public void increaseCurrentAttemptObScreens() {
+        attemptManager.increaseCurrentAttemptObScreens();
     }
 }

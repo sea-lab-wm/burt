@@ -1,4 +1,4 @@
-package sealab.burt.server.conversation;
+package sealab.burt.server.conversation.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -3,9 +3,12 @@ package sealab.burt.server.actions.appselect;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.entity.KeyValues;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.WidgetName;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.io.IOException;
@@ -16,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

@@ -2,7 +2,7 @@ package sealab.burt.server;
 
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.appselect.SelectAppAction;
-import sealab.burt.server.conversation.KeyValues;
+import sealab.burt.server.conversation.entity.KeyValues;
 
 import java.util.*;
 

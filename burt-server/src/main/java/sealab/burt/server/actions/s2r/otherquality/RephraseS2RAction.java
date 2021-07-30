@@ -6,14 +6,12 @@ import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.S2R_QUALITY_RESULT;
 

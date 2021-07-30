@@ -1,4 +1,4 @@
-package sealab.burt.server.statecheckers;
+package sealab.burt.server.statecheckers.yesno;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
@@ -8,8 +8,10 @@ import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.state.ConversationState;
+import sealab.burt.server.conversation.entity.UserResponse;
+import sealab.burt.server.conversation.state.QualityStateUpdater;
+import sealab.burt.server.statecheckers.StateChecker;
 
 import java.util.List;
 

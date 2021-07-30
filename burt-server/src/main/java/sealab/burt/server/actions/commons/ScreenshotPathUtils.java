@@ -6,12 +6,10 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphDataSource;
 import sealab.burt.qualitychecker.graph.GraphState;
-import sealab.burt.server.StateVariable;
-import sealab.burt.server.conversation.ConversationState;
+import sealab.burt.server.conversation.state.ConversationState;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.APP_PACKAGE;
 import static sealab.burt.server.StateVariable.APP_VERSION;

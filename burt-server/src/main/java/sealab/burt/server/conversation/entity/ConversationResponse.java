@@ -1,4 +1,4 @@
-package sealab.burt.server.conversation;
+package sealab.burt.server.conversation.entity;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

@@ -3,22 +3,18 @@ package sealab.burt.server.statecheckers.ob;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.UserResponse;
-import sealab.burt.server.statecheckers.QualityStateUpdater;
+import sealab.burt.server.conversation.state.ConversationState;
+import sealab.burt.server.conversation.entity.UserResponse;
+import sealab.burt.server.conversation.state.QualityStateUpdater;
 import sealab.burt.server.statecheckers.StateChecker;
 
 import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
-import static sealab.burt.server.StateVariable.CURRENT_ATTEMPT_OB_MATCHED;
 import static sealab.burt.server.actions.ActionName.*;
-import static sealab.burt.server.actions.ob.ConfirmMatchedOBAction.MAX_ATTEMPTS_OB_MATCHED;
 
 public @Slf4j
 class OBDescriptionStateChecker extends StateChecker {
-
-    public static final Integer MAX_ATTEMPTS_OB_NO_MATCH = 3;
 
     private static final ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
         put(QualityResult.Result.MATCH.name(), CONFIRM_MATCHED_OB);
@@ -41,15 +37,14 @@ class OBDescriptionStateChecker extends StateChecker {
 
         //we ask for the rephrase only 3 times, otherwise we skip the OB
         if(result.getResult().equals(QualityResult.Result.NO_MATCH)){
-            Integer currentAttempt = (Integer) state.putIfAbsent(CURRENT_ATTEMPT_OB_NO_MATCH, 1);
-            if (currentAttempt != null) {
-                state.put(CURRENT_ATTEMPT_OB_NO_MATCH, ++currentAttempt);
-                if (currentAttempt >= MAX_ATTEMPTS_OB_NO_MATCH) {
-                    state.remove(CURRENT_ATTEMPT_OB_NO_MATCH);
-                    nextAction = PROVIDE_EB;
-                    QualityStateUpdater.updateOBState(state, null);
-                }
 
+            state.initOrIncreaseCurrentAttemptObNoMatch();
+
+            boolean nextAttempt = state.checkNextAttemptAndResetObNoMatch();
+
+            if(!nextAttempt){
+                nextAction = PROVIDE_EB;
+                QualityStateUpdater.updateOBState(state, null);
             }
         }
 

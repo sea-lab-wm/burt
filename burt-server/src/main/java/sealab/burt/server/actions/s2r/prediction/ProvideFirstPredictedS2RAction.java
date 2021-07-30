@@ -10,7 +10,11 @@ import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.s2r.missing.SelectMissingS2RAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.entity.KeyValues;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.WidgetName;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 

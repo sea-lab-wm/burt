@@ -7,7 +7,7 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.S2RCheckerUtils;
 import sealab.burt.qualitychecker.actionmatcher.GraphUtils;
 import sealab.burt.qualitychecker.graph.*;
-import sealab.burt.server.conversation.ConversationState;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package sealab.burt.server.statecheckers;
+package sealab.burt.server.conversation.state;
 
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.S2RChecker;
@@ -7,15 +7,13 @@ import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
-import sealab.burt.server.conversation.ConversationState;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;

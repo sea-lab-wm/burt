@@ -1,9 +1,8 @@
 package sealab.burt.server.msgparsing;
 
-import sealab.burt.server.StateVariable;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.state.ConversationState;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.UserResponse;
 
 import java.util.Arrays;
 import java.util.List;

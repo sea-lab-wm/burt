@@ -6,7 +6,11 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.entity.KeyValues;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.WidgetName;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.LinkedHashSet;
@@ -23,7 +27,6 @@ public @Slf4j
 class SelectOBScreenAction extends ChatBotAction {
 
     public static final int MAX_OB_SCREENS_TO_SHOW = 5;
-    public static final Integer MAX_OB_SCREEN_ATTEMPTS = 3;
 
     public SelectOBScreenAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
@@ -42,15 +45,12 @@ class SelectOBScreenAction extends ChatBotAction {
         int currentObScreenPosition = 0;
         state.put(StateVariable.CURRENT_OB_SCREEN_POSITION, currentObScreenPosition);
 
-        Integer currentAttempt = (Integer) state.putIfAbsent(StateVariable.CURRENT_ATTEMPT_OB_SCREENS, 1);
-        if (currentAttempt != null) {
-            state.put(StateVariable.CURRENT_ATTEMPT_OB_SCREENS, ++currentAttempt);
-        }
+        state.initOrIncreaseCurrentAttemptObScreens();
 
         //-----------------------------------
 
         log.debug("Multiple matched states: " + matchedStates.size());
-        log.debug("Current attempt for OB screen selection: " + currentAttempt);
+//        log.debug("Current attempt for OB screen selection: " + currentAttempt);
 
         //----------------------------------------
 

@@ -1,4 +1,4 @@
-package sealab.burt.server.conversation;
+package sealab.burt.server.conversation.entity;
 
 public enum ResponseCode {
     SUCCESS(0), END_CONVERSATION(100), UNEXPECTED_ERROR (-1), NO_INFO_FOR_REPORT(-2);

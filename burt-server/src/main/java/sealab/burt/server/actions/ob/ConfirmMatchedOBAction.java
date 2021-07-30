@@ -4,18 +4,19 @@ import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.entity.KeyValues;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.WidgetName;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
 import java.util.Collections;
 import java.util.List;
 
-import static sealab.burt.server.StateVariable.CURRENT_ATTEMPT_OB_MATCHED;
 import static sealab.burt.server.StateVariable.OB_QUALITY_RESULT;
 
 public class ConfirmMatchedOBAction extends ChatBotAction {
-
-    public static final Integer MAX_ATTEMPTS_OB_MATCHED = 3;
 
     public ConfirmMatchedOBAction(Intent... nextIntents) {
         super(nextIntents);
@@ -27,9 +28,7 @@ public class ConfirmMatchedOBAction extends ChatBotAction {
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         GraphState graphState = result.getMatchedStates().get(0);
 
-        Integer currentAttempt = (Integer) state.putIfAbsent(CURRENT_ATTEMPT_OB_MATCHED, 1);
-        if (currentAttempt != null)
-            state.put(CURRENT_ATTEMPT_OB_MATCHED, ++currentAttempt);
+        state.initOrIncreaseCurrentAttemptObMatched();
 
         List<KeyValues> optionList =
                 SelectOBScreenAction.getObScreenOptions(Collections.singletonList(graphState), state, 0);

@@ -6,10 +6,10 @@ import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
-import sealab.burt.server.statecheckers.QualityStateUpdater;
+import sealab.burt.server.conversation.state.ConversationState;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.UserResponse;
+import sealab.burt.server.conversation.state.QualityStateUpdater;
 import sealab.burt.server.statecheckers.StateChecker;
 
 import static sealab.burt.server.StateVariable.*;

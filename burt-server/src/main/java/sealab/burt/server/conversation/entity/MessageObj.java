@@ -1,4 +1,4 @@
-package sealab.burt.server.conversation;
+package sealab.burt.server.conversation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
