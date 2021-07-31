@@ -26,7 +26,7 @@ class ScreenshotPathUtils {
         return getScreenshotPath(state, stateScreenshotPath, graphState.getDataSource());
     }
 
-    private static String getScreenshotPath(ConversationState state,
+    public static String getScreenshotPath(ConversationState state,
                                             String inputScreenshotPath,
                                             GraphDataSource dataSource) {
         Path screenshotPath;

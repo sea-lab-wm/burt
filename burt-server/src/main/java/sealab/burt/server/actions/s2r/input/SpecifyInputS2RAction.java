@@ -15,10 +15,6 @@ public class SpecifyInputS2RAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
-
-//        UserResponse msg = (UserResponse) state.get(S2R_MATCHED_MSG);
-//        String highQualityStepMessage = msg.getMessages().get(0).getMessage();
-
         return createChatBotMessages("It seems that no specific input or value was provided in the step.",
                 "Can you please provide an input (enclosed in quotes, e.g., \"5\")?");
     }

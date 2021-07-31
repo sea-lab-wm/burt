@@ -8,32 +8,112 @@ import java.util.LinkedHashMap;
 
 public @Slf4j
 class AttemptManager {
+
     public enum AttemptType {
         //OB
         OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS,
         //EB
         EB_NO_MATCH, EB_NOT_PARSED,
         //S2R
+        S2R_NO_MATCH, S2R_NOT_PARSED, S2R_MATCHED, S2R_INPUT, S2R_AMBIGUOUS
     }
 
-    public static final Integer MAX_ATTEMPTS_OB = 3;
-    public static final Integer MAX_ATTEMPTS_EB = 3;
-    public static final Integer MAX_ATTEMPTS_S2R = 2;
+    public static final Integer MAX_ATTEMPTS_3 = 3;
+    public static final Integer MAX_ATTEMPTS_2 = 2;
 
     private final HashMap<AttemptType, MutablePair<Integer, Integer>> attempts = new LinkedHashMap<>() {
         {
             //OB
-            put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
-            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
-            put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
-            put(AttemptType.OB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_OB, -1));
+            put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.OB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
 
             //EB
-            put(AttemptType.EB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_EB, -1));
-            put(AttemptType.EB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_EB, -1));
+            put(AttemptType.EB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.EB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+
+            //S2R
+            put(AttemptType.S2R_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.S2R_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.S2R_AMBIGUOUS, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.S2R_MATCHED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.S2R_INPUT, new MutablePair<>(MAX_ATTEMPTS_3, -1));
 
         }
     };
+
+    //---------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RInput() {
+        initOrIncreaseCurrentAttempt(AttemptType.S2R_INPUT);
+    }
+
+    public boolean checkNextAttemptAndResetS2RInput() {
+        return checkNextAttemptAndReset(AttemptType.S2R_INPUT);
+    }
+
+    public void resetCurrentAttemptS2RInput() {
+        resetAttempt(AttemptType.S2R_INPUT);
+    }
+
+    //---------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RMatch() {
+        initOrIncreaseCurrentAttempt(AttemptType.S2R_MATCHED);
+    }
+
+    public boolean checkNextAttemptAndResetS2RMatch() {
+        return checkNextAttemptAndReset(AttemptType.S2R_MATCHED);
+    }
+
+    public void resetCurrentAttemptS2RMatch() {
+        resetAttempt(AttemptType.S2R_MATCHED);
+    }
+
+    //---------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RNotParsed() {
+        initOrIncreaseCurrentAttempt(AttemptType.S2R_NOT_PARSED);
+    }
+
+    public boolean checkNextAttemptAndResetS2RNotParsed() {
+        return checkNextAttemptAndReset(AttemptType.S2R_NOT_PARSED);
+    }
+
+    public void resetCurrentAttemptS2RNotParsed() {
+        resetAttempt(AttemptType.S2R_NOT_PARSED);
+    }
+
+    //---------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RNoMatch() {
+        initOrIncreaseCurrentAttempt(AttemptType.S2R_NO_MATCH);
+    }
+
+    public boolean checkNextAttemptAndResetS2RNoMatch() {
+        return checkNextAttemptAndReset(AttemptType.S2R_NO_MATCH);
+    }
+
+    public void resetCurrentAttemptS2RNoMatch() {
+        resetAttempt(AttemptType.S2R_NO_MATCH);
+    }
+
+    //---------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RAmbiguous() {
+        initOrIncreaseCurrentAttempt(AttemptType.S2R_AMBIGUOUS);
+    }
+
+    public boolean checkNextAttemptAndResetS2RAmbiguous() {
+        return checkNextAttemptAndReset(AttemptType.S2R_AMBIGUOUS);
+    }
+
+    public void resetCurrentAttemptS2RAmbiguous() {
+        resetAttempt(AttemptType.S2R_AMBIGUOUS);
+    }
+
+    //---------------------------------------------------
 
 
     public void initOrIncreaseCurrentAttemptEbNoMatch() {
@@ -165,7 +245,7 @@ class AttemptManager {
         Integer currentAttempt = getCurrentAttempt(attemptType);
         if (currentAttempt != -1) {
             setCurrentAttempt(attemptType, currentAttempt + 1);
-        }else{
+        } else {
             setCurrentAttempt(attemptType, 1);
         }
     }
@@ -174,7 +254,7 @@ class AttemptManager {
         Integer currentAttempt = getCurrentAttempt(attemptType);
         if (currentAttempt != -1) {
             setCurrentAttempt(attemptType, currentAttempt + 1);
-        } else{
+        } else {
             log.warn(String.format("The current attempt (%s) was not initiated: %s",
                     attemptType,
                     currentAttempt));

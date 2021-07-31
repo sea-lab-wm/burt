@@ -216,4 +216,75 @@ public class ConversationState {
     public boolean checkNextAttemptAndResetEbNotParsed() {
         return attemptManager.checkNextAttemptAndResetEbNotParsed();
     }
+
+    //------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RNotParsed() {
+        attemptManager.initOrIncreaseCurrentAttemptS2RNotParsed();
+    }
+
+    public boolean checkNextAttemptAndResetS2RNotParsed() {
+        return attemptManager.checkNextAttemptAndResetS2RNotParsed();
+    }
+
+    public void resetCurrentAttemptS2RNotParsed() {
+        attemptManager.resetCurrentAttemptS2RNotParsed();
+    }
+
+    //------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RNoMatch() {
+        attemptManager.initOrIncreaseCurrentAttemptS2RNoMatch();
+    }
+
+    public boolean checkNextAttemptAndResetS2RNoMatch() {
+        return attemptManager.checkNextAttemptAndResetS2RNoMatch();
+    }
+
+    public void resetCurrentAttemptS2RNoMatch() {
+        attemptManager.resetCurrentAttemptS2RNoMatch();
+    }
+
+    //------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RAmbiguous() {
+        attemptManager.initOrIncreaseCurrentAttemptS2RAmbiguous();
+    }
+
+    public boolean checkNextAttemptAndResetS2RAmbiguous() {
+        return attemptManager.checkNextAttemptAndResetS2RAmbiguous();
+    }
+
+    public void resetCurrentAttemptS2RAmbiguous() {
+        attemptManager.resetCurrentAttemptS2RAmbiguous();
+    }
+
+    //------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RMatch() {
+        attemptManager.initOrIncreaseCurrentAttemptS2RMatch();
+    }
+
+    public boolean checkNextAttemptAndResetS2RMatch() {
+        return attemptManager.checkNextAttemptAndResetS2RMatch();
+    }
+
+    public void resetCurrentAttemptS2RMatch() {
+        attemptManager.resetCurrentAttemptS2RMatch();
+    }
+
+    //-------------------------------------
+
+    public void initOrIncreaseCurrentAttemptS2RInput() {
+        attemptManager.initOrIncreaseCurrentAttemptS2RInput();
+    }
+
+    public boolean checkNextAttemptAndResetS2RInput() {
+        return attemptManager.checkNextAttemptAndResetS2RInput();
+    }
+
+    public void resetCurrentAttemptS2RInput() {
+        attemptManager.resetCurrentAttemptS2RInput();
+    }
+
 }

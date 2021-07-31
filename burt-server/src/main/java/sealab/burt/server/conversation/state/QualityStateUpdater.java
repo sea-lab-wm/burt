@@ -8,7 +8,6 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
-import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.ArrayList;
@@ -28,15 +27,23 @@ class QualityStateUpdater {
                                                   String stringStep,
                                                   S2RQualityAssessment assessment) {
         List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
-        AppStep appStep = assessment.getMatchedSteps().get(0);
-        String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(appStep, state);
-        if (!state.containsKey(REPORT_S2R)) {
-            stepElements = new ArrayList<>(Collections.singletonList(
-                    new BugReportElement(stringStep, appStep, screenshotFile)
-            ));
+
+
+        AppStep appStep = null;
+        String screenshotFile;
+        if (assessment != null) {
+            appStep = assessment.getMatchedSteps().get(0);
+            screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(appStep, state);
+
         } else {
-            stepElements.add(new BugReportElement(stringStep, appStep, screenshotFile));
+            screenshotFile = ScreenshotPathUtils.getScreenshotPath(state, null, null);
         }
+
+        if (stepElements == null) {
+            stepElements = new ArrayList<>();
+        }
+
+        stepElements.add(new BugReportElement(stringStep, appStep, screenshotFile));
         state.put(REPORT_S2R, stepElements);
 
         //---------------------
@@ -47,6 +54,7 @@ class QualityStateUpdater {
     }
 
     private static void updateStateBasedOnStep(AppStep appStep, S2RChecker s2rChecker) {
+        if (appStep == null || s2rChecker == null) return;
         GraphTransition transition = appStep.getTransition();
         if (transition != null)
             s2rChecker.updateState(transition.getTargetState());
@@ -83,7 +91,7 @@ class QualityStateUpdater {
 
     private static List<BugReportElement> getBugReportElementsFromSteps(List<AppStep> selectedSteps,
                                                                         ConversationState state) {
-        //we need to return a modifiable list
+        //we need to return a modifiable list, that's why we create a new ArrayList
         return new ArrayList<>(selectedSteps.stream()
                 .map(step -> {
                     String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(step, state);

@@ -21,7 +21,7 @@ import sealab.burt.server.statecheckers.ob.OBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.participant.ParticipantIdStateChecker;
 import sealab.burt.server.statecheckers.s2r.S2RDescriptionStateChecker;
 import sealab.burt.server.statecheckers.s2r.S2RPredictionStateChecker;
-import sealab.burt.server.statecheckers.s2r.StepInputStateChecker;
+import sealab.burt.server.statecheckers.s2r.S2RInputStateChecker;
 import sealab.burt.server.statecheckers.yesno.AffirmativeAnswerStateChecker;
 import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
@@ -64,7 +64,7 @@ class ConversationController {
 //        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
         put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
         put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
-        put(S2R_INPUT, new StepInputStateChecker());
+        put(S2R_INPUT, new S2RInputStateChecker());
 
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));

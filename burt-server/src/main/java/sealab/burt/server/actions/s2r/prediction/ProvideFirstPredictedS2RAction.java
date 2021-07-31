@@ -18,6 +18,7 @@ import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,13 +72,16 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
             AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
 
-            if (DeviceUtils.isCloseApp(lastStep.getAction()))
-                return getNextStepMessage();
+            List<AppStep> stateLoops = new ArrayList<>();
+            if (lastStep != null) { //the last step can be null because of the max # of attempts functionality
+                if (DeviceUtils.isCloseApp(lastStep.getAction()))
+                    return getNextStepMessage();
 
-            List<AppStep> stateLoops = predictor.getStateLoops(currentState, lastStep, nonSelectedSteps);
+                stateLoops = predictor.getStateLoops(currentState, lastStep, nonSelectedSteps);
 
-            if (stateLoops.isEmpty()) {
-                return getLastStepMessage(state);
+                if (stateLoops.isEmpty()) {
+                    return getLastStepMessage(state);
+                }
             }
 
             pathsWithLoops = Collections.singletonList(stateLoops);

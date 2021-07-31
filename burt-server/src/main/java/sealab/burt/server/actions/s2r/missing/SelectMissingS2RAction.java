@@ -133,6 +133,7 @@ class SelectMissingS2RAction extends ChatBotAction {
                     .subList(Math.max(stepElements.size() - 5, 0), stepElements.size())
                     .stream()
                     .map(el -> (AppStep) el.getOriginalElement())
+                    .filter(Objects::nonNull)
                     .collect(Collectors.toList());
 
             cleanedInferredSteps2 = cleanedInferredSteps.stream()

@@ -57,6 +57,9 @@ class AffirmativeAnswerStateChecker extends StateChecker {
         } else if (state.containsKey(S2R_MATCHED_CONFIRMATION)) {
             state.remove(S2R_MATCHED_CONFIRMATION);
 
+
+            state.resetCurrentAttemptS2RMatch();
+
             //---------------------
             //add the step to the set of S2R for the report
 
