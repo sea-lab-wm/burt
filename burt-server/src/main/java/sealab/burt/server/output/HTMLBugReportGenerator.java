@@ -12,6 +12,7 @@ import sealab.burt.server.conversation.state.ConversationState;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -25,7 +26,7 @@ class HTMLBugReportGenerator {
     public void generateOutput(File outputFile, ConversationState state) throws Exception {
         File htmlTemplate = new File(Path.of(".", "example", "template.html").toString());
         String finalReport = generateHTML(htmlTemplate, state);
-        FileUtils.write(outputFile, finalReport, Charset.defaultCharset());
+        FileUtils.write(outputFile, finalReport, StandardCharsets.UTF_8);
         bugReportId++;
     }
 
