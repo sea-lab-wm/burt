@@ -1,5 +1,3 @@
-package sealab.burt.qualitychecker.graph.db;
-
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.view.mxGraph;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +15,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -72,7 +69,7 @@ class MainJSONGraphGenerator {
 
         File graphFile = new File(pathname + "-graph.txt");
         String graphStr = graphInfo.graphToString();
-        FileUtils.write(graphFile, graphStr, Charset.defaultCharset());
+        FileUtils.write(graphFile, graphStr, StandardCharsets.UTF_8);
 
         // ------------------------------------------------------
 

@@ -22,7 +22,10 @@ import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -72,17 +75,14 @@ class JSONGraphReader {
                 String.join("-", packageName, appVersion)).toString();
 
         String key = getKey(appName, appVersion);
-//        log.debug("Reading graph from JSON files for " + key);
+        log.debug("Reading graph from JSON files for " + key);
 
         List<Execution> crashScopeExecutions = readExecutions(dataLocation);
         GraphGenerator generator = new GraphGenerator();
 
-        // changed code: check if crashScopeExecutions is empty
+        // check if crashScopeExecutions is empty
         if (!crashScopeExecutions.isEmpty()) {
             App app = crashScopeExecutions.get(0).getApp();
-
-            //----------------------------------------
-
             generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
         }
 
@@ -144,26 +144,20 @@ class JSONGraphReader {
 
     private static List<Execution> readExecutions(String dataLocation) throws Exception {
 
-        //--------------------------
-//        List<Path> executionFiles = Files.find(Paths.get(dataLocation), 1,
-//                (path, attr) -> path.toFile().getName().startsWith("Execution-"))
-//                .collect(Collectors.toList());
-        //------ changed code: check if the path exists---------------//
+        //------ check if the path exists---------------//
         List<Path> executionFiles = new ArrayList<>();
-        File folder = new File(String.valueOf(Paths.get(dataLocation)));
-        if (folder.exists() && folder.isDirectory()){
+        File folder = new File(dataLocation);
+        if (folder.exists()){
             executionFiles = Files.find(Paths.get(dataLocation), 1,
                     (path, attr) -> path.toFile().getName().startsWith("Execution-"))
                     .collect(Collectors.toList());
         }
-        //------ new code: check if the path exists---------------//
+        //------ check if the path exists---------------//
 
         if (executionFiles.isEmpty())
-//            throw new RuntimeException("There are no execution files in " + dataLocation);
             log.debug("There are no execution files in " + dataLocation);
 
         log.debug("Reading execution data from : " + executionFiles);
-
 
         //----------------------
         List<Execution> executions = new ArrayList<>();
@@ -174,9 +168,11 @@ class JSONGraphReader {
         for (int i = 0; i < executionFiles.size(); i++) {
             Path executionFile = executionFiles.get(i);
 
-
             //Set up a new Gson object
-            JsonReader reader = new JsonReader(new FileReader(executionFile.toFile()));
+//            JsonReader reader = new JsonReader(new FileReader(executionFile.toFile()));
+            JsonReader reader = new JsonReader(new InputStreamReader(
+                    new FileInputStream(executionFile.toFile()), StandardCharsets.UTF_8
+            ));
 
             // De-serialize the Execution object.
             Execution execution = gson.fromJson(reader, Execution.class);
