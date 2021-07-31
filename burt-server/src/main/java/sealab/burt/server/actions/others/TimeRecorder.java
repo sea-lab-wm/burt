@@ -2,13 +2,12 @@ package sealab.burt.server.actions.others;
 
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
-import sealab.burt.server.conversation.ConversationState;
+import sealab.burt.server.conversation.state.ConversationState;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import static sealab.burt.server.StateVariable.*;

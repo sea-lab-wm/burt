@@ -1,0 +1,31 @@
+add device 1: /dev/input/event0
+  name:     "Power Button"
+add device 2: /dev/input/event1
+  name:     "qwerty2"
+[    1290.383800] /dev/input/event1: 0003 0039 00000000
+[    1290.383800] /dev/input/event1: 0003 0030 0000006f
+[    1290.383800] /dev/input/event1: 0003 003a 00000081
+[    1290.383800] /dev/input/event1: 0003 0035 00001d27
+[    1290.383800] /dev/input/event1: 0003 0036 00007365
+[    1290.383800] /dev/input/event1: 0000 0000 00000000
+[    1290.485054] /dev/input/event1: 0003 003a 00000000
+[    1290.485054] /dev/input/event1: 0003 0039 ffffffff
+[    1290.485054] /dev/input/event1: 0000 0000 00000000
+[    1293.094581] /dev/input/event1: 0003 0039 00000000
+[    1293.094581] /dev/input/event1: 0003 0030 00000070
+[    1293.094581] /dev/input/event1: 0003 003a 00000081
+[    1293.094581] /dev/input/event1: 0003 0035 000020f2
+[    1293.094581] /dev/input/event1: 0003 0036 00001b44
+[    1293.094581] /dev/input/event1: 0000 0000 00000000
+[    1293.196091] /dev/input/event1: 0003 003a 00000000
+[    1293.196091] /dev/input/event1: 0003 0039 ffffffff
+[    1293.196091] /dev/input/event1: 0000 0000 00000000
+[    1295.141298] /dev/input/event1: 0003 0039 00000000
+[    1295.141298] /dev/input/event1: 0003 0030 00000071
+[    1295.141298] /dev/input/event1: 0003 003a 00000081
+[    1295.141298] /dev/input/event1: 0003 0035 0000160b
+[    1295.141298] /dev/input/event1: 0003 0036 00004165
+[    1295.141298] /dev/input/event1: 0000 0000 00000000
+[    1295.242167] /dev/input/event1: 0003 003a 00000000
+[    1295.242167] /dev/input/event1: 0003 0039 ffffffff
+[    1295.242167] /dev/input/event1: 0000 0000 00000000

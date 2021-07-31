@@ -4,20 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.ChatBotMessage;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.WidgetName;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.state.ConversationState;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.WidgetName;
 import sealab.burt.server.output.HTMLBugReportGenerator;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 import static sealab.burt.server.StateVariable.*;
 

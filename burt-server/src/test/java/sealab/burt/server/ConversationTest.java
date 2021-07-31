@@ -7,9 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.ConversationResponse;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.entity.ConversationResponse;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.UserResponse;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,8 +33,18 @@ class ConversationTest extends AbstractTest {
     }
 
     @org.junit.Test
+    public void testFlowGnuCashIssue60() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.GNUCASH_ISSUE60);
+    }
+
+    @org.junit.Test
     public void testFlowEulerIdealGnuCash616() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_GNUCASH_616);
+    }
+
+    @org.junit.Test
+    public void testFlowEulerIdealGnuCash620() throws Exception {
+        testConversationFlow(ConversationTestData.FlowName.EULER_IDEAL_GNUCASH_620);
     }
 
     @org.junit.Test
@@ -76,10 +86,12 @@ class ConversationTest extends AbstractTest {
     public void testNoObScreensSelectedFlow() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.NO_OB_SCREENS_SELECTED);
     }
+
     @org.junit.Test
     public void testPredictionFlow() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.PREDICTION);
     }
+
     @org.junit.Test
     public void testDuplicatedPredictionFlow() throws Exception {
         testConversationFlow(ConversationTestData.FlowName.DUPLICATED_PREDICTED_PATH_MILEAGE);

@@ -1,0 +1,1 @@
+Go to statistics and calculate BMI.

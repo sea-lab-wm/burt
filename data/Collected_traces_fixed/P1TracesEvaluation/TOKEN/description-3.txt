@@ -1,0 +1,1 @@
+Add a token and get a one time password from that token.

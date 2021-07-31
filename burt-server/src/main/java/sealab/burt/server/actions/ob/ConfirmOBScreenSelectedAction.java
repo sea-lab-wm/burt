@@ -1,13 +1,15 @@
 package sealab.burt.server.actions.ob;
 
+import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.*;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.statecheckers.QualityStateUpdater;
+import sealab.burt.server.conversation.state.QualityStateUpdater;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +18,8 @@ import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.OB_DESCRIPTION;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
 
-public class ConfirmOBScreenSelectedAction extends ChatBotAction {
+public @Slf4j
+class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
@@ -41,7 +44,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
         MessageObj message = msg.getFirstMessage();
         StringBuilder response = new StringBuilder();
-        if ("done".equals(message.getMessage())) {
+        if (DONE.equals(message.getMessage())) {
 
             List<String> selectedValues = message.getSelectedValues();
             if (selectedValues == null || selectedValues.isEmpty())
@@ -79,13 +82,15 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
             return createChatBotMessages(response.toString(), "Shall we continue?");
 
-        } else if ("none of above".equals(message.getMessage())) {
+        } else if (NONE.equals(message.getMessage())) {
 
             state.remove(OB_SCREEN_SELECTED);
 
-            Integer currentAttempt = (Integer) state.get(StateVariable.CURRENT_ATTEMPT_OB_SCREENS);
-            if (currentAttempt >= SelectOBScreenAction.MAX_OB_SCREEN_ATTEMPTS) {
-                state.remove(CURRENT_ATTEMPT_OB_SCREENS);
+            boolean nextAttempt = state.checkNextAttemptAndResetObScreens();
+
+            log.debug("Current attempt (OB_SCREENS): " + state.getCurrentAttemptObScreens());
+
+            if (!nextAttempt) {
 
                 startEBChecker(state);
                 this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
@@ -96,6 +101,8 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
                         "Can you please tell me how the app is supposed to work instead?"
                 );
             }
+
+            state.increaseCurrentAttemptObScreens();
 
             //---------------------------
 
@@ -109,6 +116,8 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
 
             if (options.isEmpty()) {
+
+                //FIXME: would this lead to a infinite loop in the conversation?
 
                 state.remove(StateVariable.CURRENT_OB_SCREEN_POSITION);
                 this.setNextExpectedIntents(Collections.singletonList(OB_DESCRIPTION));
@@ -129,7 +138,7 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
                         " Please hit the \"Done\" button after you have selected it.", WidgetName.OBScreenSelector);
 
                 return createChatBotMessages(
-                        "Okay then, which of the following screens is having the problem?",
+                        "Okay then, which of the following screens is having or triggering the problem?",
                         new ChatBotMessage(messageObj, options, false));
             }
         } else {
@@ -146,7 +155,8 @@ public class ConfirmOBScreenSelectedAction extends ChatBotAction {
         List<KeyValues> options = SelectOBScreenAction.getObScreenOptions(matchedStates, state, position);
 
         MessageObj messageObj = new MessageObj(
-                "From the list below, can you please select the screen that is having the problem", WidgetName.OBScreenSelector);
+                "From the list below, can you please select the screen that is having or triggering the problem?",
+                WidgetName.OBScreenSelector);
 
         return createChatBotMessages(
                 "Sorry, the options you selected are incorrect.",

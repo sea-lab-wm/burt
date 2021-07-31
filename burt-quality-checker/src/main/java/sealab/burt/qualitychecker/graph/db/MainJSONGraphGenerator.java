@@ -4,12 +4,14 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.view.mxGraph;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.JSONGraphReader;
 import sealab.burt.qualitychecker.actionmatcher.GraphLayout;
 import sealab.burt.qualitychecker.actionmatcher.GraphUtils;
 import sealab.burt.qualitychecker.graph.*;
+import seers.appcore.utils.JavaUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,34 +27,32 @@ import java.util.Set;
 public
 @Slf4j
 class MainJSONGraphGenerator {
-//
-//    private static final Set<ImmutablePair<String, String>> SYSTEMS_ALLOWED = JavaUtils.getSet(
-//            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.0.8")
-//            //			new ImmutablePair<>			("com.evancharlton.mileage", "3.1.1")
-//            //			new ImmutablePair<>("me.kuehle.carreport", "3.6.0"),
-//            //			new ImmutablePair<>("me.kuehle.carreport", "3.11.2")
-//            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.20")
-//            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
-//            //			new ImmutablePair<>("nerd.tuxmobil.fahrplan.camp", "1.32.2"),
-//            //			new ImmutablePair<>("aarddict.android", "1.6.10")
-//            //			new ImmutablePair<>("aarddict.android", "1.6.10")
-//            //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
-//            //			new ImmutablePair<>("org.gnucash.android", "2.1.3")
-//            //			new ImmutablePair<>("org.gnucash.android", "2.1.1")
-//            //			new ImmutablePair<>("org.gnucash.android", "2.2.0")
-//            //			new ImmutablePair<>("org.gnucash.android", "2.0.3")
-//            new ImmutablePair<>("org.gnucash.android", "2.0.4")
-//    );
+
+    private static final Set<ImmutablePair<String, String>> ALL_SYSTEMS = JavaUtils.getSet(
+            new ImmutablePair<>("gnucash", "2.1.3"),
+            new ImmutablePair<>("mileage", "3.1.1"),
+            new ImmutablePair<>("droidweight", "1.5.4"),
+            new ImmutablePair<>("GnuCash", "1.0.3"),
+            new ImmutablePair<>("AntennaPod", "1.6.2.3"),
+            new ImmutablePair<>("ATimeTracker", "0.20"),
+            new ImmutablePair<>("growtracker", "2.3.1"),
+            new ImmutablePair<>("androidtoken", "2.10")
+    );
 
     private static final String outFolder = Path.of("..", "data", "graphs_json_data").toString();
 
     public static void main(String[] args) throws Exception {
 
-        AppGraphInfo graphInfo = JSONGraphReader.getGraph("gnucash", "2.1.3");
-//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("mileage", "3.1.1");
-//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("droidweight", "1.5.4");
+        for (ImmutablePair<String, String> system : ALL_SYSTEMS) {
+            generateAndSaveGraph(system);
+        }
+    }
 
-//        AppGraphInfo graphInfo = JSONGraphReader.getGraph("GnuCash", "2.1.3");
+    private static void generateAndSaveGraph(ImmutablePair<String, String> system) throws Exception {
+        log.debug("Processing system: " + system);
+
+        AppGraphInfo graphInfo = JSONGraphReader.getGraph(system.getLeft(), system.getRight());
+
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         Appl app = graphInfo.getApp();
 
@@ -109,10 +109,12 @@ class MainJSONGraphGenerator {
                     Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName, app.getVersion())).toString();
             if (edge.getDataSource().equals(GraphDataSource.TR))
                 dataLocation =
-                        Paths.get(BurtConfigPaths.traceReplayerDataPath, String.join("-", packageName, app.getVersion())).toString();
+                        Paths.get(BurtConfigPaths.traceReplayerDataPath, String.join("-", packageName,
+                                app.getVersion())).toString();
 
             File srcFileStep = Path.of(dataLocation, "screenshots", screenshotFile).toFile();
-            File srcFileState = Path.of(dataLocation, "screenshots", edge.getSourceState().getScreenshotPath()).toFile();
+            File srcFileState =
+                    Path.of(dataLocation, "screenshots", edge.getSourceState().getScreenshotPath()).toFile();
 
             if (screenshotFile.endsWith(".png") && srcFileStep.exists() && srcFileStep.isFile()) {
                 File destFile = new File(pathnameTransitions + File.separator + edge.getId() + ".png");
@@ -138,7 +140,6 @@ class MainJSONGraphGenerator {
         ImageIO.write(image, "PNG", new File(pathname + ".png"));
 
         log.debug("Done");
-
     }
 
     private static String getConnectedComponentsStr(List<Set<GraphState>> stronglyConnectedSets) {

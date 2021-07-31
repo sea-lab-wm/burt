@@ -1,0 +1,1 @@
+Exclude harvested, curing, and drying plants using the filter.

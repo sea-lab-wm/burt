@@ -193,7 +193,6 @@ class S2RChecker {
 
         String text = null;
 
-        Map.Entry<AppGuiComponent, Double> componentFound = null;
         if (!StringUtils.isEmpty(object2)) {
             //case: type 'x' on 'y'
             if (JavaUtils.getSet("on", "in", "into", "for", "of", "as", "to", "with").contains(preposition)) {
@@ -314,7 +313,7 @@ class S2RChecker {
                                                    List<AppStep> currentResolvedSteps,
                                                    List<AppStep> shortestPath, List<AppGuiComponent> components) {
 
-        log.debug("Adding intermediate steps in shortest path");
+//        log.debug("Adding intermediate steps in shortest path");
         //------------------------------
 
         for (int i = 0; i < shortestPath.size(); i++) {

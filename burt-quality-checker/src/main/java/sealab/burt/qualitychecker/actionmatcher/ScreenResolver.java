@@ -2,8 +2,8 @@ package sealab.burt.qualitychecker.actionmatcher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
+import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.graph.*;
 
 import java.util.*;
@@ -59,6 +59,13 @@ class ScreenResolver {
         LinkedHashMap<GraphState, Integer> stateCandidates = new LinkedHashMap<>();
         getCandidateGraphStates(executionGraph.getGraph(), stateCandidates, currentState, 0, graphMaxDepthCheck);
         stateCandidates.remove(GraphState.START_STATE);
+/*
+        Map.Entry<GraphState, Integer> entry = stateCandidates.entrySet().stream()
+                .filter(e -> e.getKey().getUniqueHash().equals(-683680957))
+                .findFirst().get();
+
+        stateCandidates = new LinkedHashMap<>();
+        stateCandidates.put(entry.getKey(), entry.getValue());*/
 
         log.debug("State candidates (" + stateCandidates.size() + "): " + stateCandidates);
 
@@ -69,6 +76,7 @@ class ScreenResolver {
             final GraphState candidateState = candidateEntry.getKey();
             final Integer distance = candidateEntry.getValue();
 
+            log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>");
             log.debug("Checking candidate state/screen: " + candidateState.getUniqueHash());
 
             //-------------------------------------
@@ -106,7 +114,7 @@ class ScreenResolver {
 
         log.debug("Matched states (" + matchedStates.size() + "):" + matchedStates);
 
-        if (matchedStates.isEmpty()) {
+      /*  if (matchedStates.isEmpty()) {
 
             for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
                 final GraphState candidateState = candidateEntry.getKey();
@@ -127,16 +135,17 @@ class ScreenResolver {
                         .collect(Collectors.toList());
 
 
-                Map.Entry<AppGuiComponent, Double> component = s2rParser.matchAnyComponent(currNLAction, stateComponents);
-                if(component!=null)
+                Map.Entry<AppGuiComponent, Double> component = s2rParser.matchAnyComponent(currNLAction,
+                        stateComponents);
+                if (component != null)
                     matchedStates.put(candidateState, distance);
 
             }
-        }
+        }*/
 
         //---------------------------------------------
 
-        // sort base on the score
+        // sort based on the score
         List<ImmutablePair<GraphState, Double>> stateScores = new ArrayList<>();
 
         // Give priority to components based on how far they are from the current

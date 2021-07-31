@@ -1,0 +1,16 @@
+TIME-CC1
+
+trace 1
+select "OK" -> select "Add task" -> enter "read about nvidia stock split" for "Task name" -> select "Add task" 
+
+trace 2
+select "OK" -> select "Add task" -> enter "Pickup phone" for "Task name" -> select "Add task" -> select "More" -> go to "Settings" -> select "OK"
+
+trace 3
+select "OK" -> select "Add task" -> enter "1" for "Task name" -> select "Add task" -> select "Add task" -> enter "2" for "Task name" -> select "Add task" -> select "Add task" -> enter "3" for "Task name" -> select "Add task" -> select task "2" wait 1 minute -> select task "1"
+
+trace 4
+select "OK" -> select "Add task" -> enter "Workout" for "Task name" -> select "Add task" -> go to "More" -> go to "Help" -> select "OK"
+
+trace 5
+select "OK" -> select "Add task" -> enter "Break" for "Task name" -> select "Add task" -> select "Break" and wait 10 seconds -> long tap "Break" task -> select "Show times"

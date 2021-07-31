@@ -13,6 +13,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Time Tracker", "A Time Tracker", "A-Time-Tracker",
                 "TimeTracker",
                 "ATimeTracker")));
+
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Card Game Scores", "cardgamescores", "CardGameScores",
                 "Card Games", "Cardgames", "Card-Game-Scores")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Car Report", "Car-Report", "car-report")));
@@ -22,13 +23,14 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("DroidWeight", "droidweight", "Droid Weight")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("GnuCash", "gnucash-android", "GnuCash - beta", "Gnucash",
                 "gnucash")));
+
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("NetMBuddy", "netmbuddy")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("NotePad", "notepad_banderlabs")));
         APP_NAMES.add(
                 new LinkedHashSet<>(Arrays.asList("Schedule", "schedule-campfahrplan", "31C3 Schedule", "Camp 2015")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Android Comic Viewer", "droid-comic-viewer", "ACV")));
 
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Android-Token", "Android Token", "Android token",
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Android Token", "Android-Token", "Android token",
                 "androidtoken", "Android-token")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("RedReader", "redreader")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("ODK-Collect", "ODK Collect", "collect")));
@@ -51,6 +53,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("OCReader", "ocreader")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("AnkiDroid", "Anki-Android")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("ScreenRecorder", "screenrecorder")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("growtracker", "Grow Tracker", "GrowTracker")));
 
     }
 
@@ -84,6 +87,8 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("AnagramSolver", Arrays.asList("com.as.anagramsolver"));
         APP_NAMES_PACKAGES.put("ATimeTracker", Arrays.asList("com.markuspage.android.atimetracker", "net.ser1" +
                 ".timetracker"));
+        APP_NAMES_PACKAGES.put("time tracker", Arrays.asList("com.markuspage.android.atimetracker", "net.ser1" +
+                ".timetracker"));
 
         APP_NAMES_PACKAGES.put("BMI_Calculator", Arrays.asList("com.zola.bmi"));
 
@@ -114,6 +119,12 @@ public class AppNamesMappings {
 
         APP_NAMES_PACKAGES.put("schedule-campfahrplan",
                 Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
+        APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod.debug"));
+        APP_NAMES_PACKAGES.put("antennapod", Arrays.asList("de.danoeh.antennapod.debug"));
+        APP_NAMES_PACKAGES.put("Android Token", Arrays.asList("uk.co.bitethebullet.android.token"));
+        APP_NAMES_PACKAGES.put("android token", Arrays.asList("uk.co.bitethebullet.android.token"));
+        APP_NAMES_PACKAGES.put("growtracker", Arrays.asList("me.anon.grow"));
+
 
         //----------------------------
 

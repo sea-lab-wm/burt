@@ -115,7 +115,11 @@ public class AppGraphInfo implements Serializable {
                         .append(" weight=")
                         .append(t.getWeight())
                         .append(" ds=")
-                        .append(t.getDataSource());
+                        .append(t.getDataSource())
+                        .append(" sc=")
+                        .append(t.getStep().getScreenshotFile())
+                        .append(" ex=")
+                        .append(t.getStep().getExecution());
                 transitionsBuilder.append("\n");
             });
 

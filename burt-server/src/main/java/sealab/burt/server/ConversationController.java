@@ -10,11 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.*;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
 import sealab.burt.server.output.HTMLBugReportGenerator;
 import sealab.burt.server.statecheckers.*;
+import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
+import sealab.burt.server.statecheckers.ob.OBDescriptionStateChecker;
+import sealab.burt.server.statecheckers.participant.ParticipantIdStateChecker;
+import sealab.burt.server.statecheckers.s2r.S2RDescriptionStateChecker;
+import sealab.burt.server.statecheckers.s2r.S2RPredictionStateChecker;
+import sealab.burt.server.statecheckers.s2r.S2RInputStateChecker;
+import sealab.burt.server.statecheckers.yesno.AffirmativeAnswerStateChecker;
+import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
 
 import java.io.File;
@@ -38,15 +47,15 @@ public
 class ConversationController {
 
     public final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
-        put(GREETING, new NStateChecker(PROVIDE_PARTICIPANT_ID));
+        put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
         put(PARTICIPANT_PROVIDED, new ParticipantIdStateChecker());
         //--------------------
-        put(APP_SELECTED, new NStateChecker(CONFIRM_APP));
+        put(APP_SELECTED, new DefaultActionStateChecker(CONFIRM_APP));
         put(AFFIRMATIVE_ANSWER, new AffirmativeAnswerStateChecker());
         put(NEGATIVE_ANSWER, new NegativeAnswerStateChecker());
         //--------OB---------------//
         put(OB_DESCRIPTION, new OBDescriptionStateChecker());
-        put(Intent.OB_SCREEN_SELECTED, new NStateChecker(CONFIRM_SELECTED_OB_SCREEN));
+        put(Intent.OB_SCREEN_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_OB_SCREEN));
         //--------EB-------------//
         put(EB_DESCRIPTION, new EBDescriptionStateChecker());
         //--------S2R-----------//
@@ -54,12 +63,13 @@ class ConversationController {
 
 //        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
         put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
-        put(S2R_MISSING_SELECTED, new NStateChecker(CONFIRM_SELECTED_MISSING_S2R));
+        put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
+        put(S2R_INPUT, new S2RInputStateChecker());
 
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
-        put(THANKS, new NStateChecker(ActionName.END_CONVERSATION));
+        put(THANKS, new DefaultActionStateChecker(ActionName.END_CONVERSATION));
     }};
 
     ConcurrentHashMap<String, List<MessageObj>> messageHistory = new ConcurrentHashMap<>();
@@ -111,7 +121,7 @@ class ConversationController {
             Intent intent = MessageParser.getIntent(userResponse, conversationState);
 
             if (intent == null)
-                return ConversationResponse.createResponse("Sorry, I did not get that!");
+                return ConversationResponse.createResponse("Sorry, I did not get that. Please try one more time.");
 
             log.debug("Identified intent: " + intent);
 

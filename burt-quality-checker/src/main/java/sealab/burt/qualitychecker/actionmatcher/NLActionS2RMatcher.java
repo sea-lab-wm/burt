@@ -726,7 +726,7 @@ class NLActionS2RMatcher {
         return null;
     }
 
-    public String getLiteralValue(String textVal) {
+    public static String getLiteralValue(String textVal) {
         PreProcessedText preProcessedText = preprocessText(textVal);
         if (preProcessedText.preprocessedTokens.size() != 2) return null;
         String firstToken = preProcessedText.preprocessedTokens.get(0).getWord();
@@ -739,14 +739,14 @@ class NLActionS2RMatcher {
         return null;
     }
 
-    public boolean isLiteralValue(String token) {
+    public static boolean isLiteralValue(String token) {
 
         if (isQuoted(token)) return true;
 
         return StringUtils.isNumeric(token) || (token != null && TextProcessor.isNumber(token));
     }
 
-    private boolean isQuoted(String token) {
+    private static boolean isQuoted(String token) {
         if (token == null)
             return false;
 
@@ -866,7 +866,7 @@ class NLActionS2RMatcher {
         return ComponentType.TEXT_FIELD.equals(getComponentType(componentName));
     }
 
-    private PreProcessedText preprocessText(String rawText) {
+    private static PreProcessedText preprocessText(String rawText) {
 
         PreProcessedText preprocessedText = new PreProcessedText();
 
@@ -1004,6 +1004,9 @@ class NLActionS2RMatcher {
                     String name = component.getType();
                     String text = component.getText();
                     String description = component.getContentDescription();
+                    String idXml = component.getIdXml();
+
+//                    log.debug(String.format("%s %s %s %s", name, text, description, idXml));
 
                     if (skipTextViews && !StringUtils.isEmpty(name) && name.endsWith(".TextView"))
                         return 0.0;
@@ -1012,9 +1015,8 @@ class NLActionS2RMatcher {
                     matchingScore = computeLcsScore(textToMatch, description, matchFirst);
                     if (matchingScore != 0) return matchingScore;
 
-                    String idXml = component.getIdXml();
                     if (!StringUtils.isEmpty(idXml) && idXml.contains("/")) {
-                        String compId = idXml.substring(idXml.indexOf("/") + 1, idXml.length());
+                        String compId = idXml.substring(idXml.indexOf("/") + 1);
                         matchingScore = computeLcsScore(textToMatch, compId, matchFirst);
                         if (matchingScore != 0) return matchingScore;
                     }
@@ -1566,11 +1568,11 @@ class NLActionS2RMatcher {
         String lcs = solver.getLongestCommonSubstring().toString();
 
         //-----------------------------
-        if (matchFirst && !lcs.isEmpty()) {
+  /*      if (matchFirst && !lcs.isEmpty()) {
             if (lcs.charAt(0) != encodePosition(0) || lcs.length() <= 1) {
                 return 0;
             }
-        }
+        }*/
 
         double lengthAvg = ((double) (encodedText1.length() + encodedText2.length())) / 2;
         return ((double) lcs.length()) / lengthAvg;
@@ -1595,7 +1597,7 @@ class NLActionS2RMatcher {
         return (char) (i + 33);
     }
 
-    private List<Token> tokenize(String text, String[] preprocessingOptions) {
+    private static List<Token> tokenize(String text, String[] preprocessingOptions) {
         List<Sentence> sentences = TextProcessor.preprocessText(text, null, preprocessingOptions);
 
         //must be only one sentence

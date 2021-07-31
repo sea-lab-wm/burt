@@ -1,0 +1,1 @@
+Set current weight using the keyboard.

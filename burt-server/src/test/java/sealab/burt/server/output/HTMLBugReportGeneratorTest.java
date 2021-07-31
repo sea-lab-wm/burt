@@ -1,14 +1,12 @@
 package sealab.burt.server.output;
 
 import org.junit.jupiter.api.Test;
-import sealab.burt.server.StateVariable;
-import sealab.burt.server.conversation.ConversationState;
+import sealab.burt.server.conversation.state.ConversationState;
 
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.*;
 

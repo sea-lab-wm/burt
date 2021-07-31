@@ -6,12 +6,17 @@ import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.entity.KeyValues;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.WidgetName;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -22,7 +27,6 @@ public @Slf4j
 class SelectOBScreenAction extends ChatBotAction {
 
     public static final int MAX_OB_SCREENS_TO_SHOW = 5;
-    public static final Integer MAX_OB_SCREEN_ATTEMPTS = 3;
 
     public SelectOBScreenAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
@@ -41,15 +45,12 @@ class SelectOBScreenAction extends ChatBotAction {
         int currentObScreenPosition = 0;
         state.put(StateVariable.CURRENT_OB_SCREEN_POSITION, currentObScreenPosition);
 
-        Integer currentAttempt = (Integer) state.putIfAbsent(StateVariable.CURRENT_ATTEMPT_OB_SCREENS, 1);
-        if (currentAttempt != null) {
-            state.put(StateVariable.CURRENT_ATTEMPT_OB_SCREENS, ++currentAttempt);
-        }
+        state.initOrIncreaseCurrentAttemptObScreens();
 
         //-----------------------------------
 
         log.debug("Multiple matched states: " + matchedStates.size());
-        log.debug("Current attempt for OB screen selection: " + currentAttempt);
+//        log.debug("Current attempt for OB screen selection: " + currentAttempt);
 
         //----------------------------------------
 
@@ -60,7 +61,8 @@ class SelectOBScreenAction extends ChatBotAction {
             throw new RuntimeException("There are no options to show");
 
         return createChatBotMessages(
-                "Got it. From the list below, can you please select the screen that is having the problem?",
+                "Got it. From the list below, can you please select the screen that is having or triggering the " +
+                        "problem?",
                 new ChatBotMessage(messageObj, options, false));
     }
 
@@ -68,6 +70,7 @@ class SelectOBScreenAction extends ChatBotAction {
                                                      ConversationState state,
                                                      int initialResult) {
         int maxNumOfResults = initialResult + MAX_OB_SCREENS_TO_SHOW;
+        Set<String> uniqueOptionKeys = new LinkedHashSet<>();
         return IntStream.range(initialResult, maxNumOfResults)
                 .mapToObj(optionPosition -> {
                             if (matchedStates.size() <= optionPosition) return null;
@@ -81,9 +84,17 @@ class SelectOBScreenAction extends ChatBotAction {
                             }
 
                             String screenshotFile = getScreenshotPathForGraphState(graphState, state);
-                            return new KeyValues(Integer.toString(optionPosition),
+                            String key = Integer.toString(optionPosition);
+
+                            if (uniqueOptionKeys.contains(key))
+                                throw new RuntimeException(String.format("An option with the key %s already exists",
+                                        key));
+                            else
+                                uniqueOptionKeys.add(key);
+
+                            return new KeyValues(key,
                                     (optionPosition + 1) + ". " + description +
-                                            " ("+ graphState.getUniqueHash().toString() +")", screenshotFile);
+                                            " (" + graphState.getUniqueHash().toString() + ")", screenshotFile);
                         }
 
                 )

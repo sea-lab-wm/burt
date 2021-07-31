@@ -6,7 +6,6 @@ edt,edit text,text field,field
 back icon,up icon,navigate back,navigate up
 search youtube icon,ytsearch
 cost,price,amount
-settings,preferences
 date,time,datetime,period
 backup,back up
 spreadsheet,csv

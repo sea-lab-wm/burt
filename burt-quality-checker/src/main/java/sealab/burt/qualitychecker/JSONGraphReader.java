@@ -14,6 +14,7 @@ import edu.semeru.android.testing.helpers.UiAutoConnector;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.eclipse.jdt.internal.compiler.env.IGenericField;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.qualitychecker.graph.*;
@@ -71,22 +72,20 @@ class JSONGraphReader {
                 String.join("-", packageName, appVersion)).toString();
 
         String key = getKey(appName, appVersion);
-        log.debug("Reading graph from JSON files for " + key);
+//        log.debug("Reading graph from JSON files for " + key);
 
         List<Execution> crashScopeExecutions = readExecutions(dataLocation);
-
-        App app = crashScopeExecutions.get(0).getApp();
-
-        //----------------------------------------
-
         GraphGenerator generator = new GraphGenerator();
 
-        AppGraphInfo partialGraph = generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
+        // changed code: check if crashScopeExecutions is empty
+        if (!crashScopeExecutions.isEmpty()) {
+            App app = crashScopeExecutions.get(0).getApp();
 
-        if (partialGraph == null || partialGraph.getGraph().vertexSet().isEmpty())
-            throw new RuntimeException("The graph is empty");
+            //----------------------------------------
 
-//        graphs.put(key, partialGraph);
+            generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
+        }
+
         ///-------------------------------------------------
 
         //1. read execution files for TraceReplayer
@@ -97,7 +96,12 @@ class JSONGraphReader {
         List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
 
         //2. update the graph (update the weights, and create new GraphStates and Transitions if needed)
-        AppGraphInfo finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+
+        AppGraphInfo finalGraph = null;
+        if (!traceReplayerExecutions.isEmpty()) {
+            App app = traceReplayerExecutions.get(0).getApp();
+            finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+        }
 
         if (finalGraph == null || finalGraph.getGraph().vertexSet().isEmpty())
             throw new RuntimeException("The graph is empty");
@@ -141,13 +145,22 @@ class JSONGraphReader {
     private static List<Execution> readExecutions(String dataLocation) throws Exception {
 
         //--------------------------
-
-        List<Path> executionFiles = Files.find(Paths.get(dataLocation), 1,
-                (path, attr) -> path.toFile().getName().startsWith("Execution-"))
-                .collect(Collectors.toList());
+//        List<Path> executionFiles = Files.find(Paths.get(dataLocation), 1,
+//                (path, attr) -> path.toFile().getName().startsWith("Execution-"))
+//                .collect(Collectors.toList());
+        //------ changed code: check if the path exists---------------//
+        List<Path> executionFiles = new ArrayList<>();
+        File folder = new File(String.valueOf(Paths.get(dataLocation)));
+        if (folder.exists() && folder.isDirectory()){
+            executionFiles = Files.find(Paths.get(dataLocation), 1,
+                    (path, attr) -> path.toFile().getName().startsWith("Execution-"))
+                    .collect(Collectors.toList());
+        }
+        //------ new code: check if the path exists---------------//
 
         if (executionFiles.isEmpty())
-            throw new RuntimeException("There are no execution files in " + dataLocation);
+//            throw new RuntimeException("There are no execution files in " + dataLocation);
+            log.debug("There are no execution files in " + dataLocation);
 
         log.debug("Reading execution data from : " + executionFiles);
 
@@ -215,7 +228,8 @@ class JSONGraphReader {
 
 
         if (executions.isEmpty())
-            throw new RuntimeException("There is no execution data to build the graph");
+//            throw new RuntimeException("There is no execution data to build the graph");
+            log.debug("There is no execution data to build the graph");
 
         return executions;
 

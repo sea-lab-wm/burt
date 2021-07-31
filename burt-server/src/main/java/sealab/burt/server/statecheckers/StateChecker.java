@@ -9,9 +9,9 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.server.actions.ActionName;
-import sealab.burt.server.conversation.ConversationState;
-import sealab.burt.server.conversation.MessageObj;
-import sealab.burt.server.conversation.UserResponse;
+import sealab.burt.server.conversation.state.ConversationState;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.UserResponse;
 
 import static sealab.burt.server.StateVariable.*;
 

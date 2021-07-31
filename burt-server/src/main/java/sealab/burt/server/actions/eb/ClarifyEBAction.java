@@ -2,13 +2,16 @@ package sealab.burt.server.actions.eb;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.*;
+import sealab.burt.server.conversation.entity.ChatBotMessage;
+import sealab.burt.server.conversation.entity.KeyValues;
+import sealab.burt.server.conversation.entity.MessageObj;
+import sealab.burt.server.conversation.entity.WidgetName;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.EB_STATE;
 import static sealab.burt.server.StateVariable.REPORT_OB;
@@ -36,8 +39,8 @@ public class ClarifyEBAction extends ChatBotAction {
         if(bugReportElement.getOriginalElement() !=null)
             state.put(EB_STATE, bugReportElement.getOriginalElement());
 
-        return createChatBotMessages("Okay, the description of the expected behavior reads rather general.",
-                optionMessage);
+        return createChatBotMessages("Okay, the description of the expected behavior doesn't seem to match " +
+                        "the problematic app screen.", optionMessage);
     }
 
 }

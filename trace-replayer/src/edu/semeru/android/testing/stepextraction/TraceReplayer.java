@@ -85,7 +85,7 @@ public class TraceReplayer {
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private int sequence = 0;
     public boolean takeScreenshots = false;
-    private int executionCtr = 10;
+    private int executionCtr = 5;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
     
@@ -113,13 +113,13 @@ public class TraceReplayer {
         String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "antennapod";
-        String appPackage = "de.danoeh.antennapod.debug";
-        String appVersion = "1.6.2.3";
-        String mainActivity = "de.danoeh.antennapod.activity.MainActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P2TracesModified/GNU-RC/gnu_cash_GNU-RC.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesModified/Antennapod/getevent-1.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTracesOutput/gnucashAll-1.0.3/gnucash-1.0.3";
+        String appName = "token";
+        String appPackage = "uk.co.bitethebullet.android.token";
+        String appVersion = "2.10";
+        String mainActivity = "uk.co.bitethebullet.android.token.TokenList";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesForModifiedEvaluation/TOKEN/token.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/P1TracesForModifiedEvaluation/TOKEN/getevent-5.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/CollectedTracesOutput/tokenAll-2.10/token-2.10";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -277,10 +277,12 @@ public class TraceReplayer {
                             adbPort, replayerFeatures.getUiDumpLocation() + sequence);                  
                     
                     boolean isLoginInfo = false;
+                    boolean error = true; // to check if there is any error in the UI implementation
                     for (DynGuiComponentVO component : screenInfoEmulator) {
                         if (component.getIdXml().equals(vo.getHvInfoComponent().getIdXml()) && component.getText().length()>0) {
                         	
                         	isLoginInfo = true;
+                        	error = false;
                             vo.setHvInfoComponent(component);
                             vo.setText(component.getText());
 
@@ -299,9 +301,12 @@ public class TraceReplayer {
                             String currstep = Integer.toString(sequence - 1);   // Here the current step is actually the current sequence minus 1
 
                             String currscreenshot = appPackage + "_" + appVersion + "_" + appName + currstep + ".png";
-                            
-                            Utilities.getAndPullScreenshot(androidSDKPath, outputFolder + File.separator
-                                    + "screenshots", appPackage + "." + "User-Trace" + "." +
+
+                            Utilities.copyFiles(replayerFeatures.getUiDumpLocation() + (sequence-1) + ".xml", replayerFeatures.getUiDumpLocation() + sequence + ".xml");
+                        	Utilities.copyFiles(outputFolder + File.separator
+                                    + "screenshots" + File.separator +  appPackage + "." + "User-Trace" + "." + 
+                                            + executionCtr + "." + currscreenshot, outputFolder + File.separator
+                                    + "screenshots" + File.separator +  appPackage + "." + "User-Trace" + "." + 
                                             + executionCtr + "." + screenshot);
                     
                             takeAugmentedScreenshot(step, screenWidth, screenHeight, outputFolder, appPackage, currscreenshot, screenshot);
@@ -317,13 +322,16 @@ public class TraceReplayer {
                         }
                     }
                     
+                    
+                    
                     if(!isLoginInfo) { //for search
                         for (DynGuiComponentVO component : screenInfo) {
-                        	if(component.isFocused()) {
+                        	if(component.isFocused() || component.getIdXml().endsWith("id/search_src_text")) {
                         		System.out.println(component);
                         		if(guiEventVO.getRealInitialY()>1128 && Utilities.isKeyboardActive(androidSDKPath)) {
                         			isSearchActivity = true;
                         		}
+                        		error = false;
                         		vo.setHvInfoComponent(component);
                                 vo.setText(component.getText());
 
@@ -348,7 +356,7 @@ public class TraceReplayer {
 	                                        + "screenshots", appPackage + "." + "User-Trace" + "." + 
 	                                                + executionCtr + "." + screenshot);
                                 } else {
-                                	Utilities.copyFiles(replayerFeatures.getUiDumpLocation() + (sequence-1), replayerFeatures.getUiDumpLocation() + sequence);
+                                	Utilities.copyFiles(replayerFeatures.getUiDumpLocation() + (sequence-1) + ".xml", replayerFeatures.getUiDumpLocation() + sequence + ".xml");
                                 	Utilities.copyFiles(outputFolder + File.separator
 	                                        + "screenshots" + File.separator +  appPackage + "." + "User-Trace" + "." + 
 	                                                + executionCtr + "." + currscreenshot, outputFolder + File.separator
@@ -365,6 +373,10 @@ public class TraceReplayer {
                                 steps.add(step);      
                         	}
                         }
+                    } 
+                    
+                    if(error) {
+                    	sequence--;
                     }
                     
                     keyboardActive = false;                      
