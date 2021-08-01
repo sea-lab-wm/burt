@@ -19,7 +19,7 @@ class AttemptManager {
     }
 
     public static final Integer MAX_ATTEMPTS_3 = 3;
-    public static final Integer MAX_ATTEMPTS_2 = 2;
+//    public static final Integer MAX_ATTEMPTS_2 = 2;
 
     private final HashMap<AttemptType, MutablePair<Integer, Integer>> attempts = new LinkedHashMap<>() {
         {

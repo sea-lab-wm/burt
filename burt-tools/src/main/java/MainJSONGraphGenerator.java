@@ -1,5 +1,6 @@
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.view.mxGraph;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -18,8 +19,12 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.Supplier;
 
 public
 @Slf4j
@@ -40,9 +45,43 @@ class MainJSONGraphGenerator {
 
     public static void main(String[] args) throws Exception {
 
-        for (ImmutablePair<String, String> system : ALL_SYSTEMS) {
-            generateAndSaveGraph(system);
+        int nThreads = 6;
+        ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+
+        //list of all futures
+        List<CompletableFuture<Boolean>> futures = new ArrayList<>();
+        try {
+
+                for (ImmutablePair<String, String> system : ALL_SYSTEMS) {
+                    futures.add(CompletableFuture.supplyAsync(new Supplier<Boolean>() {
+                        @SneakyThrows
+                        @Override
+                        public Boolean get() {
+                            generateAndSaveGraph(system);
+                            return true;
+                        }
+                    }, executor));
+                }
+
+
+            log.debug("Waiting for futures: " + futures.size());
+
+            //wait until all futures finish, and then continue with the processing
+            CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new))
+                    .thenAccept(ignored -> {
+                                    log.debug("All systems were processed");
+                            }
+                    ).exceptionally(exception -> {
+                log.error("There was an error: " + exception.getMessage(), exception);
+                return null;
+            });
+
+        } finally {
+            executor.shutdown();
         }
+
+        log.debug("Reached end");
+
     }
 
     private static void generateAndSaveGraph(ImmutablePair<String, String> system) throws Exception {

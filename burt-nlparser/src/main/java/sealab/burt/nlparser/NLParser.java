@@ -33,7 +33,8 @@ class NLParser {
         text = text.replace("I type ", "I enter ")
                 .replace("i type", "I enter")
                 .replace("i input", "I enter")
-                .replace("I input", "I enter");
+                .replace("I input", "I enter")
+                .replace(" typing", " entering");
         if (text.toLowerCase().startsWith("enter"))
             text = "I " + text;
         else if (text.trim().startsWith("i ")) {
