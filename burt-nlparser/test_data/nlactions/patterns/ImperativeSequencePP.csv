@@ -1,3 +1,4 @@
+"+";"go back";"[{"sub":"user", "act":"go back"}]"
 //"+";"click another day";"[{"sub":"user", "act":"click", "obj":"another day"}]"
 "+";"Now again select " Export view to csv"";"[{"sub":"user", "act":"select", "obj":"\" Export view to csv\""}]"
 "+";"click the "preferences icon"";"[{"sub":"user", "act":"click", "obj":"\"preferences icon\""}]"

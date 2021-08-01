@@ -49,8 +49,10 @@ class S2RCheckerTestIdealScenarios {
     @Test
     void testSingleS2RChecking() throws Exception {
 //        String s2r = "I entered 23 gallons";
-        String s2r = "I closed the app";
-        var app = new ImmutablePair<>("android-mileage", "3.1.1");
+//        String s2r = "I closed the app";
+//        var app = new ImmutablePair<>("android-mileage", "3.1.1");
+        String s2r = "go back to last screen";
+        var app = new ImmutablePair<>("gnucash", "1.0.3");
 
         S2RChecker checker = new S2RChecker(app.getKey(), app.getValue());
 

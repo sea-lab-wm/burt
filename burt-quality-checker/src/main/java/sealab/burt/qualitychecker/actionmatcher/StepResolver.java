@@ -164,35 +164,48 @@ class StepResolver {
 
         log.debug("Finding action in graph >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
+        //-----------------------------------------------
+
         Appl app = executionGraph.getApp();
 
+        Integer event = -100;
         try {
-            AppStep openAppStep = getOpenAppStep(currNLAction, app);
-            if (openAppStep != null) {
-                openAppStep.setCurrentState(currentState);
-
-                //if it is 'open app', there will be only one outgoing transition
-                GraphTransition outgoingEdge = executionGraph.getGraph().outgoingEdgesOf(currentState)
-                        .stream()
-                        .findFirst()
-                        .orElse(null);
-                openAppStep.setTransition(outgoingEdge);
-
-                return new ResolvedStepResult(openAppStep);
-            }
-
-        } catch (ActionMatchingException e) {
-            //The open app step should not fail, if it does, then the action is not an open app step
-        }
-
-        try {
-            AppStep closeAppStep = getCloseAppStep(currNLAction, app);
-            if (closeAppStep != null) {
-                closeAppStep.setCurrentState(currentState);
-                return new ResolvedStepResult(closeAppStep);
-            }
+            event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
         } catch (ActionMatchingException e) {
             //ok
+        }
+
+        //check for open app
+        final boolean isOpenApp = DeviceUtils.isOpenApp(event);
+        AppStep appStep = null;
+        if (isOpenApp) {
+            appStep = new AppStep(event, null, app.getPackageName());
+            appStep.setScreenshotFile(null); //FIXME: change the screenshot file for "open app"
+            appStep.setCurrentState(currentState);
+
+            //if it is 'open app', there will be only one outgoing transition
+            GraphTransition outgoingEdge = executionGraph.getGraph().outgoingEdgesOf(currentState)
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+            appStep.setTransition(outgoingEdge);
+
+            return new ResolvedStepResult(appStep);
+        }
+
+        //check for close app or click back button
+        final boolean isCloseEvent = DeviceUtils.isCloseApp(event);
+        final boolean isAppWord = GeneralUtils.isAppWord(currNLAction.getObject(), app.getName(),
+                app.getPackageName());
+
+        //FIXME: for click back button, do we need to check for additional cases like "go back to accounts"
+        boolean isClickBackButton = DeviceUtils.isClickBackButton(event);
+
+        if ( (isCloseEvent && isAppWord) || isClickBackButton)  {
+            appStep = new AppStep(event, null, app.getPackageName());
+            appStep.setScreenshotFile(null); //FIXME: change the screenshot file
+            appStep.setCurrentState(currentState);
+            return new ResolvedStepResult(appStep);
         }
 
         //--------------------------------------------------------------
@@ -259,7 +272,7 @@ class StepResolver {
                 final AppStep step = transition.getStep();
                 final Integer stepEvent = step.getAction();
                 return detectedEvent2.equals(stepEvent) || (isInputEvent && DeviceUtils.isAnyInputType(stepEvent)) ||
-                        (clickMenuButton && DeviceUtils.isClick(stepEvent))  ;
+                        (clickMenuButton && DeviceUtils.isClick(stepEvent));
             };
             final List<GraphTransition> candidateTransitions = executionGraph.getGraph().
                     outgoingEdgesOf(candidateState).stream().filter(filterPredicate).collect(Collectors.toList());
@@ -390,29 +403,6 @@ class StepResolver {
 
         return result;
 
-    }
-
-    private AppStep getOpenAppStep(NLAction currNLAction, Appl app) throws ActionMatchingException {
-        Integer event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
-        final boolean isOpenApp = DeviceUtils.isOpenApp(event);
-        if (isOpenApp) {
-            AppStep appStep = new AppStep(event, null, app.getPackageName());
-            appStep.setScreenshotFile(null); //FIXME: change the screenshot file for "open app"
-            return appStep;
-        }
-        return null;
-    }
-
-    public AppStep getCloseAppStep(NLAction currNLAction, Appl app) throws ActionMatchingException {
-        Integer event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
-        final boolean isCloseEvent = DeviceUtils.isCloseApp(event);
-        final boolean isAppWord = GeneralUtils.isAppWord(currNLAction.getObject(), app.getName(), app.getPackageName());
-        if (isCloseEvent && isAppWord) {
-            AppStep appStep = new AppStep(event, null, app.getPackageName());
-            appStep.setScreenshotFile(null);
-            return appStep;
-        }
-        return null;
     }
 
     /**

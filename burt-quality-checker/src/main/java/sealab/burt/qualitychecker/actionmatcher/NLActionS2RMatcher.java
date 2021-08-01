@@ -1649,6 +1649,8 @@ class NLActionS2RMatcher {
                 return DeviceActions.ROTATION;
             case CLOSE:
                 return DeviceActions.CLOSE_APP;
+            case BACK:
+                return DeviceActions.BACK;
         }
 
         return null;
@@ -1947,7 +1949,7 @@ class NLActionS2RMatcher {
 
 
     public enum ActionGroup {
-        OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE, CLOSE
+        OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE, CLOSE, BACK
     }
 
     public enum ComponentType {

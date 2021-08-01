@@ -3,6 +3,7 @@ package sealab.burt.server.actions.s2r.prediction;
 import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
 import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
@@ -80,7 +81,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
                 stateLoops = predictor.getStateLoops(currentState, lastStep, nonSelectedSteps);
 
                 if (stateLoops.isEmpty()) {
-                    return getLastStepMessage(state);
+                    return getLastStepMessage(state, bugReportElements.get(bugReportElements.size() - 1));
                 }
             }
 
@@ -134,10 +135,12 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
                 new ChatBotMessage(messageObj, stepOptions, true));
     }
 
-    private List<ChatBotMessage> getLastStepMessage(ConversationState state) {
+    private List<ChatBotMessage> getLastStepMessage(ConversationState state, BugReportElement lastStep) {
         setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
         state.put(StateVariable.CONFIRM_LAST_STEP, true);
-        return createChatBotMessages("Okay, is this the last step that you performed?");
+        return createChatBotMessages(String.format("Okay, is this the last step that you performed: \"%s\"?",
+                lastStep.getStringElement())
+        );
     }
 
     private List<ChatBotMessage> getNextStepMessage() {
