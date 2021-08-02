@@ -15,6 +15,9 @@ import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -159,6 +162,130 @@ class StepResolver {
     /**
      * TODO: We might need to return multiple steps
      */
+    public ResolvedStepResult resolveActionInGraphConcurrent(NLAction currNLAction, AppGraphInfo executionGraph,
+                                                             GraphState currentState) throws Exception {
+
+        log.debug("Finding action in graph >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+        //-----------------------------------------------
+
+        Appl app = executionGraph.getApp();
+
+        Integer event = -100;
+        try {
+            event = s2rParser.determineEvent(currNLAction, app, new ArrayList<>());
+        } catch (ActionMatchingException e) {
+            //ok
+        }
+
+        //check for open app
+        final boolean isOpenApp = DeviceUtils.isOpenApp(event);
+        AppStep appStep;
+        if (isOpenApp) {
+            appStep = new AppStep(event, null, app.getPackageName());
+            appStep.setScreenshotFile(null); //FIXME: change the screenshot file for "open app"
+            appStep.setCurrentState(currentState);
+
+            //if it is 'open app', there will be only one outgoing transition
+            GraphTransition outgoingEdge = executionGraph.getGraph().outgoingEdgesOf(currentState)
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+            appStep.setTransition(outgoingEdge);
+
+            return new ResolvedStepResult(appStep);
+        }
+
+        //check for close app or click back button
+        final boolean isCloseEvent = DeviceUtils.isCloseApp(event);
+        final boolean isAppWord = GeneralUtils.isAppWord(currNLAction.getObject(), app.getName(),
+                app.getPackageName());
+
+        //FIXME: for click back button, do we need to check for additional cases like "go back to accounts"
+        boolean isClickBackButton = DeviceUtils.isClickBackButton(event);
+
+        if ((isCloseEvent && isAppWord) || isClickBackButton) {
+            appStep = new AppStep(event, null, app.getPackageName());
+            appStep.setScreenshotFile(null); //FIXME: change the screenshot file
+            appStep.setCurrentState(currentState);
+            return new ResolvedStepResult(appStep);
+        }
+
+        //--------------------------------------------------------------
+
+        // 1. Get all considered nodes that are in range of GRAPH_MAX_DEPTH_CHECK
+        // TODO: check previously executed or seen states
+        LinkedHashMap<GraphState, Integer> candidateStates = new LinkedHashMap<>();
+        getCandidateGraphStates(executionGraph.getGraph(), candidateStates, currentState, 0, graphMaxDepthCheck);
+        candidateStates.remove(GraphState.START_STATE);
+
+        log.debug("Candidate states (" + candidateStates.size() + "): " + candidateStates);
+
+
+        //-----------------------
+
+        int nThreads = 6;
+        ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+
+        LinkedHashMap<GraphState, Integer> matchedStates = new LinkedHashMap<>();
+        //list of all futures
+        try {
+
+            List<CompletableFuture<MatchingS2RResult>> futures = new ArrayList<>();
+            for (Map.Entry<GraphState, Integer> candidateEntry : candidateStates.entrySet()) {
+                futures.add(CompletableFuture.supplyAsync(() ->
+                        processCandidateState(currNLAction, executionGraph, app, candidateEntry), executor));
+            }
+
+
+            log.debug("Waiting for futures: " + futures.size());
+
+            //wait until all futures finish, and then continue with the processing
+            CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
+
+            //--------------------------------------------
+            LinkedHashMap<AppStep, Integer> foundSteps = new LinkedHashMap<>();
+            final ResolvedStepResult result = new ResolvedStepResult();
+
+            //aggregate results
+            for (CompletableFuture<MatchingS2RResult> future : futures) {
+                MatchingS2RResult matchingResult = future.get();
+                matchingResult.matchingExceptions.forEach(result::addCount);
+                matchingResult.matchingResults.forEach(result::addCount);
+
+                //----------------------------
+
+                matchingResult.foundSteps.forEach((tempStep, distance) -> {
+                    final Integer currentDist = foundSteps.get(tempStep);
+                    if (currentDist == null) {
+                        foundSteps.put(tempStep, distance);
+                        log.debug(String.format("New candidate step found: %s", tempStep));
+
+                    } else if (currentDist > distance) {
+                        //we want to have the nearest step
+                        foundSteps.remove(tempStep);
+                        foundSteps.put(tempStep, distance);
+                        log.debug(String.format("Candidate step updated: %s", tempStep));
+                    }
+
+                });
+            }
+
+            log.debug("Candidate matched steps (" + foundSteps.size() + "):" + foundSteps);
+
+            sortAndRankSteps(result, foundSteps);
+
+            return result;
+
+        } finally {
+            executor.shutdown();
+        }
+
+    }
+
+    /**
+     * TODO: We might need to return multiple steps
+     */
     public ResolvedStepResult resolveActionInGraph(NLAction currNLAction, AppGraphInfo executionGraph,
                                                    GraphState currentState) {
 
@@ -201,7 +328,7 @@ class StepResolver {
         //FIXME: for click back button, do we need to check for additional cases like "go back to accounts"
         boolean isClickBackButton = DeviceUtils.isClickBackButton(event);
 
-        if ( (isCloseEvent && isAppWord) || isClickBackButton)  {
+        if ((isCloseEvent && isAppWord) || isClickBackButton) {
             appStep = new AppStep(event, null, app.getPackageName());
             appStep.setScreenshotFile(null); //FIXME: change the screenshot file
             appStep.setCurrentState(currentState);
@@ -222,149 +349,25 @@ class StepResolver {
 
         //-----------------------
 
+        List<MatchingS2RResult> matchingResults = new ArrayList<>();
+
         LinkedHashMap<AppStep, Integer> foundSteps = new LinkedHashMap<>();
         for (Entry<GraphState, Integer> candidateEntry : candidateStates.entrySet()) {
-            final GraphState candidateState = candidateEntry.getKey();
-            final Integer distance = candidateEntry.getValue();
+            MatchingS2RResult matchingS2RResult = processCandidateState(currNLAction, executionGraph, app,
+                    candidateEntry);
+            matchingResults.add(matchingS2RResult);
+        }
 
-            log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        //--------------------
+        //add the step to the map of found steps
+        for (MatchingS2RResult matchingResult : matchingResults) {
 
-            log.debug("Resolving event and component in candidate state/screen: " + candidateState.getUniqueHash());
+            matchingResult.matchingExceptions.forEach(result::addCount);
+            matchingResult.matchingResults.forEach(result::addCount);
 
-            //-------------------------------------
-            // Get the components of the current candidate screen
+            //----------------------------
 
-            List<AppGuiComponent> stateComponents = candidateState.getComponents();
-            if (stateComponents == null)
-                continue;
-
-            //filter out those components associated with a step, which duplicate existing components
-            stateComponents = stateComponents.stream()
-                    .filter(c -> c.getParent() != null || "NO_ID".equals(c.getIdXml()))
-                    .collect(Collectors.toList());
-
-            //-------------------------------------
-
-            // Determine event
-            Integer detectedEvent;
-            try {
-
-                log.debug("Resolving the event...");
-
-                detectedEvent = s2rParser.determineEvent(currNLAction, app, stateComponents);
-
-                log.debug(String.format("Resolved event: %s - %s", detectedEvent,
-                        GraphTransition.getAction(detectedEvent)));
-            } catch (ActionMatchingException e) {
-                log.debug("Could not determine the event in the candidate state/screen: "
-                        + candidateState.getUniqueHash() + " - " + e.getResult());
-                result.addCount(e);
-                continue;
-            }
-
-            //-------------------------------------
-            // Determine the candidate transitions that match the event
-
-            Integer detectedEvent2 = detectedEvent;
-            final boolean isInputEvent = DeviceUtils.isAnyInputType(detectedEvent2);
-            boolean clickMenuButton = DeviceUtils.isClickMenuButton(detectedEvent2);
-            final Predicate<GraphTransition> filterPredicate = transition -> {
-                final AppStep step = transition.getStep();
-                final Integer stepEvent = step.getAction();
-                return detectedEvent2.equals(stepEvent) || (isInputEvent && DeviceUtils.isAnyInputType(stepEvent)) ||
-                        (clickMenuButton && DeviceUtils.isClick(stepEvent));
-            };
-            final List<GraphTransition> candidateTransitions = executionGraph.getGraph().
-                    outgoingEdgesOf(candidateState).stream().filter(filterPredicate).collect(Collectors.toList());
-
-            if (candidateTransitions.isEmpty()) {
-                log.debug("No candidate transitions for candidate state/screen: "
-                        + candidateState.getUniqueHash());
-                //result.addCount(ParsingResult.ACTION_NOT_MATCHED);
-                continue;
-            }
-
-            //-------------------------------------
-            // Determine the component
-
-            Entry<AppGuiComponent, Double> component;
-
-            try {
-                log.debug("Resolving the component...");
-
-                component = s2rParser.determineComponent(currNLAction, stateComponents, detectedEvent, true);
-                result.addCount(MatchingResult.COMPONENT_FOUND);
-
-
-                log.debug(String.format("Resolved component: %s", component));
-            } catch (ActionMatchingException e) {
-                log.debug("Could not find the component in the candidate state/screen: "
-                        + candidateState.getUniqueHash() + " - " + e.getResult());
-                if (e.getResult().equals(MatchingResult.MULTIPLE_COMPONENTS_FOUND)) {
-                    if (e.getResultData() != null) log.debug(e.getResultData().toString());
-                }
-                result.addCount(e);
-                continue;
-            }
-
-            //-------------------------------------
-            // Determine the text
-
-            String text = null;
-            try {
-                Long componentId = null;
-                if (component != null) {
-                    componentId = component.getKey().getDbId();
-                }
-                text = s2rParser.determineText(app, detectedEvent, componentId, currNLAction);
-                text = DeviceUtils.encodeText(text);
-            } catch (ActionMatchingException e) {
-                log.debug("Could not determine the text for the candidate state/screen: "
-                        + candidateState.getUniqueHash() + " - " + e.getResult());
-                result.addCount(e);
-//                continue; //it should be ok to not being able to identify the text as later this is checked
-            }
-
-            //-------------------------------------
-
-            log.debug("<--------------------------------");
-            log.debug("Candidate transitions (" + candidateTransitions.size() + "):" + candidateTransitions);
-            log.debug(String.format("Event identified: %s - %s", detectedEvent,
-                    GraphTransition.getAction(detectedEvent)));
-            log.debug(String.format("Component identified: %s", component));
-            log.debug(String.format("Text identified: %s", text));
-            log.debug("-------------------------------->");
-
-            log.debug("Checking if candidate transitions match the graph");
-
-            // Get the step from the graph based on the <event, component> search above
-            for (GraphTransition transition : candidateTransitions) {
-                AppStep transitionStep = transition.getStep();
-
-                if (!checkIfComponentsMatch(component, transitionStep)) {
-                    log.debug("--------------------------------");
-                    log.debug("No valid transition on component");
-                    log.debug(String.format("Transition: %s - %s", transition, transitionStep));
-                    log.debug(String.format("Component: %s", component));
-                    continue;
-                }
-
-                //build the step
-                AppStep tempStep = new AppStep(detectedEvent, transitionStep.getComponent(), text);
-                tempStep.setId(transitionStep.getId());
-                tempStep.setExecution(transitionStep.getExecution());
-                tempStep.setException(transitionStep.getException());
-                tempStep.setCurrentState(transition.getSourceState());
-                tempStep.setTransition(transition);
-                tempStep.setScreenshotFile(transitionStep.getScreenshotFile());
-                tempStep.setSequence(transitionStep.getSequence());
-                if (component != null) {
-                    tempStep.setComponent(component.getKey());
-                }
-
-                //--------------------
-                //add the step to the map of found steps
-
+            matchingResult.foundSteps.forEach((tempStep, distance) -> {
                 final Integer currentDist = foundSteps.get(tempStep);
                 if (currentDist == null) {
                     foundSteps.put(tempStep, distance);
@@ -376,12 +379,21 @@ class StepResolver {
                     foundSteps.put(tempStep, distance);
                     log.debug(String.format("Candidate step updated: %s", tempStep));
                 }
-            }
+
+            });
 
         }
 
+
         log.debug("Candidate matched steps (" + foundSteps.size() + "):" + foundSteps);
 
+        sortAndRankSteps(result, foundSteps);
+
+        return result;
+
+    }
+
+    private void sortAndRankSteps(ResolvedStepResult result, LinkedHashMap<AppStep, Integer> foundSteps) {
         // sort base on the score
         List<ImmutablePair<AppStep, Double>> stepScores = new ArrayList<>();
 
@@ -400,9 +412,159 @@ class StepResolver {
         if (!stepScores.isEmpty()) {
             result.setStep(stepScores.get(0).left);
         }
+    }
+
+    private MatchingS2RResult processCandidateState(NLAction currNLAction, AppGraphInfo executionGraph,
+                                                    Appl app,
+                                                    Entry<GraphState, Integer> candidateEntry) {
+
+        MatchingS2RResult result = new MatchingS2RResult();
+
+        //----------------------------
+
+        final GraphState candidateState = candidateEntry.getKey();
+        final Integer distance = candidateEntry.getValue();
+
+        log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+        log.debug("Resolving event and component in candidate state/screen: " + candidateState.getUniqueHash());
+
+        //-------------------------------------
+        // Get the components of the current candidate screen
+
+        List<AppGuiComponent> stateComponents = candidateState.getComponents();
+        if (stateComponents == null)
+            return result;
+
+        //filter out those components associated with a step, which duplicate existing components
+        stateComponents = stateComponents.stream()
+                .filter(c -> c.getParent() != null || "NO_ID".equals(c.getIdXml()))
+                .collect(Collectors.toList());
+
+        //-------------------------------------
+
+        // Determine event
+        Integer detectedEvent;
+        try {
+
+            log.debug("Resolving the event...");
+
+            detectedEvent = s2rParser.determineEvent(currNLAction, app, stateComponents);
+
+            log.debug(String.format("Resolved event: %s - %s", detectedEvent,
+                    GraphTransition.getAction(detectedEvent)));
+        } catch (ActionMatchingException e) {
+            log.debug("Could not determine the event in the candidate state/screen: "
+                    + candidateState.getUniqueHash() + " - " + e.getResult());
+            result.addCount(e);
+            return result;
+        }
+
+        //-------------------------------------
+        // Determine the candidate transitions that match the event
+
+        Integer detectedEvent2 = detectedEvent;
+        final boolean isInputEvent = DeviceUtils.isAnyInputType(detectedEvent2);
+        boolean clickMenuButton = DeviceUtils.isClickMenuButton(detectedEvent2);
+        final Predicate<GraphTransition> filterPredicate = transition -> {
+            final AppStep step = transition.getStep();
+            final Integer stepEvent = step.getAction();
+            return detectedEvent2.equals(stepEvent) || (isInputEvent && DeviceUtils.isAnyInputType(stepEvent)) ||
+                    (clickMenuButton && DeviceUtils.isClick(stepEvent));
+        };
+        final List<GraphTransition> candidateTransitions = executionGraph.getGraph().
+                outgoingEdgesOf(candidateState).stream().filter(filterPredicate).collect(Collectors.toList());
+
+        if (candidateTransitions.isEmpty()) {
+            log.debug("No candidate transitions for candidate state/screen: "
+                    + candidateState.getUniqueHash());
+            //result.addCount(ParsingResult.ACTION_NOT_MATCHED);
+            return result;
+        }
+
+        //-------------------------------------
+        // Determine the component
+
+        Entry<AppGuiComponent, Double> component;
+
+        try {
+            log.debug("Resolving the component...");
+
+            component = s2rParser.determineComponent(currNLAction, stateComponents, detectedEvent, true);
+            result.addCount(MatchingResult.COMPONENT_FOUND);
+
+
+            log.debug(String.format("Resolved component: %s", component));
+        } catch (ActionMatchingException e) {
+            log.debug("Could not find the component in the candidate state/screen: "
+                    + candidateState.getUniqueHash() + " - " + e.getResult());
+            if (e.getResult().equals(MatchingResult.MULTIPLE_COMPONENTS_FOUND)) {
+                if (e.getResultData() != null) log.debug(e.getResultData().toString());
+            }
+            result.addCount(e);
+            return result;
+        }
+
+        //-------------------------------------
+        // Determine the text
+
+        String text = null;
+        try {
+            Long componentId = null;
+            if (component != null) {
+                componentId = component.getKey().getDbId();
+            }
+            text = s2rParser.determineText(app, detectedEvent, componentId, currNLAction);
+            text = DeviceUtils.encodeText(text);
+        } catch (ActionMatchingException e) {
+            log.debug("Could not determine the text for the candidate state/screen: "
+                    + candidateState.getUniqueHash() + " - " + e.getResult());
+            result.addCount(e);
+//                continue; //it should be ok to not being able to identify the text as later this is checked
+        }
+
+        //-------------------------------------
+
+        log.debug("<--------------------------------");
+        log.debug("Candidate transitions (" + candidateTransitions.size() + "):" + candidateTransitions);
+        log.debug(String.format("Event identified: %s - %s", detectedEvent,
+                GraphTransition.getAction(detectedEvent)));
+        log.debug(String.format("Component identified: %s", component));
+        log.debug(String.format("Text identified: %s", text));
+        log.debug("-------------------------------->");
+
+        log.debug("Checking if candidate transitions match the graph");
+
+        // Get the step from the graph based on the <event, component> search above
+        for (GraphTransition transition : candidateTransitions) {
+            AppStep transitionStep = transition.getStep();
+
+            if (!checkIfComponentsMatch(component, transitionStep)) {
+                log.debug("--------------------------------");
+                log.debug("No valid transition on component");
+                log.debug(String.format("Transition: %s - %s", transition, transitionStep));
+                log.debug(String.format("Component: %s", component));
+                continue;
+            }
+
+            //build the step
+            AppStep tempStep = new AppStep(detectedEvent, transitionStep.getComponent(), text);
+            tempStep.setId(transitionStep.getId());
+            tempStep.setExecution(transitionStep.getExecution());
+            tempStep.setException(transitionStep.getException());
+            tempStep.setCurrentState(transition.getSourceState());
+            tempStep.setTransition(transition);
+            tempStep.setScreenshotFile(transitionStep.getScreenshotFile());
+            tempStep.setSequence(transitionStep.getSequence());
+            if (component != null) {
+                tempStep.setComponent(component.getKey());
+            }
+
+            result.putFoundStep(tempStep, distance);
+
+        }
 
         return result;
-
     }
 
     /**
@@ -660,4 +822,22 @@ class StepResolver {
         return new AbstractMap.SimpleEntry(step, compScore);
     }
 
+    private static class MatchingS2RResult {
+
+        List<ActionMatchingException> matchingExceptions = new ArrayList<>();
+        List<MatchingResult> matchingResults = new ArrayList<>();
+        LinkedHashMap<AppStep, Integer> foundSteps = new LinkedHashMap<>();
+
+        public void addCount(ActionMatchingException e) {
+            matchingExceptions.add(e);
+        }
+
+        public void addCount(MatchingResult componentFound) {
+            matchingResults.add(componentFound);
+        }
+
+        public void putFoundStep(AppStep tempStep, Integer distance) {
+            foundSteps.put(tempStep, distance);
+        }
+    }
 }

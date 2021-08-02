@@ -53,7 +53,7 @@ class MainJSONGraphGenerator {
         try {
 
                 for (ImmutablePair<String, String> system : ALL_SYSTEMS) {
-                    futures.add(CompletableFuture.supplyAsync(new Supplier<Boolean>() {
+                    futures.add(CompletableFuture.supplyAsync(new Supplier<>() {
                         @SneakyThrows
                         @Override
                         public Boolean get() {
@@ -68,9 +68,7 @@ class MainJSONGraphGenerator {
 
             //wait until all futures finish, and then continue with the processing
             CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new))
-                    .thenAccept(ignored -> {
-                                    log.debug("All systems were processed");
-                            }
+                    .thenAccept(ignored -> log.debug("All systems were processed")
                     ).exceptionally(exception -> {
                 log.error("There was an error: " + exception.getMessage(), exception);
                 return null;
