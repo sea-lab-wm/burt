@@ -175,7 +175,7 @@ public class ConversationTestData {
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("3")));
+                    Collections.singletonList("4")));
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB

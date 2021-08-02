@@ -19,26 +19,26 @@ class AttemptManager {
     }
 
     public static final Integer MAX_ATTEMPTS_3 = 3;
-//    public static final Integer MAX_ATTEMPTS_2 = 2;
+    public static final Integer MAX_ATTEMPTS_2 = 2;
 
     private final HashMap<AttemptType, MutablePair<Integer, Integer>> attempts = new LinkedHashMap<>() {
         {
             //OB
-            put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.OB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //confirmation of OB HQ
+            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //no screen match
+            put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //multiple screens matched
+            put(AttemptType.OB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //no parsed
 
             //EB
-            put(AttemptType.EB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.EB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.EB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_2, -1));
+            put(AttemptType.EB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_2, -1));
 
             //S2R
-            put(AttemptType.S2R_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.S2R_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.S2R_AMBIGUOUS, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.S2R_MATCHED, new MutablePair<>(MAX_ATTEMPTS_3, -1));
-            put(AttemptType.S2R_INPUT, new MutablePair<>(MAX_ATTEMPTS_3, -1));
+            put(AttemptType.S2R_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //no step matched
+            put(AttemptType.S2R_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //no step parsed
+            put(AttemptType.S2R_AMBIGUOUS, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //multiple match
+            put(AttemptType.S2R_MATCHED, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //confirmation of S2R HQ
+            put(AttemptType.S2R_INPUT, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //missing input
 
         }
     };

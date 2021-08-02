@@ -3,7 +3,6 @@ package sealab.burt.server.actions.s2r.prediction;
 import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
 import sealab.burt.qualitychecker.S2RChecker;
-import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
@@ -49,29 +48,46 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         BugReportElement obReportElement = obReportElements.get(0);
 
-        GraphState targetState;
+        GraphState obState;
         if (obReportElement == null || obReportElement.getOriginalElement() == null) {
             return getNextStepMessage();
         }
 
-        targetState = (GraphState) obReportElement.getOriginalElement();
+        obState = (GraphState) obReportElement.getOriginalElement();
 
         //-----------------------------------------------
 
         //current state
         S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
         S2RPredictor predictor = new S2RPredictor(checker.getGraph());
-        GraphState currentState = checker.getCurrentState();
+        GraphState currentState = checker.getCurrentState();// this is the target state of the last step
+
+        //-------------------
+
+        List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
+        AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
+
+        //Check if maybe the last reported step, executed on the ob state and it is not a loop, then it is the real
+        // last step, so we verify with the user
+
+        if (lastStep != null) {//the last step can be null because of the max # of attempts functionality
+            GraphTransition transition = lastStep.getTransition();
+            if (transition != null) {
+                GraphState sourceState = transition.getSourceState();
+                if (sourceState.equals(obState) && !currentState.equals(obState)) {
+                    return getLastStepMessage(state, bugReportElements.get(bugReportElements.size() - 1));
+                }
+            }
+        }
+
+        //-------------------
 
         List<AppStep> nonSelectedSteps = (List<AppStep>) state.get(StateVariable.NON_SELECTED_PREDICTED_S2R);
 
         List<List<AppStep>> pathsWithLoops;
-        if (currentState.equals(targetState)) {
+        if (currentState.equals(obState)) { //the purpose of this branch is to predict loops
 
             log.debug("Predicting S2R (loops)");
-
-            List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
-            AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
 
             List<AppStep> stateLoops = new ArrayList<>();
             if (lastStep != null) { //the last step can be null because of the max # of attempts functionality
@@ -86,11 +102,11 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             }
 
             pathsWithLoops = Collections.singletonList(stateLoops);
-        } else {
+        } else {// current state != ob state
 
             //get all the paths sorted according  to the scoring mechanism
             List<GraphPath<GraphState, GraphTransition>> predictedPaths = predictor.getAllRankedPaths(currentState,
-                    targetState);
+                    obState);
             log.debug("Total number of predicted paths: " + predictedPaths.size());
 
             if (predictedPaths.isEmpty()) {
