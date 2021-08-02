@@ -22,3 +22,9 @@
 .react-chatbot-kit-user-chat-message {
     overflow-wrap: break-word;
 }
+
+.react-chatbot-kit-chat-bot-message > span > span{
+    font-weight: bold;
+    /*color: #ffbf80;*/
+    color: #FFC00E;
+}

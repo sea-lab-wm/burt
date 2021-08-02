@@ -7,6 +7,7 @@ import Loader from "../Loader/Loader";
 
 import "./ChatbotMessage.css";
 import { callIfExists } from "../Chat/chatUtils";
+import Parser from "html-react-parser";
 
 const ChatbotMessage = ({
   message,
@@ -67,6 +68,8 @@ const ChatbotMessage = ({
     arrowCustomStyles.borderRightColor = customStyles.backgroundColor;
   }
 
+  let parsedMsg = Parser(message)
+
   return (
     <ConditionallyRender
       ifTrue={show}
@@ -84,8 +87,6 @@ const ChatbotMessage = ({
                   // <param name="src" value="../../assets/icons/chatbot-2.svg" />
                   // </object>
                 }
-
-
               />
             }
           />
@@ -93,7 +94,7 @@ const ChatbotMessage = ({
           <ConditionallyRender
             ifTrue={customComponents.botChatMessage}
             show={callIfExists(customComponents.botChatMessage, {
-              message,
+              parsedMsg,
               loader: <Loader />,
             })}
             elseShow={
@@ -104,7 +105,7 @@ const ChatbotMessage = ({
                 <ConditionallyRender
                   ifTrue={loading}
                   show={<Loader />}
-                  elseShow={<span>{message}</span>}
+                  elseShow={<span>{parsedMsg}</span>}
                 />
                 <ConditionallyRender
                   ifTrue={withAvatar}
