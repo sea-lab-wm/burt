@@ -40,7 +40,7 @@ public class ParticipantIdStateChecker extends StateChecker {
         state.put(PARTICIPANT_VALIDATED, validParticipant);
 
         if (validParticipant) {
-            state.put(PARTICIPANT_ID, token.get().getWord());
+            state.put(PARTICIPANT_ID, token.get().getWord().toUpperCase());
             return ActionName.SELECT_APP;
         } else {
             return ActionName.PROVIDE_PARTICIPANT_ID;

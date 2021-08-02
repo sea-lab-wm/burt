@@ -1,3 +1,4 @@
+"+";"go back";"[{"sub":"user", "act":"go back"}]"
 "+";"Click on back button";"[{"sub":"user", "act":"click", "prep":"on", "obj2":"back button"}]"
 "+";"Long tap on note";"[{"sub":"user", "act":"long tap", "prep":"on", "obj2":"note"}]"
 "+";"click the menu in the screen";"[{"sub":"user", "act":"click", "obj":"menu", "prep":"in", "obj2":"screen"}]"

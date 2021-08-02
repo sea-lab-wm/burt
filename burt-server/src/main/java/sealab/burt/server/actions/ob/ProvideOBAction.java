@@ -28,7 +28,7 @@ public class ProvideOBAction extends ChatBotAction {
 
         if (!initiated)
             return createChatBotMessages(MessageFormat.format(
-                    "Okay, can you please tell me the incorrect behavior that you observed on {0}?", appName));
+                    "Okay, can you please tell me the <b>incorrect behavior</b> that you observed on {0}?", appName));
         else
             return createChatBotMessages(
                     "Okay, it seems I am having some difficulty recognizing the incorrect behavior.",

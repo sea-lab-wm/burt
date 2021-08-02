@@ -181,10 +181,10 @@ class GraphGenerator {
     }
 
     private List<AppStep> processExecution(Execution execution) throws Exception {
-        return updateGraph(execution.getId(), execution.getSteps(), true, GraphState.END_STATE);
+        return updateGraph(execution.getId(), execution.getSteps(), GraphState.END_STATE);
     }
 
-    private List<AppStep> updateGraph(Long executionId, List<Step> steps, boolean addOpenApp, GraphState endState)
+    private List<AppStep> updateGraph(Long executionId, List<Step> steps, GraphState endState)
             throws Exception {
 
         List<AppStep> appSteps = new ArrayList<>();
@@ -209,7 +209,7 @@ class GraphGenerator {
         // -------------------------------------------
         HashMap<Long, ImmutablePair<Screen, GraphState>> stepScreens = new HashMap<>();
 
-        GraphState firstState = null;
+        GraphState firstCreatedState = null;
         for (int i = 0; i < steps.size() - 1; i++) {
 
             Step previousStep = null;
@@ -279,8 +279,8 @@ class GraphGenerator {
             //----------------------------------------
             //save the first state
 
-            if (firstState == null) {
-                firstState = sourceState;
+            if (firstCreatedState == null) {
+                firstCreatedState = sourceState;
             }
         }
 
@@ -292,42 +292,42 @@ class GraphGenerator {
         if (steps.size() > 1) {
             previousStep = steps.get(steps.size() - 2);
         }
-        Step step = steps.get(steps.size() - 1);
+        Step lastStep = steps.get(steps.size() - 1);
 
-        Integer stepAction = step.getAction();
-        Screen sourceScreen = step.getScreen();
-        final Long executionId1 = executionId != null ? executionId : step.getExecution().getId();
+        Integer stepAction = lastStep.getAction();
+        Screen sourceScreen = lastStep.getScreen();
+        final Long executionId1 = executionId != null ? executionId : lastStep.getExecution().getId();
 
-        boolean skip = false;
+        boolean skipLastStep = false;
         if (endState == null) {
-            skip = true;
+            skipLastStep = true;
         } else if (sourceScreen == null) {
             if (!DeviceUtils.isClickBackButton(stepAction) || previousStep == null) {
-                skip = true;
+                skipLastStep = true;
             } else {
                 final ImmutablePair<Screen, GraphState> screenPair = stepScreens.get(previousStep.getId());
                 if (screenPair != null) {
-                    stepScreens.put(step.getId(), screenPair);
+                    stepScreens.put(lastStep.getId(), screenPair);
                     sourceScreen = screenPair.left;
-                    step.setScreen(sourceScreen);
+                    lastStep.setScreen(sourceScreen);
                 } else {
-                    skip = true;
+                    skipLastStep = true;
                 }
             }
         }
 
-        if (skip) {
+        if (skipLastStep) {
             log.warn(String.format("Skipping last step %s-%s-%s, no src and/or tgt screens, " +
                             "action: (%s) %s",
-                    executionId1, step.getId(), step.getSequenceStep(), step.getAction(),
-                    GeneralUtils.getEventName(step.getAction())));
+                    executionId1, lastStep.getId(), lastStep.getSequenceStep(), lastStep.getAction(),
+                    GeneralUtils.getEventName(lastStep.getAction())));
         } else {
             states.putIfAbsent(endState.getUniqueHash(), endState);
-            GraphState sourceState = getStepState(step, stepScreens, sourceScreen);
-            addGraphTransition(executionId1, appSteps, sourceState, endState, step);
+            GraphState sourceState = getStepState(lastStep, stepScreens, sourceScreen);
+            addGraphTransition(executionId1, appSteps, sourceState, endState, lastStep);
 
-            if (firstState == null) {
-                firstState = sourceState;
+            if (firstCreatedState == null) {
+                firstCreatedState = sourceState;
             }
         }
 
@@ -335,7 +335,7 @@ class GraphGenerator {
 
         //add "open app" step
 
-        if (addOpenApp && firstState != null) {
+        if (firstCreatedState != null) {
             GraphState sourceState = GraphState.START_STATE;
             states.put(sourceState.getUniqueHash(), sourceState);
 
@@ -344,7 +344,7 @@ class GraphGenerator {
             startAppStep.setSequenceStep(0);
 
             final long executionId2 = executionId != null ? executionId : 0L;
-            addGraphTransition(executionId2, appSteps, sourceState, firstState, startAppStep);
+            addGraphTransition(executionId2, appSteps, sourceState, firstCreatedState, startAppStep);
         }
 
         // ---------------------------------------------------

@@ -39,7 +39,7 @@ class S2RChecker {
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
-        s2rMatcher = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        s2rMatcher = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true);
         resolver = new StepResolver(s2rMatcher, GRAPH_MAX_DEPTH_CHECK);
     }
 
@@ -89,12 +89,12 @@ class S2RChecker {
             executionGraph = JSONGraphReader.getGraph(appName, appVersion);
     }
 
-    private void resolveNLAction(NLAction currNLAction, GraphState currentState, QualityFeedback s2rQA) {
+    private void resolveNLAction(NLAction currNLAction, GraphState currentState, QualityFeedback s2rQA) throws Exception {
 
         log.debug("Resolving action: " + currNLAction);
 
         // First try to match with a Step in the graph
-        ResolvedStepResult result = resolver.resolveActionInGraph(currNLAction, executionGraph, currentState);
+        ResolvedStepResult result = resolver.resolveActionInGraphConcurrent(currNLAction, executionGraph, currentState);
 //        ResolvedStepResult result2;
 
         // Check to see if we were able to match with a step, if not we should try to

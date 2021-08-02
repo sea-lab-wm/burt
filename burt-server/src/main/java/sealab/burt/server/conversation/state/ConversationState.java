@@ -37,6 +37,7 @@ public class ConversationState {
 
     private final ConcurrentHashMap<StateVariable, Object> stateVariables = new ConcurrentHashMap<>();
     private final AttemptManager attemptManager = new AttemptManager();
+    private final QualityStateUpdater stateUpdater = new QualityStateUpdater();
 
     public final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
         {
@@ -104,6 +105,11 @@ public class ConversationState {
         }
     };
 
+    //-------------------------------
+
+    public QualityStateUpdater getStateUpdater() {
+        return stateUpdater;
+    }
 
     public boolean containsKey(StateVariable var) {
         return stateVariables.containsKey(var);

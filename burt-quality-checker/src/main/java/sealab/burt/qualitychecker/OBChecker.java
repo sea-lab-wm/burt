@@ -36,7 +36,7 @@ class OBChecker {
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
-        s2rParser = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        s2rParser = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true);
         resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 
@@ -86,7 +86,7 @@ class OBChecker {
         log.debug("Matching OB action: " + nlAction);
 
         List<ImmutablePair<GraphState, Double>> matchedStates =
-                resolver.resolveStateInGraph(nlAction, executionGraph, currentState);
+                resolver.resolveStateInGraphConcurrent(nlAction, executionGraph, currentState);
 
         if (matchedStates == null || matchedStates.isEmpty())
             return new QualityResult(NO_MATCH, Collections.emptyList());

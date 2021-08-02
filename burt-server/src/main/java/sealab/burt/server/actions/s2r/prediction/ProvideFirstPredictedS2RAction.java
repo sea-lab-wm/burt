@@ -48,29 +48,46 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         BugReportElement obReportElement = obReportElements.get(0);
 
-        GraphState targetState;
+        GraphState obState;
         if (obReportElement == null || obReportElement.getOriginalElement() == null) {
             return getNextStepMessage();
         }
 
-        targetState = (GraphState) obReportElement.getOriginalElement();
+        obState = (GraphState) obReportElement.getOriginalElement();
 
         //-----------------------------------------------
 
         //current state
         S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
         S2RPredictor predictor = new S2RPredictor(checker.getGraph());
-        GraphState currentState = checker.getCurrentState();
+        GraphState currentState = checker.getCurrentState();// this is the target state of the last step
+
+        //-------------------
+
+        List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
+        AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
+
+        //Check if maybe the last reported step, executed on the ob state and it is not a loop, then it is the real
+        // last step, so we verify with the user
+
+        if (lastStep != null) {//the last step can be null because of the max # of attempts functionality
+            GraphTransition transition = lastStep.getTransition();
+            if (transition != null) {
+                GraphState sourceState = transition.getSourceState();
+                if (sourceState.equals(obState) && !currentState.equals(obState)) {
+                    return getLastStepMessage(state, bugReportElements.get(bugReportElements.size() - 1));
+                }
+            }
+        }
+
+        //-------------------
 
         List<AppStep> nonSelectedSteps = (List<AppStep>) state.get(StateVariable.NON_SELECTED_PREDICTED_S2R);
 
         List<List<AppStep>> pathsWithLoops;
-        if (currentState.equals(targetState)) {
+        if (currentState.equals(obState)) { //the purpose of this branch is to predict loops
 
             log.debug("Predicting S2R (loops)");
-
-            List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
-            AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
 
             List<AppStep> stateLoops = new ArrayList<>();
             if (lastStep != null) { //the last step can be null because of the max # of attempts functionality
@@ -80,16 +97,16 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
                 stateLoops = predictor.getStateLoops(currentState, lastStep, nonSelectedSteps);
 
                 if (stateLoops.isEmpty()) {
-                    return getLastStepMessage(state);
+                    return getLastStepMessage(state, bugReportElements.get(bugReportElements.size() - 1));
                 }
             }
 
             pathsWithLoops = Collections.singletonList(stateLoops);
-        } else {
+        } else {// current state != ob state
 
             //get all the paths sorted according  to the scoring mechanism
             List<GraphPath<GraphState, GraphTransition>> predictedPaths = predictor.getAllRankedPaths(currentState,
-                    targetState);
+                    obState);
             log.debug("Total number of predicted paths: " + predictedPaths.size());
 
             if (predictedPaths.isEmpty()) {
@@ -126,18 +143,21 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
-        MessageObj messageObj = new MessageObj("Remember that the screenshots below are for reference only.",
+        MessageObj messageObj = new MessageObj("<b>Input values</b> and <b>UI components</b> may be a little different from what you observed in the app.",
                 WidgetName.S2RScreenSelector);
         return createChatBotMessages(
-                "Okay, it seems the next steps that you performed might be the following.",
+                "Okay, it seems <b>the next steps</b> that you performed might be the following.",
                 "Can you select the ones you actually performed next?",
+                "Remember that the screenshots below are <b>for reference only</b>.",
                 new ChatBotMessage(messageObj, stepOptions, true));
     }
 
-    private List<ChatBotMessage> getLastStepMessage(ConversationState state) {
+    private List<ChatBotMessage> getLastStepMessage(ConversationState state, BugReportElement lastStep) {
         setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
         state.put(StateVariable.CONFIRM_LAST_STEP, true);
-        return createChatBotMessages("Okay, is this the last step that you performed?");
+        return createChatBotMessages(String.format("Okay, is this the last step that you performed: \"%s\"?",
+                lastStep.getStringElement())
+        );
     }
 
     private List<ChatBotMessage> getNextStepMessage() {

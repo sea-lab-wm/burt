@@ -29,6 +29,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -37,39 +38,42 @@ import java.util.stream.Stream;
 public @Slf4j
 class NLActionS2RMatcher {
 
+
+    public enum ActionGroup {
+        OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE, CLOSE, BACK
+    }
+
+    public enum ComponentType {
+        BUTTON, CHECKED_COMPONENT, IMAGE_VIEW, PICKER, BAR, TEXT_FIELD, TEXT_VIEW, WINDOW, OTHER
+    }
+
     private static final int NO_SWIPE_DIRECTION = -100;
     /**
      * Inverted index of generalComponentTypeClasses, ie., [class: type]
      */
-    private static final HashMap<String, ComponentType> generalComponentClasses = new HashMap<>();
+    private static final ConcurrentHashMap<String, ComponentType> generalComponentClasses = new ConcurrentHashMap<>();
     /**
      * Index of "general_component_types.txt" for component types, ie., [type: specific types]
      */
-    private static final HashMap<ComponentType, Set<String>> specificComponentTypes = new HashMap<>();
-    private static final List<String> allComponentTypes = new ArrayList<>();
-    private static final HashMap<String, ComponentType> invIdxSpecificComponentTypes = new HashMap<>();
+    private static final ConcurrentHashMap<ComponentType, Set<String>> specificComponentTypes = new ConcurrentHashMap<>();
+    private static final List<String> allComponentTypes = Collections.synchronizedList(new ArrayList<>());
+    private static final ConcurrentHashMap<String, ComponentType> invIdxSpecificComponentTypes = new ConcurrentHashMap<>();
     /**
      * Inverted index of "general_action_groups.txt" for the actions, aka, action groups, ie., [group: actions]
      */
-    private static HashMap<String, LinkedHashSet<ActionGroup>> generalActionGroups = new HashMap<>();
-    /**
-     * Inverted index of the actions groups per app, ie., [app: [group: actions]]
-     */
-    private static HashMap<String, HashMap<String, LinkedHashSet<ActionGroup>>> appActionGroups = new HashMap<>();
+    private static final ConcurrentHashMap<String, LinkedHashSet<ActionGroup>> generalActionGroups = new ConcurrentHashMap<>();
     /**
      * Index of "general_component_types_classes.txt" for component types and the Android component classes, ie., [type:
      * classes]
      */
-    private static HashMap<ComponentType, Set<String>> generalComponentTypeClasses = new HashMap<>();
-    private static HashMap<String, Set<String>> synonyms = new HashMap<>();
+    private static final ConcurrentHashMap<ComponentType, Set<String>> generalComponentTypeClasses =
+            new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Set<String>> synonyms = new ConcurrentHashMap<>();
     private final String resourcesPath;
     private final boolean useTokenSynonyms;
-    private String token;
-    private PreProcessedText preProcessedObj2;
 
-    public NLActionS2RMatcher(String token, String resourcesPath, boolean useTokenSynonyms) {
+    public NLActionS2RMatcher(String resourcesPath, boolean useTokenSynonyms) {
         this.useTokenSynonyms = useTokenSynonyms;
-        this.token = token;
         this.resourcesPath = resourcesPath;
         loadGeneralActionGroups();
         loadGeneralComponentTypeClasses();
@@ -133,8 +137,6 @@ class NLActionS2RMatcher {
             if (!generalActionGroups.isEmpty())
                 return;
 
-            generalActionGroups = new HashMap<>();
-
             try {
 
                 log.debug("Loading general action groups...");
@@ -175,8 +177,6 @@ class NLActionS2RMatcher {
             if (!synonyms.isEmpty())
                 return;
 
-            synonyms = new LinkedHashMap<>();
-
             try {
 
                 log.debug("Loading synonyms...");
@@ -206,8 +206,6 @@ class NLActionS2RMatcher {
 
             if (!generalComponentTypeClasses.isEmpty())
                 return;
-
-            generalComponentTypeClasses = new HashMap<>();
 
             try {
 
@@ -1578,16 +1576,19 @@ class NLActionS2RMatcher {
         return ((double) lcs.length()) / lengthAvg;
     }
 
-    private String asciiEncodeLemmas(List<String> allLemmas, List<String> lemmasToEncode) {
+    private String asciiEncodeLemmas(List<String> allUniqueLemmas, List<String> lemmasToEncode) {
 
-        if (allLemmas.size() > 93)
-            throw new RuntimeException("Big alphabet: " + allLemmas.size());
+        int MAX_CHARACTER = 221;
+        if (allUniqueLemmas.size() > MAX_CHARACTER) {
+            log.warn("Big alphabet: " + allUniqueLemmas.size());
+        }
 
+        //ASCII encoding
         StringBuilder builder = new StringBuilder();
         for (String lemma : lemmasToEncode) {
-            int i = allLemmas.indexOf(lemma);
-            //ASCII encoding
-            builder.append(encodePosition(i));
+            int i = allUniqueLemmas.indexOf(lemma);
+            if (i <= MAX_CHARACTER) //skip lemma if it is not within the alphabet
+                builder.append(encodePosition(i)); //get the ascii code of i, which can be between 33 to 254
         }
 
         return builder.toString();
@@ -1649,6 +1650,8 @@ class NLActionS2RMatcher {
                 return DeviceActions.ROTATION;
             case CLOSE:
                 return DeviceActions.CLOSE_APP;
+            case BACK:
+                return DeviceActions.BACK;
         }
 
         return null;
@@ -1943,15 +1946,6 @@ class NLActionS2RMatcher {
 
 
         return null;
-    }
-
-
-    public enum ActionGroup {
-        OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE, CLOSE
-    }
-
-    public enum ComponentType {
-        BUTTON, CHECKED_COMPONENT, IMAGE_VIEW, PICKER, BAR, TEXT_FIELD, TEXT_VIEW, WINDOW, OTHER
     }
 
 }

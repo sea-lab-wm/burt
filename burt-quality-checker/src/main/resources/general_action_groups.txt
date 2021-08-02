@@ -6,3 +6,4 @@ SWIPE: swipe, drag, sweep, scroll, scroll down, scroll up, scroll right, scroll 
 TYPE: type, edit, input, fill, typewrite, insert, infix, enter, introduce, write, set, add, change, press
 ROTATE: rotate, change, set, turn
 CLOSE: close, terminate, shut down
+BACK: go back

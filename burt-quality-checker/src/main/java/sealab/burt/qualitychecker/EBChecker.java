@@ -26,7 +26,7 @@ class EBChecker {
     public EBChecker(String app, String appVersion) {
         this.app = app;
         this.appVersion = appVersion;
-        this.s2rParser = new NLActionS2RMatcher(null, BurtConfigPaths.qualityCheckerResourcesPath, true);
+        this.s2rParser = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true);
     }
 
     public QualityResult checkEb(String ebDescription, GraphState obState, String obDescription) throws Exception {

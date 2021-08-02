@@ -175,7 +175,7 @@ public class ConversationTestData {
             //ChatBot: select the screen having the problem
             add(new MessageObjectTest(ChatBotAction.DONE, CONFIRM_SELECTED_OB_SCREEN, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
-                    Collections.singletonList("3")));
+                    Collections.singletonList("4")));
             //ChatBot: you selected X, correct?
             add(new MessageObjectTest("yes", PROVIDE_EB, EB_DESCRIPTION));
             //ChatBot: give me the EB
@@ -197,9 +197,9 @@ public class ConversationTestData {
             add(new MessageObjectTest("Tap on the \"Export\" Menu item", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("no", PROVIDE_S2R_NO_MATCH, S2R_DESCRIPTION));
-       /*     //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));*/
+            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_MISSING_SELECTED));
+            //ChatBot: there are missing steps, please select the ones are correct
+            add(new MessageObjectTest(ChatBotAction.NONE, CONFIRM_SELECTED_MISSING_S2R, S2R_DESCRIPTION));
             //ChatBot: give me the NEXT S2R
             add(new MessageObjectTest("Tap on \"Export To\"", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
@@ -219,17 +219,19 @@ public class ConversationTestData {
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0")));
             //ChatBot: there are missing steps, please select the ones are correct
-            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, S2R_DESCRIPTION,
+            add(new MessageObjectTest(ChatBotAction.DONE, PREDICT_FIRST_S2R_PATH, NO_EXPECTED_INTENT,
                     WITH_SELECTED_VALUES,
                     Collections.singletonList("0")));
+            //ChatBot: is this the S2R you mean to report?
+            add(new MessageObjectTest("no", PROVIDE_S2R, S2R_DESCRIPTION));
 
             //ChatBot: give me the NEXT S2R
             add(new MessageObjectTest("Tap on the \"Export\" button", CONFIRM_MATCHED_S2R, AFFIRMATIVE_ANSWER,
                     NEGATIVE_ANSWER));
             //ChatBot: is this the S2R you mean to report?
-            add(new MessageObjectTest("yes", SELECT_MISSING_S2R, S2R_DESCRIPTION));
+            add(new MessageObjectTest("yes", PREDICT_FIRST_S2R_PATH, NO_EXPECTED_INTENT));
             //ChatBot: ok, you selected some steps, what is the next step?
-            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
+//            add(new MessageObjectTest("That was the last step", CONFIRM_LAST_STEP, NO_EXPECTED_INTENT));
             //ChatBot: is that the last step?
             add(new MessageObjectTest("yes", REPORT_SUMMARY, NO_EXPECTED_INTENT));
             //ChatBot: ok, this is the report

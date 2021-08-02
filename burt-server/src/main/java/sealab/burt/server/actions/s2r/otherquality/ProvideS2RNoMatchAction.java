@@ -16,7 +16,7 @@ public class ProvideS2RNoMatchAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages(" Okay, it seems I wasn't able to recognize the step you performed.",
-                "Can you please rephrase the step or provide a another one?"
+                "Can you please <b>rephrase the step or provide a another one</b>?"
         );
     }
 
