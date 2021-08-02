@@ -79,7 +79,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
                     .append(" prior step(s).");
 
             StringBuilder msg2 = new StringBuilder();
-            msg2.append("What step did you perform after the step \"")
+            msg2.append("What step did you <b>perform after the step</b>\"")
                     .append(highQualityStepMessage)
                     .append("\"?");
 
@@ -102,7 +102,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(allMissingSteps, state);
 
         MessageObj messageObj = new MessageObj(
-                "From the following options, select the steps you performed before this step",
+                "From the following options, <b>select the steps you performed before this step</b>",
                 WidgetName.S2RScreenSelector);
 
         return createChatBotMessages(

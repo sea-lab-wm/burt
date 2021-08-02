@@ -28,7 +28,7 @@ class MainDBGraphGenerator {
 //			new ImmutablePair<>			("com.evancharlton.mileage", "3.1.1")
 //			new ImmutablePair<>("me.kuehle.carreport", "3.6.0"),
 //			new ImmutablePair<>("me.kuehle.carreport", "3.11.2")
-//			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.20")
+//			new ImmutablePair<>("com.markuspage.aThere was an error processing the messagendroid.atimetracker", "0.20")
 //			new ImmutablePair<>("com.markuspage.android.atimetracker", "0.15")
 //			new ImmutablePair<>("nerd.tuxmobil.fahrplan.camp", "1.32.2"),
 //			new ImmutablePair<>("aarddict.android", "1.6.10")

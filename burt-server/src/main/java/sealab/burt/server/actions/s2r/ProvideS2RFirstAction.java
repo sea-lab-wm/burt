@@ -27,8 +27,8 @@ public class ProvideS2RFirstAction extends ChatBotAction {
             state.put(S2R_CHECKER, new S2RChecker(appName, appVersion));
 
         return createChatBotMessages(" Okay. Now I need to know the steps that you performed and caused the problem.",
-                "Can you please tell me the first step that you performed?",
-                "Remember that you can say \"This is/was the last step\" to end the reporting.");
+                "Can you please tell me the <b>first step</b> that you performed?",
+                "Remember that you can say \"<b>This is/was the last step</b>\" to end the reporting.");
     }
 
 

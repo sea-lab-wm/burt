@@ -28,8 +28,8 @@ class DisambiguateS2RAction extends ChatBotAction {
 
         StringBuilder message = new StringBuilder("Oops, it seems ");
         message.append(getFeedbackMessage(feedback));
-        return createChatBotMessages(message.toString(), "Can you please rephrase the step more accurately or " +
-                "provide a different step?");
+        return createChatBotMessages(message.toString(), "Can you please <b>rephrase the step more accurately or " +
+                "provide a different step</b>?");
 
   /*      UserMessage userMessage = (UserMessage) state.get(CURRENT_MESSAGE);
         List<KeyValue> S2RScreens = Arrays.asList(

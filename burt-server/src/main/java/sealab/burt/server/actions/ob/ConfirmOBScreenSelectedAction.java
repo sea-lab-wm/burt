@@ -135,7 +135,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 //----------------------------------
 
                 MessageObj messageObj = new MessageObj(
-                        " Please hit the \"Done\" button after you have selected it.", WidgetName.OBScreenSelector);
+                        " Please hit the \"<b>Done</b>\" button after you have selected it.", WidgetName.OBScreenSelector);
 
                 return createChatBotMessages(
                         "Okay then, which of the following screens is having or triggering the problem?",
@@ -155,7 +155,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
         List<KeyValues> options = SelectOBScreenAction.getObScreenOptions(matchedStates, state, position);
 
         MessageObj messageObj = new MessageObj(
-                "From the list below, can you please select the screen that is having or triggering the problem?",
+                "From the list below, can you please select the screen that is <b>having or triggering</b> the problem?",
                 WidgetName.OBScreenSelector);
 
         return createChatBotMessages(

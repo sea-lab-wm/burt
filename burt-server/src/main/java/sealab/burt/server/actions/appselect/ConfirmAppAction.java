@@ -27,7 +27,7 @@ public class ConfirmAppAction extends ChatBotAction {
         String selectedApp = null;
         List<ChatBotMessage> incorrectOptionMessages = createChatBotMessages(
                 "Sorry, I didn't quite get that.",
-                "Please select an app from the list."
+                "Please select one <b>app</b> from the list."
         );
 
         this.nextExpectedIntents = Collections.singletonList(APP_SELECTED);
