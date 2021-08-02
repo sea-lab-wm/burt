@@ -98,7 +98,7 @@ class SelectMissingS2RAction extends ChatBotAction {
 
             this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
 
-            QualityStateUpdater.addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
+            state.getStateUpdater().addStepAndUpdateGraphState(state, highQualityStepMessage, highQualityAssessment);
 
             return createChatBotMessages("Got it, what is the next step?");
         }

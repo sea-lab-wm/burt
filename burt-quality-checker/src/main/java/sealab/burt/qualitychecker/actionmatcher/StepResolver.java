@@ -177,7 +177,7 @@ class StepResolver {
 
         //check for open app
         final boolean isOpenApp = DeviceUtils.isOpenApp(event);
-        AppStep appStep = null;
+        AppStep appStep;
         if (isOpenApp) {
             appStep = new AppStep(event, null, app.getPackageName());
             appStep.setScreenshotFile(null); //FIXME: change the screenshot file for "open app"

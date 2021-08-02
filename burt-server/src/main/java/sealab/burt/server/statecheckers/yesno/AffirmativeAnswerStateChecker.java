@@ -86,7 +86,7 @@ class AffirmativeAnswerStateChecker extends StateChecker {
 
                 UserResponse msg = (UserResponse) state.get(S2R_MATCHED_MSG);
                 String message = msg.getMessages().get(0).getMessage();
-                QualityStateUpdater.addStepAndUpdateGraphState(state, message, assessment);
+                state.getStateUpdater().addStepAndUpdateGraphState(state, message, assessment);
 
                 nextAction = PREDICT_FIRST_S2R_PATH;
             }

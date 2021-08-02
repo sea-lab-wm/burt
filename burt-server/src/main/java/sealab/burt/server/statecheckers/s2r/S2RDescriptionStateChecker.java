@@ -87,8 +87,9 @@ class S2RDescriptionStateChecker extends StateChecker {
                     throw new RuntimeException("The high quality assessment is required");
 
                 Integer action = assessment.getMatchedSteps().get(0).getAction();
-                if (DeviceUtils.isOpenApp(action) || DeviceUtils.isCloseApp(action)) {
-                    QualityStateUpdater.addStepAndUpdateGraphState(state, currentMessage, assessment);
+                if (DeviceUtils.isOpenApp(action) || DeviceUtils.isCloseApp(action)
+                        || DeviceUtils.isClickBackButton(action)) {
+                    state.getStateUpdater().addStepAndUpdateGraphState(state, currentMessage, assessment);
                     return PREDICT_FIRST_S2R_PATH;
                 } else {
 
@@ -96,7 +97,7 @@ class S2RDescriptionStateChecker extends StateChecker {
                     boolean nextAttempt = state.checkNextAttemptAndResetS2RMatch();
 
                     if (!nextAttempt) {
-                        QualityStateUpdater.addStepAndUpdateGraphState(state, currentMessage, assessment);
+                        state.getStateUpdater().addStepAndUpdateGraphState(state, currentMessage, assessment);
                         return PREDICT_FIRST_S2R_PATH;
                     }
 
@@ -130,7 +131,7 @@ class S2RDescriptionStateChecker extends StateChecker {
 
             if (!nextAttempt) {
                 nextAction = PROVIDE_S2R;
-                QualityStateUpdater.addStepAndUpdateGraphState(state, currentMessage, null);
+                state.getStateUpdater().addStepAndUpdateGraphState(state, currentMessage, null);
             }
 
             return nextAction;

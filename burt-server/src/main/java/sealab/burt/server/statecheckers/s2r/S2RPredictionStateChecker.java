@@ -4,9 +4,9 @@ import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
-import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.entity.MessageObj;
 import sealab.burt.server.conversation.entity.UserResponse;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.state.QualityStateUpdater;
 import sealab.burt.server.statecheckers.StateChecker;
 
@@ -43,7 +43,7 @@ public class S2RPredictionStateChecker extends StateChecker {
             List<AppStep> selectedSteps = selectedValues.stream()
                     .map(selectedValue -> {
                         int index = Integer.parseInt(selectedValue);
-                        if(index < currentPath.size())
+                        if (index < currentPath.size())
                             return currentPath.get(index);
                         return null;
                     })
@@ -68,14 +68,7 @@ public class S2RPredictionStateChecker extends StateChecker {
             //------------------------------
 
             // add all selected app steps to state and update graph
-            if (selectedSteps.size() == 1) {
-                QualityStateUpdater.addPredictedStepAndUpdateGraphState(state, selectedSteps.get(0));
-
-            } else {
-                QualityStateUpdater.addStepsToState(state, selectedSteps.subList(0, selectedSteps.size() - 1));
-                QualityStateUpdater.addPredictedStepAndUpdateGraphState(state,
-                        selectedSteps.get(selectedSteps.size() - 1));
-            }
+            state.getStateUpdater().addStepsToState(state, selectedSteps);
 
             state.remove(PREDICTED_S2R_CURRENT_PATH);
             state.remove(PREDICTING_S2R);

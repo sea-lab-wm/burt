@@ -1,4 +1,4 @@
-import React , { useState, useEffect }  from "react";
+import React, {useState} from "react";
 import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
 import ApiClient from "../../ApiClient";
@@ -16,8 +16,8 @@ const OBScreenSelector = (props) => {
         setScreen(image);
 
     }
-    const handleConfirmButton= (choice) => {
-        if(screen.length > 0) {
+    const handleConfirmButton = (choice) => {
+        if (screen.length > 0) {
             let selectedValues = screen.map(s => s.id);
             let message = props.actionProvider.createChatBotMessage(choice, {selectedValues: selectedValues});
 
@@ -28,20 +28,16 @@ const OBScreenSelector = (props) => {
             props.messages[idx].selectedValues = selectedValues
             props.messages[idx].disabled = true
             setDisable(true)
-        }else{
+        } else {
             alert("please select one screenshot!")
         }
     }
-    const handleNegativeButton = (choice)=>{
-        setTimeout(() => {
+    const handleNegativeButton = (choice) => {
+        let message = props.actionProvider.createChatBotMessage(choice);
 
-            let message = props.actionProvider.createChatBotMessage(choice);
-
-            const responsePromise = ApiClient.processUserMessage(message)
-            processResponse(responsePromise, props.actionProvider)
-            setDisable(true)
-
-        }, 1000)
+        const responsePromise = ApiClient.processUserMessage(message)
+        processResponse(responsePromise, props.actionProvider)
+        setDisable(true)
     }
 
 
@@ -57,20 +53,28 @@ const OBScreenSelector = (props) => {
     const multiple = props.multiple;
 
     return (
-            <div className="center-screen">
-                <ImagePicker
-                    // images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
-                    images={dataValues.map((image, i) => ({src: config.serverEndpoint + image.value2, text: image.value1, id: image.key}))}
-                    style={getImageStyle(180, 320)}
-                    selected={selectedValues}
-                    onPick={pickImageHandler}
-                    multiple = {multiple}
-                    disabled={disabled}
-                />
-                <button type="button" className="button" onClick={() => handleConfirmButton("done")} disabled={disabled}>done</button>
-                <button type="button" className="button" onClick={() => handleNegativeButton("none of the above")} disabled={disabled}>none of the above</button>
-            </div>
-        )
+        <div className="center-screen">
+            <ImagePicker
+                // images={dataValues.map((image, i) => ({src: logos("./" + image.value2).default, text: image.value1, id: image.key}))}
+                images={dataValues.map((image, i) => ({
+                    src: config.serverEndpoint + image.value2,
+                    text: image.value1,
+                    id: image.key
+                }))}
+                style={getImageStyle(180, 320)}
+                selected={selectedValues}
+                onPick={pickImageHandler}
+                multiple={multiple}
+                disabled={disabled}
+            />
+            <button type="button" className="button" onClick={() => handleConfirmButton("done")}
+                    disabled={disabled}>done
+            </button>
+            <button type="button" className="button" onClick={() => handleNegativeButton("none of the above")}
+                    disabled={disabled}>none of the above
+            </button>
+        </div>
+    )
 
 }
 

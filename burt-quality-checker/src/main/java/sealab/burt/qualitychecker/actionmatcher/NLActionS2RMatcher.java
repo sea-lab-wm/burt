@@ -1578,16 +1578,19 @@ class NLActionS2RMatcher {
         return ((double) lcs.length()) / lengthAvg;
     }
 
-    private String asciiEncodeLemmas(List<String> allLemmas, List<String> lemmasToEncode) {
+    private String asciiEncodeLemmas(List<String> allUniqueLemmas, List<String> lemmasToEncode) {
 
-        if (allLemmas.size() > 93)
-            throw new RuntimeException("Big alphabet: " + allLemmas.size());
+        int MAX_CHARACTER = 221;
+        if (allUniqueLemmas.size() > MAX_CHARACTER) {
+            log.warn("Big alphabet: " + allUniqueLemmas.size());
+        }
 
+        //ASCII encoding
         StringBuilder builder = new StringBuilder();
         for (String lemma : lemmasToEncode) {
-            int i = allLemmas.indexOf(lemma);
-            //ASCII encoding
-            builder.append(encodePosition(i));
+            int i = allUniqueLemmas.indexOf(lemma);
+            if (i <= MAX_CHARACTER) //skip lemma if it is not within the alphabet
+                builder.append(encodePosition(i)); //get the ascii code of i, which can be between 33 to 254
         }
 
         return builder.toString();

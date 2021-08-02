@@ -55,7 +55,7 @@ public class S2RInputStateChecker extends StateChecker {
             boolean nextAttempt = state.checkNextAttemptAndResetS2RInput();
 
             if (!nextAttempt) {
-                QualityStateUpdater.addStepAndUpdateGraphState(state, hqMsgText, assessment);
+                state.getStateUpdater().addStepAndUpdateGraphState(state, hqMsgText, assessment);
                 return PREDICT_FIRST_S2R_PATH;
             }
 
@@ -67,7 +67,7 @@ public class S2RInputStateChecker extends StateChecker {
 
             String hqMsgTextFinal = String.format("%s (value = %s)", hqMsgText, msgText);
 
-            QualityStateUpdater.addStepAndUpdateGraphState(state, hqMsgTextFinal, assessment);
+            state.getStateUpdater().addStepAndUpdateGraphState(state, hqMsgTextFinal, assessment);
 
             return PREDICT_FIRST_S2R_PATH;
         }
