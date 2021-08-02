@@ -117,7 +117,7 @@ class SelectMissingS2RAction extends ChatBotAction {
         return createChatBotMessages(
                 "Got it! You reported the step \"" + highQualityStepMessage + "\"",
                 "It seems that <b>before that step you had to perform additional steps</b>. ",
-                "From the following options, please select the steps that you performed before this step and click " +
+                "From the following options, please <b>select the steps that you performed before this step</b> and click " +
                         "the \"<b>done</b>\" button", new ChatBotMessage(messageObj, stepOptions, true));
 
     }
