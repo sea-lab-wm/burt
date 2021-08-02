@@ -27,7 +27,7 @@ public class ProvideParticipantIdAction extends ChatBotAction {
             return createChatBotMessages(
                     "Let me remind you that some of the screenshots that I will display are for reference only.",
                     "Input values and UI components may be a little different from what you observed in the app.",
-                    "To start, please provide the <span>Participant ID</span> that was assigned to " +
+                    "To start, please provide the <b>Participant ID</b> that was assigned to " +
                             "you (e.g., P3).");
         else
             return createChatBotMessages("Sorry, I couldn't identify the Participant ID, " +
