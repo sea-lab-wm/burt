@@ -99,6 +99,13 @@ class QualityStateUpdater {
             GraphState currentState = s2rChecker.getCurrentState();
             GraphState targetState = transition.getTargetState();
 
+            //if we reach the end state, we set the current state to the start state.
+            //essentially, we are jumping to the start state
+            if(targetState.equals(GraphState.END_STATE)){
+                log.debug("We reached the END STATE, setting the current state to be the START STATE");
+                targetState = GraphState.START_STATE;
+            }
+
             s2rChecker.updateState(targetState);
             if (!currentState.equals(targetState)) {
                 List<AppStep> steps = lastStepsToState.get(targetState);
