@@ -3,9 +3,9 @@ package sealab.burt.server.actions.appselect;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
-import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.entity.KeyValues;
 import sealab.burt.server.conversation.entity.UserResponse;
+import sealab.burt.server.conversation.state.ConversationState;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -35,25 +35,32 @@ public class ConfirmAppAction extends ChatBotAction {
         if (!msg.getMessages().isEmpty()) {
             List<String> selectedValues = msg.getMessages().get(0).getSelectedValues();
 
+            //if not selected  values, return an alert message
             if (selectedValues == null || selectedValues.isEmpty())
                 return incorrectOptionMessages;
 
             selectedApp = selectedValues.get(0);
         }
 
+        //--------------------------------------
+
         String finalSelectedApp = selectedApp;
         Optional<KeyValues> appOption = SelectAppAction.ALL_APPS.stream()
                 .filter(app -> app.getKey().equals(finalSelectedApp))
                 .findFirst();
 
+        //invalid app selection
         if (appOption.isEmpty()) {
             return incorrectOptionMessages;
         }
 
         //-------------------------------------------
 
+        //at this point there is a valid app selection
+
         this.nextExpectedIntents = Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER);
 
+        //add app info to the state
         String appNameVersion = appOption.get().getValue1();
         String[] tokens = appNameVersion.split("v\\.");
         String appName = tokens[0].trim();
@@ -61,7 +68,7 @@ public class ConfirmAppAction extends ChatBotAction {
         state.put(APP_VERSION, tokens[1].trim());
 
         List<String> packageNames = AppNamesMappings.getPackageNames(appName);
-        if (packageNames==null || packageNames.isEmpty())
+        if (packageNames == null || packageNames.isEmpty())
             throw new RuntimeException("Could not find packages for " + appName);
         state.put(APP_PACKAGE, packageNames.get(0));
 

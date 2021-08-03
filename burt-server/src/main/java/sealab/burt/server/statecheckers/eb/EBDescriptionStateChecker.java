@@ -53,12 +53,12 @@ public class EBDescriptionStateChecker extends StateChecker {
 
             ActionName nextAction = nextActions.get(result.getResult().name());
             if (result.getResult().equals(QualityResult.Result.MATCH)) {
-                QualityStateUpdater.updateEBState(state, obState);
+                state.getStateUpdater().updateEBState(state, obState);
             } else if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
                 //if there is no OB match, we "skip" EB quality checking (only if there no EB match)
                 if (obReportElements == null || obReportElements.get(0).getOriginalElement() == null) {
 
-                    QualityStateUpdater.updateEBState(state, null);
+                    state.getStateUpdater().updateEBState(state, null);
                     nextAction = PROVIDE_S2R_FIRST;
                 } else {
 
@@ -68,7 +68,7 @@ public class EBDescriptionStateChecker extends StateChecker {
 
                     if (!nextAttempt) {
                         nextAction = PROVIDE_S2R_FIRST;
-                        QualityStateUpdater.updateEBState(state, null);
+                        state.getStateUpdater().updateEBState(state, null);
                     }
                 }
             } else if (result.getResult().equals(QualityResult.Result.NOT_PARSED)) {
@@ -78,7 +78,7 @@ public class EBDescriptionStateChecker extends StateChecker {
 
                 if (!nextAttempt) {
                     nextAction = PROVIDE_S2R_FIRST;
-                    QualityStateUpdater.updateEBState(state, null);
+                    state.getStateUpdater().updateEBState(state, null);
                 }
             }
 

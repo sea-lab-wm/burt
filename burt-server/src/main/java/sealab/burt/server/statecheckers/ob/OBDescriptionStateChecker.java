@@ -45,7 +45,7 @@ class OBDescriptionStateChecker extends StateChecker {
 
             if (!nextAttempt) {
                 nextAction = PROVIDE_EB;
-                QualityStateUpdater.updateOBState(state, null);
+                state.getStateUpdater().updateOBState(state, null);
             }
         } else if (result.getResult().equals(QualityResult.Result.NOT_PARSED)) {
 
@@ -55,7 +55,7 @@ class OBDescriptionStateChecker extends StateChecker {
 
             if (!nextAttempt) {
                 nextAction = PROVIDE_EB;
-                QualityStateUpdater.updateOBState(state, null);
+                state.getStateUpdater().updateOBState(state, null);
             }
         }
 

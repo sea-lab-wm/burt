@@ -21,6 +21,11 @@ public class NegativeAnswerStateChecker extends StateChecker {
         ActionName nextAction = null;
 
         if (state.containsKey(CONFIRM_END_CONVERSATION)) {
+
+            state.put(StateVariable.CONFIRM_END_CONVERSATION_NEGATIVE, true);
+
+            //----------------------
+
             state.remove(StateVariable.CONFIRM_END_CONVERSATION);
 
             ActionName action = (ActionName) state.get(ACTION_NEGATIVE_END_CONVERSATION);
@@ -56,7 +61,7 @@ public class NegativeAnswerStateChecker extends StateChecker {
                 nextAction = PROVIDE_OB;
             } else {
                 nextAction = PROVIDE_EB;
-                QualityStateUpdater.updateOBState(state, null);
+                state.getStateUpdater().updateOBState(state, null);
             }
 
         } else if (state.containsKey(S2R_MATCHED_CONFIRMATION)) {

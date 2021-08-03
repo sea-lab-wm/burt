@@ -142,7 +142,7 @@ class QualityStateUpdater {
         state.put(REPORT_S2R, stepElements);
     }
 
-    public static void updateOBState(ConversationState state, GraphState obState) {
+    public void updateOBState(ConversationState state, GraphState obState) {
 
         log.debug("Updating OB state to: " + obState);
 
@@ -152,7 +152,7 @@ class QualityStateUpdater {
     }
 
 
-    public static void updateEBState(ConversationState state, GraphState ebState) {
+    public void updateEBState(ConversationState state, GraphState ebState) {
 
         log.debug("Updating EB state to: " + ebState);
 

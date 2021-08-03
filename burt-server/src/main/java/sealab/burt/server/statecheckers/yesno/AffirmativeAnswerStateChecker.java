@@ -40,7 +40,7 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             state.remove(OB_SCREEN_SELECTED);
             nextAction = PROVIDE_EB;
 
-            QualityStateUpdater.updateOBState(state, (GraphState) state.get(OB_STATE));
+            state.getStateUpdater().updateOBState(state, (GraphState) state.get(OB_STATE));
         } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
             state.remove(COLLECTING_S2R);
             state.remove(StateVariable.CONFIRM_LAST_STEP);
@@ -50,13 +50,13 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             state.remove(EB_SCREEN_CONFIRMATION);
             nextAction = PROVIDE_S2R_FIRST;
 
-            QualityStateUpdater.updateEBState(state, (GraphState) state.get(EB_STATE));
+            state.getStateUpdater().updateEBState(state, (GraphState) state.get(EB_STATE));
         } else if (state.containsKey(OB_MATCHED_CONFIRMATION)) {
             state.remove(OB_MATCHED_CONFIRMATION);
             nextAction = PROVIDE_EB;
 
             QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
-            QualityStateUpdater.updateOBState(state, result.getMatchedStates().get(0));
+            state.getStateUpdater().updateOBState(state, result.getMatchedStates().get(0));
 
         } else if (state.containsKey(S2R_MATCHED_CONFIRMATION)) {
             state.remove(S2R_MATCHED_CONFIRMATION);
