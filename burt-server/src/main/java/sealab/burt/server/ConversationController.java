@@ -15,13 +15,14 @@ import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
 import sealab.burt.server.output.HTMLBugReportGenerator;
-import sealab.burt.server.statecheckers.*;
+import sealab.burt.server.statecheckers.DefaultActionStateChecker;
+import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.ob.OBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.participant.ParticipantIdStateChecker;
 import sealab.burt.server.statecheckers.s2r.S2RDescriptionStateChecker;
-import sealab.burt.server.statecheckers.s2r.S2RPredictionStateChecker;
 import sealab.burt.server.statecheckers.s2r.S2RInputStateChecker;
+import sealab.burt.server.statecheckers.s2r.S2RPredictionStateChecker;
 import sealab.burt.server.statecheckers.yesno.AffirmativeAnswerStateChecker;
 import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
@@ -37,6 +38,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
 import static sealab.burt.server.StateVariable.NEXT_INTENTS;
+import static sealab.burt.server.StateVariable.LAST_ACTION;
+import static sealab.burt.server.StateVariable.LAST_MESSAGE;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
 
@@ -69,7 +72,7 @@ class ConversationController {
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
-        put(THANKS, new DefaultActionStateChecker(ActionName.END_CONVERSATION));
+        put(CONFIRM_END_CONVERSATION, new DefaultActionStateChecker(CONFIRM_END_CONVERSATION_ACTION));
     }};
 
     ConcurrentHashMap<String, List<MessageObj>> messageHistory = new ConcurrentHashMap<>();
@@ -101,7 +104,6 @@ class ConversationController {
             }
 
             String sessionId = userResponse.getSessionId();
-
             if (sessionId == null) {
                 return ConversationResponse.createResponse("Thank you for using BURT. " +
                                 "Please reload the page and confirm the action to start a new conversation",
@@ -109,7 +111,6 @@ class ConversationController {
             }
 
             ConversationState conversationState = conversationStates.get(sessionId);
-
             if (conversationState == null) {
                 log.error("The session does not exist: " + sessionId);
                 return getDefaultResponse();
@@ -117,9 +118,7 @@ class ConversationController {
 
             conversationState.put(CURRENT_MESSAGE, userResponse);
 
-//        log.debug(MessageFormat.format("Past conversation state {0}"));
             Intent intent = MessageParser.getIntent(userResponse, conversationState);
-
             if (intent == null)
                 return ConversationResponse.createResponse("Sorry, I did not get that. Please try one more time.");
 
@@ -137,13 +136,16 @@ class ConversationController {
             log.debug("Identified state checker: " + stateChecker);
 
             ActionName action = stateChecker.nextAction(conversationState);
-
             if (action == null)
                 throw new RuntimeException("The state checker returned a null action. It cannot be null!");
 
+            if (END_CONVERSATION_ACTION.equals(action)) {
+                endConversation(sessionId);
+                return getDefaultResponse();
+            }
+
             log.debug("Identified action name: " + action);
             ChatBotAction nextAction = conversationState.getAction(action);
-//        log.debug(conversationState.get("CONVERSATION_STATE").toString());
 
             if (nextAction == null)
                 return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
@@ -153,6 +155,9 @@ class ConversationController {
             List<ChatBotMessage> nextMessages = nextAction.execute(conversationState);
             List<Intent> nextIntents = nextAction.nextExpectedIntents();
             conversationState.put(NEXT_INTENTS, nextIntents);
+
+            conversationState.put(LAST_ACTION, action);
+            conversationState.put(LAST_MESSAGE, userResponse);
 
             log.debug("Expected next intent: " + nextIntents);
 
@@ -264,7 +269,7 @@ class ConversationController {
         conversationStates.putIfAbsent(sessionId, state);
 
         long startTime = System.currentTimeMillis();
-        state.put(StateVariable.START_TIME, startTime);
+        state.put(StateVariable.REPORTING_START_TIME, startTime);
 
         return sessionId;
     }
@@ -273,7 +278,6 @@ class ConversationController {
     public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
         Object obj = conversationStates.remove(sessionId);
         messageHistory.remove(sessionId);
-
         return obj != null ? "true" : "false";
     }
 

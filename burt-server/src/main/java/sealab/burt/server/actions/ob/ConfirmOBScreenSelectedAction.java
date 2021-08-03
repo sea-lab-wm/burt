@@ -9,7 +9,6 @@ import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
-import sealab.burt.server.conversation.state.QualityStateUpdater;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +29,6 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         List<GraphState> matchedStates = result.getMatchedStates();
-
 
         //-------------------------------------
         Integer currentObScreenPosition = (Integer) state.get(CURRENT_OB_SCREEN_POSITION);
@@ -79,41 +77,57 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                     .append("\"");
 
             state.remove(StateVariable.CURRENT_OB_SCREEN_POSITION);
+            state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
 
             return createChatBotMessages(response.toString(), "Shall we continue?");
+
 
         } else if (NONE.equals(message.getMessage())) {
 
             state.remove(OB_SCREEN_SELECTED);
 
-            boolean nextAttempt = state.checkNextAttemptAndResetObScreens();
+            //-----------------------------------
+            //manage attempts
 
-            log.debug("Current attempt (OB_SCREENS): " + state.getCurrentAttemptObScreens());
+            boolean negativeEndConversationConfirmation = state.containsKey(CONFIRM_END_CONVERSATION_NEGATIVE);
 
-            if (!nextAttempt) {
+            if (!negativeEndConversationConfirmation) {
+                boolean nextAttempt = state.checkNextAttemptAndResetObScreens();
 
-                startEBChecker(state);
-                this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
+                log.debug("Current attempt (OB_SCREENS): " + state.getCurrentAttemptObScreens());
 
-                QualityStateUpdater.updateOBState(state, null);
+                if (!nextAttempt) {
 
-                return createChatBotMessages("All right. Let's continue.",
-                        "Can you please tell me how the app is supposed to work instead?"
-                );
+                    startEBChecker(state);
+                    this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
+
+                    state.getStateUpdater().updateOBState(state, null);
+
+                    return createChatBotMessages("All right. Let's continue.",
+                            "Can you please tell me how the app is supposed to work instead?"
+                    );
+                }
+
+                state.increaseCurrentAttemptObScreens();
             }
 
-            state.increaseCurrentAttemptObScreens();
-
             //---------------------------
+            //increase ob screen position
 
             //increase the position of the next OB screen batch
-            currentObScreenPosition += SelectOBScreenAction.MAX_OB_SCREENS_TO_SHOW;
+            if (!negativeEndConversationConfirmation) {
+                currentObScreenPosition += SelectOBScreenAction.MAX_OB_SCREENS_TO_SHOW;
+            }
             state.put(StateVariable.CURRENT_OB_SCREEN_POSITION, currentObScreenPosition);
+
+            //---------------------------
+            //prepare options
 
             //get the options
             List<KeyValues> options = SelectOBScreenAction.getObScreenOptions(matchedStates, state,
                     currentObScreenPosition);
 
+            state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
 
             if (options.isEmpty()) {
 
@@ -135,13 +149,15 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 //----------------------------------
 
                 MessageObj messageObj = new MessageObj(
-                        " Please hit the \"<b>Done</b>\" button after you have selected it.", WidgetName.OBScreenSelector);
+                        " Please hit the \"<b>Done</b>\" button after you have selected it.",
+                        WidgetName.OBScreenSelector);
 
                 return createChatBotMessages(
                         "Okay then, which of the following screens is <b>having or triggering the problem</b>?",
                         new ChatBotMessage(messageObj, options, false));
             }
         } else {
+            state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
             return getDefaultMessage(matchedStates, state, currentObScreenPosition);
         }
 
@@ -155,7 +171,8 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
         List<KeyValues> options = SelectOBScreenAction.getObScreenOptions(matchedStates, state, position);
 
         MessageObj messageObj = new MessageObj(
-                "From the list below, can you please <b>select the screen that is having or triggering the problem</b>?",
+                "From the list below, can you please select the <b>screen that is having or triggering the " +
+                        "problem</b>?",
                 WidgetName.OBScreenSelector);
 
         return createChatBotMessages(

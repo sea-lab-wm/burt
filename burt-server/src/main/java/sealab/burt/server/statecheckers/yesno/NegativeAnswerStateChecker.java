@@ -2,6 +2,7 @@ package sealab.burt.server.statecheckers.yesno;
 
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
+import sealab.burt.server.conversation.entity.UserResponse;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.state.QualityStateUpdater;
 import sealab.burt.server.statecheckers.StateChecker;
@@ -19,7 +20,23 @@ public class NegativeAnswerStateChecker extends StateChecker {
     public ActionName nextAction(ConversationState state) {
         ActionName nextAction = null;
 
-        if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
+        if (state.containsKey(CONFIRM_END_CONVERSATION)) {
+
+            state.put(StateVariable.CONFIRM_END_CONVERSATION_NEGATIVE, true);
+
+            //----------------------
+
+            state.remove(StateVariable.CONFIRM_END_CONVERSATION);
+
+            ActionName action = (ActionName) state.get(ACTION_NEGATIVE_END_CONVERSATION);
+            UserResponse lastUserResponse = (UserResponse) state.get(MSG_NEGATIVE_END_CONVERSATION);
+            if (lastUserResponse != null) state.put(CURRENT_MESSAGE, lastUserResponse);
+
+            nextAction = action;
+
+            state.remove(StateVariable.ACTION_NEGATIVE_END_CONVERSATION);
+            state.remove(StateVariable.MSG_NEGATIVE_END_CONVERSATION);
+        } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
             state.remove(StateVariable.CONFIRM_LAST_STEP);
             nextAction = PROVIDE_S2R;
             state.putIfAbsent(COLLECTING_S2R, true);
@@ -40,11 +57,11 @@ public class NegativeAnswerStateChecker extends StateChecker {
 
             boolean newAttempt = state.checkNextAttemptAndResetObMatched();
 
-            if(newAttempt){
+            if (newAttempt) {
                 nextAction = PROVIDE_OB;
-            }else{
+            } else {
                 nextAction = PROVIDE_EB;
-                QualityStateUpdater.updateOBState(state, null);
+                state.getStateUpdater().updateOBState(state, null);
             }
 
         } else if (state.containsKey(S2R_MATCHED_CONFIRMATION)) {

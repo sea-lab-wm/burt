@@ -16,7 +16,7 @@ public class TimeRecorder {
 
     public static void recordTime(ConversationState state) throws IOException {
 
-        long millis = (long) state.get(END_TIME) - (long) state.get(START_TIME);
+        long millis = (long) state.get(REPORTING_END_TIME) - (long) state.get(REPORTING_START_TIME);
 
         long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(minutes);

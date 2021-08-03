@@ -16,7 +16,6 @@ const AppSelector = (props) => {
     const [screen, setScreen] = useState({});
     const [disabled, setDisable] = useState(props.disabled);
 
-
     const pickImageHandler = (image) => {
         setScreen(image);
     }

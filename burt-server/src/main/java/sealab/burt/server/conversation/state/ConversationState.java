@@ -9,7 +9,7 @@ import sealab.burt.server.actions.eb.ClarifyEBAction;
 import sealab.burt.server.actions.eb.ProvideEBAction;
 import sealab.burt.server.actions.eb.ProvideEBNoParseAction;
 import sealab.burt.server.actions.ob.*;
-import sealab.burt.server.actions.others.EndConversationAction;
+import sealab.burt.server.actions.others.ConfirmEndConversationAction;
 import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.actions.others.ProvideParticipantIdAction;
 import sealab.burt.server.actions.others.UnexpectedErrorAction;
@@ -98,9 +98,9 @@ public class ConversationState {
 
             //--------OTHERS-----------//
 
+            put(CONFIRM_END_CONVERSATION_ACTION, new ConfirmEndConversationAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             put(REPORT_SUMMARY, new GenerateBugReportAction());
             put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
-            put(ActionName.END_CONVERSATION, new EndConversationAction());
 
         }
     };
