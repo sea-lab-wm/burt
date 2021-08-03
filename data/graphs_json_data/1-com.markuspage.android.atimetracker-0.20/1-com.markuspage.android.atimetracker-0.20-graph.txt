@@ -104,7 +104,7 @@ Transitions (69):
 453981272: (s:-1495548807,t:1914860695): [id=5, ex=0, sq=6, act=(0) click, cp=[, ty=Button, idx=button1, idnx=1, tx=ADD TASK, x=744, y=600, h=126, w=234, dsc=], txt=, exp=, tr=null] weight=7.0 ds=TR sc=com.markuspage.android.atimetracker.User-Trace.9.com.markuspage.android.atimetracker_0.20_atimetracker6_augmented.png ex=11
 
 States (33):
--1659243725, Start state, CS, (null): null - null
+-1659243725, Start state, TR, (null): null - null
 -283260033, Tasks(Window=Main), TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=4, n='android.widget.LinearLayout', t='', d='', ix='android:id/parentPanel'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/customPanel'}, comp{id=6, n='android.widget.FrameLayout', t='', d='', ix='android:id/custom'}, comp{id=7, n='android.widget.LinearLayout', t='', d='', ix='com.markuspage.android.atimetracker:id/about_dialog'}, comp{id=8, n='android.widget.TextView', t='A Time Tracker', d='', ix=''}, comp{id=9, n='android.widget.TextView', t='Version 0.20', d='', ix='com.markuspage.android.atimetracker:id/version'}, comp{id=10, n='android.widget.TextView', t='Open Source Time Tracker', d='', ix=''}, comp{id=11, n='android.widget.ScrollView', t='', d='', ix=''}, comp{id=12, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=13, n='android.widget.TextView', t=' Detailed instructions are at https://github.com/netmackan/ATimeTracker
 
  • Create some tasks using the menu
