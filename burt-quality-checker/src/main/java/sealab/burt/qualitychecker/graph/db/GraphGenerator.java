@@ -160,10 +160,8 @@ class GraphGenerator {
 
             if ((sourceState.getScreenshotPath() == null || GraphDataSource.TR.equals(transition.getDataSource()))
                     && screenshotFile != null) {
-                //FIXME: it should be the non-augmented screenshot, but right now I am reverting the change cause of
-                // a problem in the TraceReplayer data
-//                sourceState.setScreenshotPath(screenshotFile.replace("_augmented", ""));
-                sourceState.setScreenshotPath(screenshotFile);
+                String nonAugmentedScreenshotPath = getNonAugmentedScreenshotPath(screenshotFile);
+                sourceState.setScreenshotPath(nonAugmentedScreenshotPath);
 //                if(sourceState.getUniqueHash().equals(1863964359)){
 //                    log.debug(sourceState.getScreenshotPath());
 //                }
@@ -178,6 +176,30 @@ class GraphGenerator {
         });
 
         return directedGraph;
+    }
+
+    private String getNonAugmentedScreenshotPath(String screenshotFile) {
+
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(screenshotFile);
+        List<String> allNumbers = new ArrayList<>();
+        while (m.find()) {
+            allNumbers.add(m.group());
+        }
+
+        if (allNumbers.isEmpty()) {
+            log.debug(String.format("The screenshot file does not have numbers: %s", screenshotFile));
+            return screenshotFile;
+        }
+
+        try {
+            String lastNumber = allNumbers.get(allNumbers.size() - 1);
+            Integer newNumber = Integer.parseInt(lastNumber) - 1;
+            return screenshotFile.replace(lastNumber + "_augmented.png", newNumber + ".png");
+        } catch (NumberFormatException e) {
+            log.error(String.format("Could not identify the non-augmented screenshot: %s", screenshotFile), e);
+            return screenshotFile;
+        }
     }
 
     private List<AppStep> processExecution(Execution execution) throws Exception {

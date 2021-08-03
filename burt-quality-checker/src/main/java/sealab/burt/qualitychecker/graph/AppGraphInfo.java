@@ -88,9 +88,11 @@ public class AppGraphInfo implements Serializable {
         while (iterator.hasNext()) {
             final GraphState state = iterator.next();
 
-            statesBuilder.append(String.format("%s, %s, (%s): %s", state.getName(), state.getDataSource(),
+            statesBuilder.append(String.format("%s, %s, (%s): %s - %s", state.getName(), state.getDataSource(),
                     state.getScreen(),
-                    state.getUnformattedXml()));
+                    state.getUnformattedXml(),
+                    state.getScreenshotPath())
+                    );
             statesBuilder.append("\n");
 
             final List<GraphTransition> transitions = new LinkedList<>(graph.outgoingEdgesOf(state));

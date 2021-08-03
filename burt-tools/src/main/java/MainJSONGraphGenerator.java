@@ -72,7 +72,7 @@ class MainJSONGraphGenerator {
                     ).exceptionally(exception -> {
                 log.error("There was an error: " + exception.getMessage(), exception);
                 return null;
-            });
+            }).join();
 
         } finally {
             executor.shutdown();
