@@ -21,7 +21,7 @@ public @Slf4j
 class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
     @Override
-    public List<ChatBotMessage> execute(ConversationState state) {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
 

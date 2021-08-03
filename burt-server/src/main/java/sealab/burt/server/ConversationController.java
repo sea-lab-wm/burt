@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
@@ -209,7 +210,7 @@ class ConversationController {
     }
 
     @PostMapping("/reportPreview")
-    public ConversationResponse previewReport(@RequestBody UserResponse req) throws Exception {
+    public ConversationResponse previewBugReport(@RequestBody UserResponse req) throws Exception {
         log.debug("Returning the bug report preview in the server...");
 
         String sessionId = req.getSessionId();
@@ -231,19 +232,11 @@ class ConversationController {
                     ResponseCode.NO_INFO_FOR_REPORT);
         }
 
-        String appName = conversationState.get(StateVariable.APP_NAME).toString();
-        String appVersion = conversationState.get(StateVariable.APP_VERSION).toString();
-        String participant = conversationState.get(StateVariable.PARTICIPANT_ID).toString();
+        File reportFile = GenerateBugReportAction.generateBugReport(conversationState);
 
-        String reportName = String.join("-", participant, appName, appVersion, sessionId)
-                .replace(" ", "_") + ".html";
-
-        File outputFile = Paths.get(BurtConfigPaths.generatedBugReportsPath, reportName).toFile();
-        new HTMLBugReportGenerator().generateOutput(outputFile, conversationState);
         MessageObj messageObj = new MessageObj();
-
         return new ConversationResponse(Collections.singletonList(
-                new ChatBotMessage(messageObj, reportName)), ResponseCode.SUCCESS);
+                new ChatBotMessage(messageObj, reportFile.getName())), ResponseCode.SUCCESS);
     }
 
 

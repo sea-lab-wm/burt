@@ -63,7 +63,7 @@ class SelectMissingS2RAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConversationState state) {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 

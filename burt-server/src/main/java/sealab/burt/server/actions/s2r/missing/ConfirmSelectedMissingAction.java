@@ -24,7 +24,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConversationState state) {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
         UserResponse currentMessage = (UserResponse) state.get(CURRENT_MESSAGE);
 
         @SuppressWarnings("unchecked") final List<AppStep> allMissingSteps = (List<AppStep>) state.get(S2R_ALL_MISSING);

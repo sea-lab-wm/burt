@@ -25,7 +25,7 @@ public class S2RPredictionStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConversationState state) {
+    public ActionName nextAction(ConversationState state) throws Exception {
 
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
         MessageObj message = msg.getFirstMessage();

@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.server.actions.commons.ScreenshotPathUtils;
+import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.output.BugReportElement;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ class QualityStateUpdater {
      */
     public void addStepAndUpdateGraphState(ConversationState state,
                                                   String stringStep,
-                                                  S2RQualityAssessment assessment) {
+                                                  S2RQualityAssessment assessment) throws Exception {
         List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
 
         AppStep appStep = null;
@@ -66,6 +67,8 @@ class QualityStateUpdater {
                             GraphState sourceState = lastStepToState.getTransition().getSourceState();
                             s2rChecker.updateState(sourceState);
 
+                            GenerateBugReportAction.generateBugReport(state);
+
                             appSteps.remove(appSteps.size() - 1);
 
                             if(appSteps.isEmpty())
@@ -88,11 +91,11 @@ class QualityStateUpdater {
 
         //---------------------
 
-        updateStateBasedOnStep(appStep, s2rChecker);
+        updateStateBasedOnStep(appStep, s2rChecker, state);
 
     }
 
-    private void updateStateBasedOnStep(AppStep appStep, S2RChecker s2rChecker) {
+    private void updateStateBasedOnStep(AppStep appStep, S2RChecker s2rChecker, ConversationState state) throws Exception {
         if (appStep == null || s2rChecker == null) return;
         GraphTransition transition = appStep.getTransition();
         if (transition != null) {
@@ -107,6 +110,8 @@ class QualityStateUpdater {
             }
 
             s2rChecker.updateState(targetState);
+            GenerateBugReportAction.generateBugReport(state);
+
             if (!currentState.equals(targetState)) {
                 List<AppStep> steps = lastStepsToState.get(targetState);
                 if(steps == null) steps = new ArrayList<>();
@@ -120,7 +125,7 @@ class QualityStateUpdater {
      * add steps as "report" steps and update the current state for each step
      */
     public void addStepsToState(ConversationState state,
-                                       List<AppStep> selectedSteps) {
+                                       List<AppStep> selectedSteps) throws Exception {
 
         List<BugReportElement> stepElements = (List<BugReportElement>) state.get(REPORT_S2R);
         if (stepElements == null)
@@ -136,28 +141,32 @@ class QualityStateUpdater {
 
             //---------------------------------
 
-            updateStateBasedOnStep(appStep, s2rChecker);
+            updateStateBasedOnStep(appStep, s2rChecker, state);
         }
 
         state.put(REPORT_S2R, stepElements);
     }
 
-    public void updateOBState(ConversationState state, GraphState obState) {
+    public void updateOBState(ConversationState state, GraphState obState) throws Exception {
 
         log.debug("Updating OB state to: " + obState);
 
         String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(obState, state);
         state.put(REPORT_OB, Collections.singletonList(
                 new BugReportElement((String) state.get(OB_DESCRIPTION), obState, screenshotFile)));
+
+        GenerateBugReportAction.generateBugReport(state);
     }
 
 
-    public void updateEBState(ConversationState state, GraphState ebState) {
+    public void updateEBState(ConversationState state, GraphState ebState) throws Exception {
 
         log.debug("Updating EB state to: " + ebState);
 
         String screenshotFile = ScreenshotPathUtils.getScreenshotPathForGraphState(ebState, state);
         state.put(REPORT_EB, Collections.singletonList(
                 new BugReportElement((String) state.get(EB_DESCRIPTION), ebState, screenshotFile)));
+
+        GenerateBugReportAction.generateBugReport(state);
     }
 }

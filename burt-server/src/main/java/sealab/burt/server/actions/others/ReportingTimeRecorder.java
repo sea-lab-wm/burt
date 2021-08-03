@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import static sealab.burt.server.StateVariable.*;
 
-public class TimeRecorder {
+public class ReportingTimeRecorder {
 
     public static void recordTime(ConversationState state) throws IOException {
 

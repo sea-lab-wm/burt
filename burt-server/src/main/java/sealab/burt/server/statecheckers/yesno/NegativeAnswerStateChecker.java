@@ -17,7 +17,7 @@ public class NegativeAnswerStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConversationState state) {
+    public ActionName nextAction(ConversationState state) throws Exception {
         ActionName nextAction = null;
 
         if (state.containsKey(CONFIRM_END_CONVERSATION)) {
