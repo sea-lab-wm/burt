@@ -29,7 +29,7 @@ const OBScreenSelector = (props) => {
             props.messages[idx].disabled = true
             setDisable(true)
         } else {
-            alert("please select one screenshot!")
+            alert("Please select one option")
         }
     }
     const handleNegativeButton = (choice) => {

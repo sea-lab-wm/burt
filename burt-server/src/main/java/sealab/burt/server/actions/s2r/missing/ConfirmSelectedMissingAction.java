@@ -79,7 +79,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
                     .append(" prior step(s).");
 
             StringBuilder msg2 = new StringBuilder();
-            msg2.append("What step did <b>you perform after the step</b>\"")
+            msg2.append("What step did <b>you perform after the step</b> \"")
                     .append(highQualityStepMessage)
                     .append("\"?");
 

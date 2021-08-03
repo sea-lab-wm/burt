@@ -29,7 +29,11 @@ class AffirmativeAnswerStateChecker extends StateChecker {
     public ActionName nextAction(ConversationState state) {
         ActionName nextAction = null;
 
-        if (state.containsKey(APP_ASKED)) {
+        if(state.containsKey(CONFIRM_END_CONVERSATION)){
+            state.remove(StateVariable.CONFIRM_END_CONVERSATION);
+            state.remove(ACTION_NEGATIVE_END_CONVERSATION);
+            nextAction = END_CONVERSATION_ACTION;
+        } else if (state.containsKey(APP_ASKED)) {
             state.remove(APP_ASKED);
             nextAction = PROVIDE_OB;
         } else if (state.containsKey(OB_SCREEN_SELECTED)) {

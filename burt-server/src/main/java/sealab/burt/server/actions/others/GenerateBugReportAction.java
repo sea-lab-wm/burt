@@ -42,7 +42,7 @@ class GenerateBugReportAction extends ChatBotAction {
         //-------------------------------------------
 
         long endTime = System.currentTimeMillis();
-        state.put(END_TIME, endTime);
+        state.put(REPORTING_END_TIME, endTime);
         TimeRecorder.recordTime(state);
 
         return createChatBotMessages("Okay, great. This is all the information we need for now.",
