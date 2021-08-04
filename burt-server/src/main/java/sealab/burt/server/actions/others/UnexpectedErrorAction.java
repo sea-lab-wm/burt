@@ -10,8 +10,8 @@ public class UnexpectedErrorAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
-        return createChatBotMessages("I am sorry, there was an unexpected internal error.",
-                "Please try again or restart the conversation.");
+        return createChatBotMessages("I am sorry, there was an unexpected internal error",
+                "Please try again or restart the conversation");
     }
 
 }

@@ -57,10 +57,10 @@ class DisambiguateS2RAction extends ChatBotAction {
                     "(e.g., %s).";
             return String.format(assessmentTemplate, getComponentsString(components), getActionsString(actions));
         } else if (!components.isEmpty()) {
-            final String assessmentTemplate = preFix + "UI components (e.g., %s).";
+            final String assessmentTemplate = preFix + "UI components (e.g., %s)";
             return String.format(assessmentTemplate, getComponentsString(components));
         } else {
-            final String assessmentTemplate = preFix + "actions (e.g., %s).";
+            final String assessmentTemplate = preFix + "actions (e.g., %s)";
             return String.format(assessmentTemplate, getActionsString(actions));
         }
     }

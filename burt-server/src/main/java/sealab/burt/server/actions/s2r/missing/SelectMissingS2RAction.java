@@ -119,7 +119,7 @@ class SelectMissingS2RAction extends ChatBotAction {
                 , WidgetName.S2RScreenSelector);
         return createChatBotMessages(
                 "Got it! You reported the step \"" + highQualityStepMessage + "\"",
-                "It seems that before that step you had to perform <b>additional steps</b>. ",
+                "It seems that before that step you had to perform <b>additional steps</b>",
                 "From the following options, please select the <b>steps that you performed before this step</b> and click " +
                         "the \"<b>done</b>\" button", new ChatBotMessage(messageObj, stepOptions, true));
 

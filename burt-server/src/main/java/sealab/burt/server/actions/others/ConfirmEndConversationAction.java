@@ -16,7 +16,7 @@ public class ConfirmEndConversationAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
-        return createChatBotMessages("It seems that you haven't finished reporting the problem.",
+        return createChatBotMessages("It seems that you haven't finished reporting the problem",
                 "Are you sure you want to start a new conversation?");
     }
 }

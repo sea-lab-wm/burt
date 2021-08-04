@@ -16,7 +16,7 @@ public class ProvideS2RNoParseAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("I am sorry, it seems the language of the step is a little odd and I am not able " +
-                "to understand it.",
+                "to understand it",
                 " Can you please <b>rephrase and provide the step one more time</b>?");
     }
 

@@ -110,7 +110,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
                 WidgetName.S2RScreenSelector);
 
         return createChatBotMessages(
-                "Sorry, the options you selected are incorrect.",
+                "Sorry, the options you selected are incorrect",
                 new ChatBotMessage(messageObj, stepOptions, true));
     }
 

@@ -103,7 +103,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
                     state.getStateUpdater().updateOBState(state, null);
 
-                    return createChatBotMessages("All right. Let's continue.",
+                    return createChatBotMessages("All right, let's continue",
                             "Can you please tell me how the app is supposed to work instead?"
                     );
                 }
@@ -149,7 +149,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 //----------------------------------
 
                 MessageObj messageObj = new MessageObj(
-                        " Please hit the \"<b>Done</b>\" button after you have selected it.",
+                        " Please hit the \"<b>Done</b>\" button after you have selected it",
                         WidgetName.OBScreenSelector);
 
                 return createChatBotMessages(
@@ -176,7 +176,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 WidgetName.OBScreenSelector);
 
         return createChatBotMessages(
-                "Sorry, the options you selected are incorrect.",
+                "Sorry, the options you selected are incorrect",
                 new ChatBotMessage(messageObj, options, false));
     }
 }

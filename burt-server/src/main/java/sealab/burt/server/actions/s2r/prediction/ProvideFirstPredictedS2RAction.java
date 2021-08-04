@@ -143,12 +143,12 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
-        MessageObj messageObj = new MessageObj("<b>Input values</b> and <b>UI components</b> may be a little different from what you observed in the app.",
+        MessageObj messageObj = new MessageObj("<b>Input values</b> and <b>UI components</b> may be a little different from what you observed in the app",
                 WidgetName.S2RScreenSelector);
         return createChatBotMessages(
-                "Okay, it seems <b>the next steps</b> that you performed might be the following.",
+                "Okay, it seems <b>the next steps</b> that you performed might be the following",
                 "Can you select the ones you actually performed next?",
-                "Remember that the screenshots below are <b>for reference only</b>.",
+                "Remember that the screenshots below are <b>for reference only</b>",
                 new ChatBotMessage(messageObj, stepOptions, true));
     }
 

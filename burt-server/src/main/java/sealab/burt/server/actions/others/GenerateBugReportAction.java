@@ -37,16 +37,16 @@ class GenerateBugReportAction extends ChatBotAction {
 
         //-------------------------------------------
 
-        String response = "The button below will take you to the <b>bug report</b> you just issued.";
+        String response = "The button below will take you to the <b>bug report</b> you just issued";
         MessageObj messageObj = new MessageObj(response, WidgetName.ReportGenerator);
         ChatBotMessage chatBotMessage = new ChatBotMessage(messageObj, reportFile.getName());
 
-        return createChatBotMessages("Okay, great. This is all the information we need for now.",
+        return createChatBotMessages("Okay, great! This is all the information we need for now",
                 "The <b>bug report ID</b> that you need to provide in the survey is:",
                 String.format("<b>%s</b>", reportName),
                 chatBotMessage,
-                //"We will redirect this information to our development team.",
-                "Thank you for using BURT."
+                //"We will redirect this information to our development team",
+                "Thank you for using BURT"
         );
     }
 

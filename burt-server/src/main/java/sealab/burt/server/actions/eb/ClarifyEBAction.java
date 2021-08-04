@@ -40,7 +40,7 @@ public class ClarifyEBAction extends ChatBotAction {
             state.put(EB_STATE, bugReportElement.getOriginalElement());
 
         return createChatBotMessages("Okay, the description of the expected behavior doesn't seem to match " +
-                        "the problematic app screen.", optionMessage);
+                        "the problematic app screen", optionMessage);
     }
 
 }
