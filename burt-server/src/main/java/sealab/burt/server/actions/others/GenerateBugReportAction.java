@@ -10,6 +10,7 @@ import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.entity.MessageObj;
 import sealab.burt.server.conversation.entity.WidgetName;
 import sealab.burt.server.output.HTMLBugReportGenerator;
+import sealab.burt.server.output.ReportingTimeRecorder;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -34,6 +35,8 @@ class GenerateBugReportAction extends ChatBotAction {
         long endTime = System.currentTimeMillis();
         state.put(REPORTING_END_TIME, endTime);
         ReportingTimeRecorder.recordTime(state);
+
+        state.saveConversationMessages();
 
         //-------------------------------------------
 

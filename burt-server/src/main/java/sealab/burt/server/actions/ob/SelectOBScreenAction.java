@@ -93,8 +93,9 @@ class SelectOBScreenAction extends ChatBotAction {
                                 uniqueOptionKeys.add(key);
 
                             return new KeyValues(key,
-                                    (optionPosition + 1) + ". " + description +
-                                            " (" + graphState.getUniqueHash().toString() + ")", screenshotFile);
+                                    (optionPosition + 1) + ". " + description
+                                            //+ " (" + graphState.getUniqueHash().toString() + ")"
+                                    , screenshotFile);
                         }
 
                 )

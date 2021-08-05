@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.others.GenerateBugReportAction;
@@ -15,7 +14,6 @@ import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
-import sealab.burt.server.output.HTMLBugReportGenerator;
 import sealab.burt.server.statecheckers.DefaultActionStateChecker;
 import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
@@ -29,19 +27,17 @@ import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
 
 import java.io.File;
-import java.nio.file.Paths;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static sealab.burt.server.StateVariable.CURRENT_MESSAGE;
-import static sealab.burt.server.StateVariable.NEXT_INTENTS;
-import static sealab.burt.server.StateVariable.LAST_ACTION;
-import static sealab.burt.server.StateVariable.LAST_MESSAGE;
+import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
+import static sealab.burt.server.msgparsing.Intent.CONFIRM_END_CONVERSATION;
+import static sealab.burt.server.msgparsing.Intent.EB_DESCRIPTION;
+import static sealab.burt.server.msgparsing.Intent.OB_DESCRIPTION;
 import static sealab.burt.server.msgparsing.Intent.*;
 
 @SpringBootApplication
@@ -76,7 +72,6 @@ class ConversationController {
         put(CONFIRM_END_CONVERSATION, new DefaultActionStateChecker(CONFIRM_END_CONVERSATION_ACTION));
     }};
 
-    ConcurrentHashMap<String, List<MessageObj>> messageHistory = new ConcurrentHashMap<>();
     ConcurrentHashMap<String, ConversationState> conversationStates = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
@@ -112,27 +107,44 @@ class ConversationController {
             }
 
             ConversationState conversationState = conversationStates.get(sessionId);
+            ConversationResponse defaultResponse = getDefaultResponse();
+
             if (conversationState == null) {
                 log.error("The session does not exist: " + sessionId);
-                return getDefaultResponse();
+                return defaultResponse;
             }
 
             conversationState.put(CURRENT_MESSAGE, userResponse);
 
+            //-----------------------------
+
+            conversationState.addUserMessagesToHistory(userResponse.getMessages());
+
+            //-----------------------------
+
             Intent intent = MessageParser.getIntent(userResponse, conversationState);
-            if (intent == null)
-                return ConversationResponse.createResponse("Sorry, I did not get that. Please try one more time.");
+            if (intent == null) {
+                ConversationResponse response = ConversationResponse.createResponse("Sorry, I did not get that. " +
+                        "Please try one more time.");
+                conversationState.addChatBotResponseToHistory(response);
+                return response;
+            }
 
             log.debug("Identified intent: " + intent);
 
             if (Intent.END_CONVERSATION.equals(intent)) {
+                conversationState.addChatBotResponseToHistory(defaultResponse);
                 endConversation(sessionId);
-                return getDefaultResponse();
+                return defaultResponse;
             }
 
             StateChecker stateChecker = stateCheckers.get(intent);
-            if (stateChecker == null)
-                return ConversationResponse.createResponse("Sorry, I am not sure how to respond in this case");
+            if (stateChecker == null) {
+                ConversationResponse response = ConversationResponse.createResponse("Sorry, I am not sure how to " +
+                        "respond in this case");
+                conversationState.addChatBotResponseToHistory(response);
+                return response;
+            }
 
             log.debug("Identified state checker: " + stateChecker);
 
@@ -141,15 +153,20 @@ class ConversationController {
                 throw new RuntimeException("The state checker returned a null action. It cannot be null!");
 
             if (END_CONVERSATION_ACTION.equals(action)) {
+                conversationState.addChatBotResponseToHistory(defaultResponse);
                 endConversation(sessionId);
-                return getDefaultResponse();
+                return defaultResponse;
             }
 
             log.debug("Identified action name: " + action);
             ChatBotAction nextAction = conversationState.getAction(action);
 
-            if (nextAction == null)
-                return ConversationResponse.createResponse("Sorry, I am not sure what to do in this case");
+            if (nextAction == null) {
+                ConversationResponse response = ConversationResponse.createResponse("Sorry, I am not sure what to do " +
+                        "in this case");
+                conversationState.addChatBotResponseToHistory(response);
+                return response;
+            }
 
             log.debug("Identified action: " + nextAction.getClass().getSimpleName());
 
@@ -165,7 +182,12 @@ class ConversationController {
 //            log.debug("State: ");
 //            log.debug(conversationState.toString());
 
-            return new ConversationResponse(nextMessages, nextIntents, action, ResponseCode.SUCCESS);
+            ConversationResponse conversationResponse = new ConversationResponse(nextMessages, nextIntents, action,
+                    ResponseCode.SUCCESS);
+
+            conversationState.addChatBotResponseToHistory(conversationResponse);
+
+            return conversationResponse;
         } catch (Exception e) {
             log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +
@@ -178,21 +200,24 @@ class ConversationController {
                 "The conversation will automatically end in a few seconds.", ResponseCode.END_CONVERSATION);
     }
 
-
-    @PostMapping("/saveSingleMessage")
-    public void saveSingleMessage(@RequestBody UserResponse req) {
-        String msg = "Saving the messages in the server...";
-        log.debug(msg);
-        List<MessageObj> sessionMsgs = messageHistory.getOrDefault(req.getSessionId(), new ArrayList<>());
-        sessionMsgs.add(req.getMessages().get(0));
-        messageHistory.put(req.getSessionId(), sessionMsgs);
-    }
-
     @PostMapping("/saveMessages")
     public void saveMessages(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";
         log.debug(msg);
-        messageHistory.put(req.getSessionId(), req.getMessages());
+
+        String sessionId = req.getSessionId();
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return;
+        }
+
+        ConversationState state = conversationStates.get(sessionId);
+        if (state == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return;
+        }
+
+        state.setFrontEndMessageHistory(req.getMessages());
     }
 
     @PostMapping("/testResponse")
@@ -206,7 +231,20 @@ class ConversationController {
     public List<MessageObj> loadMessages(@RequestBody UserResponse req) {
         String msg = "Returning the messages in the server...";
         log.debug(msg);
-        return messageHistory.get(req.getSessionId());
+
+        String sessionId = req.getSessionId();
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return null; //it should return null
+        }
+
+        ConversationState state = conversationStates.get(sessionId);
+        if (state == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return null; //it should return null
+        }
+
+        return state.getFrontEndMessageHistory();
     }
 
     @PostMapping("/reportPreview")
@@ -256,6 +294,7 @@ class ConversationController {
     @PostMapping("/start")
     public String startConversation() {
         String sessionId = UUID.randomUUID().toString();
+        log.debug("Starting a new conversation: " + sessionId);
 
         ConversationState state = new ConversationState();
         state.put(StateVariable.SESSION_ID, sessionId);
@@ -269,8 +308,13 @@ class ConversationController {
 
     @PostMapping("/end")
     public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
+        ConversationState state = conversationStates.get(sessionId);
+        if (state == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return "true";
+        }
+        state.saveConversationMessages();
         Object obj = conversationStates.remove(sessionId);
-        messageHistory.remove(sessionId);
         return obj != null ? "true" : "false";
     }
 

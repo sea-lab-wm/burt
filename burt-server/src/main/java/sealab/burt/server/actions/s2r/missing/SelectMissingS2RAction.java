@@ -50,7 +50,9 @@ class SelectMissingS2RAction extends ChatBotAction {
                         uniqueOptionKeys.add(key);
 
                     return new KeyValues(key,
-                            nlStep + " (" + getUniqueHashFromTransition2(transition) + ")", screenshotFile);
+                            nlStep
+                            //        + " (" + getUniqueHashFromTransition2(transition) + ")"
+                            , screenshotFile);
                         }
 
                 )

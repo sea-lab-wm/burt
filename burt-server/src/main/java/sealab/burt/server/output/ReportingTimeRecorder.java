@@ -1,4 +1,4 @@
-package sealab.burt.server.actions.others;
+package sealab.burt.server.output;
 
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
@@ -8,6 +8,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static sealab.burt.server.StateVariable.*;
@@ -28,12 +30,22 @@ public class ReportingTimeRecorder {
         String sessionId = state.get(SESSION_ID).toString();
 
         File timeOutputFile = new File(BurtConfigPaths.reportingTimeFilePath);
-        String newRecord = String.join(",", participant, appName, appVersion, sessionId,
+
+        String newRecord = String.join(",", MetricsRecorder.dateFormat.format(new Date()),
+                participant, appName, appVersion, sessionId,
                 time, String.valueOf(minutes), String.valueOf(seconds), String.valueOf(millis));
 
-        timeOutputFile.createNewFile();
+        if (!timeOutputFile.exists()) {
+            timeOutputFile.createNewFile();
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(timeOutputFile, true))) {
+                String header = String.join(",", "date", "participant", "app_name", "app_version", "session_id",
+                        "reporting_time", "reporting_mins", "reporting_secs", "reporting_millis");
+                bw.write(header);
+                bw.newLine();
+            }
+        }
 
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(timeOutputFile, true))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(timeOutputFile, true))) {
             bw.write(newRecord);
             bw.newLine();
         }

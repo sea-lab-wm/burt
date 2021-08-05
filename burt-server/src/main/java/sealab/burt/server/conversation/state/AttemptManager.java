@@ -23,6 +23,9 @@ class AttemptManager {
 
     private final HashMap<AttemptType, MutablePair<Integer, Integer>> attempts = new LinkedHashMap<>() {
         {
+            //each pair is: (max # of attempts, current attempt)
+            //initially, the current attempt is -1
+
             //OB
             put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //confirmation of OB HQ
             put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //no screen match
@@ -69,6 +72,14 @@ class AttemptManager {
 
     public void resetCurrentAttemptS2RMatch() {
         resetAttempt(AttemptType.S2R_MATCHED);
+    }
+
+    public Integer getCurrentAttemptS2RMatched() {
+        return getCurrentAttempt(AttemptType.S2R_MATCHED);
+    }
+
+    public Integer getMaxAttemptsS2RMatched() {
+        return getMaxAttempt(AttemptType.S2R_MATCHED);
     }
 
     //---------------------------------------------------
@@ -162,12 +173,20 @@ class AttemptManager {
         return checkNextAttemptAndReset(AttemptType.OB_SCREENS);
     }
 
+    public Integer getMaxAttemptObScreens() {
+        return getMaxAttempt(AttemptType.OB_SCREENS);
+    }
+
+
     //-------------------------------------------------
 
     public boolean checkNextAttemptAndResetObMatched() {
         return checkNextAttemptAndReset(AttemptType.OB_MATCHED);
     }
 
+    public Integer getMaxAttemptsObMatched() {
+        return getMaxAttempt(AttemptType.OB_MATCHED);
+    }
 
     public void initOrIncreaseCurrentAttemptObMatched() {
         initOrIncreaseCurrentAttempt(AttemptType.OB_MATCHED);
@@ -220,6 +239,10 @@ class AttemptManager {
 
     private Integer getCurrentAttempt(AttemptType type) {
         return attempts.get(type).right;
+    }
+
+    private Integer getMaxAttempt(AttemptType type) {
+        return attempts.get(type).left;
     }
 
     private MutablePair<Integer, Integer> getAttempt(AttemptType type) {
