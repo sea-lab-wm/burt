@@ -31,5 +31,4 @@ public class ProvideS2RFirstAction extends ChatBotAction {
                 "Remember that you can say \"<b>This is/was the last step</b>\" to end the reporting");
     }
 
-
 }

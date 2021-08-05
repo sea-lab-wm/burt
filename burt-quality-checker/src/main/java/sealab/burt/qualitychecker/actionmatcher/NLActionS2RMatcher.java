@@ -55,13 +55,16 @@ class NLActionS2RMatcher {
     /**
      * Index of "general_component_types.txt" for component types, ie., [type: specific types]
      */
-    private static final ConcurrentHashMap<ComponentType, Set<String>> specificComponentTypes = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<ComponentType, Set<String>> specificComponentTypes =
+            new ConcurrentHashMap<>();
     private static final List<String> allComponentTypes = Collections.synchronizedList(new ArrayList<>());
-    private static final ConcurrentHashMap<String, ComponentType> invIdxSpecificComponentTypes = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, ComponentType> invIdxSpecificComponentTypes =
+            new ConcurrentHashMap<>();
     /**
      * Inverted index of "general_action_groups.txt" for the actions, aka, action groups, ie., [group: actions]
      */
-    private static final ConcurrentHashMap<String, LinkedHashSet<ActionGroup>> generalActionGroups = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, LinkedHashSet<ActionGroup>> generalActionGroups =
+            new ConcurrentHashMap<>();
     /**
      * Index of "general_component_types_classes.txt" for component types and the Android component classes, ie., [type:
      * classes]
@@ -252,7 +255,10 @@ class NLActionS2RMatcher {
         String action = nlAction.getAction();
 
         //get the actions groups, by synonyms
-        LinkedHashSet<ActionGroup> actionGroups = generalActionGroups.get(action);
+        LinkedHashSet<ActionGroup> actionGroups = null;
+        if (action != null) {
+            actionGroups = generalActionGroups.get(action);
+        }
 
         //if no general action groups, then try specific ones from the system
         if (actionGroups == null || actionGroups.isEmpty()) {
@@ -323,13 +329,18 @@ class NLActionS2RMatcher {
             String object = nlAction.getObject();
             String preposition = nlAction.getPreposition();
             PreProcessedText preprocessedObject2 = preprocessText(nlAction.getObject2());
-            if (StringUtils.isEmpty(object) && "outside".equalsIgnoreCase(preposition) && ComponentType.WINDOW.equals
-                    (invIdxSpecificComponentTypes.get(preprocessedObject2.componentType))) {
+            if (StringUtils.isEmpty(object) && "outside".equalsIgnoreCase(preposition) &&
+                    ComponentType.WINDOW.equals(getComponentType(preprocessedObject2))) {
                 event = DeviceActions.BACK;
             }
         }
 
         return event;
+    }
+
+    private ComponentType getComponentType(PreProcessedText prepText) {
+        if (prepText == null || prepText.componentType == null) return null;
+        return invIdxSpecificComponentTypes.get(prepText.componentType);
     }
 
     public Entry<AppGuiComponent, Double> determineComponentForOb(NLAction nlAction,
@@ -808,7 +819,7 @@ class NLActionS2RMatcher {
             }
 
             //not a text field? then which component should I find? -> throw exception
-            if (!ComponentType.TEXT_FIELD.equals(invIdxSpecificComponentTypes.get(textToMatch.componentType)))
+            if (!ComponentType.TEXT_FIELD.equals(getComponentType(textToMatch)))
                 throw new ActionMatchingException(MatchingResult.COMPONENT_NOT_SPECIFIED,
                         Collections.singletonList(textToMatch.original));
 
@@ -1263,7 +1274,7 @@ class NLActionS2RMatcher {
         //--------------------------------------------------
 
         if (componentFound == null && !StringUtils.isEmpty(textToMatch.componentType)) {
-            final ComponentType componentType = invIdxSpecificComponentTypes.get(textToMatch.componentType);
+            final ComponentType componentType = getComponentType(textToMatch);
             if (componentType != null) {
                 final List<Entry<AppGuiComponent, Double>> sameTypeComponents = matchedComponents.stream()
                         .filter(c -> componentType.equals(getComponentType(c.getKey().getType())))

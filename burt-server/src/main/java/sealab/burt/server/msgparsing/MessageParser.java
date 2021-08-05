@@ -20,6 +20,8 @@ import static sealab.burt.server.msgparsing.Intent.*;
 public class MessageParser {
 
     static ConcurrentHashMap<String, Intent> intentTokens;
+    static String[] END_CONVERSATION_WORDS = {"bye", "good bye", "goodbye", "see ya", "see you",
+            "restart.+conversation"};
 
     static {
         intentTokens = new ConcurrentHashMap<>();
@@ -53,19 +55,21 @@ public class MessageParser {
 
             MessageObj message = userResponse.getFirstMessage();
 
-            if (message.getMessage() != null && !state.containsKey(StateVariable.CONFIRM_END_CONVERSATION)
-                    && Stream.of("bye", "good bye", "goodbye", "see ya", "see you")
-                    .anyMatch(token -> message.getMessage().toLowerCase().contains(token))) {
+            if (message.getMessage() != null && !state.containsKey(StateVariable.CONFIRM_END_CONVERSATION)) {
+                if (Stream.of(END_CONVERSATION_WORDS)
+                .anyMatch(token -> message.getMessage().toLowerCase().contains(token)
+                        || matchRegex(token, message))) {
 
-                state.put(StateVariable.CONFIRM_END_CONVERSATION, true);
-                ActionName action = (ActionName) state.get(LAST_ACTION);
-                UserResponse lastUserResponse = (UserResponse) state.get(LAST_MESSAGE);
+                    state.put(StateVariable.CONFIRM_END_CONVERSATION, true);
+                    ActionName action = (ActionName) state.get(LAST_ACTION);
+                    UserResponse lastUserResponse = (UserResponse) state.get(LAST_MESSAGE);
 
-                state.put(ACTION_NEGATIVE_END_CONVERSATION, Objects.requireNonNullElse(action, PROVIDE_PARTICIPANT_ID));
+                    state.put(ACTION_NEGATIVE_END_CONVERSATION, Objects.requireNonNullElse(action, PROVIDE_PARTICIPANT_ID));
 
-                if (lastUserResponse != null) state.put(MSG_NEGATIVE_END_CONVERSATION, lastUserResponse);
+                    if (lastUserResponse != null) state.put(MSG_NEGATIVE_END_CONVERSATION, lastUserResponse);
 
-                return CONFIRM_END_CONVERSATION;
+                    return CONFIRM_END_CONVERSATION;
+                }
             }
 
         }
