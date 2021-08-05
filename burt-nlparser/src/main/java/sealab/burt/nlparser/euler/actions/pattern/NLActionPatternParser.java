@@ -438,7 +438,7 @@ public abstract class NLActionPatternParser {
     }
 
     protected IndexedWord checkForTryVerb(SemanticGraph dependencies, IndexedWord verbToken) {
-        if (verbToken.lemma().equals("try")) {
+        if (verbToken.lemma().equals("try") || verbToken.lemma().equals("attempt")) {
             Pair<GrammaticalRelation, IndexedWord> child = DependenciesUtils.getFirstChildByRelation(dependencies,
                     verbToken, "xcomp");
             if (child != null) {

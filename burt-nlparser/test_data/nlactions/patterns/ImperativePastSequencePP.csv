@@ -1,3 +1,7 @@
+"+";"attempted adding a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
+"+";"tried adding a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
+"+";"attempted to add a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
+"+";"tried to add a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
 "+";"got calculated "Fuel economy" stats";"[{"sub":"user", "act":"get", "obj":"\"Fuel economy\" stats"}]"
 "+";"Now again selected " Export view to csv"";"[{"sub":"user", "act":"select", "obj":"\" Export view to csv\""}]"
 "+";"Clicked on price and typed 76.43";"[{"sub":"user", "act":"click", "prep":"on", "obj2":"price"}, {"sub":"user","act":"type", "obj":"76.43"}]"

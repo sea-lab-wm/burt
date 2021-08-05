@@ -1,4 +1,8 @@
 //"+";"I input "5" on the "weight"";"[{"sub":"user", "act":"input", "obj":"\"5\"", "prep":"on", "obj2":"\"weight\""}]"
+"+";"I attempt adding a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
+"+";"I try adding a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
+"+";"I attempt to add a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
+"+";"I try to add a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
 "+";"I enter "5" on the "weight"";"[{"sub":"user", "act":"enter", "obj":"\"5\"", "prep":"on", "obj2":"\"weight\""}]"
 "+";"I enter "bla bla" on the "weight"";"[{"sub":"user", "act":"enter", "obj":"\"bla bla\"", "prep":"on", "obj2":"\"weight\""}]"
 "+";"I go back";"[{"sub":"user", "act":"go back"}]"

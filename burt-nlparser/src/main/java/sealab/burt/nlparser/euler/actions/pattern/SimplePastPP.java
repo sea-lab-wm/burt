@@ -23,8 +23,8 @@ public class SimplePastPP extends NLActionPatternParser {
 
         SemanticGraph dependencies = sentence.getDependencies();
         IndexedWord verbToken = dependencies.getFirstRoot();
-        List<NLAction> actions = new ArrayList<>();
 
+        List<NLAction> actions = new ArrayList<>();
         Pair<GrammaticalRelation, IndexedWord> subj = DependenciesUtils.getFirstChildByRelation(dependencies, verbToken,
                 "nsubj", "csubj");
 
@@ -33,6 +33,16 @@ public class SimplePastPP extends NLActionPatternParser {
 
         if (!TextProcessor.checkGeneralPos(subj.second.tag(), "PRP"))
             return actions;
+
+        //--------------------------------
+
+        IndexedWord nonTryVerbToken = checkForTryVerb(dependencies, verbToken);
+
+        boolean rootVerbIsTry = !verbToken.equals(nonTryVerbToken);
+        if(rootVerbIsTry)
+            verbToken = nonTryVerbToken;
+
+        //--------------------------------
 
         // find the object of the verb
         Pair<GrammaticalRelation, IndexedWord> objRelation = DependenciesUtils.getFirstChildByRelation(dependencies,

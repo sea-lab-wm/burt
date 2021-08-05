@@ -41,9 +41,13 @@ public class ImperativePastSequencePP extends NLActionPatternParser {
 
 		IndexedWord verbToken = dependencies.getFirstRoot();
 
-		verbToken = checkForTryVerb(dependencies, verbToken);
+		IndexedWord nonTryVerbToken = checkForTryVerb(dependencies, verbToken);
 
-		List<NLAction> actions = getActions(dependencies, verbToken, sentence);
+		boolean rootVerbIsTry = !verbToken.equals(nonTryVerbToken);
+		if(rootVerbIsTry)
+			verbToken = nonTryVerbToken;
+
+		List<NLAction> actions = getActions(dependencies, verbToken, sentence, rootVerbIsTry);
 
 		if (actions.isEmpty()) {
 			List<NLAction> actions2 = getActionsByPOS(sentence, 0);
@@ -349,13 +353,14 @@ public class ImperativePastSequencePP extends NLActionPatternParser {
 				|| SentenceUtils.stringEqualsToAnyToken(SentenceUtils.AMBIGUOUS_POS_VERBS, verbLemma);
 	}*/
 
-	private List<NLAction> getActions(SemanticGraph dependencies, IndexedWord verbToken, Sentence sentence) {
+	private List<NLAction> getActions(SemanticGraph dependencies, IndexedWord verbToken, Sentence sentence,
+									  boolean rootVerbIsTry) {
 
 		List<NLAction> actions = new ArrayList<>();
 
 
 		// is it a valid verb?
-		if ((!verbToken.tag().equals("VBD") && !verbToken.tag().equals("VBN"))) {
+		if (!rootVerbIsTry && (!verbToken.tag().equals("VBD") && !verbToken.tag().equals("VBN"))) {
 
 			List<Pair<GrammaticalRelation, IndexedWord>> relations = DependenciesUtils.getChildRelations(dependencies,
 					verbToken, "parataxis");
@@ -363,7 +368,7 @@ public class ImperativePastSequencePP extends NLActionPatternParser {
 			for (Pair<GrammaticalRelation, IndexedWord> rel : relations) {
 				IndexedWord verbTok = rel.second;
 
-				List<NLAction> actions2 = getActions(dependencies, verbTok, sentence);
+				List<NLAction> actions2 = getActions(dependencies, verbTok, sentence, false);
 				addAllActions(actions, actions2);
 			}
 
@@ -452,7 +457,7 @@ public class ImperativePastSequencePP extends NLActionPatternParser {
 				verbToken, "conj");
 
 		for (Pair<GrammaticalRelation, IndexedWord> pair : pairs) {
-			List<NLAction> actions2 = getActions(dependencies, pair.second, sentence);
+			List<NLAction> actions2 = getActions(dependencies, pair.second, sentence, rootVerbIsTry);
 			addAllActions(actions, actions2);
 		}
 
@@ -474,7 +479,7 @@ public class ImperativePastSequencePP extends NLActionPatternParser {
 					for (Pair<GrammaticalRelation, IndexedWord> pair : pairs) {
 
 						IndexedWord verbToken2 = pair.second;
-						List<NLAction> actions2 = getActions(dependencies, verbToken2, sentence);
+						List<NLAction> actions2 = getActions(dependencies, verbToken2, sentence, rootVerbIsTry);
 						addAllActions(actions, actions2);
 
 						if (actions2 == null || actions2.isEmpty()) {

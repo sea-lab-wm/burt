@@ -95,7 +95,9 @@ class NLParserTest {
 //                "got calculated \"Fuel economy\" stats",
 //                    "I input the weight",
 //                    "go back"
-                    "save fillup"
+//                    "save fillup"
+//                "I tried to add a task"
+                "tried to add a task"
                 //"go back to the last screen"
 //                "I entered 23 gallons"
 //                ,
