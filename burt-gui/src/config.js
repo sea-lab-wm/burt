@@ -11,7 +11,8 @@ import ReportGenerator from "./components/ReportGenerator";
 
 const config = {
     botName: "BURT",
-    serverEndpoint: "http://localhost:8081",
+//    serverEndpoint: "http://localhost:8081",
+    serverEndpoint: "http://rocco.cs.wm.edu:21203",
     logosPath: "/app_logos/",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
