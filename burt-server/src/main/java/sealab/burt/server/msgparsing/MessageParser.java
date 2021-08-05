@@ -21,7 +21,7 @@ public class MessageParser {
 
     static ConcurrentHashMap<String, Intent> intentTokens;
     static String[] END_CONVERSATION_TOKENS = {"bye", "good bye", "goodbye", "see ya", "see you",
-            "restart.+conversation"};
+            "restart.+(conversation|chatbot)"};
 
     static {
         intentTokens = new ConcurrentHashMap<>();
