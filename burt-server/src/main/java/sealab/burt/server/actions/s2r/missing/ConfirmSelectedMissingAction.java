@@ -8,6 +8,7 @@ import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
+import sealab.burt.server.output.MetricsRecorder;
 
 import java.util.Collections;
 import java.util.List;
@@ -80,6 +81,9 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
                     .append(highQualityStepMessage)
                     .append("\"?");
 
+            MetricsRecorder.saveRecommendationRecord(state, MetricsRecorder.MetricsType.S2R_MISSING,
+                    allMissingSteps.size(), selectedSteps.size());
+
 
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
             return createChatBotMessages(msg1.toString(), msg2.toString());
@@ -87,9 +91,13 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
         } else if (NONE.equals(message.getMessage())) {
 
             boolean negativeEndConversationConfirmation = state.containsKey(CONFIRM_END_CONVERSATION_NEGATIVE);
-            if (!negativeEndConversationConfirmation)
+            if (!negativeEndConversationConfirmation) {
                 state.getStateUpdater().addStepAndUpdateGraphState(state, highQualityStepMessage,
                         highQualityAssessment);
+
+                MetricsRecorder.saveRecommendationRecord(state, MetricsRecorder.MetricsType.S2R_MISSING,
+                        allMissingSteps.size(), 0);
+            }
 
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
             return createChatBotMessages("Got it, what is the next step?");
@@ -110,7 +118,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
                 WidgetName.S2RScreenSelector);
 
         return createChatBotMessages(
-                "Sorry, the options you selected are incorrect.",
+                "Sorry, the options you selected are incorrect",
                 new ChatBotMessage(messageObj, stepOptions, true));
     }
 

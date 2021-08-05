@@ -1,5 +1,10 @@
 package sealab.burt.server.conversation.state;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
@@ -13,7 +18,9 @@ import sealab.burt.server.actions.others.ConfirmEndConversationAction;
 import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.actions.others.ProvideParticipantIdAction;
 import sealab.burt.server.actions.others.UnexpectedErrorAction;
-import sealab.burt.server.actions.s2r.*;
+import sealab.burt.server.actions.s2r.ConfirmLastStepAction;
+import sealab.burt.server.actions.s2r.ProvideS2RAction;
+import sealab.burt.server.actions.s2r.ProvideS2RFirstAction;
 import sealab.burt.server.actions.s2r.ambiguous.ConfirmSelectedAmbiguousAction;
 import sealab.burt.server.actions.s2r.ambiguous.DisambiguateS2RAction;
 import sealab.burt.server.actions.s2r.highquality.ConfirmMatchedS2RAction;
@@ -26,18 +33,29 @@ import sealab.burt.server.actions.s2r.otherquality.ProvideS2RNoParseAction;
 import sealab.burt.server.actions.s2r.otherquality.RephraseS2RAction;
 import sealab.burt.server.actions.s2r.prediction.ProvideFirstPredictedS2RAction;
 import sealab.burt.server.actions.s2r.prediction.ProvideNextPredictedS2RAction;
+import sealab.burt.server.conversation.entity.ConversationResponse;
+import sealab.burt.server.conversation.entity.MessageObj;
 import sealab.burt.server.msgparsing.Intent;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.*;
 
-public class ConversationState {
+public @Slf4j
+class ConversationState {
 
     private final ConcurrentHashMap<StateVariable, Object> stateVariables = new ConcurrentHashMap<>();
     private final AttemptManager attemptManager = new AttemptManager();
     private final QualityStateUpdater stateUpdater = new QualityStateUpdater();
+    private List<MessageObj> frontEndMessageHistory;
+    private List<Object> messageHistory =new ArrayList<>();
 
     public final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
         {
@@ -144,6 +162,12 @@ public class ConversationState {
 
     //---------------------------------
 
+
+    public Integer getMaxAttemptsObMatched() {
+        return attemptManager.getMaxAttemptsObMatched();
+    }
+
+
     public void initAttemptObMatched() {
         attemptManager.initAttemptObMatched();
     }
@@ -176,6 +200,10 @@ public class ConversationState {
     }
 
     //---------------------------------
+
+    public Integer getMaxAttemptObScreens() {
+        return attemptManager.getMaxAttemptObScreens();
+    }
 
     public void initOrIncreaseCurrentAttemptObScreens() {
         attemptManager.initOrIncreaseCurrentAttemptObScreens();
@@ -267,6 +295,14 @@ public class ConversationState {
 
     //------------------------------
 
+    public Integer getCurrentAttemptS2RMatched() {
+        return attemptManager.getCurrentAttemptS2RMatched();
+    }
+
+    public Integer getMaxAttemptsS2RMatched() {
+        return attemptManager.getMaxAttemptsS2RMatched();
+    }
+
     public void initOrIncreaseCurrentAttemptS2RMatch() {
         attemptManager.initOrIncreaseCurrentAttemptS2RMatch();
     }
@@ -291,6 +327,60 @@ public class ConversationState {
 
     public void resetCurrentAttemptS2RInput() {
         attemptManager.resetCurrentAttemptS2RInput();
+    }
+
+    public List<MessageObj> getFrontEndMessageHistory() {
+        return frontEndMessageHistory;
+    }
+
+    public void setFrontEndMessageHistory(List<MessageObj> frontEndMessageHistory) {
+        this.frontEndMessageHistory = frontEndMessageHistory;
+    }
+
+    public void saveConversationMessages() {
+        String sessionId = this.get(StateVariable.SESSION_ID).toString();
+        try {
+
+            boolean anyNotCreated = Stream.of(StateVariable.APP_NAME, StateVariable.APP_VERSION,
+                    StateVariable.PARTICIPANT_ID)
+                    .anyMatch(v -> this.get(v) == null);
+            if (this.messageHistory == null || anyNotCreated)
+                return;
+
+            //--------------------------------
+
+            Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .create();
+            String jsonContent = gson.toJson(this.messageHistory);
+
+            //---------------------------------------------
+
+            String appName = this.get(StateVariable.APP_NAME).toString();
+            String appVersion = this.get(StateVariable.APP_VERSION).toString();
+            String participant = this.get(StateVariable.PARTICIPANT_ID).toString();
+
+            String reportName = String.join("-", "conversation_state",
+                    participant, appName, appVersion, sessionId).replace(
+                    " ", "_");
+            String reportFileName = reportName + ".json";
+
+            //-------------------------------------
+
+            File outputFile = Paths.get(BurtConfigPaths.conversationDumpsPath, reportFileName).toFile();
+
+            FileUtils.write(outputFile, jsonContent, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            log.error("Error dumping the conversation state for session: " + sessionId, e);
+        }
+    }
+
+    public void addChatBotResponseToHistory(ConversationResponse conversationResponse) {
+        messageHistory.add(conversationResponse);
+    }
+
+    public void addUserMessagesToHistory(List<MessageObj> messages) {
+        messageHistory.addAll(messages);
     }
 
 }

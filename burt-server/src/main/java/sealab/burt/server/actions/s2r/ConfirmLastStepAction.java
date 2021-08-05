@@ -15,7 +15,7 @@ public class ConfirmLastStepAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state){
         setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
         state.put(StateVariable.CONFIRM_LAST_STEP, true);
-        return createChatBotMessages("It seems this is the last step that you performed.",
+        return createChatBotMessages("It seems this is the last step that you performed",
                 "Is this correct?");
     }
 }

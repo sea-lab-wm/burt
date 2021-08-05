@@ -44,7 +44,7 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
                     WidgetName.S2RScreenSelector);
 
             return createChatBotMessages(
-                    "Okay then, the next steps that you performed might be the following.",
+                    "Okay then, the next steps that you performed might be the following",
                     new ChatBotMessage(messageObj, stepOptions, true));
         }
 

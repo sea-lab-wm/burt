@@ -36,7 +36,7 @@ class SelectOBScreenAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state) {
 
         MessageObj messageObj = new MessageObj(
-                " Please hit the \"<b>Done</b>\" button after you have selected it.", WidgetName.OBScreenSelector);
+                " Please hit the \"<b>Done</b>\" button after you have selected it", WidgetName.OBScreenSelector);
 
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         List<GraphState> matchedStates = result.getMatchedStates();
@@ -93,8 +93,9 @@ class SelectOBScreenAction extends ChatBotAction {
                                 uniqueOptionKeys.add(key);
 
                             return new KeyValues(key,
-                                    (optionPosition + 1) + ". " + description +
-                                            " (" + graphState.getUniqueHash().toString() + ")", screenshotFile);
+                                    (optionPosition + 1) + ". " + description
+                                            //+ " (" + graphState.getUniqueHash().toString() + ")"
+                                    , screenshotFile);
                         }
 
                 )

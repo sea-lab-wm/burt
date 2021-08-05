@@ -30,7 +30,7 @@ class RephraseS2RAction extends ChatBotAction {
         StringBuilder message = new StringBuilder("Oops, it seems ");
         message.append(getFeedbackMessage(feedback));
         return createChatBotMessages(message.toString(),
-                "Can you please <b>rephrase the step more accurately or provide a different one<b>?");
+                "Can you please <b>rephrase the step</b> more accurately or provide a different one?");
 
     }
 
@@ -48,18 +48,18 @@ class RephraseS2RAction extends ChatBotAction {
         log.debug("Action: " + action);
 
         if (assessment.isObjsVocabMismatch() && assessment.isVerbVocabMismatch())
-            return "the vocabulary of the step <b>does not match the vocabulary</b> of the app.";
+            return "the vocabulary of the step <b>does not match the vocabulary</b> of the app";
         else if (assessment.isVerbVocabMismatch())
-            return String.format("the terms \"%s\" <b>do not match a valid action</b> from the app.",
+            return String.format("the terms \"%s\" <b>do not match a valid action</b> from the app",
                     action.getAction());
         else if (assessment.isObjsVocabMismatch()){
             final String objs = getObjs(action);
             if (StringUtils.isEmpty(objs))
-                return "some vocabulary in this step is missing or I wasn't able to identify it.";
+                return "some vocabulary in this step is missing or I wasn't able to identify it";
             else
-                return String.format("the terms \"%s\" <b>do not match a valid UI component</b> from the app.", objs);
+                return String.format("the terms \"%s\" <b>do not match a valid UI component</b> from the app", objs);
         }else {
-            return "I couldn't recognize the step.";
+            return "I couldn't recognize the step";
         }
     }
 

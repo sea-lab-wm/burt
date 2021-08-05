@@ -8,6 +8,7 @@ import sealab.burt.server.conversation.entity.MessageObj;
 import sealab.burt.server.conversation.entity.UserResponse;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.state.QualityStateUpdater;
+import sealab.burt.server.output.MetricsRecorder;
 import sealab.burt.server.statecheckers.StateChecker;
 
 import java.util.List;
@@ -32,11 +33,11 @@ public class S2RPredictionStateChecker extends StateChecker {
 
         state.remove(StateVariable.NON_SELECTED_PREDICTED_S2R);
 
-        if (ChatBotAction.DONE.equals(message.getMessage())) {
+        // get current predicted path
+        List<List<AppStep>> paths = (List<List<AppStep>>) state.get(PREDICTED_S2R_PATHS_WITH_LOOPS);
+        List<AppStep> currentPath = paths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
 
-            // get current predicted path
-            List<List<AppStep>> paths = (List<List<AppStep>>) state.get(PREDICTED_S2R_PATHS_WITH_LOOPS);
-            List<AppStep> currentPath = paths.get((int) state.get(PREDICTED_S2R_CURRENT_PATH));
+        if (ChatBotAction.DONE.equals(message.getMessage())) {
 
 //             get selected app steps
             List<String> selectedValues = message.getSelectedValues();
@@ -54,6 +55,9 @@ public class S2RPredictionStateChecker extends StateChecker {
                 throw new RuntimeException("The selected steps and predicted steps do not match");
 
             //------------------------------
+
+            MetricsRecorder.saveRecommendationRecord(state, MetricsRecorder.MetricsType.S2R_PREDICT,
+                    currentPath.size(), selectedSteps.size());
 
             List<AppStep> nonSelectedSteps = IntStream.range(0, currentPath.size())
                     .mapToObj(i -> {
@@ -78,6 +82,11 @@ public class S2RPredictionStateChecker extends StateChecker {
             return ActionName.PREDICT_FIRST_S2R_PATH;
 
         } else if (ChatBotAction.NONE.equals(message.getMessage())) {
+
+
+            MetricsRecorder.saveRecommendationRecord(state, MetricsRecorder.MetricsType.S2R_PREDICT,
+                    currentPath.size(), 0);
+
             // check the number of tries to decide if we continue to provide next predicted path
             if (isThereANextPath(state)) {
                 state.put(PREDICTED_S2R_CURRENT_PATH, (int) state.get(PREDICTED_S2R_CURRENT_PATH) + 1);

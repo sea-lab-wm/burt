@@ -20,4 +20,9 @@ public class BurtConfigPaths {
     public static final String reportingTimeFilePath =
             Paths.get(generatedBugReportsPath, "Reporting-Time.csv").toString();
 
+    public static String conversationDumpsPath = Paths.get("..", "data", "conversation_dumps").toString();
+    public static String metricsPath = Paths.get("..", "data", "metrics").toString();
+
+    public static final String matchedRecordFilePath = Paths.get(metricsPath, "matched.csv").toString();
+    public static final String recommendationsRecordFilePath = Paths.get(metricsPath, "recommendations.csv").toString();
 }
