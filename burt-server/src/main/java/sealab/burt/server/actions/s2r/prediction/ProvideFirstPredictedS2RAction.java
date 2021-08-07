@@ -162,7 +162,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
     private List<ChatBotMessage> getNextStepMessage() {
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-        return createChatBotMessages("Okay, can you please provide the next step?");
+        return createChatBotMessages("Okay, can you please provide the next step that you performed?");
     }
 
 }

@@ -55,7 +55,7 @@ public class EBDescriptionStateChecker extends StateChecker {
             if (result.getResult().equals(QualityResult.Result.MATCH)) {
                 state.getStateUpdater().updateEBState(state, obState);
             } else if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
-                //if there is no OB match, we "skip" EB quality checking (only if there no EB match)
+                //if there is no OB match, we "skip" EB quality checking (only if there is no EB match)
                 if (obReportElements == null || obReportElements.get(0).getOriginalElement() == null) {
 
                     state.getStateUpdater().updateEBState(state, null);

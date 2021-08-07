@@ -25,7 +25,10 @@ public class ProvideParticipantIdAction extends ChatBotAction {
 
         if (validParticipant == null)
             return createChatBotMessages(
-                    "Let me remind you that some of the <b>screenshots</b> that I will display are <b>for reference only</b>",
+                    "Before we start, let me remind you that at this moment you should <b>start a " +
+                            "stopwatch from scratch</b> to time yourself during the reporting session",
+                    "Also, let me remind you that some of the <b>screenshots</b> that I will display are <b>for " +
+                            "reference only</b>",
                     "<b>Input values</b> and <b>UI components</b> may be a little different from what you " +
                             "actually observed in the app",
                     "To start, please provide the <b>Participant ID</b> that was assigned to " +
