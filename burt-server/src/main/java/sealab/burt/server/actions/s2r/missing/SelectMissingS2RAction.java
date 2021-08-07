@@ -103,7 +103,7 @@ class SelectMissingS2RAction extends ChatBotAction {
             }
 
             this.nextExpectedIntents = Collections.singletonList(S2R_DESCRIPTION);
-            return createChatBotMessages("Got it, what is the next step?");
+            return createChatBotMessages("Got it, what is the step that you performed next?");
         }
 
         //---------------------------------------------------

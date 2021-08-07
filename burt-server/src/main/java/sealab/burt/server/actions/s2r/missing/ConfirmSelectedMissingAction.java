@@ -100,7 +100,7 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
             }
 
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
-            return createChatBotMessages("Got it, what is the next step?");
+            return createChatBotMessages("Got it, what is the step that you performed next?");
         } else {
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
             return getDefaultMessage(allMissingSteps, state);

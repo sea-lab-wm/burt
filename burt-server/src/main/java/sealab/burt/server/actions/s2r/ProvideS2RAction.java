@@ -15,7 +15,7 @@ public class ProvideS2RAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
-        return createChatBotMessages(" Okay, what is the next step?");
+        return createChatBotMessages("Got it, what is the step that you performed next?");
     }
 
 }
