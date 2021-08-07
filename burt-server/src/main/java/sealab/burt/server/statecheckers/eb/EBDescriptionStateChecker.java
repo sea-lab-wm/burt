@@ -3,7 +3,9 @@ package sealab.burt.server.statecheckers.eb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sealab.burt.qualitychecker.QualityResult;
+import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.entity.UserResponse;
 import sealab.burt.server.conversation.state.ConversationState;
@@ -23,7 +25,7 @@ public class EBDescriptionStateChecker extends StateChecker {
     private static final Logger LOGGER = LoggerFactory.getLogger(OBDescriptionStateChecker.class);
 
     private final static ConcurrentHashMap<String, ActionName> nextActions = new ConcurrentHashMap<>() {{
-        put(QualityResult.Result.MATCH.name(), PROVIDE_S2R_FIRST);
+        put(QualityResult.Result.MATCH.name(), PREDICT_FIRST_S2R_PATH);
         put(QualityResult.Result.NO_MATCH.name(), CLARIFY_EB);
         put(QualityResult.Result.NOT_PARSED.name(), PROVIDE_EB_NO_PARSE);
     }};
@@ -54,12 +56,17 @@ public class EBDescriptionStateChecker extends StateChecker {
             ActionName nextAction = nextActions.get(result.getResult().name());
             if (result.getResult().equals(QualityResult.Result.MATCH)) {
                 state.getStateUpdater().updateEBState(state, obState);
+                state.put(StateVariable.COLLECTING_FIRST_S2R, true);
             } else if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
                 //if there is no OB match, we "skip" EB quality checking (only if there is no EB match)
                 if (obReportElements == null || obReportElements.get(0).getOriginalElement() == null) {
 
                     state.getStateUpdater().updateEBState(state, null);
-                    nextAction = PROVIDE_S2R_FIRST;
+                    nextAction = PREDICT_FIRST_S2R_PATH;
+                    state.put(StateVariable.COLLECTING_FIRST_S2R, true);
+
+                    //------------------------------
+
                 } else {
 
                     state.initOrIncreaseCurrentAttemptEbNoMatch();
@@ -67,8 +74,9 @@ public class EBDescriptionStateChecker extends StateChecker {
                     boolean nextAttempt = state.checkNextAttemptAndResetEbNoMatch();
 
                     if (!nextAttempt) {
-                        nextAction = PROVIDE_S2R_FIRST;
                         state.getStateUpdater().updateEBState(state, null);
+                        nextAction = PREDICT_FIRST_S2R_PATH;
+                        state.put(StateVariable.COLLECTING_FIRST_S2R, true);
                     }
                 }
             } else if (result.getResult().equals(QualityResult.Result.NOT_PARSED)) {
@@ -77,8 +85,9 @@ public class EBDescriptionStateChecker extends StateChecker {
                 boolean nextAttempt = state.checkNextAttemptAndResetEbNotParsed();
 
                 if (!nextAttempt) {
-                    nextAction = PROVIDE_S2R_FIRST;
+                    nextAction = PREDICT_FIRST_S2R_PATH;
                     state.getStateUpdater().updateEBState(state, null);
+                    state.put(StateVariable.COLLECTING_FIRST_S2R, true);
                 }
             }
 

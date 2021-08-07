@@ -34,13 +34,16 @@ class S2RChecker {
     private AppGraphInfo executionGraph;
     private final HashMap<Integer, Integer> statesExecuted = new HashMap<>();
 
-    public S2RChecker(String appName, String appVersion) {
+    public S2RChecker(String appName, String appVersion) throws Exception {
         this.appName = appName;
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
         s2rMatcher = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true);
         resolver = new StepResolver(s2rMatcher, GRAPH_MAX_DEPTH_CHECK);
+
+        readGraph();
+        this.currentState = GraphState.START_STATE;
     }
 
     public QualityFeedback checkS2R(String S2RDescription) throws Exception {
@@ -56,7 +59,6 @@ class S2RChecker {
     }
 
     private QualityFeedback matchActions(List<NLAction> nlActions, Integer currentStateId) throws Exception {
-        readGraph();
 
         if (this.currentState == null)
             this.currentState = GraphState.START_STATE;

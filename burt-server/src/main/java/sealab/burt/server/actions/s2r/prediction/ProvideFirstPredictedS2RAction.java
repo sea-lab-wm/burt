@@ -3,6 +3,7 @@ package sealab.burt.server.actions.s2r.prediction;
 import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
 import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.graph.AppGraph;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
@@ -36,20 +37,58 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConversationState state) {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
+        state.put(COLLECTING_S2R, true);
         state.put(PREDICTING_S2R, true);
 
-        //target state
+        if (!state.containsKey(S2R_CHECKER)) {
+            String appName = state.get(APP_NAME).toString();
+            String appVersion = state.get(APP_VERSION).toString();
+            state.put(S2R_CHECKER, new S2RChecker(appName, appVersion));
+        }
+        S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
+
+        //----------------------------------------------
+        boolean noStepsReportedYet = false;
+
+        //not S2R reported yet
+        if (state.containsKey(StateVariable.COLLECTING_FIRST_S2R)) {
+            state.remove(StateVariable.COLLECTING_FIRST_S2R);
+            noStepsReportedYet = true;
+
+            //--------------------
+            //Add the open app S2R
+
+            AppGraph<GraphState, GraphTransition> graph = checker.getGraph();
+            GraphTransition openAppEdge = graph.outgoingEdgesOf(GraphState.START_STATE)
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (openAppEdge == null) throw new RuntimeException("There is no open \"app step\" in the graph");
+
+            state.getStateUpdater().addStepsToState(state, Collections.singletonList(openAppEdge.getStep()));
+        }
+
+        //-----------------------------------------------
+
+        //obtain the target state (i.e., the OB state if any
         List<BugReportElement> obReportElements = (List<BugReportElement>) state.get(REPORT_OB);
+        //if no OB state, there is nothing to predict
         if (obReportElements == null) {
+            if (noStepsReportedYet)
+                return getFirstStepMessages();
             return getNextStepMessage();
         }
 
         BugReportElement obReportElement = obReportElements.get(0);
 
         GraphState obState;
+        //if no OB state, there is nothing to predict
         if (obReportElement == null || obReportElement.getOriginalElement() == null) {
+            if (noStepsReportedYet)
+                return getFirstStepMessages();
             return getNextStepMessage();
         }
 
@@ -58,7 +97,6 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         //-----------------------------------------------
 
         //current state
-        S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
         S2RPredictor predictor = new S2RPredictor(checker.getGraph());
         GraphState currentState = checker.getCurrentState();// this is the target state of the last step
 
@@ -67,10 +105,11 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         List<BugReportElement> bugReportElements = (List<BugReportElement>) state.get(REPORT_S2R);
         AppStep lastStep = (AppStep) bugReportElements.get(bugReportElements.size() - 1).getOriginalElement();
 
-        //Check if maybe the last reported step, executed on the ob state and it is not a loop, then it is the real
+        //Check if maybe the last reported step is executed on the OB state and it is not a loop, then it is the real
         // last step, so we verify with the user
 
-        if (lastStep != null) {//the last step can be null because of the max # of attempts functionality
+        if (lastStep != null) {//the last step can be null because of the max # of attempts
+            // functionality
             GraphTransition transition = lastStep.getTransition();
             if (transition != null) {
                 GraphState sourceState = transition.getSourceState();
@@ -90,7 +129,8 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             log.debug("Predicting S2R (loops)");
 
             List<AppStep> stateLoops = new ArrayList<>();
-            if (lastStep != null) { //the last step can be null because of the max # of attempts functionality
+            if (lastStep != null) { //the last step can be null because of the max # of attempts
+                // functionality
                 if (DeviceUtils.isCloseApp(lastStep.getAction()))
                     return getNextStepMessage();
 
@@ -110,6 +150,8 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             log.debug("Total number of predicted paths: " + predictedPaths.size());
 
             if (predictedPaths.isEmpty()) {
+                if (noStepsReportedYet)
+                    return getFirstStepMessages();
                 return getNextStepMessage();
             }
 
@@ -134,6 +176,8 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         List<KeyValues> stepOptions = SelectMissingS2RAction.getStepOptions(pathsWithLoops.get(currentPath), state);
 
         if (stepOptions.isEmpty()) {
+            if (noStepsReportedYet)
+                return getFirstStepMessages();
             return getNextStepMessage();
         }
 
@@ -143,13 +187,33 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
-        MessageObj messageObj = new MessageObj("<b>Input values</b> and <b>UI components</b> may be a little different from what you observed in the app",
-                WidgetName.S2RScreenSelector);
-        return createChatBotMessages(
-                "Okay, it seems <b>the next steps</b> that you performed might be the following",
-                "Can you select the ones you actually performed next?",
-                "Remember that the screenshots below are <b>for reference only</b>",
-                new ChatBotMessage(messageObj, stepOptions, true));
+        MessageObj messageObj = new MessageObj("<b>Input values</b> and <b>UI components</b> may be a little " +
+                "different from what you observed in the app", WidgetName.S2RScreenSelector);
+        List<ChatBotMessage> chatBotMessages;
+
+        //if there are no steps reported yet
+        if (noStepsReportedYet) {
+            chatBotMessages = createChatBotMessages(
+                    "Okay, now I need to know the steps that you performed and caused the problem",
+                    "Remember that you can say \"<b>This is/was the last step</b>\" to end the reporting",
+                    "It seems <b>the next steps</b> that you performed <b>after you opened the app</b> might be" +
+                            " the following",
+                    "Can you select the ones you actually performed?",
+                    new ChatBotMessage(messageObj, stepOptions, true));
+        } else {
+            chatBotMessages = createChatBotMessages(
+                    "Okay, it seems <b>the next steps</b> that you performed might be the following",
+                    "Can you select the ones you actually performed next?",
+                    "Remember that the screenshots below are <b>for reference only</b>",
+                    new ChatBotMessage(messageObj, stepOptions, true));
+        }
+        return chatBotMessages;
+    }
+
+    private List<ChatBotMessage> getFirstStepMessages() {
+        return createChatBotMessages("Okay, now I need to know the steps that you performed and caused the problem",
+                "Can you please tell me the <b>first step</b> that you performed after you opened the app?",
+                "Remember that you can say \"<b>This is/was the last step</b>\" to end the reporting");
     }
 
     private List<ChatBotMessage> getLastStepMessage(ConversationState state, BugReportElement lastStep) {

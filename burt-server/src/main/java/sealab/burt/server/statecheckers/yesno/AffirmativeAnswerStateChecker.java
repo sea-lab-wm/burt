@@ -48,9 +48,11 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             nextAction = REPORT_SUMMARY;
         } else if (state.containsKey(EB_SCREEN_CONFIRMATION)) {
             state.remove(EB_SCREEN_CONFIRMATION);
-            nextAction = PROVIDE_S2R_FIRST;
+            nextAction = PREDICT_FIRST_S2R_PATH;
+            state.put(StateVariable.COLLECTING_FIRST_S2R, true);
             MetricsRecorder.saveMatchRecord(state, MetricsRecorder.MetricsType.EB_NO_MATCH, MetricsRecorder.YES);
             state.getStateUpdater().updateEBState(state, (GraphState) state.get(EB_STATE));
+
         } else if (state.containsKey(OB_MATCHED_CONFIRMATION)) {
             state.remove(OB_MATCHED_CONFIRMATION);
             nextAction = PROVIDE_EB;

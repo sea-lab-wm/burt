@@ -5,10 +5,10 @@ import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.entity.UserResponse;
 import sealab.burt.server.conversation.state.ConversationState;
-import sealab.burt.server.conversation.state.QualityStateUpdater;
 import sealab.burt.server.statecheckers.StateChecker;
 
 import java.util.Arrays;
@@ -47,9 +47,10 @@ class S2RDescriptionStateChecker extends StateChecker {
 
             if (isLastStep(currentMessage)) {
                 //ask for the first step, if there was no first step provided
-                if (!state.containsKey(REPORT_S2R))
-                    return PROVIDE_S2R_FIRST;
-                else
+                if (!state.containsKey(REPORT_S2R)) {
+                    state.put(StateVariable.COLLECTING_FIRST_S2R, true);
+                    return PREDICT_FIRST_S2R_PATH;
+                } else
                     return CONFIRM_LAST_STEP;
             }
 

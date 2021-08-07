@@ -88,7 +88,7 @@ class ConversationState {
             //--------S2R-----------//
 
             //regular s2r prompt
-            put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
+//            put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
 
             //prediction

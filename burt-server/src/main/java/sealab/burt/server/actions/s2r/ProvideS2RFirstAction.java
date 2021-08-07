@@ -17,7 +17,7 @@ public class ProvideS2RFirstAction extends ChatBotAction {
     }
 
     @Override
-    public List<ChatBotMessage> execute(ConversationState state) {
+    public List<ChatBotMessage> execute(ConversationState state) throws Exception {
         state.put(COLLECTING_S2R, true);
 
         String appName = state.get(APP_NAME).toString();
@@ -26,7 +26,7 @@ public class ProvideS2RFirstAction extends ChatBotAction {
         if (!state.containsKey(S2R_CHECKER))
             state.put(S2R_CHECKER, new S2RChecker(appName, appVersion));
 
-        return createChatBotMessages(" Okay, now I need to know the steps that you performed and caused the problem",
+        return createChatBotMessages("Okay, now I need to know the steps that you performed and caused the problem",
                 "Can you please tell me the <b>first step</b> that you performed?",
                 "Remember that you can say \"<b>This is/was the last step</b>\" to end the reporting");
     }
