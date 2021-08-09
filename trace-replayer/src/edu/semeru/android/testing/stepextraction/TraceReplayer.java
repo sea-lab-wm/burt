@@ -85,7 +85,7 @@ public class TraceReplayer {
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private int sequence = 0;
     public boolean takeScreenshots = false;
-    private int executionCtr = 10;
+    private int executionCtr = 7;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
     
@@ -113,13 +113,13 @@ public class TraceReplayer {
         String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "gnucash";
-        String appPackage = "org.gnucash.android";
-        String appVersion = "2.1.3";
-        String mainActivity = "org.gnucash.android.ui.account.AccountsActivity";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/P2TracesModified/GNU-CC9/gnucash.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/gnucash/getevent_enableCompactView.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/TracesOutputv2/gnucash-2.1.3";
+        String appName = "token";
+        String appPackage = "uk.co.bitethebullet.android.token";
+        String appVersion = "2.10";
+        String mainActivity = "uk.co.bitethebullet.android.token.TokenList";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/P1TracesEvaluation/TOKEN/token.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/token-2.10/getevent-2.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_output/token-2.10";
         
         String avdPort = "5554";
         String adbPort = "5037";
@@ -202,6 +202,7 @@ public class TraceReplayer {
         
 
         int i = 0;
+        int cnt1 = 0;
         GUIEventVO vo = null;
         for (GUIEventVO guiEventVO : guiEvents) {
             // updated according to
@@ -254,7 +255,10 @@ public class TraceReplayer {
             
             String textEntry = StepByStepEngine.executeEvent(guiEventVO, androidSDKPath, appPackage, null, false, device);
             
-          
+            
+            System.out.println("Event # = " + cnt1);
+            cnt1++;
+            
             Thread.sleep(3000);
             
             // Is Keyboard component?
@@ -279,7 +283,7 @@ public class TraceReplayer {
                     boolean isLoginInfo = false;
                     boolean error = true; // to check if there is any error in the UI implementation
                     for (DynGuiComponentVO component : screenInfoEmulator) {
-                        if (component.getIdXml().equals(vo.getHvInfoComponent().getIdXml()) && component.getText().length()>0) {
+                        if (component != null && vo.getHvInfoComponent() != null && component.getIdXml().equals(vo.getHvInfoComponent().getIdXml()) && component.getText().length()>0) {
                         	
                         	isLoginInfo = true;
                         	error = false;
