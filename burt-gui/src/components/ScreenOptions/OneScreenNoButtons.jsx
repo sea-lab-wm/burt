@@ -11,10 +11,19 @@ const OneScreenNoButtons = (props) => {
 
 
     const [screen, setScreen] = useState({});
+    const [disabled, setDisable] = useState(props.disabled)
 
     const pickImageHandler = (image) => {
         setScreen(image);
 
+    }
+
+    const handleButton = (choice) => {
+        let message = props.actionProvider.createChatBotMessage(choice);
+
+        const responsePromise = ApiClient.processUserMessage(message)
+        processResponse(responsePromise, props.actionProvider)
+        setDisable(true)
     }
 
     const getImageStyle = (width, height) => {
@@ -39,6 +48,14 @@ const OneScreenNoButtons = (props) => {
                 multiple = {multiple}
                 disabled={true}
             />
+            <div className="button-layout">
+                <button type="button" className="button" onClick={() => handleButton("yes")}
+                        disabled={disabled}>yes
+                </button>
+                <button type="button" className="button left-margin" onClick={() => handleButton("no")}
+                        disabled={disabled}>no
+                </button>
+            </div>
 
         </div>
     )

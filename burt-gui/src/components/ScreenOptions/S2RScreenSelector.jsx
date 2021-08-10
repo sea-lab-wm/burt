@@ -68,12 +68,14 @@ const S2RScreenSelector = (props) => {
                 multiple={multiple}
                 disabled={disabled}
             />
-            <button type="button" className="button" onClick={() => handleConfirmButton("done")}
-                    disabled={disabled}>done
-            </button>
-            <button type="button" className="button" onClick={() => handleNegativeButton("none of the above")}
-                    disabled={disabled}>none of the above
-            </button>
+            <div className="button-layout">
+                <button type="button" className="button" onClick={() => handleConfirmButton("done")}
+                        disabled={disabled}>done
+                </button>
+                <button type="button" className="button left-margin" onClick={() => handleNegativeButton("none of the above")}
+                        disabled={disabled}>none of the above
+                </button>
+            </div>
 
         </div>
     )
