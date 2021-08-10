@@ -73,10 +73,11 @@ class S2RDescriptionStateChecker extends StateChecker {
             if (results.contains(HIGH_QUALITY)) {
 
                 //reset the current attempts
-                state.resetCurrentAttemptS2RNotParsed();
+//                state.resetCurrentAttemptS2RGeneral();
+               /* state.resetCurrentAttemptS2RNotParsed();
                 state.resetCurrentAttemptS2RNoMatch();
                 state.resetCurrentAttemptS2RAmbiguous();
-                state.resetCurrentAttemptS2RInput();
+                state.resetCurrentAttemptS2RInput();*/
 
                 //--------------------------
 
@@ -88,14 +89,13 @@ class S2RDescriptionStateChecker extends StateChecker {
                     throw new RuntimeException("The high quality assessment is required");
 
                 Integer action = assessment.getMatchedSteps().get(0).getAction();
-                if (DeviceUtils.isOpenApp(action) || DeviceUtils.isCloseApp(action)
-                        || DeviceUtils.isClickBackButton(action)) {
+                if (DeviceUtils.isOpenApp(action) || DeviceUtils.isCloseApp(action) || DeviceUtils.isClickBackButton(action)) {
                     state.getStateUpdater().addStepAndUpdateGraphState(state, currentMessage, assessment);
                     return PREDICT_FIRST_S2R_PATH;
                 } else {
 
-                    state.initOrIncreaseCurrentAttemptS2RMatch();
-                    boolean nextAttempt = state.checkNextAttemptAndResetS2RMatch();
+                    state.initOrIncreaseCurrentAttemptS2RGeneral();
+                    boolean nextAttempt = state.checkNextAttemptAndResetS2RGeneral();
 
                     if (!nextAttempt) {
                         state.getStateUpdater().addStepAndUpdateGraphState(state, currentMessage, assessment);
@@ -120,14 +120,14 @@ class S2RDescriptionStateChecker extends StateChecker {
 
             boolean nextAttempt = true;
             if (assessmentCategory.equals(LOW_Q_NOT_PARSED)) {
-                state.initOrIncreaseCurrentAttemptS2RNotParsed();
-                nextAttempt = state.checkNextAttemptAndResetS2RNotParsed();
+                state.initOrIncreaseCurrentAttemptS2RGeneral();
+                nextAttempt = state.checkNextAttemptAndResetS2RGeneral();
             } else if (assessmentCategory.equals(LOW_Q_VOCAB_MISMATCH)) {
-                state.initOrIncreaseCurrentAttemptS2RNoMatch();
-                nextAttempt = state.checkNextAttemptAndResetS2RNoMatch();
+                state.initOrIncreaseCurrentAttemptS2RGeneral();
+                nextAttempt = state.checkNextAttemptAndResetS2RGeneral();
             } else if (assessmentCategory.equals(LOW_Q_AMBIGUOUS)) {
-                state.initOrIncreaseCurrentAttemptS2RAmbiguous();
-                nextAttempt = state.checkNextAttemptAndResetS2RAmbiguous();
+                state.initOrIncreaseCurrentAttemptS2RGeneral();
+                nextAttempt = state.checkNextAttemptAndResetS2RGeneral();
             }
 
             if (!nextAttempt) {

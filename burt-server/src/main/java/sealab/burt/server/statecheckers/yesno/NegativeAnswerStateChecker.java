@@ -1,5 +1,8 @@
 package sealab.burt.server.statecheckers.yesno;
 
+import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.entity.UserResponse;
@@ -72,7 +75,26 @@ public class NegativeAnswerStateChecker extends StateChecker {
 
         } else if (state.containsKey(S2R_MATCHED_CONFIRMATION)) {
             state.remove(S2R_MATCHED_CONFIRMATION);
-            nextAction = PROVIDE_S2R_NO_MATCH;
+
+            boolean nextAttempt = state.checkNextAttemptAndResetS2RGeneral();
+            if (nextAttempt)
+                nextAction = PROVIDE_S2R_NO_MATCH;
+            else {
+
+                QualityFeedback qFeedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
+                S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
+                        .filter(f -> f.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
+                        .findFirst().orElse(null);
+
+                if (assessment == null)
+                    throw new RuntimeException("The high quality assessment is required");
+
+                UserResponse msg = (UserResponse) state.get(S2R_MATCHED_MSG);
+                String message = msg.getMessages().get(0).getMessage();
+                state.getStateUpdater().addStepAndUpdateGraphState(state, message, assessment);
+
+                nextAction = PREDICT_FIRST_S2R_PATH;
+            }
 
             MetricsRecorder.saveMatchRecord(state, MetricsRecorder.MetricsType.S2R_MATCHED, MetricsRecorder.NO);
         }

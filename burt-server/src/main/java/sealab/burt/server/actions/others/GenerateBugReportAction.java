@@ -6,15 +6,16 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
-import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.entity.MessageObj;
 import sealab.burt.server.conversation.entity.WidgetName;
+import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.output.HTMLBugReportGenerator;
 import sealab.burt.server.output.ReportingTimeRecorder;
 
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static sealab.burt.server.StateVariable.*;
 
@@ -55,6 +56,11 @@ class GenerateBugReportAction extends ChatBotAction {
     }
 
     public static File generateBugReport(ConversationState state) throws Exception {
+        boolean anyNotCreated = Stream.of(StateVariable.APP_NAME, StateVariable.APP_VERSION,
+                StateVariable.PARTICIPANT_ID).anyMatch(v -> state.get(v) == null);
+        if (anyNotCreated)
+            return null;
+
         String appName = state.get(StateVariable.APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
         String participant = state.get(PARTICIPANT_ID).toString();

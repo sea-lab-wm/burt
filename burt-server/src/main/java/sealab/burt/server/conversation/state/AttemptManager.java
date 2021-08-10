@@ -15,7 +15,7 @@ class AttemptManager {
         //EB
         EB_NO_MATCH, EB_NOT_PARSED,
         //S2R
-        S2R_NO_MATCH, S2R_NOT_PARSED, S2R_MATCHED, S2R_INPUT, S2R_AMBIGUOUS
+        S2R_GENERAL, S2R_NO_MATCH, S2R_NOT_PARSED, S2R_MATCHED, S2R_INPUT,  S2R_AMBIGUOUS
     }
 
     public static final Integer MAX_ATTEMPTS_3 = 3;
@@ -37,16 +37,40 @@ class AttemptManager {
             put(AttemptType.EB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_2, -1));
 
             //S2R
+            put(AttemptType.S2R_GENERAL, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //all cases
             put(AttemptType.S2R_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //no step matched
             put(AttemptType.S2R_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //no step parsed
             put(AttemptType.S2R_AMBIGUOUS, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //multiple match
             put(AttemptType.S2R_MATCHED, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //confirmation of S2R HQ
+
+            //the two cases below are currently not used
             put(AttemptType.S2R_INPUT, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //missing input
 
         }
     };
 
     //---------------------------------------------------
+    public Integer getMaxAttemptsS2RGeneral() {
+        return getMaxAttempt(AttemptType.S2R_GENERAL);
+    }
+
+    public Integer getCurrentAttemptS2RGeneral() {
+        return getCurrentAttempt(AttemptType.S2R_GENERAL);
+    }
+
+    public void initOrIncreaseCurrentAttemptS2RGeneral() {
+        initOrIncreaseCurrentAttempt(AttemptType.S2R_GENERAL);
+    }
+
+    public boolean checkNextAttemptAndResetS2RGeneral() {
+        return checkNextAttemptAndReset(AttemptType.S2R_GENERAL);
+    }
+
+    public void resetCurrentAttemptS2RGeneral() {
+        resetAttempt(AttemptType.S2R_GENERAL);
+    }
+
+    //--------------------------------------
 
     public void initOrIncreaseCurrentAttemptS2RInput() {
         initOrIncreaseCurrentAttempt(AttemptType.S2R_INPUT);

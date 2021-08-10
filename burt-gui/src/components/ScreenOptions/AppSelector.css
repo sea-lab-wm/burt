@@ -1,19 +1,22 @@
-
 .image_picker {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
     }
+
 .button {
     display: flex;
     margin: inherit;
     flex-direction: row;
     font-size: 12px;
     position: center;
-
-
-
 }
 
+.button-layout{
+    display: flex;
+}
 
+.left-margin{
+    margin-left: 5px;
+}
