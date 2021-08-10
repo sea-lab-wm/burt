@@ -149,7 +149,7 @@ function App() {
         }
 
         return (
-            <div className="container-fluid">
+            <div className="container-fluid App center-screen">
                     <div className="row-fluid">
                         <div className="span6" >
                             {
@@ -166,8 +166,8 @@ function App() {
                         </div>
                        <div className="span8">
                            <div className="steps-history sidebar-nav">
-                               <li class="nav-header"> Steps history</li>
-                               <ul class="nav nav-list">
+                               <li className="nav-header"> Steps history</li>
+                               <ul className="nav nav-list">
                                    <li className="list-group-item"> </li>
                                        {/*<small>*/}
                                        {/*    "I click some button"*/}
