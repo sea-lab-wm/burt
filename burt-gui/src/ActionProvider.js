@@ -6,11 +6,12 @@ const axios = require('axios')
 const context = "";
 class ActionProvider{
 
-    constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj) {
+    constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj, setStepsState) {
         this.createChatBotMessage = createChatBotMessage;
         this.createClientMessage = createClientMessage;
         this.setState = setStateFunc;
-        this.sessionId = sessionIdObj
+        this.sessionId = sessionIdObj;
+        this.setStepsState = setStepsState;
     }
 
     selectApp(){
@@ -132,6 +133,26 @@ class ActionProvider{
         this.setState(fn)
 
         //this.saveSingleMessage(message)
+    }
+
+    updateAllStepHistory(steps) {
+        console.log("Updating steps from action provider")
+        let fn = prevState => {
+            return {
+                ...prevState, steps: steps
+            }
+        };
+        this.setStepsState(fn)
+    }
+
+    updateStepHistory(step) {
+        console.log("Updating steps from action provider")
+        let fn = prevState => {
+            return {
+            ...prevState, steps: [...prevState.steps, step]
+            }
+        };
+        this.setStepsState(fn)
     }
 }
 export default ActionProvider;

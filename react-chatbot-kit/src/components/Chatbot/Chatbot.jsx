@@ -14,6 +14,7 @@ import {
   getBotName,
   validateProps,
 } from "./utils";
+import StepsPanel from "../Steps/StepsPanel";
 
 const Chatbot = ({
   actionProvider,
@@ -93,11 +94,14 @@ const Chatbot = ({
   const customComponents = getCustomComponents(config);
   const botName = getBotName(config);
 
+  const [stepsState, setStepsState] = useState({steps: ["Step 1", "Step 2", "Step 3"]});
+
   const actionProv = new actionProvider(
     createChatBotMessage,
     setState,
     createClientMessage,
-    sessionId
+    sessionId,
+    setStepsState,
   );
   const widgetRegistry = new WidgetRegistry(setState, actionProv);
   const messagePars = new messageParser(actionProv, state);
@@ -107,20 +111,33 @@ const Chatbot = ({
 
   console.log("Running a modified version of the framework")
 
+  //--------------
+
+
   return (
-    <Chat
-      state={state}
-      setState={setState}
-      widgetRegistry={widgetRegistry}
-      actionProvider={actionProv}
-      messageParser={messagePars}
-      customComponents={{ ...customComponents }}
-      botName={botName}
-      customStyles={{ ...customStyles }}
-      headerText={headerText}
-      placeholderText={placeholderText}
-      validator={validator}
-    />
+      <div className="container-fluid App center-screen">
+        <div className="row-fluid">
+          <div className="span6" >
+            <Chat
+              state={state}
+              setState={setState}
+              widgetRegistry={widgetRegistry}
+              actionProvider={actionProv}
+              messageParser={messagePars}
+              customComponents={{ ...customComponents }}
+              botName={botName}
+              customStyles={{ ...customStyles }}
+              headerText={headerText}
+              placeholderText={placeholderText}
+              validator={validator}
+            />
+          </div>
+          <StepsPanel
+              stepsState ={stepsState}
+          />
+        </div>
+
+      </div>
   );
 };
 

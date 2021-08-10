@@ -6,8 +6,6 @@ import actionProvider from "./ActionProvider.js";
 import messageParser from "./MessageParser.js";
 import ApiClient from "./ApiClient";
 import SessionManager from "./SessionManager";
-import SockJS from 'sockjs-client';
-import Stomp from 'stompjs';
 
 const axios = require('axios')
 
@@ -149,10 +147,6 @@ function App() {
         }
 
         return (
-            <div className="container-fluid App center-screen">
-                    <div className="row-fluid">
-                        <div className="span6" >
-                            {
                             <Chatbot
                                 config={config}
                                 actionProvider={actionProvider}
@@ -162,39 +156,6 @@ function App() {
                                 saveMessages={saveMessages}
                                 validator={emptyStringValidator}
                             />
-                        }
-                        </div>
-                       <div className="span8">
-                           <div className="steps-history sidebar-nav" id="stepsHistoryPanel">
-                               <li className="nav-header"> Steps history</li>
-                               <ul className="nav nav-list" >
-                                   <li className="list-group-item">
-                                       {/*<small>*/}
-                                       {/*    "I click some button"*/}
-                                       {/*    <a href=""  class="" title=""></a>*/}
-
-                                       {/*</small>*/}
-                               </li>
-                               </ul>
-
-                               <ul className="nav nav-list">
-
-                               </ul>
-
-
-                           </div>
-                           <div className="steps-history sidebar-nav">
-                               <li className="nav-header"> the last three steps</li>
-                               <ul className="screenshots">
-                               </ul>
-
-
-                           </div>
-
-                       </div>
-                    </div>
-
-            </div>
 
         );
 

@@ -15,12 +15,15 @@ const processResponse = (responsePromise, actionProvider) => {
             actionProvider.removeMsg(lastMsgId)
 
             let conversationResponse = httpReponse.data;
+
+
+            actionProvider.updateStepHistory("Step x");
             // ask updated steps from server
             // getStepsHistory();
-            ReactDOM.render(
-                <getStepsHistory />,
-                document.getElementById('stepsHistoryPanel')
-            );
+            // ReactDOM.render(
+            //     <getStepsHistory />,
+            //     document.getElementById('stepsHistoryPanel')
+            // );
 
             if (conversationResponse.code === ERROR_CODE)
                 throw conversationResponse.messages[0].messageObj.message
@@ -140,7 +143,6 @@ const processResponse = (responsePromise, actionProvider) => {
 
 
     }
-
 
 }
 
