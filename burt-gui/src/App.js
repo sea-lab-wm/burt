@@ -165,15 +165,16 @@ function App() {
                         }
                         </div>
                        <div className="span8">
-                           <div className="steps-history sidebar-nav">
+                           <div className="steps-history sidebar-nav" id="stepsHistoryPanel">
                                <li className="nav-header"> Steps history</li>
-                               <ul className="nav nav-list">
-                                   <li className="list-group-item"> </li>
+                               <ul className="nav nav-list" >
+                                   <li className="list-group-item">
                                        {/*<small>*/}
                                        {/*    "I click some button"*/}
                                        {/*    <a href=""  class="" title=""></a>*/}
 
                                        {/*</small>*/}
+                               </li>
                                </ul>
 
                                <ul className="nav nav-list">

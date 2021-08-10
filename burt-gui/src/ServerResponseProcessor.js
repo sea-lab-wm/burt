@@ -1,7 +1,10 @@
+import React from "react";
 import SessionManager from "./SessionManager";
 import {END_CONVERSATION_CODE, ERROR_CODE, REPORT_NO_INFO_CODE, SUCCESS_CODE} from "./App";
 import ApiClient from "./ApiClient";
+import ReactDOM from 'react-dom'
 import config from "./config";
+import processStepsHistory from "./generateDomStep";
 
 const processResponse = (responsePromise, actionProvider) => {
     function processResponse2(httpReponse, lastMsgId) {
@@ -14,6 +17,10 @@ const processResponse = (responsePromise, actionProvider) => {
             let conversationResponse = httpReponse.data;
             // ask updated steps from server
             // getStepsHistory();
+            ReactDOM.render(
+                <getStepsHistory />,
+                document.getElementById('stepsHistoryPanel')
+            );
 
             if (conversationResponse.code === ERROR_CODE)
                 throw conversationResponse.messages[0].messageObj.message
@@ -115,12 +122,12 @@ const processResponse = (responsePromise, actionProvider) => {
                 let stepsHistory = chatbotMsg.values;
                 // console.log(link);
                 // window.open(config.serverEndpoint + "/" + link, "_blank");
-
-
-
-
-
-
+                const listItems = stepsHistory.map((step) =>
+                    <li className="list-group-item"> <generateDomStep step={step }/></li>
+                );
+                return (
+                    <ul className="nav nav-list">{listItems}</ul>
+                );
 
             } else if (conversationResponse.code === ERROR_CODE) {
                 window.alert(chatbotMsg.messageObj.message);
