@@ -34,7 +34,8 @@ public class ConfirmMatchedOBAction extends ChatBotAction {
                 SelectOBScreenAction.getObScreenOptions(Collections.singletonList(graphState), state, 0);
 
         ChatBotMessage optionMessage = new ChatBotMessage(
-                new MessageObj("Ok, just to double check, is this the screen that is <b>having or triggering</b> the problem?",
+                new MessageObj("Okay, just to double check, is this the screen that is <b>having or triggering</b> " +
+                        "the problem?",
                         WidgetName.OneScreenNoButtons),
                 optionList, false);
 

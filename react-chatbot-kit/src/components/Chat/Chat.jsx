@@ -199,6 +199,7 @@ const Chat = ({
             <div className="react-chatbot-kit-chat-header">
               <ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon"/>
             {header}
+              <button className="bn632-hover bn22 bn-margin-left" id="restartConversation">Restart the conversation</button>
               <button className="bn632-hover bn22" id="reportPreview">View the bug report</button>
             </div>
           }

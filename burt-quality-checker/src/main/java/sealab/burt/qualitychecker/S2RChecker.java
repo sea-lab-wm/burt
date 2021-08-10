@@ -199,14 +199,14 @@ class S2RChecker {
             //case: type 'x' on 'y'
             if (JavaUtils.getSet("on", "in", "into", "for", "of", "as", "to", "with").contains(preposition)) {
 
-                final boolean isObjectLiteral = s2rMatcher.isLiteralValue(object)
-                        || s2rMatcher.getLiteralValue(object) != null;
-                if (isObjectLiteral)
+/*                final boolean isObjectLiteral = NLActionS2RMatcher.isLiteralValue(object)
+                        || NLActionS2RMatcher.getLiteralValue(object) != null;
+                if (isObjectLiteral)*/
                     text = object;
             }
 
         } else if (!StringUtils.isEmpty(object)) {
-            text = s2rMatcher.getLiteralValue(object);
+            text = NLActionS2RMatcher.getLiteralValue(object);
         }
         return text;
     }

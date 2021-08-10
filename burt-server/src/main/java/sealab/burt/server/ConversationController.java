@@ -308,15 +308,25 @@ class ConversationController {
     }
 
     @PostMapping("/end")
-    public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
+    public int endConversation(@RequestBody UserResponse req) {
+        String sessionId = req.getSessionId();
+        return endConversation(sessionId);
+    }
+
+    private int endConversation(String sessionId) {
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return ResponseCode.SUCCESS.getValue();
+        }
+
         ConversationState state = conversationStates.get(sessionId);
         if (state == null) {
             log.debug("No conversation state associated to: " + sessionId);
-            return "true";
+            return ResponseCode.SUCCESS.getValue();
         }
         state.saveConversationMessages();
         Object obj = conversationStates.remove(sessionId);
-        return obj != null ? "true" : "false";
+        return obj != null ? ResponseCode.SUCCESS.getValue() : ResponseCode.UNEXPECTED_ERROR.getValue();
     }
 
 }

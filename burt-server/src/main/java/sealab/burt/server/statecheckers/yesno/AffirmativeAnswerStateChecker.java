@@ -38,12 +38,13 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             state.remove(APP_ASKED);
             nextAction = PROVIDE_OB;
         } */
-        else if (state.containsKey(OB_SCREEN_SELECTED)) {
+     /*   else if (state.containsKey(OB_SCREEN_SELECTED)) {
             state.remove(OB_SCREEN_SELECTED);
             nextAction = PROVIDE_EB;
 
             state.getStateUpdater().updateOBState(state, (GraphState) state.get(OB_STATE));
-        } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
+        } */
+        else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
             state.remove(COLLECTING_S2R);
             state.remove(StateVariable.CONFIRM_LAST_STEP);
             // CHECK LAST STEP HERE

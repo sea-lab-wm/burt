@@ -227,7 +227,6 @@ class StepResolver {
         int nThreads = 6;
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
 
-        LinkedHashMap<GraphState, Integer> matchedStates = new LinkedHashMap<>();
         //list of all futures
         try {
 

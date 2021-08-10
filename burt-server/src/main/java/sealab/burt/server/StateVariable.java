@@ -19,6 +19,7 @@ public enum StateVariable {
 
     //s2r general variables:
     COLLECTING_S2R, CONFIRM_LAST_STEP, S2R_MATCHED_CONFIRMATION, S2R_MATCHED_MSG, COLLECTING_FIRST_S2R,
+    ASKED_TO_WRITE_S2R,
 
     //s2r missing
     S2R_ALL_MISSING,

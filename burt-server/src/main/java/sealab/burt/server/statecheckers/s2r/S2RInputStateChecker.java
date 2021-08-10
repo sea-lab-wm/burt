@@ -46,7 +46,7 @@ public class S2RInputStateChecker extends StateChecker {
 
         //--------------------------------------
 
-        final boolean isObjectLiteral = NLActionS2RMatcher.isLiteralValue(msgText)
+   /*     final boolean isObjectLiteral = NLActionS2RMatcher.isLiteralValue(msgText)
                 || NLActionS2RMatcher.getLiteralValue(msgText) != null;
 
         if(!isObjectLiteral){
@@ -60,7 +60,7 @@ public class S2RInputStateChecker extends StateChecker {
             }
 
             return ActionName.SPECIFY_NEXT_INPUT_S2R;
-        } else {
+        } else {*/
 
             AppStep appStep = assessment.getMatchedSteps().get(0);
             appStep.setText(msgText);
@@ -70,6 +70,6 @@ public class S2RInputStateChecker extends StateChecker {
             state.getStateUpdater().addStepAndUpdateGraphState(state, hqMsgTextFinal, assessment);
 
             return PREDICT_FIRST_S2R_PATH;
-        }
+//        }
     }
 }

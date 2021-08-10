@@ -44,11 +44,11 @@ public class NegativeAnswerStateChecker extends StateChecker {
         /*else if (state.containsKey(APP_ASKED)) {
             nextAction = SELECT_APP;
         }*/
-        else if (state.containsKey(OB_SCREEN_SELECTED)) {
+/*        else if (state.containsKey(OB_SCREEN_SELECTED)) {
             //FIXME: should we start over after a "page" of options have already skipped by the user?
             //or should we show the last page?
             nextAction = SELECT_OB_SCREEN;
-        }
+        }*/
         /*else if (state.containsKey(COLLECTING_EB)){
             nextAction = CLARIFY_EB;
         }*/

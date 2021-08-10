@@ -34,9 +34,6 @@ class SelectOBScreenAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
 
-        MessageObj messageObj = new MessageObj(
-                " Please hit the \"<b>Done</b>\" button after you have selected it", WidgetName.OBScreenSelector);
-
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         List<GraphState> matchedStates = result.getMatchedStates();
         //--------------------------------
@@ -59,10 +56,12 @@ class SelectOBScreenAction extends ChatBotAction {
         if (options.isEmpty())
             throw new RuntimeException("There are no options to show");
 
+        MessageObj messageObj = new MessageObj(
+                " Please click the \"<b>done</b>\" button after you have selected it", WidgetName.OBScreenSelector);
+
         return createChatBotMessages(
                 "Got it. From the list below, can you please select the screen that is <b>having or triggering</b> " +
-                        "the " +
-                        "problem?",
+                        "the problem?",
                 new ChatBotMessage(messageObj, options, false));
     }
 

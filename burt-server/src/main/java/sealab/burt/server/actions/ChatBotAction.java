@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static sealab.burt.server.StateVariable.APP_VERSION;
 import static sealab.burt.server.StateVariable.EB_CHECKER;
@@ -51,11 +52,15 @@ public abstract class ChatBotAction {
     }
 
     protected List<ChatBotMessage> createChatBotMessages(Object... messages) {
-        return Arrays.stream(messages).map(msg ->{
-            if(msg instanceof String)
-                return new ChatBotMessage((String) msg);
-            else if(msg instanceof ChatBotMessage)
-                return (ChatBotMessage) msg;
+        return Arrays.stream(messages).flatMap(msg -> {
+            if (msg instanceof String)
+                return Stream.of(new ChatBotMessage((String) msg));
+            else if (msg instanceof ChatBotMessage)
+                return Stream.of((ChatBotMessage) msg);
+            else if (msg instanceof String[])
+                return Arrays.stream((String[]) msg).map(ChatBotMessage::new);
+            else if (msg instanceof ChatBotMessage[])
+                return Arrays.stream((ChatBotMessage[]) msg);
             throw new RuntimeException("Type not supported: " + msg.getClass().getSimpleName());
         }).collect(Collectors.toList());
     }

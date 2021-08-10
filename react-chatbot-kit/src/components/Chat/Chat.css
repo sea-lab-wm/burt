@@ -25,12 +25,12 @@
 }
 
 .bn632-hover {
-  width: 120px;
+  width: 82px;
   font-size: 0.65rem;
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  margin-left: 55%;
+  margin-left: 10px;
   height: 30px;
   text-align:center;
   border: none;
@@ -107,4 +107,8 @@
 .react-chatbot-kit-chat-btn-send-icon {
   fill: #fff;
   width: 15px;
+}
+
+.bn-margin-left {
+  margin-left: 45%;
 }
