@@ -33,10 +33,12 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             state.remove(StateVariable.CONFIRM_END_CONVERSATION);
             state.remove(ACTION_NEGATIVE_END_CONVERSATION);
             nextAction = END_CONVERSATION_ACTION;
-        } else if (state.containsKey(APP_ASKED)) {
+        }
+      /*  else if (state.containsKey(APP_ASKED)) {
             state.remove(APP_ASKED);
             nextAction = PROVIDE_OB;
-        } else if (state.containsKey(OB_SCREEN_SELECTED)) {
+        } */
+        else if (state.containsKey(OB_SCREEN_SELECTED)) {
             state.remove(OB_SCREEN_SELECTED);
             nextAction = PROVIDE_EB;
 
@@ -81,9 +83,11 @@ class AffirmativeAnswerStateChecker extends StateChecker {
 
             if (results.contains(S2RQualityCategory.LOW_Q_INCORRECT_INPUT))
                 nextAction = SPECIFY_INPUT_S2R;
-            else if (results.contains(S2RQualityCategory.MISSING)) {
+            /*else
+                if (results.contains(S2RQualityCategory.MISSING)) {
                 nextAction = SELECT_MISSING_S2R;
-            } else {
+            } */
+                else {
 
                 S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
                         .filter(f -> f.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
@@ -99,8 +103,6 @@ class AffirmativeAnswerStateChecker extends StateChecker {
                 nextAction = PREDICT_FIRST_S2R_PATH;
             }
 
-        } else if (!state.containsKey(PARTICIPANT_ASKED)) {
-            nextAction = PROVIDE_PARTICIPANT_ID;
         }
 
         return nextAction;

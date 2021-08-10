@@ -27,19 +27,23 @@ public class ParticipantIdStateChecker extends StateChecker {
     @Override
     public ActionName nextAction(ConversationState state) {
 
+        //-----------------------------
+        //parse the message into tokens
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         String message = userResponse.getFirstMessage().getMessage();
         List<Token> tokens = TextProcessor.processText(message).get(0).getTokens();
 
+        //validate if any of the tokes is the participant ID
         Optional<Token> token = tokens.stream().filter(tok -> PARTICIPANTS.stream()
                 .anyMatch(part -> tok.getWord().equalsIgnoreCase(part)))
                 .findFirst();
 
+        //is the participant id valid?
         boolean validParticipant = token.isPresent();
-
         state.put(PARTICIPANT_VALIDATED, validParticipant);
 
         if (validParticipant) {
+            state.remove(PARTICIPANT_ASKED);
             state.put(PARTICIPANT_ID, token.get().getWord().toUpperCase());
             return ActionName.SELECT_APP;
         } else {

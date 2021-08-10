@@ -138,7 +138,7 @@ function App() {
         );
     } else
         return (
-            <div>I am sorry, BURT cannot be loaded. Try loading the page in a few seconds.</div>
+            <div>I am sorry, BURT cannot be loaded at this moment. Try loading the page in a few seconds.</div>
         );
 }
 

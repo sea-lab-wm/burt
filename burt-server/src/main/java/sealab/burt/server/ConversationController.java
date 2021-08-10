@@ -47,7 +47,7 @@ public
 class ConversationController {
 
     public final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
-        put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
+//        put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
         put(PARTICIPANT_PROVIDED, new ParticipantIdStateChecker());
         //--------------------
         put(APP_SELECTED, new DefaultActionStateChecker(CONFIRM_APP));
@@ -63,7 +63,7 @@ class ConversationController {
 
 //        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
         put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
-        put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
+//        put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
         put(S2R_INPUT, new S2RInputStateChecker());
 
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
@@ -302,6 +302,7 @@ class ConversationController {
 
         long startTime = System.currentTimeMillis();
         state.put(StateVariable.REPORTING_START_TIME, startTime);
+        state.put(PARTICIPANT_ASKED, true);
 
         return sessionId;
     }

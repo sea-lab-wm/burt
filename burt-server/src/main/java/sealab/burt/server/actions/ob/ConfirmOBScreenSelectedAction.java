@@ -60,29 +60,31 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
             GraphState selectedState = matchedStates.get(id);
 
-            setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
+            setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
+            startEBChecker(state);
             state.put(OB_SCREEN_SELECTED, true);
 
             state.put(StateVariable.OB_STATE, selectedState);
 
             //---------------------
 
+         /*
             String selectedScreenDescription = GraphTransition.getWindowString(
                     selectedState.getScreen().getActivity(),
                     selectedState.getScreen().getWindow());
-
             response.append("Okay, you selected the screen \"")
                     .append(id + 1)
                     .append(". ")
                     .append(selectedScreenDescription)
-                    .append("\"");
+                    .append("\"");*/
+            response.append("Got it, can you please tell me how the app is <b>supposed to work</b> instead?");
 
             state.remove(StateVariable.CURRENT_OB_SCREEN_POSITION);
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
 
             MetricsRecorder.saveMatchRecord(state, MetricsRecorder.MetricsType.OB_SCREENS, MetricsRecorder.YES);
 
-            return createChatBotMessages(response.toString(), "Shall we continue?");
+            return createChatBotMessages(response.toString());
 
         } else if (NONE.equals(message.getMessage())) {
 

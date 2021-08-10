@@ -40,9 +40,11 @@ public class NegativeAnswerStateChecker extends StateChecker {
             state.remove(StateVariable.CONFIRM_LAST_STEP);
             nextAction = PROVIDE_S2R;
             state.putIfAbsent(COLLECTING_S2R, true);
-        } else if (state.containsKey(APP_ASKED)) {
+        }
+        /*else if (state.containsKey(APP_ASKED)) {
             nextAction = SELECT_APP;
-        } else if (state.containsKey(OB_SCREEN_SELECTED)) {
+        }*/
+        else if (state.containsKey(OB_SCREEN_SELECTED)) {
             //FIXME: should we start over after a "page" of options have already skipped by the user?
             //or should we show the last page?
             nextAction = SELECT_OB_SCREEN;

@@ -29,7 +29,7 @@ import static sealab.burt.server.StateVariable.*;
 @Slf4j
 public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
-    public final static int MAX_NUMBER_OF_PATHS_TO_SHOW = 3;
+    public final static int MAX_NUMBER_OF_PATHS_TO_SHOW = 2;
     private final static int MAX_STEPS_TO_SHOW_IN_PATH = 5;
 
     public ProvideFirstPredictedS2RAction(Intent nextExpectedIntent) {
