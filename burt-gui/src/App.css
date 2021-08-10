@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
 }
+
 @media (min-width: 768px) {
   .container-fluid {
     width: 750px;
@@ -26,7 +27,7 @@
 }
 .span8{
   margin-top: 20px;
-min-width: 50%;
+  min-width: 50%;
 }
 .steps-history{
   border: 1px solid rgba(0, 0, 0, 0.05);

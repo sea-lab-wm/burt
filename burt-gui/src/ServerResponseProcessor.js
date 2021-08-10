@@ -13,7 +13,7 @@ const processResponse = (responsePromise, actionProvider) => {
 
             let conversationResponse = httpReponse.data;
             // ask updated steps from server
-            getStepsHistory();
+            // getStepsHistory();
 
             if (conversationResponse.code === ERROR_CODE)
                 throw conversationResponse.messages[0].messageObj.message
