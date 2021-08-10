@@ -6,6 +6,7 @@ import actionProvider from "./ActionProvider.js";
 import messageParser from "./MessageParser.js";
 import ApiClient from "./ApiClient";
 import SessionManager from "./SessionManager";
+import updateStepHistory from "./UpdateStepsHistory";
 
 const axios = require('axios')
 
@@ -147,16 +148,15 @@ function App() {
         }
 
         return (
-                            <Chatbot
-                                config={config}
-                                actionProvider={actionProvider}
-                                messageHistory={loadMessagesSync()}
-                                messageParser={messageParser}
-                                sessionId={sessionId}
-                                saveMessages={saveMessages}
-                                validator={emptyStringValidator}
-                            />
-
+            <Chatbot
+                config={config}
+                actionProvider={actionProvider}
+                messageHistory={loadMessagesSync()}
+                messageParser={messageParser}
+                sessionId={sessionId}
+                saveMessages={saveMessages}
+                validator={emptyStringValidator}
+            />
         );
 
 

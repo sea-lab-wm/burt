@@ -1,20 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 import Chat from "../Chat/Chat";
 
 import WidgetRegistry from "../WidgetRegistry/WidgetRegistry";
 import ChatbotError from "../ChatbotError/ChatbotError";
-
-import { createChatBotMessage, createClientMessage } from "../Chat/chatUtils";
-import {
-  getCustomStyles,
-  getInitialState,
-  getWidgets,
-  getCustomComponents,
-  getBotName,
-  validateProps,
-} from "./utils";
+import {createChatBotMessage, createClientMessage} from "../Chat/chatUtils";
+import {getBotName, getCustomComponents, getCustomStyles, getInitialState, getWidgets, validateProps,} from "./utils";
 import StepsPanel from "../Steps/StepsPanel";
+
+const axios = require('axios')
 
 const Chatbot = ({
   actionProvider,
@@ -94,7 +88,7 @@ const Chatbot = ({
   const customComponents = getCustomComponents(config);
   const botName = getBotName(config);
 
-  const [stepsState, setStepsState] = useState({steps: ["Step 1", "Step 2", "Step 3"]});
+  const [stepsState, setStepsState] = useState({steps: []});
 
   const actionProv = new actionProvider(
     createChatBotMessage,
@@ -103,6 +97,12 @@ const Chatbot = ({
     sessionId,
     setStepsState,
   );
+
+    if (stepsState.steps.length === 0) {
+        let endPoint = config.serverEndpoint + config.getStepsHistory
+        getStepHistory(endPoint, sessionId, setStepsState, actionProv)
+    }
+
   const widgetRegistry = new WidgetRegistry(setState, actionProv);
   const messagePars = new messageParser(actionProv, state);
 
@@ -140,5 +140,31 @@ const Chatbot = ({
       </div>
   );
 };
+
+function getStepHistory(endPoint, sessionId, setStepState, actionProvider){
+  const data = {
+    sessionId: sessionId,
+  }
+  const responsePromise =  axios.post(endPoint, data);
+  responsePromise.then(response => {
+
+    let conversationResponse = response.data;
+    let chatbotMsgs = conversationResponse.messages;
+    let chatbotMsg = chatbotMsgs[0];
+
+    if (conversationResponse.code === 0) {
+      let stepsHistory = chatbotMsg.values;
+      if(stepsHistory != null)
+        actionProvider.updateAllStepHistory(stepsHistory);
+    } else if (conversationResponse.code === -1) {
+      window.alert(chatbotMsg.messageObj.message);
+    } else {
+      window.alert("There was an unexpected error");
+    }
+  }).catch(error => {
+    console.error(`There was an unexpected error: ${error}`);
+  })
+
+}
 
 export default Chatbot;

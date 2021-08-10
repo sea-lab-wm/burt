@@ -1,22 +1,26 @@
-import React , { useState, useEffect }  from "react";
+import React from "react";
 
 const StepsPanel = ({
-                  actionProvider,
                         stepsState
-              }) => {
+                    }) => {
 
-    function renderSteps(){
-        const listItems = stepsState.steps.map((step) =>
-            <li key={Math.random()} className="list-group-item">{step}</li>
-        );
-      return listItems
+    function renderSteps() {
+        return stepsState.steps.map((step) => {
+
+                let key = step.key;
+                let stepDescription = step.value1;
+                let stepImage = step.value2;
+
+                return <li key={Math.random()} className="list-group-item">{stepDescription}</li>
+            }
+        )
     }
 
     return (
         <div className="span8">
             <div className="steps-history sidebar-nav" id="stepsHistoryPanel">
                 <li className="nav-header"> Steps history</li>
-                <ul className="nav nav-list" >
+                <ul className="nav nav-list">
                     {renderSteps()}
                 </ul>
 

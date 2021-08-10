@@ -5,6 +5,7 @@
   "description": "Fully customizable chatbot kit for react.",
   "main": "build/index.js",
   "dependencies": {
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "css-loader": "^3.5.1",
     "html-react-parser": "^1.2.7",

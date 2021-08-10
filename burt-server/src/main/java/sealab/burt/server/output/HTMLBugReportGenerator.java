@@ -120,7 +120,7 @@ class HTMLBugReportGenerator {
         return doc.html();
     }
 
-    public String getLinkScreenshotPath(String screenshotPath) {
+    public static String getLinkScreenshotPath(String screenshotPath) {
         return FilenameUtils.separatorsToUnix(screenshotPath);
     }
 }
