@@ -1,5 +1,7 @@
 import SessionManager from "./SessionManager";
-import {END_CONVERSATION_CODE, ERROR_CODE} from "./App";
+import {END_CONVERSATION_CODE, ERROR_CODE, REPORT_NO_INFO_CODE, SUCCESS_CODE} from "./App";
+import ApiClient from "./ApiClient";
+import config from "./config";
 
 const processResponse = (responsePromise, actionProvider) => {
     function processResponse2(httpReponse, lastMsgId) {
@@ -10,6 +12,9 @@ const processResponse = (responsePromise, actionProvider) => {
             actionProvider.removeMsg(lastMsgId)
 
             let conversationResponse = httpReponse.data;
+            // ask updated steps from server
+            getStepsHistory();
+
             if (conversationResponse.code === ERROR_CODE)
                 throw conversationResponse.messages[0].messageObj.message
 
@@ -96,6 +101,39 @@ const processResponse = (responsePromise, actionProvider) => {
         alert("There was an unexpected error, please try again in few moments or refresh the page.")
         console.error(`There was an unexpected error: ${error}`);
     })
+
+
+    function getStepsHistory(){
+        const responsePromise = ApiClient.processStepsHistory();
+        responsePromise.then(response => {
+
+            let conversationResponse = response.data;
+            let chatbotMsgs = conversationResponse.messages;
+            let chatbotMsg = chatbotMsgs[0];
+
+            if (conversationResponse.code === SUCCESS_CODE) {
+                let stepsHistory = chatbotMsg.values;
+                // console.log(link);
+                // window.open(config.serverEndpoint + "/" + link, "_blank");
+
+
+
+
+
+
+
+            } else if (conversationResponse.code === ERROR_CODE) {
+                window.alert(chatbotMsg.messageObj.message);
+            } else {
+                window.alert("There was an unexpected error");
+            }
+        }).catch(error => {
+            console.error(`There was an unexpected error: ${error}`);
+        })
+
+
+    }
+
 
 }
 

@@ -14,7 +14,7 @@ class ApiClient {
      *  answers).
      *
      * messageObj should be an object as used in the chatbot framework
-     * selectedValuesshould be an array
+     * selectedValues should be an array
      */
     static processUserMessage(messageObj) {
         const sessionId = SessionManager.getSessionId();
@@ -26,6 +26,16 @@ class ApiClient {
 
         return axios
             .post(config.serverEndpoint + config.processMessageService, data);
+    }
+    static processStepsHistory(){
+        const sessionId = SessionManager.getSessionId();
+
+        const data = {
+            sessionId: sessionId,
+        }
+
+        return axios
+            .post(config.serverEndpoint + config.getStepsHistory, data);
     }
 
     static processReportPreview(){

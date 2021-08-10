@@ -1,6 +1,7 @@
 package sealab.burt.server.actions.appselect;
 
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
+import sealab.burt.server.WebSocketComponent;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
 import sealab.burt.server.conversation.entity.KeyValues;

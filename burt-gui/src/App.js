@@ -122,20 +122,6 @@ function App() {
                 })
             }
         }
-        if (sessionId != null && sessionId != undefined) {
-            window.onload = function () {
-                const socket = new SockJS("http://localhost:8081/gs-guide-websocket");
-                const stompClient = Stomp.over(socket);
-                stompClient.connect({}, function (frame) {
-                    console.log(frame);
-                    stompClient.subscribe('/stepsHistory/' + sessionId, function (body) {
-                        console.log(body);
-                    });
-                });
-
-            }
-        }
-
 
         return (
             <div className="container-fluid">
@@ -157,15 +143,12 @@ function App() {
                            <div className="steps-history sidebar-nav">
                                <li class="nav-header"> Steps history</li>
                                <ul class="nav nav-list">
+                                   <li className="list-group-item"> </li>
+                                       {/*<small>*/}
+                                       {/*    "I click some button"*/}
+                                       {/*    <a href=""  class="" title=""></a>*/}
 
-                                   <li className="list-group-item">
-                                       <small>
-                                           "I click some button"
-                                           <a href=""  class="" title=""></a>
-
-                                       </small>
-                                        </li>
-
+                                       {/*</small>*/}
                                </ul>
 
                                <ul className="nav nav-list">
@@ -175,7 +158,7 @@ function App() {
 
                            </div>
                            <div className="steps-history sidebar-nav">
-                               <li className="nav-header"> a few last steps you provided</li>
+                               <li className="nav-header"> the last three steps</li>
                                <ul className="screenshots">
                                </ul>
 

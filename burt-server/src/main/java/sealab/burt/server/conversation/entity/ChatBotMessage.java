@@ -2,6 +2,7 @@ package sealab.burt.server.conversation.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import sealab.burt.server.output.BugReportElement;
 
 import java.util.List;
 
@@ -15,7 +16,6 @@ class ChatBotMessage {
     private String action;
     private boolean multiple;
     private String generatedReport;
-
     public ChatBotMessage() {
     }
 
@@ -37,8 +37,6 @@ class ChatBotMessage {
     }
 
 
-
-
     public ChatBotMessage(String message) {
         this.messageObj = new MessageObj((message));
     }
@@ -48,4 +46,8 @@ class ChatBotMessage {
     }
 
 
+//    public ChatBotMessage(MessageObj messageObj, List<BugReportElement> stepsHistory) {
+//        this.messageObj = messageObj;
+//        this.stepsHistory = stepsHistory;
+//    }
 }

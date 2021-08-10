@@ -18,6 +18,7 @@ const config = {
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
     getBugReportPreview: "/reportPreview",
+    getStepsHistory:"/stepsHistory",
     startService: "/start",
     processMessageService: "/processMessage",
     initialMessages: [

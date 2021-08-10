@@ -14,6 +14,7 @@ import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
+import sealab.burt.server.output.BugReportElement;
 import sealab.burt.server.statecheckers.DefaultActionStateChecker;
 import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
@@ -28,10 +29,12 @@ import seers.textanalyzer.TextProcessor;
 
 import java.io.File;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
@@ -275,6 +278,29 @@ class ConversationController {
         MessageObj messageObj = new MessageObj();
         return new ConversationResponse(Collections.singletonList(
                 new ChatBotMessage(messageObj, reportFile.getName())), ResponseCode.SUCCESS);
+    }
+    @PostMapping("/stepsHistory")
+    public ConversationResponse getStepsHistory(@RequestBody UserResponse req) throws Exception {
+        log.debug("Returning the steps history in the server...");
+
+        String sessionId = req.getSessionId();
+
+        if (sessionId == null) {
+            return ConversationResponse.createResponse("The session is inactive. " +
+                            "Please (re)start the conversation.",
+                    ResponseCode.UNEXPECTED_ERROR);
+        }
+        ConversationState conversationState = conversationStates.get(sessionId);
+        //FIXME: Do we need to check the state?
+        List<BugReportElement> S2RHistory = (List<BugReportElement>) conversationState.get(REPORT_S2R);
+        List<KeyValues> s2rHistory = S2RHistory.stream().map(this::changeFormat).collect(Collectors.toList());
+        MessageObj messageObj = new MessageObj();
+        return new ConversationResponse(Collections.singletonList(
+                new ChatBotMessage(messageObj, s2rHistory)), ResponseCode.SUCCESS);
+
+    }
+    public KeyValues changeFormat(BugReportElement step){
+        return new KeyValues(step.getStringElement(), (String) step.getOriginalElement(), step.getScreenshotPath());
     }
 
     @PostMapping("/")
