@@ -5,6 +5,8 @@ import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.entity.MessageObj;
 import sealab.burt.server.conversation.entity.UserResponse;
 import sealab.burt.server.conversation.state.ConversationState;
+import seers.textanalyzer.TextProcessor;
+import seers.textanalyzer.entity.Token;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,7 +29,7 @@ public class MessageParser {
         intentTokens = new ConcurrentHashMap<>();
 
         //these could be regular expressions
-        addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah", "yep"));
+        addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("yes", "yeah", "yep"));
         /*addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up", "hola",
                 "(report|describe|detail) .+ (bug|issue|problem)"));*/
         addIntentTokens(NEGATIVE_ANSWER, Arrays.asList("no", "nah", "nope"));
@@ -105,10 +107,11 @@ public class MessageParser {
                     .filter(entry -> nextIntents.contains(entry.getValue()))
                     .collect(Collectors.toSet());
         }
+        List<Token> tokens = TextProcessor.processText(message.getMessage()).get(0).getTokens();
 
         //check the message
         for (Map.Entry<String, Intent> entry : entries) {
-            if (message.getMessage().toLowerCase().contains(entry.getKey()) || matchRegex(entry.getKey(), message))
+            if (tokens.stream().anyMatch(t -> t.getWord().toLowerCase().equals(entry.getKey())) || matchRegex(entry.getKey(), message))
                 return entry.getValue();
         }
 

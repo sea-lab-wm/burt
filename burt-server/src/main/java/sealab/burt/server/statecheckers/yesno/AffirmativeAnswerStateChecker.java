@@ -69,7 +69,7 @@ class AffirmativeAnswerStateChecker extends StateChecker {
 
             MetricsRecorder.saveMatchRecord(state, MetricsRecorder.MetricsType.S2R_MATCHED, MetricsRecorder.YES);
 
-            state.resetCurrentAttemptS2RMatch();
+            state.resetCurrentAttemptS2RGeneral();
 
             //---------------------
             //add the step to the set of S2R for the report

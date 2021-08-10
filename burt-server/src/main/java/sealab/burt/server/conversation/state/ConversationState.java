@@ -160,6 +160,28 @@ class ConversationState {
                 '}';
     }
 
+    //-------------------------------------
+
+
+    public void initOrIncreaseCurrentAttemptS2RGeneral() {
+        attemptManager.initOrIncreaseCurrentAttemptS2RGeneral();
+    }
+
+    public boolean checkNextAttemptAndResetS2RGeneral() {
+        return attemptManager.checkNextAttemptAndResetS2RGeneral();
+    }
+
+    public void resetCurrentAttemptS2RGeneral() {
+        attemptManager.resetCurrentAttemptS2RGeneral();
+    }
+
+    public Integer getCurrentAttemptS2RGeneral() {
+        return attemptManager.getCurrentAttemptS2RGeneral();
+    }
+
+    public Integer getMaxAttemptsS2RGeneral() {
+        return attemptManager.getMaxAttemptsS2RGeneral();
+    }
     //---------------------------------
 
 
@@ -253,7 +275,7 @@ class ConversationState {
 
     //------------------------------
 
-    public void initOrIncreaseCurrentAttemptS2RNotParsed() {
+ /*   public void initOrIncreaseCurrentAttemptS2RNotParsed() {
         attemptManager.initOrIncreaseCurrentAttemptS2RNotParsed();
     }
 
@@ -263,11 +285,11 @@ class ConversationState {
 
     public void resetCurrentAttemptS2RNotParsed() {
         attemptManager.resetCurrentAttemptS2RNotParsed();
-    }
+    }*/
 
     //------------------------------
 
-    public void initOrIncreaseCurrentAttemptS2RNoMatch() {
+  /*  public void initOrIncreaseCurrentAttemptS2RNoMatch() {
         attemptManager.initOrIncreaseCurrentAttemptS2RNoMatch();
     }
 
@@ -277,11 +299,11 @@ class ConversationState {
 
     public void resetCurrentAttemptS2RNoMatch() {
         attemptManager.resetCurrentAttemptS2RNoMatch();
-    }
+    }*/
 
     //------------------------------
 
-    public void initOrIncreaseCurrentAttemptS2RAmbiguous() {
+  /*  public void initOrIncreaseCurrentAttemptS2RAmbiguous() {
         attemptManager.initOrIncreaseCurrentAttemptS2RAmbiguous();
     }
 
@@ -291,11 +313,11 @@ class ConversationState {
 
     public void resetCurrentAttemptS2RAmbiguous() {
         attemptManager.resetCurrentAttemptS2RAmbiguous();
-    }
+    }*/
 
     //------------------------------
 
-    public Integer getCurrentAttemptS2RMatched() {
+    /*public Integer getCurrentAttemptS2RMatched() {
         return attemptManager.getCurrentAttemptS2RMatched();
     }
 
@@ -313,11 +335,11 @@ class ConversationState {
 
     public void resetCurrentAttemptS2RMatch() {
         attemptManager.resetCurrentAttemptS2RMatch();
-    }
+    }*/
 
     //-------------------------------------
 
-    public void initOrIncreaseCurrentAttemptS2RInput() {
+  /*  public void initOrIncreaseCurrentAttemptS2RInput() {
         attemptManager.initOrIncreaseCurrentAttemptS2RInput();
     }
 
@@ -327,7 +349,9 @@ class ConversationState {
 
     public void resetCurrentAttemptS2RInput() {
         attemptManager.resetCurrentAttemptS2RInput();
-    }
+    }*/
+
+    //----------------------------------
 
     public List<MessageObj> getFrontEndMessageHistory() {
         return frontEndMessageHistory;

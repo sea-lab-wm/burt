@@ -15,6 +15,7 @@ import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.msgparsing.Intent;
 import sealab.burt.server.msgparsing.MessageParser;
 import sealab.burt.server.output.BugReportElement;
+import sealab.burt.server.output.HTMLBugReportGenerator;
 import sealab.burt.server.statecheckers.DefaultActionStateChecker;
 import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
@@ -350,6 +351,11 @@ class ConversationController {
             return ResponseCode.SUCCESS.getValue();
         }
         state.saveConversationMessages();
+        try {
+            GenerateBugReportAction.generateBugReport(state);
+        } catch (Exception e) {
+            log.error("Could not generate the bug report", e);
+        }
         Object obj = conversationStates.remove(sessionId);
         return obj != null ? ResponseCode.SUCCESS.getValue() : ResponseCode.UNEXPECTED_ERROR.getValue();
     }

@@ -48,8 +48,8 @@ class MetricsRecorder {
                 currentAttempt = state.getCurrentAttemptObMatched();
                 maxAttempts = state.getMaxAttemptsObMatched();
             } else if (S2R_MATCHED.equals(metricsType)) {
-                currentAttempt = state.getCurrentAttemptS2RMatched();
-                maxAttempts = state.getMaxAttemptsS2RMatched();
+                currentAttempt = state.getCurrentAttemptS2RGeneral();
+                maxAttempts = state.getMaxAttemptsS2RGeneral();
             } else if (OB_SCREENS.equals(metricsType)) {
                 currentAttempt = state.getCurrentAttemptObScreens();
                 maxAttempts = state.getMaxAttemptObScreens();
