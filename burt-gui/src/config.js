@@ -1,5 +1,4 @@
 import React from "react";
-// Config starter code
 import { createChatBotMessage, createClientMessage } from "react-chatbot-kit";
 import AppSelector from "./components/ScreenOptions/AppSelector";
 import LinkList from "./components/LinkList/LinkList";
@@ -20,10 +19,17 @@ const config = {
     getBugReportPreview: "/reportPreview",
     getStepsHistory:"/stepsHistory",
     startService: "/start",
+    endService: "/end",
     processMessageService: "/processMessage",
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
-        createChatBotMessage("I am here to assist you in reporting any problem with your app"),
+        createChatBotMessage("I will assist you in reporting any problem with your app"),
+        createChatBotMessage("Let me remind you that some of the <b>screenshots</b> that I will display are" +
+            " <b>for reference only</b>"),
+        createChatBotMessage("<b>Input values</b> and <b>UI components</b> may be different from what you " +
+            "actually observed in the app"),
+        createChatBotMessage("To start, please provide the <b>Participant ID</b> that was assigned to " +
+            "you (e.g., P3)"),
     ],
     widgets: [
         {

@@ -50,7 +50,7 @@ public
 class ConversationController {
 
     public final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
-        put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
+//        put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
         put(PARTICIPANT_PROVIDED, new ParticipantIdStateChecker());
         //--------------------
         put(APP_SELECTED, new DefaultActionStateChecker(CONFIRM_APP));
@@ -66,7 +66,7 @@ class ConversationController {
 
 //        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
         put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
-        put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
+//        put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
         put(S2R_INPUT, new S2RInputStateChecker());
 
         put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
@@ -327,20 +327,31 @@ class ConversationController {
 
         long startTime = System.currentTimeMillis();
         state.put(StateVariable.REPORTING_START_TIME, startTime);
+        state.put(PARTICIPANT_ASKED, true);
 
         return sessionId;
     }
 
     @PostMapping("/end")
-    public String endConversation(@RequestParam(value = "sessionId") String sessionId) {
+    public int endConversation(@RequestBody UserResponse req) {
+        String sessionId = req.getSessionId();
+        return endConversation(sessionId);
+    }
+
+    private int endConversation(String sessionId) {
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return ResponseCode.SUCCESS.getValue();
+        }
+
         ConversationState state = conversationStates.get(sessionId);
         if (state == null) {
             log.debug("No conversation state associated to: " + sessionId);
-            return "true";
+            return ResponseCode.SUCCESS.getValue();
         }
         state.saveConversationMessages();
         Object obj = conversationStates.remove(sessionId);
-        return obj != null ? "true" : "false";
+        return obj != null ? ResponseCode.SUCCESS.getValue() : ResponseCode.UNEXPECTED_ERROR.getValue();
     }
 
 }

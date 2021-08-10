@@ -1,7 +1,7 @@
 package sealab.burt.server.actions.appselect;
 
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
-import sealab.burt.server.WebSocketComponent;
+import sealab.burt.qualitychecker.OBChecker;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
 import sealab.burt.server.conversation.entity.KeyValues;
@@ -9,13 +9,14 @@ import sealab.burt.server.conversation.entity.UserResponse;
 import sealab.burt.server.conversation.state.ConversationState;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static sealab.burt.server.StateVariable.*;
-import static sealab.burt.server.msgparsing.Intent.*;
+import static sealab.burt.server.msgparsing.Intent.APP_SELECTED;
+import static sealab.burt.server.msgparsing.Intent.OB_DESCRIPTION;
+
 public class ConfirmAppAction extends ChatBotAction {
 
     @Override
@@ -58,21 +59,34 @@ public class ConfirmAppAction extends ChatBotAction {
 
         //at this point there is a valid app selection
 
-        this.nextExpectedIntents = Arrays.asList(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER);
+        state.remove(APP_ASKED);
+        this.nextExpectedIntents = List.of(OB_DESCRIPTION);
 
         //add app info to the state
         String appNameVersion = appOption.get().getValue1();
         String[] tokens = appNameVersion.split("v\\.");
         String appName = tokens[0].trim();
+        String appVersion = tokens[1].trim();
         state.put(APP_NAME, appName);
-        state.put(APP_VERSION, tokens[1].trim());
+        state.put(APP_VERSION, appVersion);
 
         List<String> packageNames = AppNamesMappings.getPackageNames(appName);
         if (packageNames == null || packageNames.isEmpty())
             throw new RuntimeException("Could not find packages for " + appName);
         state.put(APP_PACKAGE, packageNames.get(0));
 
-        return createChatBotMessages(MessageFormat.format("You selected \"{0}\", is that right?", appNameVersion));
+        //----------------------------
+
+        if (!state.containsKey(OB_CHECKER))
+            state.put(OB_CHECKER, new OBChecker(appName, appVersion));
+
+        //----------------------------
+
+        return createChatBotMessages(MessageFormat.format(
+                        "Okay, can you please tell me the <b>incorrect behavior</b> that you observed on {0}?",
+                        appName),
+                "<b>Tip:</b> when describing the behavior, try to <b>use vocabulary that you observed</b> in the app");
+//        return createChatBotMessages(MessageFormat.format("You selected \"{0}\", is that right?", appNameVersion));
 
     }
 

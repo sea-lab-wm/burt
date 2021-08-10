@@ -96,8 +96,8 @@ function App() {
 
     if (sessionId != null && sessionId != undefined) {
         window.onload = function () {
-            let button = document.getElementById('reportPreview');
-            button.onclick = function () {
+            let previewButton = document.getElementById('reportPreview');
+            previewButton.onclick = function () {
 
                 const responsePromise = ApiClient.processReportPreview();
                 responsePromise.then(response => {
@@ -120,6 +120,31 @@ function App() {
                 }).catch(error => {
                     console.error(`There was an unexpected error: ${error}`);
                 })
+            }
+
+            //------------------------------------
+
+            let restartButton = document.getElementById('restartConversation');
+            restartButton.onclick = function () {
+                // let response = window.confirm("Are you sure you want to restart the conversation?");
+                //
+                // if(!response) return;
+
+                try {
+                    const conversationResponse = ApiClient.endConversation();
+
+                    if (conversationResponse === SUCCESS_CODE) {
+                        SessionManager.endSession();
+                        window.location.reload(false);
+                    } else if (conversationResponse === ERROR_CODE) {
+                        window.alert("I am sorry, I couldn't restart the conversation." +
+                            "Please try again in a few moments.");
+                    } else {
+                        window.alert("There was an unexpected error");
+                    }
+                } catch (e) {
+                    console.error(`There was an unexpected error: ${e}`);
+                }
             }
         }
 
@@ -175,7 +200,7 @@ function App() {
 
     } else
         return (
-            <div>I am sorry, BURT cannot be loaded. Try loading the page in a few seconds.</div>
+            <div>I am sorry, BURT cannot be loaded at this moment. Try loading the page in a few seconds.</div>
         );
 }
 

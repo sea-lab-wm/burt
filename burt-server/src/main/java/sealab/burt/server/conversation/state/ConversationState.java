@@ -88,7 +88,7 @@ class ConversationState {
             //--------S2R-----------//
 
             //regular s2r prompt
-            put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
+//            put(PROVIDE_S2R_FIRST, new ProvideS2RFirstAction(S2R_DESCRIPTION));
             put(PROVIDE_S2R, new ProvideS2RAction(S2R_DESCRIPTION));
 
             //prediction
@@ -108,8 +108,8 @@ class ConversationState {
             put(CONFIRM_SELECTED_AMBIGUOUS_S2R, new ConfirmSelectedAmbiguousAction(S2R_DESCRIPTION));
 
             //quality checking: missing steps
-            put(SELECT_MISSING_S2R, new SelectMissingS2RAction(S2R_MISSING_SELECTED));
-            put(CONFIRM_SELECTED_MISSING_S2R, new ConfirmSelectedMissingAction(S2R_DESCRIPTION));
+            //put(SELECT_MISSING_S2R, new SelectMissingS2RAction(S2R_MISSING_SELECTED));
+//            put(CONFIRM_SELECTED_MISSING_S2R, new ConfirmSelectedMissingAction(S2R_DESCRIPTION));
 
             //last step
             put(ActionName.CONFIRM_LAST_STEP, new ConfirmLastStepAction());

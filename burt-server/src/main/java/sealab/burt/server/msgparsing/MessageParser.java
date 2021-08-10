@@ -28,8 +28,8 @@ public class MessageParser {
 
         //these could be regular expressions
         addIntentTokens(AFFIRMATIVE_ANSWER, Arrays.asList("sure", "yes", "ok", "okay", "absolutely", "yeah", "yep"));
-        addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up", "hola",
-                "(report|describe|detail) .+ (bug|issue|problem)"));
+        /*addIntentTokens(GREETING, Arrays.asList("hi", "hello", "yo", "hey", "what's up", "hola",
+                "(report|describe|detail) .+ (bug|issue|problem)"));*/
         addIntentTokens(NEGATIVE_ANSWER, Arrays.asList("no", "nah", "nope"));
         // we drop this one for now, if we decide to use it, then we need to change also the action
         //        addIntentTokens(THANKS, Arrays.asList("thanks", "thank you"));
@@ -73,6 +73,11 @@ public class MessageParser {
             }
 
         }
+
+        //------------------------
+
+        if (state.containsKey(PARTICIPANT_ASKED))
+            return PARTICIPANT_PROVIDED;
 
         //------------------------
 

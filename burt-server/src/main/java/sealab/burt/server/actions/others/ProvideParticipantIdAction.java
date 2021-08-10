@@ -19,7 +19,7 @@ public class ProvideParticipantIdAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
 
-        Boolean validParticipant = (Boolean) state.get(PARTICIPANT_VALIDATED);
+      /*  Boolean validParticipant = (Boolean) state.get(PARTICIPANT_VALIDATED);
 
         state.put(PARTICIPANT_ASKED, true);
 
@@ -33,7 +33,7 @@ public class ProvideParticipantIdAction extends ChatBotAction {
                             "actually observed in the app",
                     "To start, please provide the <b>Participant ID</b> that was assigned to " +
                             "you (e.g., P3)");
-        else
+        else*/
             return createChatBotMessages("Sorry, I couldn't identify the <b>Participant ID</b>, " +
                     "please provide it one more time (e.g., P3)");
     }

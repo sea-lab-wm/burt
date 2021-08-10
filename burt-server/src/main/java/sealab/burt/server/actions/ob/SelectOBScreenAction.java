@@ -3,7 +3,6 @@ package sealab.burt.server.actions.ob;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
-import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
@@ -35,9 +34,6 @@ class SelectOBScreenAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
 
-        MessageObj messageObj = new MessageObj(
-                " Please hit the \"<b>Done</b>\" button after you have selected it", WidgetName.OBScreenSelector);
-
         QualityResult result = (QualityResult) state.get(OB_QUALITY_RESULT);
         List<GraphState> matchedStates = result.getMatchedStates();
         //--------------------------------
@@ -60,9 +56,12 @@ class SelectOBScreenAction extends ChatBotAction {
         if (options.isEmpty())
             throw new RuntimeException("There are no options to show");
 
+        MessageObj messageObj = new MessageObj(
+                " Please click the \"<b>done</b>\" button after you have selected it", WidgetName.OBScreenSelector);
+
         return createChatBotMessages(
-                "Got it. From the list below, can you please select the screen that is <b>having or triggering</b> the " +
-                        "problem?",
+                "Got it. From the list below, can you please select the screen that is <b>having or triggering</b> " +
+                        "the problem?",
                 new ChatBotMessage(messageObj, options, false));
     }
 
@@ -76,12 +75,12 @@ class SelectOBScreenAction extends ChatBotAction {
                             if (matchedStates.size() <= optionPosition) return null;
                             GraphState graphState = matchedStates.get(optionPosition);
 
-                            String description = GraphTransition.getWindowString(graphState.getScreen().getActivity(),
+                          /*  String description = GraphTransition.getWindowString(graphState.getScreen().getActivity(),
                                     graphState.getScreen().getWindow());
                             final int LIMIT_WINDOW_TEXT = 100;
                             if (description.length() > LIMIT_WINDOW_TEXT) {
                                 description = description.substring(0, LIMIT_WINDOW_TEXT) + "...";
-                            }
+                            }*/
 
                             String screenshotFile = getScreenshotPathForGraphState(graphState, state);
                             String key = Integer.toString(optionPosition);
@@ -92,9 +91,11 @@ class SelectOBScreenAction extends ChatBotAction {
                             else
                                 uniqueOptionKeys.add(key);
 
+//                    String optionDescription = (optionPosition + 1) + ". " + description;
+                            String optionDescription = "";
                             return new KeyValues(key,
-                                    (optionPosition + 1) + ". " + description
-                                            //+ " (" + graphState.getUniqueHash().toString() + ")"
+                                    optionDescription
+                                    //+ " (" + graphState.getUniqueHash().toString() + ")"
                                     , screenshotFile);
                         }
 

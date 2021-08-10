@@ -9,6 +9,14 @@ class ApiClient {
         return ApiClient.sendRequestSync(config.startService, null)
     }
 
+    static endConversation() {
+        const sessionId = SessionManager.getSessionId();
+        const data = {
+            sessionId: sessionId,
+        }
+        return ApiClient.sendRequestSync(config.endService, data)
+    }
+
     /*
      * Receives a message object (for text-based user answers) and selected values (for one of multiple-option user
      *  answers).
@@ -24,8 +32,7 @@ class ApiClient {
             messages: [messageObj]
         }
 
-        return axios
-            .post(config.serverEndpoint + config.processMessageService, data);
+        return axios.post(config.serverEndpoint + config.processMessageService, data);
     }
     static processStepsHistory(){
         const sessionId = SessionManager.getSessionId();
@@ -38,9 +45,8 @@ class ApiClient {
             .post(config.serverEndpoint + config.getStepsHistory, data);
     }
 
-    static processReportPreview(){
+    static processReportPreview() {
         const sessionId = SessionManager.getSessionId();
-
         const data = {
             sessionId: sessionId,
         }
@@ -70,7 +76,6 @@ class ApiClient {
         request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
         request.send(data !== null && data !== undefined ? JSON.stringify(data) : data);
-
 
         if (request.status === 200) {
             const messagesFromServer = request.responseText;

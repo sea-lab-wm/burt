@@ -33,24 +33,29 @@ class AffirmativeAnswerStateChecker extends StateChecker {
             state.remove(StateVariable.CONFIRM_END_CONVERSATION);
             state.remove(ACTION_NEGATIVE_END_CONVERSATION);
             nextAction = END_CONVERSATION_ACTION;
-        } else if (state.containsKey(APP_ASKED)) {
+        }
+      /*  else if (state.containsKey(APP_ASKED)) {
             state.remove(APP_ASKED);
             nextAction = PROVIDE_OB;
-        } else if (state.containsKey(OB_SCREEN_SELECTED)) {
+        } */
+     /*   else if (state.containsKey(OB_SCREEN_SELECTED)) {
             state.remove(OB_SCREEN_SELECTED);
             nextAction = PROVIDE_EB;
 
             state.getStateUpdater().updateOBState(state, (GraphState) state.get(OB_STATE));
-        } else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
+        } */
+        else if (state.containsKey(StateVariable.CONFIRM_LAST_STEP)) {
             state.remove(COLLECTING_S2R);
             state.remove(StateVariable.CONFIRM_LAST_STEP);
             // CHECK LAST STEP HERE
             nextAction = REPORT_SUMMARY;
         } else if (state.containsKey(EB_SCREEN_CONFIRMATION)) {
             state.remove(EB_SCREEN_CONFIRMATION);
-            nextAction = PROVIDE_S2R_FIRST;
+            nextAction = PREDICT_FIRST_S2R_PATH;
+            state.put(StateVariable.COLLECTING_FIRST_S2R, true);
             MetricsRecorder.saveMatchRecord(state, MetricsRecorder.MetricsType.EB_NO_MATCH, MetricsRecorder.YES);
             state.getStateUpdater().updateEBState(state, (GraphState) state.get(EB_STATE));
+
         } else if (state.containsKey(OB_MATCHED_CONFIRMATION)) {
             state.remove(OB_MATCHED_CONFIRMATION);
             nextAction = PROVIDE_EB;
@@ -79,9 +84,11 @@ class AffirmativeAnswerStateChecker extends StateChecker {
 
             if (results.contains(S2RQualityCategory.LOW_Q_INCORRECT_INPUT))
                 nextAction = SPECIFY_INPUT_S2R;
-            else if (results.contains(S2RQualityCategory.MISSING)) {
+            /*else
+                if (results.contains(S2RQualityCategory.MISSING)) {
                 nextAction = SELECT_MISSING_S2R;
-            } else {
+            } */
+                else {
 
                 S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
                         .filter(f -> f.getCategory().equals(S2RQualityCategory.HIGH_QUALITY))
@@ -97,8 +104,6 @@ class AffirmativeAnswerStateChecker extends StateChecker {
                 nextAction = PREDICT_FIRST_S2R_PATH;
             }
 
-        } else if (!state.containsKey(PARTICIPANT_ASKED)) {
-            nextAction = PROVIDE_PARTICIPANT_ID;
         }
 
         return nextAction;
