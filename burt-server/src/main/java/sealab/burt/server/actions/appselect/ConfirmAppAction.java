@@ -15,7 +15,6 @@ import java.util.Optional;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.*;
-
 public class ConfirmAppAction extends ChatBotAction {
 
     @Override

@@ -6,7 +6,8 @@ import actionProvider from "./ActionProvider.js";
 import messageParser from "./MessageParser.js";
 import ApiClient from "./ApiClient";
 import SessionManager from "./SessionManager";
-
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
 const axios = require('axios')
 
@@ -121,6 +122,20 @@ function App() {
                 })
             }
         }
+        if (sessionId != null && sessionId != undefined) {
+            window.onload = function () {
+                const socket = new SockJS("http://localhost:8081/gs-guide-websocket");
+                const stompClient = Stomp.over(socket);
+                stompClient.connect({}, function (frame) {
+                    console.log(frame);
+                    stompClient.subscribe('/stepsHistory/' + sessionId, function (body) {
+                        console.log(body);
+                    });
+                });
+
+            }
+        }
+
 
         return (
             <div className="container-fluid">
@@ -173,6 +188,8 @@ function App() {
             </div>
 
         );
+
+
     } else
         return (
             <div>I am sorry, BURT cannot be loaded. Try loading the page in a few seconds.</div>
@@ -206,6 +223,8 @@ function loadMessagesAsync(setState) {
 
 }
 */
+
+
 
 export default App;
 export const ERROR_CODE = -1;
