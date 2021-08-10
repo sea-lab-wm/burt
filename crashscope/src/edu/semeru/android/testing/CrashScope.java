@@ -1,6 +1,3 @@
-
-
-
 /*******************************************************************************
  * Copyright (c) 2016, SEMERU
  * All rights reserved.
@@ -155,7 +152,7 @@ public class CrashScope extends GeneralStrategy {
         this.deviceType = deviceHelper.getDEVICE_TYPE();
     }
 
-    public static void runCrashScopeLocal(App testApp) throws JsonIOException, IOException {
+    public static void runCrashScopeLocal(App testApp, String dataFolder) throws JsonIOException, IOException {
 
         CrashScopeSettings strategy = new CrashScopeSettings();
         strategy.setTopDown(true);
@@ -170,7 +167,7 @@ public class CrashScope extends GeneralStrategy {
 //      String avdPort = "0932890b";
       String scriptsPath = "/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/scripts";
 //      String uiDumpLocation = "/Volumes/Macintosh_HD_3/Research-Files/Bug-Reproduction-CrashScope-Workspace/ui-dumps/";
-      String dataFolder = "/Users/KevinMoran/Desktop/CrashsCope-Data";
+//      String dataFolder = "/Users/KevinMoran/Desktop/CrashsCope-Data";
 //      String apkPath = "/Users/KevinMoran/Dropbox/Documents/My_Graduate_School_Work/SEMERU/git_src_code/gitlab-code/Android-Bug-Report-Reproduction/Data/FUSION-Data/Apks/mileage.apk";
       String androidSDKPath = "/Applications/AndroidSDK/sdk";
               
@@ -205,7 +202,7 @@ public class CrashScope extends GeneralStrategy {
     public static void main(String[] args) throws InstantiationException, IllegalAccessException,
     ClassNotFoundException, SQLException, JsonIOException, IOException {
 
-        ArrayList<App> bugRepApps = generateBugRepData("/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/test-apks/apps.txt","/Applications/AndroidSDK/sdk/build-tools/25.0.1");
+        ArrayList<App> bugRepApps = generateBugRepData("/Users/KevinMoran/Dropbox/Documents/My_Faculty_Work/SAGE/git-src-code/BURT/crashscope/apps.txt","/Applications/AndroidSDK/sdk/build-tools/25.0.1");
 
         Gson gson = new Gson();
         
@@ -216,9 +213,16 @@ public class CrashScope extends GeneralStrategy {
 //        System.out.println("Execution App: " + exec.getApp().getMainActivity());
         
         for(App currApp: bugRepApps) {
+            
+            String dataFolder = "/Users/KevinMoran/Desktop/CrashScope-Data/";
+            File currAppDataFolder = new File(dataFolder + File.separator + currApp.getPackageName() + "-" + currApp.getVersion() + File.separator);
+            
+            if (!currAppDataFolder.exists()) {
+                currAppDataFolder.mkdirs();
+            }
 
             System.out.println("Running Crashscope on App:" + currApp.getName());
-            runCrashScopeLocal(currApp);
+            runCrashScopeLocal(currApp,dataFolder + File.separator + currApp.getPackageName() + "-" + currApp.getVersion() + File.separator);
 
         }
 
@@ -790,7 +794,7 @@ public class CrashScope extends GeneralStrategy {
         // Get all the components with hierarchy information
         List<DynGuiComponentVO> components = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), new StringBuilder(), getWidthScreen(),
                 getHeightScreen(), true, false, true, deviceHelper.getDevicePort(), deviceHelper.getAdbPort(),
-                getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), true).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence, deviceType, UiAutoConnector.GENERIC_STRATEGY);
+                getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence, deviceType, UiAutoConnector.GENERIC_STRATEGY);
 
         // Remove all children
         for (DynGuiComponentVO component : components) {
@@ -1278,7 +1282,7 @@ public class CrashScope extends GeneralStrategy {
         //get components for typing
         StringBuilder temp = new StringBuilder();
         ArrayList<DynGuiComponentVO> typingComponents = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), temp, getWidthScreen(), getHeightScreen(), false, false, true, deviceHelper.getDevicePort(), 
-                deviceHelper.getAdbPort(), getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), true).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
+                deviceHelper.getAdbPort(), getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
 
         for (DynGuiComponentVO inputComponent : typingComponents) {
             //System.out.println(inputComponent);
@@ -1324,8 +1328,11 @@ public class CrashScope extends GeneralStrategy {
 
         boolean stepFeasible = true;
 
-        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoLayout(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), true, false, true, deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), true).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence, deviceType);
+        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoLayout(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), true, false, true, deviceHelper.getDevicePort(), deviceHelper.getAdbPort(), getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence, deviceType);
 
+        System.out.println("Checking nodes");
+        
+        
         if(!nodes.contains(stepToVerify)) {
             stepFeasible = false;
         }
@@ -1591,7 +1598,7 @@ public class CrashScope extends GeneralStrategy {
         // Activity 
         System.out.println("Name: " + getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence);
 //        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "--" + deviceHelper.getCurrentActivityImproved() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
-        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "--" + getcurrentWindow(devicePort, adbPort, all).replaceAll(" ", "").replaceAll("'","") + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
+        ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoGeneric(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "--" + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence,deviceType);
 
         // Layout
         //ArrayList<DynGuiComponentVO> nodes = UiAutoConnector.getScreenInfoLayout(deviceHelper.getAndroidSDKPath(), hash, getWidthScreen(), getHeightScreen(), all, false, true, devicePort, adbPort, getUiDumpLocation() + "-" + getTextStrat() + "-" + getGuiStrat() + "-" + getFeatStrat() + sequence, deviceType);
@@ -1616,6 +1623,11 @@ public class CrashScope extends GeneralStrategy {
                     //addAvailableStep(hvComponentVO);
                 }
             }
+            if(hvComponentVO.getText() != null) {
+            if(hvComponentVO.getText().equals("Add task") || hvComponentVO.getText().equals("Add Token")) {
+                prelimComps.add(hvComponentVO);
+                System.out.println("NOW ADDING TASK!!");
+            }}
             // In the case we have more frameLayaout in the same .xml
             //System.out.println(hvComponentVO.getName());
             if (hvComponentVO.getName().equals("android.widget.FrameLayout") && root) {

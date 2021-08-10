@@ -277,7 +277,6 @@ class ConversationController {
                 new ChatBotMessage(messageObj, reportFile.getName())), ResponseCode.SUCCESS);
     }
 
-
     @PostMapping("/")
     public String index() {
         String msg = "BURT is running...";

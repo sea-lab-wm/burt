@@ -6,6 +6,8 @@ import actionProvider from "./ActionProvider.js";
 import messageParser from "./MessageParser.js";
 import ApiClient from "./ApiClient";
 import SessionManager from "./SessionManager";
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
 const axios = require('axios')
 
@@ -145,22 +147,74 @@ function App() {
                 }
             }
         }
+        if (sessionId != null && sessionId != undefined) {
+            window.onload = function () {
+                const socket = new SockJS("http://localhost:8081/gs-guide-websocket");
+                const stompClient = Stomp.over(socket);
+                stompClient.connect({}, function (frame) {
+                    console.log(frame);
+                    stompClient.subscribe('/stepsHistory/' + sessionId, function (body) {
+                        console.log(body);
+                    });
+                });
+
+            }
+        }
+
 
         return (
-            <div className="App center-screen">
-                {
-                    <Chatbot
-                        config={config}
-                        actionProvider={actionProvider}
-                        messageHistory={loadMessagesSync()}
-                        messageParser={messageParser}
-                        sessionId={sessionId}
-                        saveMessages={saveMessages}
-                        validator={emptyStringValidator}
-                    />
-                }
+            <div className="container-fluid">
+                    <div className="row-fluid">
+                        <div className="span6" >
+                            {
+                            <Chatbot
+                                config={config}
+                                actionProvider={actionProvider}
+                                messageHistory={loadMessagesSync()}
+                                messageParser={messageParser}
+                                sessionId={sessionId}
+                                saveMessages={saveMessages}
+                                validator={emptyStringValidator}
+                            />
+                        }
+                        </div>
+                       <div className="span8">
+                           <div className="steps-history sidebar-nav">
+                               <li class="nav-header"> Steps history</li>
+                               <ul class="nav nav-list">
+
+                                   <li className="list-group-item">
+                                       <small>
+                                           "I click some button"
+                                           <a href=""  class="" title=""></a>
+
+                                       </small>
+                                        </li>
+
+                               </ul>
+
+                               <ul className="nav nav-list">
+
+                               </ul>
+
+
+                           </div>
+                           <div className="steps-history sidebar-nav">
+                               <li className="nav-header"> a few last steps you provided</li>
+                               <ul className="screenshots">
+                               </ul>
+
+
+                           </div>
+
+                       </div>
+                    </div>
+
             </div>
+
         );
+
+
     } else
         return (
             <div>I am sorry, BURT cannot be loaded at this moment. Try loading the page in a few seconds.</div>
@@ -194,6 +248,8 @@ function loadMessagesAsync(setState) {
 
 }
 */
+
+
 
 export default App;
 export const ERROR_CODE = -1;

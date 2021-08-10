@@ -7,6 +7,7 @@ import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
 import OneScreenNoButtons from "./components/ScreenOptions/OneScreenNoButtons";
 import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
 import ReportGenerator from "./components/ReportGenerator";
+import UpdateStepsHistory from "./UpdateStepsHistory";
 
 const config = {
     botName: "BURT",
@@ -55,6 +56,12 @@ const config = {
             widgetFunc: (props) => <ReportGenerator {...props} />,
             mapStateToProps: []
         },
+        {
+            widgetName: " UpdateStepsHistory",
+            widgetFunc: (props) => < UpdateStepsHistory {...props} />,
+            mapStateToProps: []
+        },
+
         // {
         //     widgetName: "MultipleScreensOptions",
         //     widgetFunc: (props) => <SelectMultipleScreens {...props} />,
