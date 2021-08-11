@@ -14,11 +14,15 @@ const customStyles = {
     },
 };
 Modal.setAppElement('#root');
+
+
 const StepsPanel = ({
                         stepsState
                     }) => {
-
-
+    const [modalIsOpens, setIsOpens] = React.useState(Array( stepsState.steps.size).fill(false));
+    const setIsOpen = (i, v) => {
+        setIsOpens(Object.assign([...modalIsOpens], { [i]: v }));
+    };
     function renderSteps() {
         return stepsState.steps.map((step, index) => {
 
@@ -26,31 +30,29 @@ const StepsPanel = ({
                 let stepImage = "http://localhost:8081" + step.value2;
                 let ind = index +  1
                 let desc = ind + ". " + stepDescription + ". ";
+            let subtitle;
+            function openModal(e) {
+                window.onbeforeunload = null;
+                e.preventDefault();
+                setIsOpen(index,true);
+            }
 
-                const [modalIsOpen, setIsOpen] = React.useState(false);
-                let subtitle;
-                function openModal(e) {
-                    window.onbeforeunload = null;
-                    e.preventDefault();
-                    setIsOpen(true);
-                }
+            function afterOpenModal() {
+                // references are now sync'd and can be accessed.
+                subtitle.style.color = '#f00';
+            }
 
-                function afterOpenModal() {
-                    // references are now sync'd and can be accessed.
-                    subtitle.style.color = '#f00';
-                }
-
-                function closeModal(e) {
-                    e.stopPropagation();
-                    setIsOpen(false);
-                }
+            function closeModal(e) {
+                e.stopPropagation();
+                setIsOpen(index,false);
+            }
 
                 return <li key={ind} className="list-group-item">
                     <small>
                         {desc}
                         <a href={stepImage}  title={"see screenshot"} onClick={openModal}>
                             <Modal
-                                isOpen={modalIsOpen}
+                                isOpen={modalIsOpens[index]}
                                 onAfterOpen={afterOpenModal}
                                 onRequestClose={closeModal}
                                 style={customStyles}
