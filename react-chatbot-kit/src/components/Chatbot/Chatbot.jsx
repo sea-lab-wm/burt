@@ -133,6 +133,7 @@ const Chatbot = ({
             />
           </div>
           <StepsPanel
+              config={config}
               stepsState ={stepsState}
           />
         </div>
