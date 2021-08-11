@@ -97,7 +97,6 @@ function App() {
         window.onload = function () {
             let previewButton = document.getElementById('reportPreview');
             previewButton.onclick = function () {
-
                 const responsePromise = ApiClient.processReportPreview();
                 responsePromise.then(response => {
 
