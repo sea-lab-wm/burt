@@ -1,6 +1,7 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -296,18 +297,17 @@ class ConversationController {
             return ConversationResponse.createResponse("");
         }
 
-        //FIXME: Do we need to check the state?
         List<BugReportElement> allSteps = (List<BugReportElement>) conversationState.get(REPORT_S2R);
 
         if (allSteps == null) {
-            log.debug("Not steps to return");
             return ConversationResponse.createResponse("");
         }
 
         List<KeyValues> stepOptions = new ArrayList<>();
         for (int i = 0; i < allSteps.size(); i++) {
             BugReportElement element = allSteps.get(i);
-            stepOptions.add(new KeyValues(String.valueOf(i), element.getStringElement(),
+            stepOptions.add(new KeyValues(String.valueOf(i),
+                    StringEscapeUtils.escapeHtml4(element.getStringElement()),
                     HTMLBugReportGenerator.getLinkScreenshotPath(element.getScreenshotPath())
             ));
         }

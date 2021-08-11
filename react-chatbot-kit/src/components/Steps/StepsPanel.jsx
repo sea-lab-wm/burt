@@ -11,6 +11,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        borderRadius: '5px',
     },
 };
 Modal.setAppElement('#root');
@@ -50,7 +51,7 @@ const StepsPanel = ({
                 return <li key={ind} className="list-group-item">
                     <small>
                         {desc}
-                        <a href={stepImage}  title={"see screenshot"} onClick={openModal}>
+                        <a href={stepImage}  title={"See a screenshot of this step"} onClick={openModal}>
                             <Modal
                                 isOpen={modalIsOpens[index]}
                                 onAfterOpen={afterOpenModal}
@@ -62,9 +63,9 @@ const StepsPanel = ({
                                 keyboard={false}
                             >
                                 <div className="popupDisplay">
-                                    <h2>{desc}</h2>
-                                    <img height="400px" width="240px" src={stepImage} />
-                                <button onClick={closeModal}>close</button>
+                                    <div className="popupTitle" title={desc}>{desc}</div>
+                                    <img height="533px" width="300px" src={stepImage} />
+                                    <button onClick={closeModal}>close</button>
                                 </div>
                             </Modal>
                         <span className="label label-info">
@@ -104,14 +105,14 @@ const StepsPanel = ({
     return (
         <div className="span8">
             <div className="steps-history sidebar-nav" id="stepsHistoryPanel">
-                <li className="nav-header"> Steps history</li>
+                <li className="nav-header">Reported steps</li>
                 <ul className="nav nav-list">
                     {renderSteps()}
                 </ul>
 
             </div>
             <div className="steps-history sidebar-nav">
-                <li className="nav-header">Last three steps</li>
+                <li className="nav-header">Last three reported steps</li>
                 <ul className="screenshots">
                 </ul>
             </div>
