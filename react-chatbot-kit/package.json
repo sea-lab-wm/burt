@@ -5,11 +5,20 @@
   "description": "Fully customizable chatbot kit for react.",
   "main": "build/index.js",
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "axios": "^0.21.1",
+    "bootstrap": "^5.1.0",
+    "bootstrap-icons": "^1.5.0",
     "classnames": "^2.2.6",
     "css-loader": "^3.5.1",
+    "glyphicons": "^0.2.0",
     "html-react-parser": "^1.2.7",
-    "react-util-kit": "0.0.14"
+    "react-dom": "^17.0.2",
+    "react-fancybox": "^0.2.5",
+    "react-modal": "^3.14.3",
+    "react-modal-image": "^2.5.0",
+    "react-util-kit": "0.0.14",
+    "reactjs-popup": "^2.0.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

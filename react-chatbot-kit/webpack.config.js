@@ -40,6 +40,7 @@ module.exports = {
         loader: "react-svg-loader",
       },
     ],
+
   },
   resolve: {
     extensions: [".jsx", ".js"],
