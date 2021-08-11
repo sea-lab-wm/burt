@@ -307,7 +307,7 @@ class ConversationController {
         for (int i = 0; i < allSteps.size(); i++) {
             BugReportElement element = allSteps.get(i);
             stepOptions.add(new KeyValues(String.valueOf(i),
-                    StringEscapeUtils.escapeHtml4(element.getStringElement()),
+                    element.getStringElement(),
                     HTMLBugReportGenerator.getLinkScreenshotPath(element.getScreenshotPath())
             ));
         }
