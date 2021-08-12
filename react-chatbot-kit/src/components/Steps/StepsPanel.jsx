@@ -115,6 +115,25 @@ const StepsPanel = ({
         )
     }
 
+    function renderScreenshots(){
+        let lastThreeSteps;
+        const len = stepsState.steps.length;
+
+        if (stepsState.steps.length >= 3){
+            lastThreeSteps = stepsState.steps.slice(-3)
+        }else{
+            lastThreeSteps = stepsState.steps
+        }
+        const subLen = lastThreeSteps.length;
+        return lastThreeSteps.map((step, index) => {
+            let stepImage = config.serverEndpoint + step.value2;
+            return <div className="screenshotDisplay">
+            <img className="screenshot" src={stepImage}/>
+                <div className="screenIndex">{len-subLen+index + 1}</div>
+            </div>
+        })
+    }
+
 
     return (
         <div className="span8">
@@ -128,6 +147,7 @@ const StepsPanel = ({
             <div className="steps-history sidebar-nav">
                 <li className="nav-header">Last three reported steps</li>
                 <ul className="screenshots">
+                    {renderScreenshots()}
                 </ul>
             </div>
 

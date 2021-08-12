@@ -81,9 +81,6 @@
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
 }
-.screenshots{
-    overflow-x: scroll;
-}
 
 .list-group-item {
     position: relative;
@@ -154,4 +151,29 @@
 
 .popupDisplay > button{
     margin-top: 6px;
+}
+
+.screenshots{
+    /*overflow-x: scroll;*/
+    max-height: 350px ;
+    display: flex;
+    flex-direction: row;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.screenshotDisplay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 35% ;
+}
+.screenshot{
+    width: 90%;
+
+}
+
+.screenIndex{
+    font-size: 8px;
+    padding-top: 3px;
 }

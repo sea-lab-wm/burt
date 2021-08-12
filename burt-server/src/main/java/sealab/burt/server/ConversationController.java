@@ -319,7 +319,7 @@ class ConversationController {
     }
     @PostMapping("/deleteSomeStep")
     public ConversationResponse processDeleteStep(@RequestBody UserResponse req) throws Exception {
-        log.debug("Returning the steps history in the server...");
+        log.debug("Deleting the selected step in the server...");
 
         String sessionId = req.getSessionId();
         List<MessageObj> listOfIndex = req.getMessages();
