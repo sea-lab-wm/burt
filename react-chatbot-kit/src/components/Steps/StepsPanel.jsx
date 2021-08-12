@@ -2,7 +2,7 @@ import React from "react";
 import './Steps.css';
 
 import Modal from 'react-modal';
-
+const axios = require('axios')
 const customStyles = {
     content: {
         top: '50%',
@@ -19,12 +19,16 @@ Modal.setAppElement('#root');
 
 const StepsPanel = ({
                         config,
-                        stepsState
+                        stepsState,
+                        actionProvider,
+                        sessionId
+
                     }) => {
     const [modalIsOpens, setIsOpens] = React.useState(Array(stepsState.steps.size).fill(false));
     const setIsOpen = (i, v) => {
         setIsOpens(Object.assign([...modalIsOpens], {[i]: v}));
     };
+
 
     function renderSteps() {
         return stepsState.steps.map((step, index) => {
@@ -33,7 +37,7 @@ const StepsPanel = ({
             let stepImage = config.serverEndpoint + step.value2;
             let ind = index + 1
             let desc = ind + ". " + stepDescription;
-            let subtitle;
+            // let subtitle;
 
             function openModal(e) {
                 window.onbeforeunload = null;
@@ -41,15 +45,22 @@ const StepsPanel = ({
                 setIsOpen(index, true);
             }
 
-            function afterOpenModal() {
-                // references are now sync'd and can be accessed.
-                subtitle.style.color = '#f00';
-            }
+            // function afterOpenModal() {
+            //     // references are now sync'd and can be accessed.
+            //     subtitle.style.color = '#f00';
+            // }
 
             function closeModal(e) {
                 e.stopPropagation();
                 setIsOpen(index, false);
             }
+
+            function deleteStep() {
+                let endPoint = config.serverEndpoint + config.processDeleteSomeStep;
+                deleteSomeStep(index, endPoint, sessionId, actionProvider);
+            }
+
+
 
             return <li key={ind} className="list-group-item">
                 <small>
@@ -57,7 +68,7 @@ const StepsPanel = ({
                     <a href={stepImage}  title={"See a screenshot of this step"} onClick={openModal}>
                         <Modal
                             isOpen={modalIsOpens[index]}
-                            onAfterOpen={afterOpenModal}
+                            // onAfterOpen={afterOpenModal}
                             onRequestClose={closeModal}
                             style={customStyles}
                             contentLabel="Example Modal"
@@ -89,7 +100,7 @@ const StepsPanel = ({
                         </svg>
                      </span>
                     </a>
-                    <a href="#" className="label label-danger" onClick="deleteStep();" title="Delete this step">
+                    <a href="#" className="label label-danger" onClick={deleteStep} title="Delete this step">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
                              className="bi bi-x-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -124,6 +135,38 @@ const StepsPanel = ({
 
 
     )
+
+}
+function deleteSomeStep(index, endPoint, sessionId, actionProvider){
+
+    // ask the server to remove the step in the REPORT_S2R in the server
+    // return the updated REPORT_S2R
+    if (index > 0) {
+        const data = {
+            sessionId: sessionId,
+            messages: [index]
+        }
+        console.log(index)
+        const responsePromise = axios.post(endPoint, data);
+        responsePromise.then(response => {
+
+            let conversationResponse = response.data;
+            let chatbotMsgs = conversationResponse.messages;
+            let chatbotMsg = chatbotMsgs[0];
+
+            if (conversationResponse.code === 0) {
+                let stepsHistory = chatbotMsg.values;
+                if (stepsHistory != null)
+                    actionProvider.updateAllStepHistory(stepsHistory);
+            } else if (conversationResponse.code === -1) {
+                window.alert(chatbotMsg.messageObj.message);
+            } else {
+                window.alert("There was an unexpected error");
+            }
+        }).catch(error => {
+            console.error(`There was an unexpected error: ${error}`);
+        })
+    }
 
 }
 

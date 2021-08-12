@@ -98,10 +98,11 @@ const Chatbot = ({
     setStepsState,
   );
 
-    if (stepsState.steps.length === 0) {
-        let endPoint = config.serverEndpoint + config.getStepsHistory
-        getStepHistory(endPoint, sessionId, setStepsState, actionProv)
-    }
+  if (stepsState.steps.length === 0) {
+      let endPoint = config.serverEndpoint + config.getStepsHistory
+      getStepHistory(endPoint, sessionId, setStepsState, actionProv)
+  }
+
 
   const widgetRegistry = new WidgetRegistry(setState, actionProv);
   const messagePars = new messageParser(actionProv, state);
@@ -135,6 +136,8 @@ const Chatbot = ({
           <StepsPanel
               config={config}
               stepsState ={stepsState}
+              sessionId={sessionId}
+              actionProvider={actionProv}
           />
         </div>
 

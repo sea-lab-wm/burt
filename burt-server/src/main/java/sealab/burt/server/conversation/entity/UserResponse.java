@@ -13,6 +13,7 @@ class UserResponse {
     private String sessionId;
     private List<MessageObj> messages;
     private ActionName currentAction;
+    private List<Integer> index;
 
     public UserResponse(){}
     public UserResponse(String sessionId){

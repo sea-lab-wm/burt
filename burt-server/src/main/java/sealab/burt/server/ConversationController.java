@@ -317,6 +317,46 @@ class ConversationController {
                 new ChatBotMessage(messageObj, stepOptions)), ResponseCode.SUCCESS);
 
     }
+    @PostMapping("/deleteSomeStep")
+    public ConversationResponse processDeleteStep(@RequestBody UserResponse req) throws Exception {
+        log.debug("Returning the steps history in the server...");
+
+        String sessionId = req.getSessionId();
+        List<MessageObj> listOfIndex = req.getMessages();
+
+        if (sessionId == null) {
+            return ConversationResponse.createResponse("The session is inactive. " +
+                            "Please (re)start the conversation.",
+                    ResponseCode.UNEXPECTED_ERROR);
+        }
+        ConversationState conversationState = conversationStates.get(sessionId);
+        if (conversationState == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return ConversationResponse.createResponse("");
+        }
+        List<BugReportElement> allSteps = (List<BugReportElement>) conversationState.get(REPORT_S2R);
+        log.debug(String.valueOf(allSteps.size()));
+        int index = listOfIndex.get(0).getIndex();
+        log.debug("the index is " + index);
+        // remove the corresponding step
+        allSteps.remove(allSteps.get(index));
+        conversationState.put(REPORT_S2R, allSteps);
+
+        log.debug(String.valueOf(allSteps.size()));
+        List<KeyValues> stepOptions = new ArrayList<>();
+        for (int i = 0; i < allSteps.size(); i++) {
+            BugReportElement element = allSteps.get(i);
+            stepOptions.add(new KeyValues(String.valueOf(i),
+                    element.getStringElement(),
+                    HTMLBugReportGenerator.getLinkScreenshotPath(element.getScreenshotPath())
+            ));
+        }
+
+        MessageObj messageObj = new MessageObj();
+        return new ConversationResponse(Collections.singletonList(
+                new ChatBotMessage(messageObj, stepOptions)), ResponseCode.SUCCESS);
+
+    }
 
     @PostMapping("/")
     public String index() {

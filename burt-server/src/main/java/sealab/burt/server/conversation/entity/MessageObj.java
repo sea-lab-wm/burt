@@ -19,6 +19,7 @@ class MessageObj {
     private String widget;
     private Boolean loading;
     private boolean disabled;
+    private int index;
 
     //---------------
 
@@ -30,6 +31,9 @@ class MessageObj {
 
     public MessageObj(String message) {
         this.message = message;
+    }
+    public MessageObj(Integer index) {
+        this.index = index;
     }
 
     public MessageObj(String message, WidgetName widget) {
