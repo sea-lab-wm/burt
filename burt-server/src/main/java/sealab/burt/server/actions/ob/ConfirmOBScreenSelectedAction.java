@@ -80,7 +80,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                     .append(". ")
                     .append(selectedScreenDescription)
                     .append("\"");*/
-            response.append("Got it, can you please tell me how the app is <b>supposed to work</b> instead?");
+            response.append("Got it, can you please tell me how the app is <b>supposed to work</b>?");
 
             state.remove(StateVariable.CURRENT_OB_SCREEN_POSITION);
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
@@ -114,7 +114,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                     state.getStateUpdater().updateOBState(state, null);
 
                     return createChatBotMessages("All right, let's continue",
-                            "Can you please tell me how the app is <b>supposed to work</b> instead?"
+                            "Can you please tell me how the app is <b>supposed to work</b>?"
                     );
                 }
 
@@ -158,15 +158,11 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
                 //----------------------------------
 
-             /*   MessageObj messageObj = new MessageObj(
-                        "Please hit the \"<b>Done</b>\" button after you have selected it",
-                        WidgetName.OBScreenSelector);*/
                 MessageObj messageObj = new MessageObj(
                         "Okay then, which of the following screens is <b>having or triggering the problem</b>?",
                         WidgetName.OBScreenSelector);
 
                 return createChatBotMessages(
-//                        "Okay then, which of the following screens is <b>having or triggering the problem</b>?",
                         new ChatBotMessage(messageObj, options, false));
             }
         } else {
@@ -180,16 +176,9 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
     private List<ChatBotMessage> getDefaultMessage(List<GraphState> matchedStates,
                                                    ConversationState state, int position) {
         this.nextExpectedIntents = Collections.singletonList(Intent.OB_SCREEN_SELECTED);
-/*
-        List<KeyValues> options = SelectOBScreenAction.getObScreenOptions(matchedStates, state, position);
-
-        MessageObj messageObj = new MessageObj(
-                "From the list below, can you please select the <b>screen that is having or triggering the " +
-                        "problem</b>?",
-                WidgetName.OBScreenSelector);*/
 
         return createChatBotMessages(
                 "Sorry, the option you selected is incorrect",
-                "Please select one <b>screen</b> from the list");
+                "Please <b>select one screen</b> from the list");
     }
 }

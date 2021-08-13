@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;
-import static sealab.burt.server.actions.s2r.ProvideS2RAction.S2RFormatTip;
 
 @Slf4j
 public class ProvideFirstPredictedS2RAction extends ChatBotAction {
@@ -188,9 +187,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
-     /*   MessageObj messageObj = new MessageObj("<b>Input values</b> and <b>UI components</b> may be a little " +
-                "different from what you observed in the app", WidgetName.S2RScreenSelector);*/
-        MessageObj messageObj = new MessageObj("Can you select the steps you actually performed?",
+        MessageObj messageObj = new MessageObj("Can you <b>select the steps</b> that you actually performed?",
                 WidgetName.S2RScreenSelector);
         List<ChatBotMessage> chatBotMessages;
 
@@ -198,16 +195,12 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         if (noStepsReportedYet) {
             chatBotMessages = createChatBotMessages(
                     "Okay, now I need the steps that you performed and caused the problem",
-                    "Remember that you can say \"<b>This is/was the last step</b>\" to end the reporting",
                     "<b>The next steps</b> that you performed <b>after you opened the app</b> might be" +
                             " the following",
-//                    "Can you select the ones you actually performed?",
                     new ChatBotMessage(messageObj, stepOptions, true));
         } else {
             chatBotMessages = createChatBotMessages(
                     "Okay, it seems <b>the next steps</b> that you performed might be the following",
-//                    "Can you select the ones you actually performed next?",
-//                    "Remember that the screenshots below are <b>for reference only</b>",
                     new ChatBotMessage(messageObj, stepOptions, true));
         }
         return chatBotMessages;
@@ -218,25 +211,27 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         if (state.containsKey(StateVariable.ASKED_TO_WRITE_S2R)) {
             return createChatBotMessages(
                     "Okay, can you tell me the <b>first step</b> that you performed after you opened the app?");
-        }else {
+        } else {
             state.put(StateVariable.ASKED_TO_WRITE_S2R, true);
             return createChatBotMessages("Okay, now I need the steps that you performed and caused the problem",
-                    "Can you tell me the <b>first step</b> that you performed after you opened the app?",
-                    S2RFormatTip);
+                    "Can you tell me the <b>first step</b> that you performed after you opened the app?");
         }
     }
 
     private List<ChatBotMessage> getLastStepMessage(ConversationState state, BugReportElement lastStep) {
         setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
         state.put(StateVariable.CONFIRM_LAST_STEP, true);
-        return createChatBotMessages(String.format("Okay, is this the last step that you performed: \"%s\"?",
-                lastStep.getStringElement())
-        );
+
+        ChatBotMessage confMsg = new ChatBotMessage(new MessageObj(String.format(
+                "Okay, is this <b>the last step</b> that you performed: \"%s\"?",
+                lastStep.getStringElement()),
+                WidgetName.YesNoButtons));
+        return createChatBotMessages(confMsg);
     }
 
     private List<ChatBotMessage> getNextStepMessage() {
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-        return createChatBotMessages("Okay, can you please provide the next step that you performed?");
+        return createChatBotMessages("Okay, can you please provide the <b>next step</b> that you performed?");
     }
 
 }

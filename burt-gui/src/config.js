@@ -4,10 +4,11 @@ import AppSelector from "./components/ScreenOptions/AppSelector";
 import LinkList from "./components/LinkList/LinkList";
 import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
-import OneScreenNoButtons from "./components/ScreenOptions/OneScreenNoButtons";
+import OneScreenYesNoButtons from "./components/ScreenOptions/OneScreenYesNoButtons";
 import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
 import ReportGenerator from "./components/ReportGenerator";
 import UpdateStepsHistory from "./UpdateStepsHistory";
+import YesNoButtons from "./components/ScreenOptions/YesNoButtons";
 
 const config = {
     botName: "BURT",
@@ -25,12 +26,9 @@ const config = {
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
         createChatBotMessage("I will assist you in reporting any problem with your app"),
-        createChatBotMessage("Let me remind you that some of the <b>screenshots</b> that I will display are" +
-            " <b>for reference only</b>"),
-        createChatBotMessage("<b>Input values</b> and <b>UI components</b> may be different from what you " +
-            "actually observed in the app"),
-        createChatBotMessage("To start, please provide the <b>Participant ID</b> that was assigned to " +
-            "you (e.g., P3)"),
+        createChatBotMessage("Please <b>start a stopwatch from scratch</b> to time yourself during" +
+            " this bug reporting session"),
+        createChatBotMessage("To start, please provide your <b>Participant ID</b>"),
     ],
     widgets: [
         {
@@ -44,8 +42,13 @@ const config = {
             mapStateToProps: []
         },
         {
-            widgetName: "OneScreenNoButtons",
-            widgetFunc: (props) => <OneScreenNoButtons {...props} />,
+            widgetName: "OneScreenYesNoButtons",
+            widgetFunc: (props) => <OneScreenYesNoButtons {...props} />,
+            mapStateToProps: []
+        },
+        {
+            widgetName: "YesNoButtons",
+            widgetFunc: (props) => <YesNoButtons {...props} />,
             mapStateToProps: []
         },
         {

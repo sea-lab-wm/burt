@@ -27,8 +27,8 @@ public class ConfirmAppAction extends ChatBotAction {
 
         String selectedApp = null;
         List<ChatBotMessage> incorrectOptionMessages = createChatBotMessages(
-                "Sorry, I didn't quite get that",
-                "Please select one <b>app</b> from the list"
+                "Sorry, I didn't get that",
+                "Please <b>select one app</b> from the list"
         );
 
         this.nextExpectedIntents = Collections.singletonList(APP_SELECTED);
@@ -84,8 +84,7 @@ public class ConfirmAppAction extends ChatBotAction {
 
         return createChatBotMessages(MessageFormat.format(
                         "Okay, can you please tell me the <b>incorrect behavior</b> that you observed on {0}?",
-                        appName),
-                "<b>Tip:</b> when describing the behavior, try to <b>use vocabulary that you observed</b> in the app");
+                        appName));
 //        return createChatBotMessages(MessageFormat.format("You selected \"{0}\", is that right?", appNameVersion));
 
     }

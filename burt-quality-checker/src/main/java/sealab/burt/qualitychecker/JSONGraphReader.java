@@ -14,7 +14,6 @@ import edu.semeru.android.testing.helpers.UiAutoConnector;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.eclipse.jdt.internal.compiler.env.IGenericField;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
 import sealab.burt.qualitychecker.graph.*;
@@ -23,7 +22,6 @@ import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -147,9 +145,9 @@ class JSONGraphReader {
         //------ check if the path exists---------------//
         List<Path> executionFiles = new ArrayList<>();
         File folder = new File(dataLocation);
-        if (folder.exists()){
+        if (folder.exists()) {
             executionFiles = Files.find(Paths.get(dataLocation), 1,
-                    (path, attr) -> path.toFile().getName().startsWith("Execution-"))
+                            (path, attr) -> path.toFile().getName().startsWith("Execution-"))
                     .collect(Collectors.toList());
         }
         //------ check if the path exists---------------//
@@ -167,59 +165,68 @@ class JSONGraphReader {
         Gson gson = new Gson();
         for (int i = 0; i < executionFiles.size(); i++) {
             Path executionFile = executionFiles.get(i);
+            try {
 
-            //Set up a new Gson object
+                //Set up a new Gson object
 //            JsonReader reader = new JsonReader(new FileReader(executionFile.toFile()));
-            JsonReader reader = new JsonReader(new InputStreamReader(
-                    new FileInputStream(executionFile.toFile()), StandardCharsets.UTF_8
-            ));
+                JsonReader reader = new JsonReader(new InputStreamReader(
+                        new FileInputStream(executionFile.toFile()), StandardCharsets.UTF_8
+                ));
 
-            // De-serialize the Execution object.
-            Execution execution = gson.fromJson(reader, Execution.class);
-            execution.setId((long) i);
+                // De-serialize the Execution object.
+                Execution execution = gson.fromJson(reader, Execution.class);
+                execution.setId((long) i);
 
-            app = execution.getApp();
-            app.setId(1L);
+                app = execution.getApp();
+                app.setId(1L);
 
-            //----------------------------------------
+                //----------------------------------------
 
-            //Add IDs to steps
-            List<Step> steps = execution.getSteps();
-            for (int j = 0; j < execution.getSteps().size(); j++) {
-                steps.get(j).setId((long) j);
+                //Add IDs to steps
+                List<Step> steps = execution.getSteps();
+                for (int j = 0; j < execution.getSteps().size(); j++) {
+                    steps.get(j).setId((long) j);
+                }
+                execution.setSteps(steps);
+
+                //----------------------------------------
+
+                //This for loop reads in the list of DynGuiComponentVOs for each screen
+                for (Step currStep : execution.getSteps()) {
+
+                    // Get the current screen and read in the corresponding xml file.
+                    String xmlPath = Path.of(dataLocation, String.join("-",
+                                    execution.getApp().getPackageName(),
+                                    execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
+                                    execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
+                            .toString();
+                    try {
+
+                        //Parse the xml file into a BasicTreeNode and then set up variables required by the visitNodes
+                        // method.
+                        UiHierarchyXmlLoader loader = new UiHierarchyXmlLoader();
+                        BasicTreeNode tree = loader.parseXml(xmlPath);
+                        StringBuilder builder = new StringBuilder();
+                        ArrayList<DynGuiComponentVO> currComps = new ArrayList<>();
+
+                        //Visit the nodes. The list of components should be returned in the "currComps" ArrayList as
+                        // DynGUIComponentVOs.
+                        Screen screen = currStep.getScreen();
+                        UiAutoConnector.visitNodes(screen.getActivity(), tree, currComps, 1080, 1920, true, null,
+                                true, 0, builder, 1);
+
+                        List<DynGuiComponent> guiComponents = convertVOstoGUIComps(currComps, screen, componentId);
+                        screen.setDynGuiComponents(guiComponents);
+                    } catch (Exception e) {
+                        log.debug(String.format("Error parsing step: %s - %s", executionFile, xmlPath), e);
+                    }
+
+                    //            System.out.println(guiComponents);
+                }
+                executions.add(execution);
+            } catch (Exception e) {
+                log.debug("Error trying to read execution: " + executionFile.toString(), e);
             }
-            execution.setSteps(steps);
-
-            //----------------------------------------
-
-            //This for loop reads in the list of DynGuiComponentVOs for each screen
-            for (Step currStep : execution.getSteps()) {
-
-                // Get the current screen and read in the corresponding xml file.
-                String xmlPath = Path.of(dataLocation, String.join("-",
-                        execution.getApp().getPackageName(),
-                        execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
-                        execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
-                        .toString();
-
-                //Parse the xml file into a BasicTreeNode and then set up variables required by the visitNodes method.
-                UiHierarchyXmlLoader loader = new UiHierarchyXmlLoader();
-                BasicTreeNode tree = loader.parseXml(xmlPath);
-                StringBuilder builder = new StringBuilder();
-                ArrayList<DynGuiComponentVO> currComps = new ArrayList<>();
-
-                //Visit the nodes. The list of components should be returned in the "currComps" ArrayList as
-                // DynGUIComponentVOs.
-                Screen screen = currStep.getScreen();
-                UiAutoConnector.visitNodes(screen.getActivity(), tree, currComps, 1080, 1920, true, null,
-                        true, 0, builder, 1);
-
-                List<DynGuiComponent> guiComponents = convertVOstoGUIComps(currComps, screen, componentId);
-                screen.setDynGuiComponents(guiComponents);
-
-//            System.out.println(guiComponents);
-            }
-            executions.add(execution);
         }
 
 

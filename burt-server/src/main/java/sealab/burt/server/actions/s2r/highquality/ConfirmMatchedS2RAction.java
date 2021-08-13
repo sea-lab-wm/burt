@@ -48,7 +48,7 @@ public class ConfirmMatchedS2RAction extends ChatBotAction {
 
         ChatBotMessage optionMessage = new ChatBotMessage(
                 new MessageObj("Ok, just to double check, is this the step that you are reporting?",
-                        WidgetName.OneScreenNoButtons),
+                        WidgetName.OneScreenYesNoButtons),
                 optionList, false);
 
         state.put(StateVariable.S2R_MATCHED_CONFIRMATION, true);

@@ -7,7 +7,7 @@ import config from "../../config";
 
 let logos = require.context('../../../../data/app_logos', true);
 
-const OneScreenNoButtons = (props) => {
+const OneScreenYesNoButtons = (props) => {
 
 
     const [screen, setScreen] = useState({});
@@ -63,4 +63,4 @@ const OneScreenNoButtons = (props) => {
 }
 
 
-export default OneScreenNoButtons;
+export default OneScreenYesNoButtons;

@@ -27,10 +27,10 @@ class RephraseS2RAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state){
         QualityFeedback feedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
 
-        StringBuilder message = new StringBuilder("Oops, it seems ");
+        StringBuilder message = new StringBuilder("Oops, ");
         message.append(getFeedbackMessage(feedback));
         return createChatBotMessages(message.toString(),
-                "Can you please <b>rephrase the step</b> more accurately or provide a different one?");
+                "Can you please <b>rephrase the step</b> more accurately <b>or provide a different one</b>?");
 
     }
 

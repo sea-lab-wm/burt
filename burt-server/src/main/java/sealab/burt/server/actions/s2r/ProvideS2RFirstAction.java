@@ -10,7 +10,6 @@ import sealab.burt.server.msgparsing.Intent;
 import java.util.List;
 
 import static sealab.burt.server.StateVariable.*;
-import static sealab.burt.server.actions.s2r.ProvideS2RAction.S2RFormatTip;
 
 public class ProvideS2RFirstAction extends ChatBotAction {
 
@@ -35,7 +34,7 @@ public class ProvideS2RFirstAction extends ChatBotAction {
             state.put(StateVariable.ASKED_TO_WRITE_S2R, true);
             chatBotMessages = createChatBotMessages(
                     "Okay, now I need to know the steps that you performed and caused the problem",
-                    "Can you please tell me the <b>first step</b> that you performed?", S2RFormatTip);
+                    "Can you please tell me the <b>first step</b> that you performed?");
         }
 
         return chatBotMessages;

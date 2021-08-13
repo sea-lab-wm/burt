@@ -35,16 +35,16 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
 
         if (stepOptions.isEmpty()) {
             setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-            return createChatBotMessages("Okay, can you provide the next step that you performed?");
+            return createChatBotMessages("Okay, can you provide the <b>next step</b> that you performed?");
         }else{
             // increment the number of tries
             log.debug("Suggesting currentPath #" + state.get(PREDICTED_S2R_CURRENT_PATH));
 
-            MessageObj messageObj = new MessageObj( "Can you select the ones you actually performed next?",
+            MessageObj messageObj = new MessageObj( "Can you <>select the steps</b> you actually performed next?",
                     WidgetName.S2RScreenSelector);
 
             return createChatBotMessages(
-                    "Okay then, the next steps that you performed might be the following",
+                    "Okay then, the <b>next steps</b> that you performed might be the following",
                     new ChatBotMessage(messageObj, stepOptions, true));
         }
 

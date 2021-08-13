@@ -46,11 +46,10 @@ class GenerateBugReportAction extends ChatBotAction {
         ChatBotMessage chatBotMessage = new ChatBotMessage(messageObj, reportFile.getName());
 
         return createChatBotMessages("Okay, great! This is all the information we need for now",
-                "At this point, please <b>stop the stopwatch</b> and provide the elapsed time in the survey",
+                "At this point, please <b>stop the stopwatch</b> and provide the <b>elapsed time</b> in the survey",
                 "Likewise, the <b>bug report ID</b> that you need to provide in the survey is:",
                 String.format("<b>%s</b>", reportName),
                 chatBotMessage,
-                //"We will redirect this information to our development team",
                 "Thank you for using BURT"
         );
     }

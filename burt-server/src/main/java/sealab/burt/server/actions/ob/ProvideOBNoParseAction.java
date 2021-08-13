@@ -17,7 +17,7 @@ public class ProvideOBNoParseAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("I am sorry, I couldn't recognize the language of your description",
-                " Can you tell me the incorrect behavior one more time?"
+                " Can you tell me the <b>incorrect behavior</b> one more time?"
         );
     }
 

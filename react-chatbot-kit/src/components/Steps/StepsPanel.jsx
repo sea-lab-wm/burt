@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Steps.css';
 import Modal from 'react-modal';
+
 const axios = require('axios')
 const customStyles = {
     content: {
@@ -16,28 +17,45 @@ const customStyles = {
 }
 Modal.setAppElement('#root');
 
-
 const StepsPanel = ({
                         config,
                         stepsState,
                         actionProvider,
                         sessionId
-
                     }) => {
+
+    const stepsContainer = useRef(null);
+
     const [modalIsOpens, setIsOpens] = React.useState(Array(stepsState.steps.size).fill(false));
     const setIsOpen = (i, v) => {
         setIsOpens(Object.assign([...modalIsOpens], {[i]: v}));
     };
 
+    useEffect(()=>{
+        stepsContainer.current.scrollTop = stepsContainer.current.scrollHeight
+    })
 
     function renderSteps() {
+        function getFullDescription(ind, stepDescription) {
+            return ind + ". " + stepDescription;
+        }
+
+        function getCroppedDescription(ind, stepDescription) {
+            let desc = getFullDescription(ind, stepDescription);
+            let MAX_LENGTH = 45;
+            if(desc.length> MAX_LENGTH){
+                desc = desc.substring(0, MAX_LENGTH) + "..."
+            }
+            return desc;
+        }
+
         return stepsState.steps.map((step, index) => {
 
             let stepDescription = step.value1;
             let stepImage = config.serverEndpoint + step.value2;
             let ind = index + 1
-            let desc = ind + ". " + stepDescription;
-            // let subtitle;
+            let fullStepDescription = getFullDescription(ind, stepDescription);
+            let croppedStepDescription = getCroppedDescription(ind, stepDescription);
 
             function openModal(e) {
                 window.onbeforeunload = null;
@@ -64,7 +82,7 @@ const StepsPanel = ({
 
             return <li key={ind} className="list-group-item">
                 <small>
-                    {desc}
+                    <span title={fullStepDescription}>{croppedStepDescription}</span>
                     <a href={stepImage}  title={"See a screenshot of this step"} onClick={openModal}>
                         <Modal
                             isOpen={modalIsOpens[index]}
@@ -77,12 +95,15 @@ const StepsPanel = ({
                             keyboard={false}
                         >
                             <div className="popup-display">
-                                <div className="popup-title" title={desc}>{desc}</div>
-                                <img height="533px" width="300px" src={stepImage} />
+                                <div className="popup-title" title={fullStepDescription}>{fullStepDescription}</div>
+                                <img height="533px" width="300px" src={stepImage}  alt={fullStepDescription}/>
                                 <button onClick={closeModal}>close</button>
                             </div>
                         </Modal>
-                    <span className="label label-info">
+
+
+                        {/*-------------------------*/}
+                    <span className="label label-left label-info">
                       <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
                            className="bi bi-file-earmark-image" viewBox="0 0 16 16" >
                         <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
@@ -100,6 +121,8 @@ const StepsPanel = ({
                         </svg>
                      </span>
                     </a>
+
+                    {/*-------------------------*/}
                     <a href="#" className="label label-danger" onClick={deleteStep} title="Delete this step">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
                              className="bi bi-x-circle" viewBox="0 0 16 16">
@@ -115,21 +138,22 @@ const StepsPanel = ({
         )
     }
 
-    function renderScreenshots(){
+    function renderScreenshots() {
         let lastThreeSteps;
-        const len = stepsState.steps.length;
+        const numOfSteps = stepsState.steps.length;
 
-        if (stepsState.steps.length >= 3){
+        if (stepsState.steps.length >= 3) {
             lastThreeSteps = stepsState.steps.slice(-3)
-        }else{
+        } else {
             lastThreeSteps = stepsState.steps
         }
         const subLen = lastThreeSteps.length;
         return lastThreeSteps.map((step, index) => {
             let stepImage = config.serverEndpoint + step.value2;
+            let stepIndex = numOfSteps - subLen + index + 1;
             return <div className="screenshot-display">
-            <img className="screenshot" src={stepImage}/>
-                <div className="screen-index">{len-subLen+index + 1}</div>
+                <img className="screenshot" src={stepImage} alt=""/>
+                <div className="screen-index">{stepIndex}</div>
             </div>
         })
     }
@@ -139,7 +163,7 @@ const StepsPanel = ({
         <div className="span-steps App screen-center">
             <div className="steps-history" id="stepsHistoryPanel">
                 <li className="nav-header">Reported steps</li>
-                <ul className="nav nav-list">
+                <ul ref={stepsContainer} className="nav nav-list">
                     {renderSteps()}
                 </ul>
 

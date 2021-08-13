@@ -14,9 +14,8 @@ public class SpecifyNextInputS2RAction extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
-        return createChatBotMessages("Oops, I wasn't able to get the input value",
-                "Can you please provide the input once more?"
-//                "Please <b>enclose the input in quotes</b> (e.g., \"<b>5</b>\")"
+        return createChatBotMessages("Oops, I couldn't get the input value",
+                "Can you please <b>provide the input</b> once more?"
         );
     }
 }

@@ -45,7 +45,7 @@ class MainJSONGraphGenerator {
 
     public static void main(String[] args) throws Exception {
 
-        int nThreads = 6;
+        int nThreads = 1;
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
 
         //list of all futures

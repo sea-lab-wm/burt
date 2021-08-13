@@ -8,44 +8,46 @@
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    width: 60%;
-    margin-left: -20%;
-
 }
 
 .span-tips-options{
     margin-top: 20px;
-    width: 30%;
+    width: 20%;
+    margin-left: 10px;
+
 }
 
 .quick-answers{
     border: 1px solid rgba(0, 0, 0, 0.05);
     background-color: #f5f5f5;
-    height: 250px;
     border-radius: 5px;
-
-
 }
 
 .tips{
     border: 1px solid rgba(0, 0, 0, 0.05);
     background-color: #f5f5f5;
-    height: 250px;
     border-radius: 5px;
     margin-top: 20px;
+}
+.subpanel-list{
+    max-height: 514px;
+    overflow-y: scroll;
 }
 .quick-answers-header{
     display: flex;
     flex-direction: row;
 }
-.h6-quick-answers{
-    font-size: small ;
+.subpanel-header{
     color:black;
     margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 .button-lists{
     display: flex;
     flex-direction: column;
+    padding-bottom: 2px;
 }
 .btn{
     margin: 5% 10%;
@@ -56,11 +58,31 @@
     height: 35px;
 
 }
-.h6-tips{
-    font-size: small ;
-    color:black;
-    margin-top:10px;
+.tip_style{
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    margin: 5px 2px;
+
+    position: relative;
+    display: block;
+    padding: 8px 8px;
+    padding-bottom: 9px;
+    padding-top: 5px;
+    margin-bottom: 2px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /*width: 100%;*/
+
 }
-.font-weight-bold{
+
+.tip_style > span{
     font-weight: bold;
+}
+
+.action-btn{
+    margin: 2% 10%;
+    padding: 2px;
+    width: 80%;
 }

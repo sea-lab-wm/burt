@@ -60,8 +60,8 @@ class SelectOBScreenAction extends ChatBotAction {
                 " Please click the \"<b>done</b>\" button after you have selected it", WidgetName.OBScreenSelector);
 
         return createChatBotMessages(
-                "Got it. From the list below, can you please select the screen that is <b>having or triggering</b> " +
-                        "the problem?",
+                "Got it. From the list below, please select the screen that is <b>having or triggering</b> " +
+                        "the problem",
                 new ChatBotMessage(messageObj, options, false));
     }
 
