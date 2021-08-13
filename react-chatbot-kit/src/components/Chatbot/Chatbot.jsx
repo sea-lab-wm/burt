@@ -1,12 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Chat from "../Chat/Chat";
-
+import './Chatbot.css'
 import WidgetRegistry from "../WidgetRegistry/WidgetRegistry";
 import ChatbotError from "../ChatbotError/ChatbotError";
 import {createChatBotMessage, createClientMessage} from "../Chat/chatUtils";
 import {getBotName, getCustomComponents, getCustomStyles, getInitialState, getWidgets, validateProps,} from "./utils";
 import StepsPanel from "../Steps/StepsPanel";
+import TipsOptionsPanel from "../TipsOptions/TipsOptionsPanel";
 
 const axios = require('axios')
 
@@ -19,7 +20,11 @@ const Chatbot = ({
   saveMessages,
   messageHistory,
   validator,
-  sessionId
+  sessionId,
+  SessionManager,
+  processResponse
+
+
 }) => {
   if (!config || !actionProvider || !messageParser) {
     return (
@@ -116,9 +121,15 @@ const Chatbot = ({
 
 
   return (
-      <div className="container-fluid App center-screen">
+      <div className="container-fluid">
         <div className="row-fluid">
-          <div className="span6" >
+            <StepsPanel
+                config={config}
+                stepsState ={stepsState}
+                sessionId={sessionId}
+                actionProvider={actionProv}
+            />
+            <div className="span6">
             <Chat
               state={state}
               setState={setState}
@@ -132,13 +143,15 @@ const Chatbot = ({
               placeholderText={placeholderText}
               validator={validator}
             />
-          </div>
-          <StepsPanel
-              config={config}
-              stepsState ={stepsState}
-              sessionId={sessionId}
-              actionProvider={actionProv}
-          />
+            </div>
+            <TipsOptionsPanel
+                SessionManager={SessionManager}
+                config={config}
+                sessionId={sessionId}
+                actionProvider={actionProv}
+                processResponse={processResponse}
+            />
+
         </div>
 
       </div>

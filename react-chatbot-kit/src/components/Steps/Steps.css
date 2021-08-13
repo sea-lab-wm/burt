@@ -14,32 +14,22 @@
 .label-info {
     background-color: #2898ec;
 }
-@media (min-width: 768px) {
-    .container-fluid {
-        width: 750px;
-    }
-}
-.container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.row-fluid{
-    display: flex;
+
+.span-steps{
+    margin-top: 20px;
+    width: 30%;
+    margin-right: 2%
 
 }
-.span8{
-    margin-top: 20px;
-    min-width: 65%;
-}
+
+
 .steps-history{
     border: 1px solid rgba(0, 0, 0, 0.05);
     background-color: #f5f5f5;
     min-height: 50px;
     margin-bottom: 20px;
-    margin-left: 5%;
     border-radius: 5px;
+
 }
 .sidebar-nav {
     /*padding: 9px 0;*/
@@ -50,9 +40,9 @@
     padding-right: 5px;
     margin-bottom: 0;
     max-height: 400px;
-
     overflow-y: scroll;
     display: flex;
+
 }
 .nav{
     margin-top: 5px;
@@ -61,9 +51,7 @@
     /*flex-wrap: wrap;*/
     padding-left: 0;
     margin-bottom: 0;
-    list-style: none;
     display: flex;
-    flex-direction: column;
     text-align: left;
 }
 /*.nav-header {*/
@@ -133,14 +121,14 @@
     border-radius: 18px;
     border: 1px solid #cfcece;
 }
-.popupDisplay{
+.popup-display{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.popupTitle{
+.popup-title{
     font-size: 14px;
     margin-bottom: 6px;
     margin-top: 0;
@@ -149,19 +137,18 @@
     height: 20px;
 }
 
-.popupDisplay > button{
+.popup-display > button{
     margin-top: 6px;
 }
 
 .screenshots{
-    /*overflow-x: scroll;*/
     max-height: 350px ;
     display: flex;
     flex-direction: row;
     padding-left: 1%;
     padding-right: 1%;
 }
-.screenshotDisplay{
+.screenshot-display{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,7 +160,7 @@
 
 }
 
-.screenIndex{
+.screen-index{
     font-size: 8px;
     padding-top: 3px;
 }
