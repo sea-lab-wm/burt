@@ -56,18 +56,6 @@ function restartNewConversation(url, sessionId, actionProvider, SessionManager){
 
 }
 
-function finishReportingS2R(url, sessionId, actionProvider, processResponse){
-    let messageObj = {
-        message: "last step"
-    }
-    const data = {
-        sessionId: sessionId,
-        messages: [messageObj]
-    }
-
-    const responsePromise = axios.post(url, data);
-    processResponse(responsePromise, actionProvider)
-}
 
 function previewBugReport(config, url, sessionId) {
     const data = {
@@ -103,7 +91,7 @@ const TipsOptionsPanel = ({
             SessionManager,
             actionProvider,
             processResponse,
-            sessionId}) => {
+            sessionId, messageParser}) => {
 
     function restartConversation() {
         let url = config.serverEndpoint + config.endService;
@@ -111,8 +99,9 @@ const TipsOptionsPanel = ({
     }
 
     function finishS2R() {
-        let url = config.serverEndpoint + config.processMessageService;
-        finishReportingS2R(url, sessionId, actionProvider, processResponse);
+        const msg = actionProvider.createUserMsg("This is the last step")
+        actionProvider.updateChatbotState(msg)
+        messageParser.parse(msg);
     }
     function previewReport() {
         let url = config.serverEndpoint + config.getBugReportPreview;
@@ -146,10 +135,12 @@ const TipsOptionsPanel = ({
                         I clicked the save button, I entered "test" in the comments, etc.
                     </p>
                     <p className="tip_style">
-                        Some of the screenshots displayed by BURT are <span>for your reference only</span>
+                        You can use "<span>This is/was the last step</span>" to finish reporting the bug or <span>click the button</span>
+                        "Finish reporting the bug"
                     </p>
                     <p className="tip_style">
-                        You can use "<span>This is/was the last step</span>" to finish reporting the bug
+                        Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span>
+                        and <span>UI components</span> may be different from what you actually observed in the app
                     </p>
                 </div>
             </div>

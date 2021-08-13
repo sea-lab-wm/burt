@@ -108,17 +108,13 @@ const Chatbot = ({
       getStepHistory(endPoint, sessionId, setStepsState, actionProv)
   }
 
-
   const widgetRegistry = new WidgetRegistry(setState, actionProv);
   const messagePars = new messageParser(actionProv, state);
 
   const widgets = getWidgets(config);
   widgets.forEach((widget) => widgetRegistry.addWidget(widget))
 
-  console.log("Running a modified version of the framework")
-
   //--------------
-
 
   return (
       <div className="container-fluid">
@@ -150,6 +146,7 @@ const Chatbot = ({
                 sessionId={sessionId}
                 actionProvider={actionProv}
                 processResponse={processResponse}
+                messageParser={messagePars}
             />
 
         </div>
