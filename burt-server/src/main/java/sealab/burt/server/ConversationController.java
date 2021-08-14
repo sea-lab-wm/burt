@@ -73,6 +73,18 @@ class ConversationController {
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
         put(CONFIRM_END_CONVERSATION, new DefaultActionStateChecker(CONFIRM_END_CONVERSATION_ACTION));
+//        put(REMOVE_STEP, new RemoveStepChecker());
+
+//        reMOVEsTEPcHECKER {
+//            //if it is the last step being removed{
+//                //update the graph state
+//                //check if a prediction is going on?{
+//                    //if so, then execute ProvideFirstPredictedS2RAction, return PREDICT_FIRST_S2R_PATH
+//                //}
+//            //}else{
+//                //return DO_NOTHING
+//            //
+//        }
     }};
 
     ConcurrentHashMap<String, ConversationState> conversationStates = new ConcurrentHashMap<>();
@@ -341,6 +353,13 @@ class ConversationController {
         // remove the corresponding step
         allSteps.remove(allSteps.get(index));
         conversationState.put(REPORT_S2R, allSteps);
+
+        //--------------------------
+        //Update the state
+
+        //Restart the prediction
+
+        //--------------------------
 
         log.debug(String.valueOf(allSteps.size()));
         List<KeyValues> stepOptions = new ArrayList<>();

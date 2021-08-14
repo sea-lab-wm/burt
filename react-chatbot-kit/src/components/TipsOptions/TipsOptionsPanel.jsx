@@ -137,12 +137,10 @@ const TipsOptionsPanel = ({
                         I clicked the save button, I entered "test" in the comments, etc.
                     </p>
                     <p className="tip_style">
-                        You can use "<span>This is/was the last step</span>" to finish reporting the bug or <span>click the button</span>
-                        "Finish reporting the bug"
+                        You can use "<span>This is/was the last step</span>" to finish reporting the bug or <span>click the button</span> "Finish reporting the bug"
                     </p>
                     <p className="tip_style">
-                        Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span>
-                        and <span>UI components</span> may be different from what you actually observed in the app
+                        Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
                     </p>
                 </div>
             </div>

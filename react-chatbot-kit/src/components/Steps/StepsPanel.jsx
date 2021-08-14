@@ -2,6 +2,8 @@ import React, {useEffect, useRef} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Steps.css';
 import Modal from 'react-modal';
+import ChatbotIcon from "../../assets/icons/chatbot-2.svg";
+import {ConditionallyRender} from "react-util-kit";
 
 const axios = require('axios')
 const customStyles = {
@@ -53,9 +55,10 @@ const StepsPanel = ({
 
             let stepDescription = step.value1;
             let stepImage = config.serverEndpoint + step.value2;
-            let ind = index + 1
-            let fullStepDescription = getFullDescription(ind, stepDescription);
-            let croppedStepDescription = getCroppedDescription(ind, stepDescription);
+            let stepNumber = index + 1
+            const isLastStep = stepNumber === stepsState.steps.length && stepsState.steps.length !== 1
+            let fullStepDescription = getFullDescription(stepNumber, stepDescription);
+            let croppedStepDescription = getCroppedDescription(stepNumber, stepDescription);
 
             function openModal(e) {
                 window.onbeforeunload = null;
@@ -80,7 +83,7 @@ const StepsPanel = ({
 
 
 
-            return <li key={ind} className="list-group-item">
+            return <li key={stepNumber} className="list-group-item">
                 <small>
                     <span title={fullStepDescription}>{croppedStepDescription}</span>
                     <a href={stepImage}  title={"See a screenshot of this step"} onClick={openModal}>
@@ -123,14 +126,20 @@ const StepsPanel = ({
                     </a>
 
                     {/*-------------------------*/}
-                    <a href="#" className="label label-danger" onClick={deleteStep} title="Delete this step">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
-                             className="bi bi-x-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </a>
+                    <ConditionallyRender
+                        ifTrue={isLastStep}
+                        show={
+                            <a href="#" className="label label-danger" onClick={deleteStep} title="Delete this step">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                                     className="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path
+                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </a>
+                        }
+                    />
+
                 </small>
                 </li>
 
