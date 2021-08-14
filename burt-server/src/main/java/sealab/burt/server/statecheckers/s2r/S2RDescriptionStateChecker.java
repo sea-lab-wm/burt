@@ -51,7 +51,7 @@ class S2RDescriptionStateChecker extends StateChecker {
                     state.put(StateVariable.COLLECTING_FIRST_S2R, true);
                     return PREDICT_FIRST_S2R_PATH;
                 } else
-                    return CONFIRM_LAST_STEP;
+                    return REPORT_SUMMARY;
             }
 
             //------------------------
