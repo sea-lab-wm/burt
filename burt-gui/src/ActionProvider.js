@@ -6,12 +6,13 @@ const axios = require('axios')
 const context = "";
 class ActionProvider{
 
-    constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj, setStepsState) {
+    constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj, setStepsState, setTipState) {
         this.createChatBotMessage = createChatBotMessage;
         this.createClientMessage = createClientMessage;
         this.setState = setStateFunc;
         this.sessionId = sessionIdObj;
         this.setStepsState = setStepsState;
+        this.setTipState = setTipState;
     }
 
     createUserMsg(msg){

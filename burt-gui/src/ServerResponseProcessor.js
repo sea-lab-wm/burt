@@ -1,6 +1,6 @@
 import React from "react";
 import SessionManager from "./SessionManager";
-import {END_CONVERSATION_CODE, ERROR_CODE} from "./App";
+import {END_CONVERSATION_CODE, ERROR_CODE, REPORT_NO_INFO_CODE, SUCCESS_CODE} from "./App";
 import updateStepHistory from "./UpdateStepsHistory";
 
 const processResponse = (responsePromise, actionProvider, extraFunction) => {
@@ -38,6 +38,10 @@ const processResponse = (responsePromise, actionProvider, extraFunction) => {
             //-------------------------------------------
 
             let chatBotMsgs = conversationResponse.messages;
+            let nextIntents = conversationResponse.nextIntents;
+            actionProvider.setTipState(prevState => ({
+                tipStateArray: [...prevState.tipStateArray, nextIntents[0]]
+            }))
 
             for (const chatBotMsg of chatBotMsgs) {
 
