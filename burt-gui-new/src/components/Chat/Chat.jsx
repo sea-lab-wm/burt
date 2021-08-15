@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ConditionallyRender } from "react-util-kit";
-
+import {openHelp} from "./chatUtils";
 import UserChatMessage from "../UserChatMessage/UserChatMessage";
 import ChatbotMessage from "../ChatbotMessage/ChatbotMessage";
 import ChatBotMessageWithWidget from "../ChatbotMessageWithWidget/ChatbotMessageWithWidget";
@@ -8,7 +8,7 @@ import ChatBotMessageWithWidget from "../ChatbotMessageWithWidget/ChatbotMessage
 import { botMessage, createChatMessage } from "./chatUtils";
 
 import  {ReactComponent as ChatIcon} from "../../assets/icons/paper-plane.svg"
-
+import  {ReactComponent as HelpIcon} from "../../assets/icons/help.svg"
 import "./Chat.css";
 import {ReactComponent as ChatbotIcon}  from "../../assets/icons/chatbot-2.svg";
 
@@ -201,10 +201,13 @@ const Chat = ({
           elseShow={
 
             <div className="react-chatbot-kit-chat-header">
-              <ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon"/>
+              <ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon-header"/>
             {header}
               {/*<button className="bn632-hover bn22 bn-margin-left" id="restartConversation">Restart the conversation</button>*/}
               {/*<button className="bn632-hover bn22" id="reportPreview">View the bug report</button>*/}
+              {/*<div onClick={openHelp()}>*/}
+              <HelpIcon className="react-chatbot-kit-chat-bot-avatar-help-icon-header"  id="HelpIcon"/>
+            {/*</div>*/}
             </div>
           }
         />

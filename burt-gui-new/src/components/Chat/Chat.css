@@ -20,8 +20,29 @@
   align-items: center;
   font-size: 0.9rem;
   color: #fff;
-  padding: 12.5px;
+  padding: 6px;
   font-weight: bold;
+}
+.react-chatbot-kit-chat-bot-avatar-icon-header {
+  margin-right: 12.5px;
+  margin-left: -8px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+
+}
+
+.react-chatbot-kit-chat-bot-avatar-help-icon-header {
+  margin-left: 380px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+
 }
 
 .bn632-hover {

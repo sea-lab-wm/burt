@@ -102,3 +102,8 @@ export const updateTips = (endPoint, sessionId, actionProvider) =>{
   })
 
 }
+
+
+export function openHelp(){
+  // window.alert("help")
+}
