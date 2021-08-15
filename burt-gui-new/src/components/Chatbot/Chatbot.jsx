@@ -104,14 +104,19 @@ const Chatbot = ({
     setTipState,
   );
 
-  if (stepsState.steps.length === 0) {
-      let endPoint = config.serverEndpoint + config.getStepsHistory
-      updateStepsHistory(endPoint, sessionId, actionProv)
-  }
-  if (tipState.tipStateArray.length === 0) {
-        let endPoint = config.serverEndpoint + config.getTipsService
-        updateTips(endPoint, sessionId, actionProv)
-  }
+  useEffect(()=>{
+      if (stepsState.steps.length === 0) {
+          let endPoint = config.serverEndpoint + config.getStepsHistory
+          updateStepsHistory(endPoint, sessionId, actionProv)
+      }
+  }, [stepsState])
+
+    useEffect(()=>{
+        if (tipState.tipStateArray.length === 0) {
+            let endPoint = config.serverEndpoint + config.getTipsService
+            updateTips(endPoint, sessionId, actionProv)
+        }
+    }, [tipState])
 
   const widgetRegistry = new WidgetRegistry(setState, actionProv);
   const messagePars = new messageParser(actionProv, state);

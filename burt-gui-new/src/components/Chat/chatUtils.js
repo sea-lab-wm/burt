@@ -85,13 +85,13 @@ export const updateTips = (endPoint, sessionId, actionProvider) =>{
         for (const t of tipsValues){
           tips.push(t.value2)
         }
+        let fn = prevState => {
+          return {
+            ...prevState, tipStateArray: tips
+          }
+        };
+        actionProvider.setTipState(fn)
       }
-      let fn = prevState => {
-        return {
-          ...prevState, tipStateArray: tips
-        }
-      };
-      actionProvider.setTipState(fn)
     } else if (conversationResponse.code === -1) {
       window.alert(chatbotMsg.messageObj.message);
     } else {
