@@ -31,23 +31,6 @@ function App() {
 
     console.log("Current session id: ", sessionId)
 
-    function saveMessages(messages) {
-        console.log("Saving messages for ", sessionId, ": ", messages)
-
-        //calling the API asynchronously
-        axios
-            .post(config.serverEndpoint + config.saveMessagesService, {
-                sessionId: sessionId,
-                messages: messages,
-            })
-            .then(res => {
-                console.log(`Messages were saved successfully`)
-            })
-            .catch(error => {
-                console.error(error)
-            })
-    }
-
     //--------------------------------
 
     function loadMessagesSync() {
@@ -102,9 +85,10 @@ function App() {
                 messageHistory={loadMessagesSync()}
                 messageParser={messageParser}
                 sessionId={sessionId}
-                saveMessages={saveMessages}
+                saveMessages={ApiClient.saveMessages}
                 validator={emptyStringValidator}
                 SessionManager={SessionManager}
+                ApiClient={ApiClient}
                 processResponse={processResponse}
 
             />

@@ -25,7 +25,7 @@ const config = {
     processDeleteSomeStep:"/deleteSomeStep",
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
-        createChatBotMessage("I will assist you in reporting any problem with your app"),
+        createChatBotMessage("I'll assist you in reporting any problem with your app"),
         createChatBotMessage("Please <b>start a stopwatch from scratch</b> to time yourself during" +
             " this bug reporting session"),
         createChatBotMessage("To start, please provide your <b>Participant ID</b>"),

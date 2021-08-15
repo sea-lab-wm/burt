@@ -4,7 +4,7 @@ import Chat from "../Chat/Chat";
 import './Chatbot.css'
 import WidgetRegistry from "../WidgetRegistry/WidgetRegistry";
 import ChatbotError from "../ChatbotError/ChatbotError";
-import {createChatBotMessage, createClientMessage} from "../Chat/chatUtils";
+import {createChatBotMessage, createClientMessage, updateStepsHistory} from "../Chat/chatUtils";
 import {getBotName, getCustomComponents, getCustomStyles, getInitialState, getWidgets, validateProps,} from "./utils";
 import StepsPanel from "../Steps/StepsPanel";
 import TipsOptionsPanel from "../TipsOptions/TipsOptionsPanel";
@@ -22,8 +22,8 @@ const Chatbot = ({
   validator,
   sessionId,
   SessionManager,
-  processResponse
-
+  processResponse,
+  ApiClient
 
 }) => {
   if (!config || !actionProvider || !messageParser) {
@@ -105,7 +105,7 @@ const Chatbot = ({
 
   if (stepsState.steps.length === 0) {
       let endPoint = config.serverEndpoint + config.getStepsHistory
-      getStepHistory(endPoint, sessionId, setStepsState, actionProv)
+      updateStepsHistory(endPoint, sessionId, actionProv)
   }
 
   const widgetRegistry = new WidgetRegistry(setState, actionProv);
@@ -124,6 +124,10 @@ const Chatbot = ({
                 stepsState ={stepsState}
                 sessionId={sessionId}
                 actionProvider={actionProv}
+                ApiClient={ApiClient}
+                processResponse={processResponse}
+                messagesState={state}
+                setState={setState}
             />
             <div className="span6">
             <Chat
@@ -154,31 +158,5 @@ const Chatbot = ({
       </div>
   );
 };
-
-function getStepHistory(endPoint, sessionId, setStepState, actionProvider){
-  const data = {
-    sessionId: sessionId,
-  }
-  const responsePromise =  axios.post(endPoint, data);
-  responsePromise.then(response => {
-
-    let conversationResponse = response.data;
-    let chatbotMsgs = conversationResponse.messages;
-    let chatbotMsg = chatbotMsgs[0];
-
-    if (conversationResponse.code === 0) {
-      let stepsHistory = chatbotMsg.values;
-      if(stepsHistory != null)
-        actionProvider.updateAllStepHistory(stepsHistory);
-    } else if (conversationResponse.code === -1) {
-      window.alert(chatbotMsg.messageObj.message);
-    } else {
-      window.alert("There was an unexpected error");
-    }
-  }).catch(error => {
-    console.error(`There was an unexpected error: ${error}`);
-  })
-
-}
 
 export default Chatbot;

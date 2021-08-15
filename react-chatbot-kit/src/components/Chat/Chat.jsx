@@ -107,7 +107,7 @@ const Chat = ({
       }*/
 
       const chatBotMessageProps = {
-        passDownProps: { ...messageObject },
+        passDownProps: { ...messageObject }, //messageObject.disabled, messageObject.id
         setState,
         state,
         customComponents,
@@ -115,7 +115,11 @@ const Chat = ({
         messages,
       };
 
+
       if (messageObject.widget) {
+
+        // console.log("Re-rendering widget msg: " + messageObject.id+" - " )
+        // console.log(chatBotMessageProps)
         return (
           <ChatBotMessageWithWidget
             customStyles={customStyles}

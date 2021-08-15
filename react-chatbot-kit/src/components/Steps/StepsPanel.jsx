@@ -4,6 +4,7 @@ import './Steps.css';
 import Modal from 'react-modal';
 import ChatbotIcon from "../../assets/icons/chatbot-2.svg";
 import {ConditionallyRender} from "react-util-kit";
+import {updateStepsHistory} from "../Chat/chatUtils";
 
 const axios = require('axios')
 const customStyles = {
@@ -23,7 +24,11 @@ const StepsPanel = ({
                         config,
                         stepsState,
                         actionProvider,
-                        sessionId
+                        sessionId,
+                        ApiClient,
+                        processResponse,
+                        messagesState,
+                        setState
                     }) => {
 
     const stepsContainer = useRef(null);
@@ -38,6 +43,7 @@ const StepsPanel = ({
     })
 
     function renderSteps() {
+
         function getFullDescription(ind, stepDescription) {
             return ind + ". " + stepDescription;
         }
@@ -76,12 +82,33 @@ const StepsPanel = ({
                 setIsOpen(index, false);
             }
 
-            function deleteStep() {
-                let endPoint = config.serverEndpoint + config.processDeleteSomeStep;
-                deleteSomeStep(index, endPoint, sessionId, actionProvider);
+            function deleteLastStep() {
+
+                //disable all prior widget messages/gui components
+                let allMsgs = messagesState.messages
+                for (let i = 0; i < allMsgs.length ; i++) {
+                    allMsgs[i].disabled = true
+                }
+
+                let fn = prevState => {
+                    return {
+                        ...prevState, messages: allMsgs
+                    }
+                };
+                setState(fn)
+
+                console.log("Messages after disabling them")
+                console.log(allMsgs)
+
+                //--------------------------
+
+                let message = actionProvider.createChatBotMessage("Delete step x");
+                const responsePromise = ApiClient.processUserMessage(message, [])
+                processResponse(responsePromise, actionProvider, () => {
+                    let endPoint = config.serverEndpoint + config.getStepsHistory
+                    updateStepsHistory(endPoint, sessionId, actionProvider)
+                })
             }
-
-
 
             return <li key={stepNumber} className="list-group-item">
                 <small>
@@ -129,7 +156,7 @@ const StepsPanel = ({
                     <ConditionallyRender
                         ifTrue={isLastStep}
                         show={
-                            <a href="#" className="label label-danger" onClick={deleteStep} title="Delete this step">
+                            <a href="#" className="label label-danger" onClick={deleteLastStep} title="Delete this step">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
                                      className="bi bi-x-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -160,7 +187,7 @@ const StepsPanel = ({
         return lastThreeSteps.map((step, index) => {
             let stepImage = config.serverEndpoint + step.value2;
             let stepIndex = numOfSteps - subLen + index + 1;
-            return <div className="screenshot-display">
+            return <div key={index} className="screenshot-display">
                 <img className="screenshot" src={stepImage} alt=""/>
                 <div className="screen-index">{stepIndex}</div>
             </div>
@@ -193,7 +220,7 @@ const StepsPanel = ({
     )
 }
 
-function deleteSomeStep(index, endPoint, sessionId, actionProvider){
+/*function deleteSomeStep(index, endPoint, sessionId, actionProvider){
     // ask the server to remove the step in the REPORT_S2R in the server
     // return the updated REPORT_S2R
     if (index > 0) {
@@ -223,7 +250,7 @@ function deleteSomeStep(index, endPoint, sessionId, actionProvider){
         })
     }
 
-}
+}*/
 
 
 

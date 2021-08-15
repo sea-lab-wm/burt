@@ -9,6 +9,7 @@ import sealab.burt.server.msgparsing.Intent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -61,8 +62,12 @@ public abstract class ChatBotAction {
                 return Arrays.stream((String[]) msg).map(ChatBotMessage::new);
             else if (msg instanceof ChatBotMessage[])
                 return Arrays.stream((ChatBotMessage[]) msg);
+            else if (msg == null)
+                return null;
             throw new RuntimeException("Type not supported: " + msg.getClass().getSimpleName());
-        }).collect(Collectors.toList());
+        })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     protected void startEBChecker(ConversationState state) {

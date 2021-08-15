@@ -191,6 +191,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
                 WidgetName.S2RScreenSelector);
         List<ChatBotMessage> chatBotMessages;
 
+
         //if there are no steps reported yet
         if (noStepsReportedYet) {
             chatBotMessages = createChatBotMessages(
@@ -199,9 +200,11 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
                             " the following",
                     new ChatBotMessage(messageObj, stepOptions, true));
         } else {
-            chatBotMessages = createChatBotMessages(
+            String deleteStepMsg = (String) state.get(DELETE_STEP_MSG);
+            chatBotMessages = createChatBotMessages(deleteStepMsg,
                     "Okay, it seems <b>the next steps</b> that you performed might be the following",
                     new ChatBotMessage(messageObj, stepOptions, true));
+            state.remove(DELETE_STEP_MSG);
         }
         return chatBotMessages;
     }

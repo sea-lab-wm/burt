@@ -5,8 +5,6 @@ import ApiClient from "../../ApiClient";
 import processResponse from "../../ServerResponseProcessor";
 import config from "../../config";
 
-// let logos = require.context('../../../../data/app_logos', true);
-
 const OBScreenSelector = (props) => {
 
     const [screen, setScreen] = useState({});

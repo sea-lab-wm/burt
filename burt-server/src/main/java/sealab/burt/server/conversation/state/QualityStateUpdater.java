@@ -1,5 +1,6 @@
 package sealab.burt.server.conversation.state;
 
+import edu.semeru.android.core.entity.model.App;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.UtilReporter;
@@ -168,5 +169,24 @@ class QualityStateUpdater {
                 new BugReportElement((String) state.get(EB_DESCRIPTION), ebState, screenshotFile)));
 
         GenerateBugReportAction.generateBugReport(state);
+    }
+
+    public void removeLastStepToState(GraphState graphState, AppStep stepToRemove) {
+        List<AppStep> appSteps = lastStepsToState.get(graphState);
+
+        if (appSteps == null) {
+            return;
+        }
+
+        AppStep lastStepToState = appSteps.get(appSteps.size() - 1);
+
+        if(!lastStepToState.equals(stepToRemove))
+            return;
+
+        if(lastStepToState.getTransition() != null){
+            appSteps.remove(appSteps.size() - 1);
+            if(appSteps.isEmpty())
+                lastStepsToState.remove(graphState);
+        }
     }
 }

@@ -1,7 +1,6 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +20,7 @@ import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.ob.OBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.participant.ParticipantIdStateChecker;
+import sealab.burt.server.statecheckers.s2r.DeleteLastStepStateChecker;
 import sealab.burt.server.statecheckers.s2r.S2RDescriptionStateChecker;
 import sealab.burt.server.statecheckers.s2r.S2RInputStateChecker;
 import sealab.burt.server.statecheckers.s2r.S2RPredictionStateChecker;
@@ -73,18 +73,7 @@ class ConversationController {
 //        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
         //--------Ending---------------//
         put(CONFIRM_END_CONVERSATION, new DefaultActionStateChecker(CONFIRM_END_CONVERSATION_ACTION));
-//        put(REMOVE_STEP, new RemoveStepChecker());
-
-//        reMOVEsTEPcHECKER {
-//            //if it is the last step being removed{
-//                //update the graph state
-//                //check if a prediction is going on?{
-//                    //if so, then execute ProvideFirstPredictedS2RAction, return PREDICT_FIRST_S2R_PATH
-//                //}
-//            //}else{
-//                //return DO_NOTHING
-//            //
-//        }
+        put(DELETE_LAST_STEP, new DeleteLastStepStateChecker());
     }};
 
     ConcurrentHashMap<String, ConversationState> conversationStates = new ConcurrentHashMap<>();

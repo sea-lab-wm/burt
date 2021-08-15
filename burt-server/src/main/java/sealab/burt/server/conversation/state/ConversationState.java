@@ -8,6 +8,7 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.actions.DoNothingAction;
 import sealab.burt.server.actions.appselect.ConfirmAppAction;
 import sealab.burt.server.actions.appselect.SelectAppAction;
 import sealab.burt.server.actions.eb.ClarifyEBAction;
@@ -119,6 +120,7 @@ class ConversationState {
             put(CONFIRM_END_CONVERSATION_ACTION, new ConfirmEndConversationAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             put(REPORT_SUMMARY, new GenerateBugReportAction());
             put(UNEXPECTED_ERROR, new UnexpectedErrorAction());
+            put(DO_NOTHING, new DoNothingAction());
 
         }
     };

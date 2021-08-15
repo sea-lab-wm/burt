@@ -53,10 +53,8 @@ public class MessageParser {
 
         if (userResponse.getMessages() == null) return null;
 
-        if (userResponse.getFirstMessage() != null) {
-
-            MessageObj message = userResponse.getFirstMessage();
-
+        MessageObj message = userResponse.getFirstMessage();
+        if (message != null) {
             if (message.getMessage() != null && !state.containsKey(StateVariable.CONFIRM_END_CONVERSATION)) {
                 if (Stream.of(END_CONVERSATION_TOKENS).anyMatch(token -> message.getMessage().toLowerCase().contains(token)
                         || matchRegex(token, message))) {
@@ -72,6 +70,12 @@ public class MessageParser {
 
                     return CONFIRM_END_CONVERSATION;
                 }
+            }
+
+            //--------------------------------
+
+            if(message.getMessage() != null && message.getMessage().equals("Delete step x")){
+                return DELETE_LAST_STEP;
             }
 
         }
@@ -94,11 +98,9 @@ public class MessageParser {
 
         //------------------------
 
-        MessageObj message = userResponse.getMessages().get(0);
-
         if (message == null || message.getMessage() == null) return null;
-        //determine the intent based on tokens
 
+        //determine the intent based on tokens
         Set<Map.Entry<String, Intent>> entries = intentTokens.entrySet();
 
         //only consider the tokens of the expected intents

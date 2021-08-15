@@ -14,6 +14,10 @@ const ChatbotMessageWithWidget = ({
   widgetRegistry,
   withAvatar,
 }) => {
+
+    console.log("Re-rendering widget msg: " + passDownProps.id+" - " )
+    console.log(passDownProps)
+
   return (
     <Fragment>
       <ChatbotMessage

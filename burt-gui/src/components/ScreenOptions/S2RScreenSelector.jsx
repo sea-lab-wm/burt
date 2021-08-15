@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
 import ApiClient from "../../ApiClient";
@@ -52,6 +52,10 @@ const S2RScreenSelector = (props) => {
     const dataValues = props.allValues; // only one screenshot
     const selectedValues = props.selectedValues
     const multiple = props.multiple;
+
+    // useEffect(()=>{
+    //     console.log("Disabled? " + props.id + " - " +  disabled)
+    // })
 
     return (
         <div className="center-screen">

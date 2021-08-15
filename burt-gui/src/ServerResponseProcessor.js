@@ -1,9 +1,9 @@
 import React from "react";
 import SessionManager from "./SessionManager";
-import {END_CONVERSATION_CODE, ERROR_CODE, REPORT_NO_INFO_CODE, SUCCESS_CODE} from "./App";
+import {END_CONVERSATION_CODE, ERROR_CODE} from "./App";
 import updateStepHistory from "./UpdateStepsHistory";
 
-const processResponse = (responsePromise, actionProvider) => {
+const processResponse = (responsePromise, actionProvider, extraFunction) => {
     function processResponse2(httpReponse, lastMsgId) {
         try {
             console.log("Response from the server: ")
@@ -86,7 +86,7 @@ const processResponse = (responsePromise, actionProvider) => {
 
     //we show the dots showing the chatbot is processing
     //15 mins limit before the message is deleted
-    let tempBotMsg = actionProvider.createChatBotMsg("",{delay: 15*60000});
+    let tempBotMsg = actionProvider.createChatBotMsg("", {delay: 15 * 60000});
     actionProvider.updateChatbotState(tempBotMsg)
 
     /*setTimeout(() => {
@@ -95,7 +95,8 @@ const processResponse = (responsePromise, actionProvider) => {
 
     responsePromise.then(response => {
         processResponse2(response, tempBotMsg.id)
-
+        if (extraFunction !== null && extraFunction !== undefined)
+            extraFunction()
     }).catch(error => {
         actionProvider.removeMsg(tempBotMsg.id)
         alert("There was an unexpected error, please try again in few moments or refresh the page.")
