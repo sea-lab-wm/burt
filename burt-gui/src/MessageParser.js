@@ -16,7 +16,6 @@ class MessageParser {
         // console.log(userMsg)
 
         const responsePromise = ApiClient.processUserMessage(userMsg, [])
-
         processResponse(responsePromise, this.actionProvider)
     }
 

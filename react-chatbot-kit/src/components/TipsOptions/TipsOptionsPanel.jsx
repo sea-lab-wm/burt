@@ -85,12 +85,60 @@ function previewBugReport(config, url, sessionId) {
 
 
 }
+
+function OBTip(){
+    return <div className="subpanel-list">
+        <p className="tip_style">
+            For describing the <span>incorrect app behavior</span>, use <span>vocabulary that you observed</span> in the app
+        </p>
+        <p className="tip_style">
+            Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
+        </p>
+    </div>
+
+}
+
+function EBTip(){
+    return <div className="subpanel-list">
+        <p className="tip_style">
+            For describing the <span> expected app behavior</span>, use <span>vocabulary that you observed</span> in the app
+        </p>
+        <p className="tip_style">
+            Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
+        </p>
+    </div>
+}
+
+function S2RTip(){
+    return <div className="subpanel-list">
+        <p className="tip_style">
+            To <span>express a step</span>, you can use the format "I [action] [UI component or complement]". <span>Examples</span>:
+            I clicked the save button, I entered "test" in the comments, etc.
+        </p>
+        <p className="tip_style">
+            Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
+        </p>
+        <p className="tip_style">
+            You can <span>click the button</span> "Finish reporting the bug if you think you are done reporting the bug"
+        </p>
+    </div>
+}
+function otherTips(){
+    return <div className="subpanel-list">
+        <p className="tip_style">
+            If you cannot see the screenshots clearly, please zoom in the webpage. For enlarging the webpage, Mac users can use the shortcut "<span>Command</span>" + "<span>+</span>",
+            Windows users can use "<span>Ctrl</span>" + "<span>+</span>".
+        </p>
+    </div>
+}
+
 const TipsOptionsPanel = ({
             config,
             SessionManager,
             actionProvider,
             processResponse,
-            sessionId, messageParser}) => {
+            sessionId,
+            messageParser, tipState}) => {
 
     function restartConversation() {
         let url = config.serverEndpoint + config.endService;
@@ -105,6 +153,28 @@ const TipsOptionsPanel = ({
     function previewReport() {
         let url = config.serverEndpoint + config.getBugReportPreview;
         previewBugReport(config, url, sessionId);
+    }
+    function renderTip(){
+        if (tipState.tipStateArray.find(a =>a.includes("AFFIRMATIVE"))!== undefined ||
+            tipState.tipStateArray.find(a =>a.includes("NEGATIVE")) !== undefined ||
+            tipState.tipStateArray.find(a =>a.includes("NO_EXPECTED_INTENT")) !== undefined){
+            if (tipState.tipStateArray.find(a =>a.includes("S2R")) !== undefined ){
+                return S2RTip();
+            }else if (tipState.tipStateArray.find(a =>a.includes("EB")) !== undefined){
+                return EBTip();
+            }
+            else if (tipState.tipStateArray.find(a =>a.includes("OB")) !== undefined){
+                return OBTip();
+            }
+        }else if (tipState.tipStateArray.find(a =>a.includes("S2R")) !== undefined){
+            return S2RTip();
+        }else if (tipState.tipStateArray.find(a =>a.includes("EB")) !== undefined){
+            return EBTip();
+        }else if (tipState.tipStateArray.find(a =>a.includes("OB")) !== undefined){
+            return OBTip();
+        }else{
+            return otherTips();
+        }
     }
 
     return(
@@ -128,21 +198,7 @@ const TipsOptionsPanel = ({
                     &nbsp;
                     Useful Tips
                 </div>
-                <div className="subpanel-list">
-                    <p className="tip_style">
-                        For describing the <span>incorrect and expected app behavior</span>, use <span>vocabulary that you observed</span> in the app
-                    </p>
-                    <p className="tip_style">
-                        To <span>express a step</span>, you can use the format "I [action] [UI component or complement]". <span>Examples</span>:
-                        I clicked the save button, I entered "test" in the comments, etc.
-                    </p>
-                    <p className="tip_style">
-                        You can use "<span>This is/was the last step</span>" to finish reporting the bug or <span>click the button</span> "Finish reporting the bug"
-                    </p>
-                    <p className="tip_style">
-                        Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
-                    </p>
-                </div>
+                {renderTip()}
             </div>
 
         </div>

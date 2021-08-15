@@ -94,6 +94,8 @@ const Chatbot = ({
   const botName = getBotName(config);
 
   const [stepsState, setStepsState] = useState({steps: []});
+  const [tipState, setTipState] = useState({tipStateArray:[]});
+
 
   const actionProv = new actionProvider(
     createChatBotMessage,
@@ -101,6 +103,7 @@ const Chatbot = ({
     createClientMessage,
     sessionId,
     setStepsState,
+      setTipState,
   );
 
   if (stepsState.steps.length === 0) {
@@ -147,6 +150,7 @@ const Chatbot = ({
                 actionProvider={actionProv}
                 processResponse={processResponse}
                 messageParser={messagePars}
+                tipState={tipState}
             />
 
         </div>
