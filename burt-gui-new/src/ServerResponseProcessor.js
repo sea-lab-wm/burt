@@ -38,6 +38,10 @@ const processResponse = (responsePromise, actionProvider, extraFunction) => {
             //-------------------------------------------
 
             let chatBotMsgs = conversationResponse.messages;
+            let nextIntents = conversationResponse.nextIntents;
+            actionProvider.setTipState(prevState => ({
+                tipStateArray: [...prevState.tipStateArray, nextIntents[0]]
+            }))
 
             for (const chatBotMsg of chatBotMsgs) {
 
