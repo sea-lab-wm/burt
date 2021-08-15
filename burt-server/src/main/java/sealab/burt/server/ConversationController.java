@@ -318,6 +318,65 @@ class ConversationController {
                 new ChatBotMessage(messageObj, stepOptions)), ResponseCode.SUCCESS);
 
     }
+    @PostMapping("/storeTip")
+    public void storeTip(@RequestBody UserResponse req){
+        log.debug("Storing the tips in the server...");
+
+        String sessionId = req.getSessionId();
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return;
+        }
+
+        ConversationState state = conversationStates.get(sessionId);
+        if (state == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return;
+        }
+        if(!state.containsKey(StateVariable.TIPS)){
+            List<String> tips = new ArrayList<>();
+            tips.add(req.getTip());
+            state.put(StateVariable.TIPS, tips);
+        }else{
+            List<String> tips = (List<String>) state.get(StateVariable.TIPS);
+            tips.add(req.getTip());
+        }
+
+    }
+    @PostMapping("/getTips")
+    public ConversationResponse getTips(@RequestBody UserResponse req){
+        log.debug("Getting the tips from the server...");
+
+        String sessionId = req.getSessionId();
+        if (sessionId == null) {
+            return ConversationResponse.createResponse("The session is inactive. " +
+                            "Please (re)start the conversation.",
+                    ResponseCode.UNEXPECTED_ERROR);
+        }
+        ConversationState conversationState = conversationStates.get(sessionId);
+        if (conversationState == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return ConversationResponse.createResponse("");
+        }
+
+        List<String> allTips = (List<String>) conversationState.get(StateVariable.TIPS);
+        if (allTips == null) {
+            return ConversationResponse.createResponse("");
+        }
+        List<KeyValues> tipsOptions = new ArrayList<>();
+
+        for (int i = 0; i < allTips.size(); i++) {
+            String tip = allTips.get(i);
+            tipsOptions.add(new KeyValues(String.valueOf(i),
+                    String.valueOf(i),
+                    tip)
+            );
+        }
+        MessageObj messageObj = new MessageObj();
+
+        return new ConversationResponse(Collections.singletonList(
+                new ChatBotMessage(messageObj, tipsOptions)), ResponseCode.SUCCESS);
+    }
 
     @PostMapping("/")
     public String index() {

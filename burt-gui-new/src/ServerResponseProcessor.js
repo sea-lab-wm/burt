@@ -2,6 +2,7 @@ import React from "react";
 import SessionManager from "./SessionManager";
 import {END_CONVERSATION_CODE, ERROR_CODE} from "./App";
 import updateStepHistory from "./UpdateStepsHistory";
+import ApiClient from "./ApiClient";
 
 const processResponse = (responsePromise, actionProvider, extraFunction) => {
     function processResponse2(httpReponse, lastMsgId) {
@@ -42,6 +43,7 @@ const processResponse = (responsePromise, actionProvider, extraFunction) => {
             actionProvider.setTipState(prevState => ({
                 tipStateArray: [...prevState.tipStateArray, nextIntents[0]]
             }))
+            ApiClient.processStoreTip(nextIntents[0]);
 
             for (const chatBotMsg of chatBotMsgs) {
 

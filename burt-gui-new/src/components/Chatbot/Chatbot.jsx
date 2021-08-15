@@ -4,7 +4,7 @@ import Chat from "../Chat/Chat";
 import './Chatbot.css'
 import WidgetRegistry from "../WidgetRegistry/WidgetRegistry";
 import ChatbotError from "../ChatbotError/ChatbotError";
-import {createChatBotMessage, createClientMessage, updateStepsHistory} from "../Chat/chatUtils";
+import {createChatBotMessage, createClientMessage, updateStepsHistory, updateTips} from "../Chat/chatUtils";
 import {getBotName, getCustomComponents, getCustomStyles, getInitialState, getWidgets, validateProps,} from "./utils";
 import StepsPanel from "../Steps/StepsPanel";
 import TipsOptionsPanel from "../TipsOptions/TipsOptionsPanel";
@@ -107,6 +107,10 @@ const Chatbot = ({
   if (stepsState.steps.length === 0) {
       let endPoint = config.serverEndpoint + config.getStepsHistory
       updateStepsHistory(endPoint, sessionId, actionProv)
+  }
+  if (tipState.tipStateArray.length === 0) {
+        let endPoint = config.serverEndpoint + config.getTipsService
+        updateTips(endPoint, sessionId, actionProv)
   }
 
   const widgetRegistry = new WidgetRegistry(setState, actionProv);

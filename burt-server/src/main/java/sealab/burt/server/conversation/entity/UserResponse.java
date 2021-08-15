@@ -14,6 +14,7 @@ class UserResponse {
     private List<MessageObj> messages;
     private ActionName currentAction;
     private List<Integer> index;
+    private String tip;
 
     public UserResponse(){}
     public UserResponse(String sessionId){
@@ -23,6 +24,11 @@ class UserResponse {
     public UserResponse(String sessionId, List<MessageObj> messages){
         this.sessionId = sessionId;
         this.messages = messages;
+    }
+
+    public UserResponse(String sessionId, String tip){
+        this.sessionId = sessionId;
+        this.tip = tip;
     }
 
     public MessageObj getFirstMessage() {

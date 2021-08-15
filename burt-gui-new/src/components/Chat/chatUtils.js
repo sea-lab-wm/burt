@@ -66,3 +66,39 @@ export const updateStepsHistory = (endPoint, sessionId, actionProvider) =>{
   })
 
 }
+
+export const updateTips = (endPoint, sessionId, actionProvider) =>{
+  const data = {
+    sessionId: sessionId,
+  }
+  const responsePromise =  axios.post(endPoint, data);
+  responsePromise.then(response => {
+
+    let conversationResponse = response.data;
+    let chatbotMsgs = conversationResponse.messages;
+    let chatbotMsg = chatbotMsgs[0];
+
+    if (conversationResponse.code === 0) {
+      let tipsValues = chatbotMsg.values;
+      let tips =[];
+      if(tipsValues != null){
+        for (const t of tipsValues){
+          tips.push(t.value2)
+        }
+      }
+      let fn = prevState => {
+        return {
+          ...prevState, tipStateArray: tips
+        }
+      };
+      actionProvider.setTipState(fn)
+    } else if (conversationResponse.code === -1) {
+      window.alert(chatbotMsg.messageObj.message);
+    } else {
+      window.alert("There was an unexpected error");
+    }
+  }).catch(error => {
+    console.error(`There was an unexpected error: ${error}`);
+  })
+
+}

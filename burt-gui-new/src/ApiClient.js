@@ -55,6 +55,18 @@ class ApiClient {
             .post(config.serverEndpoint + config.getBugReportPreview, data);
 
     }
+    static processStoreTip(tip){
+        const sessionId = SessionManager.getSessionId();
+        axios.post(config.serverEndpoint + config.storeTipService, {
+            sessionId: sessionId,
+            tip: tip,
+        }).then(res => {
+            console.log(`Tip were saved successfully`)
+        })
+            .catch(error => {
+                console.error(error)
+            })
+    }
 
     static sendRequestAsync(service, data) {
         console.log("Sending request...")
