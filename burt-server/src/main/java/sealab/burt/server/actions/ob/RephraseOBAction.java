@@ -18,7 +18,7 @@ public class RephraseOBAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("Oops, your description doesn't seem to match the language " +
                         "of the app",
-                "Can you please <b>rephrase the incorrect behavior</b> differently?");
+                "Please <b>rephrase the incorrect behavior</b> differently");
     }
 
 }

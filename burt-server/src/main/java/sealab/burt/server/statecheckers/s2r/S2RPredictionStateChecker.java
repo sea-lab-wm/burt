@@ -87,10 +87,11 @@ public class S2RPredictionStateChecker extends StateChecker {
             MetricsRecorder.saveRecommendationRecord(state, MetricsRecorder.MetricsType.S2R_PREDICT,
                     currentPath.size(), 0);
 
+
             // check the number of tries to decide if we continue to provide next predicted path
             if (isThereANextPath(state)) {
                 state.put(PREDICTED_S2R_CURRENT_PATH, (int) state.get(PREDICTED_S2R_CURRENT_PATH) + 1);
-                return ActionName.PREDICT_NEXT_S2R_PATH;
+                return ActionName.ASK_FOR_NEW_PREDICTION;
             } else {
 
                 state.remove(PREDICTED_S2R_CURRENT_PATH);
@@ -107,9 +108,9 @@ public class S2RPredictionStateChecker extends StateChecker {
             state.remove(PREDICTED_S2R_NUMBER_OF_PATHS);
             state.remove(PREDICTED_S2R_PATHS_WITH_LOOPS);
 
-            return ActionName.CONFIRM_LAST_STEP;
+            return ActionName.REPORT_SUMMARY;
         } else {
-            return ActionName.PREDICT_NEXT_S2R_PATH;
+            return ActionName.INCORRECT_PREDICTED_S2R;
         }
 
     }

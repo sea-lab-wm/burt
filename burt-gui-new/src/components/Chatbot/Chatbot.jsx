@@ -3,10 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Chat from "../Chat/Chat";
 import './Chatbot.css'
 import WidgetRegistry from "../WidgetRegistry/WidgetRegistry";
-import ChatbotError from "../ChatbotError/ChatbotError";
 import {createChatBotMessage, createClientMessage, updateStepsHistory, updateTips} from "../Chat/chatUtils";
 import {getBotName, getCustomComponents, getCustomStyles, getInitialState, getWidgets, validateProps,} from "./utils";
-import StepsPanel from "../Steps/StepsPanel";
+import StepsPanel from "../StepsPanel/StepsPanel";
 import TipsOptionsPanel from "../TipsOptions/TipsOptionsPanel";
 
 const axios = require('axios')
@@ -20,9 +19,7 @@ const Chatbot = ({
   saveMessages,
   messageHistory,
   validator,
-  sessionId,
-  SessionManager,
-  ApiClient
+  sessionId
 
 }) => {
 /*  if (!config || !actionProvider || !messageParser) {
@@ -134,7 +131,6 @@ const Chatbot = ({
                 stepsState ={stepsState}
                 sessionId={sessionId}
                 actionProvider={actionProv}
-                ApiClient={ApiClient}
                 messagesState={state}
                 setState={setState}
             />
@@ -151,10 +147,10 @@ const Chatbot = ({
               headerText={headerText}
               placeholderText={placeholderText}
               validator={validator}
+              config={config}
             />
             </div>
             <TipsOptionsPanel
-                SessionManager={SessionManager}
                 config={config}
                 sessionId={sessionId}
                 actionProvider={actionProv}

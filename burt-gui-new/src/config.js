@@ -10,14 +10,16 @@ import './config.css';
 import OBScreenSelector from "./components/ScreenOptions/OBScreenSelector";
 import OneScreenYesNoButtons from "./components/ScreenOptions/OneScreenYesNoButtons";
 import S2RScreenSelector from "./components/ScreenOptions/S2RScreenSelector";
-import ReportGenerator from "./components/ReportGenerator";
-import UpdateStepsHistory from "./UpdateStepsHistory";
+import ReportGenerator from "./components/ReportGenerator/ReportGenerator";
+import UpdateStepsHistory from "./logic/UpdateStepsHistory";
 import YesNoButtons from "./components/ScreenOptions/YesNoButtons";
+import S2RPredictionConfirmation from "./components/ScreenOptions/S2RPredictionConfirmation";
 
 const config = {
     botName: "BURT",
     serverEndpoint: "http://localhost:8081",
 //     serverEndpoint: "http://rocco.cs.wm.edu:21203",
+    tutorialDoc: "/BURT_tutorial_doc.pdf",
     logosPath: "/app_logos/",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",
@@ -32,7 +34,7 @@ const config = {
         createChatBotMessage("Hi there, this is BURT"),
         createChatBotMessage("I'll assist you in reporting any problem with your app"),
         createChatBotMessage("Please <b>start a stopwatch from scratch</b> to time yourself during" +
-            " this bug reporting session"),
+            " this conversation"),
         createChatBotMessage("To start, please provide your <b>Participant ID</b>"),
     ],
     widgets: [
@@ -49,6 +51,11 @@ const config = {
         {
             widgetName: "OneScreenYesNoButtons",
             widgetFunc: (props) => <OneScreenYesNoButtons {...props} />,
+            mapStateToProps: []
+        },
+        {
+            widgetName: "S2RPredictionConfirmation",
+            widgetFunc: (props) => <S2RPredictionConfirmation {...props} />,
             mapStateToProps: []
         },
         {

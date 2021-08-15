@@ -29,12 +29,12 @@ public class ProvideS2RFirstAction extends ChatBotAction {
 
         List<ChatBotMessage> chatBotMessages;
         if (state.containsKey(StateVariable.ASKED_TO_WRITE_S2R)) {
-            chatBotMessages = createChatBotMessages("Got it, can you please tell me the <b>first step</b> that you performed?");
+            chatBotMessages = createChatBotMessages("Got it, please tell me the <b>first step</b> that you performed");
         } else {
             state.put(StateVariable.ASKED_TO_WRITE_S2R, true);
             chatBotMessages = createChatBotMessages(
                     "Okay, now I need to know the steps that you performed and caused the problem",
-                    "Can you please tell me the <b>first step</b> that you performed?");
+                    "Please tell me the <b>first step</b> that you performed");
         }
 
         return chatBotMessages;

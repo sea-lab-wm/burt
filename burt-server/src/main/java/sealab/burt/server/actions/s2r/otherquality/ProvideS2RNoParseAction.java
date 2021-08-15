@@ -17,7 +17,7 @@ public class ProvideS2RNoParseAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("I am sorry, I am not able " +
                 "to understand this step",
-                " Can you please <b>rephrase and provide the step</b> one more time?");
+                " Please <b>rephrase and provide the step</b> one more time");
     }
 
 }

@@ -30,7 +30,7 @@ class RephraseS2RAction extends ChatBotAction {
         StringBuilder message = new StringBuilder("Oops, ");
         message.append(getFeedbackMessage(feedback));
         return createChatBotMessages(message.toString(),
-                "Can you please <b>rephrase the step</b> more accurately <b>or provide a different one</b>?");
+                "Please <b>rephrase the step</b> more accurately <b>or provide a different one</b>");
 
     }
 

@@ -3,8 +3,8 @@ import React , { useState, useEffect }  from "react";
 
 import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
-import ApiClient from "../../ApiClient";
-import processResponse from "../../ServerResponseProcessor";
+import ApiClient from "../../logic/ApiClient";
+import processResponse from "../../logic/ServerResponseProcessor";
 import config from "../../config";
 
 //let logos = require.context('../../../../data/app_logos', true);

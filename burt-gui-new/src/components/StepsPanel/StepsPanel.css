@@ -31,7 +31,14 @@
     border: 1px solid #d8d8d8;
     background-color: #f5f5f5;
     min-height: 50px;
-    margin-bottom: 20px;
+    border-radius: 5px;
+
+}
+.last-steps{
+    border: 1px solid #d8d8d8;
+    background-color: #f5f5f5;
+    min-height: 50px;
+    margin-top: 20px;
     border-radius: 5px;
 
 }
@@ -74,84 +81,102 @@
     text-transform: uppercase;
 }
 
+.subpanel-header{
+    color:black;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.subpanel-list2{
+    max-height: 400px;
+    overflow-y: scroll;
+    margin-top: 7px;
+}
+
 .list-group-item {
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
     position: relative;
     display: block;
     padding: 8px 8px;
-    padding-bottom: 9px;
-    padding-top: 5px;
-    margin-bottom: 2px;
+    padding-top: 2px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 100%;
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 .small{
-    font-size: 85%;
+font-size: 85%;
 }
 .label-danger {
-    background-color: #d9534f;
+background-color: #d9534f;
 }
 
 .modal {
-    font-size: 12px;
+font-size: 12px;
 }
 .modal > .header {
-    width: 100%;
-    border-bottom: 1px solid gray;
-    font-size: 18px;
-    text-align: center;
-    padding: 5px;
+width: 100%;
+border-bottom: 1px solid gray;
+font-size: 18px;
+text-align: center;
+padding: 5px;
 }
 .modal > .content {
-    width: 100%;
-    padding: 10px 5px;
+width: 100%;
+padding: 10px 5px;
 }
 .modal > .actions {
-    width: 100%;
-    padding: 10px 5px;
-    margin: auto;
-    text-align: center;
+width: 100%;
+padding: 10px 5px;
+margin: auto;
+text-align: center;
 }
 .modal > .close {
-    cursor: pointer;
-    position: absolute;
-    display: block;
-    padding: 2px 5px;
-    line-height: 20px;
-    right: -10px;
-    top: -10px;
-    font-size: 24px;
-    background: #ffffff;
-    border-radius: 18px;
-    border: 1px solid #cfcece;
+cursor: pointer;
+position: absolute;
+display: block;
+padding: 2px 5px;
+line-height: 20px;
+right: -10px;
+top: -10px;
+font-size: 24px;
+background: #ffffff;
+border-radius: 18px;
+border: 1px solid #cfcece;
 }
 .popup-display{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 .popup-title{
-    font-size: 14px;
-    margin-bottom: 6px;
-    margin-top: 0;
-    width: 300px;
-    font-weight: bold;
-    height: 20px;
+font-size: 14px;
+margin-bottom: 6px;
+margin-top: 0;
+width: 300px;
+font-weight: bold;
+height: 20px;
 }
 
 .popup-display > button{
-    margin-top: 6px;
+margin-top: 6px;
 }
 
 .screenshots{
-    max-height: 350px ;
-    display: flex;
-    flex-direction: row;
-    padding-left: 1%;
-    padding-right: 1%;
+max-height: 350px ;
+display: flex;
+flex-direction: row;
+padding-left: 1%;
+padding-right: 1%;
+margin-top: 7px;
+margin-bottom: 2px;
 }
 .screenshot-display{
     display: flex;
@@ -159,13 +184,14 @@
     justify-content: center;
     align-items: center;
     max-width: 35% ;
+    max-height: 312px;
 }
 .screenshot{
-    width: 90%;
-
+max-width: 90%;
+max-height: 90%;
 }
 
 .screen-index{
-    font-size: 8px;
-    padding-top: 3px;
+font-size: 8px;
+padding-top: 3px;
 }

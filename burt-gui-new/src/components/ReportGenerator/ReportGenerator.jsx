@@ -1,11 +1,8 @@
 import React , { useState, useEffect }  from "react";
-import config from "../config";
+import config from "../../config";
 import "./ReportGenerator.css"
-import ApiClient from "../ApiClient";
+import ApiClient from "../../logic/ApiClient";
 const ReportGenerator = (props) => {
-    // const generatedReport = props.generatedReport;
-    // console.log("Generated report: " +generatedReport);
-    // const link = config.serverEndpoint +"/" + generatedReport
 
     const generateBugReport =() => {
         const responsePromise = ApiClient.processReportPreview();
@@ -26,10 +23,7 @@ const ReportGenerator = (props) => {
     }
 
     return (
-       // <a target="_blank" href={link}>
     <button className="bn633-hover bn28" onClick={generateBugReport} >View the bug report</button>
-// </a>
-
 
     )
 

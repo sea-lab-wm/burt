@@ -36,7 +36,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
         Integer currentObScreenPosition = (Integer) state.get(CURRENT_OB_SCREEN_POSITION);
 
         if (msg.getMessages().isEmpty()) {
-            return getDefaultMessage(matchedStates, state, currentObScreenPosition);
+            return getDefaultMessage();
         }
 
         //------------------------------
@@ -48,7 +48,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
             List<String> selectedValues = message.getSelectedValues();
             if (selectedValues == null || selectedValues.isEmpty())
-                return getDefaultMessage(matchedStates, state, currentObScreenPosition);
+                return getDefaultMessage();
 
             String optionId = selectedValues.get(0);
 
@@ -56,7 +56,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
             try {
                 id = Integer.parseInt(optionId);
             } catch (NumberFormatException e) {
-                return getDefaultMessage(matchedStates, state, currentObScreenPosition);
+                return getDefaultMessage();
             }
 
             GraphState selectedState = matchedStates.get(id);
@@ -80,7 +80,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                     .append(". ")
                     .append(selectedScreenDescription)
                     .append("\"");*/
-            response.append("Got it, can you please tell me how the app is <b>supposed to work</b>?");
+            response.append("Got it, please tell me how the app is <b>supposed to work</b>");
 
             state.remove(StateVariable.CURRENT_OB_SCREEN_POSITION);
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
@@ -114,7 +114,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                     state.getStateUpdater().updateOBState(state, null);
 
                     return createChatBotMessages("All right, let's continue",
-                            "Can you please tell me how the app is <b>supposed to work</b>?"
+                            "Please tell me how the app is <b>supposed to work</b>"
                     );
                 }
 
@@ -148,7 +148,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
                 return createChatBotMessages("All right. Then, your problem description does not seem " +
                                 "to match any app screen",
-                        "Can you tell me the <b>incorrect behavior</b> one more time?"
+                        "Please tell me the <b>incorrect behavior</b> one more time"
                 );
             } else {
 
@@ -167,14 +167,13 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
             }
         } else {
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
-            return getDefaultMessage(matchedStates, state, currentObScreenPosition);
+            return getDefaultMessage();
         }
 
     }
 
 
-    private List<ChatBotMessage> getDefaultMessage(List<GraphState> matchedStates,
-                                                   ConversationState state, int position) {
+    private List<ChatBotMessage> getDefaultMessage() {
         this.nextExpectedIntents = Collections.singletonList(Intent.OB_SCREEN_SELECTED);
 
         return createChatBotMessages(

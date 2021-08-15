@@ -20,10 +20,7 @@ import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.ob.OBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.participant.ParticipantIdStateChecker;
-import sealab.burt.server.statecheckers.s2r.DeleteLastStepStateChecker;
-import sealab.burt.server.statecheckers.s2r.S2RDescriptionStateChecker;
-import sealab.burt.server.statecheckers.s2r.S2RInputStateChecker;
-import sealab.burt.server.statecheckers.s2r.S2RPredictionStateChecker;
+import sealab.burt.server.statecheckers.s2r.*;
 import sealab.burt.server.statecheckers.yesno.AffirmativeAnswerStateChecker;
 import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
@@ -66,6 +63,8 @@ class ConversationController {
 
 //        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
         put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
+        put(NEW_PREDICTION_OR_TYPE_S2R, new NewPredictionOrTypeS2RStateChecker());
+
 //        put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
         put(S2R_INPUT, new S2RInputStateChecker());
 
@@ -318,8 +317,9 @@ class ConversationController {
                 new ChatBotMessage(messageObj, stepOptions)), ResponseCode.SUCCESS);
 
     }
+
     @PostMapping("/storeTip")
-    public void storeTip(@RequestBody UserResponse req){
+    public void storeTip(@RequestBody UserResponse req) {
         log.debug("Storing the tips in the server...");
 
         String sessionId = req.getSessionId();
@@ -333,18 +333,19 @@ class ConversationController {
             log.debug("No conversation state associated to: " + sessionId);
             return;
         }
-        if(!state.containsKey(StateVariable.TIPS)){
+        if (!state.containsKey(StateVariable.TIPS)) {
             List<String> tips = new ArrayList<>();
             tips.add(req.getTip());
             state.put(StateVariable.TIPS, tips);
-        }else{
+        } else {
             List<String> tips = (List<String>) state.get(StateVariable.TIPS);
             tips.add(req.getTip());
         }
 
     }
+
     @PostMapping("/getTips")
-    public ConversationResponse getTips(@RequestBody UserResponse req){
+    public ConversationResponse getTips(@RequestBody UserResponse req) {
         log.debug("Getting the tips from the server...");
 
         String sessionId = req.getSessionId();

@@ -79,7 +79,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         if (obReportElements == null) {
             if (noStepsReportedYet)
                 return getFirstStepMessages(state);
-            return getNextStepMessage();
+            return getNextStepMessage(state);
         }
 
         BugReportElement obReportElement = obReportElements.get(0);
@@ -89,7 +89,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         if (obReportElement == null || obReportElement.getOriginalElement() == null) {
             if (noStepsReportedYet)
                 return getFirstStepMessages(state);
-            return getNextStepMessage();
+            return getNextStepMessage(state);
         }
 
         obState = (GraphState) obReportElement.getOriginalElement();
@@ -132,7 +132,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             if (lastStep != null) { //the last step can be null because of the max # of attempts
                 // functionality
                 if (DeviceUtils.isCloseApp(lastStep.getAction()))
-                    return getNextStepMessage();
+                    return getNextStepMessage(state);
 
                 stateLoops = predictor.getStateLoops(currentState, lastStep, nonSelectedSteps);
 
@@ -152,7 +152,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             if (predictedPaths.isEmpty()) {
                 if (noStepsReportedYet)
                     return getFirstStepMessages(state);
-                return getNextStepMessage();
+                return getNextStepMessage(state);
             }
 
             //----------------------------------------
@@ -178,7 +178,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         if (stepOptions.isEmpty()) {
             if (noStepsReportedYet)
                 return getFirstStepMessages(state);
-            return getNextStepMessage();
+            return getNextStepMessage(state);
         }
 
         //----------------------------------------
@@ -187,7 +187,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
 
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
-        MessageObj messageObj = new MessageObj("Can you <b>select the steps</b> that you actually performed?",
+        MessageObj messageObj = new MessageObj("Please <b>select the steps</b> that you actually performed",
                 WidgetName.S2RScreenSelector, true);
         List<ChatBotMessage> chatBotMessages;
 
@@ -197,33 +197,41 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
             chatBotMessages = createChatBotMessages(
                     "Okay, now I need the steps that you performed and caused the problem",
                     "<b>The next steps</b> that you performed <b>after you opened the app</b> might be" +
-                            " the following",
+                            " the following (see the list below)",
                     new ChatBotMessage(messageObj, stepOptions));
         } else {
             String deleteStepMsg = (String) state.get(DELETE_STEP_MSG);
-            chatBotMessages = createChatBotMessages(deleteStepMsg,
-                    "Okay, it seems <b>the next steps</b> that you performed might be the following",
-                    new ChatBotMessage(messageObj, stepOptions));
+            if(deleteStepMsg!=null) {
+                chatBotMessages = createChatBotMessages(deleteStepMsg,
+                        "It seems <b>the next steps</b> that you performed might be the following (see the list below)",
+                        new ChatBotMessage(messageObj, stepOptions));
+            }else{
+                chatBotMessages = createChatBotMessages(deleteStepMsg,
+                        "Okay, it seems <b>the next steps</b> that you performed might be the following (see the list below)",
+                        new ChatBotMessage(messageObj, stepOptions));
+            }
             state.remove(DELETE_STEP_MSG);
         }
         return chatBotMessages;
     }
 
     private List<ChatBotMessage> getFirstStepMessages(ConversationState state) {
+        state.remove(PREDICTING_S2R);
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
         if (state.containsKey(StateVariable.ASKED_TO_WRITE_S2R)) {
             return createChatBotMessages(
-                    "Okay, can you tell me the <b>first step</b> that you performed after you opened the app?");
+                    "Okay, please tell me the <b>first step</b> that you performed after you opened the app");
         } else {
             state.put(StateVariable.ASKED_TO_WRITE_S2R, true);
             return createChatBotMessages("Okay, now I need the steps that you performed and caused the problem",
-                    "Can you tell me the <b>first step</b> that you performed after you opened the app?");
+                    "Please tell me the <b>first step</b> that you performed after you opened the app");
         }
     }
 
     private List<ChatBotMessage> getLastStepMessage(ConversationState state, BugReportElement lastStep) {
         setNextExpectedIntents(Collections.singletonList(Intent.NO_EXPECTED_INTENT));
         state.put(StateVariable.CONFIRM_LAST_STEP, true);
+        state.remove(PREDICTING_S2R);
 
         ChatBotMessage confMsg = new ChatBotMessage(new MessageObj(String.format(
                 "Okay, is this <b>the last step</b> that you performed: \"%s\"?",
@@ -232,9 +240,10 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         return createChatBotMessages(confMsg);
     }
 
-    private List<ChatBotMessage> getNextStepMessage() {
+    private List<ChatBotMessage> getNextStepMessage(ConversationState state) {
+        state.remove(PREDICTING_S2R);
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_DESCRIPTION));
-        return createChatBotMessages("Okay, can you please provide the <b>next step</b> that you performed?");
+        return createChatBotMessages("Okay, please provide the <b>next step</b> that you performed");
     }
 
 }

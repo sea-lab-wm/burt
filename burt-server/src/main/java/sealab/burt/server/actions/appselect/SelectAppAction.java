@@ -110,7 +110,7 @@ class SelectAppAction extends ChatBotAction {
         state.put(APP_ASKED, true);
         String participant = state.get(PARTICIPANT_ID).toString();
         MessageObj messageObj = new MessageObj(
-                "Hi " +participant + ", please <b>select the app</b> having the problem",
+                "Hi " +participant + ", please <b>select the app</b> that is having the problem",
                 WidgetName.AppSelector, false);
         return createChatBotMessages(
                 new ChatBotMessage(messageObj, ALL_APPS)

@@ -1,6 +1,6 @@
 import React from "react";
 import SessionManager from "./SessionManager";
-import {END_CONVERSATION_CODE, ERROR_CODE} from "./App";
+import {END_CONVERSATION_CODE, ERROR_CODE} from "../App";
 import updateStepHistory from "./UpdateStepsHistory";
 import ApiClient from "./ApiClient";
 

@@ -46,7 +46,7 @@ class DeleteLastStepStateChecker extends sealab.burt.server.statecheckers.StateC
         allSteps.remove(lastElement);
         state.put(REPORT_S2R, allSteps);
 
-        state.put(DELETE_STEP_MSG, "The step was deleted from the list of steps");
+        state.put(DELETE_STEP_MSG, "Got it, the step was deleted from the reported steps");
 
         if (state.containsKey(PREDICTING_S2R)) {
 

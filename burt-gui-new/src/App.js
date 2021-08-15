@@ -2,10 +2,10 @@ import React from "react";
 import './App.css';
 import Chatbot from "./components/Chatbot/Chatbot";
 import config from './config';
-import actionProvider from "./ActionProvider.js";
-import messageParser from "./MessageParser.js";
-import ApiClient from "./ApiClient";
-import SessionManager from "./SessionManager";
+import actionProvider from "./logic/ActionProvider.js";
+import messageParser from "./logic/MessageParser.js";
+import ApiClient from "./logic/ApiClient";
+import SessionManager from "./logic/SessionManager";
 
 function App() {
 
@@ -82,8 +82,6 @@ function App() {
                 messageParser={messageParser}
                 sessionId={sessionId}
                 validator={emptyStringValidator}
-                SessionManager={SessionManager}
-                ApiClient={ApiClient}
             />
         );
 

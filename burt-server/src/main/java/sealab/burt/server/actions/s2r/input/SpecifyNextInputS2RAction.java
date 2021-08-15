@@ -15,7 +15,7 @@ public class SpecifyNextInputS2RAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
         return createChatBotMessages("Oops, I couldn't get the input value",
-                "Can you please <b>provide the input</b> once more?"
+                "Please <b>provide the input</b> once more"
         );
     }
 }

@@ -35,7 +35,7 @@ class S2RDescriptionStateChecker extends StateChecker {
     }
 
     @Override
-    public ActionName nextAction(ConversationState state) {
+    public ActionName nextAction(ConversationState state) throws Exception{
 
         try {
             UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);

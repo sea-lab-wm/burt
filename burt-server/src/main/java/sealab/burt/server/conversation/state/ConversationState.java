@@ -32,6 +32,8 @@ import sealab.burt.server.actions.s2r.missing.SelectMissingS2RAction;
 import sealab.burt.server.actions.s2r.otherquality.ProvideS2RNoMatchAction;
 import sealab.burt.server.actions.s2r.otherquality.ProvideS2RNoParseAction;
 import sealab.burt.server.actions.s2r.otherquality.RephraseS2RAction;
+import sealab.burt.server.actions.s2r.prediction.AskForNewPredictionAction;
+import sealab.burt.server.actions.s2r.prediction.IncorrectPredictedS2RSelectedAction;
 import sealab.burt.server.actions.s2r.prediction.ProvideFirstPredictedS2RAction;
 import sealab.burt.server.actions.s2r.prediction.ProvideNextPredictedS2RAction;
 import sealab.burt.server.conversation.entity.ConversationResponse;
@@ -95,6 +97,8 @@ class ConversationState {
             //prediction
             put(PREDICT_FIRST_S2R_PATH, new ProvideFirstPredictedS2RAction(S2R_PREDICTED_SELECTED));
             put(PREDICT_NEXT_S2R_PATH, new ProvideNextPredictedS2RAction(S2R_PREDICTED_SELECTED));
+            put(ASK_FOR_NEW_PREDICTION, new AskForNewPredictionAction());
+            put(INCORRECT_PREDICTED_S2R, new IncorrectPredictedS2RSelectedAction());
 //            put(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS, new ConfirmPredictedS2RAction(S2R_DESCRIPTION));
 
             //quality checking

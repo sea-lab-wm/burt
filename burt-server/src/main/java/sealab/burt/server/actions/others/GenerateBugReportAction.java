@@ -45,7 +45,7 @@ class GenerateBugReportAction extends ChatBotAction {
         MessageObj messageObj = new MessageObj(response, WidgetName.ReportGenerator);
         ChatBotMessage chatBotMessage = new ChatBotMessage(messageObj, reportFile.getName());
 
-        return createChatBotMessages("Okay, great! This is all the information we need for now",
+        return createChatBotMessages("Okay, great!",
                 "At this point, please <b>stop the stopwatch</b> and provide the <b>elapsed time</b> in the survey",
                 "Likewise, the <b>bug report ID</b> that you need to provide in the survey is:",
                 String.format("<b>%s</b>", reportName),

@@ -1,4 +1,4 @@
-import config from "./config";
+import config from "../config";
 import SessionManager from "./SessionManager";
 
 const axios = require('axios')

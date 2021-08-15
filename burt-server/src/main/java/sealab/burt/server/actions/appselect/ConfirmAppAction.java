@@ -83,7 +83,7 @@ public class ConfirmAppAction extends ChatBotAction {
         //----------------------------
 
         return createChatBotMessages(MessageFormat.format(
-                        "Okay, can you please tell me the <b>incorrect behavior</b> that you observed on {0}?",
+                        "Okay, please tell me the <b>incorrect behavior</b> that you observed on {0}",
                         appName));
 //        return createChatBotMessages(MessageFormat.format("You selected \"{0}\", is that right?", appNameVersion));
 

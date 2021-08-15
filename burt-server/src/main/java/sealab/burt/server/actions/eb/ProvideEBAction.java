@@ -16,7 +16,7 @@ public class ProvideEBAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
         startEBChecker(state);
-        return createChatBotMessages("Okay, can you please tell me how the app is <b>supposed to work</b>?");
+        return createChatBotMessages("Okay, now please tell me how the app is <b>supposed to work</b>");
     }
 
 }

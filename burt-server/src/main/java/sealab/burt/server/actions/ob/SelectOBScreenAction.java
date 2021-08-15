@@ -61,7 +61,7 @@ class SelectOBScreenAction extends ChatBotAction {
                 WidgetName.OBScreenSelector, false);
 
         return createChatBotMessages(
-                "Got it. From the list below, please select the screen that is <b>having or triggering</b> " +
+                "Got it. From the list below, select the screen that is <b>having or triggering</b> " +
                         "the problem",
                 new ChatBotMessage(messageObj, options));
     }

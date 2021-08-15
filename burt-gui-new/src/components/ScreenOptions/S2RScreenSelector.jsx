@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import ImagePicker from './../ImagePicker/ImagePicker'
 import "./AppSelector.css";
-import ApiClient from "../../ApiClient";
-import processResponse from "../../ServerResponseProcessor";
+import ApiClient from "../../logic/ApiClient";
+import processResponse from "../../logic/ServerResponseProcessor";
 import config from "../../config";
 
 const S2RScreenSelector = (props) => {

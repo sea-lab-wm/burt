@@ -14,7 +14,6 @@ public class DoNothingAction extends ChatBotAction {
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
         List<Intent> nextIntents  = (List<Intent>) state.get(NEXT_INTENTS);
         setNextExpectedIntents(nextIntents);
-        String deleteStepMsg = (String) state.get(DELETE_STEP_MSG);
-        return createChatBotMessages(deleteStepMsg);
+        return createChatBotMessages();
     }
 }

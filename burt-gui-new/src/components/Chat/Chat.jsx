@@ -24,6 +24,7 @@ const Chat = ({
   headerText,
   placeholderText,
   validator,
+  config
 }) => {
   const { messages } = state;
   const chatContainerRef = useRef(null);
@@ -206,7 +207,10 @@ const Chat = ({
               {/*<button className="bn632-hover bn22 bn-margin-left" id="restartConversation">Restart the conversation</button>*/}
               {/*<button className="bn632-hover bn22" id="reportPreview">View the bug report</button>*/}
               {/*<div onClick={openHelp()}>*/}
-              <HelpIcon className="react-chatbot-kit-chat-bot-avatar-help-icon-header"  id="HelpIcon"/>
+              <a className="react-chatbot-kit-chat-bot-avatar-help-icon-header" title={"Open the" +
+              " tutorial document"} onClick={() => openHelp(config)} >
+                <HelpIcon/>
+              </a>
             {/*</div>*/}
             </div>
           }

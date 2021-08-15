@@ -16,6 +16,6 @@ public class ProvideEBNoParseAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
         return createChatBotMessages("I am sorry, I couldn't recognize the language of your description",
-                "Can you please tell me how the app is <b>supposed to work</b> one more time?");
+                "Please tell me how the app is <b>supposed to work</b> one more time");
     }
 }

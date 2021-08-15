@@ -1,6 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './TipsOptions.css';
+import SessionManager from "../../logic/SessionManager";
 const axios = require('axios')
 const CODE = {
     ERROR_CODE : -1,
@@ -32,7 +33,7 @@ function sendRequestSync(url, data) {
     return null;
 }
 
-function restartNewConversation(url, sessionId, actionProvider, SessionManager){
+function restartNewConversation(url, sessionId, actionProvider){
     const data = {
         sessionId: sessionId,
     }
@@ -85,14 +86,24 @@ function previewBugReport(config, url, sessionId) {
 
 }
 
+function getScreenshotsTip() {
+    return <p className="tip_style">
+        The screenshots displayed by BURT
+        are <span>for reference only</span>.
+        <br/>
+        <br/>
+        <span>Input values</span> and <span>UI components</span> may appear differently
+        on the actual app screens
+    </p>;
+}
+
 function OBTip(){
     return <div className="subpanel-list">
         <p className="tip_style">
-            For describing the <span>incorrect app behavior</span>, use <span>vocabulary that you observed</span> in the app
+            To describe the <span>incorrect app behavior</span>, use <span>vocabulary that you observed</span> in the
+            app
         </p>
-        <p className="tip_style">
-            Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
-        </p>
+        {getScreenshotsTip()}
     </div>
 
 }
@@ -100,42 +111,40 @@ function OBTip(){
 function EBTip(){
     return <div className="subpanel-list">
         <p className="tip_style">
-            For describing the <span> expected app behavior</span>, use <span>vocabulary that you observed</span> in the app
+            To describe the <span>expected app behavior</span>, use <span>vocabulary that you observed</span> in the
+            app
         </p>
-        <p className="tip_style">
-            Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
-        </p>
+        {getScreenshotsTip()}
     </div>
 }
 
 function S2RTip(){
     return <div className="subpanel-list">
         <p className="tip_style">
-            To <span>express a step</span>, you can use the format "I [action] [UI component or complement]". <span>Examples</span>:
+            To <span>express a step</span>, you can use the format "I [action] [UI component or
+            complement]". <br/>  <br/> <span>Examples</span>:
             I clicked the save button, I entered "test" in the comments, etc.
         </p>
+        {getScreenshotsTip()}
         <p className="tip_style">
-            Some of the screenshots displayed by BURT are <span>for reference only</span>. <span>Input values</span> and <span>UI components</span> may be different from what you actually observed in the app
-        </p>
-        <p className="tip_style">
-            You can <span>click the button</span> "Finish reporting the bug if you think you are done reporting the bug"
+            You can <span>click the button</span> "Finish reporting the bug" at any moment
         </p>
     </div>
 }
 function otherTips(){
     return <div className="subpanel-list">
         <p className="tip_style">
-            If you cannot see the screenshots clearly, please zoom in the webpage. For enlarging the webpage, Mac users can use the shortcut "<span>Command</span>" + "<span>+</span>",
-            Windows users can use "<span>Ctrl</span>" + "<span>+</span>".
+            Feel free to <span>zoom in</span> this webpage on your browser to better see the chatbot and the app screenshots.
+
+          {/*  If you cannot see the screenshots clearly, please zoom in the webpage. For enlarging the webpage, Mac users can use the shortcut "<span>Command</span>" + "<span>+</span>",
+            Windows users can use "<span>Ctrl</span>" + "<span>+</span>".*/}
         </p>
     </div>
 }
 
 const TipsOptionsPanel = ({
                               config,
-                              SessionManager,
                               actionProvider,
-                              processResponse,
                               sessionId,
                               messageParser, tipState}) => {
 
@@ -143,9 +152,9 @@ const TipsOptionsPanel = ({
 
         let response = confirm("Are you sure you want to restart the conversation?")
 
-        if(response) {
+        if (response) {
             let url = config.serverEndpoint + config.endService;
-            restartNewConversation(url, sessionId, actionProvider, SessionManager);
+            restartNewConversation(url, sessionId, actionProvider);
         }
     }
 
@@ -154,29 +163,34 @@ const TipsOptionsPanel = ({
         actionProvider.updateChatbotState(msg)
         messageParser.parse(msg);
     }
+
     function previewReport() {
         let url = config.serverEndpoint + config.getBugReportPreview;
         previewBugReport(config, url, sessionId);
     }
-    function renderTip(){
-        if (tipState.tipStateArray.find(a =>a.includes("AFFIRMATIVE"))!== undefined ||
-            tipState.tipStateArray.find(a =>a.includes("NEGATIVE")) !== undefined ||
-            tipState.tipStateArray.find(a =>a.includes("NO_EXPECTED_INTENT")) !== undefined){
-            if (tipState.tipStateArray.find(a =>a.includes("S2R")) !== undefined ){
+
+    function containsAnyS2RIntent() {
+        return tipState.tipStateArray.find(a => a.includes("S2R")) !== undefined;
+    }
+
+    function renderTips() {
+        if (tipState.tipStateArray.find(a => a.includes("AFFIRMATIVE")) !== undefined ||
+            tipState.tipStateArray.find(a => a.includes("NEGATIVE")) !== undefined ||
+            tipState.tipStateArray.find(a => a.includes("NO_EXPECTED_INTENT")) !== undefined) {
+            if (tipState.tipStateArray.find(a => a.includes("S2R")) !== undefined) {
                 return S2RTip();
-            }else if (tipState.tipStateArray.find(a =>a.includes("EB")) !== undefined){
+            } else if (tipState.tipStateArray.find(a => a.includes("EB")) !== undefined) {
                 return EBTip();
-            }
-            else if (tipState.tipStateArray.find(a =>a.includes("OB")) !== undefined){
+            } else if (tipState.tipStateArray.find(a => a.includes("OB")) !== undefined) {
                 return OBTip();
             }
-        }else if (tipState.tipStateArray.find(a =>a.includes("S2R")) !== undefined){
+        } else if (containsAnyS2RIntent()) {
             return S2RTip();
-        }else if (tipState.tipStateArray.find(a =>a.includes("EB")) !== undefined){
+        } else if (tipState.tipStateArray.find(a => a.includes("EB")) !== undefined) {
             return EBTip();
-        }else if (tipState.tipStateArray.find(a =>a.includes("OB")) !== undefined){
+        } else if (tipState.tipStateArray.find(a => a.includes("OB")) !== undefined) {
             return OBTip();
-        }else{
+        } else {
             return otherTips();
         }
     }
@@ -191,7 +205,7 @@ const TipsOptionsPanel = ({
                         &nbsp;
                         Quick actions</div>
                     <div className="button-lists">
-                        <button type="button" className="btn btn-success btn-sm action-btn" onClick={finishS2R} >Finish reporting the bug</button>
+                        <button type="button" className="btn btn-success btn-sm action-btn" disabled={!containsAnyS2RIntent()} onClick={finishS2R} >Finish reporting the bug</button>
                         <button type="button" className="btn btn-primary btn-sm action-btn" onClick={restartConversation} >Restart the conversation</button>
                         <button type="button" className="btn btn-warning btn-sm action-btn" onClick={previewReport} >View the bug report</button>
                     </div>
@@ -202,7 +216,7 @@ const TipsOptionsPanel = ({
                         &nbsp;
                         Useful Tips
                     </div>
-                    {renderTip()}
+                    {renderTips()}
                 </div>
 
             </div>

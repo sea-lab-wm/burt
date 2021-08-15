@@ -103,7 +103,8 @@ export const updateTips = (endPoint, sessionId, actionProvider) =>{
 
 }
 
-
-export function openHelp(){
-  // window.alert("help")
+export function openHelp(config){
+  let url = config.serverEndpoint + config.tutorialDoc
+  console.log("Opening tutorial doc: " + url)
+  window.open(url)
 }

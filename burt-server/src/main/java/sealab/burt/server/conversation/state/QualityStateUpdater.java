@@ -4,6 +4,7 @@ import edu.semeru.android.core.entity.model.App;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.UtilReporter;
+import sealab.burt.qualitychecker.graph.AppGraph;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
@@ -106,8 +107,17 @@ class QualityStateUpdater {
             //if we reach the end state, we set the current state to the start state.
             //essentially, we are jumping to the start state
             if(targetState.equals(GraphState.END_STATE)){
-                log.debug("We reached the END STATE, setting the current state to be the START STATE");
-                targetState = GraphState.START_STATE;
+                log.debug("We reached the END STATE, setting the current state from the beginning");
+                AppGraph<GraphState, GraphTransition> graph = s2rChecker.getGraph();
+                GraphTransition openAppEdge = graph.outgoingEdgesOf(GraphState.START_STATE)
+                        .stream()
+                        .findFirst()
+                        .orElse(null);
+
+                if(openAppEdge ==null)
+                    throw new RuntimeException("The open app step should exist");
+
+                targetState = openAppEdge.getTargetState();
             }
 
             s2rChecker.updateState(targetState);

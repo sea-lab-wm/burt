@@ -18,11 +18,8 @@ const OneScreenYesNoButtons = (props) => {
     return (
         <div className="center-screen">
             <div className="button-layout">
-                <button type="button" className="button" onClick={() => handleButton("yes")}
-                        disabled={disabled}>yes
-                </button>
-                <button type="button" className="button left-margin" onClick={() => handleButton("no")}
-                        disabled={disabled}>no
+                <button type="button" className="button" onClick={() => handleButton("next_predictions")}
+                        disabled={disabled}>Suggest next steps
                 </button>
             </div>
 
