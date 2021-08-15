@@ -19,7 +19,7 @@ class MessageObj {
     private String widget;
     private Boolean loading;
     private boolean disabled;
-    private int index;
+    private boolean multiple;
 
     //---------------
 
@@ -32,14 +32,18 @@ class MessageObj {
     public MessageObj(String message) {
         this.message = message;
     }
-    public MessageObj(Integer index) {
-        this.index = index;
-    }
 
     public MessageObj(String message, WidgetName widget) {
         this.message = message;
         this.widget = widget.toString();
     }
+
+    public MessageObj(String message, WidgetName widget, boolean multiple) {
+        this.message = message;
+        this.widget = widget.toString();
+        this.multiple = multiple;
+    }
+
 
     public MessageObj(String message, String type, double id) {
         this.message = message;

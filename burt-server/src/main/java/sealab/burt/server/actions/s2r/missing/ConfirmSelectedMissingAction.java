@@ -115,11 +115,11 @@ public class ConfirmSelectedMissingAction extends ChatBotAction {
 
         MessageObj messageObj = new MessageObj(
                 "From the following options, please select the <b>steps that you performed before this step</b>",
-                WidgetName.S2RScreenSelector);
+                WidgetName.S2RScreenSelector, true);
 
         return createChatBotMessages(
                 "Sorry, the options you selected are incorrect",
-                new ChatBotMessage(messageObj, stepOptions, true));
+                new ChatBotMessage(messageObj, stepOptions));
     }
 
 

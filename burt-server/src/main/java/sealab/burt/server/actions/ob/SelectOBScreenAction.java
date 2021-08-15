@@ -57,12 +57,13 @@ class SelectOBScreenAction extends ChatBotAction {
             throw new RuntimeException("There are no options to show");
 
         MessageObj messageObj = new MessageObj(
-                " Please click the \"<b>done</b>\" button after you have selected it", WidgetName.OBScreenSelector);
+                " Please click the \"<b>done</b>\" button after you have selected it",
+                WidgetName.OBScreenSelector, false);
 
         return createChatBotMessages(
                 "Got it. From the list below, please select the screen that is <b>having or triggering</b> " +
                         "the problem",
-                new ChatBotMessage(messageObj, options, false));
+                new ChatBotMessage(messageObj, options));
     }
 
     public static List<KeyValues> getObScreenOptions(List<GraphState> matchedStates,

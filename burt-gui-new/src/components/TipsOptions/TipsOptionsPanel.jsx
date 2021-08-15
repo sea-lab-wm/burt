@@ -140,8 +140,13 @@ const TipsOptionsPanel = ({
                               messageParser, tipState}) => {
 
     function restartConversation() {
-        let url = config.serverEndpoint + config.endService;
-        restartNewConversation(url, sessionId, actionProvider, SessionManager);
+
+        let response = confirm("Are you sure you want to restart the conversation?")
+
+        if(response) {
+            let url = config.serverEndpoint + config.endService;
+            restartNewConversation(url, sessionId, actionProvider, SessionManager);
+        }
     }
 
     function finishS2R() {

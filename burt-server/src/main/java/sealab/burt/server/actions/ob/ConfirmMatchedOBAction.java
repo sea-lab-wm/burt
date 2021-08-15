@@ -36,8 +36,8 @@ public class ConfirmMatchedOBAction extends ChatBotAction {
         ChatBotMessage optionMessage = new ChatBotMessage(
                 new MessageObj("Okay, just to double check, is this the screen that is <b>having or triggering</b> " +
                         "the problem?",
-                        WidgetName.OneScreenYesNoButtons),
-                optionList, false);
+                        WidgetName.OneScreenYesNoButtons, false),
+                optionList);
 
         state.put(StateVariable.OB_MATCHED_CONFIRMATION, true);
 

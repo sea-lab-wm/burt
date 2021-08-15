@@ -188,7 +188,7 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         setNextExpectedIntents(Collections.singletonList(Intent.S2R_PREDICTED_SELECTED));
 
         MessageObj messageObj = new MessageObj("Can you <b>select the steps</b> that you actually performed?",
-                WidgetName.S2RScreenSelector);
+                WidgetName.S2RScreenSelector, true);
         List<ChatBotMessage> chatBotMessages;
 
 
@@ -198,12 +198,12 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
                     "Okay, now I need the steps that you performed and caused the problem",
                     "<b>The next steps</b> that you performed <b>after you opened the app</b> might be" +
                             " the following",
-                    new ChatBotMessage(messageObj, stepOptions, true));
+                    new ChatBotMessage(messageObj, stepOptions));
         } else {
             String deleteStepMsg = (String) state.get(DELETE_STEP_MSG);
             chatBotMessages = createChatBotMessages(deleteStepMsg,
                     "Okay, it seems <b>the next steps</b> that you performed might be the following",
-                    new ChatBotMessage(messageObj, stepOptions, true));
+                    new ChatBotMessage(messageObj, stepOptions));
             state.remove(DELETE_STEP_MSG);
         }
         return chatBotMessages;

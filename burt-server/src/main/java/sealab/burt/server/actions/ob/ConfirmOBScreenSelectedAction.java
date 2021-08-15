@@ -160,10 +160,10 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
                 MessageObj messageObj = new MessageObj(
                         "Okay then, which of the following screens is <b>having or triggering the problem</b>?",
-                        WidgetName.OBScreenSelector);
+                        WidgetName.OBScreenSelector, false);
 
                 return createChatBotMessages(
-                        new ChatBotMessage(messageObj, options, false));
+                        new ChatBotMessage(messageObj, options));
             }
         } else {
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);

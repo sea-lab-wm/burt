@@ -26,7 +26,6 @@ const config = {
     startService: "/start",
     endService: "/end",
     processMessageService: "/processMessage",
-    processDeleteSomeStep:"/deleteSomeStep",
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
         createChatBotMessage("I'll assist you in reporting any problem with your app"),

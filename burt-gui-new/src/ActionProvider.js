@@ -34,7 +34,7 @@ class ActionProvider{
         this.setState(fn)
     }
 
-    updateChatbotState(message) {
+    updateChatbotState(message, saveMsg) {
 
     // NOTE: This function is set in the constructor, and is passed in
     // from the top level Chatbot component. The setState function here
@@ -43,16 +43,14 @@ class ActionProvider{
 
         let fn = prevState => {
             let newMessages = [...prevState.messages, message];
-            ApiClient.saveMessages(newMessages)
+            if(saveMsg || saveMsg ===undefined)
+                ApiClient.saveMessages(newMessages)
             return {
             ...prevState, messages: newMessages
             }
         };
         this.setState(fn)
 
-
-
-        //this.saveSingleMessage(message)
     }
 
     updateAllStepHistory(steps) {

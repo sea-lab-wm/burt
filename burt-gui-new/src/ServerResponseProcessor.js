@@ -48,7 +48,7 @@ const processResponse = (responsePromise, actionProvider, extraFunction) => {
                 if (chatBotMsg.messageObj.widget) {
 
                     const valuesData = chatBotMsg.values
-                    const multiple = chatBotMsg.multiple;
+                    const multiple = chatBotMsg.messageObj.multiple;
 
                     console.log("Processing a widget msg: ")
                     console.log(chatBotMsg)
@@ -90,7 +90,7 @@ const processResponse = (responsePromise, actionProvider, extraFunction) => {
     //we show the dots showing the chatbot is processing
     //15 mins limit before the message is deleted
     let tempBotMsg = actionProvider.createChatBotMsg("", {delay: 15 * 60000});
-    actionProvider.updateChatbotState(tempBotMsg)
+    actionProvider.updateChatbotState(tempBotMsg, false)
 
     /*setTimeout(() => {
         actionProvider.removeMsg(tempBotMsg.id)

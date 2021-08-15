@@ -220,38 +220,4 @@ const StepsPanel = ({
     )
 }
 
-/*function deleteSomeStep(index, endPoint, sessionId, actionProvider){
-    // ask the server to remove the step in the REPORT_S2R in the server
-    // return the updated REPORT_S2R
-    if (index > 0) {
-        const data = {
-            sessionId: sessionId,
-            messages: [index]
-        }
-        console.log(index)
-        const responsePromise = axios.post(endPoint, data);
-        responsePromise.then(response => {
-
-            let conversationResponse = response.data;
-            let chatbotMsgs = conversationResponse.messages;
-            let chatbotMsg = chatbotMsgs[0];
-
-            if (conversationResponse.code === 0) {
-                let stepsHistory = chatbotMsg.values;
-                if (stepsHistory != null)
-                    actionProvider.updateAllStepHistory(stepsHistory);
-            } else if (conversationResponse.code === -1) {
-                window.alert(chatbotMsg.messageObj.message);
-            } else {
-                window.alert("There was an unexpected error");
-            }
-        }).catch(error => {
-            console.error(`There was an unexpected error: ${error}`);
-        })
-    }
-
-}*/
-
-
-
 export default StepsPanel;

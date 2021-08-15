@@ -41,11 +41,11 @@ class ProvideNextPredictedS2RAction extends ChatBotAction {
             log.debug("Suggesting currentPath #" + state.get(PREDICTED_S2R_CURRENT_PATH));
 
             MessageObj messageObj = new MessageObj( "Can you <b>select the steps</b> you actually performed next?",
-                    WidgetName.S2RScreenSelector);
+                    WidgetName.S2RScreenSelector, true);
 
             return createChatBotMessages(
                     "Okay then, the <b>next steps</b> that you performed might be the following",
-                    new ChatBotMessage(messageObj, stepOptions, true));
+                    new ChatBotMessage(messageObj, stepOptions));
         }
 
     }
