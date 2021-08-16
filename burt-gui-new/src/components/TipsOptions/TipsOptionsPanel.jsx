@@ -129,6 +129,9 @@ function S2RTip(){
         <p className="tip_style">
             You can <span>click the button</span> "Finish reporting the bug" at any moment
         </p>
+        <p className="tip_style">
+            You can <span>edit the text of the reported steps</span> by clicking on them and typing the text modifications
+        </p>
     </div>
 }
 function otherTips(){
