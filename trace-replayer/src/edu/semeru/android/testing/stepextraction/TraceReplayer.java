@@ -85,7 +85,7 @@ public class TraceReplayer {
     private DeviceHelper deviceHelper;  // Provides APIs to interface with an Android device 
     private int sequence = 0;
     public boolean takeScreenshots = false;
-    private int executionCtr = 7;
+    private int executionCtr = 8;
     private ReplayerFeatures replayerFeatures;
     private String androidSDKPath;
     
@@ -113,13 +113,13 @@ public class TraceReplayer {
         String scriptsPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/trace-replayer/lib/scripts";
         String device = ""; // If more than one emulator
         
-        String appName = "token";
-        String appPackage = "uk.co.bitethebullet.android.token";
-        String appVersion = "2.10";
-        String mainActivity = "uk.co.bitethebullet.android.token.TokenList";
-        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/P1TracesEvaluation/TOKEN/token.apk";
-        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_fixed/token-2.10/getevent-2.log";
-        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_output/token-2.10";
+        String appName = "droidweight";
+        String appPackage = "de.delusions.measure";
+        String appVersion = "1.5.4";
+        String mainActivity = "de.delusions.measure.ErrorMailerActivity";
+        String apkPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/Test0816/DROID/droidweight.apk";
+        String geteventFile = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/TraceResults/Test0816/DROID/getevent-8.log";
+        String outputFolder = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/BugReporting/BURT-git/burt/data/Collected_traces_output/droidweight-1.5.4";
         
         String avdPort = "5554";
         String adbPort = "5037";
