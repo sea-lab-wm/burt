@@ -35,7 +35,7 @@ class ApiClient {
         return axios.post(config.serverEndpoint + config.processMessageService, data);
     }
 
-    static processStepsHistory(){
+    static processStepsHistory() {
         const sessionId = SessionManager.getSessionId();
 
         const data = {
@@ -55,15 +55,15 @@ class ApiClient {
             .post(config.serverEndpoint + config.getBugReportPreview, data);
 
     }
-    static processStoreTip(tip){
+
+    static processStoreTip(tip) {
         const sessionId = SessionManager.getSessionId();
         axios.post(config.serverEndpoint + config.storeTipService, {
             sessionId: sessionId,
             tip: tip,
         }).then(res => {
             console.log(`Tip were saved successfully`)
-        })
-            .catch(error => {
+        }).catch(error => {
                 console.error(error)
             })
     }
@@ -116,9 +116,8 @@ class ApiClient {
             sessionId: sessionId,
             messages: messages,
         }).then(res => {
-                console.log(`Messages were saved successfully`)
-            })
-            .catch(error => {
+            console.log(`Messages were saved successfully`)
+        }).catch(error => {
                 console.error(error)
             })
     }

@@ -203,6 +203,39 @@ class ConversationController {
                 "The conversation will automatically end in a few seconds.", ResponseCode.END_CONVERSATION);
     }
 
+    @PostMapping("/updateStep")
+    public boolean updateStep(@RequestBody UserResponse req) {
+        String msg = "Updating step in the server...";
+        log.debug(msg);
+
+        String sessionId = req.getSessionId();
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return false;
+        }
+
+        ConversationState state = conversationStates.get(sessionId);
+        if (state == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return false;
+        }
+
+        try {
+            MessageObj firstMessage = req.getFirstMessage();
+            String newStepDescription = firstMessage.getMessage();
+            int stepIndex = Integer.parseInt(firstMessage.getSelectedValues().get(0));
+
+            List<BugReportElement> allSteps = (List<BugReportElement>) state.get(REPORT_S2R);
+            allSteps.get(stepIndex).setStringElement(newStepDescription);
+
+            return true;
+        } catch (Exception e){
+            log.error("Error updating the step: " + req, e);
+            return false;
+        }
+    }
+
+
     @PostMapping("/saveMessages")
     public void saveMessages(@RequestBody UserResponse req) {
         String msg = "Saving the messages in the server...";

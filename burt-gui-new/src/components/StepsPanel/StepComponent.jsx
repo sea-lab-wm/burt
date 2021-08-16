@@ -1,0 +1,249 @@
+import Modal from "react-modal";
+import {ReactComponent as ShowScreenshotStepIcon1} from "../../assets/icons/show_screenshot_step_icon1.svg";
+import {ReactComponent as ShowScreenshotStepIcon2} from "../../assets/icons/show_screenshot_step_icon2.svg";
+import {ConditionallyRender} from "react-util-kit";
+import {ReactComponent as DeleteStepIcon} from "../../assets/icons/delete_step_icon.svg";
+import React, {useRef, useState} from "react";
+import ApiClient from "../../logic/ApiClient";
+import processResponse from "../../logic/ServerResponseProcessor";
+import {updateStepsHistory} from "../Chat/chatUtils";
+import ContentEditable from "react-contenteditable";
+import axios from "axios";
+
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: '5px',
+    },
+}
+Modal.setAppElement('#root');
+
+/*class StepComponent extends React. = ({
+                           step,
+                           index,
+                           actionProvider,
+                           config,
+                           isLastStep,
+                           stepsSize
+                       }) => {*/
+class StepComponent extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        // console.log("Constructor")
+        this.stepImage = this.props.config.serverEndpoint + this.props.step.value2;
+        this.stepNumber = this.props.index + 1
+
+        this.editableComponentRef = React.createRef();
+        this.state = {
+            modalIsOpens: Array(this.props.stepsSize).fill(false),
+            fullStepDescription: this.props.step.value1,
+            currentStepDescription: this.getCroppedDescription(this.props.step.value1)
+        }
+    }
+
+    setIsOpen(i, v) {
+        this.setState(
+            {
+                modalIsOpens: Object.assign([...this.state.modalIsOpens], {[i]: v})
+            }
+        );
+    };
+
+    //---------------------------
+
+    getCroppedDescription(description) {
+        let MAX_LENGTH = 45;
+        if (description.length > MAX_LENGTH) {
+            description = description.substring(0, MAX_LENGTH) + "..."
+        }
+        return description;
+    }
+
+
+    //--------------------------------
+
+    openModal(event) {
+        window.onbeforeunload = null;
+        event.preventDefault();
+        this.setIsOpen(this.props.index, true);
+        // this.state.modalIsOpens = Object.assign([...this.state.modalIsOpens], {[this.props.index]: true})
+    }
+
+    closeModal(event) {
+        event.stopPropagation();
+        this.setIsOpen(this.props.index, false);
+        // this.state.modalIsOpens = Object.assign([...this.state.modalIsOpens], {[this.props.index]: false})
+    }
+
+    //-------------------------------
+
+    deleteLastStep() {
+
+        //disable all prior widget messages/gui components
+        let allMsgs = this.props.messagesState.messages
+        for (let i = 0; i < allMsgs.length; i++) {
+            allMsgs[i].disabled = true
+        }
+
+        let fn = prevState => {
+            return {
+                ...prevState, messages: allMsgs
+            }
+        };
+        this.props.setStateMsgs(fn)
+
+        //--------------------------
+
+        let message = this.props.actionProvider.createChatBotMessage("Delete step x");
+        const responsePromise = ApiClient.processUserMessage(message, [])
+        processResponse(responsePromise, this.props.actionProvider, () => {
+            let endPoint = this.props.config.serverEndpoint + this.props.config.getStepsHistory
+            updateStepsHistory(endPoint, this.props.sessionId, this.props.actionProvider)
+            window.location.reload(false);
+        })
+    }
+
+
+    //-----------------------
+
+
+    handleChange = event => {
+        // console.log("On change...")
+        // console.log(event)
+        this.setState({currentStepDescription: event.target.value})
+        // console.log(this.state.currentStepDescription)
+    };
+
+    onFocusFn = () => {
+        // console.log("On focus...")
+        this.setState({currentStepDescription: this.state.fullStepDescription})
+    }
+
+    onBlurFn = () => {
+        // console.log("On Blur...")
+        this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
+    }
+
+    handleKeyDown = event => {
+        // console.log(event)
+
+        const keyCode = event.which || event.keyCode;
+        if (keyCode === 13) { //when the user hits enter
+            event.preventDefault();
+
+            let noBrDescription = this.state.currentStepDescription.replaceAll("<br>", "")
+                .replaceAll("&nbsp;", " ")
+
+            // console.log("On key up...")
+            // console.log(this.state.currentStepDescription)
+            // console.log(noBrDescription)
+            // console.log(this.state.fullStepDescription)
+            if (noBrDescription !== this.state.fullStepDescription) {
+                // console.log("Changed!")
+                this.updateStep(noBrDescription)
+            }
+
+        } else if (keyCode === 27){ //ESC key
+            // console.log(this.editableComponentRef.current)
+            this.editableComponentRef.current.blur()
+        }
+    };
+
+    updateStep = (newStepDescription) => {
+        const endPoint = this.props.config.serverEndpoint + this.props.config.updateStepService;
+        const sessionId = this.props.sessionId;
+
+        //------------------------
+        const data = {
+            sessionId: sessionId,
+            messages: [{
+                message: newStepDescription,
+                selectedValues: [this.props.index]
+            }]
+        }
+        const responsePromise = axios.post(endPoint, data);
+        responsePromise.then(response => {
+
+            let result = response.data;
+            if (!result) {
+                console.error(`The step was not updated: ` + this.props.index);
+            } else {
+                this.setState({fullStepDescription: newStepDescription})
+                this.editableComponentRef.current.blur()
+            }
+
+        }).catch(error => {
+            console.error(`There was an unexpected error: ${error}`);
+        })
+
+    }
+
+    //------------------------
+
+    render() {
+        return (
+            <div className="list-group-item">
+                <span>{this.stepNumber + ". "}</span>
+                <ContentEditable
+                    innerRef={this.editableComponentRef}
+                    tagName="span"
+                    title={this.state.fullStepDescription}
+                    html={this.state.currentStepDescription} // innerHTML of the editable div
+                    onChange={this.handleChange} // handle innerHTML change
+                    onKeyDown={this.handleKeyDown}
+                    onFocus={this.onFocusFn}
+                    onBlur={this.onBlurFn}
+                />
+                {/*<span title={fullStepDescription}>{croppedStepDescription}</span>*/}
+                <a href={this.stepImage} title={"See a screenshot of this step"}
+                   onClick={event => this.openModal(event)}>
+                    <Modal
+                        isOpen={this.state.modalIsOpens[this.props.index]}
+                        onRequestClose={event => this.closeModal(event)}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                        onHide={event => this.closeModal(event)}
+                        backdrop="static"
+                        keyboard={false}>
+                        <div className="popup-display">
+                            <div className="popup-title"
+                                 title={this.state.fullStepDescription}>{this.state.fullStepDescription}</div>
+                            <img height="533px" width="300px" src={this.stepImage}
+                                 alt={this.state.fullStepDescription}/>
+                            <button onClick={event => this.closeModal(event)}>close</button>
+                        </div>
+                    </Modal>
+
+
+                    <span className="label label-left label-info">
+                    <ShowScreenshotStepIcon1 className="bi bi-file-earmark-image"/>
+                    <ShowScreenshotStepIcon2 className="bi bi-zoom-in"/>
+                 </span>
+                </a>
+
+                <ConditionallyRender
+                    ifTrue={this.props.isLastStep}
+                    show={
+                        <a href="#" className="label label-danger" onClick={() => this.deleteLastStep()}
+                           title="Delete this step">
+                            <DeleteStepIcon className="bi bi-x-circle"/>
+                        </a>
+                    }
+                />
+            </div>
+        );
+    }
+
+
+}
+
+
+export default StepComponent;
