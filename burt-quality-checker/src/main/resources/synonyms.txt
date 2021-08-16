@@ -10,4 +10,4 @@ date,time,datetime,period
 backup,back up
 spreadsheet,csv
 stats,statistics
-remove,delete
+remove,deletewe

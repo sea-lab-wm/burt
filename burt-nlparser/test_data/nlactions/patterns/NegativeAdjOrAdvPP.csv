@@ -1,3 +1,5 @@
+"+";"balance sheet got duplicated";"[{"sub":"balance sheet", "act":"get", "obj":"duplicated"}]"
+"+";"the contents in balance sheet was duplicated";"[{"sub":"contents", "act":"was", "obj":"duplicated"}]"
 "+";"The color is unset";"[{"sub":"color", "act":"is", "obj":"unset"}]"
 "+";"The plus symbol is gone";"[{"sub":"plus symbol", "act":"is", "obj":"gone"}]"
 "+";"Tried hitting recalculate in the statistics page but it still comes up with the incorrect Maximum Cost";"[{"sub":"app", "act":"come up", "prep":"with", "obj2":"incorrect Maximum Cost"}]"

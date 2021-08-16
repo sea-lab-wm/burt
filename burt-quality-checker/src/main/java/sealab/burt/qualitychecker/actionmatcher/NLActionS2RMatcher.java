@@ -39,6 +39,7 @@ public @Slf4j
 class NLActionS2RMatcher {
 
 
+
     public enum ActionGroup {
         OPEN, TOGGLE, LONG_CLICK, CLICK, SWIPE, TYPE, ROTATE, CLOSE, BACK
     }
@@ -71,13 +72,15 @@ class NLActionS2RMatcher {
      */
     private static final ConcurrentHashMap<ComponentType, Set<String>> generalComponentTypeClasses =
             new ConcurrentHashMap<>();
-    private static final ConcurrentHashMap<String, Set<String>> synonyms = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Set<String>> synonyms = new ConcurrentHashMap<>();
     private final String resourcesPath;
     private final boolean useTokenSynonyms;
+    private final String appName;
 
-    public NLActionS2RMatcher(String resourcesPath, boolean useTokenSynonyms) {
+    public NLActionS2RMatcher(String resourcesPath, boolean useTokenSynonyms, String appName) {
         this.useTokenSynonyms = useTokenSynonyms;
         this.resourcesPath = resourcesPath;
+        this.appName = appName;
         loadGeneralActionGroups();
         loadGeneralComponentTypeClasses();
         loadSpecificComponentTypes();
@@ -194,7 +197,13 @@ class NLActionS2RMatcher {
                 List<String> lines = GeneralUtils.getAllLines(path, fileName);
                 for (String line : lines) {
                     String[] words = line.split(",");
-                    synonyms.put(words[0], JavaUtils.getSet(words));
+                    Set<String> wordSet = JavaUtils.getSet(words);
+
+                    //FIXME: have synonyms per app
+                    if("AntennaPod".equals(appName)){
+                        wordSet.remove("navigation drawer");
+                    }
+                    synonyms.put(words[0], wordSet);
 
                 }
             } catch (Exception e) {
@@ -1863,7 +1872,16 @@ class NLActionS2RMatcher {
                     componentFound = findComponent(currentScreen, preprocessedObject2, JavaUtils.getSet(), false,
                             true, noEvent);
                 } catch (ActionMatchingException e1) {
-                    //It's ok to have the exception
+
+                    try {
+                        PreProcessedText preprocessedAll = preprocessText(String.format("%s %s %s",
+                                nlAction.getAction(),
+                                nlAction.getObject(), nlAction.getObject2()));
+                        componentFound = findComponent(currentScreen, preprocessedAll, JavaUtils.getSet(), false,
+                                true, noEvent);
+                    } catch (ActionMatchingException e2) {
+                        //It's ok to have the exception
+                    }
                 }
 
             }

@@ -80,6 +80,7 @@ public class NegativeAnswerStateChecker extends StateChecker {
             if (nextAttempt)
                 nextAction = PROVIDE_S2R_NO_MATCH;
             else {
+/*
 
                 QualityFeedback qFeedback = (QualityFeedback) state.get(S2R_QUALITY_RESULT);
                 S2RQualityAssessment assessment = qFeedback.getQualityAssessments().stream()
@@ -88,10 +89,11 @@ public class NegativeAnswerStateChecker extends StateChecker {
 
                 if (assessment == null)
                     throw new RuntimeException("The high quality assessment is required");
+*/
 
                 UserResponse msg = (UserResponse) state.get(S2R_MATCHED_MSG);
                 String message = msg.getMessages().get(0).getMessage();
-                state.getStateUpdater().addStepAndUpdateGraphState(state, message, assessment);
+                state.getStateUpdater().addStepAndUpdateGraphState(state, message, null);
 
                 nextAction = PREDICT_FIRST_S2R_PATH;
             }

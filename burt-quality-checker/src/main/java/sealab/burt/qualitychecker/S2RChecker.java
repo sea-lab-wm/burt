@@ -39,7 +39,7 @@ class S2RChecker {
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
-        s2rMatcher = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true);
+        s2rMatcher = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true, appName);
         resolver = new StepResolver(s2rMatcher, GRAPH_MAX_DEPTH_CHECK);
 
         readGraph();

@@ -53,7 +53,7 @@ public class SimplePastPP extends NLActionPatternParser {
             objToken = objRelation.second;
         }else{
             objRelation = DependenciesUtils.getFirstChildByRelation(dependencies,
-                    verbToken, "ccomp", "nummod");
+                    verbToken, "ccomp", "nummod", "xcomp");
             if (objRelation != null) {
                 objToken = objRelation.second;
             }

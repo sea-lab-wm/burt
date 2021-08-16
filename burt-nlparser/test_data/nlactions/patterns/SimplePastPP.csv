@@ -1,3 +1,6 @@
+"+";"I clicked next";"[{"sub":"user", "act":"add", "obj":"token"}]"
+"+";"I added token";"[{"sub":"user", "act":"add", "obj":"token"}]"
+"+";"I added a token";"[{"sub":"user", "act":"add", "obj":"token"}]"
 "+";"I attempted adding a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
 "+";"I tried adding a task";"[{"sub":"user", "act":"add", "obj":"task"}]"
 "+";"I attempted to add a task";"[{"sub":"user", "act":"add", "obj":"task"}]"

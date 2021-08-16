@@ -97,7 +97,11 @@ class NLParserTest {
 //                    "go back"
 //                    "save fillup"
 //                "I tried to add a task"
-                "tried to add a task"
+//                "tried to add a task"
+//                "I added token"
+                "the balance sheet got duplicated",
+                "the contents in balance sheet was duplicated",
+                "balance sheet was duplicated"
                 //"go back to the last screen"
 //                "I entered 23 gallons"
 //                ,

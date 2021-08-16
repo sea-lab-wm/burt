@@ -24,14 +24,6 @@ const customStyles = {
 }
 Modal.setAppElement('#root');
 
-/*class StepComponent extends React. = ({
-                           step,
-                           index,
-                           actionProvider,
-                           config,
-                           isLastStep,
-                           stepsSize
-                       }) => {*/
 class StepComponent extends React.Component {
 
     constructor(props) {
@@ -111,48 +103,34 @@ class StepComponent extends React.Component {
         })
     }
 
-
     //-----------------------
 
-
     handleChange = event => {
-        // console.log("On change...")
-        // console.log(event)
         this.setState({currentStepDescription: event.target.value})
-        // console.log(this.state.currentStepDescription)
     };
 
     onFocusFn = () => {
-        // console.log("On focus...")
         this.setState({currentStepDescription: this.state.fullStepDescription})
     }
 
     onBlurFn = () => {
-        // console.log("On Blur...")
-        this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
+        let noBrDescription = this.state.currentStepDescription.replaceAll("<br>", "")
+            .replaceAll("&nbsp;", " ").trim()
+
+        if (noBrDescription !== "" && noBrDescription !== this.state.fullStepDescription) {
+            this.updateStep(noBrDescription)
+        } else {
+            this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
+        }
     }
 
     handleKeyDown = event => {
-        // console.log(event)
 
         const keyCode = event.which || event.keyCode;
         if (keyCode === 13) { //when the user hits enter
             event.preventDefault();
-
-            let noBrDescription = this.state.currentStepDescription.replaceAll("<br>", "")
-                .replaceAll("&nbsp;", " ")
-
-            // console.log("On key up...")
-            // console.log(this.state.currentStepDescription)
-            // console.log(noBrDescription)
-            // console.log(this.state.fullStepDescription)
-            if (noBrDescription !== this.state.fullStepDescription) {
-                // console.log("Changed!")
-                this.updateStep(noBrDescription)
-            }
-
-        } else if (keyCode === 27){ //ESC key
-            // console.log(this.editableComponentRef.current)
+            this.editableComponentRef.current.blur()
+        } else if (keyCode === 27) { //ESC key
             this.editableComponentRef.current.blur()
         }
     };
@@ -177,7 +155,7 @@ class StepComponent extends React.Component {
                 console.error(`The step was not updated: ` + this.props.index);
             } else {
                 this.setState({fullStepDescription: newStepDescription})
-                this.editableComponentRef.current.blur()
+                this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
             }
 
         }).catch(error => {
@@ -202,7 +180,6 @@ class StepComponent extends React.Component {
                     onFocus={this.onFocusFn}
                     onBlur={this.onBlurFn}
                 />
-                {/*<span title={fullStepDescription}>{croppedStepDescription}</span>*/}
                 <a href={this.stepImage} title={"See a screenshot of this step"}
                    onClick={event => this.openModal(event)}>
                     <Modal

@@ -36,7 +36,7 @@ class OBChecker {
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
 
-        s2rParser = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true);
+        s2rParser = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true, appName);
         resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }
 

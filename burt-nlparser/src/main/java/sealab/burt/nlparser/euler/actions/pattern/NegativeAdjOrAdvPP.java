@@ -57,7 +57,7 @@ public class NegativeAdjOrAdvPP extends NLActionPatternParser {
 
         // the object modified by the verb
         Pair<GrammaticalRelation, IndexedWord> objRelation = DependenciesUtils.getFirstChildByRelation(dependencies,
-                verbToken, "dobj");
+                verbToken, "dobj", "xcomp");
 
         IndexedWord objToken = null;
         boolean isObjNegAdj = false;

@@ -93,15 +93,7 @@ class S2RDescriptionStateChecker extends StateChecker {
                     state.getStateUpdater().addStepAndUpdateGraphState(state, currentMessage, assessment);
                     return PREDICT_FIRST_S2R_PATH;
                 } else {
-
                     state.initOrIncreaseCurrentAttemptS2RGeneral();
-                    boolean nextAttempt = state.checkNextAttemptAndResetS2RGeneral();
-
-                    if (!nextAttempt) {
-                        state.getStateUpdater().addStepAndUpdateGraphState(state, currentMessage, assessment);
-                        return PREDICT_FIRST_S2R_PATH;
-                    }
-
                     return nextActions.get(HIGH_QUALITY);
                 }
             }
