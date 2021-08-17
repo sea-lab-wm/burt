@@ -42,8 +42,7 @@ class ApiClient {
             sessionId: sessionId,
         }
 
-        return axios
-            .post(config.serverEndpoint + config.getStepsHistory, data);
+        return axios.post(config.serverEndpoint + config.getStepsHistory, data);
     }
 
     static processReportPreview() {

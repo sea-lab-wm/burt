@@ -7,6 +7,7 @@ import {createChatBotMessage, createClientMessage, updateStepsHistory, updateTip
 import {getBotName, getCustomComponents, getCustomStyles, getInitialState, getWidgets, validateProps,} from "./utils";
 import StepsPanel from "../StepsPanel/StepsPanel";
 import TipsOptionsPanel from "../TipsOptions/TipsOptionsPanel";
+import loadStepHistory from "../../logic/UpdateStepsHistory";
 
 const axios = require('axios')
 
@@ -103,8 +104,9 @@ const Chatbot = ({
 
   useEffect(()=>{
       if (stepsState.steps.length === 0) {
-          let endPoint = config.serverEndpoint + config.getStepsHistory
-          updateStepsHistory(endPoint, sessionId, actionProv)
+          loadStepHistory(actionProv)
+          // let endPoint = config.serverEndpoint + config.getStepsHistory
+          // updateStepsHistory(endPoint, sessionId, actionProv)
       }
   }, [stepsState])
 

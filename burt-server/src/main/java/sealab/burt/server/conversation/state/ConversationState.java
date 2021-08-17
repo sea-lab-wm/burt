@@ -58,7 +58,7 @@ class ConversationState {
     private final AttemptManager attemptManager = new AttemptManager();
     private final QualityStateUpdater stateUpdater = new QualityStateUpdater();
     private List<MessageObj> frontEndMessageHistory;
-    private List<Object> messageHistory =new ArrayList<>();
+    private List<Object> messageHistory = new ArrayList<>();
 
     public final ConcurrentHashMap<ActionName, ChatBotAction> actions = new ConcurrentHashMap<>() {
         {
@@ -363,8 +363,12 @@ class ConversationState {
         return frontEndMessageHistory;
     }
 
-    public void setFrontEndMessageHistory(List<MessageObj> frontEndMessageHistory) {
-        this.frontEndMessageHistory = frontEndMessageHistory;
+    public synchronized void setFrontEndMessageHistory(List<MessageObj> frontEndMessageHistory) {
+        if (frontEndMessageHistory == null) return;
+        if (this.frontEndMessageHistory == null) {
+            this.frontEndMessageHistory = frontEndMessageHistory;
+        } else if (frontEndMessageHistory.size() >= this.frontEndMessageHistory.size())
+            this.frontEndMessageHistory = frontEndMessageHistory;
     }
 
     public void saveConversationMessages() {
@@ -372,7 +376,7 @@ class ConversationState {
         try {
 
             boolean anyNotCreated = Stream.of(StateVariable.APP_NAME, StateVariable.APP_VERSION,
-                    StateVariable.PARTICIPANT_ID)
+                            StateVariable.PARTICIPANT_ID)
                     .anyMatch(v -> this.get(v) == null);
             if (this.messageHistory == null || anyNotCreated)
                 return;

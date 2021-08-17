@@ -1,7 +1,7 @@
 import ApiClient from "./ApiClient";
 import {ERROR_CODE, SUCCESS_CODE} from "../App";
 
-function updateStepHistory(actionProvider){
+function loadStepHistory(actionProvider){
     const responsePromise = ApiClient.processStepsHistory();
     responsePromise.then(response => {
 
@@ -24,4 +24,4 @@ function updateStepHistory(actionProvider){
 
 }
 
-export default updateStepHistory;
+export default loadStepHistory;

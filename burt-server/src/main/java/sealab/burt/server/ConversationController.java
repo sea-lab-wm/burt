@@ -229,7 +229,7 @@ class ConversationController {
             allSteps.get(stepIndex).setStringElement(newStepDescription);
 
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error("Error updating the step: " + req, e);
             return false;
         }
@@ -238,8 +238,6 @@ class ConversationController {
 
     @PostMapping("/saveMessages")
     public void saveMessages(@RequestBody UserResponse req) {
-        String msg = "Saving the messages in the server...";
-        log.debug(msg);
 
         String sessionId = req.getSessionId();
         if (sessionId == null) {
@@ -253,7 +251,11 @@ class ConversationController {
             return;
         }
 
-        state.setFrontEndMessageHistory(req.getMessages());
+        List<MessageObj> messages = req.getMessages();
+        int numMsgs = messages.size();
+        String msg = "Saving the messages in the server: " + numMsgs;
+        log.debug(msg);
+        state.setFrontEndMessageHistory(messages);
     }
 
     @PostMapping("/testResponse")

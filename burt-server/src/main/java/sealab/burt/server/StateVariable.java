@@ -40,6 +40,6 @@ public enum StateVariable {
     //reporting time
     REPORTING_START_TIME, REPORTING_END_TIME,
 
-    TIPS
+    NEW_PREDICTION_CONFIRMATION, TIPS
 
 }

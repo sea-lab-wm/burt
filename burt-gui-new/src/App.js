@@ -60,8 +60,6 @@ function App() {
             console.error(`Unexpected error: ${e}`)
         }
 
-        console.log(messages)
-
         return messages;
     }
 

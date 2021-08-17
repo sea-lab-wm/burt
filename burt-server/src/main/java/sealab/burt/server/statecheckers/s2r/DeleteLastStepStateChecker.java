@@ -48,7 +48,7 @@ class DeleteLastStepStateChecker extends sealab.burt.server.statecheckers.StateC
 
         state.put(DELETE_STEP_MSG, "Got it, the step was deleted from the reported steps");
 
-        if (state.containsKey(PREDICTING_S2R)) {
+        if (state.containsKey(PREDICTING_S2R) ) {
 
             state.remove(PREDICTED_S2R_CURRENT_PATH);
             state.remove(PREDICTING_S2R);
@@ -56,7 +56,8 @@ class DeleteLastStepStateChecker extends sealab.burt.server.statecheckers.StateC
             state.remove(PREDICTED_S2R_NUMBER_OF_PATHS);
             state.remove(NON_SELECTED_PREDICTED_S2R);
 
-            return ActionName.PREDICT_FIRST_S2R_PATH;
+            if(!state.containsKey(NEW_PREDICTION_CONFIRMATION))
+                return ActionName.PREDICT_FIRST_S2R_PATH;
         }
 
         return ActionName.DO_NOTHING;

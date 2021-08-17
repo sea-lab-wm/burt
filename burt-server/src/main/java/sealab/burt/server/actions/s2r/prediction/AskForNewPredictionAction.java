@@ -1,5 +1,6 @@
 package sealab.burt.server.actions.s2r.prediction;
 
+import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
 import sealab.burt.server.conversation.entity.MessageObj;
@@ -14,6 +15,7 @@ public class AskForNewPredictionAction extends sealab.burt.server.actions.ChatBo
     @Override
     public List<ChatBotMessage> execute(ConversationState state) throws Exception {
         setNextExpectedIntents(Collections.singletonList(Intent.NEW_PREDICTION_OR_TYPE_S2R));
+        state.put(StateVariable.NEW_PREDICTION_CONFIRMATION, true);
 
          MessageObj messageObj = new MessageObj( "If so, please click the button below, <b>otherwise write the next " +
                  "step</b>",
