@@ -34,8 +34,8 @@ const config = {
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
         createChatBotMessage("I'll assist you in reporting any problem with your app"),
-        createChatBotMessage("Please <b>start a stopwatch from scratch</b> to time yourself during" +
-            " this conversation"),
+        // createChatBotMessage("Please <b>start a stopwatch from scratch</b> to time yourself during" +
+        //     " this conversation"),
         createChatBotMessage("To start, please provide your <b>Participant ID</b>"),
     ],
     widgets: [
