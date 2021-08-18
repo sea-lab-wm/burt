@@ -9,6 +9,7 @@ import processResponse from "../../logic/ServerResponseProcessor";
 import {updateStepsHistory} from "../Chat/chatUtils";
 import ContentEditable from "react-contenteditable";
 import axios from "axios";
+import loadStepHistory from "../../logic/UpdateStepsHistory";
 
 
 const customStyles = {
@@ -82,7 +83,9 @@ class StepComponent extends React.Component {
         //disable all prior widget messages/gui components
         let allMsgs = this.props.messagesState.messages
         for (let i = 0; i < allMsgs.length; i++) {
-            allMsgs[i].disabled = true
+            let msg = allMsgs[i];
+            if(msg.widget !== "S2RPredictionConfirmation")
+                msg.disabled = true
         }
 
         let fn = prevState => {
@@ -97,8 +100,9 @@ class StepComponent extends React.Component {
         let message = this.props.actionProvider.createChatBotMessage("Delete step x");
         const responsePromise = ApiClient.processUserMessage(message, [])
         processResponse(responsePromise, this.props.actionProvider, () => {
-            let endPoint = this.props.config.serverEndpoint + this.props.config.getStepsHistory
-            updateStepsHistory(endPoint, this.props.sessionId, this.props.actionProvider)
+         /*   let endPoint = this.props.config.serverEndpoint + this.props.config.getStepsHistory
+            loadStepHistory(this.props.actionProvider)*/
+            loadStepHistory(this.props.actionProvider)
             window.location.reload(false);
         })
     }

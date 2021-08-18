@@ -1,8 +1,8 @@
 import ApiClient from "./ApiClient";
 
-class ActionProvider{
+class ActionProvider {
 
-    constructor(createChatBotMessage, setStateFunc, createClientMessage,  sessionIdObj, setStepsState, setTipState) {
+    constructor(createChatBotMessage, setStateFunc, createClientMessage, sessionIdObj, setStepsState, setTipState) {
         this.createChatBotMessage = createChatBotMessage;
         this.createClientMessage = createClientMessage;
         this.setState = setStateFunc;
@@ -11,17 +11,17 @@ class ActionProvider{
         this.setTipState = setTipState;
     }
 
-    createUserMsg(msg){
+    createUserMsg(msg) {
         return this.createClientMessage(msg)
     }
 
-    createChatBotMsg(msg, options){
+    createChatBotMsg(msg, options) {
         return this.createChatBotMessage(
-           msg, options
+            msg, options
         )
     }
 
-    removeMsg(lastMsgId){
+    removeMsg(lastMsgId) {
         let fn = prevState => {
             const newMessages = [...prevState.messages];
             const idx = newMessages.findIndex(x => x.id === lastMsgId)
@@ -36,17 +36,17 @@ class ActionProvider{
 
     updateChatbotState(message, saveMsg) {
 
-    // NOTE: This function is set in the constructor, and is passed in
-    // from the top level Chatbot component. The setState function here
-    // actually manipulates the top level state of the Chatbot, so it's
-    // important that we make sure that we preserve the previous state.
+        // NOTE: This function is set in the constructor, and is passed in
+        // from the top level Chatbot component. The setState function here
+        // actually manipulates the top level state of the Chatbot, so it's
+        // important that we make sure that we preserve the previous state.
 
         let fn = prevState => {
             let newMessages = [...prevState.messages, message];
-            if(saveMsg || saveMsg ===undefined)
+            if (saveMsg || saveMsg === undefined)
                 ApiClient.saveMessages(newMessages)
             return {
-            ...prevState, messages: newMessages
+                ...prevState, messages: newMessages
             }
         };
         this.setState(fn)
@@ -62,6 +62,7 @@ class ActionProvider{
         this.setStepsState(fn)
     }
 }
+
 export default ActionProvider;
 
 

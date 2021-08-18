@@ -1,7 +1,7 @@
 import React from "react";
 import SessionManager from "./SessionManager";
 import {END_CONVERSATION_CODE, ERROR_CODE} from "../App";
-import updateStepHistory from "./UpdateStepsHistory";
+import loadStepHistory from "./UpdateStepsHistory";
 import ApiClient from "./ApiClient";
 
 const processResponse = (responsePromise, actionProvider, extraFunction) => {
@@ -14,7 +14,7 @@ const processResponse = (responsePromise, actionProvider, extraFunction) => {
 
             let conversationResponse = httpReponse.data;
 
-            updateStepHistory(actionProvider);
+            loadStepHistory(actionProvider);
 
             if (conversationResponse.code === ERROR_CODE)
                 throw conversationResponse.messages[0].messageObj.message

@@ -56,6 +56,7 @@ public class NegativeAnswerStateChecker extends StateChecker {
             nextAction = CLARIFY_EB;
         }*/
         else if (state.containsKey(EB_SCREEN_CONFIRMATION)) {
+            state.remove(EB_SCREEN_CONFIRMATION);
             nextAction = PROVIDE_EB;
 
             MetricsRecorder.saveMatchRecord(state, MetricsRecorder.MetricsType.EB_NO_MATCH, MetricsRecorder.NO);

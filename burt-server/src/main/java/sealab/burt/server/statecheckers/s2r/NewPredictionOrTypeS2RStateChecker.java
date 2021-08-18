@@ -14,11 +14,17 @@ public class NewPredictionOrTypeS2RStateChecker extends S2RDescriptionStateCheck
 
     @Override
     public ActionName nextAction(ConversationState state) throws Exception {
+
+        state.remove(NEW_PREDICTION_CONFIRMATION);
+
         UserResponse msg = (UserResponse) state.get(CURRENT_MESSAGE);
         MessageObj message = msg.getFirstMessage();
-        if(message!=null && "next_predictions".equals(message.getMessage()))
-            return ActionName.PREDICT_NEXT_S2R_PATH;
-        else{
+        if (message != null && "next_predictions".equals(message.getMessage()))
+            if(state.containsKey(PREDICTING_S2R))
+                return ActionName.PREDICT_NEXT_S2R_PATH;
+            else
+                return ActionName.PREDICT_FIRST_S2R_PATH;
+        else {
             state.remove(PREDICTED_S2R_CURRENT_PATH);
             state.remove(PREDICTING_S2R);
             state.remove(PREDICTED_S2R_PATHS_WITH_LOOPS);
