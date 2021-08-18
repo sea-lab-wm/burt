@@ -19,7 +19,7 @@ const config = {
     botName: "BURT",
     serverEndpoint: "http://localhost:8081",
 //     serverEndpoint: "http://rocco.cs.wm.edu:21203",
-    tutorialDoc: "/BURT_tutorial_doc.pdf",
+    tutorialDoc: "/BURT_User_Guide.pdf",
     logosPath: "/app_logos/",
     saveMessagesService: "/saveMessages",
     loadMessagesService: "/loadMessages",

@@ -205,7 +205,7 @@ const Chat = ({
               <ChatbotIcon className="react-chatbot-kit-chat-bot-avatar-icon-header"/>
             {header}
               <a className="react-chatbot-kit-chat-bot-avatar-help-icon-header" title={"Open the" +
-              " tutorial document"} onClick={() => openHelp(config)} >
+              " user guide"} onClick={() => openHelp(config)} >
                 <HelpIcon width="35px" />
               </a>
             </div>
