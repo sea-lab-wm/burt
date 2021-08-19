@@ -21,13 +21,10 @@ import static sealab.burt.server.StateVariable.*;
 public @Slf4j
 class HTMLBugReportGenerator {
 
-    private static int bugReportId = 1;
-
     public void generateOutput(File outputFile, ConversationState state) throws Exception {
         File htmlTemplate = new File(Path.of(".", "example", "template.html").toString());
         String finalReport = generateHTML(htmlTemplate, state);
         FileUtils.write(outputFile, finalReport, StandardCharsets.UTF_8);
-        bugReportId++;
     }
 
     String generateHTML(File htmlTemplate,
@@ -38,7 +35,7 @@ class HTMLBugReportGenerator {
         Element contentAPP = doc.getElementById("appinfo");
         //Bug Report [1], App and Version: [2]
         if (!state.containsKey(APP_ASKED)) {
-            contentAPP.append("Bug Report #" + bugReportId + " for " +
+            contentAPP.append("Bug Report for " +
                     state.get(APP_NAME) + " v. " + state.get(APP_VERSION));
         }
         Element content = doc.getElementById("bugreport");
