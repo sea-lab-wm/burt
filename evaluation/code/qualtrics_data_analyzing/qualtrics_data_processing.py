@@ -14,41 +14,47 @@ def generate_json_for_each_question(question_dict, likert_scale_frequency):
     total_number_of_answer = len(answer_list)
 
     # first, compute percentage for "Sometimes"
-    result_sometimes = {"question": question_name, "type": likert_scale_frequency[2]}
+    result_middle = {"question": question_name, "type": likert_scale_frequency[2]}
     count = answer_list.count(likert_scale_frequency[2])
-    result_sometimes["value"] = count
+    result_middle["value"] = count
     percentage_sometimes = count / total_number_of_answer
-    result_sometimes["percentage"] = percentage_sometimes * 100
-    result_sometimes["percentage_start"] = -percentage_sometimes / 2 * 100
-    result_sometimes["percentage_end"] = percentage_sometimes / 2 * 100
+    result_middle["percentage"] = percentage_sometimes * 100
+    result_middle["percentage_start"] = -percentage_sometimes / 2 * 100
+    result_middle["percentage_end"] = percentage_sometimes / 2 * 100
     percentage_start = -percentage_sometimes / 2 * 100
     percentage_start_2 = percentage_sometimes / 2 * 100
-    results.append(result_sometimes)
+    result_middle["position"] = 0
+    result_middle["numbers"] = "{:.2%}".format(count / total_number_of_answer)
+    results.append(result_middle)
+
     # second, compute percentage for 'Rarely', 'Never'
     for i in range(3, 5):
-        result = {"question": question_name, "type": likert_scale_frequency[i]}
         count = answer_list.count(likert_scale_frequency[i])
         percentage = count / total_number_of_answer * 100
-        result["value"] = count
-        result["percentage"] = percentage
-        result["percentage_start"] = percentage_start - percentage
-        result["percentage_end"] = percentage_start
-        percentage_start = result["percentage_start"]
-        results.append(result)
+        if percentage != 0.0:
+            result = {"question": question_name, "type": likert_scale_frequency[i], "value": count,
+                      "percentage": percentage, "percentage_start": (percentage_start - percentage),
+                      "percentage_end": percentage_start, "position": (-percentage / 2 + percentage_start),
+                      "numbers": "{:.2%}".format(count / total_number_of_answer)
+                      }
+
+            percentage_start = result["percentage_start"]
+            results.append(result)
 
     # third, compute percentage for 'Always', 'Often'
     for j in range(1, -1, -1):
-        result = {"question": question_name, "type": likert_scale_frequency[j]}
         count = answer_list.count(likert_scale_frequency[j])
         percentage = count / total_number_of_answer * 100
-        result["value"] = count
-        result["percentage"] = percentage
-        result["percentage_start"] = percentage_start_2
-        result["percentage_end"] = percentage_start_2 + percentage
-        percentage_start_2 = result["percentage_end"]
-        results.append(result)
+        if percentage != 0.0:
+            result = {"question": question_name, "type": likert_scale_frequency[j], "value": count,
+                      "percentage": percentage, "percentage_start": percentage_start_2,
+                      "percentage_end": (percentage_start_2 + percentage),
+                      "position": (percentage_start_2 + percentage / 2),
+                      "numbers": "{:.2%}".format(count / total_number_of_answer)
+                      }
 
-    print(results)
+            percentage_start_2 = result["percentage_end"]
+            results.append(result)
     return results
 
 
@@ -60,27 +66,27 @@ def generate_chart_frequency(question_list, likert_scale_frequency):
 
 
 if __name__ == '__main__':
-    df = pandas.read_excel('../BURT ICSE’22 Evaluation Survey_seven_users.xlsx')
+    df = pandas.read_excel('../BURT ICSE’22 Evaluation Survey_eleven_users.xlsx')
 
     screen_suggestion_usefulness = df['Q228'].values[1: len(df['Q228'].values)]
     screen_suggestion_usefulness_list = []
-    for screen in screen_suggestion_usefulness:
-        screen_suggestion_usefulness_list.append(screen)
+    for screen_response in screen_suggestion_usefulness:
+        screen_suggestion_usefulness_list.append(screen_response)
 
     OB_understanding = df['Q233'].values[1: len(df['Q233'].values)]
     OB_understanding_list = []
-    for OB in OB_understanding:
-        OB_understanding_list.append(OB)
+    for OB_response in OB_understanding:
+        OB_understanding_list.append(OB_response)
 
     EB_understanding = df['Q235'].values[1: len(df['Q235'].values)]
     EB_understanding_list = []
-    for EB in EB_understanding:
-        EB_understanding_list.append(EB)
+    for EB_response in EB_understanding:
+        EB_understanding_list.append(EB_response)
 
     S2R_understanding = df['Q237'].values[1: len(df['Q237'].values)]
     S2R_understanding_list = []
-    for S2R in S2R_understanding:
-        S2R_understanding_list.append(S2R)
+    for S2R_response in S2R_understanding:
+        S2R_understanding_list.append(S2R_response)
 
     BURT_messages_understanding = df['Q240'].values[1: len(df['Q240'].values)]
     BURT_messages_understanding_list = []
@@ -88,7 +94,14 @@ if __name__ == '__main__':
         BURT_messages_understanding_list.append(BURT_message)
 
     S2R_panel_usefulness = df['Q244'].values[1: len(df['Q244'].values)]
+    S2R_panel_usefulness_list = []
+    for panel_response in S2R_panel_usefulness:
+        S2R_panel_usefulness_list.append(panel_response)
+
     BURT_overall_usefulness = df['Q250'].values[1: len(df['Q250'].values)]
+    BURT_overall_usefulness_list = []
+    for overall_response in BURT_overall_usefulness:
+        BURT_overall_usefulness_list.append(overall_response)
 
     likert_scale_frequency = ['Always', 'Often', 'Sometimes', 'Rarely', 'Never']
     likert_scale_usefulness = ['Useful', 'Somewhat useful', 'Neither useful nor useless', 'Somehow useless', 'Useless']
@@ -102,6 +115,12 @@ if __name__ == '__main__':
                                             {"BURT_messages_understanding": BURT_messages_understanding_list}],
                                            likert_scale_frequency)
 
+    # source_data = generate_chart_frequency([{"BURT_overall_usefulness": BURT_overall_usefulness_list}],
+    #                                        likert_scale_easiness)
+
+    # source_data = generate_chart_frequency([{"S2R_panel_usefulness": S2R_panel_usefulness_list}],
+    #                                        likert_scale_usefulness)
+
     source = alt.pd.DataFrame(source_data)
     color_scale = alt.Scale(
         domain=[
@@ -111,6 +130,24 @@ if __name__ == '__main__':
             "Often",
             "Always"
         ],
+
+        # domain=[
+        #     'Difficult to use',
+        #     'Somewhat difficult to use',
+        #     'Neither easy nor difficult to use',
+        #     'Somewhat easy to use',
+        #     'Easy to use',
+        # ],
+
+        # domain=[
+        #     'Useless',
+        #     'Somehow useless',
+        #     'Neither useful nor useless',
+        #     'Somewhat useful',
+        #     'Useful',
+        #     ],
+
+
         range=["#c30d24", "#f3a583", "#cccccc", "#94c6da", "#1770ab"]
     )
 
@@ -122,13 +159,20 @@ if __name__ == '__main__':
         domain=False
     )
 
-    alt.Chart(source).mark_bar().encode(
-        x='percentage_start:Q',
-        x2='percentage_end:Q',
+    bars = alt.Chart().mark_bar().encode(
+        x=alt.X('percentage_start:Q', axis=alt.Axis(title='percentage')),
+        x2=alt.X2('percentage_end:Q'),
         y=alt.Y('question:N', axis=y_axis),
         color=alt.Color(
             'type:N',
             legend=alt.Legend(title='Response'),
             scale=color_scale,
         )
-    ).show()
+
+    )
+    text = alt.Chart().mark_text(align='center', baseline='middle').encode(
+        y=alt.Y('question:N', title=None),
+        x='position',
+        text='numbers')
+
+    alt.layer(bars, text, data=source).show()
