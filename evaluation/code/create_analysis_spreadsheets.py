@@ -136,7 +136,9 @@ def get_px(participant_id):
 
 if __name__ == '__main__':
 
-    survey_answers_file = "BURT ICSE’22 Evaluation Survey_August 20, 2021_17.09.csv"
+    processed_participants = ["P1", "P1", "P3", "P6", "P8", "P9", "P13", "P19" , "P2", "P7", "P17", "P24"]
+
+    survey_answers_file = "BURT ICSE’22 Evaluation Survey_August 23, 2021_08.02.csv"
     assignment_file = "Bug assignment for participant - Bug-assignment.csv"
     bug_reports_folder = os.path.join("../data/generated_bug_reports")
     output_file_name1 = "Statistics.csv"
@@ -163,6 +165,9 @@ if __name__ == '__main__':
         participant_id = participant_id_lower.upper()
 
         if participant_id not in answers_by_participants:
+            continue
+
+        if participant_id in processed_participants:
             continue
 
         ##-------------------------------------
@@ -195,6 +200,11 @@ if __name__ == '__main__':
             analysis_records.extend(bug_report_records)
 
     # ------------------------------
+
+    statistics_records = sorted(statistics_records, key=lambda rec: int(rec["Px"]))
+    analysis_records = sorted(analysis_records, key=lambda rec: int(rec["Px"]))
+
+    #-------------------------------
 
     write_csv_file(statistics_records, output_file_name1)
     write_csv_file(analysis_records, output_file_name2)
