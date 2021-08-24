@@ -122,28 +122,28 @@ if __name__ == '__main__':
     likert_scale_easiness = ['Easy to use', 'Somewhat easy to use', 'Neither easy nor difficult to use',
                              'Somewhat difficult to use', 'Difficult to use']
 
-    # source_data = generate_chart_frequency([{"screen_suggestion_usefulness": screen_suggestion_usefulness_list},
-    #                                         {"OB_understanding": OB_understanding_list},
-    #                                         {"EB_understanding": EB_understanding_list},
-    #                                         {"S2R_understanding": S2R_understanding_list},
-    #                                         {"BURT_messages_understanding": BURT_messages_understanding_list}],
-    #                                        likert_scale_frequency)
-
+    source_data = generate_chart_frequency([{"screen_suggestion_usefulness": screen_suggestion_usefulness_list},
+                                            {"OB_understanding": OB_understanding_list},
+                                            {"EB_understanding": EB_understanding_list},
+                                            {"S2R_understanding": S2R_understanding_list},
+                                            {"BURT_messages_understanding": BURT_messages_understanding_list}],
+                                           likert_scale_frequency)
+    #
     # source_data = generate_chart_frequency([{"BURT_easy_to_use": BURT_overall_usefulness_list}],
     #                                        likert_scale_easiness)
 
-    source_data = generate_chart_frequency([{"S2R_panel_usefulness": S2R_panel_usefulness_list}],
-                                           likert_scale_usefulness)
+    # source_data = generate_chart_frequency([{"S2R_panel_usefulness": S2R_panel_usefulness_list}],
+    #                                        likert_scale_usefulness)
 
     source = alt.pd.DataFrame(source_data)
     color_scale = alt.Scale(
-        # domain=[
-        #     "Never",
-        #     "Rarely",
-        #     "Sometimes",
-        #     "Often",
-        #     "Always"
-        # ],
+        domain=[
+            "Never",
+            "Rarely",
+            "Sometimes",
+            "Often",
+            "Always"
+        ],
 
         # domain=[
         #     'Difficult to use',
@@ -153,13 +153,13 @@ if __name__ == '__main__':
         #     'Easy to use',
         # ],
         #
-        domain=[
-            'Useless',
-            'Somehow useless',
-            'Neither useful nor useless',
-            'Somewhat useful',
-            'Useful',
-            ],
+        # domain=[
+        #     'Useless',
+        #     'Somehow useless',
+        #     'Neither useful nor useless',
+        #     'Somewhat useful',
+        #     'Useful',
+        #     ],
 
         range=["#F4D03F", "#689F38", "#CD6155", "#E67E22", "#21618C"]
     )
