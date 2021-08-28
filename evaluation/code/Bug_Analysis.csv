@@ -1,221 +1,61 @@
 Participant,Px,Bug_ID,App,Reporting_order,BR_link,text,text_type,missing_screen?
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,,,
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,no value for feedURL,OB,x
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,it is not working well,EB,x
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,yes,S2R,x
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,add podcast,S2R,
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,I searched itunes,S2R,
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,I searched mis,S2R,
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,"I typed ""mis""",S2R,x
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,pressed botton search at the bottom,S2R,
-P4,4,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P4-AntennaPod-1.6.2.3-192ee8da-5472-42f1-8eb0-1d9c87dcc7f9.html,I searched a itunes,S2R,x
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,,,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,it does not show menu on added task,OB,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,not working,EB,x
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Tap the ""button 1 (OK)"" button",S2R,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Tap the ""title (Add task)"" text view",S2R,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Type a valid input on the ""task edit name edit"" text field",S2R,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Type a valid input on the ""task edit name edit (Workout)"" text field",S2R,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Tap the ""button 1 (ADD TASK)"" button",S2R,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Tap the ""title (Add task)"" text view",S2R,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Type a valid input on the ""task edit name edit"" text field",S2R,
-P4,4,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P4-ATimeTracker-0.20-74c89287-ebae-49ef-ba2b-abfbd9d6b68c.html,"Tap the ""button 1 (ADD TASK)"" button",S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,,,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,the tracker has stopped,OB,x
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,it is not working,EB,x
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I clicked on allow,S2R,x
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I clicked add,S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I wrote a new plant (value = I wrote Flower),S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,"I wrote on plant strain Flower (value = I typed ""plant strain (Flower)"")",S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I checked at the top,S2R,x
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I clicked,S2R,x
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I clicked menu at the top,S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I clicked duplicate,S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I get the error here,S2R,x
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I open the app again,S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,nothing else,S2R,x
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,I close app,S2R,
-P4,4,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P4-Grow_Tracker-2.3.1-921ad51d-3d5f-4203-85bf-8be61dfa94ca.html,the app closes,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,,,
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i wasn't able to move the time,OB,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,the app should let me move the time,EB,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i opened the menu,S2R,
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i gave the task a name,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i held down the menu on the task name,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i chose show times,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i held the menu down on the named task,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,selected Show Times from menu,S2R,
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,selected Show Range,S2R,
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,I chose the task times,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i added a time range,S2R,
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,selected ok,S2R,
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,long click time range,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,time range would not open,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,tried to move times,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,clicked on task name,S2R,x
-P10,10,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P10-ATimeTracker-0.20-9a405a56-a8df-47b5-a2b3-c054241a6098.html,i could not move the time,S2R,x
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,,,
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,could not select the subscription,OB,x
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,select que,EB,x
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,selected subscriptions from menu,S2R,
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,click on menu,S2R,
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,click subscriptions,S2R,
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,tap Add Podcast,S2R,x
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,i clicked search iTunes,S2R,
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,I clicked select podcast,S2R,x
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,i tried to open podcast,S2R,
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,i searched iTunes,S2R,
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,i clicked on podcast,S2R,x
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,subscribe,S2R,x
-P10,10,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P10-AntennaPod-1.6.2.3-684045a9-fce1-4093-bdda-0d7de270209b.html,open podcast,S2R,
-P10,10,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P10-GnuCash-1.0.3-1502d9eb-2198-4b87-b5f9-e5a989838f55.html,,,
-P10,10,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P10-GnuCash-1.0.3-1502d9eb-2198-4b87-b5f9-e5a989838f55.html,the app stopped,OB,x
-P10,10,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P10-GnuCash-1.0.3-1502d9eb-2198-4b87-b5f9-e5a989838f55.html,i clicked create account,EB,x
-P10,10,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P10-GnuCash-1.0.3-1502d9eb-2198-4b87-b5f9-e5a989838f55.html,I clicked on add account,S2R,
-P10,10,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P10-GnuCash-1.0.3-1502d9eb-2198-4b87-b5f9-e5a989838f55.html,i named the account,S2R,x
-P10,10,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P10-GnuCash-1.0.3-1502d9eb-2198-4b87-b5f9-e5a989838f55.html,i saved the account,S2R,
-P10,10,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P10-GnuCash-1.0.3-1502d9eb-2198-4b87-b5f9-e5a989838f55.html,it did not respond,S2R,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,,,
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,app stopped,OB,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,It should support adding comment to a weight data. ,EB,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,I open the tracking,S2R,
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,I click the button at the center,S2R,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,I enter weight (value = 10),S2R,
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,"I click the button ""set current weight in kg""",S2R,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,I enter a comment,S2R,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,I long click the weight,S2R,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,I click the first in the pop-up,S2R,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,"I click the item ""add previous comment""",S2R,x
-P12,12,DROID-CC6,DROID,1,http://rocco.cs.wm.edu:21203/P12-Droid_Weight-1.5.4-761f4bc0-7001-4634-91b7-5ccd5ae3b665.html,The app stopped,S2R,x
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,,,
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,It stopped when I add time range for a task,OB,
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,It should add a time range for a task,EB,
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,"Tap the ""button 1 (OK)"" button",S2R,
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,"Tap the ""More options"" image button",S2R,
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,"I click ""add task""",S2R,x
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,I enter task name,S2R,x
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,"I click ""add task""",S2R,x
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,I long click a task,S2R,x
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,"I click ""show times"" in the pop-up ",S2R,x
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,I click the three dots ,S2R,x
-P12,12,TIME-CC4,TIME,2,http://rocco.cs.wm.edu:21203/P12-ATimeTracker-0.20-14062819-6c89-4459-ab7e-4dcb8f7d865c.html,"I click ""add time range""",S2R,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,,,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,It stopped when I add an additive,OB,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,It should support adding an additive normally. ,EB,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,"Tap the ""permission allow button (ALLOW)"" button",S2R,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,Click the button with plus in it,S2R,x
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,I input plant name (value = aaa),S2R,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,"Type a valid input on the ""plant strain (Lemon haze)"" text field",S2R,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,"Tap the ""Navigate up"" image button",S2R,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,I click the Plant Details,S2R,x
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,I tap feed,S2R,
-P12,12,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P12-Grow_Tracker-2.3.1-2ddd0f77-d3b8-46c5-ad05-5a0e07bc3004.html,I tap new additive,S2R,
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,,,
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,token is not added,OB,
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,token is added,EB,
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,"Tap the ""More options"" image button",S2R,
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,add token,S2R,
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,next,S2R,x
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,enter token,S2R,x
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,check generate random seed,S2R,
-P16,16,TOK-CC7,TOKEN,1,http://rocco.cs.wm.edu:21203/P16-Android_Token-2.10-1bbd5c41-d8a6-4f97-afc2-8eb6e20974e8.html,"Tap the ""token Add Complete (COMPLETE)"" button",S2R,
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,,,
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,can't use bmi calculator,OB,x
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,the BMI calculator should have a result,EB,x
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,statistic tab,S2R,x
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,click BMI calculator,S2R,
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,enter weight and height (value = 123),S2R,
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,enter the height (value = 123),S2R,
-P16,16,DROID-CC5,DROID,2,http://rocco.cs.wm.edu:21203/P16-Droid_Weight-1.5.4-0dd08354-c060-4ebf-aa17-2ce4451fd2e0.html,click go,S2R,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,,,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,app crashed,OB,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,it should dulicate the plant,EB,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,"Tap the ""permission allow button (ALLOW)"" button",S2R,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,click add,S2R,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,"Type a valid input on the ""plant name (New plant)"" text field",S2R,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,Tap the scroll view,S2R,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,"Type a valid input on the ""plant strain (TestTest Test)"" text field",S2R,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,click check,S2R,x
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,open the plant I created,S2R,x
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,click more options,S2R,
-P16,16,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P16-Grow_Tracker-2.3.1-a2658201-c402-41e3-b342-5f9700442692.html,"Tap the ""title (Duplicate)"" text view",S2R,
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,,,
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,subscriptions number is red,OB,x
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,subscription number is blue,EB,x
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,add podcast,S2R,x
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,subscriptions number wrong,S2R,x
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,add subscriptions,S2R,
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,search subscription,S2R,x
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,add subscription,S2R,
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,"after subscribing to the podcast, the number is red",S2R,x
-P18,18,APOD-CC3,APOD,1,http://rocco.cs.wm.edu:21203/P18-AntennaPod-1.6.2.3-996924dd-7e3f-4b24-99f1-19bfd0386641.html,none,S2R,x
-P18,18,GNU-RC,GNU,2,http://rocco.cs.wm.edu:21203/P18-GnuCash-1.0.3-7e90fb4c-7480-4838-a997-4e37ac28e160.html,,,
-P18,18,GNU-RC,GNU,2,http://rocco.cs.wm.edu:21203/P18-GnuCash-1.0.3-7e90fb4c-7480-4838-a997-4e37ac28e160.html,establish accout,OB,x
-P18,18,GNU-RC,GNU,2,http://rocco.cs.wm.edu:21203/P18-GnuCash-1.0.3-7e90fb4c-7480-4838-a997-4e37ac28e160.html,successfully create account without exiting out ,EB,x
-P18,18,GNU-RC,GNU,2,http://rocco.cs.wm.edu:21203/P18-GnuCash-1.0.3-7e90fb4c-7480-4838-a997-4e37ac28e160.html,enter account name (value = Ben's),S2R,
-P18,18,GNU-RC,GNU,2,http://rocco.cs.wm.edu:21203/P18-GnuCash-1.0.3-7e90fb4c-7480-4838-a997-4e37ac28e160.html,save the account,S2R,
-P18,18,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P18-Grow_Tracker-2.3.1-69cbdad3-02d0-4698-a927-3b9344391540.html,,,
-P18,18,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P18-Grow_Tracker-2.3.1-69cbdad3-02d0-4698-a927-3b9344391540.html,"after adding additive info, the app asked the user to open again",OB,x
-P18,18,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P18-Grow_Tracker-2.3.1-69cbdad3-02d0-4698-a927-3b9344391540.html,adding the additive info without open again,EB,x
-P18,18,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P18-Grow_Tracker-2.3.1-69cbdad3-02d0-4698-a927-3b9344391540.html,exit out from additive info,S2R,x
-P18,18,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P18-Grow_Tracker-2.3.1-69cbdad3-02d0-4698-a927-3b9344391540.html,additive information,S2R,x
-P18,18,GROW-CC5,GROW,3,http://rocco.cs.wm.edu:21203/P18-Grow_Tracker-2.3.1-69cbdad3-02d0-4698-a927-3b9344391540.html,can not add additive information,S2R,x
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,,,
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,a time tracker has stopped,OB,x
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,don't stop,EB,x
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,click ok,S2R,
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,add task,S2R,
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,long click,S2R,x
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,click show times,S2R,
-P21,21,TIME-CC4,TIME,1,http://rocco.cs.wm.edu:21203/P21-ATimeTracker-0.20-143b3591-ec1a-406e-8ed3-35e80eae90d3.html,add task,S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,,,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,balance sheet got duplicated,OB,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,one balance sheet,EB,x
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,"Tap the ""btn save (NEXT)"" button",S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,"Tap the ""permission allow button (ALLOW)"" button",S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,"Tap the ""Navigation drawer opened"" image button",S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,"Tap the ""design menu item text (Reports)"" checked text view",S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,"Tap the ""btn balance sheet (SHEET)"" button",S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,open menu,S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,click settings,S2R,
-P21,21,GNU-CC9,GNU,2,http://rocco.cs.wm.edu:21203/P21-GnuCash-2.1.3-97317f1b-5c1a-491e-89a1-d4b37d84e5d6.html,close settings,S2R,x
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,,,
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,droid weight has stopped,OB,x
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,show BMI,EB,x
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,click statistics,S2R,
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,click BMI calculator,S2R,
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,enter height (value = 50),S2R,
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,enter weight (value = 60),S2R,
-P21,21,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P21-Droid_Weight-1.5.4-8ea78c05-e3bc-4c21-88f7-4ff67777bbba.html,click go,S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,,,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,It duplicated my 'sheet',OB,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,It should show my account data but only once.,EB,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""btn save (NEXT)"" button",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""btn save (NEXT)"" button",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""btn save (NEXT)"" button",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""btn save (NEXT)"" button",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""permission allow button (ALLOW)"" button",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""Navigation drawer opened"" image button",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""design menu item text (Reports)"" checked text view",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,"Tap the ""btn balance sheet (SHEET)"" button",S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,I checked the settings,S2R,
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,I went back from the settings,S2R,x
-P22,22,GNU-CC9,GNU,1,http://rocco.cs.wm.edu:21203/P22-GnuCash-2.1.3-c683c1ce-535f-49f1-bde0-e4353564b928.html,I saw my balance sheet was duplicated,S2R,x
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,,,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,I added a token but it was not displayed,OB,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,Any tokens I've created should be displayed,EB,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,I pressed the three dots in the upper right,S2R,x
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,"I pressed ""add token""",S2R,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,"Type a valid input on the ""token Name Edit (h)"" text field",S2R,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,"Tap the ""btn Add Step 2 (NEXT >)"" button",S2R,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,"Tap the ""token Add Complete (COMPLETE)"" button",S2R,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,I pressed complete,S2R,
-P22,22,TOK-CC7,TOKEN,2,http://rocco.cs.wm.edu:21203/P22-Android_Token-2.10-bda811c5-5650-4f97-8505-8ec7e9ede8a5.html,"My token was not visible despite ""token added"" flashing up",S2R,x
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,,,
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,It crashed when BMI calculator was used,OB,
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,It should calculate my BMI,EB,
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,"Tap the ""icon"" image view",S2R,
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,"Tap the ""calculator (BMI Calculator)"" button",S2R,
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,"Type a valid input on the ""user Height (165)"" text field",S2R,
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,"Type a valid input on the ""user Weight (Enter your weight)"" text field",S2R,
-P22,22,DROID-CC5,DROID,3,http://rocco.cs.wm.edu:21203/P22-Droid_Weight-1.5.4-f6f47824-f1e5-4ee7-adcf-3b7d57740781.html,"Tap the ""go (Go)"" button",S2R,
+P25,25,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P25-AntennaPod-1.6.2.3-b6bf0805-20a7-42d9-a610-3fe8f72f2139.html,,,
+P25,25,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P25-AntennaPod-1.6.2.3-b6bf0805-20a7-42d9-a610-3fe8f72f2139.html,SEARCH ITUNES is not showing incorrect result,OB,x
+P25,25,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P25-AntennaPod-1.6.2.3-b6bf0805-20a7-42d9-a610-3fe8f72f2139.html,SEARCH ITUNES is showing incorrect result,EB,x
+P25,25,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P25-AntennaPod-1.6.2.3-b6bf0805-20a7-42d9-a610-3fe8f72f2139.html,Press SEARCH ITUNES,S2R,
+P25,25,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P25-AntennaPod-1.6.2.3-b6bf0805-20a7-42d9-a610-3fe8f72f2139.html,search mis word in searchbar and hit enter,S2R,x
+P25,25,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P25-AntennaPod-1.6.2.3-b6bf0805-20a7-42d9-a610-3fe8f72f2139.html,shows Retry,S2R,x
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,,,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Task Times disappeared,OB,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Task Time should not be disappeared.,EB,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,"Tap the ""button 1 (OK)"" button",S2R,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,"Tap the ""More options"" image button",S2R,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,select Add task option,S2R,x
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Enter Task Name,S2R,x
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Select Show Times option,S2R,x
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Add a new Time range,S2R,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Swipe up,S2R,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,"Tap the ""accept (OK)"" button",S2R,
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Press Move Time,S2R,x
+P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,Task Times disappeared,S2R,x
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,,,
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Tracker has stopped,OB,x
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Duplicate should work,EB,x
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Press Allow,S2R,
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Add New Plant (value = Flower),S2R,
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Go to All section,S2R,x
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Plant Details,S2R,x
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Press options,S2R,
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Press Duplicate,S2R,
+P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,Duplicate is not working,S2R,x
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,,,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,task time disappears upon moving it to the task,OB,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,the times should remain in the current task as it was the target of the move. Or the app should not allow the move at all since the source and target of the move is the same task,EB,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,"Tap the ""button 1 (OK)"" button",S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,"Tap the ""title (Add a new time range)"" text view",S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,Swipe up,S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,"Tap the ""10"" radial time picker view $ radial picker touch helper",S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,"Tap the ""50"" radial time picker view $ radial picker touch helper",S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,"Tap the ""accept (OK)"" button",S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,"Long tap the ""18:01 - 22:50"" text view",S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,"Select ""Move Time"" from the context menu",S2R,
+P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,Select the target task for the move from the taks dialog,S2R,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,,,
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,The podcast episode count is shown on red,OB,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,The episode count label on the subscribed podcast should be blue,EB,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,"I pressed ""Add podcast"" on the navigation menu",S2R,
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,I pressed the search icon on the search bar,S2R,
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,"I entered ""tech"" on the search bar",S2R,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,I click the first result on the list,S2R,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,I pressed the subscribe button,S2R,
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,I pressed the back arrow,S2R,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,I pressed the back arrow,S2R,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,I pressed the back arrow,S2R,x
+P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,I clicked subscriptions from the navigation menu,S2R,
+P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,,,
+P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,App crashed when creating a new account,OB,
+P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,App should not crash,EB,
+P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,"Tap the ""button 1 (Create Accounts)"" button",S2R,
+P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,"Tap the ""menu add account (Create Account)"" text view",S2R,
+P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,"I entered ""Ben's"" on the text field",S2R,x
+P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,I pressed the save button,S2R,

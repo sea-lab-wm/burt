@@ -15,7 +15,7 @@ def read_bug_reports(bug_reports_folder, survey_answers, assignment_list, partic
     bug_reports = []
 
     for bug_report_id in bug_report_ids:
-        bug_id = bug_report_id[0]
+        bug_id = bug_report_id[0].strip()
         html_file_name = bug_report_id[1] + ".html"
 
         ##---------------------------------------------
@@ -136,10 +136,11 @@ def get_px(participant_id):
 
 if __name__ == '__main__':
 
-    processed_participants = ["P1", "P1", "P3", "P6", "P8", "P9", "P13", "P19" , "P2", "P7", "P17", "P24"]
+    processed_participants = ["P1", "P3", "P6", "P8", "P9", "P13", "P19", "P2", "P7", "P17", "P24", "P4", "P10", "P12",
+                              "P16", "P18", "P21", "P22", "P15", "P20", "P23"]
 
-    survey_answers_file = "BURT ICSE’22 Evaluation Survey_August 23, 2021_08.02.csv"
-    assignment_file = "Bug assignment for participant - Bug-assignment.csv"
+    survey_answers_file = "BURT ICSE’22 Evaluation Survey_August 27, 2021_21.35.csv"
+    assignment_file = "Results analysis - Bug-assignment.csv"
     bug_reports_folder = os.path.join("../data/generated_bug_reports")
     output_file_name1 = "Statistics.csv"
     output_file_name2 = "Bug_Analysis.csv"

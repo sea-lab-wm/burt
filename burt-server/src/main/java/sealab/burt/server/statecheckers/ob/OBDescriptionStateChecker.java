@@ -36,7 +36,7 @@ class OBDescriptionStateChecker extends StateChecker {
 
         ActionName nextAction = nextActions.get(result.getResult().name());
 
-        //we ask for the rephrase only 3 times, otherwise we skip the OB
+        //we ask to rephrase only 3 times, otherwise we skip the OB
         if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
 
             state.initOrIncreaseCurrentAttemptObNoMatch();
