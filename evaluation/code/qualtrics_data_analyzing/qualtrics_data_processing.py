@@ -1,9 +1,10 @@
 import altair as alt
 import pandas
 import openpyxl
+from altair import datum
 
 
-def generate_json_for_each_question(question_dict, likert_scale_frequency):
+def generate_json_for_each_question(question_dict, likert_scale_frequency, index):
     #  likert_scale_frequency = ['Always', 'Often', 'Sometimes', 'Rarely', 'Never]
     results = []
     answer_list = []
@@ -21,7 +22,8 @@ def generate_json_for_each_question(question_dict, likert_scale_frequency):
                       "percentage": percentage, "percentage_start": percentage_end,
                       "percentage_end": (percentage_end + percentage),
                       "position": (percentage_end + percentage / 2),
-                      "numbers": "{:.1%}".format(count / total_number_of_answer)
+                      "numbers": "{:.1%}".format(count / total_number_of_answer),
+                      "index": index
                       }
             percentage_end = result["percentage_end"]
 
@@ -74,8 +76,8 @@ def generate_json_for_each_question(question_dict, likert_scale_frequency):
 
 def generate_chart_frequency(question_list, likert_scale_frequency):
     source_data_list = []
-    for question in question_list:
-        source_data_list.extend(generate_json_for_each_question(question, likert_scale_frequency))
+    for i in range(len(question_list)):
+        source_data_list.extend(generate_json_for_each_question(question_list[i], likert_scale_frequency, i))
     return source_data_list
 
 
@@ -122,11 +124,11 @@ if __name__ == '__main__':
     likert_scale_easiness = ['Easy to use', 'Somewhat easy to use', 'Neither easy nor difficult to use',
                              'Somewhat difficult to use', 'Difficult to use']
 
-    source_data = generate_chart_frequency([{"screen_suggestion_usefulness": screen_suggestion_usefulness_list},
-                                            {"OB_understanding": OB_understanding_list},
-                                            {"EB_understanding": EB_understanding_list},
-                                            {"S2R_understanding": S2R_understanding_list},
-                                            {"BURT_messages_understanding": BURT_messages_understanding_list}],
+    source_data = generate_chart_frequency([{"1.Screen": screen_suggestion_usefulness_list},
+                                            {"2.OB": OB_understanding_list},
+                                            {"3.EB": EB_understanding_list},
+                                            {"4.S2R": S2R_understanding_list},
+                                            {"5.Message": BURT_messages_understanding_list}],
                                            likert_scale_frequency)
     #
     # source_data = generate_chart_frequency([{"BURT_easy_to_use": BURT_overall_usefulness_list}],
@@ -193,28 +195,31 @@ if __name__ == '__main__':
     # alt.layer(bars, text, data=source).show()
     print(source_data)
     Response_order = [
-                         'Never',
+                    'Never',
                          'Rarely',
                          'Sometimes',
                          'Often',
                          'Always'
                      ],
-    bars = alt.Chart(source).mark_bar().encode(
+
+    bars = alt.Chart(source).mark_bar(size=12).encode(
         x=alt.X('percentage_start:Q', axis=None),
         x2=alt.X2('percentage_end:Q'),
         # x=alt.X('sum(value):Q', stack='zero'),
-        y=alt.Y('question:N'),
+        y=alt.Y('question:N', sort="descending"),
+
         color=alt.Color(
             'type:N',
-            legend=alt.Legend(title='Frequency'),
+            legend=alt.Legend(title='Frequency', orient='bottom'),
             scale=color_scale,
         ),
 
+
+    # sort = ["Screen", "OB", "EB", "S2R", "Message"]
         # order=alt.Order('color_Response_sort_index:Q'),
     ).properties(
         title={'text': 'Usefulness of BURT'}
     )
-
     text = alt.Chart(source).mark_text(align='center', baseline='middle', color='white', fontSize=8).encode(
         # x=alt.X('percentage_start:Q', axis=None),
         # x2=alt.X2('percentage_end:Q'),
