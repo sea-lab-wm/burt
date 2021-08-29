@@ -20,7 +20,51 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def survey(results, category_names):
+def survey_usefulness(results, category_names):
+    """
+    Parameters
+    ----------
+    results : dict
+        A mapping from question labels to a list of answers per category.
+        It is assumed all lists contain the same number of entries and that
+        it matches the length of *category_names*.
+    category_names : list of str
+        The category labels.
+    """
+    labels = list(results.keys())
+    data = np.array(list(results.values()))
+    data_cum = data.cumsum(axis=1)
+    category_colors = plt.get_cmap('tab20c')(
+        np.array([0.3, 0.35, 1, 0.15, 0.05]))
+    fig = plt.figure(figsize=(8, 4))
+    ax = fig.add_axes([0.15, 0.3, 0.7, 0.4])  # easy to use
+
+    # fig, ax = plt.subplots(figsize=(8, 2))
+    # ax = fig.add_axes([0.15, 0.4, 0.7, 0.4])
+    ax.invert_yaxis()
+    ax.xaxis.set_visible(False)
+    ax.set_xlim(0, np.sum(data, axis=1).max())
+
+    for i, (colname, color) in enumerate(zip(category_names, category_colors)):
+        widths = data[:, i]
+
+        starts = data_cum[:, i] - widths
+
+        rects = ax.barh(labels, widths, left=starts, height=0.6,
+                        label=colname, color=color)
+
+        labels1 = [f'{w:.0f}' if (w := v) > 0 else '' for v in widths]
+        r, g, b, _ = color
+        text_color = 'black'
+        ax.bar_label(rects, labels=labels1, label_type='center', color=text_color, fontweight='bold', fontsize='large')
+    legend_properties = {'weight': 'bold'}
+    ax.legend(ncol=5, bbox_to_anchor=(-0.045, -0.3),
+              loc='lower left', fontsize="medium", prop=legend_properties)
+    plt.savefig('results/usefulness.png', dpi=300)
+    return fig, ax
+
+
+def survey_easy_to_use(results, category_names):
     """
     Parameters
     ----------
@@ -37,8 +81,9 @@ def survey(results, category_names):
     category_colors = plt.get_cmap('tab20c')(
         np.array([0.3, 0.35, 1, 0.15, 0.05]))
 
-    # fig, ax = plt.subplots(figsize=(8, 2))
-    fig, ax = plt.subplots(figsize=(8, 1))
+    fig = plt.figure(figsize=(8, 2))
+    ax = fig.add_axes([0.15, 0.4, 0.7, 0.4])  # easy to use
+
     ax.invert_yaxis()
     ax.xaxis.set_visible(False)
     ax.set_xlim(0, np.sum(data, axis=1).max())
@@ -48,9 +93,6 @@ def survey(results, category_names):
         widths = data[:, i]
 
         starts = data_cum[:, i] - widths
-
-        # rects = ax.barh(labels, widths, left=starts, height=0.55,
-        #                 label=colname, color=color)
         rects = ax.barh(labels, widths, left=starts, height=0.4,
                         label=colname, color=color)
         labels1 = [f'{w:.0f}' if (w := v) > 0 else '' for v in widths]
@@ -58,11 +100,51 @@ def survey(results, category_names):
         text_color = 'black'
         ax.bar_label(rects, labels=labels1, label_type='center', color=text_color, fontweight='bold', fontsize='large')
     legend_properties = {'weight': 'bold'}
-    # ax.legend(ncol=5, bbox_to_anchor=(0.01, -0.15),
-    #           loc='lower left', fontsize="medium", prop=legend_properties)
-    ax.legend(ncol=5, bbox_to_anchor=(0.3, -0.3),
-              loc='lower center', fontsize='x-small', prop=legend_properties)
+    ax.legend(ncol=3, bbox_to_anchor=(-0.15, -0.8),
+              loc='lower left', fontsize="medium", prop=legend_properties)
     plt.savefig('results/easytouse.png', dpi=300)
+    return fig, ax
+
+
+def survey_panel_to_use(results, category_names):
+    """
+    Parameters
+    ----------
+    results : dict
+        A mapping from question labels to a list of answers per category.
+        It is assumed all lists contain the same number of entries and that
+        it matches the length of *category_names*.
+    category_names : list of str
+        The category labels.
+    """
+    labels = list(results.keys())
+    data = np.array(list(results.values()))
+    data_cum = data.cumsum(axis=1)
+    category_colors = plt.get_cmap('tab20c')(
+        np.array([0.3, 0.35, 1, 0.15, 0.05]))
+
+    fig = plt.figure(figsize=(8, 2))
+    ax = fig.add_axes([0.15, 0.4, 0.7, 0.4])  # easy to use
+
+    ax.invert_yaxis()
+    ax.xaxis.set_visible(False)
+    ax.set_xlim(0, np.sum(data, axis=1).max())
+    ax.set_ylim([-0.7, 0.7])
+
+    for i, (colname, color) in enumerate(zip(category_names, category_colors)):
+        widths = data[:, i]
+
+        starts = data_cum[:, i] - widths
+        rects = ax.barh(labels, widths, left=starts, height=0.4,
+                        label=colname, color=color)
+        labels1 = [f'{w:.0f}' if (w := v) > 0 else '' for v in widths]
+        r, g, b, _ = color
+        text_color = 'black'
+        ax.bar_label(rects, labels=labels1, label_type='center', color=text_color, fontweight='bold', fontsize='large')
+    legend_properties = {'weight': 'bold'}
+    ax.legend(ncol=3, bbox_to_anchor=(-0.15, -0.8),
+              loc='lower left', fontsize="medium", prop=legend_properties)
+    plt.savefig('results/panel.png', dpi=300)
     return fig, ax
 
 
@@ -128,7 +210,7 @@ if __name__ == '__main__':
     likert_scale_frequency = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always']
     likert_scale_usefulness = ['Useless', 'Somehow useless', 'Neither useful nor useless', 'Somewhat useful', 'Useful']
     likert_scale_easiness = ['Difficult to use', 'Somewhat difficult to use', 'Neither easy nor difficult to use',
-                             'Somewhat easy to use','Easy to use', ]
+                             'Somewhat easy to use', 'Easy to use', ]
 
     # source_data = generate_chart_frequency([{"Screen": screen_suggestion_usefulness_list},
     #                                         {"OB": OB_understanding_list},
@@ -136,14 +218,16 @@ if __name__ == '__main__':
     #                                         {"S2R": S2R_understanding_list},
     #                                         {"Message": BURT_messages_understanding_list}],
     #                                        likert_scale_frequency)
-
+    # survey_usefulness(source_data, likert_scale_frequency)
     source_data = generate_chart_frequency([{"Easy_to_use": BURT_overall_usefulness_list}],
                                            likert_scale_easiness)
+    print(source_data)
+    survey_easy_to_use(source_data, likert_scale_easiness)
 
-    # source_data = generate_chart_frequency([{"S2R_panel_usefulness": S2R_panel_usefulness_list}],
+    # source_data = generate_chart_frequency([{"Steps_panel": S2R_panel_usefulness_list}],
     #                                        likert_scale_usefulness)
-    #
-    survey(source_data, likert_scale_easiness)
+    # print(source_data)
+    # survey_panel_to_use(source_data, likert_scale_usefulness)
     plt.show()
 #############################################################################
 #
