@@ -212,22 +212,22 @@ if __name__ == '__main__':
     likert_scale_easiness = ['Difficult to use', 'Somewhat difficult to use', 'Neither easy nor difficult to use',
                              'Somewhat easy to use', 'Easy to use', ]
 
-    # source_data = generate_chart_frequency([{"Screen": screen_suggestion_usefulness_list},
-    #                                         {"OB": OB_understanding_list},
-    #                                         {"EB": EB_understanding_list},
-    #                                         {"S2R": S2R_understanding_list},
-    #                                         {"Message": BURT_messages_understanding_list}],
-    #                                        likert_scale_frequency)
-    # survey_usefulness(source_data, likert_scale_frequency)
-    source_data = generate_chart_frequency([{"Easy_to_use": BURT_overall_usefulness_list}],
+    source_data1 = generate_chart_frequency([{"Screen": screen_suggestion_usefulness_list},
+                                            {"OB": OB_understanding_list},
+                                            {"EB": EB_understanding_list},
+                                            {"S2R": S2R_understanding_list},
+                                            {"Message": BURT_messages_understanding_list}],
+                                           likert_scale_frequency)
+    survey_usefulness(source_data1, likert_scale_frequency)
+    source_data2 = generate_chart_frequency([{"Easy_to_use": BURT_overall_usefulness_list}],
                                            likert_scale_easiness)
-    print(source_data)
-    survey_easy_to_use(source_data, likert_scale_easiness)
+    print(source_data2)
+    survey_easy_to_use(source_data2, likert_scale_easiness)
 
-    # source_data = generate_chart_frequency([{"Steps_panel": S2R_panel_usefulness_list}],
-    #                                        likert_scale_usefulness)
-    # print(source_data)
-    # survey_panel_to_use(source_data, likert_scale_usefulness)
+    source_data3 = generate_chart_frequency([{"Steps_panel": S2R_panel_usefulness_list}],
+                                           likert_scale_usefulness)
+    print(source_data3)
+    survey_panel_to_use(source_data3, likert_scale_usefulness)
     plt.show()
 #############################################################################
 #
