@@ -42,8 +42,9 @@ First, create a new folder on your machine (e.g. `/Users/yourname/burt-project`)
 2. `git clone https://github.com/ojcchar/appcore.git`
 3. `git clone https://github.com/ojcchar/text-analyzer.git`
 4. `git clone https://github.com/ojcchar/bug_report_completion.git`
-5. make sure your java version is 12
-6. check if you have installed yarn, if not, please install yarn
+5. Open the file `CSCI435-21FALL-BURT-PROJECT/burt-server/update_deps_and_run_server.sh`, then change the REPOSITORIES_PATH to the directory that contains burt repo on your machine, such as `/Users/yourname/burt-project/`
+6. make sure your java version is 12
+7. check if you have installed yarn, if not, please install yarn
 
 Second, to run the burt server, open a new terminal, then input the next commands:
 1. `cd /Users/yourname/burt-project/CSCI435-21FALL-BURT-PROJECT/burt-server` (feel free to change to your own path)
