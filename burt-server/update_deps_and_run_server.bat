@@ -28,6 +28,8 @@ rem cd "%ANDROID_CORE_REPO_PATH%" && call mvn clean install -DskipTests && @echo
 cd "%CUR_DIR%"
 
 cd ..\burt-nlparser && call mvn clean install -DskipTests && @echo on
+cd ..\trace-replayer\lib && 0_install-maven-deps.bat
+cd ..\..\trace-replayer && mvn clean install -DskipTests && @echo on
 cd ..\crashscope && call mvn clean install -DskipTests && @echo on
 cd ..\burt-quality-checker && call mvn clean install -DskipTests && @echo on
 

@@ -110,11 +110,11 @@
             <version>1.10</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/kephale/matlabcontrol -->
-        <dependency>
-            <groupId>kephale</groupId>
-            <artifactId>matlabcontrol</artifactId>
-            <version>4.1.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>kephale</groupId>-->
+<!--            <artifactId>matlabcontrol</artifactId>-->
+<!--            <version>4.1.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
