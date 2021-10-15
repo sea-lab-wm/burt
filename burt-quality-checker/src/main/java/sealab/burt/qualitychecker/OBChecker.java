@@ -56,6 +56,10 @@ class OBChecker {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, obDescription);
         if (nlActions.isEmpty()) return new QualityResult(NOT_PARSED);
 
+        // if the user says something like "the app crashed", the bot should ask for more details
+        if(nlActions.stream().anyMatch(act -> act.isCrash()) && nlActions.stream().noneMatch(act -> act.isOBAction() && !HeuristicsNLActionParser.isNotWorkAction(act)))
+            return new QualityResult(UNCLEAR_CRASH, Collections.emptyList());
+
         // avoid actions such as "app not work"
         if(nlActions.stream().noneMatch(act -> act.isOBAction() && !HeuristicsNLActionParser.isNotWorkAction(act)))
             return new QualityResult(NO_MATCH, Collections.emptyList());
@@ -87,8 +91,9 @@ class OBChecker {
 
         List<ImmutablePair<GraphState, Double>> matchedStates =
                 resolver.resolveStateInGraphConcurrent(nlAction, executionGraph, currentState);
-
-        if (matchedStates == null || matchedStates.isEmpty())
+        if ((matchedStates == null || matchedStates.isEmpty()) && nlActions.stream().anyMatch(act -> act.isCrash()))
+            return new QualityResult(UNCLEAR_CRASH, Collections.emptyList());
+        else if (matchedStates == null || matchedStates.isEmpty())
             return new QualityResult(NO_MATCH, Collections.emptyList());
         else if (matchedStates.size() == 1)
             return new QualityResult(MATCH, Collections.singletonList(matchedStates.get(0).getLeft()));

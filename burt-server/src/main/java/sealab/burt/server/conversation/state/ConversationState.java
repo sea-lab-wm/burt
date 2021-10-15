@@ -77,6 +77,7 @@ class ConversationState {
             put(CONFIRM_MATCHED_OB, new ConfirmMatchedOBAction(AFFIRMATIVE_ANSWER, NEGATIVE_ANSWER));
             put(PROVIDE_OB_NO_PARSE, new ProvideOBNoParseAction(OB_DESCRIPTION));
             put(REPHRASE_OB, new RephraseOBAction(OB_DESCRIPTION));
+            put(PROVIDE_CRASH_INFO_OB, new ProvideOBCrashInfo(OB_DESCRIPTION));
             put(SELECT_OB_SCREEN, new SelectOBScreenAction(Intent.OB_SCREEN_SELECTED));
             put(CONFIRM_SELECTED_OB_SCREEN, new ConfirmOBScreenSelectedAction());
 

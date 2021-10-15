@@ -22,6 +22,7 @@ class OBDescriptionStateChecker extends StateChecker {
         put(QualityResult.Result.MULTIPLE_MATCH.name(), SELECT_OB_SCREEN);
         put(QualityResult.Result.NO_MATCH.name(), REPHRASE_OB);
         put(QualityResult.Result.NOT_PARSED.name(), PROVIDE_OB_NO_PARSE);
+        put(QualityResult.Result.UNCLEAR_CRASH.name(), PROVIDE_CRASH_INFO_OB);
     }};
 
     public OBDescriptionStateChecker() {
@@ -37,7 +38,7 @@ class OBDescriptionStateChecker extends StateChecker {
         ActionName nextAction = nextActions.get(result.getResult().name());
 
         //we ask to rephrase only 3 times, otherwise we skip the OB
-        if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
+        if (result.getResult().equals(QualityResult.Result.NO_MATCH) || result.getResult().equals(QualityResult.Result.UNCLEAR_CRASH)) {
 
             state.initOrIncreaseCurrentAttemptObNoMatch();
 
