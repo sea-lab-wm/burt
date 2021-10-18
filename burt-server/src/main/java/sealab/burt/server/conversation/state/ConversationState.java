@@ -230,6 +230,16 @@ class ConversationState {
 
     //---------------------------------
 
+    public void initOrIncreaseCurrentAttemptObUnclearCrash() {
+        attemptManager.initOrIncreaseCurrentAttemptObUnclearCrash();
+    }
+
+    public boolean checkNextAttemptAndResetObUnclearCrash() {
+        return attemptManager.checkNextAttemptAndResetObUnclearCrash();
+    }
+
+    //---------------------------------
+
     public Integer getMaxAttemptObScreens() {
         return attemptManager.getMaxAttemptObScreens();
     }

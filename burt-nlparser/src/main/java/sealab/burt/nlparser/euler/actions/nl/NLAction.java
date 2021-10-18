@@ -258,6 +258,14 @@ public class NLAction {
 
                 // -----------------------------------
 
+                || ("terminate".equalsIgnoreCase(action) && subject.toLowerCase().contains("app"))
+
+                // -----------------------------------
+
+                || ("stop".equalsIgnoreCase(action) && subject.toLowerCase().contains("app"))
+
+                // -----------------------------------
+
                 || (("get".equalsIgnoreCase(action) || "cause".equalsIgnoreCase(action)
                 || "give".equalsIgnoreCase(action) || "throw".equalsIgnoreCase(action))
                 && (object != null && (object.toLowerCase().contains("error")

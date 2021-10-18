@@ -38,11 +38,21 @@ class OBDescriptionStateChecker extends StateChecker {
         ActionName nextAction = nextActions.get(result.getResult().name());
 
         //we ask to rephrase only 3 times, otherwise we skip the OB
-        if (result.getResult().equals(QualityResult.Result.NO_MATCH) || result.getResult().equals(QualityResult.Result.UNCLEAR_CRASH)) {
+        if (result.getResult().equals(QualityResult.Result.NO_MATCH)) {
 
             state.initOrIncreaseCurrentAttemptObNoMatch();
 
             boolean nextAttempt = state.checkNextAttemptAndResetObNoMatch();
+
+            if (!nextAttempt) {
+                nextAction = PROVIDE_EB;
+                state.getStateUpdater().updateOBState(state, null);
+            }
+        } else if (result.getResult().equals(QualityResult.Result.UNCLEAR_CRASH)) {
+
+            state.initOrIncreaseCurrentAttemptObUnclearCrash();
+
+            boolean nextAttempt = state.checkNextAttemptAndResetObUnclearCrash();
 
             if (!nextAttempt) {
                 nextAction = PROVIDE_EB;
