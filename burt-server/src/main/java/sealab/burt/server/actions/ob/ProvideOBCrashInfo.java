@@ -16,7 +16,7 @@ public class ProvideOBCrashInfo extends ChatBotAction {
 
     @Override
     public List<ChatBotMessage> execute(ConversationState state){
-        return createChatBotMessages("Please <b>describe what you attempted to do</b> when the app crashed?");
+        return createChatBotMessages("Please <b>describe what you attempted to do</b> when the app crashed");
     }
 
 }
