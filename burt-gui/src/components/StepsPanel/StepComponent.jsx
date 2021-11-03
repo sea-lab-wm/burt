@@ -122,7 +122,7 @@ class StepComponent extends React.Component {
             .replaceAll("&nbsp;", " ").trim()
 
         if (noBrDescription !== "" && noBrDescription !== this.state.fullStepDescription) {
-            this.updateStep(noBrDescription, null)
+            this.updateStep(noBrDescription)
         } else {
             this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
         }
@@ -139,26 +139,63 @@ class StepComponent extends React.Component {
         }
     };
 
-    updateStep = (newStepDescription, newStepImage) => {
+    updateStep = (newStepDescription) => {
         const endPoint = this.props.config.serverEndpoint + this.props.config.updateStepService;
         const sessionId = this.props.sessionId;
         console.log("wtf");
         //------------------------
-        const updatedMessages = [{selectedValues: [this.props.index]}];
-
-        if (newStepDescription) {
-            updatedMessages[0].message = newStepDescription;
-        }
-        if (newStepImage) {
-            updatedMessages[0].image = newStepImage;
-        }
 
         const data = {
             sessionId: sessionId,
-            messages: updatedMessages,
+            messages: [{
+                selectedValues: [this.props.index],
+                message: newStepDescription,
+            }],
         }
 
         const responsePromise = axios.post(endPoint, data);
+        responsePromise.then(response => {
+
+            let result = response.data;
+            if (!result) {
+                console.error(`The step was not updated: ` + this.props.index);
+            } else {
+                this.setState({fullStepDescription: newStepDescription})
+                this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
+            }
+
+        }).catch(error => {
+            console.error(`There was an unexpected error: ${error}`);
+        })
+
+    }
+
+    updateImage = (imageUrl) => {
+        const endPoint = this.props.config.serverEndpoint + this.props.config.updateImageService;
+        const sessionId = this.props.sessionId;
+        console.log("wtf");
+        //------------------------
+
+        const data = {
+            sessionId: sessionId,
+            messages: [{
+                selectedValues: [this.props.index],
+                message: this.state.fullStepDescription,
+            }],
+        }
+
+        const formData = new FormData();
+        formData.append("image", imageUrl);
+        formData.append("req", data);
+        // formData.append("req", new Blob([JSON.stringify(data)], {
+        //     type: "application/json"
+        // }));
+        for (var key of formData.entries()) {
+            console.log(key[0] + ', ' + key[1]);
+        }
+
+
+        const responsePromise = axios.post(endPoint, formData);
         responsePromise.then(response => {
 
             let result = response.data;
@@ -194,19 +231,10 @@ class StepComponent extends React.Component {
             tempSteps.steps = this.props.stepsState.steps;
             tempSteps.steps[this.props.index].value2 = imageUrl;            
             this.props.setStepsState(tempSteps)
-            console.log(this.getBase64Image(document.getElementById("stepImage")))
-            this.updateStep(this.state.fullStepDescription, this.getBase64Image(document.getElementById("stepImage")));
-        }
-    }
 
-    getBase64Image = (img) => {
-        const canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        let dataURL = canvas.toDataURL("image/png");
-        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+            this.updateStep(this.state.fullStepDescription);
+            this.updateImage(imageUrl);
+        }
     }
 
     //------------------------

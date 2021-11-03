@@ -5,7 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
@@ -27,8 +29,6 @@ import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
 
 import java.io.File;
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.Files;
@@ -38,9 +38,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.net.URL;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
@@ -232,25 +230,12 @@ class ConversationController {
         try {
             MessageObj firstMessage = req.getFirstMessage();
             String newStepDescription = firstMessage.getMessage();
-            String newImage = firstMessage.getImage();
 
             int stepIndex = Integer.parseInt(firstMessage.getSelectedValues().get(0));
 
             List<BugReportElement> allSteps = (List<BugReportElement>) state.get(REPORT_S2R);
 
             allSteps.get(stepIndex).setStringElement(newStepDescription);
-            if (newImage != null) {
-                byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(newImage);
-                BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
-
-
-                Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".jpg");
-                File outputFile = imagePath.toFile();
-                outputFile.createNewFile();
-                ImageIO.write(img, "jpg", outputFile);
-
-                allSteps.get(stepIndex).setScreenshotPath(outputFile.getAbsolutePath());
-            }
 
             return true;
         } catch (Exception e) {
@@ -259,6 +244,54 @@ class ConversationController {
         }
     }
 
+    @PostMapping(value = "/updateImage", consumes = "multipart/form-data")
+    public boolean updateImage(@RequestPart UserResponse req, @RequestPart final MultipartFile image) {
+        String msg = "Updating update in the server...";
+        log.debug(msg);
+
+        String sessionId = req.getSessionId();
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return false;
+        }
+
+        ConversationState state = conversationStates.get(sessionId);
+        if (state == null) {
+            log.debug("No conversation state associated to: " + sessionId);
+            return false;
+        }
+
+        try {
+            MessageObj firstMessage = req.getFirstMessage();
+            String newImage = firstMessage.getImage();
+
+            int stepIndex = Integer.parseInt(firstMessage.getSelectedValues().get(0));
+
+            List<BugReportElement> allSteps = (List<BugReportElement>) state.get(REPORT_S2R);
+
+            if (newImage != null) {
+                log.info("Attempted copy");
+                if (image != null) {
+                    Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".jpg");
+                    File outputFile = imagePath.toFile();
+                    String filePath = imagePath.toString();
+                    outputFile.createNewFile();
+                    image.transferTo(outputFile);
+
+
+                    log.info(filePath);
+
+                    log.info("Completed copy");
+                    allSteps.get(stepIndex).setScreenshotPath(filePath);
+                }
+            }
+
+            return true;
+        } catch (Exception e) {
+            log.error("Error updating the step: " + req, e);
+            return false;
+        }
+    }
 
     @PostMapping("/saveMessages")
     public void saveMessages(@RequestBody UserResponse req) {
