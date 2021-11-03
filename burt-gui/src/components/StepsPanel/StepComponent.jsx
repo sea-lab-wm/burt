@@ -185,11 +185,12 @@ class StepComponent extends React.Component {
         }
 
         const formData = new FormData();
-        formData.append("image", imageUrl);
-        formData.append("req", data);
-        // formData.append("req", new Blob([JSON.stringify(data)], {
-        //     type: "application/json"
-        // }));
+        // formData.append("req", data);
+        formData.append("req", new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }));
+        formData.append("image", new File([imageUrl], "imageFile"));
+
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
@@ -202,8 +203,8 @@ class StepComponent extends React.Component {
             if (!result) {
                 console.error(`The step was not updated: ` + this.props.index);
             } else {
-                this.setState({fullStepDescription: newStepDescription})
-                this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
+                // this.setState({fullStepDescription: newStepDescription})
+                // this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
             }
 
         }).catch(error => {

@@ -263,27 +263,27 @@ class ConversationController {
 
         try {
             MessageObj firstMessage = req.getFirstMessage();
-            String newImage = firstMessage.getImage();
 
             int stepIndex = Integer.parseInt(firstMessage.getSelectedValues().get(0));
 
             List<BugReportElement> allSteps = (List<BugReportElement>) state.get(REPORT_S2R);
 
-            if (newImage != null) {
+            log.info("New sttuff");
+            if (image != null) {
                 log.info("Attempted copy");
-                if (image != null) {
-                    Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".jpg");
-                    File outputFile = imagePath.toFile();
-                    String filePath = imagePath.toString();
-                    outputFile.createNewFile();
-                    image.transferTo(outputFile);
+                Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".jpg");
+                File outputFile = imagePath.toFile();
+                String filePath = imagePath.toString();
+                outputFile.createNewFile();
+                image.transferTo(outputFile);
 
+                log.info("Attempted copy2");
 
-                    log.info(filePath);
+                log.info(filePath);
 
-                    log.info("Completed copy");
-                    allSteps.get(stepIndex).setScreenshotPath(filePath);
-                }
+                log.info("Completed copy");
+                allSteps.get(stepIndex).setScreenshotPath(filePath);
+                log.info("updated copy");
             }
 
             return true;
