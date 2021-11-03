@@ -3,6 +3,7 @@
 data/generated_bug_reports
 data/conversation_dumps
 data/metrics
+data/user_screenshots/*
 
 # dependencies
 node_modules

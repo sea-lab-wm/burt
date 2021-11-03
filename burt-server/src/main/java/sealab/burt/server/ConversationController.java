@@ -27,12 +27,21 @@ import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.net.URL;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.CONFIRM_END_CONVERSATION;
@@ -223,10 +232,25 @@ class ConversationController {
         try {
             MessageObj firstMessage = req.getFirstMessage();
             String newStepDescription = firstMessage.getMessage();
+            String newImage = firstMessage.getImage();
+
             int stepIndex = Integer.parseInt(firstMessage.getSelectedValues().get(0));
 
             List<BugReportElement> allSteps = (List<BugReportElement>) state.get(REPORT_S2R);
+
             allSteps.get(stepIndex).setStringElement(newStepDescription);
+            if (newImage != null) {
+                byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(newImage);
+                BufferedImage img = ImageIO.read(new ByteArrayInputStream(imageBytes));
+
+
+                Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".jpg");
+                File outputFile = imagePath.toFile();
+                outputFile.createNewFile();
+                ImageIO.write(img, "jpg", outputFile);
+
+                allSteps.get(stepIndex).setScreenshotPath(outputFile.getAbsolutePath());
+            }
 
             return true;
         } catch (Exception e) {

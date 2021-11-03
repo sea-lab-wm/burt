@@ -122,7 +122,7 @@ class StepComponent extends React.Component {
             .replaceAll("&nbsp;", " ").trim()
 
         if (noBrDescription !== "" && noBrDescription !== this.state.fullStepDescription) {
-            this.updateStep(noBrDescription)
+            this.updateStep(noBrDescription, null)
         } else {
             this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
         }
@@ -139,18 +139,25 @@ class StepComponent extends React.Component {
         }
     };
 
-    updateStep = (newStepDescription) => {
+    updateStep = (newStepDescription, newStepImage) => {
         const endPoint = this.props.config.serverEndpoint + this.props.config.updateStepService;
         const sessionId = this.props.sessionId;
-
+        console.log("wtf");
         //------------------------
+        const updatedMessages = [{selectedValues: [this.props.index]}];
+
+        if (newStepDescription) {
+            updatedMessages[0].message = newStepDescription;
+        }
+        if (newStepImage) {
+            updatedMessages[0].image = newStepImage;
+        }
+
         const data = {
             sessionId: sessionId,
-            messages: [{
-                message: newStepDescription,
-                selectedValues: [this.props.index]
-            }]
+            messages: updatedMessages,
         }
+
         const responsePromise = axios.post(endPoint, data);
         responsePromise.then(response => {
 
@@ -166,6 +173,40 @@ class StepComponent extends React.Component {
             console.error(`There was an unexpected error: ${error}`);
         })
 
+    }
+
+    onImageInputButtonClick = () => {
+        // `current` points to the mounted file input element
+        this.fileInput.current.click();
+    };
+
+    onImageInputChange = (event) => {
+        // If a file was provided
+        if (event.target.files[0]) {
+            // Update the image in the local state
+            const imageUrl = URL.createObjectURL(event.target.files[0]);
+
+            this.setState({stepImage: imageUrl});
+            
+            // Update the image in the parent components states
+            // Have to recreate the stepState object because it won't trigger the hook unless its updated with a new reference
+            let tempSteps = {};
+            tempSteps.steps = this.props.stepsState.steps;
+            tempSteps.steps[this.props.index].value2 = imageUrl;            
+            this.props.setStepsState(tempSteps)
+            console.log(this.getBase64Image(document.getElementById("stepImage")))
+            this.updateStep(this.state.fullStepDescription, this.getBase64Image(document.getElementById("stepImage")));
+        }
+    }
+
+    getBase64Image = (img) => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        let dataURL = canvas.toDataURL("image/png");
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     }
 
     //------------------------
@@ -197,7 +238,7 @@ class StepComponent extends React.Component {
                         <div className="popup-display">
                             <div className="popup-title"
                                  title={this.state.fullStepDescription}>{this.state.fullStepDescription}</div>
-                            <img height="533px" width="300px" src={this.stepImage}
+                            <img id="stepImage" crossOrigin="anonymous" height="533px" width="300px" src={this.state.stepImage}
                                  alt={this.state.fullStepDescription}/>
                             <button onClick={event => this.closeModal(event)}>close</button>
                         </div>
