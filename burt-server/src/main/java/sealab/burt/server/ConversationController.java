@@ -246,7 +246,7 @@ class ConversationController {
 
     @PostMapping(value = "/updateImage", consumes = "multipart/form-data")
     public boolean updateImage(@RequestPart UserResponse req, @RequestPart final MultipartFile image) {
-        String msg = "Updating update in the server...";
+        String msg = "Updating image in the server...";
         log.debug(msg);
 
         String sessionId = req.getSessionId();
@@ -269,14 +269,21 @@ class ConversationController {
             List<BugReportElement> allSteps = (List<BugReportElement>) state.get(REPORT_S2R);
 
             if (image != null) {
+                log.debug("Downloading image to server");
+
+                // Gets appropriate paths and creates a file location for the image to be saved
+                Path dataPath = Paths.get("../data").toAbsolutePath();
                 Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".png").toAbsolutePath();
                 
+                // Creates new file in location where the image is going to be saved
                 File outputFile = new File(imagePath.toString());
-                String filePath = imagePath.toString();
 
+                // Copys the file to it's new location                
                 image.transferTo(outputFile);
 
-                allSteps.get(stepIndex).setScreenshotPath(filePath);
+                // Updates the screenshot path for the step
+                allSteps.get(stepIndex).setScreenshotPath("\\"+dataPath.relativize(imagePath).toString());
+                log.debug("Finished download and updated path");
             }
 
             return true;
