@@ -142,15 +142,14 @@ class StepComponent extends React.Component {
     updateStep = (newStepDescription) => {
         const endPoint = this.props.config.serverEndpoint + this.props.config.updateStepService;
         const sessionId = this.props.sessionId;
-        console.log("wtf");
-        //------------------------
 
+        //------------------------
         const data = {
             sessionId: sessionId,
             messages: [{
-                selectedValues: [this.props.index],
                 message: newStepDescription,
-            }],
+                selectedValues: [this.props.index]
+            }]
         }
 
         const responsePromise = axios.post(endPoint, data);
@@ -173,40 +172,29 @@ class StepComponent extends React.Component {
     updateImage = (imageFile) => {
         const endPoint = this.props.config.serverEndpoint + this.props.config.updateImageService;
         const sessionId = this.props.sessionId;
-        console.log("wtf");
-        //------------------------
 
+        //------------------------
         const data = {
             sessionId: sessionId,
             messages: [{
-                selectedValues: [this.props.index],
                 message: this.state.fullStepDescription,
-            }],
+                selectedValues: [this.props.index]
+            }]
         }
 
         const formData = new FormData();
-        // formData.append("req", data);
         formData.append("req", new Blob([JSON.stringify(data)], {
             type: "application/json"
         }));
         formData.append("image", imageFile);
-
-        for (var key of formData.entries()) {
-            console.log(key[0] + ', ' + key[1]);
-        }
-
 
         const responsePromise = axios.post(endPoint, formData);
         responsePromise.then(response => {
 
             let result = response.data;
             if (!result) {
-                console.error(`The step was not updated: ` + this.props.index);
-            } else {
-                // this.setState({fullStepDescription: newStepDescription})
-                // this.setState({currentStepDescription: this.getCroppedDescription(this.state.fullStepDescription)})
+                console.error(`The image was not updated: ` + this.props.index);
             }
-
         }).catch(error => {
             console.error(`There was an unexpected error: ${error}`);
         })

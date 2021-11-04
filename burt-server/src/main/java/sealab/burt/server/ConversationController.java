@@ -38,7 +38,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.servlet.http.HttpServletRequest;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;

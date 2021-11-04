@@ -20,7 +20,6 @@ class MessageObj {
     private Boolean loading;
     private boolean disabled;
     private boolean multiple;
-    private String image;
 
     //---------------
 
@@ -32,11 +31,6 @@ class MessageObj {
 
     public MessageObj(String message) {
         this.message = message;
-    }
-
-    public MessageObj(String message, String image) {
-        this.message = message;
-        this.image = image;
     }
 
     public MessageObj(String message, WidgetName widget) {
