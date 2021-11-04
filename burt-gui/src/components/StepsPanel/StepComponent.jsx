@@ -221,7 +221,9 @@ class StepComponent extends React.Component {
     onImageInputChange = (event) => {
         // If a file was provided
         if (event.target.files[0]) {
+            // Update the image on the server
             this.updateImage(event.target.files[0]);
+
             // Update the image in the local state
             const imageUrl = URL.createObjectURL(event.target.files[0]);
 
@@ -267,7 +269,7 @@ class StepComponent extends React.Component {
                         <div className="popup-display">
                             <div className="popup-title"
                                  title={this.state.fullStepDescription}>{this.state.fullStepDescription}</div>
-                            <img id="stepImage" crossOrigin="anonymous" height="533px" width="300px" src={this.state.stepImage}
+                            <img height="533px" width="300px" src={this.state.stepImage}
                                  alt={this.state.fullStepDescription}/>
                             <button onClick={event => this.closeModal(event)}>close</button>
                         </div>
