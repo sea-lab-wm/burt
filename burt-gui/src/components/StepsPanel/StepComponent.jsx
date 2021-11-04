@@ -170,7 +170,7 @@ class StepComponent extends React.Component {
 
     }
 
-    updateImage = (imageUrl) => {
+    updateImage = (imageFile) => {
         const endPoint = this.props.config.serverEndpoint + this.props.config.updateImageService;
         const sessionId = this.props.sessionId;
         console.log("wtf");
@@ -189,7 +189,7 @@ class StepComponent extends React.Component {
         formData.append("req", new Blob([JSON.stringify(data)], {
             type: "application/json"
         }));
-        formData.append("image", new File([imageUrl], "imageFile"));
+        formData.append("image", imageFile);
 
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
@@ -221,6 +221,7 @@ class StepComponent extends React.Component {
     onImageInputChange = (event) => {
         // If a file was provided
         if (event.target.files[0]) {
+            this.updateImage(event.target.files[0]);
             // Update the image in the local state
             const imageUrl = URL.createObjectURL(event.target.files[0]);
 
@@ -234,7 +235,6 @@ class StepComponent extends React.Component {
             this.props.setStepsState(tempSteps)
 
             this.updateStep(this.state.fullStepDescription);
-            this.updateImage(imageUrl);
         }
     }
 
