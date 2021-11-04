@@ -1,4 +1,5 @@
 import ApiClient from "./ApiClient";
+import config from '../config';
 
 class ActionProvider {
 
@@ -54,6 +55,11 @@ class ActionProvider {
     }
 
     updateAllStepHistory(steps) {
+        // Store the endpoint with the step so that it can be updated with a user provided file 
+        // User provided files are not initially hosted on the same server so we need to store 
+        // the endpoint with the file location to effectively render images from the various servers
+        steps.map((step, index) => {step.value2 = config.serverEndpoint + step.value2})
+
         let fn = prevState => {
             return {
                 ...prevState, steps: steps

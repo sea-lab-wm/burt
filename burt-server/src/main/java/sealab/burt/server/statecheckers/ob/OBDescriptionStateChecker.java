@@ -22,7 +22,6 @@ class OBDescriptionStateChecker extends StateChecker {
         put(QualityResult.Result.MULTIPLE_MATCH.name(), SELECT_OB_SCREEN);
         put(QualityResult.Result.NO_MATCH.name(), REPHRASE_OB);
         put(QualityResult.Result.NOT_PARSED.name(), PROVIDE_OB_NO_PARSE);
-        put(QualityResult.Result.UNCLEAR_CRASH.name(), PROVIDE_CRASH_INFO_OB);
     }};
 
     public OBDescriptionStateChecker() {
@@ -43,16 +42,6 @@ class OBDescriptionStateChecker extends StateChecker {
             state.initOrIncreaseCurrentAttemptObNoMatch();
 
             boolean nextAttempt = state.checkNextAttemptAndResetObNoMatch();
-
-            if (!nextAttempt) {
-                nextAction = PROVIDE_EB;
-                state.getStateUpdater().updateOBState(state, null);
-            }
-        } else if (result.getResult().equals(QualityResult.Result.UNCLEAR_CRASH)) {
-
-            state.initOrIncreaseCurrentAttemptObUnclearCrash();
-
-            boolean nextAttempt = state.checkNextAttemptAndResetObUnclearCrash();
 
             if (!nextAttempt) {
                 nextAction = PROVIDE_EB;

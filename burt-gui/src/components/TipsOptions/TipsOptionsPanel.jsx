@@ -93,7 +93,7 @@ function getScreenshotsTip() {
         <br/>
         <br/>
         <span>Input values</span> and <span>UI components</span> may appear differently
-        on the actual app screens
+        on the actual app screens. <span>To update a reported step with your own image, click the button next to the step.</span>
     </p>;
 }
 

@@ -22,6 +22,9 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         borderRadius: '5px',
     },
+    modalButton: {
+        margin: '.2em',
+    },
 }
 Modal.setAppElement('#root');
 
@@ -31,14 +34,15 @@ class StepComponent extends React.Component {
         super(props);
 
         // console.log("Constructor")
-        this.stepImage = this.props.config.serverEndpoint + this.props.step.value2;
         this.stepNumber = this.props.index + 1
+        this.fileInput = React.createRef();
 
         this.editableComponentRef = React.createRef();
         this.state = {
             modalIsOpens: Array(this.props.stepsSize).fill(false),
             fullStepDescription: this.props.step.value1,
-            currentStepDescription: this.getCroppedDescription(this.props.step.value1)
+            currentStepDescription: this.getCroppedDescription(this.props.step.value1),
+            stepImage: this.props.step.value2
         }
     }
 
@@ -64,6 +68,10 @@ class StepComponent extends React.Component {
     //--------------------------------
 
     openModal(event) {
+        if (event.target == this.fileInput.current) {
+            // Default activity is necessary here to open system's file dialog box
+            return
+        }
         window.onbeforeunload = null;
         event.preventDefault();
         this.setIsOpen(this.props.index, true);
@@ -244,7 +252,7 @@ class StepComponent extends React.Component {
                     onFocus={this.onFocusFn}
                     onBlur={this.onBlurFn}
                 />
-                <a href={this.stepImage} title={"See a screenshot of this step"}
+                <a href={this.state.stepImage} title={"See a screenshot of this step"}
                    onClick={event => this.openModal(event)}>
                     <Modal
                         isOpen={this.state.modalIsOpens[this.props.index]}
@@ -259,10 +267,13 @@ class StepComponent extends React.Component {
                                  title={this.state.fullStepDescription}>{this.state.fullStepDescription}</div>
                             <img height="533px" width="300px" src={this.state.stepImage}
                                  alt={this.state.fullStepDescription}/>
-                            <button onClick={event => this.closeModal(event)}>close</button>
+                            <div>
+                                <button onClick={this.onImageInputButtonClick} style={customStyles.modalButton}>Upload Image</button>
+                                <input type='file' id='imageFileInp' ref={this.fileInput}  onChange={this.onImageInputChange} accept="image/*" style={{display: 'none'}}/>
+                                <button onClick={event => this.closeModal(event)} style={customStyles.modalButton}>Close</button>
+                            </div>
                         </div>
                     </Modal>
-
 
                     <span className="label label-left label-info">
                     <ShowScreenshotStepIcon1 className="bi bi-file-earmark-image"/>

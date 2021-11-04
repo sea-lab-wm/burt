@@ -135,6 +135,7 @@ const Chatbot = ({
                 actionProvider={actionProv}
                 messagesState={state}
                 setState={setState}
+                setStepsState={setStepsState}
             />
             <div className="span6">
             <Chat
