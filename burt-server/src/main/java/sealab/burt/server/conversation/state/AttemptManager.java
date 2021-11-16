@@ -11,7 +11,7 @@ class AttemptManager {
 
     public enum AttemptType {
         //OB
-        OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS, , OB_UNCLEAR_CRASH,
+        OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS, OB_UNCLEAR_CRASH,
         //EB
         EB_NO_MATCH, EB_NOT_PARSED,
         //S2R
