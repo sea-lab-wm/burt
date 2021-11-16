@@ -11,7 +11,7 @@ class AttemptManager {
 
     public enum AttemptType {
         //OB
-        OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS,
+        OB_MATCHED, OB_NO_MATCH, OB_NOT_PARSED, OB_SCREENS, , OB_UNCLEAR_CRASH,
         //EB
         EB_NO_MATCH, EB_NOT_PARSED,
         //S2R
@@ -28,9 +28,10 @@ class AttemptManager {
 
             //OB
             put(AttemptType.OB_MATCHED, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //confirmation of OB HQ
-            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //no screen match
+            put(AttemptType.OB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //no screen match
             put(AttemptType.OB_SCREENS, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //multiple screens matched
             put(AttemptType.OB_NOT_PARSED, new MutablePair<>(MAX_ATTEMPTS_2, -1)); //no parsed
+            put(AttemptType.OB_UNCLEAR_CRASH, new MutablePair<>(MAX_ATTEMPTS_3, -1)); //unclear description of a crash
 
             //EB
             put(AttemptType.EB_NO_MATCH, new MutablePair<>(MAX_ATTEMPTS_2, -1));
@@ -239,6 +240,16 @@ class AttemptManager {
 
     public boolean checkNextAttemptAndResetObNoMatch() {
         return checkNextAttemptAndReset(AttemptType.OB_NO_MATCH);
+    }
+
+    //------------------------------------------------
+
+    public void initOrIncreaseCurrentAttemptObUnclearCrash() {
+        initOrIncreaseCurrentAttempt(AttemptType.OB_UNCLEAR_CRASH);
+    }
+
+    public boolean checkNextAttemptAndResetObUnclearCrash() {
+        return checkNextAttemptAndReset(AttemptType.OB_UNCLEAR_CRASH);
     }
 
     //------------------------------------------------
