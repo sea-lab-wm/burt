@@ -21,6 +21,7 @@ public abstract class ChatBotAction {
 
     public final static String DONE = "done";
     public final static String NONE = "none of the above";
+    public final static String UPLOAD = "upload image";
 
     public List<Intent> nextExpectedIntents;
 
