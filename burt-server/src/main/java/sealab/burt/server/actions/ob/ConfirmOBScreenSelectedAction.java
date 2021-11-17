@@ -166,8 +166,14 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                         new ChatBotMessage(messageObj, options));
             }
         } else if (UPLOAD.equals(message.getMessage())) {
+            startEBChecker(state);
+            this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
+
+            state.getStateUpdater().updateOBState(state, null);
+
             return createChatBotMessages("Your photo has been uploaded.",
-                    "Please tell me how the app is <b>supposed to work</b>");
+                    "Please tell me how the app is <b>supposed to work</b>"
+            );
         } else {
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
             return getDefaultMessage();

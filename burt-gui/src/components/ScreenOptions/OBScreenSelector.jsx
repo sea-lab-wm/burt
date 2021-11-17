@@ -54,9 +54,8 @@ const OBScreenSelector = (props) => {
 
             let message = props.actionProvider.createChatBotMessage("upload image")
             const responsePromise = ApiClient.processUserMessage(message)
-
-
-            //setDisable(true)
+            processResponse(responsePromise, props.actionProvider)
+            setDisable(true)
 
         }
     }
