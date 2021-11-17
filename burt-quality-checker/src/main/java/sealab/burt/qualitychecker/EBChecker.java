@@ -53,8 +53,7 @@ class EBChecker {
             return new QualityResult(QualityResult.Result.MATCH);
 
         //---------------------------------------------------
-
-        if (obState != null) {
+        if (obState != null && !obState.getName().equals("UserScreenshot")) {
             for (NLAction nlAction : nlActions) {
 
                 Map.Entry<AppGuiComponent, Double> component = matchActionToState(obState, nlAction);

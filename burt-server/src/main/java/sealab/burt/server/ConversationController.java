@@ -91,14 +91,15 @@ class ConversationController {
     }
 
 
-    @PostMapping("/processMessage")
-    public ConversationResponse processMessage(@RequestBody UserResponse userResponse) {
-        ConversationResponse response = getConversationResponse(userResponse);
+    @PostMapping(value = "/processMessage", consumes = "multipart/form-data")
+    public ConversationResponse processMessage(@RequestPart UserResponse userResponse, @RequestPart(value="image", required=false) final MultipartFile image) {
+
+        ConversationResponse response = getConversationResponse(userResponse, image);
         log.debug("ChatBot response: " + response.toString());
         return response;
     }
 
-    private ConversationResponse getConversationResponse(UserResponse userResponse) {
+    private ConversationResponse getConversationResponse(UserResponse userResponse, MultipartFile image) {
         try {
 
             if (userResponse != null)
@@ -179,6 +180,10 @@ class ConversationController {
 
             log.debug("Identified action: " + nextAction.getClass().getSimpleName());
 
+            if (nextAction.getClass().getSimpleName().equals("ConfirmOBScreenSelectedAction")) {
+                nextAction.setImage(image);
+            }
+            
             List<ChatBotMessage> nextMessages = nextAction.execute(conversationState);
             List<Intent> nextIntents = nextAction.nextExpectedIntents();
             conversationState.put(NEXT_INTENTS, nextIntents);

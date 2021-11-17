@@ -17,6 +17,8 @@ import static sealab.burt.server.StateVariable.APP_VERSION;
 import static sealab.burt.server.StateVariable.EB_CHECKER;
 import static sealab.burt.server.msgparsing.Intent.NO_EXPECTED_INTENT;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public abstract class ChatBotAction {
 
     public final static String DONE = "done";
@@ -24,6 +26,7 @@ public abstract class ChatBotAction {
     public final static String UPLOAD = "upload image";
 
     public List<Intent> nextExpectedIntents;
+    public MultipartFile image;
 
     public ChatBotAction() {
         nextExpectedIntents = new ArrayList<>();
@@ -47,6 +50,10 @@ public abstract class ChatBotAction {
 
     public final void setNextExpectedIntents(List<Intent> nextExpectedIntents) {
         this.nextExpectedIntents = nextExpectedIntents;
+    }
+
+    public void setImage(MultipartFile imageFile) {
+        this.image = imageFile;
     }
 
     protected List<ChatBotMessage> createChatBotMessages(String... messages) {

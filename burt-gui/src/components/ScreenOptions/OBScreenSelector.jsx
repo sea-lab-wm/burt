@@ -54,6 +54,7 @@ const OBScreenSelector = (props) => {
 
             let message = props.actionProvider.createChatBotMessage("upload image")
             const responsePromise = ApiClient.processUserMessage(message)
+            const responsePromise = ApiClient.processUserMessage(message, event.target.files[0])
             processResponse(responsePromise, props.actionProvider)
             setDisable(true)
 

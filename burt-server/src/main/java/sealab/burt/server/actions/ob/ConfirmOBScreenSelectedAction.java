@@ -13,6 +13,10 @@ import sealab.burt.server.output.MetricsRecorder;
 
 import java.util.Collections;
 import java.util.List;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.io.File;
+import java.util.UUID;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.PROVIDE_EB;
@@ -60,6 +64,8 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
             }
 
             GraphState selectedState = matchedStates.get(id);
+
+            log.debug("GraphState from ConfirmOB", selectedState);
 
             setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
             startEBChecker(state);
@@ -169,7 +175,26 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
             startEBChecker(state);
             this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
 
-            state.getStateUpdater().updateOBState(state, null);
+            if (this.image != null) {
+                Path dataPath = Paths.get("../data").toAbsolutePath();
+                Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".png").toAbsolutePath();
+
+                // Creates new file in location where the image is going to be saved
+                File outputFile = new File(imagePath.toString());
+
+                // Copys the file to it's new location                
+                image.transferTo(outputFile);
+
+                // Updates the screenshot path for the step
+
+                GraphState selectedState = new GraphState();
+                selectedState.setName("UserScreenshot");
+                selectedState.setScreenshotPath("\\"+dataPath.relativize(imagePath).toString());
+
+                state.getStateUpdater().updateOBState(state, selectedState);
+            } else {
+                state.getStateUpdater().updateOBState(state, null);
+            }
 
             return createChatBotMessages("Your photo has been uploaded.",
                     "Please tell me how the app is <b>supposed to work</b>"
@@ -180,7 +205,6 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
         }
 
     }
-
 
     private List<ChatBotMessage> getDefaultMessage() {
         this.nextExpectedIntents = Collections.singletonList(Intent.OB_SCREEN_SELECTED);
