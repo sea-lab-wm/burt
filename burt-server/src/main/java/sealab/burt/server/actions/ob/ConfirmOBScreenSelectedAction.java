@@ -191,7 +191,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 selectedState.setName("UserScreenshot");
                 selectedState.setScreenshotPath("\\"+dataPath.relativize(imagePath).toString());
 
-                state.getStateUpdater().updateOBState(state, selectedState);
+                state.getStateUpdater().updateOBState(state, null);
             } else {
                 state.getStateUpdater().updateOBState(state, null);
             }
