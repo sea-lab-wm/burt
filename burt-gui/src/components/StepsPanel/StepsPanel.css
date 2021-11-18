@@ -185,10 +185,11 @@ margin-bottom: 2px;
     align-items: center;
     max-width: 35% ;
     max-height: 312px;
+    padding: .1em;
 }
 .screenshot{
-max-width: 90%;
-max-height: 90%;
+width: 96.91px;
+max-height: 172.28px;
 }
 
 .screen-index{
