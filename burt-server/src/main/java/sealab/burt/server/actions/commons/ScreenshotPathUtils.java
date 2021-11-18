@@ -48,7 +48,12 @@ class ScreenshotPathUtils {
         if (GraphDataSource.TR.equals(dataSource) && !screenshotPath.equals(Path.of(DEFAULT_SCREENSHOT))) {
             prefix = BurtConfigPaths.traceReplayerDataFolder;
             fullScreenshotPath = Path.of(BurtConfigPaths.traceReplayerDataPath);
+        } else if (GraphDataSource.US.equals(dataSource)) {
+            screenshotPath = Path.of(inputScreenshotPath);
+            prefix = BurtConfigPaths.userScreenshotPath;
+            fullScreenshotPath = Path.of(BurtConfigPaths.fullUserScreenshotPath);
         }
+
         fullScreenshotPath = fullScreenshotPath.resolve(screenshotPath);
 
         if (!Files.exists(fullScreenshotPath)) {

@@ -3,6 +3,7 @@ package sealab.burt.server.actions.ob;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.graph.GraphDataSource;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
@@ -176,7 +177,7 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
             this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
 
             if (this.image != null) {
-                Path dataPath = Paths.get("../data").toAbsolutePath();
+                Path folderPath = Paths.get("../data/user_screenshots").toAbsolutePath();
                 Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".png").toAbsolutePath();
 
                 // Creates new file in location where the image is going to be saved
@@ -189,9 +190,9 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
                 GraphState selectedState = new GraphState();
                 selectedState.setName("UserScreenshot");
-                selectedState.setScreenshotPath("\\"+dataPath.relativize(imagePath).toString());
-
-                state.getStateUpdater().updateOBState(state, null);
+                selectedState.setDataSource(GraphDataSource.US);
+                selectedState.setScreenshotPath(folderPath.relativize(imagePath).toString());
+                state.getStateUpdater().updateOBState(state, selectedState);
             } else {
                 state.getStateUpdater().updateOBState(state, null);
             }

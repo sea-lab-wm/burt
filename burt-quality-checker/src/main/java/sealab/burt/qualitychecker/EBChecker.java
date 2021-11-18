@@ -9,6 +9,7 @@ import sealab.burt.qualitychecker.actionmatcher.ActionMatchingException;
 import sealab.burt.qualitychecker.actionmatcher.NLActionS2RMatcher;
 import sealab.burt.qualitychecker.graph.AppGuiComponent;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.graph.GraphDataSource;
 
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,10 @@ class EBChecker {
             return new QualityResult(QualityResult.Result.MATCH);
 
         //---------------------------------------------------
-        if (obState != null && !obState.getName().equals("UserScreenshot")) {
+        if (obState != null) {
+            if (GraphDataSource.US.equals(obState.getDataSource())) 
+                return new QualityResult(QualityResult.Result.MATCH);
+            
             for (NLAction nlAction : nlActions) {
 
                 Map.Entry<AppGuiComponent, Double> component = matchActionToState(obState, nlAction);
