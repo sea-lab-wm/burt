@@ -55,6 +55,8 @@ class EBChecker {
 
         //---------------------------------------------------
         if (obState != null) {
+            // A US (user screenshot) is inherently a quality result 
+            // because it is provided by the user reporting the bug
             if (GraphDataSource.US.equals(obState.getDataSource())) 
                 return new QualityResult(QualityResult.Result.MATCH);
             

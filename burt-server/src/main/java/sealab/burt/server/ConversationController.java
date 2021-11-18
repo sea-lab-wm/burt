@@ -180,6 +180,8 @@ class ConversationController {
 
             log.debug("Identified action: " + nextAction.getClass().getSimpleName());
 
+            // Need to provide the image to our processor class so it can be saved 
+            // and updated in the Graph appropriately
             if (nextAction.getClass().getSimpleName().equals("ConfirmOBScreenSelectedAction")) {
                 nextAction.setImage(image);
             }

@@ -35,6 +35,7 @@ class StepComponent extends React.Component {
 
         // console.log("Constructor")
         this.stepNumber = this.props.index + 1
+        // For user uploaded file
         this.fileInput = React.createRef();
 
         this.editableComponentRef = React.createRef();
@@ -69,7 +70,7 @@ class StepComponent extends React.Component {
 
     openModal(event) {
         if (event.target == this.fileInput.current) {
-            // Default activity is necessary here to open system's file dialog box
+            // Default behavior is necessary here to open system's file dialog box
             return
         }
         window.onbeforeunload = null;
@@ -178,10 +179,11 @@ class StepComponent extends React.Component {
     }
 
     updateImage = (imageFile) => {
+        // Get image update endpoint
         const endPoint = this.props.config.serverEndpoint + this.props.config.updateImageService;
-        const sessionId = this.props.sessionId;
 
-        //------------------------
+        // Prepare data
+        const sessionId = this.props.sessionId;
         const data = {
             sessionId: sessionId,
             messages: [{
@@ -196,6 +198,7 @@ class StepComponent extends React.Component {
         }));
         formData.append("image", imageFile);
 
+        // Send and process post request
         const responsePromise = axios.post(endPoint, formData);
         responsePromise.then(response => {
 

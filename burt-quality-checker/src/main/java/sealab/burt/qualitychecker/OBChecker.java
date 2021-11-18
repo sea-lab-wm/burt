@@ -87,7 +87,6 @@ class OBChecker {
 
         List<ImmutablePair<GraphState, Double>> matchedStates =
                 resolver.resolveStateInGraphConcurrent(nlAction, executionGraph, currentState);
-
         if ((matchedStates == null || matchedStates.isEmpty()) && nlActions.stream().anyMatch(act -> act.isCrash()))
             return new QualityResult(UNCLEAR_CRASH, Collections.emptyList());
         else if (matchedStates == null || matchedStates.isEmpty())

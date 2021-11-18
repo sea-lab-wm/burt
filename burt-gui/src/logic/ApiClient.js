@@ -22,6 +22,7 @@ class ApiClient {
      *  answers).
      *
      * messageObj should be an object as used in the chatbot framework
+     * imageObj should be an image file (optional argument)
      * selectedValues should be an array
      */
     static processUserMessage(messageObj, imageObj) {
@@ -37,6 +38,7 @@ class ApiClient {
             type: "application/json"
         }));
 
+        // If an image is provided, send it as part of the request
         if (arguments.length == 2) {
             formData.append("image", imageObj);
         }

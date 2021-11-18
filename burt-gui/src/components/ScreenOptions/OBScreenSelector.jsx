@@ -49,14 +49,13 @@ const OBScreenSelector = (props) => {
     const onImageInputChange = (event) => {
         // If a file was provided
         if (event.target.files[0]) {
-
-            console.log("Image uploaded");
-
+            // Creates a specific message for a user uploaded screenshot 
             let message = props.actionProvider.createChatBotMessage("upload image")
+            // Sends message and screenshot to backend for processing
             const responsePromise = ApiClient.processUserMessage(message, event.target.files[0])
             processResponse(responsePromise, props.actionProvider)
+            // Disables all the buttons (confirm, negative, image upload)
             setDisable(true)
-
         }
     }
 

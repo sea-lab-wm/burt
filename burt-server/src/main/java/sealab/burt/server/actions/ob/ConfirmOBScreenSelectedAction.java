@@ -66,8 +66,6 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
 
             GraphState selectedState = matchedStates.get(id);
 
-            log.debug("GraphState from ConfirmOB", selectedState);
-
             setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
             startEBChecker(state);
 
@@ -187,11 +185,12 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 image.transferTo(outputFile);
 
                 // Updates the screenshot path for the step
-
+                // and saves it to a US (user screenshot) graph state
                 GraphState selectedState = new GraphState();
                 selectedState.setName("UserScreenshot");
                 selectedState.setDataSource(GraphDataSource.US);
                 selectedState.setScreenshotPath(folderPath.relativize(imagePath).toString());
+
                 state.getStateUpdater().updateOBState(state, selectedState);
             } else {
                 state.getStateUpdater().updateOBState(state, null);
