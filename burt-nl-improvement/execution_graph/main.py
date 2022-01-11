@@ -3,6 +3,7 @@ from os import listdir
 import json
 import logging
 from pathlib import Path
+import csv
 
 
 def write_json_line_by_line(data, file_path):
@@ -21,13 +22,18 @@ def parse_dXml(idXml):
 
 def parse_type(type):
     if type:
-        return type.split(".")[-1]
+        key_word = type.split(".")[-1]
+        print(key_word)
+        view_group = ["viewgroup", "layout", "viewpager", "tabhost", "tabwidget", "tablerow", "viewpager"]
+        if key_word.lower() == "view" or any(s in key_word.lower() for s in view_group):
+            return False
+        else:
+            return True
     else:
-        return None
+        return False
 
 
-def read_json(file):
-
+def read_json(file, data_source):
     result = []
 
     with open(file) as json_file:
@@ -41,9 +47,10 @@ def read_json(file):
             action_code = step["action"]
             if action_code == 99:
                 continue
-            step_contents["step_id"] = step["sequenceStep"]
 
-            concepts = {}
+            step_contents["stepID"] = step["sequenceStep"]
+            step_contents["dataSource"] = data_source
+
             if "screenshot" not in step:
                 print("the", step["sequenceStep"], "step does not have screenshot")
             else:
@@ -52,63 +59,55 @@ def read_json(file):
             step_contents["screenshotPath"] = screenshot_path
             step_contents["action"] = {}
 
-            if "dynGuiComponent" not in step:
-                print("the", step["sequenceStep"], "step does not have dynGuiComponent")
-            else:
+            if "dynGuiComponent" in step:
+
                 dyn_gui_component = step["dynGuiComponent"]
 
-            if "text" in dyn_gui_component:
-                text = dyn_gui_component["text"]
-                step_contents["action"]["text"] = text
+                if "name" in dyn_gui_component:
+                    type = dyn_gui_component["name"]
+                    if parse_type(type):
+                        step_contents["action"]["type"] = type.split(".")[-1]
 
-            if "contentDescription" in dyn_gui_component:
-                content_description = dyn_gui_component["contentDescription"]
-                step_contents["action"]["content_description"] = content_description
+                        if "text" in dyn_gui_component:
+                            if dyn_gui_component["text"]:
 
-            if "idXml" not in dyn_gui_component:
-                print("the", step["sequenceStep"], "step does not have idXml")
-            else:
-                idXml = dyn_gui_component["idXml"]
-                key_word = parse_dXml(idXml)
-                if key_word:
-                    step_contents["action"]["idXml"] = key_word
+                                step_contents["action"]["text"] = dyn_gui_component["text"]
 
-            if "name" not in dyn_gui_component:
-                print("the", step["sequenceStep"], "step does not have name")
-            else:
-                type = dyn_gui_component["name"]
-                type_key_word = parse_type(type)
-                if type_key_word:
-                    step_contents["action"]["type"] = type_key_word
+                        if "contentDescription" in dyn_gui_component:
+                            if dyn_gui_component["contentDescription"]:
+                                step_contents["action"]["content_description"] = dyn_gui_component["contentDescription"]
 
-            # ----------------------------
+                        if "idXml" in dyn_gui_component:
+                            idXml = dyn_gui_component["idXml"]
+                            xml_result = parse_dXml(idXml)
+                            if xml_result:
+                                step_contents["action"]["idXml"] = xml_result
+
+                            # ----------------------------
             screen = step["screen"]
             components_list = []
             for gui_component in screen["dynGuiComponents"]:
-                each_type = gui_component["name"]
-                view_group = ["viewgroup", "layout", "viewpager", "tabhost", "tabwidget", "tablerow"]
-                if any(s in each_type.lower() for s in view_group) or each_type.lower() == "view":
-                    continue
-
                 content_screen = {}
 
-                if "text" in gui_component:
-                    each_text = gui_component["text"]
-                    content_screen["text"] = each_text
+                if "name" in gui_component:
+                    type = gui_component["name"]
+                    if parse_type(type):
+                        content_screen["type"] = type.split(".")[-1]
 
-                if "contentDescription" in gui_component:
-                    each_content_description = gui_component["contentDescription"]
-                    content_screen["content_description"] = each_content_description
+                        if "text" in gui_component:
+                            if gui_component["text"]:
+                                content_screen["text"] = gui_component["text"]
 
-                each_idXml = gui_component["idXml"]
-                each_key_word = parse_dXml(each_idXml)
-                if each_key_word:
-                    content_screen["idXml"] = each_key_word
+                        if "contentDescription" in gui_component:
+                            if gui_component["contentDescription"]:
+                                content_screen["content_description"] = gui_component["contentDescription"]
 
-                each_type = gui_component["name"]
-                each_type_key_word = parse_type(each_type)
-                if each_type_key_word:
-                    content_screen["type"] = each_type_key_word
+                        if "idXml" in gui_component:
+                            each_idXml = gui_component["idXml"]
+                            xml_result = parse_dXml(each_idXml)
+                            if xml_result is not None:
+                                content_screen["idXml"] = xml_result
+
                 if len(content_screen) > 0:
                     components_list.append(content_screen)
 
@@ -117,6 +116,55 @@ def read_json(file):
             result.append(step_contents)
 
         return result
+
+
+def write_csv_from_json_list(result, exec_output_file_path):
+    with open(exec_output_file_path, "w" ,newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["dataSource", "stepID", "screenshotPath", "text", "idXml", "type"])
+
+        for each_json in result:
+            data_source = each_json["dataSource"]
+            stepID = each_json["stepID"]
+            screenshotPath = each_json["screenshotPath"]
+            action = each_json["action"]
+            print(data_source)
+            print(screenshotPath)
+            print(stepID)
+            if not action:
+                if "text" in action:
+                    text = action["text"]
+                else:
+                    text = ""
+
+                if "idXml" in action:
+                    idXml = action["idXml"]
+                else:
+                    idXml = ""
+
+                if "type" in action:
+                    type = action["type"]
+                else:
+                    type = ""
+
+                writer.writerow([data_source, stepID, screenshotPath, text, idXml, type])
+            components = each_json["screen"]
+            for component in components:
+                if "text" in component:
+                    text_cp = component["text"]
+                else:
+                    text_cp = ""
+
+                if "idXml" in component:
+                    idXml_cp = component["idXml"]
+                else:
+                    idXml_cp = ""
+
+                if "type" in component:
+                    type_cp = component["type"]
+                else:
+                    type_cp = ""
+                writer.writerow([data_source, stepID, screenshotPath, text_cp, idXml_cp, type_cp])
 
 
 if __name__ == '__main__':
@@ -144,13 +192,16 @@ if __name__ == '__main__':
     ]
 
     data_sources = ["CrashScope", "TraceReplayer"]
+    json_list = []
+    output_folder = "extracted_data"
+    csv_output_file_path = "extracted_information.csv"
 
     for system in systems:
         system_name, system_version = system
 
         # read execution file
         data_folder = "../data"
-        output_folder = "extracted_data"
+
         for data_source in data_sources:
 
             data_source_folder = data_source + "-Data"
@@ -164,10 +215,18 @@ if __name__ == '__main__':
 
                 try:
                     execution_file_path = os.path.join(data_location, file)
-                    result = read_json(execution_file_path)
-                    Path(os.path.join(output_folder, package_name + "-" + system_version)).mkdir(parents=True, exist_ok=True)
-                    exec_output_file_path = os.path.join(output_folder, package_name + "-" + system_version, data_source + "-" + file)
+                    result = read_json(execution_file_path, data_source + "-" + file)
+
+                    json_list.extend(result)
+
+                    Path(os.path.join(output_folder, package_name + "-" + system_version)).mkdir(parents=True,
+                                                                                                 exist_ok=True)
+                    exec_output_file_path = os.path.join(output_folder, package_name + "-" + system_version,
+                                                         data_source + "-" + file)
+
                     write_json_line_by_line(result, exec_output_file_path)
 
                 except UnicodeError as e:
                     logging.error('Failed to read execution file: ' + str(e))
+
+    write_csv_from_json_list(json_list, os.path.join(output_folder, csv_output_file_path))
