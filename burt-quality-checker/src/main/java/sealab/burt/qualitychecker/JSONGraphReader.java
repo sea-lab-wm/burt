@@ -49,7 +49,7 @@ class JSONGraphReader {
         return graph;
     }
 
-    private static String getKey(String app, String appVersion) {
+    public static String getKey(String app, String appVersion) {
         return MessageFormat.format("{0}-{1}", app, appVersion);
     }
 

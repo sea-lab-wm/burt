@@ -435,6 +435,7 @@ class StepResolver {
         if (stateComponents == null)
             return result;
 
+        // QUESTION?
         //filter out those components associated with a step, which duplicate existing components
         stateComponents = stateComponents.stream()
                 .filter(c -> c.getParent() != null || "NO_ID".equals(c.getIdXml()))
