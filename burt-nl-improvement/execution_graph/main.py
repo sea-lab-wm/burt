@@ -14,7 +14,7 @@ import concurrent.futures
 import multiprocessing
 import os
 
-
+os.chdir("../../burt-nl-improvement")
 
 from subprocess import PIPE, run
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -256,9 +256,9 @@ def extract_phrases(json_list):
         stepID = each_json["stepID"]
         screenshotPath = each_json["screenshotPath"]
         action = each_json["action"]
-        print(data_source)
-        print(screenshotPath)
-        print(stepID)
+        #print(data_source)
+        #print(screenshotPath)
+        #print(stepID)
         components = each_json["screen"]
 
         for component in components:
@@ -286,7 +286,7 @@ def extract_phrases(json_list):
                     if new_idXml_cp:
                         get_noun_phrases_verbs(new_idXml_cp, tokens)
                         get_single_nouns(new_idXml_cp, tokens)
-        print(tokens)
+        # print(tokens)
 
     return tokens
 
@@ -359,15 +359,19 @@ if __name__ == '__main__':
 
     write_csv_from_json_list(json_list, os.path.join(output_folder, csv_output_file_path))
 
-    fold_size = math.ceil(len(json_list) / num_workers)
+    fold_size = math.ceil(len(json_list) / (num_workers))
+    json_folds = list(split_in_folds(json_list, fold_size))
+    print(len(json_folds))
     final_result = set()
     with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
         futures = []
         try:
-            for id in range(0, num_workers):
-                json_folds = list(split_in_folds(json_list, fold_size))
+            for i in range(0, len(json_folds)):
+                print(i)
+                # json_folds = list(split_in_folds(json_list, fold_size))
+                # print(len(json_folds))
                 futures.append(
-                    executor.submit(extract_phrases, json_folds[id]))
+                    executor.submit(extract_phrases, json_folds[i]))
 
             for future in concurrent.futures.as_completed(futures):
                 final_result.update(list(future.result()))
