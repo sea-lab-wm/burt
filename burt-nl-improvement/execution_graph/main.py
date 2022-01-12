@@ -1,9 +1,29 @@
-import os
+import concurrent
+import math
+import traceback
+
 from os import listdir
 import json
 import logging
 from pathlib import Path
 import csv
+import spacy
+from spacy.symbols import *
+import concurrent.futures
+
+import multiprocessing
+import os
+
+
+
+from subprocess import PIPE, run
+from spacy.lang.en.stop_words import STOP_WORDS
+
+def split_in_folds(list, n):
+    """Yield successive n-sized chunks from list."""
+    for i in range(0, len(list), n):
+        yield list[i:i + n]
+
 
 
 def write_json_line_by_line(data, file_path):
@@ -23,7 +43,7 @@ def parse_dXml(idXml):
 def parse_type(type):
     if type:
         key_word = type.split(".")[-1]
-        print(key_word)
+        # print(key_word)
         view_group = ["viewgroup", "layout", "viewpager", "tabhost", "tabwidget", "tablerow", "viewpager"]
         if key_word.lower() == "view" or any(s in key_word.lower() for s in view_group):
             return False
@@ -70,7 +90,6 @@ def read_json(file, data_source):
 
                         if "text" in dyn_gui_component:
                             if dyn_gui_component["text"]:
-
                                 step_contents["action"]["text"] = dyn_gui_component["text"]
 
                         if "contentDescription" in dyn_gui_component:
@@ -119,41 +138,31 @@ def read_json(file, data_source):
 
 
 def write_csv_from_json_list(result, exec_output_file_path):
-    with open(exec_output_file_path, "w" ,newline='') as csvfile:
+    with open(exec_output_file_path, "w", newline='') as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["dataSource", "stepID", "screenshotPath", "text", "idXml", "type"])
+        writer.writerow(["dataSource", "stepID", "screenshotPath", "text", "contentDescription", "idXml", "type"])
 
         for each_json in result:
             data_source = each_json["dataSource"]
             stepID = each_json["stepID"]
             screenshotPath = each_json["screenshotPath"]
             action = each_json["action"]
-            print(data_source)
-            print(screenshotPath)
-            print(stepID)
-            if not action:
-                if "text" in action:
-                    text = action["text"]
-                else:
-                    text = ""
+            # print(data_source)
+            # print(screenshotPath)
+            # print(stepID)
 
-                if "idXml" in action:
-                    idXml = action["idXml"]
-                else:
-                    idXml = ""
-
-                if "type" in action:
-                    type = action["type"]
-                else:
-                    type = ""
-
-                writer.writerow([data_source, stepID, screenshotPath, text, idXml, type])
             components = each_json["screen"]
             for component in components:
                 if "text" in component:
                     text_cp = component["text"]
                 else:
                     text_cp = ""
+
+                if "contentDescription" in component:
+                    if component["contentDescription"]:
+                        content_cp = component["contentDescription"]
+                else:
+                    content_cp = ""
 
                 if "idXml" in component:
                     idXml_cp = component["idXml"]
@@ -164,7 +173,113 @@ def write_csv_from_json_list(result, exec_output_file_path):
                     type_cp = component["type"]
                 else:
                     type_cp = ""
-                writer.writerow([data_source, stepID, screenshotPath, text_cp, idXml_cp, type_cp])
+                writer.writerow([data_source, stepID, screenshotPath, text_cp, content_cp, idXml_cp, type_cp])
+
+
+def get_single_nouns(text, tokens):
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(text)
+    for token in doc:
+        if token.pos in [NOUN, PROPN]:
+            tokens.add(token.lower_)
+
+
+def get_noun_phrases_verbs(text, tokens):
+    nlp = spacy.load("en_core_web_sm")
+
+    # Merge noun phrases and entities for easier analysis
+    nlp.add_pipe("merge_noun_chunks")
+    doc = nlp(text)
+    # remove stopwords
+    filtered_text = remove_stop_words(text)
+    new_doc = nlp(filtered_text)
+
+    if len(doc) < 10:
+        root = [token for token in new_doc if token.head == token][0]
+        if root.pos == VERB:
+            subj = [w for w in root.lefts if w.dep_ == "nsubj"]
+            for sub in subj:
+                tokens.add(sub.text.lower())
+            dobj = [w for w in root.rights if w.dep_ == "dobj"]
+            for obj in dobj:
+                tokens.add(obj.text.lower())
+
+            tokens.add(root.lemma_)
+        elif root.pos == NOUN:
+            tokens.add(root.text.lower())
+
+        #     if token.pos in [PROPN, NOUN]:
+        #         tokens.add(token.text.lower())
+        #     if token.pos == VERB:
+        #         tokens.add(token.lemma_)
+        #
+        # for chunk in new_doc.noun_chunks:
+        #
+        #     tokens.add(chunk.text.lower())
+        #     if chunk.root.dep in [dobj, nsubj] and chunk.root.head.pos == VERB:
+        #         print("verb: ", chunk.root.head.text)
+        #         tokens.add(chunk.root.head.text)
+
+
+def remove_stop_words(text):
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(text)
+    token_list = []
+    for token in doc:
+        token_list.append(token.text)
+    filtered_text_list = []
+    for word in token_list:
+
+        lexeme = nlp.vocab[word]
+        if not lexeme.is_stop:
+            filtered_text_list.append(word)
+
+    if len(filtered_text_list) > 0:
+        filtered_text = " ".join(filtered_text_list)
+        return filtered_text.replace("_", " ").replace("-", " ").replace("¦", "")
+
+
+def extract_phrases(json_list):
+    tokens = set()
+    for each_json in json_list:
+
+        data_source = each_json["dataSource"]
+        stepID = each_json["stepID"]
+        screenshotPath = each_json["screenshotPath"]
+        action = each_json["action"]
+        print(data_source)
+        print(screenshotPath)
+        print(stepID)
+        components = each_json["screen"]
+
+        for component in components:
+            type_cp = component["type"]
+            if type_cp.lower() != "edittext":
+                if "text" in component:
+                    text_cp = component["text"]
+                    new_text = remove_stop_words(text_cp)
+                    if new_text:
+                        get_single_nouns(new_text, tokens)
+                        get_noun_phrases_verbs(new_text, tokens)
+
+            if "contentDescription" in component:
+                content_cp = component["contentDescription"]
+                if content_cp:
+                    new_content_cp = remove_stop_words(content_cp)
+                    if new_content_cp:
+                        get_noun_phrases_verbs(new_content_cp, tokens)
+                        get_single_nouns(new_content_cp, tokens)
+
+            if "idXml" in component:
+                idXml_cp = component["idXml"]
+                if idXml_cp:
+                    new_idXml_cp = remove_stop_words(idXml_cp)
+                    if new_idXml_cp:
+                        get_noun_phrases_verbs(new_idXml_cp, tokens)
+                        get_single_nouns(new_idXml_cp, tokens)
+        print(tokens)
+
+    return tokens
 
 
 if __name__ == '__main__':
@@ -195,6 +310,7 @@ if __name__ == '__main__':
     json_list = []
     output_folder = "extracted_data"
     csv_output_file_path = "extracted_information.csv"
+    num_workers = multiprocessing.cpu_count()
 
     for system in systems:
         system_name, system_version = system
@@ -230,3 +346,23 @@ if __name__ == '__main__':
                     logging.error('Failed to read execution file: ' + str(e))
 
     write_csv_from_json_list(json_list, os.path.join(output_folder, csv_output_file_path))
+
+    fold_size = math.ceil(len(json_list) / num_workers)
+    final_result = set()
+    with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+        futures = []
+        try:
+            for id in range(0, num_workers):
+                json_folds = list(split_in_folds(json_list, fold_size))
+                futures.append(
+                    executor.submit(extract_phrases, json_folds[id]))
+
+            for future in concurrent.futures.as_completed(futures):
+                final_result.update(list(future.result()))
+
+        except Exception as e:
+            print(e)
+            traceback.print_exc()
+
+    print(final_result)
+

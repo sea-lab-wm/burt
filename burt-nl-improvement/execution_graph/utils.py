@@ -89,6 +89,9 @@ def load_settings(path):
 def get_system_name(sys_url):
     return sys_url[sys_url.index("/") + 1:len(sys_url)]
 
-
+def split_in_folds(list, n):
+    """Yield successive n-sized chunks from list."""
+    for i in range(0, len(list), n):
+        yield list[i:i + n]
 
 
