@@ -137,6 +137,15 @@ def read_json(file, data_source):
         return result
 
 
+def write_csv_from_json_set(result, tokens_csv_output_file_path):
+    with open(tokens_csv_output_file_path, "w", newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["words and phrases"])
+        for each_word in result:
+            writer.writerow([each_word])
+
+
+
 def write_csv_from_json_list(result, exec_output_file_path):
     with open(exec_output_file_path, "w", newline='') as csvfile:
         writer = csv.writer(csvfile)
@@ -310,6 +319,9 @@ if __name__ == '__main__':
     json_list = []
     output_folder = "extracted_data"
     csv_output_file_path = "extracted_information.csv"
+    tokens_csv_output_file_path = "extracted_tokens.csv"
+
+
     num_workers = multiprocessing.cpu_count()
 
     for system in systems:
@@ -363,6 +375,6 @@ if __name__ == '__main__':
         except Exception as e:
             print(e)
             traceback.print_exc()
+    write_csv_from_json_set(final_result, tokens_csv_output_file_path)
 
-    print(final_result)
 
