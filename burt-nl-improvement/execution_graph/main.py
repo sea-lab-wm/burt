@@ -200,11 +200,10 @@ def get_noun_phrases_verbs(text, tokens):
     nlp.add_pipe("merge_noun_chunks")
     doc = nlp(text)
     # remove stopwords
-    filtered_text = remove_stop_words(text)
-    new_doc = nlp(filtered_text)
+
 
     if len(doc) < 10:
-        root = [token for token in new_doc if token.head == token][0]
+        root = [token for token in doc if token.head == token][0]
         if root.pos == VERB:
             subj = [w for w in root.lefts if w.dep_ == "nsubj"]
             for sub in subj:
@@ -245,7 +244,7 @@ def remove_stop_words(text):
 
     if len(filtered_text_list) > 0:
         filtered_text = " ".join(filtered_text_list)
-        return filtered_text.replace("_", " ").replace("-", " ").replace("¦", "")
+        return filtered_text.replace("_", " ").replace("-", " ").replace("¦", "").lower()
 
 
 def extract_phrases(json_list):
