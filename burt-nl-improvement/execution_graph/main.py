@@ -14,7 +14,7 @@ import concurrent.futures
 import multiprocessing
 import os
 
-os.chdir("../../burt-nl-improvement")
+# os.chdir("../../burt-nl-improvement")
 
 from subprocess import PIPE, run
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -200,7 +200,6 @@ def get_noun_phrases_verbs(text, tokens):
     nlp.add_pipe("merge_noun_chunks")
     doc = nlp(text)
     # remove stopwords
-
 
     if len(doc) < 10:
         root = [token for token in doc if token.head == token][0]
