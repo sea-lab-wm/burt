@@ -31,14 +31,14 @@ public
 class MainJSONGraphGenerator {
 
     private static final Set<ImmutablePair<String, String>> ALL_SYSTEMS = JavaUtils.getSet(
-//            new ImmutablePair<>("gnucash", "2.1.3"),
-//            new ImmutablePair<>("mileage", "3.1.1"),
-//            new ImmutablePair<>("droidweight", "1.5.4"),
-//            new ImmutablePair<>("GnuCash", "1.0.3"),
-//            new ImmutablePair<>("AntennaPod", "1.6.2.3"),
-//            new ImmutablePair<>("ATimeTracker", "0.20"),
-            new ImmutablePair<>("growtracker", "2.3.1")
-//            new ImmutablePair<>("androidtoken", "2.10")
+            new ImmutablePair<>("gnucash", "2.1.3"),
+            new ImmutablePair<>("mileage", "3.1.1"),
+            new ImmutablePair<>("droidweight", "1.5.4"),
+            new ImmutablePair<>("GnuCash", "1.0.3"),
+            new ImmutablePair<>("AntennaPod", "1.6.2.3"),
+            new ImmutablePair<>("ATimeTracker", "0.20"),
+            new ImmutablePair<>("growtracker", "2.3.1"),
+            new ImmutablePair<>("androidtoken", "2.10")
     );
 
     private static final String outFolder = Path.of("..", "data", "graphs_json_data").toString();

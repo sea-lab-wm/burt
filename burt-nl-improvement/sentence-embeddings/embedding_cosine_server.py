@@ -1,4 +1,4 @@
-#FIXME: I am not sure SentenceTransformer is thread-safe, need to check
+# FIXME: I am not sure SentenceTransformer is thread-safe, need to check
 
 import os
 
@@ -7,9 +7,13 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from pathlib import Path
+from gevent.pywsgi import WSGIServer
+from gevent import monkey
+
 import json
 
 app = Flask(__name__)
+
 
 print("Loading the transformer model...")
 
@@ -17,17 +21,19 @@ print("Loading the transformer model...")
 home_dir = str(Path.home())
 model_name = 'all-MiniLM-L6-v2'
 model_path = '.cache/torch/sentence_transformers/sentence-transformers_' + model_name
-if os.path.exists(os.path.join(home_dir, model_path)):
-    embedder = SentenceTransformer(os.path.join(home_dir, model_path))
-else:
-    embedder = SentenceTransformer(model_name)
 
 
-def compute_cosine_multiple(query, corpus):
+# if os.path.exists(os.path.join(home_dir, model_path)):
+#     embedder = SentenceTransformer(os.path.join(home_dir, model_path))
+# else:
+#     embedder = SentenceTransformer(model_name)
+
+
+def compute_cosine_multiple(query, corpus, embedder):
     corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
     query_embedding = embedder.encode(query, convert_to_tensor=True)
     cos_scores = util.pytorch_cos_sim(query_embedding, corpus_embeddings)[0]
-    return cos_scores.numpy().tolist()
+    return cos_scores.cpu().numpy().tolist()
 
 
 @app.route('/embed_cosine_multiple/', methods=['POST'])
@@ -37,7 +43,12 @@ def embed_cosine_multiple():
     if content is not None:
         query = content["query"]
         corpus = content["corpus"]
-        cos_scores = compute_cosine_multiple(query, corpus)
+        if os.path.exists(os.path.join(home_dir, model_path)):
+            embedder = SentenceTransformer(os.path.join(home_dir, model_path))
+        else:
+            embedder = SentenceTransformer(model_name)
+
+        cos_scores = compute_cosine_multiple(query, corpus, embedder)
     return jsonify({'cos_scores': cos_scores})
 
 

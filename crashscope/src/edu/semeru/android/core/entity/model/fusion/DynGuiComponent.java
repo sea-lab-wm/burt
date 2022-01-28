@@ -32,19 +32,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 /**
  * The persistent class for the DynGuiComponent database table.
@@ -131,6 +119,9 @@ public class DynGuiComponent implements Serializable {
     
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private transient List<DynGuiComponent> children = new ArrayList<DynGuiComponent>();
+
+    @Transient
+    private List<String> phrases;
    
 
     public DynGuiComponent() {
@@ -941,4 +932,15 @@ public class DynGuiComponent implements Serializable {
 	public void setScreen(Screen screen) {
 		this.screen = screen;
 	}
+
+	public List<String> getPhrases(){
+	    return phrases;
+    }
+
+    public void setPhrases(List<String> phrases) {
+	    this.phrases = phrases;
+    }
+
+
+
 }

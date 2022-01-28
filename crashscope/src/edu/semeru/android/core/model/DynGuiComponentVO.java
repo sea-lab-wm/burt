@@ -85,6 +85,7 @@ public class DynGuiComponentVO {
     private List<DynGuiComponentVO> children = new ArrayList<DynGuiComponentVO>();
     private DynGuiComponentVO parent;
     private int sequenceHierarchy;
+    private List<String> phrases;
 
     public DynGuiComponentVO(String id, int positionX, int positionY, int width, int height, String name) {
         this.idXml = id;
@@ -821,6 +822,14 @@ public class DynGuiComponentVO {
      */
     public void setSequenceHierarchy(int sequenceHierarchy) {
         this.sequenceHierarchy = sequenceHierarchy;
+    }
+
+    public void setPhrases(List<String> phrases){
+        this.phrases = phrases;
+    }
+
+    public List<String> getPhrases(){
+        return phrases;
     }
 
 }

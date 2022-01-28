@@ -2,7 +2,7 @@ package sealab.burt.server.actions.s2r.prediction;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
-import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.NewS2RChecker;
 import sealab.burt.qualitychecker.graph.AppGraph;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
@@ -45,9 +45,9 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         if (!state.containsKey(S2R_CHECKER)) {
             String appName = state.get(APP_NAME).toString();
             String appVersion = state.get(APP_VERSION).toString();
-            state.put(S2R_CHECKER, new S2RChecker(appName, appVersion));
+            state.put(S2R_CHECKER, new NewS2RChecker(appName, appVersion));
         }
-        S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
+        NewS2RChecker checker = (NewS2RChecker) state.get(S2R_CHECKER);
 
         //----------------------------------------------
         boolean noStepsReportedYet = false;

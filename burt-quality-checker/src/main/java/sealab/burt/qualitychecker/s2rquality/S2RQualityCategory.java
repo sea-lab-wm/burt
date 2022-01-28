@@ -2,13 +2,13 @@ package sealab.burt.qualitychecker.s2rquality;
 
 public enum S2RQualityCategory {
     // high-quality
-    HIGH_QUALITY("EM", "This S2R matches the following app interaction:"),
+    HIGH_QUALITY("EM", "This S2R matches the following app interaction:"), // single match
 
     // low-quality
     LOW_Q_NOT_PARSED("NP", "-"),
-    LOW_Q_AMBIGUOUS("AS", "-"),
-    LOW_Q_VOCAB_MISMATCH("VM", "-"),
-    LOW_Q_INCORRECT_INPUT("IV", "This S2R's input value is missing or incorrect. An example of a valid value is:"),
+    LOW_Q_AMBIGUOUS("AS", "-"), // multiple match
+    LOW_Q_VOCAB_MISMATCH("VM", "-"), // no match
+    LOW_Q_INCORRECT_INPUT("IV", "This S2R's input value is missing or incorrect. An example of a valid value is:"), // single match + regular expression
 //    LOW_Q_COMPOSITE("C-LQ", "The S2R can be decomposed into the following steps:"),
 
     // missing

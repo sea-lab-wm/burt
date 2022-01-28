@@ -1,8 +1,7 @@
 package sealab.burt.server.conversation.state;
 
-import edu.semeru.android.core.entity.model.App;
 import lombok.extern.slf4j.Slf4j;
-import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.NewS2RChecker;
 import sealab.burt.qualitychecker.UtilReporter;
 import sealab.burt.qualitychecker.graph.AppGraph;
 import sealab.burt.qualitychecker.graph.AppStep;
@@ -48,7 +47,7 @@ class QualityStateUpdater {
         }
 
         //--------------------
-        S2RChecker s2rChecker = (S2RChecker) state.get(S2R_CHECKER);
+        NewS2RChecker s2rChecker = (NewS2RChecker) state.get(S2R_CHECKER);
 
 
         //if the step is to go back, then move to the state that led to the current state (by pulling the last step)
@@ -97,7 +96,7 @@ class QualityStateUpdater {
 
     }
 
-    private void updateStateBasedOnStep(AppStep appStep, S2RChecker s2rChecker, ConversationState state) throws Exception {
+    private void updateStateBasedOnStep(AppStep appStep, NewS2RChecker s2rChecker, ConversationState state) throws Exception {
         if (appStep == null || s2rChecker == null) return;
         GraphTransition transition = appStep.getTransition();
         if (transition != null) {
@@ -142,7 +141,7 @@ class QualityStateUpdater {
         if (stepElements == null)
             stepElements = new ArrayList<>();
 
-        S2RChecker s2rChecker = (S2RChecker) state.get(S2R_CHECKER);
+        NewS2RChecker s2rChecker = (NewS2RChecker) state.get(S2R_CHECKER);
         for (AppStep appStep : selectedSteps) {
 
             String screenshotFile = ScreenshotPathUtils.getScreenshotPathForStep(appStep, state);

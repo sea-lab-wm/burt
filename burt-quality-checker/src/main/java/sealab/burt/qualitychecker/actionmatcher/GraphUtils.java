@@ -13,7 +13,6 @@ import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 
-
 import javax.swing.*;
 import java.util.*;
 

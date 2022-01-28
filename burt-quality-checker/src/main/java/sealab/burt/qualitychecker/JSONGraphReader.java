@@ -147,7 +147,7 @@ class JSONGraphReader {
         File folder = new File(dataLocation);
         if (folder.exists()) {
             executionFiles = Files.find(Paths.get(dataLocation), 1,
-                            (path, attr) -> path.toFile().getName().startsWith("Execution-"))
+                            (path, attr) -> path.toFile().getName().startsWith("Augmented-Execution-"))
                     .collect(Collectors.toList());
         }
         //------ check if the path exists---------------//
@@ -195,7 +195,7 @@ class JSONGraphReader {
                 for (Step currStep : execution.getSteps()) {
 
                     // Get the current screen and read in the corresponding xml file.
-                    String xmlPath = Path.of(dataLocation, String.join("-",
+                    String xmlPath = Path.of(dataLocation, "Augmented-XML", String.join("-",
                                     execution.getApp().getPackageName(),
                                     execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
                                     execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
@@ -305,6 +305,7 @@ class JSONGraphReader {
         component.setVisibility(currComp.getVisibility());
         component.setProperties(currComp.getProperties());
         component.setDrawTime(currComp.getDrawTime());
+        component.setPhrases(currComp.getPhrases());
 
         return component;
     }

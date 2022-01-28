@@ -1,6 +1,6 @@
 package sealab.burt.server.actions;
 
-import sealab.burt.qualitychecker.EBChecker;
+import sealab.burt.qualitychecker.NewEBChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
 import sealab.burt.server.conversation.state.ConversationState;
@@ -73,6 +73,6 @@ public abstract class ChatBotAction {
     protected void startEBChecker(ConversationState state) {
         String appName = state.get(StateVariable.APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
-        if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new EBChecker(appName, appVersion));
+        if (!state.containsKey(EB_CHECKER)) state.put(EB_CHECKER, new NewEBChecker(appName, appVersion));
     }
 }

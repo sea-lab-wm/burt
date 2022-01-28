@@ -1,6 +1,6 @@
 package sealab.burt.server.actions.s2r;
 
-import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.NewS2RChecker;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
@@ -25,7 +25,7 @@ public class ProvideS2RFirstAction extends ChatBotAction {
         String appVersion = state.get(APP_VERSION).toString();
 
         if (!state.containsKey(S2R_CHECKER))
-            state.put(S2R_CHECKER, new S2RChecker(appName, appVersion));
+            state.put(S2R_CHECKER, new NewS2RChecker(appName, appVersion));
 
         List<ChatBotMessage> chatBotMessages;
         if (state.containsKey(StateVariable.ASKED_TO_WRITE_S2R)) {

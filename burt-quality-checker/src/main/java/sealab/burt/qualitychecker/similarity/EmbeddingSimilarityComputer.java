@@ -49,7 +49,10 @@ public class EmbeddingSimilarityComputer {
     }
 
     public static void main(String[] args) throws Exception {
-        List<Double> similarities = computeSimilarities("hola", Arrays.asList("hello", "chao"));
+        List<Double> similarities = computeSimilarities("i click the added podcast in the subscription",
+                Arrays.asList("I clicked the podcast"));
         System.out.println(similarities);
+        //"got an error when delete a token", Arrays.asList("'I choose event token'", " 'I check event token'", " 'I select event token'",
+        //                "'I choose time token'", " 'I select time token'", " 'I check time token'"
     }
 }

@@ -30,9 +30,10 @@
 package com.android.uiautomator.tree;
 
 public class AttributePair {
-    public String key, value;
+    public String key;
+    public Object value;
 
-    public AttributePair(String key, String value) {
+    public AttributePair(String key, Object value) {
         this.key = key;
         this.value = value;
     }

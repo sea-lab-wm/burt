@@ -1,7 +1,7 @@
 package sealab.burt.server.actions.appselect;
 
 import sealab.burt.nlparser.euler.actions.utils.AppNamesMappings;
-import sealab.burt.qualitychecker.OBChecker;
+import sealab.burt.qualitychecker.NewOBChecker;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
 import sealab.burt.server.conversation.entity.KeyValues;
@@ -78,7 +78,7 @@ public class ConfirmAppAction extends ChatBotAction {
         //----------------------------
 
         if (!state.containsKey(OB_CHECKER))
-            state.put(OB_CHECKER, new OBChecker(appName, appVersion));
+            state.put(OB_CHECKER, new NewOBChecker(appName, appVersion));
 
         //----------------------------
 

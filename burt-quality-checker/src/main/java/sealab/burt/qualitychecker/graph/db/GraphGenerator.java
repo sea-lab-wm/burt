@@ -532,6 +532,8 @@ class GraphGenerator {
         appStep.setException(previousStep.getExceptions());
         appStep.setScreenshotFile(previousStep.getScreenshot());
         appStep.setId(previousStep.getId());
+        if (component != null)
+            appStep.setPhrases(component.getPhrases());
         return appStep;
     }
 

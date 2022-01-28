@@ -17,9 +17,7 @@ import os
 
 from main import *
 
-from execution_graph.main import read_json
 from execution_graph.main import parse_type
-from execution_graph.utils import write_json
 
 
 def camel_case_split(str):
@@ -87,13 +85,11 @@ def get_phrases_click(doc):
             phrases.add("I " + verb + " " + obj.text)
             phrases.add("I click " + verb + " " + obj.text + " button")
 
-        # FIXME 可以检查下形容词
-
         # find subject
         # process the cases like "Navigation drawer opened"
         nsubjs = [w for w in root.lefts if w.dep_ == "nsubj"]
         for sub in nsubjs:
-            if sub.pos != PRON:
+            if sub.pos != PRON:  # this is a special case
                 phrases.add("I " + verb + " " + sub.text)
                 phrases.add("I click " + verb + " " + sub.text + " button")
 
@@ -103,7 +99,6 @@ def get_phrases_click(doc):
             phrases.add("I select " + root.text)
 
     elif root.pos in [NOUN, PROPN]:
-        # FIXME 可以检查下形容词
 
         if any(s in root.text for s in ["date, time"]):  # process a special case
             phrases.add("I edit " + root.text)
@@ -115,8 +110,6 @@ def get_phrases_click(doc):
 
     elif root.text in ["ok", "next"]:  # process a special case
         phrases.add("I click " + root.text + " button")
-
-
 
     elif root.pos == ADJ:
         if root.text in ["more", "complete", "subscribe"]:
@@ -190,6 +183,12 @@ def get_phrases_edit(doc, title_window):
 
                     phrases.add("I edit" + " " + word.text + " pin")
                     phrases.add("I enter" + " " + word.text + " pin")
+
+        xcomps = [w for w in root.rights if w.dep_ == "xcomp"]
+        for xcomp in xcomps:
+            phrases.add("I " + root.text + " " + xcomp.text)
+            phrases.add("I edit" + " " + root.text + " " + xcomp.text)
+
     return phrases
 
 
@@ -218,7 +217,7 @@ def get_phrases_imagebutton(type, text, content, idXml, dyn_gui_component):
     nlp.add_pipe("merge_noun_chunks")
     phrases = set()
     if content:
-        phrases.add("I click the " + content.lower() + " button")
+        phrases.add("I click " + content.lower() + " button")
 
         content = "I " + content
         # parse the context
@@ -249,24 +248,33 @@ def get_phrases_textview(type, text, content, idXml, dyn_gui_component):
         parsed_idXml = parse_idXml(idXml)
         if parsed_idXml:
             words = ["label", "unit", "usage", "credits", "version", "text1", "permission message", "empty",
-                     "txtvPodcastDirectoriesDescr", "txtvPubDate", "txtvDescription", "txtvAuthor", "txtvItemname",
-                     "txtvLenSize", "txtvPublished", "statusUnread", "txtvCount"]
+                     "txtv podcast directories descr", "txtv pubDate", "txtv description", "txtv author",
+                     "txtv itemname",
+                     "txtv len size", "txtv published", "status unread", "txtv count", "summary", "txtv url",
+                     "txtv opml import expl"]
 
-            if not any(x in parsed_idXml for x in words):  # this is a special case
+            if not any(x in parsed_idXml for x in words):
+                if parsed_idXml in ["date", "time"]:  # process date-related components first
+                    doc = nlp(parsed_idXml.lower())
+                    phrases.add("I edit " + parsed_idXml)
+                    phrases.add("I change " + parsed_idXml)
+                    phrases.add("I input " + parsed_idXml)
+                    return phrases
+
                 if text:
-
                     doc = nlp(text.lower())
-                    if len(doc) < 10:
-                        phrases.update(list(get_phrases_click(doc)))
+                    if len(doc) < 3 and parsed_idXml in ["txtv title", "title"]:
+                        phrases.add("I click " + text.lower())
+                        phrases.add("I tap " + text.lower())
 
                 elif content:
                     doc = nlp(content.lower())
-                    phrases.update(list(get_phrases_click(doc)))
+                    phrases.update(list(get_phrases_click_textview(doc)))
 
                 if len(phrases) == 0:
-                    if parsed_idXml != "title":
+                    if parsed_idXml not in ["txtv title", "title"]:
                         doc = nlp(parsed_idXml.lower())
-                        phrases.update(list(get_phrases_click(doc)))
+                        phrases.update(list(get_phrases_click_textview(doc)))
 
     return phrases
 
@@ -276,8 +284,9 @@ def get_phrases_checkedtextview(type, text, content, idXml, dyn_gui_component):
     nlp.add_pipe("merge_noun_chunks")
     phrases = set()
     if text:
-        phrases.add("I click " + text.lower())
         phrases.add("I choose " + text.lower())
+        phrases.add("I select " + text.lower())
+        phrases.add("I check " + text.lower())
     return phrases
 
 
@@ -338,15 +347,78 @@ def get_phrases_edittext(type, text, content, idXml, dyn_gui_component):
     title_window = dyn_gui_component.get("titleWindow", None)
     if idXml:
         new_idXml = parse_idXml(idXml)
-        if new_idXml:
-            dyn_gui_component.get("contentDescription", None)
+
+        if text and new_idXml == "description":
+            doc = nlp(text.lower())
+            phrases.update(get_phrases_edit(doc, title_window))
+
+        elif new_idXml:
             doc = nlp(new_idXml)
             phrases.update(get_phrases_edit(doc, title_window))
 
+        elif text:
+            doc = nlp(text.lower())
+            phrases.update(get_phrases_edit(doc, title_window))
+    return phrases
+
+
+def get_phrases_click_textview(doc):
+    phrases = set()
+    # FIXME: do we need to add more verb except click?
+    root = [token for token in doc if token.head == token][0]
+    if root.pos == VERB:
+        verb = root.text
+
+        prts = [w for w in root.rights if w.dep_ == "prt"]
+
+        # -- search the synonyms of verb + prt, or just verb
+
+        for prt in prts:
+            verb = root.text + " " + prt.text
+
+        # -- search the synonyms of noun phrases here
+
+        dobj = [w for w in root.rights if w.dep_ == "dobj"]
+
+        for obj in dobj:
+            phrases.add("I " + verb + " " + obj.text)
+            phrases.add("I click " + verb + " " + obj.text)
+
+        # FIXME: we may need to check adj
+
+        # find subject
+        # process the cases like "Navigation drawer opened"
+        nsubjs = [w for w in root.lefts if w.dep_ == "nsubj"]
+        for sub in nsubjs:
+            if sub.pos != PRON:
+                phrases.add("I " + verb + " " + sub.text)
+                phrases.add("I click " + verb + " " + sub.text)
+
+        # FIXME: the text on the button is just a verb or verb phrase
+        if len(dobj) == 0 and len(nsubjs) == 0:
+            phrases.add("I click " + verb)
+            phrases.add("I select " + root.text)
+
+    elif root.pos in [NOUN, PROPN]:
+        # FIXME: we may need to check adj
+
+        if any(s in root.text for s in ["date, time"]):  # process a special case
+            phrases.add("I edit " + root.text)
+            phrases.add("I change " + root.text)
+
         else:
-            if text:
-                doc = nlp(text.lower())
-                phrases.update(get_phrases_edit(doc, title_window))
+            phrases.add("I click " + root.text)
+    elif root.text in ["ok", "next", "back"]:  # process a special case
+        phrases.add("I click " + root.text)
+
+    elif root.pos == ADJ:
+        if root.text in ["more", "complete", "subscribe"]:
+            phrases.add("I click " + root.text)
+
+    elif root.pos == ADJ:
+        if root.text in ["sort"]:
+            phrases.add("I click " + root.text)
+
     return phrases
 
 
@@ -354,11 +426,13 @@ def get_phrases_switch(type, text, content, idXml, dyn_gui_component):
     nlp = spacy.load("en_core_web_sm")
     nlp.add_pipe("merge_noun_chunks")
     phrases = set()
-    # FIXME: how to connect this switch with connected component?
+
     if text.lower() == "on":
         phrases.add("I turn the switch on")
-    if text.lower() == "off":
+    elif text.lower() == "off":
         phrases.add("I turn the switch off")
+    else:
+        phrases.add("I turn " + text.lower() + " on")
     return phrases
 
 
@@ -404,8 +478,9 @@ def get_phrases_radiobutton(type, text, content, idXml, dyn_gui_component):
     phrases = set()
     # use text
     if text:
+        phrases.add("I choose " + text.lower() + " option")
         phrases.add("I select " + text.lower() + " option")
-        phrases.add("I select " + text.lower() + " button")
+        phrases.add("I choose " + text.lower() + " button")
 
     # currently it does not need to check idXml
     return phrases
@@ -466,8 +541,8 @@ def process_click_action(type, text, content, idXml, dyn_gui_component):
             phrases.update(get_phrases_textview(type, text, content, idXml, dyn_gui_component))
 
         # ----------------------------------
-        if type_name.lower() in ["checkedtextview"]:
-            phrases.update(get_phrases_textview(type, text, content, idXml, dyn_gui_component))
+        if type_name.lower() == "checkedtextview":
+            phrases.update(get_phrases_checkedtextview(type, text, content, idXml, dyn_gui_component))
 
         # ----------------------------------
         # need to check "clickable",
@@ -589,67 +664,67 @@ def augment_graph(file_path, data_location, file):
                     dyn_gui_component["phrases"] = ["I swiped left in the screen"]
 
             # add phrases for each component of screen
-            nlp = spacy.load("en_core_web_sm")
-            nlp.add_pipe("merge_noun_chunks")
-            for comp in dynGuiComponents:
-                phrases = set()
-
-                type_comp = comp.get("name", None)
-
-                text = comp.get("text", None)
-
-                content = comp.get("contentDescription", None)
-
-                idXml = comp.get("idXml", None)
-
-                if type_comp:
-                    if parse_type(type_comp):
-                        type_name = type_comp.split(".")[-1]
-
-                        # ---------------------------
-                        if type_name.lower() == "button":
-                            phrases.update(get_phrases_button(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "imagebutton":
-                            phrases.update(get_phrases_imagebutton(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "textview":
-                            phrases.update(get_phrases_textview(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "checkedtextview":
-                            phrases.update(get_phrases_checkedtextview(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "imageview":
-                            phrases.update(get_phrases_imageview(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "edittext":
-                            phrases.update(get_phrases_edittext(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "checkbox":
-                            phrases.update(get_phrases_checkbox(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "switch":
-                            phrases.update(get_phrases_switch(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "spinner":
-                            phrases.update(get_phrases_spinner(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "datepicker":
-                            phrases.update(get_phrases_datepicker(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "timepicker":
-                            phrases.update(get_phrases_timepicker(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "radiobutton":
-                            phrases.update(get_phrases_radiobutton(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "togglebutton":
-                            phrases.update(get_phrases_togglebutton(type, text, content, idXml, comp))
-
-                        elif type_name.lower() == "listview":
-                            phrases.update(get_phrases_listview(type, text, content, idXml, comp))
-
-                comp["phrases"] = list(phrases)
+            # nlp = spacy.load("en_core_web_sm")
+            # nlp.add_pipe("merge_noun_chunks")
+            # for comp in dynGuiComponents:
+            #     phrases = set()
+            #
+            #     type_comp = comp.get("name", None)
+            #
+            #     text = comp.get("text", None)
+            #
+            #     content = comp.get("contentDescription", None)
+            #
+            #     idXml = comp.get("idXml", None)
+            #
+            #     if type_comp:
+            #         if parse_type(type_comp):
+            #             type_name = type_comp.split(".")[-1]
+            #
+            #             # ---------------------------
+            #             if type_name.lower() == "button":
+            #                 phrases.update(get_phrases_button(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "imagebutton":
+            #                 phrases.update(get_phrases_imagebutton(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "textview":
+            #                 phrases.update(get_phrases_textview(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "checkedtextview":
+            #                 phrases.update(get_phrases_checkedtextview(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "imageview":
+            #                 phrases.update(get_phrases_imageview(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "edittext":
+            #                 phrases.update(get_phrases_edittext(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "checkbox":
+            #                 phrases.update(get_phrases_checkbox(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "switch":
+            #                 phrases.update(get_phrases_switch(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "spinner":
+            #                 phrases.update(get_phrases_spinner(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "datepicker":
+            #                 phrases.update(get_phrases_datepicker(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "timepicker":
+            #                 phrases.update(get_phrases_timepicker(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "radiobutton":
+            #                 phrases.update(get_phrases_radiobutton(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "togglebutton":
+            #                 phrases.update(get_phrases_togglebutton(type, text, content, idXml, comp))
+            #
+            #             elif type_name.lower() == "listview":
+            #                 phrases.update(get_phrases_listview(type, text, content, idXml, comp))
+            #
+            #     comp["phrases"] = list(phrases)
         # write augmented execution graph
         print(os.path.join(data_location, "Augmented-" + file))
         with open(os.path.join(data_location, "Augmented-" + file), 'w') as f:
@@ -710,7 +785,7 @@ if __name__ == '__main__':
                             executor.submit(augment_graph, execution_file_path, data_location, file))
 
             for future in concurrent.futures.as_completed(futures):
-                        future.result()
+                future.result()
 
 
         except Exception as e:

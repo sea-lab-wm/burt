@@ -3,7 +3,7 @@ package sealab.burt.server.actions.s2r.prediction;
 import lombok.extern.slf4j.Slf4j;
 import org.jgrapht.GraphPath;
 import org.jgrapht.graph.GraphWalk;
-import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.NewS2RChecker;
 import sealab.burt.qualitychecker.S2RCheckerUtils;
 import sealab.burt.qualitychecker.actionmatcher.GraphUtils;
 import sealab.burt.qualitychecker.graph.*;
@@ -187,7 +187,7 @@ class S2RPredictor {
         return pathSteps;
     }
 
-    public List<AppStep> getPathWithLoops(S2RChecker s2rchecker, GraphPath<GraphState, GraphTransition> path,
+    public List<AppStep> getPathWithLoops(NewS2RChecker s2rchecker, GraphPath<GraphState, GraphTransition> path,
                                           ConversationState state, GraphState currentState,
                                           List<AppStep> nonSelectedSteps, int maxStepsToShowInPath) {
         // we convert the transitions to the steps

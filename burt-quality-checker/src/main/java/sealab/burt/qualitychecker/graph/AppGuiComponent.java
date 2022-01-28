@@ -57,6 +57,8 @@ public class AppGuiComponent implements Serializable {
     private AppGuiComponent parent;
     @Expose(serialize = false)
     private List<AppGuiComponent> children = new ArrayList<>();
+    
+    private List<String> phrases;
 
     public AppGuiComponent() {
     }
@@ -544,6 +546,16 @@ public class AppGuiComponent implements Serializable {
         }
         return text2;
     }
+
+    public List<String> getPhrases(){
+       return this.phrases;
+    }
+
+    public void setPhrases(List<String> phrases){
+        this.phrases = phrases;
+    }
+
+
 
     //----------------------
 

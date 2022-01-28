@@ -95,6 +95,9 @@ public class Transform {
         if (pComponents != null) {
             pComponents.put(pComponent.getId(), component);
         }
+
+        // set phrases
+        component.setPhrases(pComponent.getPhrases()); // could be empty
         return component;
     }
 

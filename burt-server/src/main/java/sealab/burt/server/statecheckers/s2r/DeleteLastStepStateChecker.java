@@ -1,10 +1,9 @@
 package sealab.burt.server.statecheckers.s2r;
 
 import lombok.extern.slf4j.Slf4j;
-import sealab.burt.qualitychecker.S2RChecker;
+import sealab.burt.qualitychecker.NewS2RChecker;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
-import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.output.BugReportElement;
@@ -36,7 +35,7 @@ class DeleteLastStepStateChecker extends sealab.burt.server.statecheckers.StateC
 
         if (secondLastStep != null && secondLastStep.getTransition() != null) {
 
-            S2RChecker checker = (S2RChecker) state.get(S2R_CHECKER);
+            NewS2RChecker checker = (NewS2RChecker) state.get(S2R_CHECKER);
             GraphState currentState = checker.getCurrentState();
             checker.updateState(secondLastStep.getTransition().getTargetState());
 

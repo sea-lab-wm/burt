@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * {Insert class description here}
@@ -29,6 +31,7 @@ public class AppStep implements Serializable {
     private String screenshotFile;
     @Expose(serialize = false)
     private GraphState currentState;
+    private List<String> phrases;
 
     /**
      *
@@ -196,4 +199,11 @@ public class AppStep implements Serializable {
     public void setCurrentState(GraphState currentState) {
         this.currentState = currentState;
     }
+
+    public void setPhrases(List<String> phrases){
+        this.phrases = phrases;
+
+    }
+
+    public List<String> getPhrases(){return phrases;}
 }

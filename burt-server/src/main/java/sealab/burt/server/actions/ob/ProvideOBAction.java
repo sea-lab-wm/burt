@@ -1,6 +1,6 @@
 package sealab.burt.server.actions.ob;
 
-import sealab.burt.qualitychecker.OBChecker;
+import sealab.burt.qualitychecker.NewOBChecker;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.conversation.entity.ChatBotMessage;
 import sealab.burt.server.conversation.state.ConversationState;
@@ -22,7 +22,7 @@ public class ProvideOBAction extends ChatBotAction {
         String appName = state.get(APP_NAME).toString();
         String appVersion = state.get(APP_VERSION).toString();
         if (!state.containsKey(OB_CHECKER))
-            state.put(OB_CHECKER, new OBChecker(appName, appVersion));
+            state.put(OB_CHECKER, new NewOBChecker(appName, appVersion));
 
         boolean initiated = state.isCurrentAttemptInitiatedObMatched();
 

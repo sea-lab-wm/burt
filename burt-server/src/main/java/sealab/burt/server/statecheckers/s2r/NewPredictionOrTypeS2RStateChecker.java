@@ -7,7 +7,7 @@ import sealab.burt.server.conversation.state.ConversationState;
 
 import static sealab.burt.server.StateVariable.*;
 
-public class NewPredictionOrTypeS2RStateChecker extends S2RDescriptionStateChecker {
+public class NewPredictionOrTypeS2RStateChecker extends NewS2RDescriptionStateChecker {
     public NewPredictionOrTypeS2RStateChecker() {
         super();
     }

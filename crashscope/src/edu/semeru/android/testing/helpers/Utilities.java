@@ -35,19 +35,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import se.vidstige.jadb.*;
 
@@ -867,43 +862,56 @@ public class Utilities {
         for (Object attribute : node.getAttributesArray()) {
             AttributePair pair = (AttributePair) attribute;
             if (pair.key.equals("index")) {
-                vo.setComponentIndex(Integer.parseInt(pair.value));
+                vo.setComponentIndex(Integer.parseInt((String) pair.value));
             } else if (pair.key.equals("text")) {
-                vo.setText(pair.value);
+                vo.setText((String) pair.value);
             } else if (pair.key.equals("resource-id")) {
                 // int index = pair.value.indexOf(":");
                 // if (index != -1) {
                 // vo.setIdXml(pair.value.substring(index + 1, pair.value.length()));
                 // vo.setIdText(pair.value.substring(index + 1, pair.value.length()));
                 // }
-                vo.setIdXml(pair.value);
-                vo.setIdText(pair.value);
+                vo.setIdXml((String) pair.value);
+                vo.setIdText((String) pair.value);
             } else if (pair.key.equals("checkable")) {
-                vo.setCheckable(Boolean.parseBoolean(pair.value));
+                vo.setCheckable(Boolean.parseBoolean((String) pair.value));
             } else if (pair.key.equals("checked")) {
-                vo.setChecked(Boolean.parseBoolean(pair.value));
+                vo.setChecked(Boolean.parseBoolean((String) pair.value));
             } else if (pair.key.equals("clickable")) {
-                vo.setClickable(Boolean.valueOf(pair.value));
+                vo.setClickable(Boolean.valueOf((String)pair.value));
             } else if (pair.key.equals("enabled")) {
-                vo.setEnabled(Boolean.parseBoolean(pair.value));
+                vo.setEnabled(Boolean.parseBoolean((String) pair.value));
             } else if (pair.key.equals("focusable")) {
-                vo.setFocusable(Boolean.parseBoolean(pair.value));
+                vo.setFocusable(Boolean.parseBoolean((String) pair.value));
             } else if (pair.key.equals("focused")) {
-                vo.setFocused(Boolean.parseBoolean(pair.value));
+                vo.setFocused(Boolean.parseBoolean((String) pair.value));
             } else if (pair.key.equals("scrollable")) {
-                vo.setScrollable(Boolean.parseBoolean(pair.value));
+                vo.setScrollable(Boolean.parseBoolean((String) pair.value));
             } else if (pair.key.equals("long-clickable")) {
-                vo.setLongClickable(Boolean.parseBoolean(pair.value));
+                vo.setLongClickable(Boolean.parseBoolean((String) pair.value));
             } else if (pair.key.equals("password")) {
-                vo.setPassword(Boolean.parseBoolean(pair.value));
+                vo.setPassword(Boolean.parseBoolean((String)pair.value));
             } else if (pair.key.equals("selected")) {
-                vo.setSelected(Boolean.parseBoolean(pair.value));
+                vo.setSelected(Boolean.parseBoolean((String)pair.value));
             } else if (pair.key.equals("class")) {
-                vo.setName(pair.value);
+                vo.setName((String) pair.value);
             } else if (pair.key.equals("package")) {
-                vo.setPackageName(pair.value);
+                vo.setPackageName((String) pair.value);
             } else if (pair.key.equals("content-desc")) {
-                vo.setContentDescription(pair.value);
+                vo.setContentDescription((String)pair.value);
+            }
+            else if (pair.key.equals("phrases")) {
+                //
+                String phraseString = (String) pair.value;
+                String replace = phraseString.replace("[","");
+                String replace1 = replace.replace("]","");
+                if (replace1.equals("")){
+                    vo.setPhrases(Collections.emptyList());
+                }else{
+                    List<String> myList = new ArrayList<>(Arrays.asList(replace1.split(",")));
+                    List<String> cleanList = myList.stream().map(e -> e.trim().replace("'", "")).collect(Collectors.toList());
+                    vo.setPhrases(cleanList);
+                }
             }
         }
         if (vo.getIdXml() == null) {
@@ -938,7 +946,6 @@ public class Utilities {
         // }
         return vo;
     }
-
     /**
      * @deprecated
      * 

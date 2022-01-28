@@ -13,7 +13,7 @@ class QualityResult {
     private Result result;
     private List<GraphState> matchedStates;
 
-    QualityResult(Result result) {
+    public QualityResult(Result result) {
         this.result = result;
     }
 
