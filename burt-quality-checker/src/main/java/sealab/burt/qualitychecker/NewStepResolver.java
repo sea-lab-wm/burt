@@ -148,7 +148,6 @@ class NewStepResolver {
 //                .collect(Collectors.toList());
 
         //list of all futures
-        try {
 
             List<CompletableFuture<ImmutablePair<AppStep, Double>>> futures = new ArrayList<>();
             for (ImmutablePair<AppStep, Integer> candidateEntry : candidateSteps) {
@@ -176,12 +175,12 @@ class NewStepResolver {
                 ImmutablePair<AppStep, Double> match = future.get();
                 if (match != null) {
                     matchedAppSteps.add(match);
+                } else {
+                    //we know there was an error!
+                    throw new RuntimeException("Unexpected error");
                 }
             }
 
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
 
         // rank the steps
         matchedAppSteps.sort((a, b) -> b.right.compareTo(a.right));

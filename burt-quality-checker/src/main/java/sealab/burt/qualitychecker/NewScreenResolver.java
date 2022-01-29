@@ -181,16 +181,13 @@ class NewScreenResolver {
 
         //-------------------------------------
 
-        try {
             //FIXME: may need other device actions
             double score = determineComponentForOb(ObDescription,
                     phrases);
             if (score > 0.75){
                 return new ImmutablePair<>(candidateState, score);
             }
-        } catch (ActionMatchingException ignored) {
 
-        }
         return null;
 
     }
