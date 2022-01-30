@@ -176,6 +176,9 @@ class NewStepResolver {
                 ImmutablePair<AppStep, Double> match = future.get();
                 if (match != null) {
                     matchedAppSteps.add(match);
+                }else {
+                    //we know there was an error!
+                    throw new RuntimeException("Unexpected error");
                 }
             }
 

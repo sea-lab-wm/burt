@@ -16,11 +16,12 @@ For using this class, the python server needs to be running
 public class EmbeddingSimilarityComputer {
 
     private static Gson gson = new Gson();
-    private static final String ENDPOINT = "http://localhost:9091/embed_cosine_multiple/";
+    private static final String ENDPOINT = "http://127.0.0.1:9000/embed_cosine_multiple/";
 
     public static List<Double> computeSimilarities(String query, List<String> corpus) throws Exception {
         // create a client
-        var client = HttpClient.newHttpClient();
+        HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
+        // HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest.BodyPublisher bodyPublisher = createRequestBody(query, corpus);
 
