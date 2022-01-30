@@ -194,7 +194,7 @@ class ConversationController {
         } catch (Exception e) {
             log.error(MessageFormat.format("There was an error processing the message: {0}", e.getMessage()), e);
             return ConversationResponse.createResponse("I am sorry, there was an unexpected error. " +
-                    "Please try again or contact the administrator.", ResponseCode.SUCCESS);
+                    "Please try again or contact the administrator.", ResponseCode.UNEXPECTED_ERROR);
         }
     }
 
