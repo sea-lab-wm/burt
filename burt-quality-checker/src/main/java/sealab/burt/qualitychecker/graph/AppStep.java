@@ -50,6 +50,11 @@ public class AppStep implements Serializable {
         this(action, component);
         this.text = text;
     }
+//    public AppStep(Integer action, AppGuiComponent component, String text) {
+//        this(action, component);
+//        this.text = text;
+//    }
+
 
     /**
      * @return the id

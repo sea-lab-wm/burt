@@ -5,6 +5,7 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.graph.AppGraphInfo;
 import sealab.burt.qualitychecker.graph.GraphState;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,8 +75,6 @@ class NewOBChecker {
                     .map(ImmutablePair::getLeft)
                     .collect(Collectors.toList()));
 
+
     }
-
-
-
 }

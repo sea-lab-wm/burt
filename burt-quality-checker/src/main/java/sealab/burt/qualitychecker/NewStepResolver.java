@@ -3,6 +3,7 @@ package sealab.burt.qualitychecker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.GraphPath;
+import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.actionmatcher.*;
 import sealab.burt.qualitychecker.graph.*;
@@ -11,10 +12,7 @@ import sealab.burt.qualitychecker.similarity.EmbeddingSimilarityComputer;
 
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -107,6 +105,10 @@ class NewStepResolver {
 
     public List<ImmutablePair<AppStep, Double>>  resolveActionInGraphConcurrent(String S2RDescription, AppGraphInfo executionGraph,
                                                GraphState currentState) throws Exception {
+        Appl app = executionGraph.getApp();
+
+        List<ImmutablePair<AppStep, Double>> matchedAppSteps = new ArrayList<>();
+
 
 
         //-----------------------
@@ -114,6 +116,25 @@ class NewStepResolver {
         // TODO: check previously executed or seen states
 
         // TODO: deal with go back
+
+        List<String> gobackPhrases = new ArrayList<>(Arrays.asList("go back", "go back to previous screen", "click the back button",
+                "tap the back button"));
+
+        List<Double> scores = EmbeddingSimilarityComputer.computeSimilarities(S2RDescription, gobackPhrases);
+        if (Collections.max(scores) > 0.7) {
+            AppStep appStep;
+            appStep = new AppStep(DeviceActions.BACK, null, app.getPackageName());
+            appStep.setScreenshotFile(null); //FIXME: change the screenshot file
+            appStep.setCurrentState(currentState);
+
+            matchedAppSteps.add(new ImmutablePair<>(appStep, Collections.max(scores)));
+
+            return matchedAppSteps;
+
+        }
+
+
+
         LinkedHashMap<GraphState, Integer> candidateStates = new LinkedHashMap<>();
 
         getCandidateGraphStates(executionGraph.getGraph(), candidateStates, currentState, 0, graphMaxDepthCheck);
@@ -137,7 +158,7 @@ class NewStepResolver {
 
         }
 
-        List<ImmutablePair<AppStep, Double>> matchedAppSteps = new ArrayList<>();
+
 
         int nThreads = 6;
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
@@ -149,23 +170,25 @@ class NewStepResolver {
 
         //list of all futures
 
-            List<CompletableFuture<ImmutablePair<AppStep, Double>>> futures = new ArrayList<>();
-            for (ImmutablePair<AppStep, Integer> candidateEntry : candidateSteps) {
-                futures.add(CompletableFuture.supplyAsync(() ->
-                {
-                    try {
-                        return processCandidateTransition(S2RDescription, candidateEntry);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                }, executor));
-            }
+        List<CompletableFuture<ImmutablePair<AppStep, Double>>> futures = new ArrayList<>();
+        for (ImmutablePair<AppStep, Integer> candidateEntry : candidateSteps) {
+            futures.add(CompletableFuture.supplyAsync(() ->
+            {
+                try {
+                    return processCandidateTransition(S2RDescription, candidateEntry);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new CompletionException(e);
+                }
+            }, executor));
+        }
 
 
-            log.debug("Waiting for futures: " + futures.size());
+        log.debug("Waiting for futures: " + futures.size());
 
-            //wait until all futures finish, and then continue with the processing
+        //wait until all futures finish, and then continue with the processing
+
+        try {
             CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
 
             //--------------------------------------------
@@ -175,11 +198,11 @@ class NewStepResolver {
                 ImmutablePair<AppStep, Double> match = future.get();
                 if (match != null) {
                     matchedAppSteps.add(match);
-                } else {
-                    //we know there was an error!
-                    throw new RuntimeException("Unexpected error");
                 }
             }
+        }finally{
+            executor.shutdown();
+        }
 
 
         // rank the steps
@@ -198,7 +221,9 @@ class NewStepResolver {
         AppStep step = candidateEntry.getLeft();
 
         log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>");
-        log.debug("Checking candidate step " + step.getId());
+        if (step.getTransition() != null){
+            log.debug("Checking candidate step " + step.getTransition().getId());
+        }
 
         if (step.getPhrases() != null && !step.getPhrases().isEmpty()) {
             List<String> phrases = step.getPhrases();
@@ -208,7 +233,7 @@ class NewStepResolver {
 
             log.debug("Checking matched scores " + scores.toString());
 
-            if (Collections.max(scores) > 0.75) {
+            if (Collections.max(scores) > 0.7) {
                 return new ImmutablePair<>(step, Collections.max(scores) / (candidateEntry.getRight() + 1));
 
             } else {
