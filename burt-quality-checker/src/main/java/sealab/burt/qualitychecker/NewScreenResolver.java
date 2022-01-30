@@ -2,12 +2,16 @@ package sealab.burt.qualitychecker;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.math3.linear.IllConditionedOperatorException;
 import sealab.burt.qualitychecker.actionmatcher.ActionMatchingException;
 import sealab.burt.qualitychecker.actionmatcher.NLActionS2RMatcher;
 import sealab.burt.qualitychecker.graph.*;
 
+import java.io.IOException;
+import java.rmi.ServerException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -53,11 +57,9 @@ class NewScreenResolver {
     }
 
 
-    // new code
     public List<ImmutablePair<GraphState, Double>> resolveStateInAugmentedGraph(String obDescription,
                                                                                 AppGraphInfo executionGraph,
-                                                                                GraphState currentState)
-            throws Exception {
+                                                                                GraphState currentState) throws Exception {
 
         // 1. Get all considered nodes that are in range of GRAPH_MAX_DEPTH_CHECK
         LinkedHashMap<GraphState, Integer> stateCandidates = new LinkedHashMap<>();
@@ -72,52 +74,43 @@ class NewScreenResolver {
 
         List<ImmutablePair<GraphState, Double>> matchedStates = new ArrayList<>();
 
-//        for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
-//            ImmutablePair<GraphState, Double> match = processCandidateState(obDescription, candidateEntry);
-//            if (match != null) {
-//                matchedStates.add(match);
-//            }
-//
-//        }
-
-
         //list of all futures
+
+        List<CompletableFuture<ImmutablePair<GraphState, Double>>> futures = new ArrayList<>();
+        for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
+            futures.add(CompletableFuture.supplyAsync(() ->
+            {
+                try {
+                    return processCandidateState(obDescription, candidateEntry);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new CompletionException(e);
+                }
+
+            }, executor));
+        }
+
+        log.debug("Waiting for futures: " + futures.size());
+
+        // wait until all futures finish, and then continue with the processing
         try {
 
-            List<CompletableFuture<ImmutablePair<GraphState, Double>>> futures = new ArrayList<>();
-            for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
-                futures.add(CompletableFuture.supplyAsync(() ->
-                {
-                    try {
-                        return processCandidateState(obDescription, candidateEntry);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
+
+                //--------------------------------------------
+
+                //aggregate results
+                for (CompletableFuture<ImmutablePair<GraphState, Double>> future : futures) {
+                    ImmutablePair<GraphState, Double> match = future.get();
+                    if (match != null) {
+                        matchedStates.add(match);
                     }
-                    return null;
-                }, executor));
-            }
-
-
-            log.debug("Waiting for futures: " + futures.size());
-
-            //wait until all futures finish, and then continue with the processing
-            CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
-
-            //--------------------------------------------
-
-            //aggregate results
-            for (CompletableFuture<ImmutablePair<GraphState, Double>> future : futures) {
-                ImmutablePair<GraphState, Double> match = future.get();
-                if (match != null) {
-                    matchedStates.add(match);
                 }
+
+            } finally {
+                 executor.shutdown();
             }
-
-            return rankMatchedStates(matchedStates);
-
-        } finally {
-            executor.shutdown();
-        }
+        return rankMatchedStates(matchedStates);
 
     }
 
@@ -181,16 +174,13 @@ class NewScreenResolver {
 
         //-------------------------------------
 
-        try {
-            //FIXME: may need other device actions
-            double score = determineComponentForOb(ObDescription,
-                    phrases);
-            if (score > 0.75){
-                return new ImmutablePair<>(candidateState, score);
-            }
-        } catch (ActionMatchingException ignored) {
 
+        double score = determineComponentForOb(ObDescription,
+                phrases);
+        if (score > 0.7){
+            return new ImmutablePair<>(candidateState, score);
         }
+
         return null;
 
     }

@@ -20,9 +20,8 @@ public class EmbeddingSimilarityComputer {
 
     public static List<Double> computeSimilarities(String query, List<String> corpus) throws Exception {
         // create a client
-        HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
-        // HttpClient client = HttpClient.newHttpClient();
 
+        var client = HttpClient.newHttpClient();
         HttpRequest.BodyPublisher bodyPublisher = createRequestBody(query, corpus);
 
         // create a request

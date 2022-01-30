@@ -16,8 +16,10 @@ const processResponse = (responsePromise, actionProvider, extraFunction) => {
 
             loadStepHistory(actionProvider);
 
-            if (conversationResponse.code === ERROR_CODE)
+            if (conversationResponse.code === ERROR_CODE) {
+                alert(conversationResponse.messages[0].messageObj.message)
                 throw conversationResponse.messages[0].messageObj.message
+            }
 
             if (conversationResponse.code === END_CONVERSATION_CODE) {
 
