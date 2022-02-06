@@ -55,4 +55,4 @@ if __name__ == '__main__':
     # cos_scores = compute_cosine_multiple("hola", ["Oscar", "hello"])
     # print(cos_scores)
     # print(json.dumps({'cos_scores': cos_scores}))
-    app.run(host='127.0.0.1', debug=True)
+    app.run(host='127.0.0.1', port=9000, debug=True)
