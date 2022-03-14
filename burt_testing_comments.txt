@@ -1,0 +1,92 @@
+Denys bugs:
+
+ P15-Droid_Weight-1.5.4-c2a46f5f-bb6b-4618-8292-aeef7140e315.html
+ P15-Android_Token-2.10-accf6c5b-f98f-4723-b02a-d80d21111a59.html
+ P15-ATimeTracker-0.20-6522f00b-9720-445e-bc75-9e8e9b123415.html
+ P15-ATimeTracker-0.20-dd4e1e01-05cd-4b9d-9331-6571b44ae082.html
+ 
+ Denys didn't finish some of the bugs, why?
+ Ask Denys about his recommendations
+ 
+ 
+---------------------------
+
+
+http://rocco.cs.wm.edu:21203/P34-ATimeTracker-0.20-75b3a041-32ee-4530-b522-39b8c888da7c.html
+
+- somehow rank first the steps with buttons or labels when predicting the next steps
+- the Eb matching may be not work great
+
+http://rocco.cs.wm.edu:21203/P23-GnuCash-1.0.3-90784770-d1a6-4bdc-81bb-02f374e44f28.html
+GNU-RC
+- GNuCASh: I tapped the plus icon (maybe there was no text in the component)
+
+
+
+http://rocco.cs.wm.edu:21203/P23-AntennaPod-1.6.2.3-740d6e37-f210-417d-94ba-b4ded8310f8b.html
+- APOD-RB
+- "I got an error message when entered mis on the itunes search box" why it does match the screen?
+- repeated screens, why? they look the same
+- 
+http://rocco.cs.wm.edu:21203/P23-AntennaPod-1.6.2.3-bf74063f-7cf6-4879-8ffe-b80c3cd6ea59.html
+- didn't match anything
+
+
+Time-CC1:
+http://rocco.cs.wm.edu:21203/P23-ATimeTracker-0.20-dca164cd-3605-4e05-a827-655dd8a7d5f9.html
+- OB matching didn't work great, but the scenario was ok
+
+
+GROW-RC
+http://rocco.cs.wm.edu:21203/P23-Grow_Tracker-2.3.1-3d4653d2-8fd7-48cc-890b-d7cd21daf67f.html
+-didn't match the OB: "the app crashed when duplicating a plant"
+- the S2R are confusing, we should show the phrases
+- "I opened the menu" matched the crash screen "Open the app again"
+- 
+
+TOKEN-CC2
+http://rocco.cs.wm.edu:21203/P23-Android_Token-2.10-5b5b8552-1312-41cb-ba59-060e8bb110ec.html
+- Ok matching, just that there were multiple predicted steps that didn't correspond
+http://rocco.cs.wm.edu:21203/P23-Android_Token-2.10-1277a13b-41f0-40dc-a2bf-eb2ac9e9106a.html
+- the prediction didn't work ok, repeated steps from before
+- the matching does not work great
+
+DROID-CC6
+http://rocco.cs.wm.edu:21203/P23-Droid_Weight-1.5.4-a52724f9-8c77-4a9e-9e53-7bc393c7ebb8.html
+- several mismatches
+- so many recommendations (steps) that were not ok (they were kind of annoying)
+- I made mistakes, but could fix them properly
+
+
+DROID-CC5
+http://rocco.cs.wm.edu:21203/P23-Droid_Weight-1.5.4-bf37ab33-42f4-40b0-bf9f-ae0c299cf111.html
+- Remove this: "Okay, this description doesn't seem to match the problematic app screen"
+- EB matching does not work good
+- Straightforward bug
+
+
+APOD-CC3
+http://rocco.cs.wm.edu:21203/P23-AntennaPod-1.6.2.3-5afe6876-89eb-462d-8113-608a0874ce72.html
+- ob didn't work great. it seems because of the much text in the screens
+- very annoying, the chatbot didn't get anything
+http://rocco.cs.wm.edu:21203/P23-AntennaPod-1.6.2.3-ba969261-e2a5-4435-85e8-6a3011eafd1c.html
+- OB didn't work: "the icon of the podcast I added is red"
+- maybe 3 attempts for the OB is too much
+- yep, this one is a difficult one, the chatbot didn't get anything
+
+
+GROW-CC5
+http://rocco.cs.wm.edu:21203/P23-Grow_Tracker-2.3.1-c03b28db-ae02-4b72-8e2b-fcd10224feba.html
+- No OB matched: "The app crashed when I added an additive to a plant"
+- similar/repeated screens for the ob
+- couple of mistmatches, but not bad
+
+
+TIME-CC4
+http://rocco.cs.wm.edu:21203/P23-ATimeTracker-0.20-68943bd7-0cf6-4202-bf89-bb3f010c230d.html
+- "I click on add task" no match
+- it seems no match from the previous step. It seems it took a wrong path in the graph
+
+TOKEN-CC7
+http://rocco.cs.wm.edu:21203/P23-Android_Token-2.10-85828802-2658-41db-9a5f-af7cc49f3cd7.html
+- EB matching does not work that well
