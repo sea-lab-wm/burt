@@ -194,10 +194,15 @@ if __name__ == '__main__':
     # df = df[df['Q0'] == 'technical with reporting']
     # df = df.loc[df['Q0'].str.strip() == 'technical without reporting']
 
-    experience_list = ['non-technical without reporting', 'technical with reporting', 'technical without reporting']
-    df_list = [df[df['Q0'].str.strip() == 'non-technical without reporting'], df.loc[df['Q0'].str.strip() == 'technical without reporting'], df[df['Q0'] == 'technical with reporting']]
+    # experience_list = ['non-technical without reporting', 'technical with reporting', 'technical without reporting']
+    # df_list = [df[df['Q0'].str.strip() == 'non-technical without reporting'], df.loc[df['Q0'].str.strip() == 'technical without reporting'], df[df['Q0'] == 'technical with reporting']]
+
+    experience_list = ['5 or more', 'None', 'Less than 5']
+    df_list = [df[df['Q2.2'].str.strip() == '5 or more'], df.loc[df['Q2.2'].str.strip() == 'None'], df[df['Q2.2'] == 'Less than 5']]
+
     for i in range(len(df_list)):
         df = df_list[i]
+        print(len(df))
         screen_suggestion_usefulness = df['Q228'].values[0: len(df['Q228'].values)]
         print(screen_suggestion_usefulness)
 
