@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 import pandas
 from matplotlib.colors import LinearSegmentedColormap
 
@@ -20,7 +23,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def survey_usefulness(results, category_names):
+def survey_usefulness(results, category_names, experience_level):
     """
     Parameters
     ----------
@@ -60,12 +63,14 @@ def survey_usefulness(results, category_names):
     legend_properties = {'weight': 'bold'}
     ax.legend(ncol=5, bbox_to_anchor=(-0.08, -0.25),
               loc='lower left', fontsize="medium", prop=legend_properties)
-    plt.savefig('results/usefulness.pdf', format="pdf")
-    plt.savefig('results/usefulness.png', dpi=300)
+    path_output = os.path.join("result", experience_level)
+    Path(path_output).mkdir(parents=True, exist_ok=True)
+    plt.savefig(path_output + '/usefulness.pdf', format="pdf")
+    plt.savefig(path_output + '/usefulness.png', dpi=300)
     return fig, ax
 
 
-def survey_easy_to_use(results, category_names):
+def survey_easy_to_use(results, category_names, experience_level):
     """
     Parameters
     ----------
@@ -106,14 +111,15 @@ def survey_easy_to_use(results, category_names):
               loc='lower left', fontsize="medium", prop=legend_properties)
 
     plt.subplots_adjust(left=0, bottom=0, right=1, top=10)
-
-    plt.savefig('results/easytouse.pdf', format="pdf")
-    plt.savefig('results/easytouse.png', dpi=300)
+    path_output = os.path.join("result", experience_level)
+    Path(path_output).mkdir(parents=True, exist_ok=True)
+    plt.savefig(path_output + '/easytouse.pdf', format="pdf")
+    plt.savefig(path_output + '/easytouse.png', dpi=300)
 
     return fig, ax
 
 
-def survey_panel_to_use(results, category_names):
+def survey_panel_to_use(results, category_names, experience_level):
     """
     Parameters
     ----------
@@ -152,8 +158,10 @@ def survey_panel_to_use(results, category_names):
     legend_properties = {'weight': 'bold'}
     ax.legend(ncol=5, bbox_to_anchor=(-0.03, -0.55),
               loc='lower left', fontsize="medium", prop=legend_properties)
-    plt.savefig('results/panel.pdf', format="pdf")
-    plt.savefig('results/panel.png', dpi=300)
+    path_output = os.path.join("result", experience_level)
+    Path(path_output).mkdir(parents=True, exist_ok=True)
+    plt.savefig(path_output + '/panel.pdf', format="pdf")
+    plt.savefig(path_output + '/panel.png', dpi=300)
     return fig, ax
 
 
@@ -180,78 +188,82 @@ def generate_chart_frequency(question_list, likert_scale_frequency):
 
 if __name__ == '__main__':
     df = pandas.read_excel('../BURT ICSE’22 Evaluation Survey_August_18_users.xlsx')
+
+
     # filter by experience
     # df = df[df['Q0'] == 'technical with reporting']
     # df = df.loc[df['Q0'].str.strip() == 'technical without reporting']
 
-    df = df[df['Q0'].str.strip() == 'non-technical without reporting']
+    experience_list = ['non-technical without reporting', 'technical with reporting', 'technical without reporting']
+    df_list = [df[df['Q0'].str.strip() == 'non-technical without reporting'], df.loc[df['Q0'].str.strip() == 'technical without reporting'], df[df['Q0'] == 'technical with reporting']]
+    for i in range(len(df_list)):
+        df = df_list[i]
+        screen_suggestion_usefulness = df['Q228'].values[0: len(df['Q228'].values)]
+        print(screen_suggestion_usefulness)
 
-    screen_suggestion_usefulness = df['Q228'].values[0: len(df['Q228'].values)]
-    print(screen_suggestion_usefulness)
+        screen_suggestion_usefulness_list = []
+        for screen_response in screen_suggestion_usefulness:
+            screen_suggestion_usefulness_list.append(screen_response)
 
-    screen_suggestion_usefulness_list = []
-    for screen_response in screen_suggestion_usefulness:
-        screen_suggestion_usefulness_list.append(screen_response)
+        OB_understanding = df['Q233'].values[0: len(df['Q233'].values)]
+        OB_understanding_list = []
+        for OB_response in OB_understanding:
+            OB_understanding_list.append(OB_response)
 
-    OB_understanding = df['Q233'].values[0: len(df['Q233'].values)]
-    OB_understanding_list = []
-    for OB_response in OB_understanding:
-        OB_understanding_list.append(OB_response)
+        EB_understanding = df['Q235'].values[0: len(df['Q235'].values)]
+        EB_understanding_list = []
+        for EB_response in EB_understanding:
+            EB_understanding_list.append(EB_response)
 
-    EB_understanding = df['Q235'].values[0: len(df['Q235'].values)]
-    EB_understanding_list = []
-    for EB_response in EB_understanding:
-        EB_understanding_list.append(EB_response)
+        S2R_understanding = df['Q237'].values[0: len(df['Q237'].values)]
+        S2R_understanding_list = []
+        for S2R_response in S2R_understanding:
+            S2R_understanding_list.append(S2R_response)
 
-    S2R_understanding = df['Q237'].values[0: len(df['Q237'].values)]
-    S2R_understanding_list = []
-    for S2R_response in S2R_understanding:
-        S2R_understanding_list.append(S2R_response)
+        BURT_messages_understanding = df['Q240'].values[0: len(df['Q240'].values)]
+        BURT_messages_understanding_list = []
+        for BURT_message in S2R_understanding:
+            BURT_messages_understanding_list.append(BURT_message)
 
-    BURT_messages_understanding = df['Q240'].values[0: len(df['Q240'].values)]
-    BURT_messages_understanding_list = []
-    for BURT_message in S2R_understanding:
-        BURT_messages_understanding_list.append(BURT_message)
+        S2R_panel_usefulness = df['Q244'].values[0: len(df['Q244'].values)]
+        S2R_panel_usefulness_list = []
+        for panel_response in S2R_panel_usefulness:
+            S2R_panel_usefulness_list.append(panel_response)
 
-    S2R_panel_usefulness = df['Q244'].values[0: len(df['Q244'].values)]
-    S2R_panel_usefulness_list = []
-    for panel_response in S2R_panel_usefulness:
-        S2R_panel_usefulness_list.append(panel_response)
+        BURT_overall_easy_to_use = df['Q250'].values[0: len(df['Q250'].values)]
+        BURT_overall_easy_to_use_list = []
+        for overall_response in BURT_overall_easy_to_use:
+            if overall_response == 'Neither easy nor difficult to use':
+                BURT_overall_easy_to_use_list.append("Neutral")
+            else:
+                BURT_overall_easy_to_use_list.append(overall_response.replace(" to use", ""))
 
-    BURT_overall_easy_to_use = df['Q250'].values[0: len(df['Q250'].values)]
-    BURT_overall_easy_to_use_list = []
-    for overall_response in BURT_overall_easy_to_use:
-        if overall_response == 'Neither easy nor difficult to use':
-            BURT_overall_easy_to_use_list.append("Neutral")
-        else:
-            BURT_overall_easy_to_use_list.append(overall_response.replace(" to use", ""))
+        likert_scale_frequency = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always']
 
-    likert_scale_frequency = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always']
+        likert_scale_usefulness = ['Useless', 'Somehow useless', 'Neutral', 'Somewhat useful', 'Useful']
+        likert_scale_easiness = ['Difficult', 'Somewhat difficult', 'Neutral',
+                                 'Somewhat easy', 'Easy', ]
+        # useful
+        source_data = generate_chart_frequency([{"Screens": screen_suggestion_usefulness_list},
+                                                {"OB": OB_understanding_list},
+                                                {"EB": EB_understanding_list},
+                                                {"S2Rs": S2R_understanding_list},
+                                                {"Messages": BURT_messages_understanding_list}],
+                                               likert_scale_frequency)
+        survey_usefulness(source_data, likert_scale_frequency, experience_list[i])
 
-    likert_scale_usefulness = ['Useless', 'Somehow useless', 'Neutral', 'Somewhat useful', 'Useful']
-    likert_scale_easiness = ['Difficult', 'Somewhat difficult', 'Neutral',
-                             'Somewhat easy', 'Easy', ]
-    # useful
-    source_data = generate_chart_frequency([{"Screens": screen_suggestion_usefulness_list},
-                                            {"OB": OB_understanding_list},
-                                            {"EB": EB_understanding_list},
-                                            {"S2Rs": S2R_understanding_list},
-                                            {"Messages": BURT_messages_understanding_list}],
-                                           likert_scale_frequency)
-    survey_usefulness(source_data, likert_scale_frequency)
+        # easy to use
+        source_data = generate_chart_frequency([{"": BURT_overall_easy_to_use_list}],
+                                               likert_scale_easiness)
+        survey_easy_to_use(source_data, likert_scale_easiness, experience_list[i])
 
-    # easy to use
-    source_data = generate_chart_frequency([{"": BURT_overall_easy_to_use_list}],
-                                           likert_scale_easiness)
-    survey_easy_to_use(source_data, likert_scale_easiness)
+        # panel
+        source_data = generate_chart_frequency([{"": S2R_panel_usefulness_list}],
+                                               likert_scale_usefulness)
+        survey_panel_to_use(source_data, likert_scale_usefulness, experience_list[i])
 
-    # panel
-    source_data = generate_chart_frequency([{"": S2R_panel_usefulness_list}],
-                                           likert_scale_usefulness)
-    survey_panel_to_use(source_data, likert_scale_usefulness)
-
-    plt.show()
-    plt.close("all")
+        plt.show()
+        plt.close("all")
 
 #############################################################################
 #
