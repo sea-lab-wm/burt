@@ -200,7 +200,14 @@ class NewStepResolver {
                     matchedAppSteps.add(match);
                 }
             }
-        }finally{
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            log.debug(e.getMessage());
+
+
+        }
+        finally{
             executor.shutdown();
         }
 
@@ -220,20 +227,22 @@ class NewStepResolver {
 
         AppStep step = candidateEntry.getLeft();
 
-        log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>");
-        if (step.getTransition() != null){
-            log.debug("Checking candidate step " + step.getTransition().getId());
-        }
-
         if (step.getPhrases() != null && !step.getPhrases().isEmpty()) {
             List<String> phrases = step.getPhrases();
 
-            log.debug("Checking candidate step phrases " + phrases.toString());
+
             List<Double> scores = EmbeddingSimilarityComputer.computeSimilarities(S2RDescription, phrases);
 
-            log.debug("Checking matched scores " + scores.toString());
+            if (step.getTransition() != null) {
+                log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
+                        "Checking candidate step " + step.getTransition().getId() + "\n" +
+                        "Checking candidate step phrases " + phrases.toString() + "\n" +
+                        "Checking matched scores " + scores.toString());
+            }
 
-            if (Collections.max(scores) > 0.7) {
+            if (Collections.max(scores) > 0.6) {
+
+
                 return new ImmutablePair<>(step, Collections.max(scores) / (candidateEntry.getRight() + 1));
 
             } else {

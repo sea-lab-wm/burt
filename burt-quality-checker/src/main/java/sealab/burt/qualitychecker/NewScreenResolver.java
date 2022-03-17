@@ -144,8 +144,6 @@ class NewScreenResolver {
         final GraphState candidateState = candidateEntry.getKey();
         final Integer distance = candidateEntry.getValue();
 
-        log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>");
-        log.debug("Checking candidate state/screen: " + candidateState.getUniqueHash());
 
         //-------------------------------------
         // Get the components of the current candidate screen
@@ -157,7 +155,6 @@ class NewScreenResolver {
 //        for (AppGuiComponent stateComponent : stateComponents){
 //            log.debug("Checking phrases: " + stateComponent.getPhrases().toString());
 //        }
-
 
         //filter out those components with phrases
         stateComponents = stateComponents.stream()
@@ -176,8 +173,9 @@ class NewScreenResolver {
 
 
         double score = determineComponentForOb(ObDescription,
-                phrases);
-        if (score > 0.7){
+                phrases, candidateState);
+
+        if (score > 0.5){
             return new ImmutablePair<>(candidateState, score);
         }
 
@@ -186,10 +184,15 @@ class NewScreenResolver {
     }
 
 
-    public double determineComponentForOb(String ObDescription, List<String> phrases)
+    public double determineComponentForOb(String ObDescription, List<String> phrases, GraphState candidateState)
             throws Exception {
 
         List<Double> scores =  EmbeddingSimilarityComputer.computeSimilarities(ObDescription, phrases);
+
+        log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
+                "Checking candidate state/screen: " + candidateState.getUniqueHash() + "\n" +
+                "Checking candidate phrases " + phrases.toString() + "\n" +
+                "Checking matched scores " + scores.toString());
 
         return Collections.max(scores);
 

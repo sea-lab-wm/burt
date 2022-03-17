@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.8
 """
 This is a simple application for sentence embeddings: semantic search
 
