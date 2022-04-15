@@ -12,7 +12,7 @@ json_data = []
 # mark_tag = {'icon': '//*[@resource-id="android:id/icon"]',
 # 'image': '//*[@class="android.widget.ImageView"]',
 # 'button': '//*[@class="android.widget.ImageButton"]'}
-mark_tag = {'image': '//*[@class="android.widget.ImageView"]'}
+mark_tag = {'icon': '//*[@resource-id="android:id/icon"]', 'ImageButton': '//*[@class="android.widget.ImageButton"]'}
 appName = {'de.delusions.measure': 'droidweight',
            'org.gnucash.android': 'gnucash',
            'me.anon.grow': 'growtracker',
@@ -165,6 +165,8 @@ class Icon:
                     },
                     "siblings": siblings
                 },
+                "category": "<UNK>",
+                "location": -1
             },
             "type": self.icon_type,
             "rotation": "0"
@@ -185,34 +187,52 @@ def launch():
         for xml in xml_list:
             screen = Screen(xml, xml_data_path)
             print(screen)
-            nodes = query_xml(xml, '//*[@class="android.widget.ImageView"]')
-            bounds = [extract_bounds_from_node(node) for node in nodes]
-            for idx, bound in enumerate(bounds):
-                if bound is None:
-                    continue
-                if str(bound) not in duplicated:
-                    icon = Icon(screen, nodes[idx], bound, "ImageView", 's0')
-                    icon.crop_image(screen.png)
-                    data.append(icon.get_json())
-                    duplicated.add(str(bound))
-    out = os.path.join(out_path, 'sample_test.json')
+            for tag, xpath in mark_tag.items():
+                nodes = query_xml(xml, xpath)
+                bounds = [extract_bounds_from_node(node) for node in nodes]
+                for idx, bound in enumerate(bounds):
+                    if bound is None:
+                        continue
+                    if str(bound) not in duplicated:
+                        icon = Icon(screen, nodes[idx], bound, tag, out_path)
+                        icon.crop_image(screen.png)
+                        data.append(icon.get_json())
+                        duplicated.add(str(bound))
+    out = 'sample_test.json'
     json.dump(data, open(out, 'w'))
 
 
 def update_json():
-    out = os.path.join(out_path, 'sample_test.json')
+    out = 'sample_test.json'
     data = json.load(open(out, 'r'))
+    new_data = []
     for item in data:
         img_path = item["img_path"]
-        if not os.path.exists(img_path):
-            data.remove(item)
+        if os.path.exists(img_path):
+            new_data.append(item)
+    print("item number:", len(new_data))
+    json.dump(new_data, open(out, 'w'))
+
+
+def add_content():
+    out = 'sample_test.json'
+    res = 'result.json'
+    data = json.load(open(out, 'r'))
+    data_res = json.load(open(res, 'r'))
+    caption_dict = dict()
+    for item in data_res:
+        image_id = item["image_id"].replace("/Users/zhouying/git/burt-project/burt/burt-nl-improvement/icon-label/", "")
+        caption_dict[image_id] = item["caption"]
+    for item in data:
+        item["content"] = caption_dict[item["img_path"]]
     json.dump(data, open(out, 'w'))
 
 
 out_path = 's0'
 if __name__ == '__main__':
-    # shutil.rmtree(out_path)
-    # if not os.path.exists(out_path):
-    #     os.makedirs(out_path)
+    # if os.path.exists(out_path):
+    #     shutil.rmtree(out_path)
+    # os.makedirs(out_path)
     # launch()
-    update_json()
+    # update_json()
+    add_content()

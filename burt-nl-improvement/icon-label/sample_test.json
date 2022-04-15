@@ -175,41 +175,6 @@
         "rotation": "0"
     },
     {
-        "id": 86976,
-        "img_id": 86976,
-        "img_path": "s0/86976.png",
-        "pkg_name": "me.anon.grow",
-        "activity_name": "AddWateringActivity(Window=Main)",
-        "content": "launch interaction",
-        "bounds": [
-            888,
-            935,
-            1038,
-            1082
-        ],
-        "android-id": "",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "fab_complete",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "",
-                        "text": ""
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
         "id": 4644,
         "img_id": 4644,
         "img_path": "s0/4644.png",
@@ -1222,80 +1187,6 @@
         "rotation": "0"
     },
     {
-        "id": 70414,
-        "img_id": 70414,
-        "img_path": "s0/70414.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "loading wallpaper",
-        "bounds": [
-            42,
-            1788,
-            210,
-            1794
-        ],
-        "android-id": "imgvCover",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvTitle",
-                        "text": "The Documentary Podcast"
-                    },
-                    {
-                        "id": "subscribers_container",
-                        "text": ""
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 54784,
-        "img_id": 54784,
-        "img_path": "s0/54784.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "search",
-        "bounds": [
-            901,
-            1788,
-            964,
-            1794
-        ],
-        "android-id": "imgFeed",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "subscribers_container",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvSubscribers",
-                        "text": "2079"
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
         "id": 35511,
         "img_id": 35511,
         "img_path": "s0/35511.png",
@@ -1397,36 +1288,6 @@
                         "text": "Linux Outlaws"
                     }
                 ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 58492,
-        "img_id": 58492,
-        "img_path": "s0/58492.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "search",
-        "bounds": [
-            721,
-            73,
-            848,
-            199
-        ],
-        "android-id": "search_button",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "search_bar",
-                    "text": ""
-                },
-                "siblings": []
             },
             "category": "<UNK>",
             "location": -1
@@ -1667,100 +1528,6 @@
                     {
                         "id": "permission_message",
                         "text": "Allow GnuCash to access photos, media, and files on your device?"
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 81895,
-        "img_id": 81895,
-        "img_path": "s0/81895.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.account.AccountsActivity(Window=Main)",
-        "content": "search",
-        "bounds": [
-            809,
-            1784,
-            935,
-            1794
-        ],
-        "android-id": "create_transaction",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 70841,
-        "img_id": 70841,
-        "img_path": "s0/70841.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.account.AccountsActivity(Window=Main)",
-        "content": "search",
-        "bounds": [
-            935,
-            1784,
-            1061,
-            1794
-        ],
-        "android-id": "options_menu",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
                     }
                 ]
             },
@@ -2160,57 +1927,6 @@
         "rotation": "0"
     },
     {
-        "id": 28780,
-        "img_id": 28780,
-        "img_path": "s0/28780.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "photo editor",
-        "bounds": [
-            935,
-            1616,
-            1061,
-            1742
-        ],
-        "android-id": "favorite_status",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
         "id": 6660,
         "img_id": 6660,
         "img_path": "s0/6660.png",
@@ -2390,30 +2106,104 @@
         "rotation": "0"
     },
     {
-        "id": 7132,
-        "img_id": 7132,
-        "img_path": "s0/7132.png",
-        "pkg_name": "de.delusions.measure",
-        "activity_name": "MeasureTabs(Window=Main)",
-        "content": "close navigation drawer",
+        "id": 86644,
+        "img_id": 86644,
+        "img_path": "s0/86644.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": "show previous",
         "bounds": [
-            122,
-            824,
-            962,
-            827
+            95,
+            90,
+            179,
+            174
         ],
-        "android-id": "titleDivider",
+        "android-id": "icon",
         "context": {
             "activity_name": "",
             "title": "",
             "family": {
                 "father": {
-                    "id": "topPanel",
+                    "id": "",
                     "text": ""
                 },
                 "siblings": [
                     {
-                        "id": "title_template",
+                        "id": "title",
+                        "text": "Fillup"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 80688,
+        "img_id": 80688,
+        "img_path": "s0/80688.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": "sound off",
+        "bounds": [
+            631,
+            90,
+            715,
+            174
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Statistics"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 20597,
+        "img_id": 20597,
+        "img_path": "s0/20597.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": "navigate up",
+        "bounds": [
+            812,
+            562,
+            938,
+            688
+        ],
+        "android-id": "next",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "prev",
+                        "text": ""
+                    },
+                    {
+                        "id": "day_picker_view_pager",
                         "text": ""
                     }
                 ]
@@ -2421,23 +2211,275 @@
             "category": "<UNK>",
             "location": -1
         },
-        "type": "ImageView",
+        "type": "ImageButton",
         "rotation": "0"
     },
     {
-        "id": 10266,
-        "img_id": 10266,
-        "img_path": "s0/10266.png",
-        "pkg_name": "de.delusions.measure",
-        "activity_name": "MeasureTabs(Window=Main)",
-        "content": "tap to display or hide the action bar",
+        "id": 52851,
+        "img_id": 52851,
+        "img_path": "s0/52851.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": "collapse",
         "bounds": [
-            26,
-            323,
-            1054,
-            1717
+            0,
+            63,
+            147,
+            210
         ],
-        "android-id": "testy_img",
+        "android-id": "",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "toolbar",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": "Add new plant"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 1037,
+        "img_id": 1037,
+        "img_path": "s0/1037.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "EditTime(Window=Main)",
+        "content": "audio actions",
+        "bounds": [
+            975,
+            73,
+            1080,
+            199
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 7198,
+        "img_id": 7198,
+        "img_path": "s0/7198.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "Tasks(Window=Main)",
+        "content": "navigate up",
+        "bounds": [
+            756,
+            559,
+            882,
+            685
+        ],
+        "android-id": "next",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "prev",
+                        "text": ""
+                    },
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 67961,
+        "img_id": 67961,
+        "img_path": "s0/67961.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "Tasks(Window=Popup Menu)",
+        "content": "menu",
+        "bounds": [
+            133,
+            762,
+            217,
+            846
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "title_template",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "alertTitle",
+                        "text": "Delete Task"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 51569,
+        "img_id": 51569,
+        "img_path": "s0/51569.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.settings.SettingsActivity(Window=Main)",
+        "content": "more options",
+        "bounds": [
+            932,
+            63,
+            1080,
+            189
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "menu_add_account",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 15203,
+        "img_id": 15203,
+        "img_path": "s0/15203.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transactions.TransactionsActivity(Window=Main)",
+        "content": "previous month",
+        "bounds": [
+            118,
+            569,
+            244,
+            695
+        ],
+        "android-id": "prev",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "next",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 77658,
+        "img_id": 77658,
+        "img_path": "s0/77658.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transactions.TransactionsActivity(Window=Main)",
+        "content": "back",
+        "bounds": [
+            814,
+            569,
+            940,
+            695
+        ],
+        "android-id": "next",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "prev",
+                        "text": ""
+                    },
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 37113,
+        "img_id": 37113,
+        "img_path": "s0/37113.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Popup Menu)",
+        "content": "pause",
+        "bounds": [
+            58,
+            466,
+            142,
+            550
+        ],
+        "android-id": "icon",
         "context": {
             "activity_name": "",
             "title": "",
@@ -2450,10 +2492,407 @@
                     {
                         "id": "",
                         "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 51387,
+        "img_id": 51387,
+        "img_path": "s0/51387.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)",
+        "content": "email",
+        "bounds": [
+            103,
+            1516,
+            229,
+            1642
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 53774,
+        "img_id": 53774,
+        "img_path": "s0/53774.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)",
+        "content": "<unk>",
+        "bounds": [
+            352,
+            1516,
+            478,
+            1642
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 43477,
+        "img_id": 43477,
+        "img_path": "s0/43477.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "back",
+        "bounds": [
+            0,
+            63,
+            147,
+            210
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "action_bar",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": "Settings"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 31898,
+        "img_id": 31898,
+        "img_path": "s0/31898.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "profile",
+        "bounds": [
+            954,
+            231,
+            1080,
+            357
+        ],
+        "android-id": "butShowInfo",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Classical Music Discoveries"
                     },
                     {
-                        "id": "chart_title",
-                        "text": "Weight"
+                        "id": "imgvCover",
+                        "text": ""
+                    },
+                    {
+                        "id": "imgvBackground",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvAuthor",
+                        "text": "Classical Music Discoveries"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 93392,
+        "img_id": 93392,
+        "img_path": "s0/93392.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "narando",
+        "bounds": [
+            309,
+            1631,
+            435,
+            1757
+        ],
+        "android-id": "butRev",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    },
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butPlay",
+                        "text": ""
+                    },
+                    {
+                        "id": "butFF",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butSkip",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 52170,
+        "img_id": 52170,
+        "img_path": "s0/52170.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "play or pause audio",
+        "bounds": [
+            477,
+            1631,
+            603,
+            1757
+        ],
+        "android-id": "butPlay",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butRev",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    },
+                    {
+                        "id": "butFF",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butSkip",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 99315,
+        "img_id": 99315,
+        "img_path": "s0/99315.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "narando",
+        "bounds": [
+            645,
+            1631,
+            771,
+            1757
+        ],
+        "android-id": "butFF",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "butPlay",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butRev",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    },
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butSkip",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 99758,
+        "img_id": 99758,
+        "img_path": "s0/99758.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "skip",
+        "bounds": [
+            813,
+            1631,
+            939,
+            1757
+        ],
+        "android-id": "butSkip",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butFF",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlay",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butRev",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 3570,
+        "img_id": 3570,
+        "img_path": "s0/3570.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "close side menu",
+        "bounds": [
+            954,
+            357,
+            1080,
+            609
+        ],
+        "android-id": "butSecondaryAction",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "content",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
                     },
                     {
                         "id": "",
@@ -2464,7 +2903,514 @@
             "category": "<UNK>",
             "location": -1
         },
-        "type": "ImageView",
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 94498,
+        "img_id": 94498,
+        "img_path": "s0/94498.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
+        "content": "open navigation drawer",
+        "bounds": [
+            0,
+            63,
+            147,
+            210
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "toolbar",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "toolbar_spinner",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 38737,
+        "img_id": 38737,
+        "img_path": "s0/38737.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.account.AccountsActivity(Window=Main)",
+        "content": "<unk>",
+        "bounds": [
+            880,
+            819,
+            1027,
+            966
+        ],
+        "android-id": "fab_create_account",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "coordinatorLayout",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "fragment_container",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 62098,
+        "img_id": 62098,
+        "img_path": "s0/62098.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "all",
+        "bounds": [
+            146,
+            92,
+            230,
+            176
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Tracking"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 10078,
+        "img_id": 10078,
+        "img_path": "s0/10078.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "contact us icons",
+        "bounds": [
+            497,
+            92,
+            581,
+            176
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Statistics"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 86273,
+        "img_id": 86273,
+        "img_path": "s0/86273.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "previous",
+        "bounds": [
+            849,
+            92,
+            933,
+            176
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "History"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 2945,
+        "img_id": 2945,
+        "img_path": "s0/2945.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "item 1",
+        "bounds": [
+            183,
+            283,
+            293,
+            441
+        ],
+        "android-id": "minusminus",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "minus",
+                        "text": ""
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "plus",
+                        "text": ""
+                    },
+                    {
+                        "id": "plusplus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 50603,
+        "img_id": 50603,
+        "img_path": "s0/50603.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "share item",
+        "bounds": [
+            293,
+            283,
+            403,
+            441
+        ],
+        "android-id": "minus",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "minusminus",
+                        "text": ""
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "plus",
+                        "text": ""
+                    },
+                    {
+                        "id": "plusplus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 71432,
+        "img_id": 71432,
+        "img_path": "s0/71432.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "help",
+        "bounds": [
+            676,
+            283,
+            786,
+            441
+        ],
+        "android-id": "plus",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "minus",
+                        "text": ""
+                    },
+                    {
+                        "id": "minusminus",
+                        "text": ""
+                    },
+                    {
+                        "id": "plusplus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 24526,
+        "img_id": 24526,
+        "img_path": "s0/24526.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "help",
+        "bounds": [
+            786,
+            283,
+            896,
+            441
+        ],
+        "android-id": "plusplus",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "plus",
+                        "text": ""
+                    },
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "minus",
+                        "text": ""
+                    },
+                    {
+                        "id": "minusminus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 4126,
+        "img_id": 4126,
+        "img_path": "s0/4126.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureEdit(Window=Main)",
+        "content": "navigate up",
+        "bounds": [
+            146,
+            562,
+            272,
+            688
+        ],
+        "android-id": "prev",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "next",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": "0"
+    },
+    {
+        "id": 13764,
+        "img_id": 13764,
+        "img_path": "s0/13764.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": "share",
+        "bounds": [
+            148,
+            700,
+            258,
+            800
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "title_template",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "alertTitle",
+                        "text": "Weight"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": "0"
+    },
+    {
+        "id": 41844,
+        "img_id": 41844,
+        "img_path": "s0/41844.png",
+        "pkg_name": "uk.co.bitethebullet.android.token",
+        "activity_name": "PinChange(Window=Main)",
+        "content": "audio actions",
+        "bounds": [
+            975,
+            73,
+            1080,
+            199
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
         "rotation": "0"
     }
 ]
