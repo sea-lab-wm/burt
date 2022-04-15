@@ -5,7 +5,7 @@
         "img_path": "s0/81715.png",
         "pkg_name": "com.evancharlton.mileage",
         "activity_name": "Mileage(Window=Main)",
-        "content": "",
+        "content": "show previous",
         "bounds": [
             95,
             90,
@@ -27,7 +27,9 @@
                         "text": "Fillup"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -38,7 +40,7 @@
         "img_path": "s0/21648.png",
         "pkg_name": "com.evancharlton.mileage",
         "activity_name": "Mileage(Window=Main)",
-        "content": "",
+        "content": "<unk>",
         "bounds": [
             363,
             90,
@@ -60,7 +62,9 @@
                         "text": "History"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -71,7 +75,7 @@
         "img_path": "s0/67450.png",
         "pkg_name": "com.evancharlton.mileage",
         "activity_name": "Mileage(Window=Main)",
-        "content": "",
+        "content": "sound off",
         "bounds": [
             631,
             90,
@@ -93,7 +97,9 @@
                         "text": "Statistics"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -104,7 +110,7 @@
         "img_path": "s0/4339.png",
         "pkg_name": "com.evancharlton.mileage",
         "activity_name": "Mileage(Window=Main)",
-        "content": "",
+        "content": "cycle repeat mode",
         "bounds": [
             900,
             90,
@@ -126,7 +132,9 @@
                         "text": "Vehicles"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -137,7 +145,7 @@
         "img_path": "s0/9610.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddWateringActivity(Window=Main)",
-        "content": "",
+        "content": "image desc",
         "bounds": [
             930,
             969,
@@ -159,7 +167,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -170,7 +180,7 @@
         "img_path": "s0/86976.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddWateringActivity(Window=Main)",
-        "content": "",
+        "content": "launch interaction",
         "bounds": [
             888,
             935,
@@ -192,7 +202,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -203,7 +215,7 @@
         "img_path": "s0/4644.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddWateringActivity(Window=Main)",
-        "content": "",
+        "content": "launch interaction",
         "bounds": [
             888,
             822,
@@ -225,7 +237,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -236,7 +250,7 @@
         "img_path": "s0/12961.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddPlantActivity(Window=Main)",
-        "content": "",
+        "content": "more",
         "bounds": [
             975,
             73,
@@ -258,7 +272,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -269,7 +285,7 @@
         "img_path": "s0/60716.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddPlantActivity(Window=Main)",
-        "content": "",
+        "content": "photo posted",
         "bounds": [
             21,
             231,
@@ -291,7 +307,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -302,7 +320,7 @@
         "img_path": "s0/78544.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddPlantActivity(Window=Main)",
-        "content": "",
+        "content": "<unk> panel",
         "bounds": [
             888,
             1597,
@@ -324,7 +342,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -335,7 +355,7 @@
         "img_path": "s0/75954.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddPlantActivity(Window=Main)",
-        "content": "",
+        "content": "add exercise",
         "bounds": [
             930,
             1639,
@@ -357,7 +377,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -368,7 +390,7 @@
         "img_path": "s0/61291.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddPlantActivity(Window=Main)",
-        "content": "",
+        "content": "photo posted",
         "bounds": [
             21,
             366,
@@ -390,7 +412,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -401,7 +425,7 @@
         "img_path": "s0/2850.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "PlantDetailsActivity(Window=Main)",
-        "content": "",
+        "content": "in text photo",
         "bounds": [
             21,
             231,
@@ -423,7 +447,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -434,7 +460,7 @@
         "img_path": "s0/41521.png",
         "pkg_name": "me.anon.grow",
         "activity_name": "AddWateringActivity(Window=Main)",
-        "content": "",
+        "content": "in text photo",
         "bounds": [
             21,
             366,
@@ -456,7 +482,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -467,7 +495,7 @@
         "img_path": "s0/32116.png",
         "pkg_name": "com.markuspage.android.atimetracker",
         "activity_name": "Tasks(Window=Main)",
-        "content": "",
+        "content": "<unk>",
         "bounds": [
             882,
             220,
@@ -493,7 +521,9 @@
                         "text": "00:00"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -504,7 +534,7 @@
         "img_path": "s0/5286.png",
         "pkg_name": "com.markuspage.android.atimetracker",
         "activity_name": "Tasks(Window=Popup Menu)",
-        "content": "",
+        "content": "menu",
         "bounds": [
             133,
             762,
@@ -526,7 +556,9 @@
                         "text": "Delete Task"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -537,7 +569,7 @@
         "img_path": "s0/30814.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.settings.SettingsActivity(Window=Main)",
-        "content": "",
+        "content": "my agenda",
         "bounds": [
             32,
             84,
@@ -554,7 +586,9 @@
                     "text": ""
                 },
                 "siblings": []
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -565,7 +599,7 @@
         "img_path": "s0/85771.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.settings.SettingsActivity(Window=Main)",
-        "content": "",
+        "content": "add",
         "bounds": [
             964,
             231,
@@ -595,48 +629,9 @@
                         "text": "Expenses"
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 22427,
-        "img_id": 22427,
-        "img_path": "s0/22427.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.accounts.AccountsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            964,
-            911,
-            1048,
-            995
-        ],
-        "android-id": "btn_new_transaction",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "vertical_line",
-                        "text": ""
-                    },
-                    {
-                        "id": "transactions_summary",
-                        "text": "0.00 $"
-                    },
-                    {
-                        "id": "account_name",
-                        "text": "Insurance"
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -647,7 +642,7 @@
         "img_path": "s0/10733.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.accounts.AccountsActivity(Window=Popup Menu)",
-        "content": "",
+        "content": "back",
         "bounds": [
             0,
             105,
@@ -669,7 +664,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -680,7 +677,7 @@
         "img_path": "s0/85206.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.accounts.AccountsActivity(Window=Popup Menu)",
-        "content": "",
+        "content": "pause",
         "bounds": [
             58,
             466,
@@ -702,7 +699,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -713,7 +712,7 @@
         "img_path": "s0/3749.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)",
-        "content": "",
+        "content": "email",
         "bounds": [
             103,
             1516,
@@ -730,7 +729,9 @@
                     "text": ""
                 },
                 "siblings": []
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -741,7 +742,7 @@
         "img_path": "s0/86640.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)",
-        "content": "",
+        "content": "<unk>",
         "bounds": [
             352,
             1516,
@@ -758,73 +759,9 @@
                     "text": ""
                 },
                 "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 96767,
-        "img_id": 96767,
-        "img_path": "s0/96767.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            42,
-            714,
-            210,
-            882
-        ],
-        "android-id": "imgvCover",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 17255,
-        "img_id": 17255,
-        "img_path": "s0/17255.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            42,
-            1638,
-            210,
-            1794
-        ],
-        "android-id": "imgvCover",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "",
-                        "text": ""
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -835,7 +772,7 @@
         "img_path": "s0/35885.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "list play list sections",
         "bounds": [
             42,
             95,
@@ -857,7 +794,9 @@
                         "text": "Queue"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -868,7 +807,7 @@
         "img_path": "s0/92634.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "picture",
         "bounds": [
             42,
             220,
@@ -894,7 +833,9 @@
                         "text": "1"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -905,7 +846,7 @@
         "img_path": "s0/74687.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "close navigation drawer",
         "bounds": [
             42,
             345,
@@ -931,7 +872,9 @@
                         "text": "783"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -942,7 +885,7 @@
         "img_path": "s0/55596.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "download",
         "bounds": [
             42,
             470,
@@ -964,7 +907,9 @@
                         "text": "Downloads"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -975,7 +920,7 @@
         "img_path": "s0/97618.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "narando",
         "bounds": [
             42,
             595,
@@ -997,7 +942,9 @@
                         "text": "Playback History"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1008,7 +955,7 @@
         "img_path": "s0/12834.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "new tab",
         "bounds": [
             42,
             720,
@@ -1030,7 +977,9 @@
                         "text": "Add Podcast"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1041,7 +990,7 @@
         "img_path": "s0/5144.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "<unk>",
         "bounds": [
             42,
             1679,
@@ -1063,7 +1012,9 @@
                         "text": "Settings"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1074,7 +1025,7 @@
         "img_path": "s0/11105.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "splashscreen",
         "bounds": [
             0,
             210,
@@ -1108,7 +1059,9 @@
                         "text": "Classical Music Discoveries"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1119,7 +1072,7 @@
         "img_path": "s0/27932.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "exchange rate all currencies",
         "bounds": [
             803,
             1494,
@@ -1149,7 +1102,9 @@
                         "text": "Episode 166: 17166 Zero (Hanging D Remixes)"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1160,7 +1115,7 @@
         "img_path": "s0/48603.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "remove return date",
         "bounds": [
             861,
             87,
@@ -1182,7 +1137,9 @@
                         "text": "rock"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1193,7 +1150,7 @@
         "img_path": "s0/44840.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "list play list sections",
         "bounds": [
             877,
             729,
@@ -1227,7 +1184,9 @@
                         "text": "Important Message"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1238,7 +1197,7 @@
         "img_path": "s0/18332.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "search",
         "bounds": [
             953,
             73,
@@ -1255,106 +1214,9 @@
                     "text": ""
                 },
                 "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 56422,
-        "img_id": 56422,
-        "img_path": "s0/56422.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            901,
-            609,
-            964,
-            660
-        ],
-        "android-id": "imgFeed",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "subscribers_container",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvSubscribers",
-                        "text": "3212"
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 98831,
-        "img_id": 98831,
-        "img_path": "s0/98831.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            901,
-            1071,
-            964,
-            1122
-        ],
-        "android-id": "imgFeed",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "subscribers_container",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvSubscribers",
-                        "text": "2248"
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 36019,
-        "img_id": 36019,
-        "img_path": "s0/36019.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            901,
-            1557,
-            964,
-            1608
-        ],
-        "android-id": "imgFeed",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "subscribers_container",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvSubscribers",
-                        "text": "2105"
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1365,7 +1227,7 @@
         "img_path": "s0/70414.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "loading wallpaper",
         "bounds": [
             42,
             1788,
@@ -1391,7 +1253,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1402,7 +1266,7 @@
         "img_path": "s0/54784.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "search",
         "bounds": [
             901,
             1788,
@@ -1424,7 +1288,9 @@
                         "text": "2079"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1435,7 +1301,7 @@
         "img_path": "s0/35511.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "close",
         "bounds": [
             0,
             210,
@@ -1457,7 +1323,9 @@
                         "text": "\ue145\n\nAdd Podcast"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1468,7 +1336,7 @@
         "img_path": "s0/61256.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "back",
         "bounds": [
             361,
             210,
@@ -1494,7 +1362,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1505,7 +1375,7 @@
         "img_path": "s0/78048.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "navigate up",
         "bounds": [
             86,
             298,
@@ -1527,7 +1397,9 @@
                         "text": "Linux Outlaws"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1538,7 +1410,7 @@
         "img_path": "s0/58492.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "search",
         "bounds": [
             721,
             73,
@@ -1555,7 +1427,9 @@
                     "text": ""
                 },
                 "siblings": []
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1566,7 +1440,7 @@
         "img_path": "s0/74463.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "go to the previous page",
         "bounds": [
             42,
             821,
@@ -1588,106 +1462,9 @@
                         "text": "Classical Music Discoveries"
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 1830,
-        "img_id": 1830,
-        "img_path": "s0/1830.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.OnlineFeedViewActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            964,
-            252,
-            1027,
-            303
-        ],
-        "android-id": "imgFeed",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "subscribers_container",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvSubscribers",
-                        "text": "0"
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 26870,
-        "img_id": 26870,
-        "img_path": "s0/26870.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            42,
-            1164,
-            210,
-            1332
-        ],
-        "android-id": "imgvCover",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvPlaceholder",
-                        "text": "Classical Music Discoveries"
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 81283,
-        "img_id": 81283,
-        "img_path": "s0/81283.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            922,
-            483,
-            985,
-            534
-        ],
-        "android-id": "imgFeed",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "subscribers_container",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvSubscribers",
-                        "text": "755"
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1698,7 +1475,7 @@
         "img_path": "s0/61849.png",
         "pkg_name": "de.danoeh.antennapod.debug",
         "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
+        "content": "flashlight toolkit",
         "bounds": [
             943,
             1176,
@@ -1720,89 +1497,9 @@
                         "text": "13"
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 41447,
-        "img_id": 41447,
-        "img_path": "s0/41447.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            803,
-            373,
-            856,
-            426
-        ],
-        "android-id": "imgvType",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvPublished",
-                        "text": "Jun 3"
-                    },
-                    {
-                        "id": "txtvLenSize",
-                        "text": "41 MB"
-                    },
-                    {
-                        "id": "txtvItemname",
-                        "text": "Freddie Mercury"
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 33385,
-        "img_id": 33385,
-        "img_path": "s0/33385.png",
-        "pkg_name": "de.danoeh.antennapod.debug",
-        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            803,
-            1393,
-            856,
-            1446
-        ],
-        "android-id": "imgvType",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "txtvPublished",
-                        "text": "May 6"
-                    },
-                    {
-                        "id": "txtvLenSize",
-                        "text": "32 MB"
-                    },
-                    {
-                        "id": "txtvItemname",
-                        "text": "The British Show"
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1813,7 +1510,7 @@
         "img_path": "s0/73531.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
+        "content": "more options",
         "bounds": [
             975,
             73,
@@ -1835,56 +1532,9 @@
                         "text": ""
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 67145,
-        "img_id": 67145,
-        "img_path": "s0/67145.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            409,
-            1061,
-            535
-        ],
-        "android-id": "favorite_status",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1895,7 +1545,7 @@
         "img_path": "s0/38900.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
+        "content": "options",
         "bounds": [
             935,
             493,
@@ -1933,7 +1583,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -1944,7 +1596,7 @@
         "img_path": "s0/34971.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
+        "content": "favorite",
         "bounds": [
             935,
             635,
@@ -1982,289 +1634,9 @@
                         "text": ""
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 71542,
-        "img_id": 71542,
-        "img_path": "s0/71542.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            945,
-            1061,
-            1071
-        ],
-        "android-id": "options_menu",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 60728,
-        "img_id": 60728,
-        "img_path": "s0/60728.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            809,
-            1397,
-            935,
-            1523
-        ],
-        "android-id": "create_transaction",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 19938,
-        "img_id": 19938,
-        "img_path": "s0/19938.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            1539,
-            1061,
-            1665
-        ],
-        "android-id": "favorite_status",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 12313,
-        "img_id": 12313,
-        "img_path": "s0/12313.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "com.android.packageinstaller.permission.ui.GrantPermissionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            428,
-            1061,
-            554
-        ],
-        "android-id": "options_menu",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 22976,
-        "img_id": 22976,
-        "img_path": "s0/22976.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "com.android.packageinstaller.permission.ui.GrantPermissionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            880,
-            1061,
-            1006
-        ],
-        "android-id": "options_menu",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 30400,
-        "img_id": 30400,
-        "img_path": "s0/30400.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "com.android.packageinstaller.permission.ui.GrantPermissionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            1332,
-            1061,
-            1458
-        ],
-        "android-id": "options_menu",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2275,7 +1647,7 @@
         "img_path": "s0/62290.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.wizard.FirstRunWizardActivity(Window=Main)",
-        "content": "",
+        "content": "english",
         "bounds": [
             215,
             749,
@@ -2297,105 +1669,9 @@
                         "text": "Allow GnuCash to access photos, media, and files on your device?"
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 20915,
-        "img_id": 20915,
-        "img_path": "s0/20915.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.account.AccountsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            809,
-            1106,
-            935,
-            1232
-        ],
-        "android-id": "create_transaction",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 7667,
-        "img_id": 7667,
-        "img_path": "s0/7667.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.account.AccountsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            1558,
-            1061,
-            1684
-        ],
-        "android-id": "options_menu",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2406,7 +1682,7 @@
         "img_path": "s0/81895.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.account.AccountsActivity(Window=Main)",
-        "content": "",
+        "content": "search",
         "bounds": [
             809,
             1784,
@@ -2440,7 +1716,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2451,7 +1729,7 @@
         "img_path": "s0/70841.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.account.AccountsActivity(Window=Main)",
-        "content": "",
+        "content": "search",
         "bounds": [
             935,
             1784,
@@ -2485,203 +1763,9 @@
                         "text": ""
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 98032,
-        "img_id": 98032,
-        "img_path": "s0/98032.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            699,
-            480,
-            825,
-            606
-        ],
-        "android-id": "color_picker_swatch",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 44674,
-        "img_id": 44674,
-        "img_path": "s0/44674.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            699,
-            628,
-            825,
-            754
-        ],
-        "android-id": "color_picker_swatch",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 70235,
-        "img_id": 70235,
-        "img_path": "s0/70235.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            699,
-            776,
-            825,
-            902
-        ],
-        "android-id": "color_picker_swatch",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 99987,
-        "img_id": 99987,
-        "img_path": "s0/99987.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            699,
-            924,
-            825,
-            1050
-        ],
-        "android-id": "color_picker_swatch",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 87153,
-        "img_id": 87153,
-        "img_path": "s0/87153.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            699,
-            1072,
-            825,
-            1198
-        ],
-        "android-id": "color_picker_swatch",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 40513,
-        "img_id": 40513,
-        "img_path": "s0/40513.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            699,
-            1220,
-            825,
-            1346
-        ],
-        "android-id": "color_picker_swatch",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 51069,
-        "img_id": 51069,
-        "img_path": "s0/51069.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            699,
-            1368,
-            825,
-            1494
-        ],
-        "android-id": "color_picker_swatch",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2692,7 +1776,7 @@
         "img_path": "s0/20489.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
+        "content": "skip",
         "bounds": [
             598,
             395,
@@ -2722,7 +1806,9 @@
                         "text": "Expense Expense"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2733,7 +1819,7 @@
         "img_path": "s0/65002.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
+        "content": "narando",
         "bounds": [
             26,
             534,
@@ -2755,7 +1841,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2766,7 +1854,7 @@
         "img_path": "s0/95438.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
+        "content": "forward",
         "bounds": [
             26,
             673,
@@ -2792,7 +1880,9 @@
                         "text": "8:03:42 PM"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2803,7 +1893,7 @@
         "img_path": "s0/12849.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
+        "content": "navigate up",
         "bounds": [
             26,
             812,
@@ -2825,7 +1915,9 @@
                         "text": "Add note"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2836,7 +1928,7 @@
         "img_path": "s0/96980.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
+        "content": "refresh",
         "bounds": [
             26,
             951,
@@ -2858,7 +1950,9 @@
                         "text": "Tap to create schedule"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2869,7 +1963,7 @@
         "img_path": "s0/48235.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Popup Menu)",
-        "content": "",
+        "content": "my location",
         "bounds": [
             477,
             523,
@@ -2907,7 +2001,9 @@
                         "text": "To continue, Google will share your name, email address, and profile picture with GnuCash."
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2918,7 +2014,7 @@
         "img_path": "s0/81031.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Popup Menu)",
-        "content": "",
+        "content": "add an entry",
         "bounds": [
             133,
             948,
@@ -2935,7 +2031,9 @@
                     "text": ""
                 },
                 "siblings": []
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2946,7 +2044,7 @@
         "img_path": "s0/12812.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Popup Menu)",
-        "content": "",
+        "content": "<unk>",
         "bounds": [
             144,
             1099,
@@ -2968,7 +2066,9 @@
                         "text": "Add another account"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -2979,7 +2079,7 @@
         "img_path": "s0/56134.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "",
+        "content": "refresh",
         "bounds": [
             26,
             951,
@@ -3001,105 +2101,9 @@
                         "text": "Tap to create schedule"
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 69378,
-        "img_id": 69378,
-        "img_path": "s0/69378.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            486,
-            1061,
-            612
-        ],
-        "android-id": "favorite_status",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 87757,
-        "img_id": 87757,
-        "img_path": "s0/87757.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            935,
-            938,
-            1061,
-            1064
-        ],
-        "android-id": "favorite_status",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "create_transaction",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3110,7 +2114,7 @@
         "img_path": "s0/84295.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
+        "content": "new tab",
         "bounds": [
             809,
             1248,
@@ -3148,56 +2152,9 @@
                         "text": ""
                     }
                 ]
-            }
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 66045,
-        "img_id": 66045,
-        "img_path": "s0/66045.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
-        "bounds": [
-            809,
-            1700,
-            935,
-            1794
-        ],
-        "android-id": "create_transaction",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "account_balance",
-                        "text": "$0.00"
-                    },
-                    {
-                        "id": "",
-                        "text": ""
-                    },
-                    {
-                        "id": "account_color_strip",
-                        "text": ""
-                    },
-                    {
-                        "id": "favorite_status",
-                        "text": ""
-                    },
-                    {
-                        "id": "options_menu",
-                        "text": ""
-                    }
-                ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3208,7 +2165,7 @@
         "img_path": "s0/28780.png",
         "pkg_name": "org.gnucash.android",
         "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
-        "content": "",
+        "content": "photo editor",
         "bounds": [
             935,
             1616,
@@ -3246,7 +2203,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3257,7 +2216,7 @@
         "img_path": "s0/6660.png",
         "pkg_name": "de.delusions.measure",
         "activity_name": "MeasureTabs(Window=Main)",
-        "content": "",
+        "content": "all",
         "bounds": [
             146,
             92,
@@ -3279,7 +2238,9 @@
                         "text": "Tracking"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3290,7 +2251,7 @@
         "img_path": "s0/88141.png",
         "pkg_name": "de.delusions.measure",
         "activity_name": "MeasureTabs(Window=Main)",
-        "content": "",
+        "content": "contact us icons",
         "bounds": [
             497,
             92,
@@ -3312,7 +2273,9 @@
                         "text": "Statistics"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3323,7 +2286,7 @@
         "img_path": "s0/38676.png",
         "pkg_name": "de.delusions.measure",
         "activity_name": "MeasureTabs(Window=Main)",
-        "content": "",
+        "content": "previous",
         "bounds": [
             849,
             92,
@@ -3345,7 +2308,9 @@
                         "text": "History"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3356,7 +2321,7 @@
         "img_path": "s0/49766.png",
         "pkg_name": "de.delusions.measure",
         "activity_name": "MeasureTabs(Window=Popup Menu)",
-        "content": "",
+        "content": "flash selfie",
         "bounds": [
             809,
             575,
@@ -3382,7 +2347,9 @@
                         "text": "Weight:"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3393,7 +2360,7 @@
         "img_path": "s0/25990.png",
         "pkg_name": "de.delusions.measure",
         "activity_name": "MeasureTabs(Window=Main)",
-        "content": "",
+        "content": "share",
         "bounds": [
             148,
             700,
@@ -3415,7 +2382,9 @@
                         "text": "Weight"
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3426,7 +2395,7 @@
         "img_path": "s0/7132.png",
         "pkg_name": "de.delusions.measure",
         "activity_name": "MeasureTabs(Window=Main)",
-        "content": "",
+        "content": "close navigation drawer",
         "bounds": [
             122,
             824,
@@ -3448,7 +2417,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
@@ -3459,7 +2430,7 @@
         "img_path": "s0/10266.png",
         "pkg_name": "de.delusions.measure",
         "activity_name": "MeasureTabs(Window=Main)",
-        "content": "",
+        "content": "tap to display or hide the action bar",
         "bounds": [
             26,
             323,
@@ -3489,7 +2460,9 @@
                         "text": ""
                     }
                 ]
-            }
+            },
+            "category": "<UNK>",
+            "location": -1
         },
         "type": "ImageView",
         "rotation": "0"
