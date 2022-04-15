@@ -350,41 +350,6 @@
         "rotation": "0"
     },
     {
-        "id": 61291,
-        "img_id": 61291,
-        "img_path": "s0/61291.png",
-        "pkg_name": "me.anon.grow",
-        "activity_name": "AddPlantActivity(Window=Main)",
-        "content": "photo posted",
-        "bounds": [
-            21,
-            366,
-            1059,
-            586
-        ],
-        "android-id": "image",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "summary_container",
-                        "text": ""
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
         "id": 2850,
         "img_id": 2850,
         "img_path": "s0/2850.png",
@@ -521,36 +486,6 @@
                         "text": "Delete Task"
                     }
                 ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
-        "id": 30814,
-        "img_id": 30814,
-        "img_path": "s0/30814.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.settings.SettingsActivity(Window=Main)",
-        "content": "my agenda",
-        "bounds": [
-            32,
-            84,
-            116,
-            168
-        ],
-        "android-id": "home",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
             },
             "category": "<UNK>",
             "location": -1
@@ -1841,41 +1776,6 @@
         "rotation": "0"
     },
     {
-        "id": 56134,
-        "img_id": 56134,
-        "img_path": "s0/56134.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.common.FormActivity(Window=Main)",
-        "content": "refresh",
-        "bounds": [
-            26,
-            951,
-            114,
-            1019
-        ],
-        "android-id": "",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "input_recurrence",
-                        "text": "Tap to create schedule"
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
         "id": 84295,
         "img_id": 84295,
         "img_path": "s0/84295.png",
@@ -1997,41 +1897,6 @@
         "rotation": "0"
     },
     {
-        "id": 38676,
-        "img_id": 38676,
-        "img_path": "s0/38676.png",
-        "pkg_name": "de.delusions.measure",
-        "activity_name": "MeasureTabs(Window=Main)",
-        "content": "previous",
-        "bounds": [
-            849,
-            92,
-            933,
-            176
-        ],
-        "android-id": "icon",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "title",
-                        "text": "History"
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "ImageView",
-        "rotation": "0"
-    },
-    {
         "id": 49766,
         "img_id": 49766,
         "img_path": "s0/49766.png",
@@ -2131,41 +1996,6 @@
                     {
                         "id": "title",
                         "text": "Fillup"
-                    }
-                ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "icon",
-        "rotation": "0"
-    },
-    {
-        "id": 80688,
-        "img_id": 80688,
-        "img_path": "s0/80688.png",
-        "pkg_name": "com.evancharlton.mileage",
-        "activity_name": "Mileage(Window=Main)",
-        "content": "sound off",
-        "bounds": [
-            631,
-            90,
-            715,
-            174
-        ],
-        "android-id": "icon",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": [
-                    {
-                        "id": "title",
-                        "text": "Statistics"
                     }
                 ]
             },
@@ -2494,36 +2324,6 @@
                         "text": ""
                     }
                 ]
-            },
-            "category": "<UNK>",
-            "location": -1
-        },
-        "type": "icon",
-        "rotation": "0"
-    },
-    {
-        "id": 51387,
-        "img_id": 51387,
-        "img_path": "s0/51387.png",
-        "pkg_name": "org.gnucash.android",
-        "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)",
-        "content": "email",
-        "bounds": [
-            103,
-            1516,
-            229,
-            1642
-        ],
-        "android-id": "icon",
-        "context": {
-            "activity_name": "",
-            "title": "",
-            "family": {
-                "father": {
-                    "id": "",
-                    "text": ""
-                },
-                "siblings": []
             },
             "category": "<UNK>",
             "location": -1
