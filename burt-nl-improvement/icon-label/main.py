@@ -77,7 +77,7 @@ def remove_invalid_item_json():
     new_data = []
     for item in data:
         img_path = item["img_path"]
-        if os.path.exists(img_path):
+        if os.path.exists(os.path.join(out_root,img_path)):
             new_data.append(item)
     print("item number:", len(new_data))
     json.dump(new_data, open(json_out, 'w'))
@@ -107,7 +107,7 @@ def get_content_title():
 
 
 out_root = 'data/2'
-json_out = out = os.path.join(out_root, 'sample_test.json')
+json_out = out = os.path.join(out_root, 'sample_title_.json')
 if __name__ == '__main__':
     # launch()
     remove_invalid_item_json()

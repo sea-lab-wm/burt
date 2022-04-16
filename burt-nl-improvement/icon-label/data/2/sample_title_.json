@@ -1,1 +1,3653 @@
-[{"id": 36413, "img_id": 36413, "img_path": "s0/36413.png", "pkg_name": "com.evancharlton.mileage", "activity_name": "Mileage(Window=Main)", "content": " icon", "bounds": [95, 90, 179, 174], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "title", "text": "Fillup"}]}, "category": "<UNK>", "location": -1}, "type": "icon", "rotation": 0}, {"id": 5906, "img_id": 5906, "img_path": "s0/5906.png", "pkg_name": "com.evancharlton.mileage", "activity_name": "Mileage(Window=Main)", "content": " icon", "bounds": [363, 90, 447, 174], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "title", "text": "History"}]}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 36205, "img_id": 36205, "img_path": "s0/36205.png", "pkg_name": "com.evancharlton.mileage", "activity_name": "Mileage(Window=Main)", "content": " icon", "bounds": [631, 90, 715, 174], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "title", "text": "Statistics"}]}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 13727, "img_id": 13727, "img_path": "s0/13727.png", "pkg_name": "com.evancharlton.mileage", "activity_name": "Mileage(Window=Main)", "content": " icon", "bounds": [900, 90, 984, 174], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "title", "text": "Vehicles"}]}, "category": "<UNK>", "location": 6}, "type": "icon", "rotation": 0}, {"id": 94329, "img_id": 94329, "img_path": "s0/94329.png", "pkg_name": "com.evancharlton.mileage", "activity_name": "Mileage(Window=Main)", "content": "previous month", "bounds": [146, 562, 272, 688], "android-id": "prev", "context": {"activity_name": "Image Button", "title": "Previous month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "day_picker_view_pager", "text": ""}, {"id": "next", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 9630, "img_id": 9630, "img_path": "s0/9630.png", "pkg_name": "me.anon.grow", "activity_name": "SettingsActivity(Window=Main)", "content": "permission icon", "bounds": [215, 749, 310, 844], "android-id": "permission_icon", "context": {"activity_name": "Image View", "title": "permission_icon", "family": {"father": {"id": "perm_desc_root", "text": ""}, "siblings": [{"id": "permission_message", "text": "Allow GrowTracker to access photos, media, and files on your device?"}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 48968, "img_id": 48968, "img_path": "s0/48968.png", "pkg_name": "me.anon.grow", "activity_name": "AddWateringActivity(Window=Main)", "content": "", "bounds": [930, 969, 993, 1032], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 26648, "img_id": 26648, "img_path": "s0/26648.png", "pkg_name": "me.anon.grow", "activity_name": "AddWateringActivity(Window=Main)", "content": "", "bounds": [888, 822, 1035, 969], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 2026, "img_id": 2026, "img_path": "s0/2026.png", "pkg_name": "me.anon.grow", "activity_name": "AddWateringActivity(Window=Main)", "content": "", "bounds": [930, 864, 993, 927], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 23307, "img_id": 23307, "img_path": "s0/23307.png", "pkg_name": "me.anon.grow", "activity_name": "AddPlantActivity(Window=Main)", "content": "navigate up", "bounds": [0, 63, 147, 210], "android-id": "", "context": {"activity_name": "Image Button", "title": "Navigate up", "family": {"father": {"id": "toolbar", "text": ""}, "siblings": [{"id": "", "text": "Add new plant"}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 16141, "img_id": 16141, "img_path": "s0/16141.png", "pkg_name": "me.anon.grow", "activity_name": "AddPlantActivity(Window=Main)", "content": "more options", "bounds": [975, 73, 1080, 199], "android-id": "", "context": {"activity_name": "Image View", "title": "More options", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "filter", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 72078, "img_id": 72078, "img_path": "s0/72078.png", "pkg_name": "me.anon.grow", "activity_name": "AddPlantActivity(Window=Main)", "content": " image", "bounds": [21, 231, 1059, 451], "android-id": "image", "context": {"activity_name": "Image View", "title": "image", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "summary_container", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 27329, "img_id": 27329, "img_path": "s0/27329.png", "pkg_name": "me.anon.grow", "activity_name": "AddPlantActivity(Window=Main)", "content": "", "bounds": [888, 1597, 1035, 1744], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 13791, "img_id": 13791, "img_path": "s0/13791.png", "pkg_name": "me.anon.grow", "activity_name": "AddPlantActivity(Window=Main)", "content": "", "bounds": [930, 1639, 993, 1702], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 72576, "img_id": 72576, "img_path": "s0/72576.png", "pkg_name": "me.anon.grow", "activity_name": "AddPlantActivity(Window=Main)", "content": "", "bounds": [888, 1605, 1038, 1752], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "fab_add", "text": ""}, "siblings": [{"id": "", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 10424, "img_id": 10424, "img_path": "s0/10424.png", "pkg_name": "me.anon.grow", "activity_name": "AddPlantActivity(Window=Main)", "content": " image", "bounds": [21, 366, 1059, 586], "android-id": "image", "context": {"activity_name": "Image View", "title": "image", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "summary_container", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 10614, "img_id": 10614, "img_path": "s0/10614.png", "pkg_name": "me.anon.grow", "activity_name": "PlantDetailsActivity(Window=Main)", "content": " image", "bounds": [21, 231, 1059, 580], "android-id": "image", "context": {"activity_name": "Image View", "title": "image", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "summary_container", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 20184, "img_id": 20184, "img_path": "s0/20184.png", "pkg_name": "me.anon.grow", "activity_name": "AddWateringActivity(Window=Main)", "content": " image", "bounds": [21, 366, 1059, 758], "android-id": "image", "context": {"activity_name": "Image View", "title": "image", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "summary_container", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 8602, "img_id": 8602, "img_path": "s0/8602.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "EditTime(Window=Main)", "content": "more options", "bounds": [975, 73, 1080, 199], "android-id": "", "context": {"activity_name": "Image Button", "title": "More options", "family": {"father": {"id": "", "text": ""}, "siblings": []}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}, {"id": 44295, "img_id": 44295, "img_path": "s0/44295.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "Tasks(Window=Main)", "content": "", "bounds": [882, 220, 969, 277], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": "Task"}, {"id": "", "text": "00:00"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 75051, "img_id": 75051, "img_path": "s0/75051.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "Tasks(Window=Main)", "content": "previous month", "bounds": [198, 559, 324, 685], "android-id": "prev", "context": {"activity_name": "Image Button", "title": "Previous month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "day_picker_view_pager", "text": ""}, {"id": "next", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 89513, "img_id": 89513, "img_path": "s0/89513.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "Tasks(Window=Main)", "content": "next month", "bounds": [756, 559, 882, 685], "android-id": "next", "context": {"activity_name": "Image Button", "title": "Next month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "prev", "text": ""}, {"id": "day_picker_view_pager", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 30060, "img_id": 30060, "img_path": "s0/30060.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "TaskTimes(Window=Popup Menu)", "content": "previous month", "bounds": [48, 552, 174, 678], "android-id": "prev", "context": {"activity_name": "Image Button", "title": "Previous month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "day_picker_view_pager", "text": ""}, {"id": "next", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 55830, "img_id": 55830, "img_path": "s0/55830.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "Tasks(Window=Popup Menu)", "content": " icon", "bounds": [133, 762, 217, 846], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "title_template", "text": ""}, "siblings": [{"id": "alertTitle", "text": "Delete Task"}]}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 31325, "img_id": 31325, "img_path": "s0/31325.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "EditTime(Window=Main)", "content": "next month", "bounds": [744, 494, 870, 620], "android-id": "next", "context": {"activity_name": "Image Button", "title": "Next month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "prev", "text": ""}, {"id": "day_picker_view_pager", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 2767, "img_id": 2767, "img_path": "s0/2767.png", "pkg_name": "com.markuspage.android.atimetracker", "activity_name": "Tasks(Window=Main)", "content": "", "bounds": [882, 300, 969, 357], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": "2"}, {"id": "", "text": "00:00"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 18346, "img_id": 18346, "img_path": "s0/18346.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.settings.SettingsActivity(Window=Main)", "content": "more options", "bounds": [932, 63, 1080, 189], "android-id": "", "context": {"activity_name": "Image Button", "title": "More options", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "menu_add_account", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}, {"id": 87371, "img_id": 87371, "img_path": "s0/87371.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.settings.SettingsActivity(Window=Main)", "content": " home", "bounds": [32, 84, 116, 168], "android-id": "home", "context": {"activity_name": "Image View", "title": "home", "family": {"father": {"id": "", "text": ""}, "siblings": []}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 59502, "img_id": 59502, "img_path": "s0/59502.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.settings.SettingsActivity(Window=Main)", "content": "add a new transaction to an account", "bounds": [964, 401, 1048, 485], "android-id": "btn_new_transaction", "context": {"activity_name": "Image View", "title": "Add a new transaction to an account", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "vertical_line", "text": ""}, {"id": "transactions_summary", "text": "0.00 $"}, {"id": "account_name", "text": "Income"}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 88880, "img_id": 88880, "img_path": "s0/88880.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.transactions.TransactionsActivity(Window=Main)", "content": "previous month", "bounds": [118, 569, 244, 695], "android-id": "prev", "context": {"activity_name": "Image Button", "title": "Previous month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "day_picker_view_pager", "text": ""}, {"id": "next", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 20073, "img_id": 20073, "img_path": "s0/20073.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.transactions.TransactionsActivity(Window=Main)", "content": "next month", "bounds": [814, 569, 940, 695], "android-id": "next", "context": {"activity_name": "Image Button", "title": "Next month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "prev", "text": ""}, {"id": "day_picker_view_pager", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 28696, "img_id": 28696, "img_path": "s0/28696.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.accounts.AccountsActivity(Window=Main)", "content": "add a new transaction to an account", "bounds": [964, 571, 1048, 655], "android-id": "btn_new_transaction", "context": {"activity_name": "Image View", "title": "Add a new transaction to an account", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "vertical_line", "text": ""}, {"id": "transactions_summary", "text": "0.00 $"}, {"id": "account_name", "text": "Expenses"}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 40845, "img_id": 40845, "img_path": "s0/40845.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.accounts.AccountsActivity(Window=Popup Menu)", "content": " icon", "bounds": [58, 466, 142, 550], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "icon", "rotation": 0}, {"id": 37229, "img_id": 37229, "img_path": "s0/37229.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.accounts.AccountsActivity(Window=Popup Menu)", "content": " up", "bounds": [0, 105, 42, 147], "android-id": "up", "context": {"activity_name": "Image View", "title": "up", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "home", "text": ""}]}, "category": "<UNK>", "location": 4}, "type": "ImageView", "rotation": 0}, {"id": 86013, "img_id": 86013, "img_path": "s0/86013.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)", "content": " icon", "bounds": [103, 1516, 229, 1642], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": []}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 50578, "img_id": 50578, "img_path": "s0/50578.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)", "content": " icon", "bounds": [352, 1516, 478, 1642], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": []}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 51780, "img_id": 51780, "img_path": "s0/51780.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "navigate up", "bounds": [0, 63, 147, 210], "android-id": "", "context": {"activity_name": "Image Button", "title": "Navigate up", "family": {"father": {"id": "action_bar", "text": ""}, "siblings": [{"id": "", "text": "Settings"}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 25043, "img_id": 25043, "img_path": "s0/25043.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 95, 147, 199], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Queue"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 90699, "img_id": 90699, "img_path": "s0/90699.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 220, 147, 324], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Episodes"}, {"id": "txtvCount", "text": "1"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 15344, "img_id": 15344, "img_path": "s0/15344.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 345, 147, 449], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Subscriptions"}, {"id": "txtvCount", "text": "783"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 85969, "img_id": 85969, "img_path": "s0/85969.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 470, 147, 574], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Downloads"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 3324, "img_id": 3324, "img_path": "s0/3324.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 595, 147, 699], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Playback History"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 26944, "img_id": 26944, "img_path": "s0/26944.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 720, 147, 824], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Add Podcast"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 96042, "img_id": 96042, "img_path": "s0/96042.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 1679, 147, 1784], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "nav_settings", "text": ""}, "siblings": [{"id": "", "text": "Settings"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 19719, "img_id": 19719, "img_path": "s0/19719.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "more options", "bounds": [975, 73, 1080, 199], "android-id": "", "context": {"activity_name": "Image View", "title": "More options", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "visit_website_item", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 44969, "img_id": 44969, "img_path": "s0/44969.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "show information", "bounds": [954, 231, 1080, 357], "android-id": "butShowInfo", "context": {"activity_name": "Image Button", "title": "Show information", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Classical Music Discoveries"}, {"id": "imgvCover", "text": ""}, {"id": "imgvBackground", "text": ""}, {"id": "txtvAuthor", "text": "Classical Music Discoveries"}]}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}, {"id": 11741, "img_id": 11741, "img_path": "s0/11741.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "search", "bounds": [467, 73, 594, 199], "android-id": "search_button", "context": {"activity_name": "Image View", "title": "Search", "family": {"father": {"id": "search_bar", "text": ""}, "siblings": []}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 7407, "img_id": 7407, "img_path": "s0/7407.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "background", "bounds": [0, 210, 1080, 557], "android-id": "imgvBackground", "context": {"activity_name": "Image View", "title": "imgvBackground", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "imgvCover", "text": ""}, {"id": "txtvTitle", "text": "Classical Music Discoveries"}, {"id": "butShowInfo", "text": ""}, {"id": "txtvAuthor", "text": "Classical Music Discoveries"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 53237, "img_id": 53237, "img_path": "s0/53237.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "clear query", "bounds": [861, 87, 966, 182], "android-id": "search_close_btn", "context": {"activity_name": "Image View", "title": "Clear query", "family": {"father": {"id": "search_plate", "text": ""}, "siblings": [{"id": "search_src_text", "text": "rock"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 99187, "img_id": 99187, "img_path": "s0/99187.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)", "content": "rewind", "bounds": [309, 1631, 435, 1757], "android-id": "butRev", "context": {"activity_name": "Image Button", "title": "Rewind", "family": {"father": {"id": "player_control", "text": ""}, "siblings": [{"id": "butPlaybackSpeed", "text": "1.00X"}, {"id": "txtvRev", "text": "30"}, {"id": "butPlay", "text": ""}, {"id": "butFF", "text": ""}, {"id": "txtvFF", "text": "30"}, {"id": "butSkip", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 41720, "img_id": 41720, "img_path": "s0/41720.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)", "content": "play", "bounds": [477, 1631, 603, 1757], "android-id": "butPlay", "context": {"activity_name": "Image Button", "title": "Play", "family": {"father": {"id": "player_control", "text": ""}, "siblings": [{"id": "txtvRev", "text": "30"}, {"id": "butRev", "text": ""}, {"id": "butPlaybackSpeed", "text": "1.00X"}, {"id": "butFF", "text": ""}, {"id": "txtvFF", "text": "30"}, {"id": "butSkip", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 33843, "img_id": 33843, "img_path": "s0/33843.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)", "content": "fast forward", "bounds": [645, 1631, 771, 1757], "android-id": "butFF", "context": {"activity_name": "Image Button", "title": "Fast forward", "family": {"father": {"id": "player_control", "text": ""}, "siblings": [{"id": "butPlay", "text": ""}, {"id": "txtvRev", "text": "30"}, {"id": "butRev", "text": ""}, {"id": "butPlaybackSpeed", "text": "1.00X"}, {"id": "txtvFF", "text": "30"}, {"id": "butSkip", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 7107, "img_id": 7107, "img_path": "s0/7107.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)", "content": "skip episode", "bounds": [813, 1631, 939, 1757], "android-id": "butSkip", "context": {"activity_name": "Image Button", "title": "Skip episode", "family": {"father": {"id": "player_control", "text": ""}, "siblings": [{"id": "txtvFF", "text": "30"}, {"id": "butFF", "text": ""}, {"id": "butPlay", "text": ""}, {"id": "txtvRev", "text": "30"}, {"id": "butRev", "text": ""}, {"id": "butPlaybackSpeed", "text": "1.00X"}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 83219, "img_id": 83219, "img_path": "s0/83219.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)", "content": "picture", "bounds": [97, 440, 982, 1325], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}, {"id": "", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 6643, "img_id": 6643, "img_path": "s0/6643.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "episode is in the queue", "bounds": [877, 729, 930, 782], "android-id": "imgvInPlaylist", "context": {"activity_name": "Image View", "title": "Episode is in the queue", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "imgvType", "text": ""}, {"id": "txtvPublished", "text": "Nov 30, 2015"}, {"id": "txtvLenSize", "text": "2 MB"}, {"id": "txtvItemname", "text": "Important Message"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 85301, "img_id": 85301, "img_path": "s0/85301.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "cover", "bounds": [0, 210, 356, 566], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "imgvCover", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "\ue145\n\nAdd Podcast"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 29872, "img_id": 29872, "img_path": "s0/29872.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "cover", "bounds": [361, 210, 717, 566], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "imgvCover", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "Linux Outlaws"}, {"id": "triangleCountView", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 40919, "img_id": 40919, "img_path": "s0/40919.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "cover", "bounds": [722, 210, 1078, 566], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "imgvCover", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvTitle", "text": "\ue145\n\nAdd Podcast"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 17343, "img_id": 17343, "img_path": "s0/17343.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [86, 298, 254, 466], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvPlaceholder", "text": "Linux Outlaws"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 81287, "img_id": 81287, "img_path": "s0/81287.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "download", "bounds": [954, 336, 1080, 521], "android-id": "butSecondaryAction", "context": {"activity_name": "Image Button", "title": "Download", "family": {"father": {"id": "content", "text": ""}, "siblings": [{"id": "", "text": ""}, {"id": "", "text": ""}, {"id": "", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}, {"id": 76342, "img_id": 76342, "img_path": "s0/76342.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "download", "bounds": [954, 524, 1080, 776], "android-id": "butSecondaryAction", "context": {"activity_name": "Image Button", "title": "Download", "family": {"father": {"id": "content", "text": ""}, "siblings": [{"id": "", "text": ""}, {"id": "", "text": ""}, {"id": "", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}, {"id": 1312, "img_id": 1312, "img_path": "s0/1312.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "download", "bounds": [954, 1034, 1080, 1286], "android-id": "butSecondaryAction", "context": {"activity_name": "Image Button", "title": "Download", "family": {"father": {"id": "content", "text": ""}, "siblings": [{"id": "", "text": ""}, {"id": "", "text": ""}, {"id": "", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}, {"id": 10454, "img_id": 10454, "img_path": "s0/10454.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 566, 210, 734], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvPlaceholder", "text": "Classical Music Discoveries"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 26693, "img_id": 26693, "img_path": "s0/26693.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 1331, 210, 1499], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvPlaceholder", "text": "Classical Music Discoveries"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 17316, "img_id": 17316, "img_path": "s0/17316.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.OnlineFeedViewActivity(Window=Main)", "content": "feed", "bounds": [964, 252, 1027, 303], "android-id": "imgFeed", "context": {"activity_name": "Image View", "title": "imgFeed", "family": {"father": {"id": "subscribers_container", "text": ""}, "siblings": [{"id": "txtvSubscribers", "text": "0"}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 49837, "img_id": 49837, "img_path": "s0/49837.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "download", "bounds": [954, 1632, 1080, 1794], "android-id": "butSecondaryAction", "context": {"activity_name": "Image Button", "title": "Download", "family": {"father": {"id": "content", "text": ""}, "siblings": [{"id": "", "text": ""}, {"id": "", "text": ""}, {"id": "", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}, {"id": 81363, "img_id": 81363, "img_path": "s0/81363.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 909, 210, 1077], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvPlaceholder", "text": "Classical Music Discoveries"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 16539, "img_id": 16539, "img_path": "s0/16539.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "picture", "bounds": [42, 1164, 210, 1332], "android-id": "imgvCover", "context": {"activity_name": "Image View", "title": "Picture", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvPlaceholder", "text": "Classical Music Discoveries"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 26174, "img_id": 26174, "img_path": "s0/26174.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "feed", "bounds": [943, 1176, 1006, 1227], "android-id": "imgFeed", "context": {"activity_name": "Image View", "title": "imgFeed", "family": {"father": {"id": "subscribers_container", "text": ""}, "siblings": [{"id": "txtvSubscribers", "text": "13"}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 56379, "img_id": 56379, "img_path": "s0/56379.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "audio", "bounds": [803, 883, 856, 936], "android-id": "imgvType", "context": {"activity_name": "Image View", "title": "Audio", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvPublished", "text": "May 20"}, {"id": "txtvLenSize", "text": "28 MB"}, {"id": "txtvItemname", "text": "Jay Jay French"}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 2053, "img_id": 2053, "img_path": "s0/2053.png", "pkg_name": "de.danoeh.antennapod.debug", "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)", "content": "audio", "bounds": [803, 1648, 856, 1701], "android-id": "imgvType", "context": {"activity_name": "Image View", "title": "Audio", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "txtvPublished", "text": "Apr 29"}, {"id": "txtvLenSize", "text": "22 MB"}, {"id": "txtvItemname", "text": "Songs & Stories"}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 17592, "img_id": 17592, "img_path": "s0/17592.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.transaction.TransactionsActivity(Window=Main)", "content": "navigation drawer opened", "bounds": [0, 63, 147, 210], "android-id": "", "context": {"activity_name": "Image Button", "title": "Navigation drawer opened", "family": {"father": {"id": "toolbar", "text": ""}, "siblings": [{"id": "toolbar_spinner", "text": ""}, {"id": "", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 28876, "img_id": 28876, "img_path": "s0/28876.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.transaction.TransactionsActivity(Window=Main)", "content": "more options", "bounds": [975, 73, 1080, 199], "android-id": "", "context": {"activity_name": "Image View", "title": "More options", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "menu_favorite_account", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 50422, "img_id": 50422, "img_path": "s0/50422.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.transaction.TransactionsActivity(Window=Main)", "content": "favorite status", "bounds": [935, 409, 1061, 535], "android-id": "favorite_status", "context": {"activity_name": "Image View", "title": "favorite_status", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "create_transaction", "text": ""}, {"id": "account_balance", "text": "$0.00"}, {"id": "", "text": ""}, {"id": "account_color_strip", "text": ""}, {"id": "options_menu", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 23411, "img_id": 23411, "img_path": "s0/23411.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.transaction.TransactionsActivity(Window=Main)", "content": "options menu", "bounds": [935, 719, 1061, 845], "android-id": "options_menu", "context": {"activity_name": "Image View", "title": "options_menu", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "favorite_status", "text": ""}, {"id": "create_transaction", "text": ""}, {"id": "account_balance", "text": "$0.00"}, {"id": "", "text": ""}, {"id": "account_color_strip", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 8339, "img_id": 8339, "img_path": "s0/8339.png", "pkg_name": "org.gnucash.android", "activity_name": "com.android.packageinstaller.permission.ui.GrantPermissionsActivity(Window=Main)", "content": "favorite status", "bounds": [935, 344, 1061, 470], "android-id": "favorite_status", "context": {"activity_name": "Image View", "title": "favorite_status", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}, {"id": "account_color_strip", "text": ""}, {"id": "account_balance", "text": "$0.00"}, {"id": "options_menu", "text": ""}]}, "category": "<UNK>", "location": 6}, "type": "ImageView", "rotation": 0}, {"id": 91631, "img_id": 91631, "img_path": "s0/91631.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.wizard.FirstRunWizardActivity(Window=Main)", "content": "permission icon", "bounds": [215, 749, 310, 844], "android-id": "permission_icon", "context": {"activity_name": "Image View", "title": "permission_icon", "family": {"father": {"id": "perm_desc_root", "text": ""}, "siblings": [{"id": "permission_message", "text": "Allow GnuCash to access photos, media, and files on your device?"}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 47430, "img_id": 47430, "img_path": "s0/47430.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.account.AccountsActivity(Window=Main)", "content": "create transaction", "bounds": [809, 1784, 935, 1794], "android-id": "create_transaction", "context": {"activity_name": "Image View", "title": "create_transaction", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "", "text": ""}, {"id": "account_color_strip", "text": ""}, {"id": "favorite_status", "text": ""}, {"id": "options_menu", "text": ""}]}, "category": "<UNK>", "location": 9}, "type": "ImageView", "rotation": 0}, {"id": 7749, "img_id": 7749, "img_path": "s0/7749.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Main)", "content": "open split editor", "bounds": [598, 395, 682, 479], "android-id": "btn_split_editor", "context": {"activity_name": "Image View", "title": "Open split editor", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "input_transaction_amount", "text": "75.00"}, {"id": "currency_symbol", "text": "$"}, {"id": "input_transaction_type", "text": "Expense Expense"}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 57092, "img_id": 57092, "img_path": "s0/57092.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Main)", "content": "", "bounds": [26, 534, 114, 618], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "layout_double_entry", "text": ""}, "siblings": [{"id": "input_transfer_account_spinner", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 64561, "img_id": 64561, "img_path": "s0/64561.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Main)", "content": "", "bounds": [26, 673, 114, 757], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "input_date", "text": "Jul 30, 2021"}, {"id": "input_time", "text": "8:03:42 PM"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 22528, "img_id": 22528, "img_path": "s0/22528.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Main)", "content": "", "bounds": [26, 812, 114, 896], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "input_description", "text": "Add note"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 30749, "img_id": 30749, "img_path": "s0/30749.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Main)", "content": "", "bounds": [26, 951, 114, 1035], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "input_recurrence", "text": "Tap to create schedule"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 4843, "img_id": 4843, "img_path": "s0/4843.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Popup Menu)", "content": "app icon", "bounds": [477, 523, 603, 649], "android-id": "app_icon", "context": {"activity_name": "Image View", "title": "app_icon", "family": {"father": {"id": "account_picker_container", "text": ""}, "siblings": [{"id": "main_title", "text": "Choose an account"}, {"id": "subtitle", "text": "to continue to GnuCash"}, {"id": "list", "text": ""}, {"id": "consent_divider", "text": ""}, {"id": "consent_text", "text": "To continue, Google will share your name, email address, and profile picture with GnuCash."}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 23434, "img_id": 23434, "img_path": "s0/23434.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Popup Menu)", "content": "og apd internal image view", "bounds": [133, 948, 207, 1022], "android-id": "og_apd_internal_image_view", "context": {"activity_name": "Image View", "title": "og_apd_internal_image_view", "family": {"father": {"id": "account_particle_disc", "text": ""}, "siblings": []}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 91848, "img_id": 91848, "img_path": "s0/91848.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Popup Menu)", "content": "add account profile picture", "bounds": [144, 1099, 197, 1152], "android-id": "add_account_profile_picture", "context": {"activity_name": "Image View", "title": "add_account_profile_picture", "family": {"father": {"id": "container", "text": ""}, "siblings": [{"id": "add_account_chip_title", "text": "Add another account"}]}, "category": "<UNK>", "location": 5}, "type": "ImageView", "rotation": 0}, {"id": 60484, "img_id": 60484, "img_path": "s0/60484.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.common.FormActivity(Window=Main)", "content": "", "bounds": [26, 951, 114, 1019], "android-id": "", "context": {"activity_name": "Image View", "title": "", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "input_recurrence", "text": "Tap to create schedule"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 12838, "img_id": 12838, "img_path": "s0/12838.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.transaction.TransactionsActivity(Window=Main)", "content": "create transaction", "bounds": [809, 1022, 935, 1148], "android-id": "create_transaction", "context": {"activity_name": "Image View", "title": "create_transaction", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "account_balance", "text": "$0.00"}, {"id": "", "text": ""}, {"id": "account_color_strip", "text": ""}, {"id": "favorite_status", "text": ""}, {"id": "options_menu", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 12766, "img_id": 12766, "img_path": "s0/12766.png", "pkg_name": "org.gnucash.android", "activity_name": "ui.account.AccountsActivity(Window=Main)", "content": "fab create account", "bounds": [880, 819, 1027, 966], "android-id": "fab_create_account", "context": {"activity_name": "Image Button", "title": "fab_create_account", "family": {"father": {"id": "coordinatorLayout", "text": ""}, "siblings": [{"id": "pager", "text": ""}, {"id": "fragment_container", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 41833, "img_id": 41833, "img_path": "s0/41833.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " icon", "bounds": [146, 92, 230, 176], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "title", "text": "Tracking"}]}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 11017, "img_id": 11017, "img_path": "s0/11017.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " icon", "bounds": [497, 92, 581, 176], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "title", "text": "Statistics"}]}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 49604, "img_id": 49604, "img_path": "s0/49604.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " icon", "bounds": [849, 92, 933, 176], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "title", "text": "History"}]}, "category": "<UNK>", "location": -1}, "type": "icon", "rotation": 0}, {"id": 68696, "img_id": 68696, "img_path": "s0/68696.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " minusminus", "bounds": [183, 283, 293, 441], "android-id": "minusminus", "context": {"activity_name": "Image Button", "title": "minusminus", "family": {"father": {"id": "input", "text": ""}, "siblings": [{"id": "minus", "text": ""}, {"id": "currentWeight", "text": "3"}, {"id": "label", "text": "Weight"}, {"id": "unit", "text": "kg"}, {"id": "plus", "text": ""}, {"id": "plusplus", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 65954, "img_id": 65954, "img_path": "s0/65954.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " minus", "bounds": [293, 283, 403, 441], "android-id": "minus", "context": {"activity_name": "Image Button", "title": "minus", "family": {"father": {"id": "input", "text": ""}, "siblings": [{"id": "minusminus", "text": ""}, {"id": "currentWeight", "text": "3"}, {"id": "label", "text": "Weight"}, {"id": "unit", "text": "kg"}, {"id": "plus", "text": ""}, {"id": "plusplus", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 90927, "img_id": 90927, "img_path": "s0/90927.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " plus", "bounds": [676, 283, 786, 441], "android-id": "plus", "context": {"activity_name": "Image Button", "title": "plus", "family": {"father": {"id": "input", "text": ""}, "siblings": [{"id": "unit", "text": "kg"}, {"id": "label", "text": "Weight"}, {"id": "currentWeight", "text": "3"}, {"id": "minus", "text": ""}, {"id": "minusminus", "text": ""}, {"id": "plusplus", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 36387, "img_id": 36387, "img_path": "s0/36387.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " plusplus", "bounds": [786, 283, 896, 441], "android-id": "plusplus", "context": {"activity_name": "Image Button", "title": "plusplus", "family": {"father": {"id": "input", "text": ""}, "siblings": [{"id": "plus", "text": ""}, {"id": "unit", "text": "kg"}, {"id": "label", "text": "Weight"}, {"id": "currentWeight", "text": "3"}, {"id": "minus", "text": ""}, {"id": "minusminus", "text": ""}]}, "category": "<UNK>", "location": 5}, "type": "ImageButton", "rotation": 0}, {"id": 18340, "img_id": 18340, "img_path": "s0/18340.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Popup Menu)", "content": "change arrow", "bounds": [809, 575, 1054, 653], "android-id": "change_arrow", "context": {"activity_name": "Image View", "title": "change_arrow", "family": {"father": {"id": "", "text": ""}, "siblings": [{"id": "measure", "text": "2.4 kg"}, {"id": "label_measure", "text": "Weight:"}]}, "category": "<UNK>", "location": -1}, "type": "ImageView", "rotation": 0}, {"id": 55928, "img_id": 55928, "img_path": "s0/55928.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureEdit(Window=Main)", "content": "next month", "bounds": [812, 562, 938, 688], "android-id": "next", "context": {"activity_name": "Image Button", "title": "Next month", "family": {"father": {"id": "date_picker_day_picker", "text": ""}, "siblings": [{"id": "prev", "text": ""}, {"id": "day_picker_view_pager", "text": ""}]}, "category": "<UNK>", "location": -1}, "type": "ImageButton", "rotation": 0}, {"id": 17375, "img_id": 17375, "img_path": "s0/17375.png", "pkg_name": "de.delusions.measure", "activity_name": "MeasureTabs(Window=Main)", "content": " icon", "bounds": [148, 700, 258, 800], "android-id": "icon", "context": {"activity_name": "Image View", "title": "icon", "family": {"father": {"id": "title_template", "text": ""}, "siblings": [{"id": "alertTitle", "text": "Weight"}]}, "category": "<UNK>", "location": 5}, "type": "icon", "rotation": 0}, {"id": 27664, "img_id": 27664, "img_path": "s0/27664.png", "pkg_name": "uk.co.bitethebullet.android.token", "activity_name": "PinChange(Window=Main)", "content": "more options", "bounds": [975, 73, 1080, 199], "android-id": "", "context": {"activity_name": "Image Button", "title": "More options", "family": {"father": {"id": "", "text": ""}, "siblings": []}, "category": "<UNK>", "location": 6}, "type": "ImageButton", "rotation": 0}]
+[
+    {
+        "id": 36413,
+        "img_id": 36413,
+        "img_path": "s0/36413.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            95,
+            90,
+            179,
+            174
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Fillup"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 5906,
+        "img_id": 5906,
+        "img_path": "s0/5906.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            363,
+            90,
+            447,
+            174
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "History"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 36205,
+        "img_id": 36205,
+        "img_path": "s0/36205.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            631,
+            90,
+            715,
+            174
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Statistics"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 13727,
+        "img_id": 13727,
+        "img_path": "s0/13727.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            900,
+            90,
+            984,
+            174
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Vehicles"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 94329,
+        "img_id": 94329,
+        "img_path": "s0/94329.png",
+        "pkg_name": "com.evancharlton.mileage",
+        "activity_name": "Mileage(Window=Main)",
+        "content": "previous month",
+        "bounds": [
+            146,
+            562,
+            272,
+            688
+        ],
+        "android-id": "prev",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Previous month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "next",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 9630,
+        "img_id": 9630,
+        "img_path": "s0/9630.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "SettingsActivity(Window=Main)",
+        "content": "permission icon",
+        "bounds": [
+            215,
+            749,
+            310,
+            844
+        ],
+        "android-id": "permission_icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "permission_icon",
+            "family": {
+                "father": {
+                    "id": "perm_desc_root",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "permission_message",
+                        "text": "Allow GrowTracker to access photos, media, and files on your device?"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 48968,
+        "img_id": 48968,
+        "img_path": "s0/48968.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddWateringActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            930,
+            969,
+            993,
+            1032
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 26648,
+        "img_id": 26648,
+        "img_path": "s0/26648.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddWateringActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            888,
+            822,
+            1035,
+            969
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 2026,
+        "img_id": 2026,
+        "img_path": "s0/2026.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddWateringActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            930,
+            864,
+            993,
+            927
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 23307,
+        "img_id": 23307,
+        "img_path": "s0/23307.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": "navigate up",
+        "bounds": [
+            0,
+            63,
+            147,
+            210
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Navigate up",
+            "family": {
+                "father": {
+                    "id": "toolbar",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": "Add new plant"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 16141,
+        "img_id": 16141,
+        "img_path": "s0/16141.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": "more options",
+        "bounds": [
+            975,
+            73,
+            1080,
+            199
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "More options",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "filter",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 72078,
+        "img_id": 72078,
+        "img_path": "s0/72078.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": " image",
+        "bounds": [
+            21,
+            231,
+            1059,
+            451
+        ],
+        "android-id": "image",
+        "context": {
+            "activity_name": "Image View",
+            "title": "image",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "summary_container",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 27329,
+        "img_id": 27329,
+        "img_path": "s0/27329.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            888,
+            1597,
+            1035,
+            1744
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 13791,
+        "img_id": 13791,
+        "img_path": "s0/13791.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            930,
+            1639,
+            993,
+            1702
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 72576,
+        "img_id": 72576,
+        "img_path": "s0/72576.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            888,
+            1605,
+            1038,
+            1752
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "fab_add",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 10424,
+        "img_id": 10424,
+        "img_path": "s0/10424.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddPlantActivity(Window=Main)",
+        "content": " image",
+        "bounds": [
+            21,
+            366,
+            1059,
+            586
+        ],
+        "android-id": "image",
+        "context": {
+            "activity_name": "Image View",
+            "title": "image",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "summary_container",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 10614,
+        "img_id": 10614,
+        "img_path": "s0/10614.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "PlantDetailsActivity(Window=Main)",
+        "content": " image",
+        "bounds": [
+            21,
+            231,
+            1059,
+            580
+        ],
+        "android-id": "image",
+        "context": {
+            "activity_name": "Image View",
+            "title": "image",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "summary_container",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 20184,
+        "img_id": 20184,
+        "img_path": "s0/20184.png",
+        "pkg_name": "me.anon.grow",
+        "activity_name": "AddWateringActivity(Window=Main)",
+        "content": " image",
+        "bounds": [
+            21,
+            366,
+            1059,
+            758
+        ],
+        "android-id": "image",
+        "context": {
+            "activity_name": "Image View",
+            "title": "image",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "summary_container",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 8602,
+        "img_id": 8602,
+        "img_path": "s0/8602.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "EditTime(Window=Main)",
+        "content": "more options",
+        "bounds": [
+            975,
+            73,
+            1080,
+            199
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "More options",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 44295,
+        "img_id": 44295,
+        "img_path": "s0/44295.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "Tasks(Window=Main)",
+        "content": "",
+        "bounds": [
+            882,
+            220,
+            969,
+            277
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": "Task"
+                    },
+                    {
+                        "id": "",
+                        "text": "00:00"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 75051,
+        "img_id": 75051,
+        "img_path": "s0/75051.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "Tasks(Window=Main)",
+        "content": "previous month",
+        "bounds": [
+            198,
+            559,
+            324,
+            685
+        ],
+        "android-id": "prev",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Previous month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "next",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 89513,
+        "img_id": 89513,
+        "img_path": "s0/89513.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "Tasks(Window=Main)",
+        "content": "next month",
+        "bounds": [
+            756,
+            559,
+            882,
+            685
+        ],
+        "android-id": "next",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Next month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "prev",
+                        "text": ""
+                    },
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 30060,
+        "img_id": 30060,
+        "img_path": "s0/30060.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "TaskTimes(Window=Popup Menu)",
+        "content": "previous month",
+        "bounds": [
+            48,
+            552,
+            174,
+            678
+        ],
+        "android-id": "prev",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Previous month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "next",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 55830,
+        "img_id": 55830,
+        "img_path": "s0/55830.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "Tasks(Window=Popup Menu)",
+        "content": " icon",
+        "bounds": [
+            133,
+            762,
+            217,
+            846
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "title_template",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "alertTitle",
+                        "text": "Delete Task"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 31325,
+        "img_id": 31325,
+        "img_path": "s0/31325.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "EditTime(Window=Main)",
+        "content": "next month",
+        "bounds": [
+            744,
+            494,
+            870,
+            620
+        ],
+        "android-id": "next",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Next month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "prev",
+                        "text": ""
+                    },
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 2767,
+        "img_id": 2767,
+        "img_path": "s0/2767.png",
+        "pkg_name": "com.markuspage.android.atimetracker",
+        "activity_name": "Tasks(Window=Main)",
+        "content": "",
+        "bounds": [
+            882,
+            300,
+            969,
+            357
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": "2"
+                    },
+                    {
+                        "id": "",
+                        "text": "00:00"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 18346,
+        "img_id": 18346,
+        "img_path": "s0/18346.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.settings.SettingsActivity(Window=Main)",
+        "content": "more options",
+        "bounds": [
+            932,
+            63,
+            1080,
+            189
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "More options",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "menu_add_account",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 87371,
+        "img_id": 87371,
+        "img_path": "s0/87371.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.settings.SettingsActivity(Window=Main)",
+        "content": " home",
+        "bounds": [
+            32,
+            84,
+            116,
+            168
+        ],
+        "android-id": "home",
+        "context": {
+            "activity_name": "Image View",
+            "title": "home",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 88880,
+        "img_id": 88880,
+        "img_path": "s0/88880.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transactions.TransactionsActivity(Window=Main)",
+        "content": "previous month",
+        "bounds": [
+            118,
+            569,
+            244,
+            695
+        ],
+        "android-id": "prev",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Previous month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "next",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 20073,
+        "img_id": 20073,
+        "img_path": "s0/20073.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transactions.TransactionsActivity(Window=Main)",
+        "content": "next month",
+        "bounds": [
+            814,
+            569,
+            940,
+            695
+        ],
+        "android-id": "next",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Next month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "prev",
+                        "text": ""
+                    },
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 28696,
+        "img_id": 28696,
+        "img_path": "s0/28696.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Main)",
+        "content": "add a new transaction to an account",
+        "bounds": [
+            964,
+            571,
+            1048,
+            655
+        ],
+        "android-id": "btn_new_transaction",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Add a new transaction to an account",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "vertical_line",
+                        "text": ""
+                    },
+                    {
+                        "id": "transactions_summary",
+                        "text": "0.00 $"
+                    },
+                    {
+                        "id": "account_name",
+                        "text": "Expenses"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 40845,
+        "img_id": 40845,
+        "img_path": "s0/40845.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Popup Menu)",
+        "content": " icon",
+        "bounds": [
+            58,
+            466,
+            142,
+            550
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 37229,
+        "img_id": 37229,
+        "img_path": "s0/37229.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Popup Menu)",
+        "content": " up",
+        "bounds": [
+            0,
+            105,
+            42,
+            147
+        ],
+        "android-id": "up",
+        "context": {
+            "activity_name": "Image View",
+            "title": "up",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "home",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 4
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 86013,
+        "img_id": 86013,
+        "img_path": "s0/86013.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)",
+        "content": " icon",
+        "bounds": [
+            103,
+            1516,
+            229,
+            1642
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 50578,
+        "img_id": 50578,
+        "img_path": "s0/50578.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.accounts.AccountsActivity(Window=Export OFX)",
+        "content": " icon",
+        "bounds": [
+            352,
+            1516,
+            478,
+            1642
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 51780,
+        "img_id": 51780,
+        "img_path": "s0/51780.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "navigate up",
+        "bounds": [
+            0,
+            63,
+            147,
+            210
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Navigate up",
+            "family": {
+                "father": {
+                    "id": "action_bar",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": "Settings"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 25043,
+        "img_id": 25043,
+        "img_path": "s0/25043.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            95,
+            147,
+            199
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Queue"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 90699,
+        "img_id": 90699,
+        "img_path": "s0/90699.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            220,
+            147,
+            324
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Episodes"
+                    },
+                    {
+                        "id": "txtvCount",
+                        "text": "1"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 15344,
+        "img_id": 15344,
+        "img_path": "s0/15344.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            345,
+            147,
+            449
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Subscriptions"
+                    },
+                    {
+                        "id": "txtvCount",
+                        "text": "783"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 85969,
+        "img_id": 85969,
+        "img_path": "s0/85969.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            470,
+            147,
+            574
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Downloads"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 3324,
+        "img_id": 3324,
+        "img_path": "s0/3324.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            595,
+            147,
+            699
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Playback History"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 26944,
+        "img_id": 26944,
+        "img_path": "s0/26944.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            720,
+            147,
+            824
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Add Podcast"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 96042,
+        "img_id": 96042,
+        "img_path": "s0/96042.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            1679,
+            147,
+            1784
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "nav_settings",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": "Settings"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 19719,
+        "img_id": 19719,
+        "img_path": "s0/19719.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "more options",
+        "bounds": [
+            975,
+            73,
+            1080,
+            199
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "More options",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "visit_website_item",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 44969,
+        "img_id": 44969,
+        "img_path": "s0/44969.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "show information",
+        "bounds": [
+            954,
+            231,
+            1080,
+            357
+        ],
+        "android-id": "butShowInfo",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Show information",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Classical Music Discoveries"
+                    },
+                    {
+                        "id": "imgvCover",
+                        "text": ""
+                    },
+                    {
+                        "id": "imgvBackground",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvAuthor",
+                        "text": "Classical Music Discoveries"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 11741,
+        "img_id": 11741,
+        "img_path": "s0/11741.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "search",
+        "bounds": [
+            467,
+            73,
+            594,
+            199
+        ],
+        "android-id": "search_button",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Search",
+            "family": {
+                "father": {
+                    "id": "search_bar",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 7407,
+        "img_id": 7407,
+        "img_path": "s0/7407.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "background",
+        "bounds": [
+            0,
+            210,
+            1080,
+            557
+        ],
+        "android-id": "imgvBackground",
+        "context": {
+            "activity_name": "Image View",
+            "title": "imgvBackground",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "imgvCover",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvTitle",
+                        "text": "Classical Music Discoveries"
+                    },
+                    {
+                        "id": "butShowInfo",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvAuthor",
+                        "text": "Classical Music Discoveries"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 53237,
+        "img_id": 53237,
+        "img_path": "s0/53237.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "clear query",
+        "bounds": [
+            861,
+            87,
+            966,
+            182
+        ],
+        "android-id": "search_close_btn",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Clear query",
+            "family": {
+                "father": {
+                    "id": "search_plate",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "search_src_text",
+                        "text": "rock"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 99187,
+        "img_id": 99187,
+        "img_path": "s0/99187.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "rewind",
+        "bounds": [
+            309,
+            1631,
+            435,
+            1757
+        ],
+        "android-id": "butRev",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Rewind",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    },
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butPlay",
+                        "text": ""
+                    },
+                    {
+                        "id": "butFF",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butSkip",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 41720,
+        "img_id": 41720,
+        "img_path": "s0/41720.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "play",
+        "bounds": [
+            477,
+            1631,
+            603,
+            1757
+        ],
+        "android-id": "butPlay",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Play",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butRev",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    },
+                    {
+                        "id": "butFF",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butSkip",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 33843,
+        "img_id": 33843,
+        "img_path": "s0/33843.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "fast forward",
+        "bounds": [
+            645,
+            1631,
+            771,
+            1757
+        ],
+        "android-id": "butFF",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Fast forward",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "butPlay",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butRev",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    },
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butSkip",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 7107,
+        "img_id": 7107,
+        "img_path": "s0/7107.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.AudioplayerActivity(Window=Main)",
+        "content": "skip episode",
+        "bounds": [
+            813,
+            1631,
+            939,
+            1757
+        ],
+        "android-id": "butSkip",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Skip episode",
+            "family": {
+                "father": {
+                    "id": "player_control",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvFF",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butFF",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlay",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvRev",
+                        "text": "30"
+                    },
+                    {
+                        "id": "butRev",
+                        "text": ""
+                    },
+                    {
+                        "id": "butPlaybackSpeed",
+                        "text": "1.00X"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 6643,
+        "img_id": 6643,
+        "img_path": "s0/6643.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "episode is in the queue",
+        "bounds": [
+            877,
+            729,
+            930,
+            782
+        ],
+        "android-id": "imgvInPlaylist",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Episode is in the queue",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "imgvType",
+                        "text": ""
+                    },
+                    {
+                        "id": "txtvPublished",
+                        "text": "Nov 30, 2015"
+                    },
+                    {
+                        "id": "txtvLenSize",
+                        "text": "2 MB"
+                    },
+                    {
+                        "id": "txtvItemname",
+                        "text": "Important Message"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 29872,
+        "img_id": 29872,
+        "img_path": "s0/29872.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "cover",
+        "bounds": [
+            361,
+            210,
+            717,
+            566
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "imgvCover",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "Linux Outlaws"
+                    },
+                    {
+                        "id": "triangleCountView",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 40919,
+        "img_id": 40919,
+        "img_path": "s0/40919.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "cover",
+        "bounds": [
+            722,
+            210,
+            1078,
+            566
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "imgvCover",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvTitle",
+                        "text": "\ue145\n\nAdd Podcast"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 17343,
+        "img_id": 17343,
+        "img_path": "s0/17343.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            86,
+            298,
+            254,
+            466
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvPlaceholder",
+                        "text": "Linux Outlaws"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 81287,
+        "img_id": 81287,
+        "img_path": "s0/81287.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "download",
+        "bounds": [
+            954,
+            336,
+            1080,
+            521
+        ],
+        "android-id": "butSecondaryAction",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Download",
+            "family": {
+                "father": {
+                    "id": "content",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 76342,
+        "img_id": 76342,
+        "img_path": "s0/76342.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "download",
+        "bounds": [
+            954,
+            524,
+            1080,
+            776
+        ],
+        "android-id": "butSecondaryAction",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Download",
+            "family": {
+                "father": {
+                    "id": "content",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 1312,
+        "img_id": 1312,
+        "img_path": "s0/1312.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "download",
+        "bounds": [
+            954,
+            1034,
+            1080,
+            1286
+        ],
+        "android-id": "butSecondaryAction",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Download",
+            "family": {
+                "father": {
+                    "id": "content",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 10454,
+        "img_id": 10454,
+        "img_path": "s0/10454.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            566,
+            210,
+            734
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvPlaceholder",
+                        "text": "Classical Music Discoveries"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 26693,
+        "img_id": 26693,
+        "img_path": "s0/26693.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            1331,
+            210,
+            1499
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvPlaceholder",
+                        "text": "Classical Music Discoveries"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 17316,
+        "img_id": 17316,
+        "img_path": "s0/17316.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.OnlineFeedViewActivity(Window=Main)",
+        "content": "feed",
+        "bounds": [
+            964,
+            252,
+            1027,
+            303
+        ],
+        "android-id": "imgFeed",
+        "context": {
+            "activity_name": "Image View",
+            "title": "imgFeed",
+            "family": {
+                "father": {
+                    "id": "subscribers_container",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvSubscribers",
+                        "text": "0"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 49837,
+        "img_id": 49837,
+        "img_path": "s0/49837.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "download",
+        "bounds": [
+            954,
+            1632,
+            1080,
+            1794
+        ],
+        "android-id": "butSecondaryAction",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Download",
+            "family": {
+                "father": {
+                    "id": "content",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 81363,
+        "img_id": 81363,
+        "img_path": "s0/81363.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            909,
+            210,
+            1077
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvPlaceholder",
+                        "text": "Classical Music Discoveries"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 16539,
+        "img_id": 16539,
+        "img_path": "s0/16539.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "picture",
+        "bounds": [
+            42,
+            1164,
+            210,
+            1332
+        ],
+        "android-id": "imgvCover",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Picture",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvPlaceholder",
+                        "text": "Classical Music Discoveries"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 26174,
+        "img_id": 26174,
+        "img_path": "s0/26174.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "feed",
+        "bounds": [
+            943,
+            1176,
+            1006,
+            1227
+        ],
+        "android-id": "imgFeed",
+        "context": {
+            "activity_name": "Image View",
+            "title": "imgFeed",
+            "family": {
+                "father": {
+                    "id": "subscribers_container",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvSubscribers",
+                        "text": "13"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 2053,
+        "img_id": 2053,
+        "img_path": "s0/2053.png",
+        "pkg_name": "de.danoeh.antennapod.debug",
+        "activity_name": "de.danoeh.antennapod.activity.MainActivity(Window=Main)",
+        "content": "audio",
+        "bounds": [
+            803,
+            1648,
+            856,
+            1701
+        ],
+        "android-id": "imgvType",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Audio",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "txtvPublished",
+                        "text": "Apr 29"
+                    },
+                    {
+                        "id": "txtvLenSize",
+                        "text": "22 MB"
+                    },
+                    {
+                        "id": "txtvItemname",
+                        "text": "Songs & Stories"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 17592,
+        "img_id": 17592,
+        "img_path": "s0/17592.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
+        "content": "navigation drawer opened",
+        "bounds": [
+            0,
+            63,
+            147,
+            210
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Navigation drawer opened",
+            "family": {
+                "father": {
+                    "id": "toolbar",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "toolbar_spinner",
+                        "text": ""
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 28876,
+        "img_id": 28876,
+        "img_path": "s0/28876.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
+        "content": "more options",
+        "bounds": [
+            975,
+            73,
+            1080,
+            199
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "More options",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "menu_favorite_account",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 50422,
+        "img_id": 50422,
+        "img_path": "s0/50422.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
+        "content": "favorite status",
+        "bounds": [
+            935,
+            409,
+            1061,
+            535
+        ],
+        "android-id": "favorite_status",
+        "context": {
+            "activity_name": "Image View",
+            "title": "favorite_status",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "create_transaction",
+                        "text": ""
+                    },
+                    {
+                        "id": "account_balance",
+                        "text": "$0.00"
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "account_color_strip",
+                        "text": ""
+                    },
+                    {
+                        "id": "options_menu",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 23411,
+        "img_id": 23411,
+        "img_path": "s0/23411.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
+        "content": "options menu",
+        "bounds": [
+            935,
+            719,
+            1061,
+            845
+        ],
+        "android-id": "options_menu",
+        "context": {
+            "activity_name": "Image View",
+            "title": "options_menu",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "favorite_status",
+                        "text": ""
+                    },
+                    {
+                        "id": "create_transaction",
+                        "text": ""
+                    },
+                    {
+                        "id": "account_balance",
+                        "text": "$0.00"
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "account_color_strip",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 8339,
+        "img_id": 8339,
+        "img_path": "s0/8339.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "com.android.packageinstaller.permission.ui.GrantPermissionsActivity(Window=Main)",
+        "content": "favorite status",
+        "bounds": [
+            935,
+            344,
+            1061,
+            470
+        ],
+        "android-id": "favorite_status",
+        "context": {
+            "activity_name": "Image View",
+            "title": "favorite_status",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "account_color_strip",
+                        "text": ""
+                    },
+                    {
+                        "id": "account_balance",
+                        "text": "$0.00"
+                    },
+                    {
+                        "id": "options_menu",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 91631,
+        "img_id": 91631,
+        "img_path": "s0/91631.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.wizard.FirstRunWizardActivity(Window=Main)",
+        "content": "permission icon",
+        "bounds": [
+            215,
+            749,
+            310,
+            844
+        ],
+        "android-id": "permission_icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "permission_icon",
+            "family": {
+                "father": {
+                    "id": "perm_desc_root",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "permission_message",
+                        "text": "Allow GnuCash to access photos, media, and files on your device?"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 7749,
+        "img_id": 7749,
+        "img_path": "s0/7749.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Main)",
+        "content": "open split editor",
+        "bounds": [
+            598,
+            395,
+            682,
+            479
+        ],
+        "android-id": "btn_split_editor",
+        "context": {
+            "activity_name": "Image View",
+            "title": "Open split editor",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "input_transaction_amount",
+                        "text": "75.00"
+                    },
+                    {
+                        "id": "currency_symbol",
+                        "text": "$"
+                    },
+                    {
+                        "id": "input_transaction_type",
+                        "text": "Expense Expense"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 57092,
+        "img_id": 57092,
+        "img_path": "s0/57092.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            26,
+            534,
+            114,
+            618
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "layout_double_entry",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "input_transfer_account_spinner",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 64561,
+        "img_id": 64561,
+        "img_path": "s0/64561.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            26,
+            673,
+            114,
+            757
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "input_date",
+                        "text": "Jul 30, 2021"
+                    },
+                    {
+                        "id": "input_time",
+                        "text": "8:03:42 PM"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 22528,
+        "img_id": 22528,
+        "img_path": "s0/22528.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            26,
+            812,
+            114,
+            896
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "input_description",
+                        "text": "Add note"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 30749,
+        "img_id": 30749,
+        "img_path": "s0/30749.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Main)",
+        "content": "",
+        "bounds": [
+            26,
+            951,
+            114,
+            1035
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image View",
+            "title": "",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "input_recurrence",
+                        "text": "Tap to create schedule"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 4843,
+        "img_id": 4843,
+        "img_path": "s0/4843.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Popup Menu)",
+        "content": "app icon",
+        "bounds": [
+            477,
+            523,
+            603,
+            649
+        ],
+        "android-id": "app_icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "app_icon",
+            "family": {
+                "father": {
+                    "id": "account_picker_container",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "main_title",
+                        "text": "Choose an account"
+                    },
+                    {
+                        "id": "subtitle",
+                        "text": "to continue to GnuCash"
+                    },
+                    {
+                        "id": "list",
+                        "text": ""
+                    },
+                    {
+                        "id": "consent_divider",
+                        "text": ""
+                    },
+                    {
+                        "id": "consent_text",
+                        "text": "To continue, Google will share your name, email address, and profile picture with GnuCash."
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 23434,
+        "img_id": 23434,
+        "img_path": "s0/23434.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Popup Menu)",
+        "content": "og apd internal image view",
+        "bounds": [
+            133,
+            948,
+            207,
+            1022
+        ],
+        "android-id": "og_apd_internal_image_view",
+        "context": {
+            "activity_name": "Image View",
+            "title": "og_apd_internal_image_view",
+            "family": {
+                "father": {
+                    "id": "account_particle_disc",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 91848,
+        "img_id": 91848,
+        "img_path": "s0/91848.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.common.FormActivity(Window=Popup Menu)",
+        "content": "add account profile picture",
+        "bounds": [
+            144,
+            1099,
+            197,
+            1152
+        ],
+        "android-id": "add_account_profile_picture",
+        "context": {
+            "activity_name": "Image View",
+            "title": "add_account_profile_picture",
+            "family": {
+                "father": {
+                    "id": "container",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "add_account_chip_title",
+                        "text": "Add another account"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 12838,
+        "img_id": 12838,
+        "img_path": "s0/12838.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.transaction.TransactionsActivity(Window=Main)",
+        "content": "create transaction",
+        "bounds": [
+            809,
+            1022,
+            935,
+            1148
+        ],
+        "android-id": "create_transaction",
+        "context": {
+            "activity_name": "Image View",
+            "title": "create_transaction",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "account_balance",
+                        "text": "$0.00"
+                    },
+                    {
+                        "id": "",
+                        "text": ""
+                    },
+                    {
+                        "id": "account_color_strip",
+                        "text": ""
+                    },
+                    {
+                        "id": "favorite_status",
+                        "text": ""
+                    },
+                    {
+                        "id": "options_menu",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 12766,
+        "img_id": 12766,
+        "img_path": "s0/12766.png",
+        "pkg_name": "org.gnucash.android",
+        "activity_name": "ui.account.AccountsActivity(Window=Main)",
+        "content": "fab create account",
+        "bounds": [
+            880,
+            819,
+            1027,
+            966
+        ],
+        "android-id": "fab_create_account",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "fab_create_account",
+            "family": {
+                "father": {
+                    "id": "coordinatorLayout",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "pager",
+                        "text": ""
+                    },
+                    {
+                        "id": "fragment_container",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 41833,
+        "img_id": 41833,
+        "img_path": "s0/41833.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            146,
+            92,
+            230,
+            176
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Tracking"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 11017,
+        "img_id": 11017,
+        "img_path": "s0/11017.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            497,
+            92,
+            581,
+            176
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "Statistics"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 49604,
+        "img_id": 49604,
+        "img_path": "s0/49604.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            849,
+            92,
+            933,
+            176
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "title",
+                        "text": "History"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 68696,
+        "img_id": 68696,
+        "img_path": "s0/68696.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " minusminus",
+        "bounds": [
+            183,
+            283,
+            293,
+            441
+        ],
+        "android-id": "minusminus",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "minusminus",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "minus",
+                        "text": ""
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "plus",
+                        "text": ""
+                    },
+                    {
+                        "id": "plusplus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 65954,
+        "img_id": 65954,
+        "img_path": "s0/65954.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " minus",
+        "bounds": [
+            293,
+            283,
+            403,
+            441
+        ],
+        "android-id": "minus",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "minus",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "minusminus",
+                        "text": ""
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "plus",
+                        "text": ""
+                    },
+                    {
+                        "id": "plusplus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 90927,
+        "img_id": 90927,
+        "img_path": "s0/90927.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " plus",
+        "bounds": [
+            676,
+            283,
+            786,
+            441
+        ],
+        "android-id": "plus",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "plus",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "minus",
+                        "text": ""
+                    },
+                    {
+                        "id": "minusminus",
+                        "text": ""
+                    },
+                    {
+                        "id": "plusplus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 36387,
+        "img_id": 36387,
+        "img_path": "s0/36387.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " plusplus",
+        "bounds": [
+            786,
+            283,
+            896,
+            441
+        ],
+        "android-id": "plusplus",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "plusplus",
+            "family": {
+                "father": {
+                    "id": "input",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "plus",
+                        "text": ""
+                    },
+                    {
+                        "id": "unit",
+                        "text": "kg"
+                    },
+                    {
+                        "id": "label",
+                        "text": "Weight"
+                    },
+                    {
+                        "id": "currentWeight",
+                        "text": "3"
+                    },
+                    {
+                        "id": "minus",
+                        "text": ""
+                    },
+                    {
+                        "id": "minusminus",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 18340,
+        "img_id": 18340,
+        "img_path": "s0/18340.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Popup Menu)",
+        "content": "change arrow",
+        "bounds": [
+            809,
+            575,
+            1054,
+            653
+        ],
+        "android-id": "change_arrow",
+        "context": {
+            "activity_name": "Image View",
+            "title": "change_arrow",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "measure",
+                        "text": "2.4 kg"
+                    },
+                    {
+                        "id": "label_measure",
+                        "text": "Weight:"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageView",
+        "rotation": 0
+    },
+    {
+        "id": 55928,
+        "img_id": 55928,
+        "img_path": "s0/55928.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureEdit(Window=Main)",
+        "content": "next month",
+        "bounds": [
+            812,
+            562,
+            938,
+            688
+        ],
+        "android-id": "next",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "Next month",
+            "family": {
+                "father": {
+                    "id": "date_picker_day_picker",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "prev",
+                        "text": ""
+                    },
+                    {
+                        "id": "day_picker_view_pager",
+                        "text": ""
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": -1
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    },
+    {
+        "id": 17375,
+        "img_id": 17375,
+        "img_path": "s0/17375.png",
+        "pkg_name": "de.delusions.measure",
+        "activity_name": "MeasureTabs(Window=Main)",
+        "content": " icon",
+        "bounds": [
+            148,
+            700,
+            258,
+            800
+        ],
+        "android-id": "icon",
+        "context": {
+            "activity_name": "Image View",
+            "title": "icon",
+            "family": {
+                "father": {
+                    "id": "title_template",
+                    "text": ""
+                },
+                "siblings": [
+                    {
+                        "id": "alertTitle",
+                        "text": "Weight"
+                    }
+                ]
+            },
+            "category": "<UNK>",
+            "location": 5
+        },
+        "type": "icon",
+        "rotation": 0
+    },
+    {
+        "id": 27664,
+        "img_id": 27664,
+        "img_path": "s0/27664.png",
+        "pkg_name": "uk.co.bitethebullet.android.token",
+        "activity_name": "PinChange(Window=Main)",
+        "content": "more options",
+        "bounds": [
+            975,
+            73,
+            1080,
+            199
+        ],
+        "android-id": "",
+        "context": {
+            "activity_name": "Image Button",
+            "title": "More options",
+            "family": {
+                "father": {
+                    "id": "",
+                    "text": ""
+                },
+                "siblings": []
+            },
+            "category": "<UNK>",
+            "location": 6
+        },
+        "type": "ImageButton",
+        "rotation": 0
+    }
+]
