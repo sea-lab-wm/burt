@@ -72,7 +72,7 @@ def launch():
     json.dump(data, open(json_out, 'w'))
 
 
-def update_json():
+def remove_invalid_item_json():
     data = json.load(open(json_out, 'r'))
     new_data = []
     for item in data:
@@ -110,6 +110,6 @@ out_root = 'data/2'
 json_out = out = os.path.join(out_root, 'sample_test.json')
 if __name__ == '__main__':
     # launch()
-    # update_json()
-    get_content_labeldroid()
-    get_content_title()
+    remove_invalid_item_json()
+    # get_content_labeldroid()
+    # get_content_title()
