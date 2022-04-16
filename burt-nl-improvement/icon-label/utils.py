@@ -4,36 +4,33 @@ import json
 import re
 
 def camel_case_split(text):
-    words = re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))', text)
-    return ' '.join(words)
+    return re.sub(r'(?<!^)(?=[A-Z])', '_', text).lower()
 
 
 def update_json():
-    json_path = json_path = 'data/2/sample_title.json'
+    json_path = 'data/2/sample_title.json'
     data = json.load(open(json_path, 'r'))
     for item in data:
         text = item["content"].split()
         content = ''
-        # print('before', text)
+        print('before', text)
         for word in text:
+            word = camel_case_split(word)
             # split by '_'
             if '_' in word:
                 word = ' '.join(word.split('_'))
                 content = content + word
             else:
-                if any(x.isupper() for x in word):
-                    content = content + camel_case_split(word)
-                else:
-                    content = content + ' ' + word
+                content = content + ' ' + word
         content = str.lower(content)
-        # print('after', content)
+        print('after', content)
         item['content'] = content
     json.dump(data, open('data/2/sample_title_.json', 'w'))
 
 
 def update_csv():
-    csv_path = 'data/2/results-title/all.csv'
-    csv_path_ = 'data/2/results-title/all_.csv'
+    csv_path = 'data/2/results-title_/all.csv'
+    csv_path_ = 'data/2/results-title_/all_.csv'
     all_table = [row for row in csv.reader(open(csv_path, 'r'))]
     json_path = 'data/2/sample_title_.json'
     data = json.load(open(json_path, 'r'))
