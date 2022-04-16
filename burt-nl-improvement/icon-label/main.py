@@ -65,7 +65,7 @@ def launch():
                     if bound is None:
                         continue
                     if str(bound) not in duplicated:
-                        icon = Icon(screen, nodes[idx], bound, rotation, tag, out_path)
+                        icon = Icon(screen, nodes[idx], bound, rotation, tag, 's0')
                         icon.crop_image(screen.png)
                         data.append(icon.get_json())
                         duplicated.add(str(bound))

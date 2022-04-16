@@ -72,6 +72,9 @@ class Icon:
             else:
                 if zone_bounds[0] <= self.bound[0] and self.bound[2] <= zone_bounds[2]:
                     self.location = zone
+        # default
+        if self.location is None:
+            self.location = 0
 
     def set_activity_name(self):
         # class[-1] split by camelcase
