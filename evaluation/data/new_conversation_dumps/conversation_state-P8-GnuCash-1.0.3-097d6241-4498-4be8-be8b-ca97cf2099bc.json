@@ -1,0 +1,713 @@
+[
+  {
+    "message": "P8",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Hi P8, please \u003cb\u003eselect the app\u003c/b\u003e that is having the problem",
+          "id": 0.0,
+          "widget": "AppSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "4",
+            "value1": "ATimeTracker v. 0.20",
+            "value2": "com.markuspage.android.atimetracker-0.20.webp"
+          },
+          {
+            "key": "2",
+            "value1": "Android Token v. 2.10",
+            "value2": "uk.co.bitethebullet.android.token-2.10.png"
+          },
+          {
+            "key": "7",
+            "value1": "AntennaPod v. 1.6.2.3",
+            "value2": "de.danoeh.antennapod.debug-1.6.2.3.png"
+          },
+          {
+            "key": "0",
+            "value1": "Droid Weight v. 1.5.4",
+            "value2": "de.delusions.measure-1.5.4.webp"
+          },
+          {
+            "key": "5",
+            "value1": "GnuCash v. 1.0.3",
+            "value2": "org.gnucash.android-1.0.3.png"
+          },
+          {
+            "key": "6",
+            "value1": "GnuCash v. 2.1.3",
+            "value2": "org.gnucash.android-2.1.3.png"
+          },
+          {
+            "key": "3",
+            "value1": "Grow Tracker v. 2.3.1",
+            "value2": "me.anon.grow-2.3.1.png"
+          },
+          {
+            "key": "1",
+            "value1": "Mileage v. 3.1.1",
+            "value2": "com.evancharlton.mileage-3.1.1.webp"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "APP_SELECTED"
+    ],
+    "currentAction": "SELECT_APP"
+  },
+  {
+    "type": "bot",
+    "id": 7.49542749394E11,
+    "loading": true,
+    "disabled": true,
+    "multiple": false,
+    "selectedValues": [
+      "5"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e that you observed on GnuCash",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_APP"
+  },
+  {
+    "message": "GnuCashBug1 has stopped",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it. From the list below, select the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": " Please click the \"\u003cb\u003edone\u003c/b\u003e\" button after you have selected it",
+          "id": 0.0,
+          "widget": "OBScreenSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/CrashScope-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.Bottom_Up.Expected..1.org.gnucash.android_1.0.3_2.png"
+          },
+          {
+            "key": "1",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.3.org.gnucash.android_1.0.3_gnucash2.png"
+          },
+          {
+            "key": "2",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.1.org.gnucash.android_1.0.3_gnucash10.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_SCREEN_SELECTED"
+    ],
+    "currentAction": "SELECT_OB_SCREEN"
+  },
+  {
+    "message": "none of the above",
+    "type": "bot",
+    "id": 8.15364684523E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "All right. Then, your problem description does not seem to match any app screen",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e one more time",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_SELECTED_OB_SCREEN"
+  },
+  {
+    "message": "GnuCashBug1 has stopped",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it. From the list below, select the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": " Please click the \"\u003cb\u003edone\u003c/b\u003e\" button after you have selected it",
+          "id": 0.0,
+          "widget": "OBScreenSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/CrashScope-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.Bottom_Up.Expected..1.org.gnucash.android_1.0.3_2.png"
+          },
+          {
+            "key": "1",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.3.org.gnucash.android_1.0.3_gnucash2.png"
+          },
+          {
+            "key": "2",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.1.org.gnucash.android_1.0.3_gnucash10.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_SCREEN_SELECTED"
+    ],
+    "currentAction": "SELECT_OB_SCREEN"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.249470953339E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "2"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_SELECTED_OB_SCREEN"
+  },
+  {
+    "message": "The app should create a new account",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, this description doesn\u0027t seem to match the problematic app screen",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Is this the screen that should work fine?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.1.org.gnucash.android_1.0.3_gnucash10.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CLARIFY_EB"
+  },
+  {
+    "message": "no",
+    "type": "bot",
+    "id": 8.30676211268E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_EB"
+  },
+  {
+    "message": "I clicked Create Accounts",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "I am sorry, I couldn\u0027t recognize the language of your description",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e one more time",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_EB_NO_PARSE"
+  },
+  {
+    "message": "I clicked plus button",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now I need the steps that you performed and caused the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eThe next steps\u003c/b\u003e that you performed \u003cb\u003eafter you opened the app\u003c/b\u003e might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"text 1 (Expenses)\" checked text view",
+            "value2": "/CrashScope-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.Top_Down.Expected..1.org.gnucash.android_1.0.3_1_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"button 1 (Create Accounts)\" button",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.5.org.gnucash.android_1.0.3_gnucash1_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"btn new transaction (Add a new transaction to an account)\" image view",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.1.org.gnucash.android_1.0.3_gnucash2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "none of the above",
+    "type": "bot",
+    "id": 1.439991303072E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Do you want me to keep \u003cb\u003esuggesting the next steps\u003c/b\u003e?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "If so, please click the button below, \u003cb\u003eotherwise write the next step\u003c/b\u003e",
+          "id": 0.0,
+          "widget": "S2RPredictionConfirmation",
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NEW_PREDICTION_OR_TYPE_S2R"
+    ],
+    "currentAction": "ASK_FOR_NEW_PREDICTION"
+  },
+  {
+    "message": "next_predictions",
+    "type": "bot",
+    "id": 4.34249598501E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay then, the \u003cb\u003enext steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e you actually performed next",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"text 1 (Expenses)\" checked text view",
+            "value2": "/CrashScope-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.Top_Down.Expected..1.org.gnucash.android_1.0.3_1_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"button 1 (Create Accounts)\" button",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.7.org.gnucash.android_1.0.3_gnucash4_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"btn new transaction (Add a new transaction to an account)\" image view",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.7.org.gnucash.android_1.0.3_gnucash5_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_NEXT_S2R_PATH"
+  },
+  {
+    "message": "none of the above",
+    "type": "bot",
+    "id": 8.53590064389E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, what is the \u003cb\u003estep\u003c/b\u003e that you performed next?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R"
+  },
+  {
+    "message": "I typed Account Name (value \u003d Ben\u0027s)",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Type a valid input on the \"edit text account name (Account name)\" text field",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.2.org.gnucash.android_1.0.3_gnucash3_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "Ben",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Sorry, I did not get that. Please try one more time.",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 1.84279667697E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "It seems that no specific input or value was provided for the step",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please provide an input (e.g., 5)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_INPUT"
+    ],
+    "currentAction": "SPECIFY_INPUT_S2R"
+  },
+  {
+    "message": "Ben\u0027s",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please provide the \u003cb\u003enext step\u003c/b\u003e that you performed",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "click \"Save\"",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"btn save (Save)\" button",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.2.org.gnucash.android_1.0.3_gnucash4_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 8.44108330726E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"text 1 (Expenses)\" checked text view",
+            "value2": "/CrashScope-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.Top_Down.Expected..1.org.gnucash.android_1.0.3_1_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"button 1 (Create Accounts)\" button",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.5.org.gnucash.android_1.0.3_gnucash1_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"btn new transaction (Add a new transaction to an account)\" image view",
+            "value2": "/TraceReplayer-Data/org.gnucash.android-1.0.3/screenshots/org.gnucash.android.User-Trace.1.org.gnucash.android_1.0.3_gnucash2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "last step",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  }
+]

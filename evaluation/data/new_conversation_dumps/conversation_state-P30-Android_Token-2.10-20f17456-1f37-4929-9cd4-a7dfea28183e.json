@@ -1,0 +1,728 @@
+[
+  {
+    "message": "p30",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Hi P30, please \u003cb\u003eselect the app\u003c/b\u003e that is having the problem",
+          "id": 0.0,
+          "widget": "AppSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "4",
+            "value1": "ATimeTracker v. 0.20",
+            "value2": "com.markuspage.android.atimetracker-0.20.webp"
+          },
+          {
+            "key": "2",
+            "value1": "Android Token v. 2.10",
+            "value2": "uk.co.bitethebullet.android.token-2.10.png"
+          },
+          {
+            "key": "7",
+            "value1": "AntennaPod v. 1.6.2.3",
+            "value2": "de.danoeh.antennapod.debug-1.6.2.3.png"
+          },
+          {
+            "key": "0",
+            "value1": "Droid Weight v. 1.5.4",
+            "value2": "de.delusions.measure-1.5.4.webp"
+          },
+          {
+            "key": "5",
+            "value1": "GnuCash v. 1.0.3",
+            "value2": "org.gnucash.android-1.0.3.png"
+          },
+          {
+            "key": "6",
+            "value1": "GnuCash v. 2.1.3",
+            "value2": "org.gnucash.android-2.1.3.png"
+          },
+          {
+            "key": "3",
+            "value1": "Grow Tracker v. 2.3.1",
+            "value2": "me.anon.grow-2.3.1.png"
+          },
+          {
+            "key": "1",
+            "value1": "Mileage v. 3.1.1",
+            "value2": "com.evancharlton.mileage-3.1.1.webp"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "APP_SELECTED"
+    ],
+    "currentAction": "SELECT_APP"
+  },
+  {
+    "type": "bot",
+    "id": 1.545647513529E12,
+    "loading": true,
+    "disabled": true,
+    "multiple": false,
+    "selectedValues": [
+      "2"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e that you observed on Android Token",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_APP"
+  },
+  {
+    "message": "the app crashed when I delete token",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Oops, your description doesn\u0027t seem to match the language of the app",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003erephrase the incorrect behavior\u003c/b\u003e differently",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "REPHRASE_OB"
+  },
+  {
+    "message": "the app crashed when I click delete token",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, just to double check, is this the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token9.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_OB"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 1.22271669778E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_EB"
+  },
+  {
+    "message": "should not crash",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, this description doesn\u0027t seem to match the problematic app screen",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Is this the screen that should work fine?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token9.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CLARIFY_EB"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 1.379488036796E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now I need the steps that you performed and caused the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eThe next steps\u003c/b\u003e that you performed \u003cb\u003eafter you opened the app\u003c/b\u003e might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"More options\" image button",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token1_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.27208044862E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "0"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, is this \u003cb\u003ethe last step\u003c/b\u003e that you performed: \"Tap the \"More options\" image button\"?",
+          "id": 0.0,
+          "widget": "YesNoButtons",
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "no",
+    "type": "bot",
+    "id": 1.612217899798E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, what is the \u003cb\u003estep\u003c/b\u003e that you performed next?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R"
+  },
+  {
+    "message": "I open menu to add token",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"title (Add Token)\" text view",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 1.613018000655E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, is this \u003cb\u003ethe last step\u003c/b\u003e that you performed: \"I open menu to add token\"?",
+          "id": 0.0,
+          "widget": "YesNoButtons",
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "no",
+    "type": "bot",
+    "id": 1.053940073257E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, what is the \u003cb\u003estep\u003c/b\u003e that you performed next?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R"
+  },
+  {
+    "message": "i input the token name",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it! It seems that you perform the following steps",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "From the following options, please select the \u003cb\u003esteps that you performed\u003c/b\u003e and click the \"\u003cb\u003edone\u003c/b\u003e\" button",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Remember that the displayed screenshots are \u003cb\u003efor reference only\u003c/b\u003e.",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Type a valid input on the \"token Name Edit (h)\" text field",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token3_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Type a valid input on the \"token Serial Edit (h)\" text field",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token5_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"token Type Spinner\" drop down list",
+            "value2": "/CrashScope-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.Top_Down.Expected..1.uk.co.bitethebullet.android.token_2.10_5_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Type a valid input on the \"token Seed Edit\" text field",
+            "value2": "/CrashScope-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.Top_Down.Expected..1.uk.co.bitethebullet.android.token_2.10_14_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Tap the \"title (Add Token)\" text view",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_AMBIGUOUS_SELECTED"
+    ],
+    "currentAction": "DISAMBIGUATE_S2R"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 2.94516313239E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "0",
+      "1",
+      "3"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"token Seed Format\" drop down list",
+            "value2": "/CrashScope-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.Top_Down.Expected..1.uk.co.bitethebullet.android.token_2.10_21_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"token Add Complete (COMPLETE)\" button",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token8_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"action bar\" view group",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token9_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.297570809423E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "1"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please provide the \u003cb\u003enext step\u003c/b\u003e that you performed",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "I open the menu",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, what is the \u003cb\u003estep\u003c/b\u003e that you performed next?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R"
+  },
+  {
+    "message": "I delete the token",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it! It seems that you perform the following steps",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "From the following options, please select the \u003cb\u003esteps that you performed\u003c/b\u003e and click the \"\u003cb\u003edone\u003c/b\u003e\" button",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Remember that the displayed screenshots are \u003cb\u003efor reference only\u003c/b\u003e.",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"title (Delete Token)\" text view",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token10_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"title (Add Token)\" text view",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token2_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Type a valid input on the \"token Name Edit (h)\" text field",
+            "value2": "/TraceReplayer-Data/uk.co.bitethebullet.android.token-2.10/screenshots/uk.co.bitethebullet.android.token.User-Trace.2.uk.co.bitethebullet.android.token_2.10_token3_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_AMBIGUOUS_SELECTED"
+    ],
+    "currentAction": "DISAMBIGUATE_S2R"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 5.1359793717E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "0"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, is this \u003cb\u003ethe last step\u003c/b\u003e that you performed: \"Tap the \"title (Delete Token)\" text view\"?",
+          "id": 0.0,
+          "widget": "YesNoButtons",
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 1.609615444871E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, great!",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "The \u003cb\u003ebug report ID\u003c/b\u003e that you need to provide in the survey is:",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eP30-Android_Token-2.10-20f17456-1f37-4929-9cd4-a7dfea28183e\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "The button below will take you to the \u003cb\u003ebug report\u003c/b\u003e you just issued",
+          "id": 0.0,
+          "widget": "ReportGenerator",
+          "disabled": false,
+          "multiple": false
+        },
+        "generatedReport": "P30-Android_Token-2.10-20f17456-1f37-4929-9cd4-a7dfea28183e.html"
+      },
+      {
+        "messageObj": {
+          "message": "Thank you for using BURT",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "REPORT_SUMMARY"
+  }
+]

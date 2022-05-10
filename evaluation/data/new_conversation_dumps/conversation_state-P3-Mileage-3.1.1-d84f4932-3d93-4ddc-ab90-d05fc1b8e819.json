@@ -1,0 +1,862 @@
+[
+  {
+    "message": "hi ",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Let me remind you that some of the \u003cb\u003escreenshots\u003c/b\u003e that I will display are \u003cb\u003efor reference only\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eInput values\u003c/b\u003e and \u003cb\u003eUI components\u003c/b\u003e may be a little different from what you actually observed in the app",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "To start, please provide the \u003cb\u003eParticipant ID\u003c/b\u003e that was assigned to you (e.g., P3)",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "PARTICIPANT_PROVIDED"
+    ],
+    "currentAction": "PROVIDE_PARTICIPANT_ID"
+  },
+  {
+    "message": "p3",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "P3, please select the \u003cb\u003eapp\u003c/b\u003e that is having the problem",
+          "id": 0.0,
+          "widget": "AppSelector",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "4",
+            "value1": "ATimeTracker v. 0.20",
+            "value2": "com.markuspage.android.atimetracker-0.20.webp"
+          },
+          {
+            "key": "2",
+            "value1": "Android Token v. 2.10",
+            "value2": "uk.co.bitethebullet.android.token-2.10.png"
+          },
+          {
+            "key": "7",
+            "value1": "AntennaPod v. 1.6.2.3",
+            "value2": "de.danoeh.antennapod.debug-1.6.2.3.png"
+          },
+          {
+            "key": "0",
+            "value1": "Droid Weight v. 1.5.4",
+            "value2": "de.delusions.measure-1.5.4.webp"
+          },
+          {
+            "key": "5",
+            "value1": "GnuCash v. 1.0.3",
+            "value2": "org.gnucash.android-1.0.3.png"
+          },
+          {
+            "key": "6",
+            "value1": "GnuCash v. 2.1.3",
+            "value2": "org.gnucash.android-2.1.3.png"
+          },
+          {
+            "key": "3",
+            "value1": "Grow Tracker v. 2.3.1",
+            "value2": "me.anon.grow-2.3.1.png"
+          },
+          {
+            "key": "1",
+            "value1": "Mileage v. 3.1.1",
+            "value2": "com.evancharlton.mileage-3.1.1.webp"
+          }
+        ],
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "APP_SELECTED"
+    ],
+    "currentAction": "SELECT_APP"
+  },
+  {
+    "type": "bot",
+    "id": 9.33494658553E11,
+    "loading": true,
+    "disabled": true,
+    "selectedValues": [
+      "1"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "You selected \"Mileage v. 3.1.1\", is that right?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_APP"
+  },
+  {
+    "message": "yes",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, can you please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e that you observed on Mileage?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_OB"
+  },
+  {
+    "message": "the app crashed when trying to go to the statistics tab",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it. From the list below, can you please select the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": " Please hit the \"\u003cb\u003eDone\u003c/b\u003e\" button after you have selected it",
+          "id": 0.0,
+          "widget": "OBScreenSelector",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "1. Mileage Fillup",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage9.png"
+          },
+          {
+            "key": "1",
+            "value1": "2. Mileage Fillup",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage10.png"
+          },
+          {
+            "key": "2",
+            "value1": "3. Mileage Fillup",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Top_Down.Expected..1.com.evancharlton.mileage_3.1.1_10.png"
+          },
+          {
+            "key": "3",
+            "value1": "4. Mileage Fillup",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Top_Down.Expected..1.com.evancharlton.mileage_3.1.1_14.png"
+          },
+          {
+            "key": "4",
+            "value1": "5. Mileage Fillup",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Top_Down.Expected..1.com.evancharlton.mileage_3.1.1_13.png"
+          }
+        ],
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_SCREEN_SELECTED"
+    ],
+    "currentAction": "SELECT_OB_SCREEN"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 4.2077597848E10,
+    "loading": true,
+    "disabled": false,
+    "selectedValues": [
+      "4"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, you selected the screen \"5. Mileage Fillup\"",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Shall we continue?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "CONFIRM_SELECTED_OB_SCREEN"
+  },
+  {
+    "message": "yes",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, can you please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e instead?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_EB"
+  },
+  {
+    "message": "the app should not crash",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": " Okay, now I need to know the steps that you performed and caused the problem",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Can you please tell me the \u003cb\u003efirst step\u003c/b\u003e that you performed?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Remember that you can say \"\u003cb\u003eThis is/was the last step\u003c/b\u003e\" to end the reporting",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R_FIRST"
+  },
+  {
+    "message": "I entered a fillup",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Oops, it seems the terms \"fillup\" \u003cb\u003edo not match a valid UI component\u003c/b\u003e from the app",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Can you please \u003cb\u003erephrase the step\u003c/b\u003e more accurately or provide a different one?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "REPHRASE_S2R"
+  },
+  {
+    "message": "I saved a fillup",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenNoButtons",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"save btn (Save Fillup)\" button",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Bottom_Up.Expected..1.com.evancharlton.mileage_3.1.1_5_augmented.png"
+          }
+        ],
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "yes",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it! You reported the step \"I saved a fillup\"",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "It seems that before that step you had to perform \u003cb\u003eadditional steps\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "From the following options, please select the \u003cb\u003esteps that you performed before this step\u003c/b\u003e and click the \"\u003cb\u003edone\u003c/b\u003e\" button",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Remember that the displayed screenshots are \u003cb\u003efor reference only\u003c/b\u003e.",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Open the application",
+            "value2": "/CrashScope-Data/NO_SCREEN_AVAILABLE.png"
+          }
+        ],
+        "multiple": true
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_MISSING_SELECTED"
+    ],
+    "currentAction": "SELECT_MISSING_S2R"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.321692195303E12,
+    "loading": true,
+    "disabled": false,
+    "selectedValues": [
+      "0"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, you selected 1 prior step(s).",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "What step did you perform \u003cb\u003eafter the step\u003c/b\u003e \"I saved a fillup\"?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_SELECTED_MISSING_S2R"
+  },
+  {
+    "message": "I saved another fillup",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenNoButtons",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"title (Fillup)\" text view",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Bottom_Up.Expected..1.com.evancharlton.mileage_3.1.1_11_augmented.png"
+          }
+        ],
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "no",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": " Okay, it seems I wasn\u0027t able to recognize the step you performed",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Can you please \u003cb\u003erephrase the step or provide a another one\u003c/b\u003e?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R_NO_MATCH"
+  },
+  {
+    "message": "I saved another fillup",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Can you select the ones you actually performed next?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Remember that the screenshots below are \u003cb\u003efor reference only\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eInput values\u003c/b\u003e and \u003cb\u003eUI components\u003c/b\u003e may be a little different from what you observed in the app",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the view",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Top_Down.Expected..1.com.evancharlton.mileage_3.1.1_5_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Type a valid input on the \"price (35)\" text field",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage2_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Type a valid input on the \"volume (95)\" text field",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage4_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Type a valid input on the \"odometer (23)\" text field",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage9_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Tap the \"partial (Tank was not filled to the top)\" check box",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Bottom_Up.Expected..1.com.evancharlton.mileage_3.1.1_16_augmented.png"
+          }
+        ],
+        "multiple": true
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "none of the above",
+    "type": "bot",
+    "id": 4.44326073625E11,
+    "loading": true,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": " Okay, what is the next step?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R"
+  },
+  {
+    "message": "I tried to go to the statistics tab",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenNoButtons",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"title (Statistics)\" text view",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage11_augmented.png"
+          }
+        ],
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "yes",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it! You reported the step \"I tried to go to the statistics tab\"",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "It seems that before that step you had to perform \u003cb\u003eadditional steps\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "From the following options, please select the \u003cb\u003esteps that you performed before this step\u003c/b\u003e and click the \"\u003cb\u003edone\u003c/b\u003e\" button",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Remember that the displayed screenshots are \u003cb\u003efor reference only\u003c/b\u003e.",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the view",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Top_Down.Expected..1.com.evancharlton.mileage_3.1.1_5_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Type a valid input on the \"price (35)\" text field",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage2_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Type a valid input on the \"volume (95)\" text field",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage4_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Type a valid input on the \"odometer (23)\" text field",
+            "value2": "/TraceReplayer-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.User-Trace.1.com.evancharlton.mileage_3.1.1_mileage9_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Tap the \"partial (Tank was not filled to the top)\" check box",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Bottom_Up.Expected..1.com.evancharlton.mileage_3.1.1_16_augmented.png"
+          },
+          {
+            "key": "5",
+            "value1": "Type a valid input on the \"Comment\" text field",
+            "value2": "/CrashScope-Data/com.evancharlton.mileage-3.1.1/screenshots/com.evancharlton.mileage.Top_Down.Expected..1.com.evancharlton.mileage_3.1.1_4_augmented.png"
+          }
+        ],
+        "multiple": true
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_MISSING_SELECTED"
+    ],
+    "currentAction": "SELECT_MISSING_S2R"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 4.2867619221E11,
+    "loading": true,
+    "disabled": false,
+    "selectedValues": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, you selected 5 prior step(s).",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "What step did you perform \u003cb\u003eafter the step\u003c/b\u003e \"I tried to go to the statistics tab\"?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_SELECTED_MISSING_S2R"
+  },
+  {
+    "message": "that was the last step",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "It seems this is the last step that you performed",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Is this correct?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "CONFIRM_LAST_STEP"
+  },
+  {
+    "message": "restart",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Sorry, I did not get that. Please try one more time.",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0
+  },
+  {
+    "message": "restart conversation",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "It seems that you haven\u0027t finished reporting the problem",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      },
+      {
+        "messageObj": {
+          "message": "Are you sure you want to start a new conversation?",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_END_CONVERSATION_ACTION"
+  },
+  {
+    "message": "yes",
+    "id": 0.0,
+    "disabled": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "You got it. The conversation will automatically end in a few seconds.",
+          "id": 0.0,
+          "disabled": false
+        },
+        "multiple": false
+      }
+    ],
+    "code": 100
+  }
+]

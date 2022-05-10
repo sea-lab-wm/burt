@@ -1,0 +1,521 @@
+[
+  {
+    "message": "P17",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Hi P17, please \u003cb\u003eselect the app\u003c/b\u003e that is having the problem",
+          "id": 0.0,
+          "widget": "AppSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "4",
+            "value1": "ATimeTracker v. 0.20",
+            "value2": "com.markuspage.android.atimetracker-0.20.webp"
+          },
+          {
+            "key": "2",
+            "value1": "Android Token v. 2.10",
+            "value2": "uk.co.bitethebullet.android.token-2.10.png"
+          },
+          {
+            "key": "7",
+            "value1": "AntennaPod v. 1.6.2.3",
+            "value2": "de.danoeh.antennapod.debug-1.6.2.3.png"
+          },
+          {
+            "key": "0",
+            "value1": "Droid Weight v. 1.5.4",
+            "value2": "de.delusions.measure-1.5.4.webp"
+          },
+          {
+            "key": "5",
+            "value1": "GnuCash v. 1.0.3",
+            "value2": "org.gnucash.android-1.0.3.png"
+          },
+          {
+            "key": "6",
+            "value1": "GnuCash v. 2.1.3",
+            "value2": "org.gnucash.android-2.1.3.png"
+          },
+          {
+            "key": "3",
+            "value1": "Grow Tracker v. 2.3.1",
+            "value2": "me.anon.grow-2.3.1.png"
+          },
+          {
+            "key": "1",
+            "value1": "Mileage v. 3.1.1",
+            "value2": "com.evancharlton.mileage-3.1.1.webp"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "APP_SELECTED"
+    ],
+    "currentAction": "SELECT_APP"
+  },
+  {
+    "type": "bot",
+    "id": 1.197865183151E12,
+    "loading": true,
+    "disabled": true,
+    "multiple": false,
+    "selectedValues": [
+      "7"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e that you observed on AntennaPod",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_APP"
+  },
+  {
+    "message": "searching itunes  of mis is incorrect",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it. From the list below, select the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": " Please click the \"\u003cb\u003edone\u003c/b\u003e\" button after you have selected it",
+          "id": 0.0,
+          "widget": "OBScreenSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod38.png"
+          },
+          {
+            "key": "1",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod1.png"
+          },
+          {
+            "key": "2",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod3.png"
+          },
+          {
+            "key": "3",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod13.png"
+          },
+          {
+            "key": "4",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod2.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_SCREEN_SELECTED"
+    ],
+    "currentAction": "SELECT_OB_SCREEN"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.95675708897E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "2"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_SELECTED_OB_SCREEN"
+  },
+  {
+    "message": "searching itunes when adding podcast should be correct",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "I am sorry, I couldn\u0027t recognize the language of your description",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e one more time",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_EB_NO_PARSE"
+  },
+  {
+    "message": "searching itunes should be correct",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now I need the steps that you performed and caused the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eThe next steps\u003c/b\u003e that you performed \u003cb\u003eafter you opened the app\u003c/b\u003e might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"txtv Title (Add Podcast)\" text view",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.11.de.danoeh.antennapod.debug_1.6.2.3_antennapod1_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"but Search Fyyd (SEARCH FYYD)\" button",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.625759913639E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "0"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please provide the \u003cb\u003enext step\u003c/b\u003e that you performed",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "i search itunes",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"but Search Itunes (SEARCH ITUNES)\" button",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 1.421189390783E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"action search (Search)\" text view",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod3_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Type a valid input on the \"grid View\" grid view",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.5.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"Collapse\" image button",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.2.de.danoeh.antennapod.debug_1.6.2.3_antennapod12_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.610128132643E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "1"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"but Search Fyyd (SEARCH FYYD)\" button",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "none of the above",
+    "type": "bot",
+    "id": 7.36269468686E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Do you want me to keep \u003cb\u003esuggesting the next steps\u003c/b\u003e?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "If so, please click the button below, \u003cb\u003eotherwise write the next step\u003c/b\u003e",
+          "id": 0.0,
+          "widget": "S2RPredictionConfirmation",
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NEW_PREDICTION_OR_TYPE_S2R"
+    ],
+    "currentAction": "ASK_FOR_NEW_PREDICTION"
+  },
+  {
+    "message": "next_predictions",
+    "type": "bot",
+    "id": 9.48576032405E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay then, the \u003cb\u003enext steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e you actually performed next",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"txtv Url (https://www.podcastone.com/podcast?categoryID2\u003d...)\" text view",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod5_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"BACK MODAL\" key button view",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod7_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"Collapse\" image button",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod8_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Tap the \"Navigate up\" image button",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.1.de.danoeh.antennapod.debug_1.6.2.3_antennapod9_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Tap the \"but Search Fyyd (SEARCH FYYD)\" button",
+            "value2": "/TraceReplayer-Data/de.danoeh.antennapod.debug-1.6.2.3/screenshots/de.danoeh.antennapod.debug.User-Trace.9.de.danoeh.antennapod.debug_1.6.2.3_antennapod2_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_NEXT_S2R_PATH"
+  },
+  {
+    "message": "This is the last step",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  }
+]

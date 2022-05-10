@@ -1,0 +1,454 @@
+[
+  {
+    "message": "p34",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Hi P34, please \u003cb\u003eselect the app\u003c/b\u003e that is having the problem",
+          "id": 0.0,
+          "widget": "AppSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "4",
+            "value1": "ATimeTracker v. 0.20",
+            "value2": "com.markuspage.android.atimetracker-0.20.webp"
+          },
+          {
+            "key": "2",
+            "value1": "Android Token v. 2.10",
+            "value2": "uk.co.bitethebullet.android.token-2.10.png"
+          },
+          {
+            "key": "7",
+            "value1": "AntennaPod v. 1.6.2.3",
+            "value2": "de.danoeh.antennapod.debug-1.6.2.3.png"
+          },
+          {
+            "key": "0",
+            "value1": "Droid Weight v. 1.5.4",
+            "value2": "de.delusions.measure-1.5.4.webp"
+          },
+          {
+            "key": "5",
+            "value1": "GnuCash v. 1.0.3",
+            "value2": "org.gnucash.android-1.0.3.png"
+          },
+          {
+            "key": "6",
+            "value1": "GnuCash v. 2.1.3",
+            "value2": "org.gnucash.android-2.1.3.png"
+          },
+          {
+            "key": "3",
+            "value1": "Grow Tracker v. 2.3.1",
+            "value2": "me.anon.grow-2.3.1.png"
+          },
+          {
+            "key": "1",
+            "value1": "Mileage v. 3.1.1",
+            "value2": "com.evancharlton.mileage-3.1.1.webp"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "APP_SELECTED"
+    ],
+    "currentAction": "SELECT_APP"
+  },
+  {
+    "type": "bot",
+    "id": 4.64271984277E11,
+    "loading": true,
+    "disabled": true,
+    "multiple": false,
+    "selectedValues": [
+      "4"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e that you observed on ATimeTracker",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_APP"
+  },
+  {
+    "message": "I got a crash when trying to add a time rage for a task",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Oops, your description doesn\u0027t seem to match the language of the app",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003erephrase the incorrect behavior\u003c/b\u003e differently",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "REPHRASE_OB"
+  },
+  {
+    "message": "I got a crash when trying to add a time range for a task",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it. From the list below, select the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": " Please click the \"\u003cb\u003edone\u003c/b\u003e\" button after you have selected it",
+          "id": 0.0,
+          "widget": "OBScreenSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.User-Trace.2.com.markuspage.android.atimetracker_0.20_atimetracker29.png"
+          },
+          {
+            "key": "1",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.User-Trace.2.com.markuspage.android.atimetracker_0.20_atimetracker30.png"
+          },
+          {
+            "key": "2",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.User-Trace.2.com.markuspage.android.atimetracker_0.20_atimetracker31.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_SCREEN_SELECTED"
+    ],
+    "currentAction": "SELECT_OB_SCREEN"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.467644580425E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "0"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_SELECTED_OB_SCREEN"
+  },
+  {
+    "message": "the app should show the screen for adding the time range",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, this description doesn\u0027t seem to match the problematic app screen",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Is this the screen that should work fine?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.User-Trace.2.com.markuspage.android.atimetracker_0.20_atimetracker29.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CLARIFY_EB"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 7.29778919138E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now I need the steps that you performed and caused the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eThe next steps\u003c/b\u003e that you performed \u003cb\u003eafter you opened the app\u003c/b\u003e might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"usage ( Detailed instructions are at https://github.co...)\" text view",
+            "value2": "/CrashScope-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.Top_Down.Expected..1.com.markuspage.android.atimetracker_0.20_1_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Long tap the \"usage ( Detailed instructions are at https://github.co...)\" text view",
+            "value2": "/CrashScope-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.Top_Down.Expected..1.com.markuspage.android.atimetracker_0.20_2_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Long tap the \"credits (Credits    Based on TimeTracker+ by Sean E. Rus...)\" text view",
+            "value2": "/CrashScope-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.Top_Down.Expected..1.com.markuspage.android.atimetracker_0.20_4_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Tap the \"credits (Credits    Based on TimeTracker+ by Sean E. Rus...)\" text view",
+            "value2": "/CrashScope-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.Top_Down.Expected..1.com.markuspage.android.atimetracker_0.20_3_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Tap the \"button 1 (OK)\" button",
+            "value2": "/TraceReplayer-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.User-Trace.8.com.markuspage.android.atimetracker_0.20_atimetracker1_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.281690578201E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "4"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Long tap the \"list\" list view",
+            "value2": "/CrashScope-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.Top_Down.Expected..1.com.markuspage.android.atimetracker_0.20_13_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"list\" list view",
+            "value2": "/CrashScope-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.Top_Down.Expected..1.com.markuspage.android.atimetracker_0.20_12_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"More options\" image button",
+            "value2": "/TraceReplayer-Data/com.markuspage.android.atimetracker-0.20/screenshots/com.markuspage.android.atimetracker.User-Trace.2.com.markuspage.android.atimetracker_0.20_atimetracker29_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 7.49493748356E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "2"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, is this \u003cb\u003ethe last step\u003c/b\u003e that you performed: \"Tap the \"More options\" image button\"?",
+          "id": 0.0,
+          "widget": "YesNoButtons",
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 5.64170726941E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, great!",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "The \u003cb\u003ebug report ID\u003c/b\u003e that you need to provide in the survey is:",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eP34-ATimeTracker-0.20-29390885-13a1-4761-ba94-f3889da36ea4\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "The button below will take you to the \u003cb\u003ebug report\u003c/b\u003e you just issued",
+          "id": 0.0,
+          "widget": "ReportGenerator",
+          "disabled": false,
+          "multiple": false
+        },
+        "generatedReport": "P34-ATimeTracker-0.20-29390885-13a1-4761-ba94-f3889da36ea4.html"
+      },
+      {
+        "messageObj": {
+          "message": "Thank you for using BURT",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "REPORT_SUMMARY"
+  }
+]

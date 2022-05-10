@@ -1,0 +1,316 @@
+[
+  {
+    "message": "P15",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Hi P15, please \u003cb\u003eselect the app\u003c/b\u003e that is having the problem",
+          "id": 0.0,
+          "widget": "AppSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "4",
+            "value1": "ATimeTracker v. 0.20",
+            "value2": "com.markuspage.android.atimetracker-0.20.webp"
+          },
+          {
+            "key": "2",
+            "value1": "Android Token v. 2.10",
+            "value2": "uk.co.bitethebullet.android.token-2.10.png"
+          },
+          {
+            "key": "7",
+            "value1": "AntennaPod v. 1.6.2.3",
+            "value2": "de.danoeh.antennapod.debug-1.6.2.3.png"
+          },
+          {
+            "key": "0",
+            "value1": "Droid Weight v. 1.5.4",
+            "value2": "de.delusions.measure-1.5.4.webp"
+          },
+          {
+            "key": "5",
+            "value1": "GnuCash v. 1.0.3",
+            "value2": "org.gnucash.android-1.0.3.png"
+          },
+          {
+            "key": "6",
+            "value1": "GnuCash v. 2.1.3",
+            "value2": "org.gnucash.android-2.1.3.png"
+          },
+          {
+            "key": "3",
+            "value1": "Grow Tracker v. 2.3.1",
+            "value2": "me.anon.grow-2.3.1.png"
+          },
+          {
+            "key": "1",
+            "value1": "Mileage v. 3.1.1",
+            "value2": "com.evancharlton.mileage-3.1.1.webp"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "APP_SELECTED"
+    ],
+    "currentAction": "SELECT_APP"
+  },
+  {
+    "type": "bot",
+    "id": 6.23459482565E11,
+    "loading": true,
+    "disabled": true,
+    "multiple": false,
+    "selectedValues": [
+      "3"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e that you observed on Grow Tracker",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_APP"
+  },
+  {
+    "message": "the app won\u0027t let me duplicate",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, just to double check, is this the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.12.me.anon.grow_2.3.1_growtracker13.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_OB"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 8.2255122184E10,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_EB"
+  },
+  {
+    "message": "it should let me duplicate",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now I need the steps that you performed and caused the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eThe next steps\u003c/b\u003e that you performed \u003cb\u003eafter you opened the app\u003c/b\u003e might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"permission allow button (ALLOW)\" button",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.11.me.anon.grow_2.3.1_growtracker1_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the image view",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.1.me.anon.grow_2.3.1_growtracker2_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"Navigate up\" image button",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.12.me.anon.grow_2.3.1_growtracker7_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Tap the \"image\" image view",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.12.me.anon.grow_2.3.1_growtracker15_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Tap the \"More options\" image view",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.12.me.anon.grow_2.3.1_growtracker16_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 8.985425516E9,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "0",
+      "1",
+      "3",
+      "4",
+      "2"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"image\" image view",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.12.me.anon.grow_2.3.1_growtracker15_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"More options\" image view",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.12.me.anon.grow_2.3.1_growtracker16_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"title (Duplicate)\" text view",
+            "value2": "/TraceReplayer-Data/me.anon.grow-2.3.1/screenshots/me.anon.grow.User-Trace.12.me.anon.grow_2.3.1_growtracker13_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.606748256719E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "0",
+      "1",
+      "2"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, is this \u003cb\u003ethe last step\u003c/b\u003e that you performed: \"Tap the \"title (Duplicate)\" text view\"?",
+          "id": 0.0,
+          "widget": "YesNoButtons",
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "NO_EXPECTED_INTENT"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 1.629120143086E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  }
+]
