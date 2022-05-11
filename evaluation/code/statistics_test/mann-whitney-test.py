@@ -3,7 +3,12 @@ from scipy.stats import wilcoxon
 import xlrd
 import pandas as pd
 import matplotlib.pyplot as plt
+from cliffs_delta import cliffs_delta
 
+res_ob_itrac = [0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 2, 1]
+res_ob_burt = [1, 1, 2, 3, 0, 1, 0, 3, 1, 2, 2, 0]
+res_eb_itrac = [0, 1, 1, 1, 1, 0, 0, 1, 0, 2, 0, 1]
+res_eb_burt = [3, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0]
 
 def get_burt_data():
     sheet_incorrect = pd.read_excel('burt_data.xlsx', usecols=[24], names=None)
@@ -111,7 +116,7 @@ def draw_box_plots(data1, data2, data3, data4):
     bplot1 = axes[0].boxplot(all_data[0:2],
                              vert=True,
                              patch_artist=True, showfliers=False, showmeans=True, meanline=False)
-    #showmeans=True, meanline=True,
+    # showmeans=True, meanline=True,
 
     bplot2 = axes[1].boxplot(all_data[2:4],
                              notch=True,
@@ -137,68 +142,80 @@ def compute_mann_whiteney():
     burt_incorrect_steps_per_bug, burt_missing_steps_per_bug = get_burt_data_per_bug()
     itrac_incorrect_steps_per_bug, itrac_missing_steps_per_bug = get_itrac_data_per_bug()
 
-    print(burt_missing_steps, sum(burt_missing_steps))
+    # res_missing = mannwhitneyu(burt_missing_steps, itrac_missing_steps, alternative="less", method="auto")
+    #
+    # print(res_missing)
+    #
+    # res_incorrect = mannwhitneyu(burt_incorrect_steps, itrac_incorrect_steps, alternative="less", method="auto")
+    #
+    # print(res_incorrect)
+    #
+    # res_ob = mannwhitneyu(burt_ob, itrac_ob, alternative="less", method="auto")
+    #
+    # print(res_ob)
+    #
+    # res_eb = mannwhitneyu(burt_eb, itrac_eb, alternative="less", method="auto")
 
-    print(itrac_missing_steps, sum(itrac_missing_steps))
+    # print(res_eb)
 
-    print(burt_incorrect_steps, sum(burt_incorrect_steps))
-    print(itrac_incorrect_steps, sum(itrac_incorrect_steps))
+    res_ob_per_bug = mannwhitneyu(res_ob_burt, res_ob_itrac, alternative="less", method="auto")
 
-    print(burt_ob, sum(burt_ob))
-    print(burt_eb, sum(burt_eb))
-    print(itrac_ob, sum(itrac_ob))
-    print(itrac_eb, sum(itrac_eb))
+    print("ob", res_ob_per_bug)
 
-    res_missing = mannwhitneyu(burt_missing_steps, itrac_missing_steps, alternative="less", method="auto")
+    res_eb_per_bug = mannwhitneyu(res_eb_burt, res_eb_itrac, alternative="less", method="auto")
 
-    print(res_missing)
+    print("eb", res_eb_per_bug)
 
-    res_incorrect = mannwhitneyu(burt_incorrect_steps, itrac_incorrect_steps, alternative="less", method="auto")
+    res_missing_1 = mannwhitneyu(burt_missing_steps_per_bug, itrac_missing_steps_per_bug, alternative="less", method="auto")
 
-    print(res_incorrect)
+    print("missing_steps_per_bug", res_missing_1)
 
-    res_ob = mannwhitneyu(burt_ob, itrac_ob, alternative="less", method="auto")
+    res_incorrect_1 = mannwhitneyu(burt_incorrect_steps_per_bug, itrac_incorrect_steps_per_bug, alternative="less", method="auto")
 
-    print(res_ob)
+    print("incorrect_steps_per_bug", res_incorrect_1)
 
-    res_eb = mannwhitneyu(burt_eb, itrac_eb, alternative="less", method="auto")
 
-    print(res_eb)
-    # copy from the table in the paper
-    res_ob_itrac = [0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 2, 1]
-    res_ob_burt = [1, 1, 2, 3, 0, 1, 0, 3, 1, 2, 2, 0]
-    res_eb_itrac = [0, 1, 1, 1, 1, 0, 0, 1, 0, 2, 0, 1]
-    res_eb_burt = [3, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0]
+def compute_cliffs_delta(data1, data2):
+    d, res = cliffs_delta(data1, data2)
+    return d, res
 
-    res_ob_1 = wilcoxon(res_ob_burt, res_ob_itrac, alternative="less", mode="auto")
 
-    print(res_ob_1)
+def compute_cliff_delta_all():
+    res_incorrect_steps_per_bug, d_incorrect_steps_per_bug = compute_cliffs_delta(burt_incorrect_steps_per_bug, itrac_incorrect_steps_per_bug)
+    print("incorrect steps per bug", res_incorrect_steps_per_bug, d_incorrect_steps_per_bug)
 
-    res_eb_1 = wilcoxon(res_eb_burt, res_eb_itrac, alternative="less", mode="auto")
+    res_missing_steps_per_bug, d_missing_steps_per_bug = compute_cliffs_delta(burt_missing_steps_per_bug, itrac_missing_steps_per_bug)
+    print("missing steps per bug", res_missing_steps_per_bug, d_missing_steps_per_bug)
 
-    print(res_eb_1)
+    # res_incorrect_steps_per_bug_report, d_incorrect_steps_per_bug_report = compute_cliffs_delta(burt_incorrect_steps_per_bug_report, itrac_incorrect_steps_per_bug_report)
+    # print("incorrect steps per bug report", res_incorrect_steps_per_bug_report, d_incorrect_steps_per_bug_report)
+    #
+    # res_missing_steps_per_bug_report, d_missing_steps_per_bug_report = compute_cliffs_delta(burt_missing_steps_per_bug_report, itrac_missing_steps_per_bug_report)
+    # print("missing steps per bug report", res_missing_steps_per_bug_report, d_missing_steps_per_bug_report)
 
-    res_missing_1 = wilcoxon(burt_missing_steps_per_bug, itrac_missing_steps_per_bug, alternative="less", mode="auto")
+    res_ob_per_bug, d_ob_per_bug = compute_cliffs_delta(res_ob_burt, res_ob_itrac)
+    print("ob per bug", res_ob_per_bug, d_ob_per_bug)
 
-    print(res_missing_1)
-
-    res_incorrect_1 = wilcoxon(burt_incorrect_steps_per_bug, itrac_incorrect_steps_per_bug, alternative="less",
-                               mode="auto")
-
-    print(res_incorrect_1)
+    res_eb_per_bug, d_eb_per_bug = compute_cliffs_delta(res_eb_burt, res_eb_itrac)
+    print("eb per bug", res_eb_per_bug, d_eb_per_bug)
 
 
 if __name__ == '__main__':
-    # compute_mann_whiteney()
+    compute_mann_whiteney()
     '''per bug for missing and incorrect steps'''
-    # burt_incorrect_steps_per_bug, burt_missing_steps_per_bug = get_burt_data_per_bug()
-    # itrac_incorrect_steps_per_bug, itrac_missing_steps_per_bug = get_itrac_data_per_bug()
+    burt_incorrect_steps_per_bug, burt_missing_steps_per_bug = get_burt_data_per_bug()
+    itrac_incorrect_steps_per_bug, itrac_missing_steps_per_bug = get_itrac_data_per_bug()
     # draw_box_plots(burt_incorrect_steps_per_bug, itrac_incorrect_steps_per_bug,
     #                burt_missing_steps_per_bug, itrac_missing_steps_per_bug)
 
     '''per bug report for missing and incorrect steps'''
-    burt_incorrect_steps, burt_missing_steps = get_burt_data()
-    itrac_incorrect_steps, itrac_missing_steps = get_itrac_data()
+    burt_incorrect_steps_per_bug_report, burt_missing_steps_per_bug_report = get_burt_data()
+    itrac_incorrect_steps_per_bug_report, itrac_missing_steps_per_bug_report = get_itrac_data()
 
-    draw_box_plots(burt_incorrect_steps, itrac_incorrect_steps,
-                   burt_missing_steps, itrac_missing_steps)
+    # draw_box_plots(burt_incorrect_steps, itrac_incorrect_steps,
+    #                burt_missing_steps, itrac_missing_steps)
+
+    '''compute cliffs delta'''
+    compute_cliff_delta_all()
+
+
