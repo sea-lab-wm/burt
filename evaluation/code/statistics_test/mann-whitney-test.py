@@ -250,10 +250,10 @@ def get_bug_experience_data(file_name):
 
 def test_bug_experience():
     incorrect_steps_novice_burt, missing_steps_novice_burt, incorrect_steps_intermediate_burt, missing_steps_intermediate_burt, \
-    incorrect_steps_experienced_burt, missing_steps_experienced_burt = get_bug_experience_data('bug_reporting_experience_burt.xlsx')
+    incorrect_steps_experienced_burt, missing_steps_experienced_burt = get_bug_experience_data('bug_reporting_experience_per_bug_burt.xlsx')
 
     incorrect_steps_novice_itrac, missing_steps_novice_itrac, incorrect_steps_intermediate_itrac, missing_steps_intermediate_itrac, \
-    incorrect_steps_experienced_itrac, missing_steps_experienced_itrac = get_bug_experience_data('bug_reporting_experience_itrac.xlsx')
+    incorrect_steps_experienced_itrac, missing_steps_experienced_itrac = get_bug_experience_data('bug_reporting_experience_per_bug_itrac.xlsx')
 
     incorrect_steps_novice_burt = [x for x in incorrect_steps_novice_burt if str(x) != 'nan']
     missing_steps_novice_burt = [x for x in missing_steps_novice_burt if str(x) != 'nan']
@@ -286,7 +286,7 @@ def test_bug_experience():
 
 
 
-    res_missing_novice = mannwhitneyu(missing_steps_novice_burt, missing_steps_novice_itrac, alternative="less", method="auto")
+    res_missing_novice = wilcoxon(missing_steps_novice_burt, missing_steps_novice_itrac, alternative="less", mode="approx")
 
     print("res_missing_novice", res_missing_novice)
 
@@ -294,7 +294,7 @@ def test_bug_experience():
     print("missing_steps_novice_cliff", res_missing_steps_novice_cliff, d_missing_steps_novice_cliff)
 
 
-    res_incorrect_novice = mannwhitneyu(incorrect_steps_novice_burt, incorrect_steps_novice_itrac, alternative="less", method="auto")
+    res_incorrect_novice = wilcoxon(incorrect_steps_novice_burt, incorrect_steps_novice_itrac, alternative="less", mode="approx")
 
     print("res_incorrect_novice", res_incorrect_novice)
 
@@ -302,7 +302,7 @@ def test_bug_experience():
     print("incorrect_novice_cliff", res_incorrect_novice_cliff, d_incorrect_novice_cliff)
 
 
-    res_missing_intermediate = mannwhitneyu(missing_steps_intermediate_burt, missing_steps_intermediate_itrac, alternative="less", method="auto")
+    res_missing_intermediate = wilcoxon(missing_steps_intermediate_burt, missing_steps_intermediate_itrac, alternative="less", mode="approx")
 
     print("res_missing_intermediate", res_missing_intermediate)
 
@@ -311,7 +311,7 @@ def test_bug_experience():
 
 
 
-    res_incorrect_intermediate = mannwhitneyu(incorrect_steps_intermediate_burt, incorrect_steps_intermediate_itrac, alternative="less", method="auto")
+    res_incorrect_intermediate = wilcoxon(incorrect_steps_intermediate_burt, incorrect_steps_intermediate_itrac, alternative="less", mode="approx")
 
     print("res_incorrect_intermediate", res_incorrect_intermediate)
 
@@ -319,19 +319,19 @@ def test_bug_experience():
     print("incorrect_intermediate_cliff", res_incorrect_intermediate_cliff, d_incorrect_intermediate_cliff)
 
 
-    res_missing_experienced = mannwhitneyu(missing_steps_experienced_burt, missing_steps_experienced_itrac, alternative="less", method="auto")
+    res_missing_experienced = wilcoxon(missing_steps_experienced_burt, missing_steps_experienced_itrac, alternative="less", mode="approx",)
 
     print("res_missing_experienced", res_missing_experienced)
 
     res_missing_experienced_cliff, d_missing_experienced_cliff = compute_cliffs_delta(missing_steps_experienced_burt, missing_steps_experienced_itrac)
-    print("incorrect_novice_cliff", res_missing_experienced_cliff, d_missing_experienced_cliff)
+    print("missing_experienced_cliff", res_missing_experienced_cliff, d_missing_experienced_cliff)
 
-    res_incorrect_experienced = mannwhitneyu(incorrect_steps_experienced_burt, incorrect_steps_experienced_itrac, alternative="less", method="auto")
+    res_incorrect_experienced = wilcoxon(incorrect_steps_experienced_burt, incorrect_steps_experienced_itrac, alternative="less", mode="approx")
 
     print("res_incorrect_experienced", res_incorrect_experienced)
 
     res_incorrect_experienced_cliff, d_incorrect_experienced_cliff = compute_cliffs_delta(incorrect_steps_experienced_burt, incorrect_steps_experienced_itrac)
-    print("incorrect_incorrect_experienced_cliff", res_incorrect_experienced_cliff, d_incorrect_experienced_cliff)
+    print("incorrect_experienced_cliff", res_incorrect_experienced_cliff, d_incorrect_experienced_cliff)
 
 
 
