@@ -33,7 +33,7 @@ Second, to run the burt server, open a new terminal, then input the next command
 2. `update_deps_and_run_server.bat`
 
 Third, to run the burt gui, open a new terminal, then input the next commands:
-1. `cd D:\Projects\burt-project\burt\burt-gui-new` (feel free to change to your own path)
+1. `cd D:\Projects\burt-project\burt\burt-gui` (feel free to change to your own path)
 2. `run_app.bat`
 
 ### For Mac users:
@@ -54,7 +54,7 @@ Second, to run the burt server, open a new terminal, then input the next command
 3. `./update_deps_and_run_server.sh`
 
 Third, to run the burt gui, open a new terminal, then input the next commands:
-1. `cd Users/yourname/burt-project/burt/burt-gui-new` (feel free to change to your own path)
+1. `cd Users/yourname/burt-project/burt/burt-gui` (feel free to change to your own path)
 2. `chmod +x run_app.sh`
 3. `./run_app.sh`
 
