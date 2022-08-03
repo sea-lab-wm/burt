@@ -16,12 +16,12 @@ For using this class, the python server needs to be running
 public class EmbeddingSimilarityComputer {
 
     private static Gson gson = new Gson();
-    private static final String ENDPOINT = "http://127.0.0.1:9000/embed_cosine_multiple/";
+    private static final String ENDPOINT = "http://localhost:9091/embed_cosine_multiple/";
 
     public static List<Double> computeSimilarities(String query, List<String> corpus) throws Exception {
         // create a client
-
         var client = HttpClient.newHttpClient();
+
         HttpRequest.BodyPublisher bodyPublisher = createRequestBody(query, corpus);
 
         // create a request
@@ -49,8 +49,8 @@ public class EmbeddingSimilarityComputer {
     }
 
     public static void main(String[] args) throws Exception {
-        List<Double> similarities = computeSimilarities("i click the added podcast in the subscription",
-                Arrays.asList("I clicked the podcast"));
+        List<Double> similarities = computeSimilarities("i input text account name",
+                Arrays.asList("I input account name"));
         System.out.println(similarities);
         //"got an error when delete a token", Arrays.asList("'I choose event token'", " 'I check event token'", " 'I select event token'",
         //                "'I choose time token'", " 'I select time token'", " 'I check time token'"

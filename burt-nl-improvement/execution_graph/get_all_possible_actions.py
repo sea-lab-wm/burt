@@ -3,10 +3,6 @@ import multiprocessing
 import os
 from os import listdir
 
-
-
-
-
 if __name__ == '__main__':
 
     app_version_packages = {
@@ -37,7 +33,6 @@ if __name__ == '__main__':
     csv_output_file_path = "extracted_information.csv"
     tokens_csv_output_file_path = "extracted_tokens.csv"
 
-
     num_workers = multiprocessing.cpu_count()
     actionset = set()
     typeset = set()
@@ -59,25 +54,19 @@ if __name__ == '__main__':
 
             for file in onlyExecutionfiles:
 
-
                 execution_file_path = os.path.join(data_location, file)
 
-                with open(execution_file_path,encoding="utf8") as json_file:
+                with open(execution_file_path, encoding="utf8") as json_file:
                     execution_dict = json.load(json_file)
                     steps = execution_dict["steps"]
                     for step in steps:
                         actionset.add(step["action"])
-
 
                         screen = step["screen"]
                         components = screen["dynGuiComponents"]
                         for comp in components:
                             typeset.add(comp["name"])
                             if "switch" in comp["name"].lower():
-
                                 print(comp["name"], step.get("screenshot", None))
     print(actionset)
     print(typeset)
-
-
-

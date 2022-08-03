@@ -240,7 +240,7 @@ class NewStepResolver {
                         "Checking matched scores " + scores.toString());
             }
 
-            if (Collections.max(scores) > 0.6) {
+            if (Collections.max(scores) > 0.7) {
 
 
                 return new ImmutablePair<>(step, Collections.max(scores) / (candidateEntry.getRight() + 1));

@@ -60,3 +60,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Byte-compiled
+burt-nl-improvement/execution_graph/__pycache__/

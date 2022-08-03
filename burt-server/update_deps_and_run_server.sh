@@ -2,7 +2,8 @@
 set -x #echo on
 
 export CUR_DIR=`pwd`
-export REPOSITORIES_PATH=/Users/yangsong/435-burt-project/
+# export REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
+export REPOSITORIES_PATH=/Users/yangsong/csci-435-burt/
 
 #
 #
