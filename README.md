@@ -23,17 +23,17 @@ First, create a new folder on your machine (e.g. `D:\Projects\burt-project`), an
 2. `git clone https://github.com/ojcchar/appcore.git`
 3. `git clone https://github.com/ojcchar/text-analyzer.git`
 4. `git clone https://github.com/ojcchar/bug_report_completion.git`
-5. Open the file `\burt-project\CSCI435-21FALL-BURT-PROJECT\burt-server\update_deps_and_run_server.bat`, then change the REPOSITORIES_PATH to the directory that contains burt repo on your machine, such as `D:\Projects\burt-project`
+5. Open the file `\burt-project\burt\burt-server\update_deps_and_run_server.bat`, then change the REPOSITORIES_PATH to the directory that contains burt repo on your machine, such as `D:\Projects\burt-project`
 6. make sure your java version is 12 or 11
 7. make sure your maven version is 3.6.3
 8. check if you have installed yarn, if not, please install yarn
 
 Second, to run the burt server, open a new terminal, then input the next commands:
-1. `cd D:\Projects\burt-project\CSCI435-21FALL-BURT-PROJECT\burt-server` (feel free to change to your own path)
+1. `cd D:\Projects\burt-project\burt\burt-server` (feel free to change to your own path)
 2. `update_deps_and_run_server.bat`
 
 Third, to run the burt gui, open a new terminal, then input the next commands:
-1. `cd D:\Projects\burt-project\CSCI435-21FALL-BURT-PROJECT\burt-gui-new` (feel free to change to your own path)
+1. `cd D:\Projects\burt-project\burt\burt-gui-new` (feel free to change to your own path)
 2. `run_app.bat`
 
 ### For Mac users:
@@ -43,18 +43,18 @@ First, create a new folder on your machine (e.g. `/Users/yourname/burt-project`)
 2. `git clone https://github.com/ojcchar/appcore.git`
 3. `git clone https://github.com/ojcchar/text-analyzer.git`
 4. `git clone https://github.com/ojcchar/bug_report_completion.git`
-5. Open the file `CSCI435-21FALL-BURT-PROJECT/burt-server/update_deps_and_run_server.sh`, then change the REPOSITORIES_PATH to the directory that contains burt repo on your machine, such as `/Users/yourname/burt-project/`
+5. Open the file `burt/burt-server/update_deps_and_run_server.sh`, then change the REPOSITORIES_PATH to the directory that contains burt repo on your machine, such as `/Users/yourname/burt-project/`
 6. make sure your java version is 12 or 11
 7. make sure your maven version is 3.6.3
 8. check if you have installed yarn, if not, please install yarn
 
 Second, to run the burt server, open a new terminal, then input the next commands:
-1. `cd /Users/yourname/burt-project/CSCI435-21FALL-BURT-PROJECT/burt-server` (feel free to change to your own path)
+1. `cd /Users/yourname/burt-project/burt/burt-server` (feel free to change to your own path)
 2. `chmod +x update_deps_and_run_server.sh`
 3. `./update_deps_and_run_server.sh`
 
 Third, to run the burt gui, open a new terminal, then input the next commands:
-1. `cd Users/yourname/burt-project/CSCI435-21FALL-BURT-PROJECT/burt-gui-new` (feel free to change to your own path)
+1. `cd Users/yourname/burt-project/burt/burt-gui-new` (feel free to change to your own path)
 2. `chmod +x run_app.sh`
 3. `./run_app.sh`
 
