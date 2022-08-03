@@ -19,7 +19,7 @@ you can watch a teaser video demonstration of BURT <a href="https://tinyurl.com/
 ### For Windows users:
 
 First, create a new folder on your machine (e.g. `D:\Projects\burt-project`), and open this folder `burt-project` in the terminal, then follow the next steps:
-1. `git clone https://github.com/WM-SEMERU/CSCI435-21FALL-BURT-PROJECT.git`
+1. `git clone https://github.com/sea-lab-wm/burt.git`
 2. `git clone https://github.com/ojcchar/appcore.git`
 3. `git clone https://github.com/ojcchar/text-analyzer.git`
 4. `git clone https://github.com/ojcchar/bug_report_completion.git`
@@ -39,7 +39,7 @@ Third, to run the burt gui, open a new terminal, then input the next commands:
 ### For Mac users:
 
 First, create a new folder on your machine (e.g. `/Users/yourname/burt-project`), and open this folder `burt-project` in the terminal, then follow the next steps:
-1. `git clone https://github.com/WM-SEMERU/CSCI435-21FALL-BURT-PROJECT.git`
+1. `git clone https://github.com/sea-lab-wm/burt.git`
 2. `git clone https://github.com/ojcchar/appcore.git`
 3. `git clone https://github.com/ojcchar/text-analyzer.git`
 4. `git clone https://github.com/ojcchar/bug_report_completion.git`
