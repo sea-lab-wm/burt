@@ -36,11 +36,11 @@
             <artifactId>gson</artifactId>
             <version>2.8.2</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>seers.nimbus</groupId>-->
-<!--            <artifactId>bugparser</artifactId>-->
-<!--            <version>0.1.1</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>seers.nimbus</groupId>
+            <artifactId>bugparser</artifactId>
+            <version>0.1.1</version>
+        </dependency>
     </dependencies>
 
     <build>
