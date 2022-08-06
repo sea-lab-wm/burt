@@ -19,15 +19,17 @@ you can watch a teaser video demonstration of BURT <a href="https://tinyurl.com/
 ### For Windows users:
 Burt is web application built with Springboot and React, so you need to run both the backend and frontend, respectively.  
 
-First, to make sure your machine has the following environment: 
-1. **JDK version is 12**
-2. **Maven version is 3.6.3**
+First, set up the following environment on our machine (please make sure to install the version as specified):
+1. install JDK 12
+2. install Maven 3.6.3
+3. install node.js 15.8.0 and npm 7.5.1. You can use nvm to install node.js and npm, refer to this [tutorial](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+4. install yarn 1.22.5, refer to this [tutorial](https://classic.yarnpkg.com/en/docs/install#windows-stable) or [this](https://www.npmjs.com/package/yarn/v/1.22.5)
 
-Second, to run the server, you need to do the following:
+Second, to run the server, you need to do the following steps:
 
-3. create a new folder (e.g. fse-burt-project, it is better **not** to use burt as the folder name) on your machine (e.g. `D:\Projects\burt-project`).
-4. in this empty folder, create a script file, e.g. `run_server.bat`.
-5. copy and paste the following commands to this script file:
+5. create a new folder on your machine (e.g. fse-burt-project, it is better **not** to use burt as the folder name).
+6. in this empty folder, create a script file, e.g. `run_server.bat`.
+7. copy and paste the following commands to this script file:
 ```
 set CUR_DIR=%CD%
 call git clone -b fse-version https://github.com/sea-lab-wm/burt.git
@@ -61,12 +63,14 @@ cd "%CUR_DIR%"
 cd burt\burt-server
 call mvnw spring-boot:run
 ```
-6. open a new terminal, and go to the folder with this script file. 
-7. run this command: `run_server.bat`. This step might take a while because it needs to download dependencies and compile all needed packages.
+8. open a new terminal, and go to the folder with this script file. 
+9. run this command: `run_server.bat`. This step might take a while because it needs to download dependencies and compile all needed packages.
 
-Third, to run the burt gui, open a new terminal, then input the next commands:
-1. `cd D:\Projects\burt-project\burt\burt-gui` (feel free to change to your own path)
-2. `run_app.bat`
+Third, to run the burt gui, you need to do the following steps:
+
+10. open a new terminal, go to the `fse-burt-project` folder, then go to the `burt\burt-gui` folder.
+11. run this command: `run_app.bat`
+12. Done！
 
 ### For Mac users:
 
