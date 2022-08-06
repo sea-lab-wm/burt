@@ -110,11 +110,11 @@
             <version>1.10</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/kephale/matlabcontrol -->
-<!--        <dependency>-->
-<!--            <groupId>kephale</groupId>-->
-<!--            <artifactId>matlabcontrol</artifactId>-->
-<!--            <version>4.1.0</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>kephale</groupId>-->
+        <!--            <artifactId>matlabcontrol</artifactId>-->
+        <!--            <version>4.1.0</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
@@ -144,26 +144,36 @@
             <groupId>org.eclipse.core</groupId>
             <artifactId>jobs</artifactId>
             <version>3.5.200.v20120521-2346</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/org.eclipse.core.jobs_3.5.200.v20120521-2346.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.eclipse.core</groupId>
             <artifactId>resources</artifactId>
             <version>3.8.0.v20120522-2034</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/org.eclipse.core.resources_3.8.0.v20120522-2034.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.eclipse</groupId>
             <artifactId>jface</artifactId>
             <version>3.6.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/org-eclipse-jface-3.6.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>hierarchyviewer</groupId>
             <artifactId>hierarchyviewer</artifactId>
             <version>x.y.z</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/hierarchyviewer2lib.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jdt</groupId>
             <artifactId>core</artifactId>
             <version>3.8.1.v20120531-0637</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -173,7 +183,7 @@
     </dependencies>
 
     <build>
-		<sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
