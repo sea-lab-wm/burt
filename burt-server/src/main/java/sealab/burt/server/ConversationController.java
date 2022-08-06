@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.others.GenerateBugReportAction;
@@ -32,7 +33,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
 import static sealab.burt.server.msgparsing.Intent.CONFIRM_END_CONVERSATION;
@@ -40,7 +40,7 @@ import static sealab.burt.server.msgparsing.Intent.EB_DESCRIPTION;
 import static sealab.burt.server.msgparsing.Intent.OB_DESCRIPTION;
 import static sealab.burt.server.msgparsing.Intent.*;
 
-@SpringBootApplication
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @RestController
 public
 @Slf4j
