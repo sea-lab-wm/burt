@@ -27,7 +27,7 @@ First, set up the following environment on our machine (please make sure to inst
 
 Second, to run the server, you need to do the following steps:
 
-5. create a new folder on your machine (e.g. fse-burt-project, it is better **not** to use burt as the folder name).
+5. create a new folder on your machine (e.g. `fse-burt-project`, it is better **not** to use burt as the folder name).
 6. in this empty folder, create a script file, e.g. `run_server.bat`.
 7. copy and paste the following commands to this script file:
 ```
