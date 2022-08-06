@@ -1,0 +1,71 @@
+{
+  "name": "chatbot",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.0",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.1.0",
+    "bootstrap-icons": "^1.5.0",
+    "classnames": "^2.2.6",
+    "css-loader": "^3.5.1",
+    "glyphicons": "^0.2.0",
+    "html-react-parser": "^1.2.7",
+    "immutable": "^4.0.0-rc.14",
+    "jquery": "^2.2.3",
+    "node-sass": "^6.0.1",
+    "react": "16.13.1",
+    "react-contenteditable": "^3.3.6",
+    "react-dom": "^17.0.2",
+    "react-fancybox": "^0.2.5",
+    "react-modal": "^3.14.3",
+    "react-modal-image": "^2.5.0",
+    "react-scripts": "^4.0.3",
+    "react-select": "^4.1.0",
+    "react-util-kit": "0.0.14",
+    "reactjs-popup": "^2.0.5",
+    "sass-loader": "^12.1.0",
+    "sockjs-client": "^1.5.1",
+    "stompjs": "^2.3.3",
+    "universal-cookie": "^4.0.4",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "babel-loader": "8.1.0",
+    "html-loader": "^2.1.2",
+    "prop-types": "15.7.2",
+    "react-svg-loader": "^3.0.3",
+    "style-loader": "^1.1.3"
+  },
+  "peerDependencies": {
+    "react": "16.13.1"
+  }
+}
