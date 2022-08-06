@@ -17,20 +17,52 @@ you can watch a teaser video demonstration of BURT <a href="https://tinyurl.com/
 
 ## Deploy BURT on your machine
 ### For Windows users:
+Burt is web application built with Springboot and React, so you need to run both the backend and frontend, respectively.  
 
-First, create a new folder on your machine (e.g. `D:\Projects\burt-project`), and open this folder `burt-project` in the terminal, then follow the next steps:
-1. `git clone https://github.com/sea-lab-wm/burt.git`
-2. `git clone https://github.com/ojcchar/appcore.git`
-3. `git clone https://github.com/ojcchar/text-analyzer.git`
-4. `git clone https://github.com/ojcchar/bug_report_completion.git`
-5. Open the file `\burt-project\burt\burt-server\update_deps_and_run_server.bat`, then change the REPOSITORIES_PATH to the directory that contains burt repo on your machine, such as `D:\Projects\burt-project`
-6. make sure your java version is 12 or 11
-7. make sure your maven version is 3.6.3
-8. check if you have installed yarn, if not, please install yarn
+First, to make sure your machine has the following environment: 
+1. **JDK version is 12**
+2. **Maven version is 3.6.3**
 
-Second, to run the burt server, open a new terminal, then input the next commands:
-1. `cd D:\Projects\burt-project\burt\burt-server` (feel free to change to your own path)
-2. `update_deps_and_run_server.bat`
+Second, to run the server, you need to do the following:
+
+3. create a new folder (e.g. fse-burt-project, it is better **not** to use burt as the folder name) on your machine (e.g. `D:\Projects\burt-project`).
+4. in this empty folder, create a script file, e.g. `run_server.bat`.
+5. copy and paste the following commands to this script file:
+```
+set CUR_DIR=%CD%
+call git clone -b fse-version https://github.com/sea-lab-wm/burt.git
+call git clone https://github.com/ojcchar/appcore.git
+call git clone https://github.com/ojcchar/text-analyzer.git
+call git clone https://github.com/ojcchar/bug_report_completion.git
+
+
+rem repo update
+set APPCORE_REPO_PATH=%CUR_DIR%\appcore
+set TXT_ANALYZER_REPO_PATH=%CUR_DIR%\text-analyzer
+set BUG_REPORT_COMPLETION_REPO_PATH=%CUR_DIR%\bug_report_completion
+
+REM project building
+cd "%APPCORE_REPO_PATH%\appcore" && call gradlew clean testClasses install && @echo on
+cd "%TXT_ANALYZER_REPO_PATH%\text-analyzer" && call gradlew clean testClasses install && @echo on
+cd "%BUG_REPORT_COMPLETION_REPO_PATH%\code\bug_report_coding" && call gradlew clean testClasses install && @echo on
+cd "%BUG_REPORT_COMPLETION_REPO_PATH%\code\bug_report_patterns" && call gradlew clean testClasses install && @echo on
+cd "%BUG_REPORT_COMPLETION_REPO_PATH%\code\bug_report_classifier" && call gradlew clean testClasses install && @echo on
+cd "%BUG_REPORT_COMPLETION_REPO_PATH%\code\bug_report_parser\bugparser" && call gradlew clean testClasses install && @echo on
+cd "%CUR_DIR%"
+
+cd burt\burt-nlparser && call mvn clean install -DskipTests && @echo on
+cd burt\trace-replayer\lib && 0_install-maven-deps.bat && @echo on
+cd ..\..\trace-replayer && mvn clean install -DskipTests && @echo on
+cd ..\crashscope && call mvn clean install -DskipTests && @echo on
+cd ..\burt-quality-checker && call mvn clean install -DskipTests && @echo on
+
+cd "%CUR_DIR%"
+
+cd burt\burt-server
+call mvnw spring-boot:run
+```
+6. open a new terminal, and go to the folder with this script file. 
+7. run this command: `run_server.bat`. This step might take a while because it needs to download dependencies and compile all needed packages.
 
 Third, to run the burt gui, open a new terminal, then input the next commands:
 1. `cd D:\Projects\burt-project\burt\burt-gui` (feel free to change to your own path)
