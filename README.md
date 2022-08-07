@@ -21,8 +21,8 @@ Burt is web application built with Springboot and React, so you need to run both
 
 First, set up the following environment on our machine (please make sure to install the version as specified):
 * install **JDK 12**, download at [here](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
-* install **Maven 3.6.3**, download at [here](https://dlcdn.apache.org/maven/maven-3/), refer to these tutorials to install maven on your [win10](https://javabydeveloper.com/how-to-install-maven-on-windows/) or [mac](https://mkyong.com/maven/install-maven-on-mac-osx/) 
-* install **node.js 15.8.0 and npm 7.5.1**. You can use [nvm](https://github.com/nvm-sh/nvm) to install node.js and npm, refer to this [tutorial](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+* install **Maven 3.6.3**, download at [here](https://dlcdn.apache.org/maven/maven-3/), refer to these tutorials to install maven on your [win10](https://javabydeveloper.com/how-to-install-maven-on-windows/) or [macOS](https://mkyong.com/maven/install-maven-on-mac-osx/) 
+* install **node.js 15.8.0 and npm 7.5.1**, you can use nvm to install node.js and npm easily, refer to these tutorials to install nvm on your [win10](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows#alternative-version-managers) or [macOS](https://github.com/nvm-sh/nvm#install--update-script).
 * install **yarn 1.22.5**, refer to this [tutorial](https://classic.yarnpkg.com/en/docs/install#windows-stable) or [this](https://www.npmjs.com/package/yarn/v/1.22.5)
 * By default the server endpoint is http://localhost:8081, so please make sure the port 8081 is free
 
