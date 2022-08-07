@@ -16,20 +16,21 @@ The following figure is the overview of workflow of BURT.
 you can watch a teaser video demonstration of BURT <a href="https://tinyurl.com/bcbto">here</a>.
 
 ## Deploy BURT on your machine
-### For Windows users:
+
 Burt is web application built with Springboot and React, so you need to run both the backend and frontend, respectively.  
 
 First, set up the following environment on our machine (please make sure to install the version as specified):
-1. install JDK 12
-2. install Maven 3.6.3
-3. install node.js 15.8.0 and npm 7.5.1. You can use nvm to install node.js and npm, refer to this [tutorial](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-4. install yarn 1.22.5, refer to this [tutorial](https://classic.yarnpkg.com/en/docs/install#windows-stable) or [this](https://www.npmjs.com/package/yarn/v/1.22.5)
+* install JDK 12
+* install Maven 3.6.3
+* install node.js 15.8.0 and npm 7.5.1. You can use nvm to install node.js and npm, refer to this [tutorial](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+* install yarn 1.22.5, refer to this [tutorial](https://classic.yarnpkg.com/en/docs/install#windows-stable) or [this](https://www.npmjs.com/package/yarn/v/1.22.5)
 
+### For Windows users:
 Second, to run the server, you need to do the following steps:
 
-5. create a new folder on your machine (e.g. `fse-burt-project`, it is better **not** to use burt as the folder name).
-6. in this empty folder, create a script file, e.g. `run_server.bat`.
-7. copy and paste the following commands to this script file:
+1. create a new folder on your machine (e.g. `fse-burt-project`, it is better **not** to use burt as the folder name).
+2. in this empty folder, create a script file, e.g. `run_server.bat`.
+3. copy and paste the following commands to this script file:
 ```
 set CUR_DIR=%CD%
 call git clone -b fse-version https://github.com/sea-lab-wm/burt.git
@@ -63,36 +64,73 @@ cd "%CUR_DIR%"
 cd burt\burt-server
 call mvnw spring-boot:run
 ```
-8. open a new terminal, and go to the folder with this script file. 
-9. run this command: `run_server.bat`. This step might take a while because it needs to download dependencies and compile all needed packages.
+4. open a new terminal, and go to the folder with this script file. 
+5. run this command: `run_server.bat`. This step might take a while because it needs to download dependencies and compile all needed packages.
 
 Third, to run the burt gui, you need to do the following steps:
 
-10. open a new terminal, go to the `fse-burt-project` folder, then go to the `burt\burt-gui` folder.
-11. run this command: `run_app.bat`
-12. Done！
+6. open a new terminal, go to the `fse-burt-project` folder, then go to the `burt\burt-gui` folder.
+7. run this command: `run_app.bat`
+8. Done！
 
 ### For Mac users:
+Second, to run the server, you need to do the following steps:
+1. create a new folder named `fse-burt-project` on your machine (e.g. `/Users/yourname/fse-burt-project`, it is better **not** to use burt as the folder name).
+2. in this empty folder, create a script file, e.g. `run_server.sh`.
+3. copy and paste the following commands to this script file:
+```
+#!/bin/bash
+set -x #echo on
 
-First, create a new folder on your machine (e.g. `/Users/yourname/burt-project`), and open this folder `burt-project` in the terminal, then follow the next steps:
-1. `git clone https://github.com/sea-lab-wm/burt.git`
-2. `git clone https://github.com/ojcchar/appcore.git`
-3. `git clone https://github.com/ojcchar/text-analyzer.git`
-4. `git clone https://github.com/ojcchar/bug_report_completion.git`
-5. Open the file `burt/burt-server/update_deps_and_run_server.sh`, then change the REPOSITORIES_PATH to the directory that contains burt repo on your machine, such as `/Users/yourname/burt-project/`
-6. make sure your java version is 12 or 11
-7. make sure your maven version is 3.6.3
-8. check if you have installed yarn, if not, please install yarn
+export CUR_DIR=`pwd`
+git clone -b fse-version https://github.com/sea-lab-wm/burt.git
+git clone https://github.com/ojcchar/appcore.git
+git clone https://github.com/ojcchar/text-analyzer.git
+git clone https://github.com/ojcchar/bug_report_completion.git
 
-Second, to run the burt server, open a new terminal, then input the next commands:
-1. `cd /Users/yourname/burt-project/burt/burt-server` (feel free to change to your own path)
-2. `chmod +x update_deps_and_run_server.sh`
-3. `./update_deps_and_run_server.sh`
 
-Third, to run the burt gui, open a new terminal, then input the next commands:
-1. `cd Users/yourname/burt-project/burt/burt-gui` (feel free to change to your own path)
-2. `chmod +x run_app.sh`
-3. `./run_app.sh`
+export APPCORE_REPO_PATH=$CUR_DIR/appcore
+export TXT_ANALYZER_REPO_PATH=$CUR_DIR/text-analyzer
+export BUG_REPORT_COMPLETION_REPO_PATH=$CUR_DIR/bug_report_completion
+
+
+#repo update
+cd $APPCORE_REPO_PATH && git pull
+cd $TXT_ANALYZER_REPO_PATH && git pull
+cd $BUG_REPORT_COMPLETION_REPO_PATH && git pull
+
+
+# project building
+cd $APPCORE_REPO_PATH/appcore && ./gradlew clean testClasses install
+cd $TXT_ANALYZER_REPO_PATH/text-analyzer && ./gradlew clean testClasses install
+cd $BUG_REPORT_COMPLETION_REPO_PATH/code/bug_report_coding && ./gradlew clean testClasses install
+cd $BUG_REPORT_COMPLETION_REPO_PATH/code/bug_report_patterns && ./gradlew clean testClasses install
+cd $BUG_REPORT_COMPLETION_REPO_PATH/code/bug_report_classifier && ./gradlew clean testClasses install
+cd $BUG_REPORT_COMPLETION_REPO_PATH/code/bug_report_parser/bugparser && ./gradlew clean testClasses install
+
+
+cd $CUR_DIR
+
+cd burt/burt-nlparser && mvn clean install -DskipTests
+cd burt/trace-replayer/lib && ./0_install-maven-deps.sh
+cd ../../trace-replayer && mvn clean install -DskipTests
+cd ../crashscope && mvn clean install -DskipTests
+cd ../burt-quality-checker && mvn clean install -DskipTests
+cd $CUR_DIR
+
+cd burt\burt-server
+./mvnw spring-boot:run
+```
+4. open a new terminal, and go to the folder with this script file. 
+5. run this command：`chmod +x run_server.sh`
+6. run this command: `./run_server.sh`. This step might take a while because it needs to download dependencies and compile all needed packages.
+
+Third, to run the burt gui, you need to do the following steps:
+
+6. open a new terminal, go to the `fse-burt-project` folder, then go to the `burt/burt-gui` folder.
+7. run this command: `chmod +x run_app.sh`
+8. run this command: `./run_app.sh`
+9. Done！
 
 **NOTE** :
 if you have error when you git clone some repo like "Support for password authentication was removed. Please use a personal access token instead", please go to Settings => Developer Settings => Personal Access Token => Generate New Token => Copy the generated Token, then use this token as the password.
