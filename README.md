@@ -31,7 +31,7 @@ Second, to run the server, you need to do the following steps:
 
 1. create an empty folder on your machine (e.g. `fse-burt-project`, it is better **not** to use burt as the folder name).
 2. create a script file in the `fse-burt-project` folder, there are two ways to do this:
-    *  create a script file named by `run_server.bat` in this folder,, and copy and paste the following commands to this script file.
+    *  create a script file named by `run_server.bat` in this folder, and copy and paste the following commands to this script file.
     * download the script from Google Drive directly, the gdrive link is [here](https://drive.google.com/drive/folders/1JHbEMk9km2CbK4Df_Iy7T-vFS9LU6vFV?usp=sharing),        and then put this script file in this folder.
 ```
 set CUR_DIR=%CD%
@@ -79,7 +79,7 @@ Third, to run the burt gui, you need to do the following steps:
 Second, to run the server, you need to do the following steps:
 1. create an empty folder named `fse-burt-project` on your machine (e.g. `/Users/yourname/fse-burt-project`, it is better **not** to use burt as the folder name).
 2. create a script file in the `fse-burt-project` folder, there are two ways to do this:
-    *  create a script file named by `run_server.sh` in this folder,, and copy and paste the following commands to this script file.
+    *  create a script file named by `run_server.sh` in this folder, and copy and paste the following commands to this script file.
     * download the script from Google Drive directly, the gdrive link is [here](https://drive.google.com/drive/folders/1hYaZsm4deZza3c9mZKRKqaNV05SHYnfK?usp=sharing):        and then put this script file in this folder.
     
 ```
