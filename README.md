@@ -31,7 +31,7 @@ Second, to run the server, you need to do the following steps:
 
 1. create a new folder on your machine (e.g. `fse-burt-project`, it is better **not** to use burt as the folder name).
 2. in this empty folder, create a script file, e.g. `run_server.bat`.
-3. copy and paste the following commands to this script file:
+3. copy and paste the following commands to this script file, or you can download the script from Google Drive directly for your convenience, the gdrive link is [here](https://drive.google.com/drive/folders/1JHbEMk9km2CbK4Df_Iy7T-vFS9LU6vFV?usp=sharing):
 ```
 set CUR_DIR=%CD%
 call git clone -b fse-version https://github.com/sea-lab-wm/burt.git
@@ -78,7 +78,7 @@ Third, to run the burt gui, you need to do the following steps:
 Second, to run the server, you need to do the following steps:
 1. create a new folder named `fse-burt-project` on your machine (e.g. `/Users/yourname/fse-burt-project`, it is better **not** to use burt as the folder name).
 2. in this empty folder, create a script file, e.g. `run_server.sh`.
-3. copy and paste the following commands to this script file:
+3. copy and paste the following commands to this script file, or you can download the script from Google Drive directly for your convenience, the gdrive link is [here](https://drive.google.com/drive/folders/1hYaZsm4deZza3c9mZKRKqaNV05SHYnfK?usp=sharing):
 ```
 #!/bin/bash
 set -x #echo on
