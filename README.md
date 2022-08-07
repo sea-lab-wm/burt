@@ -118,7 +118,7 @@ cd ../crashscope && mvn clean install -DskipTests
 cd ../burt-quality-checker && mvn clean install -DskipTests
 cd $CUR_DIR
 
-cd burt\burt-server
+cd burt/burt-server
 ./mvnw spring-boot:run
 ```
 4. open a new terminal, and go to the folder with this script file. 
