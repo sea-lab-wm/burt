@@ -72,7 +72,7 @@ Third, to run the burt gui, you need to do the following steps:
 
 6. open a new terminal, go to the `fse-burt-project` folder, then go to the `burt\burt-gui` folder.
 7. run this command: `run_app.bat`
-8. Done！
+8. open your browser, you can see BURT! (the url is http://localhost:8081) 
 
 ### For Mac users:
 Second, to run the server, you need to do the following steps:
@@ -131,10 +131,26 @@ Third, to run the burt gui, you need to do the following steps:
 6. open a new terminal, go to the `fse-burt-project` folder, then go to the `burt/burt-gui` folder.
 7. run this command: `chmod +x run_app.sh`
 8. run this command: `./run_app.sh`
-9. Done！
+9. open your browser, you can see BURT! (the url is http://localhost:8081)
 
 **NOTE** :
 if you have error when you git clone some repo like "Support for password authentication was removed. Please use a personal access token instead", please go to Settings => Developer Settings => Personal Access Token => Generate New Token => Copy the generated Token, then use this token as the password.
+
+## Test BURT 
+
+After you deploy BURT on your machine successfully, you can try to report some bugs using BURT. 
+
+First, we recommend you to watch a short instructional video that explained how to use BURT via an example, the video can be found at [https://tinyurl.com/bcbto](https://tinyurl.com/bcbto). You can also read our user manual to learn how ot use BURT, the user manual can be found at [here](https://github.com/sea-lab-wm/burt/blob/master/data/BURT_User_Guide.pdf)
+
+Then, you can select a app, and report a bug on BURT. We provide 12 bugs from six Android apps (see more details in our original paper), the bug videos can he found at [here](https://github.com/sea-lab-wm/burt/tree/master/data/bug%20videos%20for%20evaluation). Feel free to watch one bug video and report it using BURT!
+
+
+
+
+
+
+
+
 
 ## Replication Package
 In this package, there are three main folders: code, app_execution_data and evaluation.
