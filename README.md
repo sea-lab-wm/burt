@@ -24,7 +24,7 @@ First, set up the following environment on our machine (please make sure to inst
 * install **Maven 3.6.3**
 * install **node.js 15.8.0 and npm 7.5.1**. You can use [nvm](https://github.com/nvm-sh/nvm) to install node.js and npm, refer to this [tutorial](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 * install **yarn 1.22.5**, refer to this [tutorial](https://classic.yarnpkg.com/en/docs/install#windows-stable) or [this](https://www.npmjs.com/package/yarn/v/1.22.5)
-* By default the server endpoint is http://localhost:8081. So please make sure the port 8081 is free
+* By default the server endpoint is http://localhost:8081, so please make sure the port 8081 is free
 
 ### For Windows users:
 Second, to run the server, you need to do the following steps:
