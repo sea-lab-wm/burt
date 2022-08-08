@@ -3,9 +3,15 @@
 
 ## Overview
 
-This repository contains the replication package of our ESEC/FSE'22 paper **Toward Interactive Bug Reporting for (Android App) End-Users**.
+This repository contains the replication package of our ESEC/FSE'22 paper:
 
-This README will walk you through installing and using BURT and will describe the contents of the replication package.
+
+> Y. Song, J. Mahmud, Y. Zhou, O. Chaparro, K. Moran, A. Marcus, and D. Poshyvanyk, “Toward Interactive Bug Reporting for (Android App) End-Users,” in Proceedings of the 30th ACM Joint Meeting on the Foundations of Software Engineering (ESEC/FSE'22), 2022, to appear
+
+
+This README will walk you through installing and using BURT. 
+
+This README also describes the content of the replication package.
 
 ## What is BURT?
 
@@ -18,14 +24,14 @@ BURT is a web-based task-oriented chatbot for **BU**g **R**epor**T**ing (BURT), 
 You can watch a teaser video demonstration of BURT <a href="https://tinyurl.com/bcbto">here</a>.
 
 
-BURT is web application with two major software components: the backend server and the frontend (GUI). The backend server is implemented via SpringBoot (Java) and the frontend is implemented via React (Javascript, Node.js). The frontend comunicates with the server via REST web services.
+BURT is implemented as a web application with two major software components: **the backend server** and **the frontend (GUI)**. The backend server is implemented via SpringBoot (Java) and the frontend is implemented via React (Javascript, Node.js). The frontend comunicates with the server via REST web services.
 
 The following figure shows an overview of BURT's workflow.
 <p align="center"> <img src="https://dl.dropboxusercontent.com/s/gg84imhpleb38cv/Burt-Overview.png?dl=0" width="600"></p>
 
 ## Building and deploying BURT
 
-In order to build and run BURT, you need to (1) set up the development environment, (2) build/run BURT's backend server, and (3) build/run BURT's frontend.
+To build and run BURT, you need to (1) set up the development environment, (2) build/run BURT's backend server, and (3) build/run BURT's frontend.
 
 We provide instructions for installing BURT on Windows 10 and Mac OS Big Sur. Similar steps can be performed for other operating systems and other versions of Windows and Mac.
 
@@ -34,7 +40,7 @@ We provide instructions for installing BURT on Windows 10 and Mac OS Big Sur. Si
 To set up the environment, complete the following steps:
 
 **NOTE**: make sure to install the version of the tools/frameworks as specified. Also make sure these can be executed in the terminal.
-1. Install the **Java Development Kit (JDK) v12**. You can downlod the JDK installer from [this website](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html). Run the installer on your machine and follow the instructions on the screen. If you have multiple versions of the JDK installed on your machine, make sure you use JDK 12 by default (e.g., on Windows you may need to modify the `PATH` environment variable to point to the 12 version).
+1. Install the **Java Development Kit (JDK) v12**. You can downlod the JDK installer from [this website](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html). Run the installer on your machine and follow the instructions on the screen. If you have multiple versions of the JDK installed on your machine, make sure you use JDK 12 by default (e.g., on Windows you may need to modify the `PATH` environment variable to point to the path where the 12 version is installed).
 2. Install the **Maven 3.6.3** build tool. One way to do so is by downloading  Maven from [this website](https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/), decompressing the package, and adding the `bin` directory to the `PATH` environment variable. These tutorials explain other ways to install Maven: [windows](https://javabydeveloper.com/how-to-install-maven-on-windows/) or [macOS](https://mkyong.com/maven/install-maven-on-mac-osx/).
 3. Install **Node.js 15.8.0 and npm 7.5.1**. You can use nvm to install node.js and npm easily, refer to these tutorials to install nvm on your [windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows#alternative-version-managers) or [macOS](https://github.com/nvm-sh/nvm#install--update-script).
 4. Install the **yarn 1.22.5** package manager. You can run this command on the terminal to do so: `npm i yarn@1.22.5`. You can check that Yarn is installed by running: `yarn --version`.
@@ -45,43 +51,44 @@ To set up the environment, complete the following steps:
 
 Complete the following steps:
 
-1. Create an empty directory on your machine (e.g. `fse-burt-project`, we recommend **not** to use `burt` as the folder name).
-2. Download the installation script and save it in the directory you just created (e.g., `fse-burt-project`)
-   1. Windows: [download script](https://drive.google.com/drive/folders/1JHbEMk9km2CbK4Df_Iy7T-vFS9LU6vFV?usp=sharing)
-   2. Mac OS: [download script](https://drive.google.com/drive/folders/1hYaZsm4deZza3c9mZKRKqaNV05SHYnfK?usp=sharing)
+1. Create an empty directory on your machine (e.g., `fse-burt-project`, we recommend **not** to use `burt` as the folder name).
+2. Download the installation script and save it in the directory you just created (e.g., `fse-burt-project`):
+   [Windows script](https://drive.google.com/drive/folders/1JHbEMk9km2CbK4Df_Iy7T-vFS9LU6vFV?usp=sharing)
+   or [Mac OS script](https://drive.google.com/drive/folders/1hYaZsm4deZza3c9mZKRKqaNV05SHYnfK?usp=sharing)
 3. Open a terminal, go to the directory you created, and run the script:
    1. Windows: run `run_server.bat`
    2. Mac OS: give permissions to the script by running `chmod +x run_server.sh` and run the script `./run_server.sh`
    
-   This step might take a while because the script will download and compile all the dependencies needed by BURT.
-4. Once the script finishes, you should see on the terminal messages from SpringBoot. The last message should look like this: `"... Started ConversationController in 14.845 seconds..."`
+   This step might take a while because the script will download all the dependencies needed to build BURT.
+4. Once the script finishes, you should see on the terminal multiple messages from SpringBoot. The last message should look like this: `"... Started ConversationController in 14.845 seconds..."`
 
 ### 3. Building/running BURT's frontend
 
 Complete the following steps:
 
-1. Open a new terminal, go to the `fse-burt-project` directory, then go to the `burt\burt-gui` folder.
-2. Run the script that executes the BURT's GUI:
+1. Open a new terminal, go to the `fse-burt-project` directory, and go to the `burt/burt-gui` folder.
+2. Run the script that executes BURT's GUI:
    1. Windows: run the `run_app.bat` script
-   2. Mac Os: give permissions to the script (`chmod +x run_app.sh`) and then run it  `./run_app.sh`
-3. At this point the script should have executed successfully and the browser should have opened showing BURT's GUI. If the browser was not opened, open it and go to http://localhost:8081 
+   2. Mac Os: give permissions to the script (`chmod +x run_app.sh`) and then run it  (`./run_app.sh`)
+3. At this point the script should have executed successfully and your web browser should have opened showing BURT's GUI. If the browser was not opened, open it and go to http://localhost:3000 
 
-## Using BURT 
+## Reporting a bug using BURT 
 
-After you build/deploy BURT successfully, you can now report some bugs with BURT.
-
-To do so, you can enter P20 as participant ID, then select an app, and then report a bug on BURT.
-We provide 12 bugs from six Android apps (see more details in our original paper), the bug videos can be found at [here](https://github.com/sea-lab-wm/burt/tree/master/data/bug%20videos%20for%20evaluation). Feel free to watch one bug video and report it using BURT.
+After you build/deploy BURT successfully, you can now report one or more bugs with BURT.
 
 **NOTE**: We recommend you to watch a short instructional video that explains how to use BURT via an example, the video can be found at [https://tinyurl.com/bcbto](https://tinyurl.com/bcbto). Feel free to read our [user manual](https://github.com/sea-lab-wm/burt/blob/master/data/BURT_User_Guide.pdf) to learn how to use BURT.
 
+To do so, you can enter **P20** as participant ID, then select an app, and then report a bug on BURT.
+We provide 12 bugs from six Android apps (see more details in our original paper), the bug videos can be found [here](https://github.com/sea-lab-wm/burt/tree/master/data/bug%20videos%20for%20evaluation). Feel free to watch one bug video and report it using BURT.
+
+
 ## ESEC/FSE'22 Replication Package
 
-In this repository, there are three main directories: `code`, `app_execution_data`, and `evaluation`. We provide details about each of these directories.
+Our ESEC/FSE'22 replication package contains three main parts: BURT's source code, BURT's app execution data, and BURT's evaluation artifacts. These parts are composed of multiple directories/folders that we describe next:
 
-### The `code` directory
+### BURT's source code
 
-This directory contains BURT's source code and is structured into several sub-folders:
+BURT's source code is found in multiple sub-folders (i.e., Maven packages):
 
 * `burt-gui`: this folder mainly contains the frontend code that implements BURT's chatbot interface via the React Chatbot Kit and the Bootstrap framework. The chat-related folders (`Chat`, `Chatbot`, `ChatbotMessage`, etc.) contain the code about the chat box,
 and the `StepsPanel` folder has the code that displays the S2Rs that end-users have reported. The `TipsOptions` code implements 
@@ -100,9 +107,9 @@ the code that checks the quality of the end-user's textual bug descriptions (i.e
 
 * `traceReplayer`: this folder contains the code that record and processes the app interactions made by humans (e.g., end users or developers) to execute app features. The code generates the screenshots, XML GUI hierarchy files, and app execution information to complement/augment the execution model (i.e., the graph). 
 
-### The `app_execution_data` directory
+### BURT's app execution data
 
-This directory contains all the data that is used to build BURT's app execution graph. We describe the three types of data stored in this directory:
+The `data` directory contains all the data that is used to build BURT's app execution graph. We describe the three types of data stored in this directory:
     
 * CrashScope data: The app exploration data that is collected by CrashScope, following multiple systematic app exploration strategies. We stored the screenshot, XML GUI hierarchy, and app execution information for each screen. This data is stored in `data\CrashScope-Data`.
 
@@ -110,7 +117,7 @@ This directory contains all the data that is used to build BURT's app execution 
 
 * TraceReplayer data: The screenshot, XML GUI hierarchy, and app execution information are extracted from each of the screens of the collected human-based traces. We stored the trace replayer data in `data\TraceReplayer-Data`.
 
-### The `evaluation` directory
+### BURT's evaluation data
 
 This directory contains all the artifacts and data related to BURT's evaluation:
 
