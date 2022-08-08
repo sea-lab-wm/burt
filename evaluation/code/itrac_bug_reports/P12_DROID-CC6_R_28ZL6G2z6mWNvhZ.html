@@ -1,0 +1,29 @@
+
+        
+        <html>
+        <head></head>
+        <body>
+        <p><b>Bug summary:</b></p>
+        <p>App will crash when user tries to add previous comment on a weight record</p>
+        <hr />
+        <p><b>Observed Behavior (a description of what happened with the app): </b></p>
+        <p>The app will crash if the user tries to perform "Add previous comment" action on an existing entry whose comment section has already been edited. </p>
+        <hr />
+        
+        <p><b>Expected Behavior (a description of what you expected to happen): </b></p>
+        <p>User should be able to perform the "Add previous comment" action on an existing entry no matter its comment section has been edited or not.</p>
+        <hr />
+        
+        <p><b>Steps to Reproduce (the steps to reproduce the problem): </b></p>
+        <p><p>1. Input current weight and click the "Set Current Weight in kg" button.</p><p>2. Click on the entry to see the "Edit Weight" alert view.</p><p>3. Input something in comment section, and click "Go" button to close the alert view.</p><p>4. Long press the entry to see the action menu.</p><p>5. Click "Add previous comment" option.</p><p>6. App crushes. </p></p>
+        <hr />
+        
+        <p><b>Additional information: </b></p>
+        <p>Even if the comment section is not edited, but the "Edit Weight" view has popped up once, the app will still crash when the user performs the above steps.</p>
+        <hr />
+        
+        <p><b>Attachments: </b></p>       
+        <p></p>
+        <hr />
+        </body>
+        </html>

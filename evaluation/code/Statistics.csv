@@ -1,7 +1,0 @@
-Participant,Px,Bug_ID,App,Reporting_order,BR_link,#_missing_ob_eb_screens,#_steps,#_missing_s2r_screens
-P25,25,APOD-RB,APOD,1,http://rocco.cs.wm.edu:21203/P25-AntennaPod-1.6.2.3-b6bf0805-20a7-42d9-a610-3fe8f72f2139.html,2,3,2
-P25,25,TIME-CC1,TIME,2,http://rocco.cs.wm.edu:21203/P25-ATimeTracker-0.20-c72a2697-6f9f-4c3e-9736-fc33bc58f8ff.html,0,10,5
-P25,25,GROW-RC,GROW,3,http://rocco.cs.wm.edu:21203/P25-Grow_Tracker-2.3.1-06187680-47a8-47db-9ab9-82697f8e3dbe.html,2,7,3
-P26,26,TIME-CC1,TIME,1,http://rocco.cs.wm.edu:21203/P26-ATimeTracker-0.20-6e17a1cc-c4c4-4096-acb8-ec26266b021c.html,0,9,1
-P26,26,APOD-CC3,APOD,2,http://rocco.cs.wm.edu:21203/P26-AntennaPod-1.6.2.3-cdda1d1e-b528-4120-a05d-6f0bfe7255d4.html,2,9,5
-P26,26,GNU-RC,GNU,3,http://rocco.cs.wm.edu:21203/P26-GnuCash-1.0.3-c9b8f500-34c5-455d-bae6-14c5c7f35d77.html,0,4,1

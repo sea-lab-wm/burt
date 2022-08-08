@@ -1,0 +1,555 @@
+[
+  {
+    "message": "P90",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Hi P90, please \u003cb\u003eselect the app\u003c/b\u003e that is having the problem",
+          "id": 0.0,
+          "widget": "AppSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "4",
+            "value1": "ATimeTracker v. 0.20",
+            "value2": "com.markuspage.android.atimetracker-0.20.webp"
+          },
+          {
+            "key": "2",
+            "value1": "Android Token v. 2.10",
+            "value2": "uk.co.bitethebullet.android.token-2.10.png"
+          },
+          {
+            "key": "7",
+            "value1": "AntennaPod v. 1.6.2.3",
+            "value2": "de.danoeh.antennapod.debug-1.6.2.3.png"
+          },
+          {
+            "key": "0",
+            "value1": "Droid Weight v. 1.5.4",
+            "value2": "de.delusions.measure-1.5.4.webp"
+          },
+          {
+            "key": "5",
+            "value1": "GnuCash v. 1.0.3",
+            "value2": "org.gnucash.android-1.0.3.png"
+          },
+          {
+            "key": "6",
+            "value1": "GnuCash v. 2.1.3",
+            "value2": "org.gnucash.android-2.1.3.png"
+          },
+          {
+            "key": "3",
+            "value1": "Grow Tracker v. 2.3.1",
+            "value2": "me.anon.grow-2.3.1.png"
+          },
+          {
+            "key": "1",
+            "value1": "Mileage v. 3.1.1",
+            "value2": "com.evancharlton.mileage-3.1.1.webp"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "APP_SELECTED"
+    ],
+    "currentAction": "SELECT_APP"
+  },
+  {
+    "type": "bot",
+    "id": 4.46441613359E11,
+    "loading": true,
+    "disabled": true,
+    "multiple": false,
+    "selectedValues": [
+      "0"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please tell me the \u003cb\u003eincorrect behavior\u003c/b\u003e that you observed on Droid Weight",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_APP"
+  },
+  {
+    "message": "the app crashed when adding a previous comment to a weight record",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it. From the list below, select the screen that is \u003cb\u003ehaving or triggering\u003c/b\u003e the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": " Please click the \"\u003cb\u003edone\u003c/b\u003e\" button after you have selected it",
+          "id": 0.0,
+          "widget": "OBScreenSelector",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight9.png"
+          },
+          {
+            "key": "1",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight11.png"
+          },
+          {
+            "key": "2",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.4.de.delusions.measure_1.5.4_droidweight3.png"
+          },
+          {
+            "key": "3",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight16.png"
+          },
+          {
+            "key": "4",
+            "value1": "",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight13.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "OB_SCREEN_SELECTED"
+    ],
+    "currentAction": "SELECT_OB_SCREEN"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.065387932585E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "3"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, please tell me how the app is \u003cb\u003esupposed to work\u003c/b\u003e",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "EB_DESCRIPTION"
+    ],
+    "currentAction": "CONFIRM_SELECTED_OB_SCREEN"
+  },
+  {
+    "message": "the previous comments should appear on screen for that record",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, now I need the steps that you performed and caused the problem",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "\u003cb\u003eThe next steps\u003c/b\u003e that you performed \u003cb\u003eafter you opened the app\u003c/b\u003e might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the view",
+            "value2": "/CrashScope-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.Top_Down.Expected..1.de.delusions.measure_1.5.4_1_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"plus\" image button",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.2.de.delusions.measure_1.5.4_droidweight9_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"plusplus\" image button",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.2.de.delusions.measure_1.5.4_droidweight6_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Tap the \"set (Set Current Weight in kg)\" button",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight5_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Tap the \"minusminus\" image button",
+            "value2": "/CrashScope-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.Bottom_Up.Expected..1.de.delusions.measure_1.5.4_10_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 1.024556341672E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"minus\" image button",
+            "value2": "/CrashScope-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.Bottom_Up.Expected..1.de.delusions.measure_1.5.4_9_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"plus\" image button",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight7_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Tap the \"plusplus\" image button",
+            "value2": "/CrashScope-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.Bottom_Up.Expected..1.de.delusions.measure_1.5.4_4_augmented.png"
+          },
+          {
+            "key": "3",
+            "value1": "Tap the \"list\" list view",
+            "value2": "/CrashScope-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.Bottom_Up.Expected..1.de.delusions.measure_1.5.4_2_augmented.png"
+          },
+          {
+            "key": "4",
+            "value1": "Long tap the \"list\" list view",
+            "value2": "/CrashScope-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.Bottom_Up.Expected..1.de.delusions.measure_1.5.4_3_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "none of the above",
+    "type": "bot",
+    "id": 6.43864529035E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, what is the \u003cb\u003estep\u003c/b\u003e that you performed next?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R"
+  },
+  {
+    "message": "I added a comment to the weight",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Type a valid input (e.g., comment) on the \"comment (Comment)\" text field",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight10_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 4.44045722535E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Type a valid input on the \"comment (test)\" text field",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight11_augmented.png"
+          },
+          {
+            "key": "1",
+            "value1": "Tap the \"ok (Go)\" button",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight12_augmented.png"
+          },
+          {
+            "key": "2",
+            "value1": "Long tap the \"bmi (∞)\" text view",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight16_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "done",
+    "type": "bot",
+    "id": 3.6032104511E10,
+    "loading": true,
+    "disabled": false,
+    "multiple": false,
+    "selectedValues": [
+      "1"
+    ]
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, please provide the \u003cb\u003enext step\u003c/b\u003e that you performed",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "I tapped on \"add previous comment\"",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Ok, just to double check, is this the step that you are reporting?",
+          "id": 0.0,
+          "widget": "OneScreenYesNoButtons",
+          "disabled": false,
+          "multiple": false
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"title (Add previous comment)\" text view",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight14_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "AFFIRMATIVE_ANSWER",
+      "NEGATIVE_ANSWER"
+    ],
+    "currentAction": "CONFIRM_MATCHED_S2R"
+  },
+  {
+    "message": "yes",
+    "type": "bot",
+    "id": 4.49244252045E11,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Okay, it seems \u003cb\u003ethe next steps\u003c/b\u003e that you performed might be the following (see the list below)",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      },
+      {
+        "messageObj": {
+          "message": "Please \u003cb\u003eselect the steps\u003c/b\u003e that you actually performed",
+          "id": 0.0,
+          "widget": "S2RScreenSelector",
+          "disabled": false,
+          "multiple": true
+        },
+        "values": [
+          {
+            "key": "0",
+            "value1": "Tap the \"comment (test)\" text view",
+            "value2": "/TraceReplayer-Data/de.delusions.measure-1.5.4/screenshots/de.delusions.measure.User-Trace.8.de.delusions.measure_1.5.4_droidweight15_augmented.png"
+          }
+        ]
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_PREDICTED_SELECTED"
+    ],
+    "currentAction": "PREDICT_FIRST_S2R_PATH"
+  },
+  {
+    "message": "none of the above",
+    "type": "bot",
+    "id": 1.607664493162E12,
+    "loading": true,
+    "disabled": false,
+    "multiple": false
+  },
+  {
+    "messages": [
+      {
+        "messageObj": {
+          "message": "Got it, what is the \u003cb\u003estep\u003c/b\u003e that you performed next?",
+          "id": 0.0,
+          "disabled": false,
+          "multiple": false
+        }
+      }
+    ],
+    "code": 0,
+    "nextIntents": [
+      "S2R_DESCRIPTION"
+    ],
+    "currentAction": "PROVIDE_S2R"
+  },
+  {
+    "message": "This is the last step",
+    "id": 0.0,
+    "disabled": false,
+    "multiple": false
+  }
+]
