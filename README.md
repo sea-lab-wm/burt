@@ -6,12 +6,12 @@
 This repository contains the replication package of our ESEC/FSE'22 paper:
 
 
-> Y. Song, J. Mahmud, Y. Zhou, O. Chaparro, K. Moran, A. Marcus, and D. Poshyvanyk, “Toward Interactive Bug Reporting for (Android App) End-Users,” in Proceedings of the 30th ACM Joint Meeting on the Foundations of Software Engineering (ESEC/FSE'22), 2022, to appear
+> Y. Song, J. Mahmud, Y. Zhou, O. Chaparro, K. Moran, A. Marcus, and D. Poshyvanyk, “**Toward Interactive Bug Reporting for (Android App) End-Users**,” in Proceedings of the 30th ACM Joint Meeting on the Foundations of Software Engineering (ESEC/FSE'22), 2022, to appear
 
 
 This README will walk you through installing and using BURT. 
 
-This README also describes the content of the replication package.
+This README also describes the content of our ESEC/FSE'22 replication package.
 
 ## What is BURT?
 
