@@ -194,10 +194,10 @@ def generate_bug_reports(file_name):
 
 
 if __name__ == '__main__':
-    file_name = "ITRACKER-study_March 12, 2022_16.15.xlsx"  # File name
-    if not os.path.exists('itracker_bug_reports'):
-        os.makedirs('itracker_bug_reports')
-    if not os.path.exists('itracker_bug_reports_pdf'):
-        os.makedirs('itracker_bug_reports_pdf')
+    file_name = "ITRACKER-study_March.xlsx"  # File name
+    if not os.path.exists('itrac_bug_reports'):
+        os.makedirs('itrac_bug_reports')
+    if not os.path.exists('itrac_bug_reports_pdf'):
+        os.makedirs('itrac_bug_reports_pdf')
 
     generate_bug_reports(file_name)

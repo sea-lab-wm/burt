@@ -139,7 +139,7 @@ if __name__ == '__main__':
     processed_participants = ["P1", "P3", "P6", "P8", "P9", "P13", "P19", "P2", "P7", "P17", "P24", "P4", "P10", "P12",
                               "P16", "P18", "P21", "P22", "P15", "P20", "P23"]
 
-    survey_answers_file = "BURT ICSE’22 Evaluation Survey_August 27, 2021_21.35.csv"
+    survey_answers_file = "BURT Evaluation Survey_August.csv"
     assignment_file = "Results analysis - Bug-assignment.csv"
     bug_reports_folder = os.path.join("../data/generated_bug_reports")
     output_file_name1 = "Statistics.csv"

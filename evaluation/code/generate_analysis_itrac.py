@@ -118,6 +118,6 @@ def read_xlsx(file_name):
 
 
 if __name__ == '__main__':
-    file_name = "ITRACKER-study_March 13, 2022_09.53.xlsx"  # File name
+    file_name = "ITRAC-study_March.xlsx"  # File name
 
     read_xlsx(file_name)

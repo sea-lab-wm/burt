@@ -3,6 +3,7 @@
 data/generated_bug_reports
 data/conversation_dumps
 data/metrics
+burt/evaluation/code/BURT ICSE’22 Evaluation Survey_August 27, 2021_21.35.xlsx
 
 # dependencies
 node_modules
