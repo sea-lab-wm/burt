@@ -43,24 +43,24 @@ To build and run BURT, you need to:
 To set up BURT's build/runtime environment, complete the following steps:
 
 **NOTE**: make sure to install the version of the tools/frameworks as specified. Also make sure these can be executed in the terminal.
-1. Install the **Java Development Kit (JDK) 12**. 
+1. Install the **Java Development Kit (JDK) 12**:
    1. You can downlod the JDK installer from [this website](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html). Run the installer on your machine and follow the instructions on the screen. 
    2. If you have multiple JDK versions installed on your machine, make sure you use JDK 12 by default (e.g., on Windows you may need to modify the `PATH` environment variable to point to the path where the 12 version is installed).
-   3. Set the JAVA_HOME environment variable. On **Mac**, run ``export JAVA_HOME=`/usr/libexec/java_home -v [java_version]\` `` (replace `[java_version]` with the specific JDK version you installed). On **Windows**, follow these [instructions](https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html) to set the variable.
+   3. Set the JAVA_HOME environment variable. On **Mac**, run ``export JAVA_HOME=`/usr/libexec/java_home -v [java_version]` `` (replace `[java_version]` with the specific JDK version you installed). On **Windows**, follow these [instructions](https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html) to set the variable.
    4. Verify the JDK installation by running `java -version` on the terminal. You should see the specific JDK 12 version.
-2. Install the **Maven 3.6.3** build tool. One way to do so is by downloading  Maven from [this website](https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/), decompressing the package, and adding the `bin` directory to the `PATH` environment variable. These tutorials explain other ways to install Maven: [windows](https://javabydeveloper.com/how-to-install-maven-on-windows/) or [macOS](https://mkyong.com/maven/install-maven-on-mac-osx/).
-3. Install the **Node.js 15.8.0** runtime environment and its pckage manager **npm 7.5.1**:
+2. Install the **Maven 3.6.3** build tool. One way to do so is by downloading  Maven from [this website](https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/), decompressing the package, and adding the `bin` directory to the `PATH` environment variable. These tutorials explain other ways to install Maven: [Windows](https://javabydeveloper.com/how-to-install-maven-on-windows/) or [Mac OS](https://mkyong.com/maven/install-maven-on-mac-osx/).
+3. Install the **Node.js 15.8.0** runtime environment and its package manager **npm 7.5.1**:
    1. **Windows**: install the *node version manager (nvm)* by downloading its installer from [here](https://github.com/coreybutler/nvm-windows/releases/download/1.1.9/nvm-setup.exe) and then running the installer on your machine. Next, open a [terminal with administrative rights](https://grok.lsu.edu/article.aspx?articleid=18026&printable=y), and run the following commands: `nvm install 15.8.0` and  `nvm use 15.8.0`. This [website](https://javascript.plainenglish.io/the-best-way-to-install-node-js-on-a-windows-pc-4481156bf63e) provides extra information.
    2. **Mac OS**: download node's .pkg installer (`node-v15.8.0.pkg`) from [here](https://nodejs.org/download/release/v15.8.0/). Open the installer and follow the instructions on the screen.
    
     Verify the node/npm installation by running the commands: `node -v` and `npm -v`.
-4. Install the **yarn 1.22.5** package manager.:
-   1. **Windows**: On a terminal with administrative rights, run: `npm i --global yarn@1.22.5`
-   2. **Mac OS**: Run this command on the terminal to do so: `sudo npm i --global yarn@1.22.5`.
+4. Install the **yarn 1.22.5** package manager:
+   1. **Windows**: on a terminal with administrative rights, run: `npm i --global yarn@1.22.5`
+   2. **Mac OS**: run `sudo npm i --global yarn@1.22.5` on the terminal.
    
    You can check Yarn is installed correctly by running: `yarn --version`.
 5. Install **Git** (any version should work). A tutorial to install Git is found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-6. By default the backend server will run at the 8081 port and the frontend endpoint will be accessible via http://localhost:3000. Make sure the ports 8081 and 3000 are available on your machine.
+6. By default BURT's backend server will run at the 8081 port and BURT's frontend will be accessible at http://localhost:3000. Make sure the ports 8081 and 3000 are available on your machine.
 
 ### 2. Building/running BURT's backend server
 
@@ -68,26 +68,26 @@ Complete the following steps:
 
 1. Create an empty directory called `fse-burt-project` on your personal directory.
 2. Download the installation script and save it in the `fse-burt-project` directory:
-   [Windows script](https://drive.google.com/drive/folders/1JHbEMk9km2CbK4Df_Iy7T-vFS9LU6vFV?usp=sharing)
-   or [Mac OS script](https://drive.google.com/drive/folders/1hYaZsm4deZza3c9mZKRKqaNV05SHYnfK?usp=sharing).
+   [Windows](https://drive.google.com/drive/folders/1JHbEMk9km2CbK4Df_Iy7T-vFS9LU6vFV?usp=sharing)
+   or [Mac OS](https://drive.google.com/drive/folders/1hYaZsm4deZza3c9mZKRKqaNV05SHYnfK?usp=sharing).
 3. Open a terminal, go to the `fse-burt-project`, and run the build script:
-   1. **Windows**: run `run_server.bat`
+   1. **Windows**: run `run_server.bat`.
    2. **Mac OS**: give permissions to the script (`chmod +x run_server.sh`) and then run the script (`./run_server.sh`).
    
    This step might take a while because the script will download all the dependencies needed to build BURT.
-4. Once the script finishes, you should see on the terminal multiple messages from SpringBoot. The last message should look like this: `"... Started ConversationController in 14.845 seconds..."`
+4. Once the script finishes, you should see on the terminal multiple messages from SpringBoot. The last message should look like this: `"... Started ConversationController in 14.845 seconds..."`.
 
 ### 3. Building/running BURT's frontend
 
 Complete the following steps:
 
-1. Open a new terminal, go to the `fse-burt-project` directory, and then go to the `burt/burt-gui` folder.
-2. Run the script that builds/executes BURT's GUI:
-   1. **Windows**: run the `run_app.bat` script
-   2. **Mac Os**: give permissions to the script (`chmod +x run_app.sh`) and then run it  (`./run_app.sh`)
+1. Open a new terminal, go to the `fse-burt-project/burt/burt-gui` directory.
+2. Run the script that builds/executes BURT's frontend:
+   1. **Windows**: run the `run_app.bat` script.
+   2. **Mac Os**: give permissions to the script (`chmod +x run_app.sh`) and then run it  (`./run_app.sh`).
    
-   This step may take a while because the script will download all the dependencies required by BURT's GUI.
-3. At this point the script should have executed successfully and your web browser should have opened showing BURT's GUI. If the browser was not opened, open it and go to http://localhost:3000 
+   This step may take a while because the script will download all the dependencies required by BURT's frontend.
+3. At this point the script should have executed successfully and your web browser should have opened showing BURT's GUI. If the browser was not opened, open it and go to http://localhost:3000.
 
 ## Reporting a bug using BURT 
 
