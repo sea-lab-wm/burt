@@ -133,7 +133,7 @@ execution data needed by BURT to build its app execution model.
 
 * `crashscope`: this folder contains CrashScope's code, which generates app execution data in the form of sequential interactions (e.g., taps or type events) by utilizing a set of systematic exploration strategies on Android apps (e.g. top-down and bottom-up exploration). The code generates an screenshot of each interaction, XML files with GUI hierarchies, and app execution information for each screen of the app (e.g., which component was interacted with).
 
-* `AVT`: this folder contains AVT, a custom screen-recording desktop app that we developed, which allows humans (e.g., end users or developers) to collect screen recordings and *getevent* traces from a mobile device or emulator by simply clicking a record button. The tool internally uses the Android screen recorder that is executed by Android’s ADB tool.
+* `AVT`: this folder contains AVT, a custom screen-recording desktop app that we developed, which allows humans (e.g., end users or developers) to collect screen recordings and *getevent* traces from a mobile device or emulator by simply clicking a record button. The tool internally uses the Android screen recorder that is executed by Android’s ADB tool. The link to AVT is [here](https://github.com/sea-lab-wm/burt/tree/master/avt-tool)
 
 * `traceReplayer`: this folder contains the code that processes the app interactions made by humans to execute app features (i.e., the traces collected via AVT). The code generates app screenshots, XML GUI hierarchy files, and app execution information used by BURT to complement/augment the execution model (i.e., the graph).
 
