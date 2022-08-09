@@ -1,7 +1,7 @@
 <!-- <p align="center"> <img src="/code/burt-gui/src/assets/icons/chatbot-2.svg" width="50"></p> -->
 <h2 align="center"> <img src="https://dl.dropboxusercontent.com/s/ymqb1cjvd7fmdca/chatbot-2.svg?dl=0" width="35"> BURT: A task-oriented dialogue system for bug reporting </h2>
 
-[![DOI](https://zenodo.org/badge/342777003.svg)](https://zenodo.org/badge/latestdoi/342777003) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Overview
 
@@ -136,6 +136,8 @@ The `data` directory contains all the data that is used to build BURT's app exec
 * Collected traces: We collected crowdsourced (i.e., human-based) usage traces from our studied apps. These traces correspond to usages of the main features of the apps in our dataset. All the collected traces are stored in `data\Collected_traces_fixed`.
 
 * TraceReplayer data: The screenshot, XML GUI hierarchy, and app execution information are extracted from each of the screens of the collected human-based traces. We stored the trace replayer data in `data\TraceReplayer-Data`.
+
+We use a tool called `AVT` which is a custom screen-recording desktop app that allows humans to collect screen recordings and getevent traces from a mobile device or emulator by clicking a record button. The tool internally uses the Android screen recorder that is executed by Android’s ADB tool.
 
 ### BURT's evaluation data
 
