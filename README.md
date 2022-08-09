@@ -108,48 +108,63 @@ Our ESEC/FSE'22 replication package contains three main parts: BURT's source cod
 
 ### BURT's source code
 
-BURT's source code is found in multiple sub-folders (i.e., Maven packages):
+BURT's source code is found in multiple sub-folders (i.e., Maven packages), it mainly consists of three parts:
 
+#### Front-end
 * `burt-gui`: this folder mainly contains the frontend code that implements BURT's chatbot interface via the React Chatbot Kit and the Bootstrap framework. The chat-related folders (`Chat`, `Chatbot`, `ChatbotMessage`, etc.) contain the code about the chat box,
-and the `StepsPanel` folder has the code that displays the S2Rs that end-users have reported. The `TipsOptions` code implements 
-the dynamic display of recommendations to end-users on how to use BURT. 
+  and the `StepsPanel` folder has the code that displays the S2Rs that end-users have reported. The `TipsOptions` code implements
+  the dynamic display of recommendations to end-users on how to use BURT.
 
-* `burt-server`: this folder implements the BURT's backend BURT via SpringBoot. It is made up of several Java packages: `actions`, `conversation`, `msgparsing`, `output`, 
-`statecheckers`. In the `action` package, you will find different actions that the chatbot will perform, such as asking users to select an app or provide the OB, EB, or S2R. In the `conversation` package, you will find different kinds of message objects and states, necessary for BURT to keep track of the conversation flow. The `msgparsing` folder contains all defined intents (i.e., types of messages) and the code that obtains the intent in each round of bug reporting dialogue. The `output` folder contains the code that generates the web-based bug reports. The `statecheckers` folder contains the code
-that will check the end-user's message to decide the next action that chatbot will perform. 
+#### Back-end
 
-* `burt-quality-checker`: this folder contains the app execution model, which is a graph that stores the sequential GUI-level app interactions, and it also contains 
-the code that checks the quality of the end-user's textual bug descriptions (i.e., the individual OB, EB, or S2Rs) and matches them to screens or transitions of the execution model. 
+* `burt-server`: this folder implements the BURT's backend BURT via SpringBoot. It is made up of several Java packages: `actions`, `conversation`, `msgparsing`, `output`,
+  `statecheckers`. In the `action` package, you will find different actions that the chatbot will perform, such as asking users to select an app or provide the OB, EB, or S2R. In the `conversation` package, you will find different kinds of message objects and states, necessary for BURT to keep track of the conversation flow. The `msgparsing` folder contains all defined intents (i.e., types of messages) and the code that obtains the intent in each round of bug reporting dialogue. The `output` folder contains the code that generates the web-based bug reports. The `statecheckers` folder contains the code
+  that will check the end-user's message to decide the next action that chatbot will perform.
+
+* `burt-quality-checker`: this folder contains the app execution model, which is a graph that stores the sequential GUI-level app interactions, and it also contains
+  the code that checks the quality of the end-user's textual bug descriptions (i.e., the individual OB, EB, or S2Rs) and matches them to screens or transitions of the execution model.
 
 * `burt-nlparser`: this folder contains the code that parses the textual bug descriptions (i.e., the invididual OB, EB, and S2Rs) provided by end-users using dependency parsing via Stanford CoreNLP toolkit.
 
-* `crashscope`: this folder contains the CrashScope's code, which generates app execution data in the form of sequential interactions (e.g., taps or taps) by utilizing a set of systematic exploration strategies on Android apps (e.g. top-down and bottom-up). The code will also generate the screenshot of each interaction, XML files with GUI hierarchies, and app execution information for each screen of the app (e.g., which component was interacted with). 
+#### App Data Generation Tools
 
-* `traceReplayer`: this folder contains the code that record and processes the app interactions made by humans (e.g., end users or developers) to execute app features. The code generates the screenshots, XML GUI hierarchy files, and app execution information to complement/augment the execution model (i.e., the graph). 
+* `crashscope`: this folder contains the CrashScope's code, which generates app execution data in the form of sequential interactions (e.g., taps or taps) by utilizing a set of systematic exploration strategies on Android apps (e.g. top-down and bottom-up). The code will also generate the screenshot of each interaction, XML files with GUI hierarchies, and app execution information for each screen of the app (e.g., which component was interacted with).
 
-### BURT's app execution data
+* `AVT`: a custom screen-recording desktop app that allows humans to collect screen recordings and getevent traces from a mobile device or emulator by clicking a record button. The tool internally uses the Android screen recorder that is executed by Android’s ADB tool.
+
+* `traceReplayer`: this folder contains the code that record and processes the app interactions made by humans (e.g., end users or developers) to execute app features. The code generates the screenshots, XML GUI hierarchy files, and app execution information to complement/augment the execution model (i.e., the graph).
+
+### BURT's App Execution Data
 
 The `data` directory contains all the data that is used to build BURT's app execution graph. We describe the three types of data stored in this directory:
-    
+
 * CrashScope data: The app exploration data that is collected by CrashScope, following multiple systematic app exploration strategies. We stored the screenshot, XML GUI hierarchy, and app execution information for each screen. This data is stored in `data\CrashScope-Data`.
 
 * Collected traces: We collected crowdsourced (i.e., human-based) usage traces from our studied apps. These traces correspond to usages of the main features of the apps in our dataset. All the collected traces are stored in `data\Collected_traces_fixed`.
 
 * TraceReplayer data: The screenshot, XML GUI hierarchy, and app execution information are extracted from each of the screens of the collected human-based traces. We stored the trace replayer data in `data\TraceReplayer-Data`.
 
-We use a tool called `AVT` which is a custom screen-recording desktop app that allows humans to collect screen recordings and getevent traces from a mobile device or emulator by clicking a record button. The tool internally uses the Android screen recorder that is executed by Android’s ADB tool.
 
-### BURT's evaluation data
+### BURT's Evaluation Data and Code
 
-This directory contains all the artifacts and data related to BURT's evaluation:
+Our artifact provides the data that we used and collected in Burt’s evaluation. It also provides the source code used to process this data and generate the evaluation results that we provide in our original paper.
 
-* BURT evaluation data: in the `evaluation\code\qualtrics_data_analyzing` folder, you can find the code that we used to process the results from the paricipant responses to the Qualtrics survey and generated the stacked bar charts that display the usefulness/ease of use of BURT's features. You can also find the code (`evaluation\code\bug_assignment.py`) that generated the random bug assignments to all participants, and the code (`evaluation\code\create_analysis_spreadsheets.py`) that processed the generated bug
-reports for analysis. We also provided the original answers to our survey from 18 participants in the `evaluation\code\BURT Evaluation Survey_August-Anonymous.xlsx`, and the Excel file `evaluation\burt_result_analysis.xlsx` that stores the complete analysis of results including both the answers to the survey and the generated BURT bug reports.
+#### Evaluation Data
 
-* ITRAC evaluation data: in the `evaluation\code` folder, you can find the code `generate_analysis_itrac.py` and `generate_itrac_bug_reports.py` that we used to process the collected results from the participants responses to the ITRAC Qualtrics survey and generate a spreadsheet that contains the ITRAC bug reports. We also provide the original answers to our survey from 18 participants in the `evaluation\code\ITRAC-study_March.xlsx`, and the Excel file `evaluation\itrac_result_analysis.xlsx` that stores the complete analysis of the collected ITRAC bug reports.
+* bug videos: `data\bug videos for evaluation` contains the videos given to the participants that demonstrate the observed and expected app behavior for the 12 bugs we selected for evaluation.
 
 * Bug reports: the folder `evaluation\data\generated_bug_reports` stores all the bug reports generated by participants via BURT. Another folder `evaluation\data\itrac_bug_reports` stores all the bug reports generated by participants via ITRAC.
 
-* BURT conversations: the folder `evaluation\data\conversation_dumps` stores the conversations that each particiant had with BURT.
+* BURT conversations: the folder `evaluation\data\conversation_dumps` stores the conversations that each participant had with BURT.
 
+* Questionnaire answers:  `evaluation\code\BURT Evaluation Survey_August-Anonymous.xlsx` and `evaluation\code\ITRAC-study_March.xlsx` stores the original answers to our survey from 18 participants for BURT and ITRAC, respectively.
 
+#### Evaluation Code
+
+* `evaluation\code\bug_assignment.py` contains the code that generated the random bug assignments to all participants.
+
+* `evaluation\code\qualtrics_data_analyzing` folder contains the code that we used to process the results from the participant responses to the Qualtrics survey and generated the stacked bar charts that display the usefulness/ease of use of BURT's features.
+
+* `burt_result_analysis.xlsx`, `itrac_result_analysis.xlsx` and `create_analysis_spreadsheet.py` in `evaluation` folder contain the code and xlsx that perform quality assessment analysis of the bug reports collected via BURT and ITRAC, see Table 3 and 4 in our original paper.
+
+* `evaluation\code\statistics_test` folder contains the code that runs the statistical analysis for comparing bug report quality between BURT and ITRAC. 
