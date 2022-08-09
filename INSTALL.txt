@@ -1,0 +1,8 @@
+For installation instructions, please go to our GitHub repository: https://github.com/sea-lab-wm/burt/tree/fse-version
+
+The README file in the repository provides a detailed installation guide.
+
+We provide installation instructions for both Windows and Mac users (specifically for Windows 10+ and Mac OS Big Sur or later). 
+
+In the README file, see the section "Reporting a bug using BURT" for instructions on how to use BURT.
+	

@@ -1,0 +1,8 @@
+Building and running BURT does not require any specific hardware.
+
+We have built and tested BURT on our personal computers with the following system/hardware specifications:
+* Windows 10: AMD 3600x CPU, 32G RAM. 
+* Mac OS Big Sur: Intel i5 CPU, 16G RAM. 
+Building and running BURT requires at least 5GB of disk. 
+
+Building and running BURT requires a specific software build/runtime environment, which is described in our repository README: https://github.com/sea-lab-wm/burt/tree/fse-version
