@@ -46,7 +46,7 @@ To set up BURT's build/runtime environment, complete the following steps:
 
 **NOTE**: make sure to install the version of the tools/frameworks as specified. Also make sure these can be executed in the terminal.
 1. Install the **Java Development Kit (JDK) 12**:
-   1. You can downlod the OpenJDK from [this website](https://jdk.java.net/archive/). Run the installer on your machine and follow the instructions on the screen. 
+   1. You can download the OpenJDK 12.0.2 (build 12.0.2+10) from [this website](https://jdk.java.net/archive/).
    2. For **Windows** users, download `Windows 64-bit zip`, Unzip this and put the folder `jdk-12.0.2` in the appropriate place, e.g. `C:\Program Files\Java\jdk-12.0.2`. Then add `C:\Program Files\Java\jdk-12.0.2\bin` to system path, and set environment variable JAVA_HOME as `C:\Program Files\Java\jdk-12.0.2`, refer to these [instructions](https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html) to set the variable.
    3. For **macOS** users, download `Mac 64-bit	tar.gz`, extracts the downloaded jdk-12.jdk folder to `/Library/Java/JavaVirtualMachines`, and run ``export JAVA_HOME=`/usr/libexec/java_home -v 12.0.2` ``
    4. If you have multiple JDK versions installed on your machine, make sure you use JDK 12 by default.
