@@ -43,7 +43,7 @@ To set up the environment, complete the following steps:
 1. Install the **Java Development Kit (JDK) v12**. You can downlod the JDK installer from [this website](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html){:target="_blank"}. Run the installer on your machine and follow the instructions on the screen. If you have multiple versions of the JDK installed on your machine, make sure you use JDK 12 by default (e.g., on Windows you may need to modify the `PATH` environment variable to point to the path where the 12 version is installed).
 2. Install the **Maven 3.6.3** build tool. One way to do so is by downloading  Maven from [this website](https://dlcdn.apache.org/maven/maven-3/3.6.3/binaries/), decompressing the package, and adding the `bin` directory to the `PATH` environment variable. These tutorials explain other ways to install Maven: [windows](https://javabydeveloper.com/how-to-install-maven-on-windows/) or [macOS](https://mkyong.com/maven/install-maven-on-mac-osx/).
 3. Install **Node.js 15.8.0 and npm 7.5.1**. You can use nvm to install node.js and npm easily, refer to these tutorials to install nvm on your [windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows#alternative-version-managers) or [macOS](https://github.com/nvm-sh/nvm#install--update-script).
-4. Install the **yarn 1.22.5** package manager. You can run this command on the terminal to do so: `npm i yarn@1.22.5`. You can check that Yarn is installed by running: `yarn --version`.
+4. Install the **yarn 1.22.5** package manager. You can run this command on the terminal to do so: `sudo npm i --global yarn@1.22.5`. You can check that Yarn is installed correctly by running: `yarn --version`.
 5. Install **Git** (any version should work).
 6. By default the backend server will run at the 8081 port and the frontend endpoint will be accessible via http://localhost:3000. Make sure the ports 8081 and 3000 are available on your machine.
 
@@ -70,6 +70,8 @@ Complete the following steps:
 2. Run the script that executes BURT's GUI:
    1. Windows: run the `run_app.bat` script
    2. Mac Os: give permissions to the script (`chmod +x run_app.sh`) and then run it  (`./run_app.sh`)
+   
+   This step may take a while because the script will download all the dependencies required by BURT's GUI.
 3. At this point the script should have executed successfully and your web browser should have opened showing BURT's GUI. If the browser was not opened, open it and go to http://localhost:3000 
 
 ## Reporting a bug using BURT 
