@@ -1,6 +1,8 @@
 <!-- <p align="center"> <img src="/code/burt-gui/src/assets/icons/chatbot-2.svg" width="50"></p> -->
 <h2 align="center"> <img src="https://dl.dropboxusercontent.com/s/ymqb1cjvd7fmdca/chatbot-2.svg?dl=0" width="35"> BURT: A task-oriented dialogue system for bug reporting </h2>
 
+[![DOI](https://zenodo.org/badge/342777003.svg)](https://zenodo.org/badge/latestdoi/342777003) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 ## Overview
 
 This repository contains the replication package of our ESEC/FSE'22 paper:
@@ -54,7 +56,7 @@ To set up BURT's build/runtime environment, complete the following steps:
    2. **Mac OS**: download node's .pkg installer (`node-v15.8.0.pkg`) from [here](https://nodejs.org/download/release/v15.8.0/). Open the installer and follow the instructions on the screen.
    
     Verify the node/npm installation by running the commands: `node -v` and `npm -v`.
-4. Install the **yarn 1.22.5** package manager:
+4. Install the **Yarn 1.22.5** package manager:
    1. **Windows**: on a terminal with administrative rights, run: `npm i --global yarn@1.22.5`
    2. **Mac OS**: run `sudo npm i --global yarn@1.22.5` on the terminal.
    
