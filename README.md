@@ -5,6 +5,8 @@
 
 ## Overview
 
+**NOTE**: the tag of the replication package for the FSE’22 artifact review is: [BURT 1.1.0](https://github.com/sea-lab-wm/burt/releases/tag/v1.1.0)
+
 This repository contains the replication package of our ESEC/FSE'22 paper:
 
 
