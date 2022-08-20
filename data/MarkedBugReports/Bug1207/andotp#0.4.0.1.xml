@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1207</id>
+    <title ob="x" eb="" sr="">App crashes due to invalid values being processed</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">General information</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="x" eb="" sr="x" id="2.1">When entering an invalid value (empty or "0") in the "Advanced Options" section when manually entering details, the app crashes.</st>
+            <st ob="x" eb="" sr="" id="2.2">This seems to be due to conversion of "" (empty string) to number or a division by 0 (when value is 0).</st>
+            <st ob="x" eb="" sr="" id="2.3">This happens for both, the "Period" and "Digits" fields.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">App version: 0.4.0.1</st>
+            <st ob="" eb="" sr="" id="3.2">App source: Google Play</st>
+            <st ob="" eb="" sr="" id="3.3">Android Version: 7.1.2</st>
+            <st ob="" eb="" sr="" id="3.4">Custom ROM: LineageOs 14.1</st>
+            <st ob="" eb="" sr="" id="3.5">(This also happens on my main phone but the logcat on the device above is way less cluttered 😋)</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Expected result</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">What is expected?</st>
+            <st ob="" eb="x" sr="" id="5.2">The "Save" button should be disabled while input fields contain invalid information (and maybe the input field containing a wrong value should have a short description why the value is invalid).</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">What does happen instead?</st>
+            <st ob="x" eb="" sr="" id="6.2">App crashes.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Logcat</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">I've extracted the exceptions + stack trace from the logcat.</st>
+            <st ob="" eb="" sr="" id="8.2">If you really need the whole logcat, I'm willing to send it to you via mail or so, but I don't want to post it publicly (I've seen my WiFi name in there and I'm curious of what other sensitive information (like GPS coordinates?)</st>
+            <st ob="" eb="" sr="" id="8.3">might be there as well.</st>
+            <st ob="" eb="" sr="" id="8.4">.)</st>
+            <st ob="" eb="" sr="" id="8.5">.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">Empyt value in field "Period":</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="10">
+            <st ob="" eb="" sr="" id="10.1">02-17 23:22:36.627 10690 10690 E AndroidRuntime: FATAL EXCEPTION: main</st>
+            <st ob="" eb="" sr="" id="10.2">02-17 23:22:36.627 10690 10690 E AndroidRuntime: Process: org.shadowice.flocke.andotp, PID: 10690</st>
+            <st ob="" eb="" sr="" id="10.3">02-17 23:22:36.627 10690 10690 E AndroidRuntime: java.lang.NumberFormatException: For input string: ""</st>
+            <st ob="" eb="" sr="" id="10.4">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at java.lang.Integer.parseInt(Integer.java:533)</st>
+            <st ob="" eb="" sr="" id="10.5">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at java.lang.Integer.parseInt(Integer.java:556)</st>
+            <st ob="" eb="" sr="" id="10.6">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at org.shadowice.flocke.andotp.View.ManualEntryDialog$7.onClick(ManualEntryDialog.java:172)</st>
+            <st ob="" eb="" sr="" id="10.7">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at com.android.internal.app.AlertController$ButtonHandler.handleMessage(AlertController.java:166)</st>
+            <st ob="" eb="" sr="" id="10.8">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at android.os.Handler.dispatchMessage(Handler.java:102)</st>
+            <st ob="" eb="" sr="" id="10.9">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at android.os.Looper.loop(Looper.java:154)</st>
+            <st ob="" eb="" sr="" id="10.10">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at android.app.ActivityThread.main(ActivityThread.java:6186)</st>
+            <st ob="" eb="" sr="" id="10.11">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at java.lang.reflect.Method.invoke(Native Method)</st>
+            <st ob="" eb="" sr="" id="10.12">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:889)</st>
+            <st ob="" eb="" sr="" id="10.13">02-17 23:22:36.627 10690 10690 E AndroidRuntime:  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:779)</st>
+            <st ob="" eb="" sr="" id="10.14">Value "0" in field Period:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="11">
+            <st ob="" eb="" sr="" id="11.1">02-17 23:23:47.004 11016 11016 E AndroidRuntime: FATAL EXCEPTION: main</st>
+            <st ob="" eb="" sr="" id="11.2">02-17 23:23:47.004 11016 11016 E AndroidRuntime: Process: org.shadowice.flocke.andotp, PID: 11016</st>
+            <st ob="" eb="" sr="" id="11.3">02-17 23:23:47.004 11016 11016 E AndroidRuntime: java.lang.ArithmeticException: divide by zero</st>
+            <st ob="" eb="" sr="" id="11.4">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at org.shadowice.flocke.andotp.Database.Entry.updateOTP(Entry.java:300)</st>
+            <st ob="" eb="" sr="" id="11.5">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at org.shadowice.flocke.andotp.View.ManualEntryDialog$7.onClick(ManualEntryDialog.java:176)</st>
+            <st ob="" eb="" sr="" id="11.6">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at com.android.internal.app.AlertController$ButtonHandler.handleMessage(AlertController.java:166)</st>
+            <st ob="" eb="" sr="" id="11.7">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at android.os.Handler.dispatchMessage(Handler.java:102)</st>
+            <st ob="" eb="" sr="" id="11.8">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at android.os.Looper.loop(Looper.java:154)</st>
+            <st ob="" eb="" sr="" id="11.9">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at android.app.ActivityThread.main(ActivityThread.java:6186)</st>
+            <st ob="" eb="" sr="" id="11.10">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at java.lang.reflect.Method.invoke(Native Method)</st>
+            <st ob="" eb="" sr="" id="11.11">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:889)</st>
+            <st ob="" eb="" sr="" id="11.12">02-17 23:23:47.004 11016 11016 E AndroidRuntime:  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:779)</st>
+            <st ob="" eb="" sr="" id="11.13">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="12">
+            <st ob="" eb="" sr="" id="12.1">Click the "+" button to add a new OTP</st>
+            <st ob="" eb="" sr="" id="12.2">Select "Enter details"</st>
+            <st ob="" eb="" sr="" id="12.3">Fill in "Label" and "Secret"</st>
+            <st ob="" eb="" sr="" id="12.4">Click "Advanced Options"</st>
+            <st ob="" eb="" sr="" id="12.5">Change the value of "Period" or "Digit" to be empty or "0"</st>
+            <st ob="" eb="" sr="" id="12.6">Click "Save"</st>
+        </parg>
+    </desc>
+</bug>

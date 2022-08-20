@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1215</id>
+    <title ob="x" eb="" sr="">Crash when entering too large of a number in manual entry dialog</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">General information</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">App version: 0.70 and 0.7.1.1-dev</st>
+            <st ob="" eb="" sr="" id="2.2">App source: F-Droid and GitHub master</st>
+            <st ob="" eb="" sr="" id="2.3">Android Version: 10 (Samsung S9 and x86 emulator)</st>
+            <st ob="" eb="" sr="" id="2.4">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">TOTP Crash</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="x" id="4.1">1. Open app to the main list of 2FA codes.</st>
+            <st ob="" eb="" sr="x" id="4.2">2. Tap the add FAB and select "Enter details".</st>
+            <st ob="" eb="" sr="x" id="4.3">3. Select TOTP for the Type field.</st>
+            <st ob="" eb="" sr="x" id="4.4">4. Enter something into the Label and Secret fields.</st>
+            <st ob="" eb="" sr="x" id="4.5">5. Open the Advanced Options overflow, and enter a number larger than Integer.MAX_VALUE into either the Period or Digits fields.</st>
+            <st ob="" eb="" sr="" id="4.6">HOTP Crash</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="x" id="5.1">1. Open app to the main list of 2FA codes.</st>
+            <st ob="" eb="" sr="x" id="5.2">2. Tap the add FAB and select "Enter details".</st>
+            <st ob="" eb="" sr="x" id="5.3">3. Select HOTP for the Type field.</st>
+            <st ob="" eb="" sr="x" id="5.4">4. Enter something into the Label and Secret fields.</st>
+            <st ob="" eb="" sr="x" id="5.5">5. Enter a number larger than Long.MAX_VALUE into the Counter field.</st>
+            <st ob="" eb="" sr="x" id="5.6">6. Tap the Save button.</st>
+            <st ob="" eb="" sr="" id="5.7">Expected result</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">What is expected?</st>
+            <st ob="" eb="x" sr="" id="6.2">In the manual details entry dialog, entering a number in the Period or Digits fields larger than Integer.MAX_VALUE or entering a number in the Counter field larger than Long.MAX_VALUE should disable the Save button.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">What does happen instead?</st>
+            <st ob="x" eb="" sr="" id="7.2">The application crashes.</st>
+            <st ob="x" eb="" sr="" id="7.3">This would probably never occur during normal usage, but it's an easy fix so I'll put a PR up.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">Logcat</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">TOTP Period/Digits crash:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="10">
+            <st ob="" eb="" sr="" id="10.1">2020-05-29 09:04:34.505 7852-7852/org.shadowice.flocke.andotp.dev E/AndroidRuntime: FATAL EXCEPTION: main</st>
+            <st ob="" eb="" sr="" id="10.2">Process: org.shadowice.flocke.andotp.dev, PID: 7852 java.lang.NumberFormatException: For input string: "3000000000"</st>
+            <st ob="" eb="" sr="" id="10.3">        at java.lang.Integer.parseInt(Integer.java:618)</st>
+            <st ob="" eb="" sr="" id="10.4">        at java.lang.Integer.parseInt(Integer.java:650)</st>
+            <st ob="" eb="" sr="" id="10.5">        at org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog$8.afterTextChanged(ManualEntryDialog.java:293)</st>
+            <st ob="" eb="" sr="" id="10.6">        at android.widget.TextView.sendAfterTextChanged(TextView.java:10551)</st>
+            <st ob="" eb="" sr="" id="10.7">        at android.widget.TextView$ChangeWatcher.afterTextChanged(TextView.java:13388)</st>
+            <st ob="" eb="" sr="" id="10.8">        at android.text.SpannableStringBuilder.sendAfterTextChanged(SpannableStringBuilder.java:1277)</st>
+            <st ob="" eb="" sr="" id="10.9">        at android.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:577)</st>
+            <st ob="" eb="" sr="" id="10.10">        at android.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:507)</st>
+            <st ob="" eb="" sr="" id="10.11">        at android.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:37)</st>
+            <st ob="" eb="" sr="" id="10.12">        at android.text.method.NumberKeyListener.onKeyDown(NumberKeyListener.java:131)</st>
+            <st ob="" eb="" sr="" id="10.13">HOTP Counter crash:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="11">
+            <st ob="" eb="" sr="" id="11.1">2020-05-29 09:10:59.885 8118-8118/org.shadowice.flocke.andotp.dev E/AndroidRuntime: FATAL EXCEPTION: main</st>
+            <st ob="" eb="" sr="" id="11.2">Process: org.shadowice.flocke.andotp.dev, PID: 8118 java.lang.NumberFormatException: For input string: "1000000000000000000000"</st>
+            <st ob="" eb="" sr="" id="11.3">        at java.lang.Long.parseLong(Long.java:597)</st>
+            <st ob="" eb="" sr="" id="11.4">        at java.lang.Long.parseLong(Long.java:636)</st>
+            <st ob="" eb="" sr="" id="11.5">        at org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog$7.onClick(ManualEntryDialog.java:245)</st>
+            <st ob="" eb="" sr="" id="11.6">        at android.view.View.performClick(View.java:7125)</st>
+        </parg>
+    </desc>
+</bug>

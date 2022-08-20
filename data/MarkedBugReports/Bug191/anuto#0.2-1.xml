@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>191</id>
+    <title ob="x" eb="" sr="">Negative Credits</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">start any game</st>
+            <st ob="" eb="" sr="x" id="2.2">drag+drop any defence towers you like, credits &lt; 0 are possible</st>
+            <st ob="" eb="" sr="" id="2.3">Yay my most successful round ever!</st>
+            <st ob="" eb="" sr="" id="2.4">But takes the fun away :(</st>
+            <st ob="" eb="" sr="" id="2.5">Not sure whether it actually goes down to -∞ or has some negative limit</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Version 0.2-1 (F-Droid)</st>
+            <st ob="" eb="" sr="" id="3.2">Android 6.0.1</st>
+        </parg>
+    </desc>
+</bug>

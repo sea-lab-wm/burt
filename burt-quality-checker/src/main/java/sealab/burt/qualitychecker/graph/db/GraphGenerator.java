@@ -123,7 +123,8 @@ class GraphGenerator {
                     // System.out.println("====================");
                 }
             } catch (Exception e) {
-                log.error("Error for execution " + execution.getId(), e);
+                //log.error("Error for execution " + execution.getId(), e);
+            	System.out.println("Error for execution " + execution.getId() + e);
                 throw e;
             }
             // }
@@ -150,7 +151,8 @@ class GraphGenerator {
         getStates().forEach((k, s) -> {
             boolean added = directedGraph.addVertex(s);
             if (!added) {
-                log.warn("Vertex not added: " + s);
+                //log.warn("Vertex not added: " + s);
+            	System.out.println("Vertex not added: " + s);
             }
         });
 
@@ -169,7 +171,8 @@ class GraphGenerator {
 
             boolean added = directedGraph.addEdge(sourceState, transition.getTargetState(), transition);
             if (!added) {
-                log.warn("Edge not added: " + transition);
+                //log.warn("Edge not added: " + transition);
+            	System.out.println("Edge not added: " + transition);
             } else {
                 directedGraph.setEdgeWeight(transition, transition.getWeight());
             }
@@ -188,7 +191,8 @@ class GraphGenerator {
         }
 
         if (allNumbers.isEmpty()) {
-            log.debug(String.format("The screenshot file does not have numbers: %s", screenshotFile));
+            //log.debug(String.format("The screenshot file does not have numbers: %s", screenshotFile));
+        	System.out.println(String.format("The screenshot file does not have numbers: %s", screenshotFile));
             return screenshotFile;
         }
 
@@ -197,7 +201,8 @@ class GraphGenerator {
             Integer newNumber = Integer.parseInt(lastNumber) - 1;
             return screenshotFile.replace(lastNumber + "_augmented.png", newNumber + ".png");
         } catch (NumberFormatException e) {
-            log.error(String.format("Could not identify the non-augmented screenshot: %s", screenshotFile), e);
+            //log.error(String.format("Could not identify the non-augmented screenshot: %s", screenshotFile), e);
+        	System.out.println(String.format("Could not identify the non-augmented screenshot: %s", screenshotFile) + e);
             return screenshotFile;
         }
     }
@@ -282,10 +287,14 @@ class GraphGenerator {
             }
 
             if (skip) {
-                log.warn(String.format("Skipping step %s-%s-%s, no src and/or tgt screens, " +
-                                "action: (%s) %s",
-                        executionId1, step.getId(), step.getSequenceStep(), stepAction,
-                        GeneralUtils.getEventName(stepAction)));
+                //log.warn(String.format("Skipping step %s-%s-%s, no src and/or tgt screens, " +
+                                //"action: (%s) %s",
+                        //executionId1, step.getId(), step.getSequenceStep(), stepAction,
+                        //GeneralUtils.getEventName(stepAction)));
+            	System.out.println(String.format("Skipping step %s-%s-%s, no src and/or tgt screens, " +
+            			"action: (%s) %s",
+            			executionId1, step.getId(), step.getSequenceStep(), stepAction,
+            			GeneralUtils.getEventName(stepAction)));
                 continue;
             }
 
@@ -339,10 +348,14 @@ class GraphGenerator {
         }
 
         if (skipLastStep) {
-            log.warn(String.format("Skipping last step %s-%s-%s, no src and/or tgt screens, " +
+           /* log.warn(String.format("Skipping last step %s-%s-%s, no src and/or tgt screens, " +
                             "action: (%s) %s",
                     executionId1, lastStep.getId(), lastStep.getSequenceStep(), lastStep.getAction(),
-                    GeneralUtils.getEventName(lastStep.getAction())));
+                    GeneralUtils.getEventName(lastStep.getAction())));*/
+        	System.out.println(String.format("Skipping last step %s-%s-%s, no src and/or tgt screens, " +
+        			 "action: (%s) %s",
+        			 executionId1, lastStep.getId(), lastStep.getSequenceStep(), lastStep.getAction(),
+        			 GeneralUtils.getEventName(lastStep.getAction())));
         } else {
             states.putIfAbsent(endState.getUniqueHash(), endState);
             GraphState sourceState = getStepState(lastStep, stepScreens, sourceScreen);
@@ -618,7 +631,8 @@ class GraphGenerator {
             currentState.setUnformattedXml(xml);
 //        	currentState.setFormattedXml(getFormattedXml(xml));
         } catch (Exception e) {
-            log.error("XML error for screen " + screen.getId() + ": " + xml);
+            //log.error("XML error for screen " + screen.getId() + ": " + xml);
+        	System.out.println("XML error for screen " + screen.getId() + ": " + xml);
             throw e;
         }
         return currentState;

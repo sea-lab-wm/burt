@@ -23,10 +23,13 @@ public class MainBugsCodedNLActionParser {
 			"-Reproduction\\Bug_collection\\data_collected\\";
 	private static String inFoldPath = BASE_FOLDER + "extracted_annotated_bugs";
 	private static String outFoldPath = BASE_FOLDER + "nlactions";*/
-	private static String inFoldPath = "C:\\Users\\ojcch\\Documents\\Repositories\\Git\\Android-Bug-Report" +
-			"-Reproduction\\EulerEvaluation\\Data\\3_identified_s2r_in_bug_reports_test";
-	private static String outFoldPath = "C:\\Users\\ojcch\\Documents\\Repositories\\Git\\Android-Bug-Report" +
-			"-Reproduction\\EulerEvaluation\\Data\\4_parsed_s2r2";
+//	private static String inFoldPath = "C:\\Users\\ojcch\\Documents\\Repositories\\Git\\Android-Bug-Report" +
+//			"-Reproduction\\EulerEvaluation\\Data\\3_identified_s2r_in_bug_reports_test";
+//	private static String outFoldPath = "C:\\Users\\ojcch\\Documents\\Repositories\\Git\\Android-Bug-Report" +
+//			"-Reproduction\\EulerEvaluation\\Data\\4_parsed_s2r2";
+	
+	private static String inFoldPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BugLocalization/FaultLocalizationCode/data/BugReports";
+	private static String outFoldPath = "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BugLocalization/FaultLocalizationCode/data/ParsedBugReports";
 
 	private static Set<String> projects = JavaUtils.getSet();
 

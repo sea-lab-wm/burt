@@ -84,6 +84,23 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.6.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.javatuples</groupId>
+			<artifactId>javatuples</artifactId>
+			<version>1.2</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/javatuples-1.2.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.8</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/opencsv-3.8.jar</systemPath>
+		</dependency>
+
+
+
 
 	</dependencies>
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1205</id>
+    <title ob="x" eb="" sr="">Back button leads to Home Fragment when orange file selector is still open</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">This is more like a UX bug.</st>
+            <st ob="" eb="" sr="" id="1.2">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">Go to any fragment such as invert pdf ,remove page etc wherever there's is the orange slider in use.Click on the slider to pull up.Click back button.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Expected behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="x" sr="" id="4.1">Clicking on back button should pull the slider down while remaining on the same fragment.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Actual behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="x" eb="" sr="" id="6.1">The back button leads to the Home Fragment.</st>
+        </parg>
+    </desc>
+</bug>

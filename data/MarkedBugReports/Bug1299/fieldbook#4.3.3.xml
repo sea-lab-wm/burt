@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1299</id>
+    <title ob="x" eb="" sr="">[BUG] Crashes in Collect after importing field_sample.csv</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Describe the bug</st>
+            <st ob="x" eb="" sr="" id="1.2">Following exception occurs after importing a sample csv, going to Collect, and pressing the +1 button.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">Process: com.fieldbook.tracker, PID: 2134 java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String com.fieldbook.tracker.objects.TraitObject.getTrait()' on a null object reference</st>
+            <st ob="" eb="" sr="" id="2.2">at com.fieldbook.tracker.traits.CounterTraitLayout$1.onClick(CounterTraitLayout.java:48)</st>
+            <st ob="" eb="" sr="" id="2.3">at android.view.View.performClick(View.java:6294)</st>
+            <st ob="" eb="" sr="" id="2.4">at android.view.View$PerformClick.run(View.java:24770)</st>
+            <st ob="" eb="" sr="" id="2.5">at android.os.Handler.handleCallback(Handler.java:790)</st>
+            <st ob="" eb="" sr="" id="2.6">at android.os.Handler.dispatchMessage(Handler.java:99)</st>
+            <st ob="" eb="" sr="" id="2.7">at android.os.Looper.loop(Looper.java:164)</st>
+            <st ob="" eb="" sr="" id="2.8">at android.app.ActivityThread.main(ActivityThread.java:6494)</st>
+            <st ob="" eb="" sr="" id="2.9">at java.lang.reflect.Method.invoke(Native Method)</st>
+            <st ob="" eb="" sr="" id="2.10">at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:438)</st>
+            <st ob="" eb="" sr="" id="2.11">at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:807)</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">To Reproduce</st>
+            <st ob="" eb="" sr="" id="3.2">Steps to reproduce the behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="x" id="4.1">1. Accept all permissions.</st>
+            <st ob="" eb="" sr="x" id="4.2">2. Press no to both dialogs.</st>
+            <st ob="" eb="" sr="x" id="4.3">3. Go to Fields, import local file field_sample.csv</st>
+            <st ob="" eb="" sr="x" id="4.4">4. Go back to Config activity</st>
+            <st ob="" eb="" sr="x" id="4.5">5. Go to Collect</st>
+            <st ob="" eb="" sr="x" id="4.6">6. Click any button (other than primary/secondary choice) on this page and the app crashes</st>
+            <st ob="" eb="" sr="" id="4.7">Expected behavior</st>
+            <st ob="" eb="x" sr="" id="4.8">Doesn't crash.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Device Info (please complete the following information):</st>
+            <st ob="" eb="" sr="" id="5.2">Tested on Pixel 2 AVD</st>
+        </parg>
+    </desc>
+</bug>

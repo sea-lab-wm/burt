@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1145</id>
+    <title ob="x" eb="" sr="">Can't enter negative sign for lat/lon/alt in Accuracy view</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Describe the bug</st>
+            <st ob="x" eb="" sr="" id="1.2">In Accuracy view, if you type a negative sign into the latitude, longitude, or altitude text boxes, nothing happens (no negative signs are added).</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">I think the changes in #389 broke this.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">To Reproduce</st>
+            <st ob="" eb="" sr="" id="3.2">Steps to reproduce the behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="x" id="4.1">1. Go to Accuracy view</st>
+            <st ob="" eb="" sr="x" id="4.2">2. Tap on fields for latitude, longitude, or altitude</st>
+            <st ob="" eb="" sr="x" id="4.3">3. Type -</st>
+            <st ob="" eb="" sr="" id="4.4">Expected behavior</st>
+            <st ob="" eb="x" sr="" id="4.5">- should appear in the text box</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Observed behavior</st>
+            <st ob="x" eb="" sr="" id="5.2">Nothing appears in the text box</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">App, Device and Android version:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Samsung Galaxy S8+ with Android 9</st>
+        </parg>
+    </desc>
+</bug>

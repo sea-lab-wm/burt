@@ -1,0 +1,822 @@
+--------- beginning of main
+07-05 16:43:53.238  4169  4169 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:43:53.239  4169  4169 D AndroidRuntime: CheckJNI is ON
+07-05 16:43:53.249  4169  4169 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:43:53.266  4169  4169 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:43:53.266  4169  4169 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:43:53.268  4169  4169 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:43:53.274  4169  4169 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+07-05 16:43:53.279  1628  2922 I PackageManager: Package doesn't exist in get block uninstall org.inaturalist.android
+--------- beginning of system
+07-05 16:43:53.280  1628  1652 W PackageManager: Package named 'org.inaturalist.android' doesn't exist.
+07-05 16:43:53.280  1628  1652 I art     : Starting a blocking GC Explicit
+07-05 16:43:53.297  1628  1652 I art     : Explicit concurrent mark sweep GC freed 16110(1076KB) AllocSpace objects, 6(132KB) LOS objects, 32% free, 8MB/12MB, paused 460us total 16.184ms
+07-05 16:43:53.299  4169  4169 E Pm      : Failure details: Bundle[{android.content.pm.extra.STATUS=1, android.content.pm.extra.PACKAGE_NAME=org.inaturalist.android, android.content.pm.extra.LEGACY_STATUS=-1, android.content.pm.extra.STATUS_MESSAGE=DELETE_FAILED_INTERNAL_ERROR}]
+07-05 16:43:53.300  4169  4169 I art     : System.exit called, status: 1
+07-05 16:43:53.300  4169  4169 I AndroidRuntime: VM exiting with result code 1.
+07-05 16:43:53.505  4182  4182 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:43:53.508  4182  4182 D AndroidRuntime: CheckJNI is ON
+07-05 16:43:53.516  4182  4182 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:43:53.531  4182  4182 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:43:53.531  4182  4182 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:43:53.532  4182  4182 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:43:53.538  4182  4182 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+07-05 16:43:53.551  1535  1546 D DefContainer: Copying /data/local/tmp/201.apk to base.apk
+07-05 16:43:53.943  1628  1652 I PackageManager.DexOptimizer: Running dexopt (dex2oat) on: /data/app/vmdl454560940.tmp/base.apk pkg=org.inaturalist.android isa=x86 vmSafeMode=false debuggable=false oatDir = /data/app/vmdl454560940.tmp/oat
+07-05 16:43:53.950  4191  4191 W dex2oat : Unexpected CPU variant for X86 using defaults: x86
+07-05 16:43:53.950  4191  4191 W dex2oat : Mismatch between dex2oat instruction set features (ISA: X86 Feature string: smp,-ssse3,-sse4.1,-sse4.2,-avx,-avx2) and those of dex2oat executable (ISA: X86 Feature string: smp,ssse3,-sse4.1,-sse4.2,-avx,-avx2) for the command line:
+07-05 16:43:53.950  4191  4191 W dex2oat : /system/bin/dex2oat --zip-fd=6 --zip-location=base.apk --oat-fd=7 --oat-location=/data/app/vmdl454560940.tmp/oat/x86/base.odex --instruction-set=x86 --instruction-set-variant=x86 --instruction-set-features=default --runtime-arg -Xms64m --runtime-arg -Xmx512m --swap-fd=8
+07-05 16:43:53.951  4191  4191 I dex2oat : Starting dex2oat.
+07-05 16:43:54.190  4191  4193 W dex2oat : Before Android 4.1, method android.graphics.PorterDuffColorFilter android.support.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable
+07-05 16:43:54.214  4191  4195 W dex2oat : Before Android 4.1, method int android.support.v7.widget.ListViewCompat.lookForSelectablePosition(int, boolean) would have incorrectly overridden the package-private method in android.widget.ListView
+07-05 16:43:57.197  4191  4191 W dex2oat : No verified method for method calling String.<init>: java.lang.String java.io.ByteArrayOutputStream.toString()
+07-05 16:43:57.711  4191  4191 W dex2oat : No verified method for method calling String.<init>: void org.json.JSONStringer.<init>(int)
+07-05 16:43:58.461  4191  4193 I dex2oat : Skipping compilation of boolean com.loopj.android.http.Base64$Encoder.process(byte[], int, int, boolean): it contains a non natural loop
+07-05 16:43:58.882  4191  4194 W dex2oat : Compilation of boolean org.apache.commons.collections4.trie.AbstractPatriciaTrie.selectR(org.apache.commons.collections4.trie.AbstractPatriciaTrie$TrieEntry, int, java.lang.Object, int, org.apache.commons.collections4.trie.AbstractPatriciaTrie$Reference) took 181.064ms
+07-05 16:43:58.912  4191  4195 W dex2oat : No verified method for method calling String.<init>: java.lang.String org.apache.http.util.CharArrayBuffer.toString()
+07-05 16:43:59.398  4191  4191 I dex2oat : dex2oat took 5.447s (threads: 4) arena alloc=54MB java alloc=12MB native alloc=98MB free=41MB
+07-05 16:43:59.497  1628  1652 V BackupManagerService: restoreAtInstall pkg=org.inaturalist.android token=a restoreSet=0
+07-05 16:43:59.497  1628  1652 V BackupManagerService: Finishing install immediately
+07-05 16:43:59.497  1628  1652 W Settings: Setting install_non_market_apps has moved from android.provider.Settings.Global to android.provider.Settings.Secure, returning read-only value.
+07-05 16:43:59.497  1628  1652 I art     : Starting a blocking GC Explicit
+07-05 16:43:59.509  1628  1652 I art     : Explicit concurrent mark sweep GC freed 107159(5MB) AllocSpace objects, 8(820KB) LOS objects, 33% free, 8MB/12MB, paused 324us total 11.116ms
+07-05 16:43:59.514  4182  4182 I art     : System.exit called, status: 0
+07-05 16:43:59.514  4182  4182 I AndroidRuntime: VM exiting with result code 0.
+07-05 16:43:59.521  1628  1663 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-05 16:43:59.526  3710  4197 D Documents: Update found 8 roots in 5ms
+07-05 16:43:59.556  1972  1972 D CarrierServiceBindHelper: Receive action: android.intent.action.PACKAGE_ADDED
+07-05 16:43:59.557  1972  1972 D CarrierServiceBindHelper: mHandler: 3
+07-05 16:43:59.557  1972  1972 D CarrierConfigLoader: mHandler: 9 phoneId: 0
+07-05 16:43:59.572  1956  4208 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:org.inaturalist.android flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-05 16:43:59.576  1628  2920 W ActivityManager: Unable to start service Intent { act=com.google.android.gms.auth.key.retrieval.service.START pkg=com.google.android.gms } U=0: not found
+07-05 16:43:59.576  1628  2151 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@c939942
+07-05 16:43:59.576  2369  2439 E GmsClient: unable to connect to service: com.google.android.gms.auth.key.retrieval.service.START on com.google.android.gms
+07-05 16:43:59.578  2369  4211 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+07-05 16:43:59.580  1956  4208 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:org.inaturalist.android flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-05 16:43:59.583  2369  4206 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:org.inaturalist.android flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+07-05 16:43:59.598  1874  4215 I UpdateIcingCorporaServi: Updating corpora: APPS=org.inaturalist.android, CONTACTS=MAYBE
+07-05 16:43:59.666  1628  2920 I AccountManagerService: getTypesVisibleToCaller: isPermitted? true
+07-05 16:43:59.672  2369  4206 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://VRZbEWqRhQBVCSh_R9Zf44a5g9eYmewj4IqWxw_Tgp6P2hjCE3La5p2vIbIjejUpIAUUWqeUtCKJNE68S8H_TA==@org.inaturalist.android/ was not found. Marking affiliation data as stale...
+07-05 16:43:59.690  4218  4218 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:43:59.691  4218  4218 D AndroidRuntime: CheckJNI is ON
+07-05 16:43:59.700  4218  4218 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:43:59.709  1628  2127 I AccountManagerService: getTypesVisibleToCaller: isPermitted? true
+07-05 16:43:59.711  1628  2917 I AccountManagerService: getTypesVisibleToCaller: isPermitted? true
+07-05 16:43:59.713  4218  4218 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:43:59.713  4218  4218 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:43:59.714  4218  4218 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:43:59.725  4218  4218 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+07-05 16:43:59.760  1628  1642 W BroadcastQueue: Skipping deliver [background] BroadcastRecord{f22a654 u-1 android.net.conn.CONNECTIVITY_CHANGE} to ReceiverList{96699fd 4218 (unknown name)/0/u-1 remote:6cf7a66}: process crashing
+07-05 16:43:59.794  2369  4209 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: pay:-1
+07-05 16:43:59.795  2369  4209 E ConfigFileUtils: Failed to read config file: /data/data/com.google.android.gms/app_chimera/next_container.pb: open failed: ENOENT (No such file or directory)
+07-05 16:43:59.797  1628  2150 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.inaturalist.android/.ObservationListActivity} from uid 0 on display 0
+07-05 16:43:59.819  2369  2658 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.googlequicksearchbox componentName=null serviceId=36
+07-05 16:43:59.841  1628 22639 I ActivityManager: Start proc 4231:org.inaturalist.android/u0a158 for activity org.inaturalist.android/.ObservationListActivity
+07-05 16:43:59.864  1278  1323 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8294400
+07-05 16:43:59.872  4218  4218 I art     : System.exit called, status: 0
+07-05 16:43:59.872  4218  4218 I AndroidRuntime: VM exiting with result code 0.
+07-05 16:43:59.887  2369  4209 I ChmraDebugLogger: [73] 1801
+07-05 16:43:59.894  2369  4209 I ChmraDebugLogger: [30] [Pay.optional:202414020000] permitMetered=true,
+07-05 16:43:59.905  2369  4209 W ChimeraConfigService: Retry attempt was throttled.
+07-05 16:43:59.935  4231  4231 I MultiDex: VM with version 2.1.0 has multidex support
+07-05 16:43:59.936  4231  4231 I MultiDex: install
+07-05 16:43:59.936  4231  4231 I MultiDex: VM has multidex support, MultiDex support library is disabled.
+07-05 16:43:59.936  4231  4231 I MultiDex: install
+07-05 16:43:59.936  4231  4231 I MultiDex: VM has multidex support, MultiDex support library is disabled.
+07-05 16:43:59.938  1986  2155 D EGL_emulation: eglMakeCurrent: 0xae5946c0: ver 3 0 (tinfo 0xae5924d0)
+07-05 16:43:59.944  1986  2155 E Surface : getSlotFromBufferLocked: unknown buffer: 0xae6a23a0
+07-05 16:43:59.969  2369  5215 W Icing   : No valid account for uploading user actions
+07-05 16:43:59.972  4231  4231 I Fabric  : Initializing Crashlytics 2.3.3.61
+07-05 16:43:59.991  2369  2806 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+07-05 16:44:00.000  1278  1326 D hwcomposer: hw_composer sent 55 syncs in 60s
+07-05 16:44:00.002  2369  2792 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+07-05 16:44:00.018  1628  2150 D VoldConnector: SND -> {18 volume mkdirs /storage/1EE9-4203/Android/data/org.inaturalist.android/cache/}
+07-05 16:44:00.028  1628  1665 D VoldConnector: RCV <- {200 18 Command succeeded}
+07-05 16:44:00.033  2369  5215 I Icing   : Usage reports ok 1, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:00.066  1874  4215 I UpdateIcingCorporaServi: UpdateCorporaTask done [took 467 ms] updated apps [took 467 ms] 
+07-05 16:44:00.082  2369  5215 W Icing   : No valid account for uploading user actions
+07-05 16:44:00.087  2369  5215 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:00.094  2369  5215 W Icing   : No valid account for uploading user actions
+07-05 16:44:00.095  2369  2792 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=36
+07-05 16:44:00.099  2369  5215 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:00.101  2369  5215 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 137
+07-05 16:44:00.111  1628  1750 I ActivityManager: START u0 {flg=0x24000000 cmp=org.inaturalist.android/.OnboardingActivity (has extras)} from uid 10158 on display 0
+07-05 16:44:00.114  2369  5215 W Icing   : No valid account for uploading user actions
+07-05 16:44:00.119  4231  4231 I INAT:ObservationListActivity: Registering ACTION_SYNC_COMPLETE
+07-05 16:44:00.119  2369  5215 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:00.120  2369  5215 I Icing   : Indexing com.google.android.googlequicksearchbox-applications_uri from com.google.android.googlequicksearchbox
+07-05 16:44:00.120  4231  4231 I INAT:ObservationListActivity: Registering CONNECTIVITY_ACTION
+07-05 16:44:00.129  1628  2922 I ActivityManager: START u0 {flg=0x24000000 cmp=org.inaturalist.android/.TutorialActivity (has extras)} from uid 10158 on display 0
+07-05 16:44:00.136  2369  5215 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-05 16:44:00.158  2369  5215 I Icing   : Indexing done com.google.android.googlequicksearchbox-applications_uri
+07-05 16:44:00.160  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE ((_synced_at IS NULL) AND (is_deleted = 0 OR is_deleted is NULL)) ORDER BY CASE WHEN id IS NULL THEN _created_at ELSE created_at END DESC
+07-05 16:44:00.163  2369  5215 I Icing   : Indexing done com.google.android.gms-apps
+07-05 16:44:00.169  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE ((photo_filename IS NULL) AND (photo_url IS NULL)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:00.170  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE (((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) ORDER BY _created_at ASC
+07-05 16:44:00.171  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE (((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR ((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR (is_deleted = 1)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:00.179  4231  4231 W FlurryAgent: Start session with context: org.inaturalist.android.ObservationListActivity@d6ca053 count:0
+07-05 16:44:00.190  4231  4231 W FlurryAgent: Event count started: ObservationListActivity
+07-05 16:44:00.190  4231  4231 I BaseFragmentActivity: Registering ACTION_GET_USER_DETAILS_RESULT
+07-05 16:44:00.190  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE ((_synced_at IS NULL) AND (is_deleted = 0 OR is_deleted is NULL)) ORDER BY CASE WHEN id IS NULL THEN _created_at ELSE created_at END DESC
+07-05 16:44:00.196  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE ((photo_filename IS NULL) AND (photo_url IS NULL)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:00.201  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE (((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) ORDER BY _created_at ASC
+07-05 16:44:00.206  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE (((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR ((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR (is_deleted = 1)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:00.220  1278  1323 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-05 16:44:00.221  4231  4265 D OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+07-05 16:44:00.231  4231  4231 D         : HostConnection::get() New Host Connection established 0xa0a6c400, tid 4231
+07-05 16:44:00.243  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE ((photo_filename IS NULL) AND (photo_url IS NULL)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:00.246  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE (((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) ORDER BY _created_at ASC
+07-05 16:44:00.250  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE (((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR ((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR (is_deleted = 1)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:00.275  4231  4231 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:00.275  4231  4231 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:00.279  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:00.279  4231  4231 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:00.289  4231  4231 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE ((_synced_at IS NULL) AND (is_deleted = 0 OR is_deleted is NULL)) ORDER BY CASE WHEN id IS NULL THEN _created_at ELSE created_at END DESC
+07-05 16:44:00.291  4231  4231 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:00.294  4231  4231 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:00.294  4231  4231 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:00.296  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:00.296  4231  4231 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:00.302  4231  4231 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:00.302  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:00.302  4231  4231 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:00.302  4231  4231 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:00.306  4231  4231 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:00.306  4231  4231 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:00.309  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:00.309  4231  4231 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:00.311  4231  4231 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:00.311  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:00.311  4231  4231 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:00.311  4231  4231 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:00.339  4231  4265 D         : HostConnection::get() New Host Connection established 0x9fcd9700, tid 4265
+07-05 16:44:00.340  4231  4265 I OpenGLRenderer: Initialized EGL, version 1.4
+07-05 16:44:00.341  4231  4265 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+07-05 16:44:00.343  4231  4265 D EGL_emulation: eglCreateContext: 0xae594de0: maj 3 min 0 rcv 3
+07-05 16:44:00.344  4231  4265 D EGL_emulation: eglMakeCurrent: 0xae594de0: ver 3 0 (tinfo 0xa09b3ca0)
+07-05 16:44:00.345  4231  4265 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+07-05 16:44:00.345  4231  4265 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+07-05 16:44:00.361  4231  4265 D EGL_emulation: eglMakeCurrent: 0xae594de0: ver 3 0 (tinfo 0xa09b3ca0)
+07-05 16:44:00.376  4231  4231 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:00.376  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: -848, R: 0, B: 0
+07-05 16:44:00.377  4231  4231 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:00.377  4231  4231 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:00.377  4231  4231 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:00.377  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:00.377  4231  4231 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:00.377  4231  4231 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:00.377  4231  4231 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:00.377  4231  4231 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:00.387  4231  4231 D INAT: Application: Detected country: us
+07-05 16:44:00.392  4231  4231 W FlurryAgent: Start session with context: org.inaturalist.android.TutorialActivity@5e80099 count:1
+07-05 16:44:00.393  4231  4231 W FlurryAgent: Event count started: TutorialActivity
+07-05 16:44:00.408  4231  4266 W FlurryAgent: FlurryDataSender: report b099486b-ce4d-46a0-a883-a5f2054f15b9 sent. HTTP response: 200
+07-05 16:44:00.421  4231  4246 E Fabric  : Unknown error while loading Crashlytics settings. Crashes will be cached until settings can be retrieved.
+07-05 16:44:00.521  4231  4231 W FragmentManager: moveToState: Fragment state for TutorialFragment{617743c #0 id=0x7f0e0248 android:switcher:2131624520:1} not updated inline; expected state 3 found 2
+07-05 16:44:00.563  4231  4265 D EGL_emulation: eglMakeCurrent: 0xae594de0: ver 3 0 (tinfo 0xa09b3ca0)
+07-05 16:44:00.582  4231  4265 D EGL_emulation: eglMakeCurrent: 0xae594de0: ver 3 0 (tinfo 0xa09b3ca0)
+07-05 16:44:00.584  4231  4248 W Fabric  : Received null settings, skipping initialization!
+07-05 16:44:00.592  4231  4265 D EGL_emulation: eglMakeCurrent: 0xae594de0: ver 3 0 (tinfo 0xa09b3ca0)
+07-05 16:44:00.610  1628  1647 I ActivityManager: Displayed org.inaturalist.android/.TutorialActivity: +370ms (total +783ms)
+07-05 16:44:00.639  4231  4265 E Surface : getSlotFromBufferLocked: unknown buffer: 0xa0989220
+07-05 16:44:00.645  4231  4231 W FlurryAgent: End session with context: org.inaturalist.android.ObservationListActivity@d6ca053 count:1
+07-05 16:44:14.995  4277  4277 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:14.996  4277  4277 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:15.004  4277  4277 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:15.017  4277  4277 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:15.017  4277  4277 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:15.018  4277  4277 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:15.025  4277  4277 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-05 16:44:15.038  4277  4277 D AndroidRuntime: Shutting down VM
+07-05 16:44:15.376  4286  4286 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:15.378  4286  4286 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:15.386  4286  4286 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:15.400  4286  4286 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:15.400  4286  4286 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:15.401  4286  4286 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:15.408  4286  4286 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-05 16:44:15.418  4286  4286 D AndroidRuntime: Shutting down VM
+07-05 16:44:16.475  4309  4309 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:16.477  4309  4309 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:16.485  4309  4309 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:16.500  4309  4309 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:16.500  4309  4309 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:16.501  4309  4309 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:16.507  4309  4309 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:17.561  4309  4309 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b662; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:17.564  4309  4309 W AccessibilityNodeInfoDumper: Fetch time: 15ms
+07-05 16:44:17.567  1628  2920 W WindowManager: Attempted to remove non-existing token: android.os.Binder@1b98da4
+07-05 16:44:17.597  4309  4309 D AndroidRuntime: Shutting down VM
+07-05 16:44:18.263  4325  4325 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:18.266  4325  4325 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:18.282  4325  4325 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:18.309  4325  4325 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:18.310  4325  4325 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:18.312  4325  4325 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:18.322  4325  4325 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:19.377  4325  4325 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b66b; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:19.379  4325  4325 W AccessibilityNodeInfoDumper: Fetch time: 10ms
+07-05 16:44:19.380  1628  1394 W WindowManager: Attempted to remove non-existing token: android.os.Binder@1f3d6c2
+07-05 16:44:19.398  4325  4325 D AndroidRuntime: Shutting down VM
+07-05 16:44:20.440  4349  4349 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:20.441  4349  4349 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:20.450  4349  4349 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:20.466  4349  4349 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:20.466  4349  4349 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:20.467  4349  4349 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:20.473  4349  4349 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:21.517  4349  4349 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b675; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:21.519  4349  4349 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-05 16:44:21.520  1628  2920 W WindowManager: Attempted to remove non-existing token: android.os.Binder@c4dbcd3
+07-05 16:44:21.541  4349  4349 D AndroidRuntime: Shutting down VM
+07-05 16:44:22.617  4377  4377 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:22.619  4377  4377 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:22.627  4377  4377 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:22.643  4377  4377 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:22.643  4377  4377 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:22.644  4377  4377 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:22.649  4377  4377 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:23.688  4377  4377 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b67d; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:23.689  4377  4377 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-05 16:44:23.689  1628  1639 W WindowManager: Attempted to remove non-existing token: android.os.Binder@ad3e010
+07-05 16:44:23.710  4377  4377 D AndroidRuntime: Shutting down VM
+07-05 16:44:24.148  4395  4395 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:24.150  4395  4395 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:24.157  4395  4395 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:24.173  4395  4395 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:24.173  4395  4395 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:24.174  4395  4395 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:24.179  4395  4395 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:25.226  4395  4395 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b685; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:25.226  4395  4395 W AccessibilityNodeInfoDumper: Fetch time: 7ms
+07-05 16:44:25.227  1628  2127 W WindowManager: Attempted to remove non-existing token: android.os.Binder@6db7709
+07-05 16:44:25.242  4395  4395 D AndroidRuntime: Shutting down VM
+07-05 16:44:25.536  1278  2014 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-05 16:44:25.538  1278  1323 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8294400
+07-05 16:44:25.548  4406  4406 D         : HostConnection::get() New Host Connection established 0xb658d300, tid 4406
+07-05 16:44:25.776  4411  4411 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:25.778  4411  4411 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:25.786  4411  4411 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:25.800  4411  4411 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:25.800  4411  4411 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:25.801  4411  4411 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:25.806  4411  4411 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+07-05 16:44:25.814  1712  1712 D MediaScannerReceiver: action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/screen.png
+07-05 16:44:25.817  4411  4411 D AndroidRuntime: Shutting down VM
+07-05 16:44:25.982  1956  2282 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 12382 [CONTEXT service_id=218 ]
+07-05 16:44:25.991  1956  3724 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 19 uptime_millis: 19 exec_start_elapsed_seconds: 12382 [CONTEXT service_id=218 ]
+07-05 16:44:26.073  1956  2282 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService started execution. cause:5 exec_start_elapsed_seconds: 12383 [CONTEXT service_id=218 ]
+07-05 16:44:26.074  1956  2282 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.icing.service.IcingGcmTaskService started execution. cause:5 exec_start_elapsed_seconds: 12383 [CONTEXT service_id=218 ]
+07-05 16:44:26.081  1956  2295 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.icing.service.IcingGcmTaskService finished executing. cause:5 result: 1 elapsed_millis: 27 uptime_millis: 27 exec_start_elapsed_seconds: 12383 [CONTEXT service_id=218 ]
+07-05 16:44:26.121  1956  2342 I Auth    : [ReflectiveChannelBinder] Successfully bound channel!
+07-05 16:44:26.156  1956  2342 W Conscrypt: Could not set socket write timeout: java.net.SocketException: Socket closed
+07-05 16:44:26.156  1956  2342 E art     : invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+07-05 16:44:26.156  1956  2342 E art     : invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+07-05 16:44:26.156  1956  2342 W Conscrypt: 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414022@20.24.14 (040700-319035315):2)
+07-05 16:44:26.156  1956  2342 W Conscrypt: 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414022@20.24.14 (040700-319035315))
+07-05 16:44:26.170  1956  2342 W Conscrypt: Could not set socket write timeout: java.net.SocketException: Socket closed
+07-05 16:44:26.170  1956  2342 E art     : invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk:classes3.dex for method void com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(int)
+07-05 16:44:26.171  1956  2342 E art     : invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+07-05 16:44:26.171  1956  2342 W Conscrypt: 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@202414022@20.24.14 (040700-319035315):2)
+07-05 16:44:26.171  1956  2342 W Conscrypt: 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@202414022@20.24.14 (040700-319035315))
+07-05 16:44:26.199  1956  2342 E art     : invalid stream - problem with parameter iterator in /system/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk for method java.lang.Object hwr.a(hwx)
+07-05 16:44:26.199  1956  2342 W GLSUser : [AppCertManager] IOException while requesting key: 
+07-05 16:44:26.199  1956  2342 W GLSUser : java.io.IOException: Invalid device key response.
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at hwy.a(:com.google.android.gms@202414022@20.24.14 (040700-319035315):49)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at hww.a(:com.google.android.gms@202414022@20.24.14 (040700-319035315):45)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at hwr.a(:com.google.android.gms@202414022@20.24.14 (040700-319035315))
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at hwu.a(:com.google.android.gms@202414022@20.24.14 (040700-319035315):10)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at gbi.call(:com.google.android.gms@202414022@20.24.14 (040700-319035315):0)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at soy.b(:com.google.android.gms@202414022@20.24.14 (040700-319035315):12)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at soy.run(:com.google.android.gms@202414022@20.24.14 (040700-319035315):7)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at sux.run(:com.google.android.gms@202414022@20.24.14 (040700-319035315):0)
+07-05 16:44:26.199  1956  2342 W GLSUser : 	at java.lang.Thread.run(Thread.java:818)
+07-05 16:44:26.204  1956  2295 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService finished executing. cause:5 result: 3 elapsed_millis: 186 uptime_millis: 186 exec_start_elapsed_seconds: 12383 [CONTEXT service_id=218 ]
+07-05 16:44:28.197  4427  4427 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:28.199  4427  4427 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:28.207  4427  4427 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:28.222  4427  4427 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:28.222  4427  4427 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:28.223  4427  4427 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:28.229  4427  4427 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:29.272  4427  4427 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b68f; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:29.273  4427  4427 W AccessibilityNodeInfoDumper: Fetch time: 11ms
+07-05 16:44:29.275  1628  2917 W WindowManager: Attempted to remove non-existing token: android.os.Binder@201f9b1
+07-05 16:44:29.298  4427  4427 D AndroidRuntime: Shutting down VM
+07-05 16:44:31.728  4444  4444 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:31.730  4444  4444 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:31.740  4444  4444 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:31.753  4444  4444 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:31.753  4444  4444 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:31.754  4444  4444 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:31.760  4444  4444 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:32.795  4444  4444 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b698; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:32.797  4444  4444 W AccessibilityNodeInfoDumper: Fetch time: 7ms
+07-05 16:44:32.798  1628  2151 W WindowManager: Attempted to remove non-existing token: android.os.Binder@ae1fa17
+07-05 16:44:32.814  4444  4444 D AndroidRuntime: Shutting down VM
+07-05 16:44:33.857  4467  4467 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:33.858  4467  4467 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:33.866  4467  4467 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:33.882  4467  4467 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:33.882  4467  4467 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:33.883  4467  4467 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:33.889  4467  4467 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:34.929  4467  4467 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6a1; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:34.931  4467  4467 W AccessibilityNodeInfoDumper: Fetch time: 11ms
+07-05 16:44:34.932  1628  2150 W WindowManager: Attempted to remove non-existing token: android.os.Binder@134ae04
+07-05 16:44:34.952  4467  4467 D AndroidRuntime: Shutting down VM
+07-05 16:44:35.367  4483  4483 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:35.368  4483  4483 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:35.377  4483  4483 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:35.391  4483  4483 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:35.391  4483  4483 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:35.393  4483  4483 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:35.398  4483  4483 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:36.437  4483  4483 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6aa; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:36.438  4483  4483 W AccessibilityNodeInfoDumper: Fetch time: 7ms
+07-05 16:44:36.439  1628  2001 W WindowManager: Attempted to remove non-existing token: android.os.Binder@b8b7fed
+07-05 16:44:36.454  4483  4483 D AndroidRuntime: Shutting down VM
+07-05 16:44:37.478  4507  4507 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:37.479  4507  4507 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:37.487  4507  4507 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:37.504  4507  4507 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:37.504  4507  4507 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:37.505  4507  4507 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:37.511  4507  4507 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:38.553  4507  4507 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6b3; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:38.554  4507  4507 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-05 16:44:38.555  1628  2923 W WindowManager: Attempted to remove non-existing token: android.os.Binder@9adde22
+07-05 16:44:38.572  4507  4507 D AndroidRuntime: Shutting down VM
+07-05 16:44:39.637  4535  4535 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:39.638  4535  4535 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:39.646  4535  4535 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:39.661  4535  4535 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:39.661  4535  4535 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:39.662  4535  4535 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:39.669  4535  4535 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:44:40.712  4535  4535 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6bc; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:44:40.714  4535  4535 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-05 16:44:40.715  1628  1394 W WindowManager: Attempted to remove non-existing token: android.os.Binder@90220b3
+07-05 16:44:40.733  4535  4535 D AndroidRuntime: Shutting down VM
+07-05 16:44:41.277  4561  4561 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:41.279  4561  4561 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:41.287  4561  4561 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:41.301  4561  4561 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:41.301  4561  4561 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:41.302  4561  4561 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:41.307  4561  4561 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+07-05 16:44:41.313  1628  1642 I ActivityManager: Force stopping org.inaturalist.android appid=10158 user=-1: uninstall pkg
+07-05 16:44:41.313  1628  1642 I ActivityManager: Killing 4231:org.inaturalist.android/u0a158 (adj 0): stop org.inaturalist.android
+07-05 16:44:41.316  1628  1652 I PackageManager: Removing old permission: org.inaturalist.android.permission.MAPS_RECEIVE from package org.inaturalist.android
+07-05 16:44:41.338  1628  1652 I art     : Starting a blocking GC Explicit
+07-05 16:44:41.350  1628  1652 I art     : Explicit concurrent mark sweep GC freed 35288(2MB) AllocSpace objects, 23(476KB) LOS objects, 32% free, 8MB/12MB, paused 419us total 11.886ms
+07-05 16:44:41.353  1628  1652 W PackageManager: Couldn't remove dex file for package:  at location /data/app/org.inaturalist.android-1/base.apk, retcode=-1
+07-05 16:44:41.356  4561  4561 I art     : System.exit called, status: 0
+07-05 16:44:41.356  4561  4561 I AndroidRuntime: VM exiting with result code 0.
+07-05 16:44:41.373  1628  1662 W InputDispatcher: channel '16125e5 org.inaturalist.android/org.inaturalist.android.ObservationListActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+07-05 16:44:41.373  1628  1662 E InputDispatcher: channel '16125e5 org.inaturalist.android/org.inaturalist.android.ObservationListActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+07-05 16:44:41.374  1628  1991 I WindowState: WIN DEATH: Window{4455f74 u0 org.inaturalist.android/org.inaturalist.android.TutorialActivity}
+07-05 16:44:41.375  1628  2150 D GraphicsStats: Buffer count: 6
+07-05 16:44:41.379  1628  1642 W ActivityManager: Force removing ActivityRecord{9c88afe u0 org.inaturalist.android/.TutorialActivity t253}: app died, no saved state
+07-05 16:44:41.386  1628  1763 I WindowState: WIN DEATH: Window{16125e5 u0 org.inaturalist.android/org.inaturalist.android.ObservationListActivity}
+07-05 16:44:41.386  1628  1763 W InputDispatcher: Attempted to unregister already unregistered input channel '16125e5 org.inaturalist.android/org.inaturalist.android.ObservationListActivity (server)'
+07-05 16:44:41.388  1628  1642 W ActivityManager: Failed trying to unstop package org.inaturalist.android: java.lang.IllegalArgumentException: Unknown package: org.inaturalist.android
+07-05 16:44:41.389  1628  1642 W PackageManager: Package org.inaturalist.android is missing; assuming frozen
+07-05 16:44:41.389  1628  1642 E ActivityManager: Failure starting process org.inaturalist.android
+07-05 16:44:41.389  1628  1642 E ActivityManager: java.lang.RuntimeException: Package org.inaturalist.android is frozen!
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3222)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3181)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3070)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.startSpecificActivityLocked(ActivityStackSupervisor.java:1395)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.resumeTopActivityInnerLocked(ActivityStack.java:2007)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.resumeTopActivityLocked(ActivityStack.java:1554)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.resumeTopActivitiesLocked(ActivityStackSupervisor.java:2730)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.resumeTopActivitiesLocked(ActivityStackSupervisor.java:2719)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.handleAppDiedLocked(ActivityManagerService.java:4542)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.removeProcessLocked(ActivityManagerService.java:5899)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.killPackageProcessesLocked(ActivityManagerService.java:5558)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.forceStopPackageLocked(ActivityManagerService.java:5707)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.-wrap1(ActivityManagerService.java)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService$MainHandler.handleMessage(ActivityManagerService.java:1704)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at android.os.Handler.dispatchMessage(Handler.java:102)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at android.os.Looper.loop(Looper.java:148)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at android.os.HandlerThread.run(HandlerThread.java:61)
+07-05 16:44:41.389  1628  1642 E ActivityManager: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+07-05 16:44:41.389  1628  1642 I ActivityManager:   Force finishing activity ActivityRecord{a48d6f2 u0 org.inaturalist.android/.ObservationListActivity t253}
+07-05 16:44:41.390  1628  1642 W ActivityManager: Failed trying to unstop package org.inaturalist.android: java.lang.IllegalArgumentException: Unknown package: org.inaturalist.android
+07-05 16:44:41.390  1628  1642 W PackageManager: Package org.inaturalist.android is missing; assuming frozen
+07-05 16:44:41.390  1628  1642 E ActivityManager: Failure starting process org.inaturalist.android
+07-05 16:44:41.390  1628  1642 E ActivityManager: java.lang.RuntimeException: Package org.inaturalist.android is frozen!
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3222)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3181)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3070)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.startSpecificActivityLocked(ActivityStackSupervisor.java:1395)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.resumeTopActivityInnerLocked(ActivityStack.java:2007)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.resumeTopActivityLocked(ActivityStack.java:1554)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.resumeTopActivityLocked(ActivityStack.java:1537)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.finishCurrentActivityLocked(ActivityStack.java:2989)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.finishActivityLocked(ActivityStack.java:2917)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStack.finishDisabledPackageActivitiesLocked(ActivityStack.java:4087)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.finishDisabledPackageActivitiesLocked(ActivityStackSupervisor.java:2675)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.forceStopPackageLocked(ActivityManagerService.java:5711)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService.-wrap1(ActivityManagerService.java)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.am.ActivityManagerService$MainHandler.handleMessage(ActivityManagerService.java:1704)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at android.os.Handler.dispatchMessage(Handler.java:102)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at android.os.Looper.loop(Looper.java:148)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at android.os.HandlerThread.run(HandlerThread.java:61)
+07-05 16:44:41.390  1628  1642 E ActivityManager: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+07-05 16:44:41.391  1628  1642 I ActivityManager:   Force finishing activity ActivityRecord{8cb6881 u0 org.inaturalist.android/.OnboardingActivity t253}
+07-05 16:44:41.398  1628  2080 W ActivityManager: Spurious death for ProcessRecord{4131f6f 0:org.inaturalist.android/u0a158}, curProc for 4231: null
+07-05 16:44:41.399  1628  1647 W ResourceType: No known package when getting value for resource number 0x7f070049
+07-05 16:44:41.401  1628  1647 W ResourceType: No known package when getting value for resource number 0x7f020112
+07-05 16:44:41.403  1628  1652 I ActivityManager: Force stopping org.inaturalist.android appid=10158 user=0: pkg removed
+07-05 16:44:41.405  1628  1647 W WindowManager: Token{d38fd26 ActivityRecord{8cb6881 u0 org.inaturalist.android/.OnboardingActivity t253 f}} failed creating starting window
+07-05 16:44:41.405  1628  1647 W WindowManager: android.content.res.Resources$NotFoundException: Resource ID #0x7f020112
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at android.content.res.Resources.getValue(Resources.java:1351)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at android.content.res.Resources.getDrawable(Resources.java:804)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at android.content.Context.getDrawable(Context.java:458)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at com.android.internal.widget.ToolbarWidgetWrapper.setIcon(ToolbarWidgetWrapper.java:322)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at com.android.internal.widget.ActionBarOverlayLayout.setIcon(ActionBarOverlayLayout.java:737)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at com.android.internal.policy.PhoneWindow.installDecor(PhoneWindow.java:4007)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at com.android.internal.policy.PhoneWindow.getDecorView(PhoneWindow.java:1969)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at com.android.server.policy.PhoneWindowManager.addStartingWindow(PhoneWindowManager.java:2325)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at com.android.server.wm.WindowManagerService$H.handleMessage(WindowManagerService.java:7840)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at android.os.Handler.dispatchMessage(Handler.java:102)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at android.os.Looper.loop(Looper.java:148)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at android.os.HandlerThread.run(HandlerThread.java:61)
+07-05 16:44:41.405  1628  1647 W WindowManager: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+07-05 16:44:41.429  1628  1642 I ActivityManager: Exiting empty application process org.inaturalist.android (null)
+07-05 16:44:41.437  1956  1956 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_ALL packageName=org.inaturalist.android]
+07-05 16:44:41.444  1628  1663 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-05 16:44:41.451  1628  1628 D JobSchedulerService: Receieved: android.intent.action.PACKAGE_REMOVED
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: failed to remove uid from uid_cputime module
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: java.io.FileNotFoundException: /proc/uid_cputime/remove_uid_range: open failed: ENOENT (No such file or directory)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at libcore.io.IoBridge.open(IoBridge.java:452)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at java.io.FileOutputStream.<init>(FileOutputStream.java:87)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at java.io.FileOutputStream.<init>(FileOutputStream.java:72)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at java.io.FileWriter.<init>(FileWriter.java:80)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at com.android.internal.os.KernelUidCpuTimeReader.removeUid(KernelUidCpuTimeReader.java:157)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at com.android.internal.os.BatteryStatsImpl.removeUidStatsLocked(BatteryStatsImpl.java:8800)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at com.android.server.am.BatteryStatsService.removeUid(BatteryStatsService.java:242)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:16562)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at com.android.server.am.ActivityManagerService.broadcastIntent(ActivityManagerService.java:16938)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at com.android.server.pm.PackageManagerService$8.run(PackageManagerService.java:9423)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at android.os.Handler.handleCallback(Handler.java:739)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at android.os.Handler.dispatchMessage(Handler.java:95)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at android.os.Looper.loop(Looper.java:148)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at android.os.HandlerThread.run(HandlerThread.java:61)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at libcore.io.Posix.open(Native Method)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	at libcore.io.IoBridge.open(IoBridge.java:438)
+07-05 16:44:41.472  1628  1652 E KernelUidCpuTimeReader: 	... 14 more
+07-05 16:44:41.472  1934  2075 I LatinIME:LogUtils: Dictionary info: dictionary = main:en ; version = 54 ; date = 1414726273
+07-05 16:44:41.482  1456  4576 D VoicemailCleanupService: Cleaning up data for package: org.inaturalist.android
+07-05 16:44:41.505  1986  2155 D EGL_emulation: eglMakeCurrent: 0xae5946c0: ver 3 0 (tinfo 0xae5924d0)
+07-05 16:44:41.536  1628  2080 W InputMethodManagerService: Got RemoteException sending setActive(false) notification to pid 4231 uid 10158
+07-05 16:44:41.560  1956  4587 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+07-05 16:44:41.562  1628 22639 I AccountManagerService: getTypesVisibleToCaller: isPermitted? true
+07-05 16:44:41.589  2369  5215 I ContentMaintenance: Internal cache bytes used: 0; limit: 40626585; download size: 0
+07-05 16:44:41.605  1874  4596 I UpdateIcingCorporaServi: Updating corpora: APPS=org.inaturalist.android, CONTACTS=MAYBE
+07-05 16:44:41.615  1972  1972 D CarrierServiceBindHelper: Receive action: android.intent.action.PACKAGE_REMOVED
+07-05 16:44:41.622  3686  3686 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1221 android.content.ContextWrapper.startService:581 android.content.ContextWrapper.startService:581 com.android.keychain.KeyChainBroadcastReceiver.onReceive:12 android.app.ActivityThread.handleReceiver:2725 
+07-05 16:44:41.641  4580  4580 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:41.644  4580  4580 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:41.658  4580  4580 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:41.679  4580  4580 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:41.679  4580  4580 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:41.681  4580  4580 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:41.694  4580  4580 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+07-05 16:44:41.716  2369  2792 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.googlequicksearchbox componentName=null serviceId=36
+07-05 16:44:41.719  2369  1726 I Icing   : doRemovePackageData org.inaturalist.android
+07-05 16:44:41.723  3710  3723 D Documents: Update found 8 roots in 282ms
+07-05 16:44:41.748  2369  2792 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+07-05 16:44:41.749  1535  1547 D DefContainer: Copying /data/local/tmp/201.apk to base.apk
+07-05 16:44:41.818  2369  1726 W Icing   : No valid account for uploading user actions
+07-05 16:44:41.835  2369  2792 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+07-05 16:44:41.841  2369  5215 I RealtimeCacheCleanup: Beginning Realtime garbage collection.
+07-05 16:44:41.842  2369  1726 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:41.842  2369  5215 I RealtimeCacheCleanup: Finished Realtime garbage collection.
+07-05 16:44:41.844  2369  1726 W Icing   : No valid account for uploading user actions
+07-05 16:44:41.848  2369  1726 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:41.852  1874  4596 I UpdateIcingCorporaServi: UpdateCorporaTask done [took 247 ms] updated apps [took 247 ms] 
+07-05 16:44:41.855  2369  2792 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=36
+07-05 16:44:41.857  2369  1726 W Icing   : No valid account for uploading user actions
+07-05 16:44:41.861  2369  1726 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:41.874  2369  1726 W Icing   : No valid account for uploading user actions
+07-05 16:44:41.879  2369  1726 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:41.879  2369  1726 I Icing   : Indexing com.google.android.googlequicksearchbox-applications_uri from com.google.android.googlequicksearchbox
+07-05 16:44:41.896  2369  1726 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-05 16:44:41.906  2369  1726 I Icing   : Indexing done com.google.android.googlequicksearchbox-applications_uri
+07-05 16:44:41.910  2369  1726 I Icing   : Indexing done com.google.android.gms-apps
+07-05 16:44:42.309  1628  1652 I PackageManager.DexOptimizer: Running dexopt (dex2oat) on: /data/app/vmdl237804900.tmp/base.apk pkg=org.inaturalist.android isa=x86 vmSafeMode=false debuggable=false oatDir = /data/app/vmdl237804900.tmp/oat
+07-05 16:44:42.316  4610  4610 W dex2oat : Unexpected CPU variant for X86 using defaults: x86
+07-05 16:44:42.316  4610  4610 W dex2oat : Mismatch between dex2oat instruction set features (ISA: X86 Feature string: smp,-ssse3,-sse4.1,-sse4.2,-avx,-avx2) and those of dex2oat executable (ISA: X86 Feature string: smp,ssse3,-sse4.1,-sse4.2,-avx,-avx2) for the command line:
+07-05 16:44:42.316  4610  4610 W dex2oat : /system/bin/dex2oat --zip-fd=6 --zip-location=base.apk --oat-fd=7 --oat-location=/data/app/vmdl237804900.tmp/oat/x86/base.odex --instruction-set=x86 --instruction-set-variant=x86 --instruction-set-features=default --runtime-arg -Xms64m --runtime-arg -Xmx512m --swap-fd=8
+07-05 16:44:42.316  4610  4610 I dex2oat : Starting dex2oat.
+07-05 16:44:42.539  4610  4614 W dex2oat : Before Android 4.1, method android.graphics.PorterDuffColorFilter android.support.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable
+07-05 16:44:42.574  4610  4610 W dex2oat : Before Android 4.1, method int android.support.v7.widget.ListViewCompat.lookForSelectablePosition(int, boolean) would have incorrectly overridden the package-private method in android.widget.ListView
+07-05 16:44:45.564  4610  4614 W dex2oat : No verified method for method calling String.<init>: java.lang.String java.io.ByteArrayOutputStream.toString()
+07-05 16:44:46.121  4610  4614 W dex2oat : No verified method for method calling String.<init>: void org.json.JSONStringer.<init>(int)
+07-05 16:44:46.956  4610  4614 I dex2oat : Skipping compilation of boolean com.loopj.android.http.Base64$Encoder.process(byte[], int, int, boolean): it contains a non natural loop
+07-05 16:44:47.970  4610  4614 W dex2oat : Compilation of boolean org.apache.commons.collections4.trie.AbstractPatriciaTrie.selectR(org.apache.commons.collections4.trie.AbstractPatriciaTrie$TrieEntry, int, java.lang.Object, int, org.apache.commons.collections4.trie.AbstractPatriciaTrie$Reference) took 402.552ms
+07-05 16:44:47.972  4610  4613 W dex2oat : Compilation of java.util.Map org.apache.commons.lang3.reflect.TypeUtils.determineTypeArguments(java.lang.Class, java.lang.reflect.ParameterizedType) took 151.466ms
+07-05 16:44:48.032  4610  4612 W dex2oat : No verified method for method calling String.<init>: java.lang.String org.apache.http.util.CharArrayBuffer.toString()
+07-05 16:44:48.688  4610  4610 I dex2oat : dex2oat took 6.372s (threads: 4) arena alloc=55MB java alloc=12MB native alloc=100MB free=42MB
+07-05 16:44:48.835  1628  1652 V BackupManagerService: restoreAtInstall pkg=org.inaturalist.android token=b restoreSet=0
+07-05 16:44:48.835  1628  1652 V BackupManagerService: Finishing install immediately
+07-05 16:44:48.836  1628  1652 W Settings: Setting install_non_market_apps has moved from android.provider.Settings.Global to android.provider.Settings.Secure, returning read-only value.
+07-05 16:44:48.836  1628  1652 I art     : Starting a blocking GC Explicit
+07-05 16:44:48.856  1628  1652 I art     : Explicit concurrent mark sweep GC freed 107088(5MB) AllocSpace objects, 8(820KB) LOS objects, 32% free, 8MB/12MB, paused 512us total 20.066ms
+07-05 16:44:48.860  4580  4580 I art     : System.exit called, status: 0
+07-05 16:44:48.860  4580  4580 I AndroidRuntime: VM exiting with result code 0.
+07-05 16:44:48.866  1628  1663 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-05 16:44:48.872  3710  3739 D Documents: Update found 8 roots in 7ms
+07-05 16:44:48.907  2369  4623 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+07-05 16:44:48.914  2369  4624 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:org.inaturalist.android flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+07-05 16:44:48.916  1956  4631 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:org.inaturalist.android flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-05 16:44:48.920  1956  4633 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:org.inaturalist.android flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-05 16:44:48.924  1972  1972 D CarrierServiceBindHelper: Receive action: android.intent.action.PACKAGE_ADDED
+07-05 16:44:48.925  1628  1763 W ActivityManager: Unable to start service Intent { act=com.google.android.gms.auth.key.retrieval.service.START pkg=com.google.android.gms } U=0: not found
+07-05 16:44:48.928  1972  1972 D CarrierServiceBindHelper: mHandler: 3
+07-05 16:44:48.928  1972  1972 D CarrierConfigLoader: mHandler: 9 phoneId: 0
+07-05 16:44:48.955  1628 22639 I AccountManagerService: getTypesVisibleToCaller: isPermitted? true
+07-05 16:44:48.971  1628  2150 I AccountManagerService: getTypesVisibleToCaller: isPermitted? true
+07-05 16:44:48.974  2369  4624 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://VRZbEWqRhQBVCSh_R9Zf44a5g9eYmewj4IqWxw_Tgp6P2hjCE3La5p2vIbIjejUpIAUUWqeUtCKJNE68S8H_TA==@org.inaturalist.android/ was not found. Marking affiliation data as stale...
+07-05 16:44:49.003  1874  4640 I UpdateIcingCorporaServi: Updating corpora: APPS=org.inaturalist.android, CONTACTS=MAYBE
+07-05 16:44:49.006  1628  1750 I AccountManagerService: getTypesVisibleToCaller: isPermitted? true
+07-05 16:44:49.011  1628  2923 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@294d8aa
+07-05 16:44:49.016  2369  2439 E GmsClient: unable to connect to service: com.google.android.gms.auth.key.retrieval.service.START on com.google.android.gms
+07-05 16:44:49.039  2369  4623 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: pay:-1
+07-05 16:44:49.039  2369  4623 E ConfigFileUtils: Failed to read config file: /data/data/com.google.android.gms/app_chimera/next_container.pb: open failed: ENOENT (No such file or directory)
+07-05 16:44:49.067  4638  4638 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:44:49.069  4638  4638 D AndroidRuntime: CheckJNI is ON
+07-05 16:44:49.074  2369  4623 I ChmraDebugLogger: [73] 1801
+07-05 16:44:49.076  2369  4623 I ChmraDebugLogger: [30] [Pay.optional:202414020000] permitMetered=true,
+07-05 16:44:49.078  2369  4623 W ChimeraConfigService: Retry attempt was throttled.
+07-05 16:44:49.080  4638  4638 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:44:49.097  4638  4638 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:44:49.097  4638  4638 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:44:49.099  4638  4638 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:44:49.112  4638  4638 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+07-05 16:44:49.120  2369  2792 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.googlequicksearchbox componentName=null serviceId=36
+07-05 16:44:49.132  1628  1642 W BroadcastQueue: Skipping deliver [background] BroadcastRecord{47c2805 u-1 android.net.conn.CONNECTIVITY_CHANGE} to ReceiverList{5ecc05a 4638 (unknown name)/0/u-1 remote:ad66e6f}: process crashing
+07-05 16:44:49.149  1628  2920 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.inaturalist.android/.ObservationListActivity} from uid 0 on display 0
+07-05 16:44:49.159  2369  1726 W Icing   : No valid account for uploading user actions
+07-05 16:44:49.171  2369  1726 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-05 16:44:49.176  2369  1726 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 137
+07-05 16:44:49.176  1874  4640 I UpdateIcingCorporaServi: UpdateCorporaTask done [took 173 ms] updated apps [took 173 ms] 
+07-05 16:44:49.190  2369  1726 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-05 16:44:49.200  1278  1336 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8294400
+07-05 16:44:49.209  1628  1394 I ActivityManager: Start proc 4650:org.inaturalist.android/u0a159 for activity org.inaturalist.android/.ObservationListActivity
+07-05 16:44:49.227  4638  4638 I art     : System.exit called, status: 0
+07-05 16:44:49.227  4638  4638 I AndroidRuntime: VM exiting with result code 0.
+07-05 16:44:49.234  2369  1726 I Icing   : Indexing com.google.android.googlequicksearchbox-applications_uri from com.google.android.googlequicksearchbox
+07-05 16:44:49.263  2369  1726 I Icing   : Indexing done com.google.android.gms-apps
+07-05 16:44:49.265  4650  4650 I MultiDex: VM with version 2.1.0 has multidex support
+07-05 16:44:49.265  4650  4650 I MultiDex: install
+07-05 16:44:49.265  4650  4650 I MultiDex: VM has multidex support, MultiDex support library is disabled.
+07-05 16:44:49.265  4650  4650 I MultiDex: install
+07-05 16:44:49.265  4650  4650 I MultiDex: VM has multidex support, MultiDex support library is disabled.
+07-05 16:44:49.269  2369  1726 I Icing   : Indexing done com.google.android.googlequicksearchbox-applications_uri
+07-05 16:44:49.274  1986  2155 D EGL_emulation: eglMakeCurrent: 0xae5946c0: ver 3 0 (tinfo 0xae5924d0)
+07-05 16:44:49.275  1986  2155 E Surface : getSlotFromBufferLocked: unknown buffer: 0xae6a23a0
+07-05 16:44:49.303  4650  4650 I Fabric  : Initializing Crashlytics 2.3.3.61
+07-05 16:44:49.358  1628  2923 D VoldConnector: SND -> {19 volume mkdirs /storage/1EE9-4203/Android/data/org.inaturalist.android/cache/}
+07-05 16:44:49.364  1628  1665 D VoldConnector: RCV <- {200 19 Command succeeded}
+07-05 16:44:49.390  1628 22639 I ActivityManager: START u0 {flg=0x24000000 cmp=org.inaturalist.android/.OnboardingActivity (has extras)} from uid 10159 on display 0
+07-05 16:44:49.394  4650  4650 I INAT:ObservationListActivity: Registering ACTION_SYNC_COMPLETE
+07-05 16:44:49.395  4650  4650 I INAT:ObservationListActivity: Registering CONNECTIVITY_ACTION
+07-05 16:44:49.408  1628  2923 I ActivityManager: START u0 {flg=0x24000000 cmp=org.inaturalist.android/.TutorialActivity (has extras)} from uid 10159 on display 0
+07-05 16:44:49.433  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE ((_synced_at IS NULL) AND (is_deleted = 0 OR is_deleted is NULL)) ORDER BY CASE WHEN id IS NULL THEN _created_at ELSE created_at END DESC
+07-05 16:44:49.444  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE ((photo_filename IS NULL) AND (photo_url IS NULL)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:49.445  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE (((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) ORDER BY _created_at ASC
+07-05 16:44:49.447  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE (((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR ((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR (is_deleted = 1)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:49.455  4650  4650 W FlurryAgent: Start session with context: org.inaturalist.android.ObservationListActivity@2bf5ad count:0
+07-05 16:44:49.471  4650  4650 W FlurryAgent: Event count started: ObservationListActivity
+07-05 16:44:49.471  4650  4650 I BaseFragmentActivity: Registering ACTION_GET_USER_DETAILS_RESULT
+07-05 16:44:49.475  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE ((_synced_at IS NULL) AND (is_deleted = 0 OR is_deleted is NULL)) ORDER BY CASE WHEN id IS NULL THEN _created_at ELSE created_at END DESC
+07-05 16:44:49.479  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE ((photo_filename IS NULL) AND (photo_url IS NULL)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:49.483  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE (((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) ORDER BY _created_at ASC
+07-05 16:44:49.487  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE (((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR ((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR (is_deleted = 1)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:49.507  1278  1325 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-05 16:44:49.510  4650  4684 D OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+07-05 16:44:49.517  4650  4650 D         : HostConnection::get() New Host Connection established 0xa0a47c40, tid 4650
+07-05 16:44:49.531  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE ((photo_filename IS NULL) AND (photo_url IS NULL)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:49.536  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE (((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) ORDER BY _created_at ASC
+07-05 16:44:49.541  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _observation_id, _photo_id, _synced_at, _updated_at, created_at, uuid, id, observation_id, photo_id, position, updated_at, photo_url, is_deleted, photo_filename FROM observation_photos WHERE (((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR ((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR (is_deleted = 1)) ORDER BY position ASC, id ASC, _id ASC
+07-05 16:44:49.580  4650  4650 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:49.580  4650  4650 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:49.582  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:49.582  4650  4650 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:49.587  4650  4650 D SQL     : SQLiteQuery: SELECT _id, _created_at, _synced_at, _updated_at, created_at, description, geoprivacy, iconic_taxon_id, iconic_taxon_name, id, id_please, latitude, longitude, observed_on, observed_on_string, out_of_range, captive, place_guess, positional_accuracy, positioning_device, positioning_method, private_latitude, private_longitude, private_positional_accuracy, quality_grade, species_guess, preferred_common_name, taxon_id, time_observed_at, updated_at, user_agent, user_id, user_login, identifications_count, comments_count, last_comments_count, last_identifications_count, is_deleted, uuid FROM observations WHERE ((_synced_at IS NULL) AND (is_deleted = 0 OR is_deleted is NULL)) ORDER BY CASE WHEN id IS NULL THEN _created_at ELSE created_at END DESC
+07-05 16:44:49.589  4650  4650 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:49.592  4650  4650 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:49.592  4650  4650 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:49.594  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:49.594  4650  4650 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:49.595  4650  4650 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:49.595  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:49.595  4650  4650 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:49.595  4650  4650 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:49.597  4650  4650 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:49.597  4650  4650 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:49.599  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:49.599  4650  4650 D PullToRefresh: First Visible: 0. Visible Count: 0. Total Items:0
+07-05 16:44:49.600  4650  4650 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:49.601  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:49.601  4650  4650 D PullToRefresh: Setting mode to: DISABLED
+07-05 16:44:49.601  4650  4650 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:49.628  4650  4684 D         : HostConnection::get() New Host Connection established 0x9fc3d840, tid 4684
+07-05 16:44:49.629  4650  4684 I OpenGLRenderer: Initialized EGL, version 1.4
+07-05 16:44:49.630  4650  4684 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+07-05 16:44:49.633  4650  4684 D EGL_emulation: eglCreateContext: 0xaa95e520: maj 3 min 0 rcv 3
+07-05 16:44:49.635  4650  4684 D EGL_emulation: eglMakeCurrent: 0xaa95e520: ver 3 0 (tinfo 0xad1290a0)
+07-05 16:44:49.635  4650  4684 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+07-05 16:44:49.635  4650  4684 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+07-05 16:44:49.645  4650  4684 D EGL_emulation: eglMakeCurrent: 0xaa95e520: ver 3 0 (tinfo 0xad1290a0)
+07-05 16:44:49.664  4650  4650 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:49.664  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: -848, R: 0, B: 0
+07-05 16:44:49.664  4650  4650 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:49.664  4650  4650 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:49.664  4650  4650 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:49.664  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:49.664  4650  4650 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:49.665  4650  4650 D PullToRefresh: Setting Padding. L: 3, T: 0, R: 3, B: 0
+07-05 16:44:49.665  4650  4650 D PullToRefresh: onSizeChanged. W: 1080, H: 1413
+07-05 16:44:49.665  4650  4650 D PullToRefresh: Setting Padding. L: 0, T: 0, R: 0, B: 0
+07-05 16:44:49.697  4650  4650 D INAT: Application: Detected country: us
+07-05 16:44:49.697  4650  4685 W FlurryAgent: FlurryDataSender: report c5a5d45d-2b42-48b0-8a8d-dccb09366fcb sent. HTTP response: 200
+07-05 16:44:49.714  4650  4650 W FlurryAgent: Start session with context: org.inaturalist.android.TutorialActivity@61d55e0 count:1
+07-05 16:44:49.718  4650  4650 W FlurryAgent: Event count started: TutorialActivity
+07-05 16:44:49.836  4650  4650 W FragmentManager: moveToState: Fragment state for TutorialFragment{1a1f710 #0 id=0x7f0e0248 android:switcher:2131624520:1} not updated inline; expected state 3 found 2
+07-05 16:44:49.871  4650  4684 D EGL_emulation: eglMakeCurrent: 0xaa95e520: ver 3 0 (tinfo 0xad1290a0)
+07-05 16:44:49.887  4650  4684 D EGL_emulation: eglMakeCurrent: 0xaa95e520: ver 3 0 (tinfo 0xad1290a0)
+07-05 16:44:49.898  4650  4684 D EGL_emulation: eglMakeCurrent: 0xaa95e520: ver 3 0 (tinfo 0xad1290a0)
+07-05 16:44:49.909  4650  4665 E Fabric  : Unknown error while loading Crashlytics settings. Crashes will be cached until settings can be retrieved.
+07-05 16:44:49.912  4650  4665 W Fabric  : Received null settings, skipping initialization!
+07-05 16:44:49.914  1628  1647 I ActivityManager: Displayed org.inaturalist.android/.TutorialActivity: +388ms (total +720ms)
+07-05 16:44:49.948  4650  4684 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb403d840
+07-05 16:44:49.960  4650  4650 W FlurryAgent: End session with context: org.inaturalist.android.ObservationListActivity@2bf5ad count:1
+07-05 16:44:55.991  2369  4622 I GmscoreIpa: how are you::
+07-05 16:45:00.059  1278  1326 D hwcomposer: hw_composer sent 209 syncs in 60s
+07-05 16:45:01.014  1628  1642 I ActivityManager: Start proc 4696:com.android.deskclock/u0a26 for broadcast com.android.deskclock/com.android.alarmclock.DigitalAppWidgetProvider
+07-05 16:45:01.035  4696  4696 W System  : ClassLoader referenced unknown path: /system/app/DeskClock/lib/x86
+07-05 16:45:04.347  4709  4709 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:04.348  4709  4709 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:04.357  4709  4709 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:04.370  4709  4709 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:04.370  4709  4709 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:04.371  4709  4709 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:04.377  4709  4709 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-05 16:45:04.387  4709  4709 D AndroidRuntime: Shutting down VM
+07-05 16:45:04.712  4718  4718 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:04.713  4718  4718 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:04.725  4718  4718 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:04.745  4718  4718 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:04.745  4718  4718 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:04.746  4718  4718 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:04.755  4718  4718 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-05 16:45:04.760  4718  4718 D AndroidRuntime: Shutting down VM
+07-05 16:45:05.770  4741  4741 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:05.772  4741  4741 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:05.779  4741  4741 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:05.793  4741  4741 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:05.793  4741  4741 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:05.794  4741  4741 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:05.801  4741  4741 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:06.852  4741  4741 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6c5; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:06.853  4741  4741 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-05 16:45:06.854  1628  1763 W WindowManager: Attempted to remove non-existing token: android.os.Binder@ec443b
+07-05 16:45:06.870  4741  4741 D AndroidRuntime: Shutting down VM
+07-05 16:45:07.301  4757  4757 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:07.302  4757  4757 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:07.310  4757  4757 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:07.324  4757  4757 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:07.324  4757  4757 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:07.326  4757  4757 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:07.331  4757  4757 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:08.372  4757  4757 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6ce; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:08.373  4757  4757 W AccessibilityNodeInfoDumper: Fetch time: 7ms
+07-05 16:45:08.374  1628  1991 W WindowManager: Attempted to remove non-existing token: android.os.Binder@92590b1
+07-05 16:45:08.390  4757  4757 D AndroidRuntime: Shutting down VM
+07-05 16:45:09.410  4780  4780 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:09.411  4780  4780 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:09.420  4780  4780 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:09.434  4780  4780 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:09.434  4780  4780 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:09.435  4780  4780 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:09.441  4780  4780 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:10.476  4780  4780 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6d7; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:10.477  4780  4780 W AccessibilityNodeInfoDumper: Fetch time: 6ms
+07-05 16:45:10.477  1628  2923 W WindowManager: Attempted to remove non-existing token: android.os.Binder@fab996
+07-05 16:45:10.494  4780  4780 D AndroidRuntime: Shutting down VM
+07-05 16:45:11.559  4808  4808 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:11.561  4808  4808 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:11.571  4808  4808 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:11.586  4808  4808 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:11.586  4808  4808 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:11.588  4808  4808 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:11.593  4808  4808 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:12.644  4808  4808 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6e0; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:12.646  4808  4808 W AccessibilityNodeInfoDumper: Fetch time: 7ms
+07-05 16:45:12.647  1628  2917 W WindowManager: Attempted to remove non-existing token: android.os.Binder@f50e917
+07-05 16:45:12.664  4808  4808 D AndroidRuntime: Shutting down VM
+07-05 16:45:13.097  4826  4826 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:13.099  4826  4826 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:13.107  4826  4826 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:13.122  4826  4826 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:13.122  4826  4826 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:13.123  4826  4826 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:13.128  4826  4826 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:14.166  4826  4826 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6e9; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:14.168  4826  4826 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-05 16:45:14.168  1628  2127 W WindowManager: Attempted to remove non-existing token: android.os.Binder@b427104
+07-05 16:45:14.186  4826  4826 D AndroidRuntime: Shutting down VM
+07-05 16:45:14.476  1278  2020 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-05 16:45:14.478  1278  1323 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8294400
+07-05 16:45:14.487  4837  4837 D         : HostConnection::get() New Host Connection established 0xb654d300, tid 4837
+07-05 16:45:14.733  4842  4842 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:14.735  4842  4842 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:14.744  4842  4842 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:14.758  4842  4842 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:14.758  4842  4842 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:14.759  4842  4842 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:14.765  4842  4842 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+07-05 16:45:14.773  1712  1712 D MediaScannerReceiver: action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/screen.png
+07-05 16:45:14.774  4842  4842 D AndroidRuntime: Shutting down VM
+07-05 16:45:14.963  1956 32557 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 12431 [CONTEXT service_id=218 ]
+07-05 16:45:14.993  1956  2282 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.icing.service.IcingGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 12431 [CONTEXT service_id=218 ]
+07-05 16:45:14.998  1956  2282 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 45 uptime_millis: 45 exec_start_elapsed_seconds: 12431 [CONTEXT service_id=218 ]
+07-05 16:45:15.010  1956  2282 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.icing.service.IcingGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 26 uptime_millis: 26 exec_start_elapsed_seconds: 12431 [CONTEXT service_id=218 ]
+07-05 16:45:17.231  4854  4854 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:17.235  4854  4854 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:17.259  4854  4854 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:17.301  4854  4854 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:17.301  4854  4854 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:17.306  4854  4854 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:17.325  4854  4854 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:18.392  4854  4854 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6f2; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:18.393  4854  4854 W AccessibilityNodeInfoDumper: Fetch time: 10ms
+07-05 16:45:18.394  1628 22639 W WindowManager: Attempted to remove non-existing token: android.os.Binder@a612688
+07-05 16:45:18.418  4854  4854 D AndroidRuntime: Shutting down VM
+07-05 16:45:20.858  4871  4871 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:20.859  4871  4871 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:20.869  4871  4871 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:20.886  4871  4871 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:20.886  4871  4871 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:20.887  4871  4871 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:20.894  4871  4871 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:21.936  4871  4871 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b6fb; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:21.938  4871  4871 W AccessibilityNodeInfoDumper: Fetch time: 7ms
+07-05 16:45:21.938  1628  2923 W WindowManager: Attempted to remove non-existing token: android.os.Binder@8f2b446
+07-05 16:45:21.952  4871  4871 D AndroidRuntime: Shutting down VM
+07-05 16:45:22.965  4895  4895 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:22.967  4895  4895 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:22.976  4895  4895 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:22.991  4895  4895 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:22.991  4895  4895 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:22.993  4895  4895 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:22.998  4895  4895 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:24.040  4895  4895 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b704; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:24.042  4895  4895 W AccessibilityNodeInfoDumper: Fetch time: 10ms
+07-05 16:45:24.042  1628  2001 W WindowManager: Attempted to remove non-existing token: android.os.Binder@6684607
+07-05 16:45:24.061  4895  4895 D AndroidRuntime: Shutting down VM
+07-05 16:45:24.481  4911  4911 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:24.483  4911  4911 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:24.492  4911  4911 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:24.508  4911  4911 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:24.508  4911  4911 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:24.510  4911  4911 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:24.517  4911  4911 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:25.556  4911  4911 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b70c; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:25.558  4911  4911 W AccessibilityNodeInfoDumper: Fetch time: 7ms
+07-05 16:45:25.559  1628  1763 W WindowManager: Attempted to remove non-existing token: android.os.Binder@262334
+07-05 16:45:25.575  4911  4911 D AndroidRuntime: Shutting down VM
+07-05 16:45:26.599  4935  4935 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:26.601  4935  4935 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:26.610  4935  4935 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:26.625  4935  4935 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:26.625  4935  4935 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:26.626  4935  4935 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:26.632  4935  4935 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:27.677  4935  4935 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b716; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:27.680  4935  4935 W AccessibilityNodeInfoDumper: Fetch time: 9ms
+07-05 16:45:27.681  1628  2080 W WindowManager: Attempted to remove non-existing token: android.os.Binder@d2f055d
+07-05 16:45:27.696  4935  4935 D AndroidRuntime: Shutting down VM
+07-05 16:45:28.790  4963  4963 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+07-05 16:45:28.792  4963  4963 D AndroidRuntime: CheckJNI is ON
+07-05 16:45:28.800  4963  4963 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+07-05 16:45:28.815  4963  4963 E memtrack: Couldn't load memtrack module (No such file or directory)
+07-05 16:45:28.815  4963  4963 E android.os.Debug: failed to load memtrack module: -2
+07-05 16:45:28.816  4963  4963 I Radio-JNI: register_android_hardware_Radio DONE
+07-05 16:45:28.822  4963  4963 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-05 16:45:29.862  4963  4963 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@8000b71f; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: org.inaturalist.android; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_UNKNOWN - null]
+07-05 16:45:29.863  4963  4963 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-05 16:45:29.863  1628  1639 W WindowManager: Attempted to remove non-existing token: android.os.Binder@395ced2
+07-05 16:45:29.880  4963  4963 D AndroidRuntime: Shutting down VM
+Elapsed Time: 97443

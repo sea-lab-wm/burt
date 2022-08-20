@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>18</id>
+    <title ob="x" eb="" sr="">Can't open the add/remove medicine stock dialog</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Version</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">2.5.7 from F-Droid</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="x" id="4.1">Edit a medicine</st>
+            <st ob="" eb="" sr="x" id="4.2">Tap the '+' or '-' button</st>
+            <st ob="" eb="" sr="" id="4.3">Expected outcome</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="x" sr="" id="5.1">The add/remove dialog gets displayed.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Actual outcome</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="x" eb="" sr="" id="7.1">I get kicked back to the medicine screen.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">Exception</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">FATAL EXCEPTION: main</st>
+            <st ob="" eb="" sr="" id="9.2">Process: es.usc.citius.servando.calendula, PID: 6220 java.lang.IllegalStateException: Fragment b{f3e5022 #0 number_dialog} declared target fragment MedicineCreateOrEditFragment{8239cfe #0 id=0x7f0901de android:switcher:2131296734:0} that does not belong to this FragmentManager! at android.support.v4.app.p.a(Unknown Source:303)</st>
+            <st ob="" eb="" sr="" id="9.3">at android.support.v4.app.p.e(Unknown Source:38)</st>
+            <st ob="" eb="" sr="" id="9.4">at android.support.v4.app.p.a(Unknown Source:45)</st>
+            <st ob="" eb="" sr="" id="9.5">at android.support.v4.app.d.g(Unknown Source:169)</st>
+            <st ob="" eb="" sr="" id="9.6">at android.support.v4.app.p.b(Unknown Source:38)</st>
+            <st ob="" eb="" sr="" id="9.7">at android.support.v4.app.p.a(Unknown Source:112)</st>
+            <st ob="" eb="" sr="" id="9.8">at android.support.v4.app.p.b(Unknown Source:89)</st>
+            <st ob="" eb="" sr="" id="9.9">at android.support.v4.app.p.f(Unknown Source:21)</st>
+            <st ob="" eb="" sr="" id="9.10">at android.support.v4.app.p$1.</st>
+            <st ob="" eb="" sr="" id="9.11">run(Unknown Source:2)</st>
+            <st ob="" eb="" sr="" id="9.12">  at android.os.Handler.handleCallback(Handler.java:808)</st>
+            <st ob="" eb="" sr="" id="9.13">  at android.os.Handler.dispatchMessage(Handler.java:101)</st>
+            <st ob="" eb="" sr="" id="9.14">  at android.os.Looper.loop(Looper.java:166)</st>
+            <st ob="" eb="" sr="" id="9.15">  at android.app.ActivityThread.main(ActivityThread.java:7425)</st>
+            <st ob="" eb="" sr="" id="9.16">  at java.lang.reflect.Method.invoke(Native Method)</st>
+            <st ob="" eb="" sr="" id="9.17">  at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:245)</st>
+            <st ob="" eb="" sr="" id="9.18">  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:921)</st>
+        </parg>
+    </desc>
+</bug>

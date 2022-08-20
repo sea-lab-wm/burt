@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1645</id>
+    <title ob="x" eb="" sr="">Crash in Add Exercise Dialog</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Describtion</st>
+            <st ob="x" eb="" sr="" id="1.2">App crashes if the user checks the Angle Box in the Add Exercise Dialog.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">To Reproduce</st>
+            <st ob="" eb="" sr="" id="2.2">Steps to reproduce the behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="x" id="3.1">1. Try to generate a new Trainings Schedule</st>
+            <st ob="" eb="" sr="x" id="3.2">2. Click on Add Exercise</st>
+            <st ob="" eb="" sr="x" id="3.3">3. Give the Exercise a name and check the Angle box.</st>
+            <st ob="" eb="" sr="x" id="3.4">4. Put a Number in the Textbox</st>
+            <st ob="" eb="" sr="x" id="3.5">5. Finish the Dialog</st>
+            <st ob="x" eb="" sr="" id="3.6">6. See the Error</st>
+            <st ob="" eb="" sr="" id="3.7">Expected behavior</st>
+            <st ob="" eb="x" sr="" id="3.8">No Crash and a added Exercise.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Smartphone (please complete the following information):</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Device: all</st>
+            <st ob="" eb="" sr="" id="5.2">OS: Android</st>
+        </parg>
+    </desc>
+</bug>

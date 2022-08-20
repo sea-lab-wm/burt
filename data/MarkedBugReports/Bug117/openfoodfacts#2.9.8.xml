@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>117</id>
+    <title ob="x" eb="" sr="">Space increase on refresh in Nutrition Facts tab</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Summary:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">The space between each row of nutritional value in Nutrition Facts tab increases on refreshing the data.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Steps to reproduce:</st>
+            <st ob="" eb="" sr="x" id="3.2">Select any food item and go to Nutritional Facts tab of that item.</st>
+            <st ob="" eb="" sr="x" id="3.3">It uses swipe to refresh method so on swiping down, more space is added between each row.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Expected behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="x" sr="" id="5.1">Refreshing should only update the data.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Observed behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="x" eb="" sr="" id="7.1">Refreshing also changes the space between each row of nutritional value.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">Device and Android version:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">Model - Mi Redmi Note 5</st>
+            <st ob="" eb="" sr="" id="9.2">Android version - Android Oreo (8.1)</st>
+            <st ob="" eb="" sr="" id="9.3">ROM - Custom</st>
+        </parg>
+    </desc>
+</bug>

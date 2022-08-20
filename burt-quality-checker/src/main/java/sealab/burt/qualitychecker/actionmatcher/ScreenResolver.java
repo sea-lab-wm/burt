@@ -5,7 +5,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import sealab.burt.nlparser.euler.actions.DeviceActions;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.qualitychecker.graph.*;
+import seers.appcore.csv.CSVHelper;
 
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -141,7 +143,6 @@ class ScreenResolver {
 
     private List<ImmutablePair<GraphState, Double>> rankMatchedStates(LinkedHashMap<GraphState, Integer> matchedStates) {
         log.debug("Matched states (" + matchedStates.size() + "):" + matchedStates);
-
 
         //---------------------------------------------
 

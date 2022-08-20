@@ -10,9 +10,9 @@ public class AppNamesMappings {
     static {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Aard Dictionary", "Aard-Dictionary", "aarddict", "Aard")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Mileage", "android-mileage", "mileage")));
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Time Tracker", "A Time Tracker", "A-Time-Tracker",
-                "TimeTracker",
-                "ATimeTracker")));
+//        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Time Tracker", "A Time Tracker", "A-Time-Tracker",
+//                "TimeTracker",
+//                "ATimeTracker")));
 
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Card Game Scores", "cardgamescores", "CardGameScores",
                 "Card Games", "Cardgames", "Card-Game-Scores")));
@@ -36,7 +36,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("ODK-Collect", "ODK Collect", "collect")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("KeePassDroid", "keepassdroid")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Typpy-Tipper", "Typpy Tipper", "tippytipper")));
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Omni-notes", "omni-notes")));
+        //APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Omni-notes", "omni-notes")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Amaze", "amaze")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Vanilla", "vanilla")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("AntennaPod", "antennapod")));
@@ -54,7 +54,31 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("AnkiDroid", "Anki-Android")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("ScreenRecorder", "screenrecorder")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("growtracker", "Grow Tracker", "GrowTracker")));
-
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("familyfinance")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("focus")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("gpstest")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("markor")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("materialfiles")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("calendula")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("inaturalist")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("pdfconverter")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("trickytripper")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("andotp")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("files")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("omninotes")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("openfoodfacts")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("createpdf")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("hex")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("fieldbook")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("kiss")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("anuto")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("phimpme")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("atimetracker")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("commons")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("fastnfitness")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("anglerslog")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("trainerapp")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("streetcomplete")));
     }
 
     public static String normalizeAppName(String appName) {
@@ -125,6 +149,44 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("android token", Arrays.asList("uk.co.bitethebullet.android.token"));
         APP_NAMES_PACKAGES.put("Grow Tracker", Arrays.asList("me.anon.grow"));
         APP_NAMES_PACKAGES.put("growtracker", Arrays.asList("me.anon.grow"));
+        //APP_NAMES_PACKAGES.put("familyfinance", Arrays.asList("familyfinance"));
+        APP_NAMES_PACKAGES.put("familyfinance", Arrays.asList("io.github.zwieback.familyfinance.debug"));
+        APP_NAMES_PACKAGES.put("trickytripper", Arrays.asList("de.koelle.christian.trickytripper"));
+        APP_NAMES_PACKAGES.put("calendula", Arrays.asList("es.usc.citius.servando.calendula"));
+        APP_NAMES_PACKAGES.put("andotp", Arrays.asList("org.shadowice.flocke.andotp"));
+        APP_NAMES_PACKAGES.put("inaturalist", Arrays.asList("org.inaturalist.android"));
+        APP_NAMES_PACKAGES.put("files", Arrays.asList("me.zhanghai.android.files"));
+        APP_NAMES_PACKAGES.put("omninotes", Arrays.asList("it.feio.android.omninotes"));
+        APP_NAMES_PACKAGES.put("focus", Arrays.asList("org.mozilla.focus"));
+        APP_NAMES_PACKAGES.put("gpstest", Arrays.asList("com.android.gpstest"));
+        APP_NAMES_PACKAGES.put("streetcomplete", Arrays.asList("de.westnordost.streetcomplete"));
+        APP_NAMES_PACKAGES.put("markor", Arrays.asList("net.gsantner.markor"));
+        APP_NAMES_PACKAGES.put("openfoodfacts", Arrays.asList("openfoodfacts.github.scrachx.openfood"));
+        APP_NAMES_PACKAGES.put("gnucash", Arrays.asList("org.gnucash.android"));
+        APP_NAMES_PACKAGES.put("createpdf", Arrays.asList("swati4star.createpdf"));
+        APP_NAMES_PACKAGES.put("hex", Arrays.asList("com.hexforhn.hex"));
+        APP_NAMES_PACKAGES.put("transistor", Arrays.asList("org.y20k.transistor"));
+        APP_NAMES_PACKAGES.put("fieldbook", Arrays.asList("com.fieldbook.tracker"));
+        APP_NAMES_PACKAGES.put("kiss", Arrays.asList("fr.neamar.kiss.debug"));
+        APP_NAMES_PACKAGES.put("anuto", Arrays.asList("ch.logixisland.anuto"));
+        APP_NAMES_PACKAGES.put("atimetracker", Arrays.asList("com.markuspage.android.atimetracker"));
+        APP_NAMES_PACKAGES.put("commons", Arrays.asList("fr.free.nrw.commons"));
+        APP_NAMES_PACKAGES.put("phimpme", Arrays.asList("org.fossasia.phimpme"));
+        APP_NAMES_PACKAGES.put("simplenote", Arrays.asList("com.automattic.simplenote"));
+        APP_NAMES_PACKAGES.put("trainerapp", Arrays.asList("com.german_software_engineers.trainerapp"));
+        APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness"));
+        APP_NAMES_PACKAGES.put("anglerslog", Arrays.asList("com.cohenadair.anglerslog"));
+        
+        
+        
+        
+        //APP_NAMES_PACKAGES.put("focus", Arrays.asList("focus"));
+        //APP_NAMES_PACKAGES.put("gpstest", Arrays.asList("gpstest"));
+        //APP_NAMES_PACKAGES.put("markor", Arrays.asList("markor"));
+        //APP_NAMES_PACKAGES.put("materialfiles", Arrays.asList("materialfiles"));
+        //APP_NAMES_PACKAGES.put("calendula", Arrays.asList("calendula"));
+        //APP_NAMES_PACKAGES.put("inaturalist", Arrays.asList("inaturalist"));
+        //APP_NAMES_PACKAGES.put("pdfconverter", Arrays.asList("pdfconverter"));
 
 
         //----------------------------

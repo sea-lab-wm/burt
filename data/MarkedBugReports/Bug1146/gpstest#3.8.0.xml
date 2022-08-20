@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1146</id>
+    <title ob="x" eb="" sr="">Stopping GNSS should clear filter text</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Describe the bug</st>
+            <st ob="x" eb="" sr="" id="1.2">Stopping GNSS should clear the current filter text.</st>
+            <st ob="x" eb="" sr="" id="1.3">Currently, the previously displayed text remains, which shows something like "Showing 9 of 15 satellites (show all)"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">To Reproduce</st>
+            <st ob="" eb="" sr="" id="2.2">Steps to reproduce the behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="x" id="3.1">1. Filter a GNSS</st>
+            <st ob="" eb="" sr="x" id="3.2">2. Stop GNSS</st>
+            <st ob="" eb="" sr="" id="3.3">Expected behavior</st>
+            <st ob="" eb="x" sr="" id="3.4">Filter text should disappear</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Observed behavior</st>
+            <st ob="x" eb="" sr="" id="4.2">Filter text is still visible</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">App, Device and Android version:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Samsung Galaxy S8+ with Android 9</st>
+        </parg>
+    </desc>
+</bug>

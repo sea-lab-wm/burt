@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>8</id>
+    <title ob="x" eb="" sr="">NPE on create payment</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">create a trip -&gt; long click the trip -&gt; swipe the tab from "Travelers" to "Report", and click menu option "create payment"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Exception trace:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">java.lang.NullPointerException: Attempt to invoke virtual method 'android.app.Application android.support.v4.app.FragmentActivity.getApplication()' on a null object reference</st>
+            <st ob="" eb="" sr="" id="4.2">        at de.koelle.christian.trickytripper.activities.a.c(ParticipantTabActivity.java:96)</st>
+            <st ob="" eb="" sr="" id="4.3">        at de.koelle.christian.trickytripper.activities.a.a(ParticipantTabActivity.java:36)</st>
+            <st ob="" eb="" sr="" id="4.4">        at de.koelle.christian.trickytripper.activities.a$b.a(ParticipantTabActivity.java:154)</st>
+            <st ob="" eb="" sr="" id="4.5">        at android.support.v7.app.AppCompatDelegateImplV9$b.a(AppCompatDelegateImplV9.java:1790)</st>
+            <st ob="" eb="" sr="" id="4.6">        at android.support.v7.app.q$a.a(WindowDecorActionBar.java:1101)</st>
+            <st ob="" eb="" sr="" id="4.7">        at android.support.v7.view.menu.h.a(MenuBuilder.java:817)</st>
+            <st ob="" eb="" sr="" id="4.8">        at android.support.v7.view.menu.j.b(MenuItemImpl.java:156)</st>
+            <st ob="" eb="" sr="" id="4.9">        at android.support.v7.view.menu.h.a(MenuBuilder.java:964)</st>
+            <st ob="" eb="" sr="" id="4.10">        at android.support.v7.view.menu.m.onItemClick(MenuPopup.java:127)</st>
+            <st ob="" eb="" sr="" id="4.11">        at android.widget.AdapterView.performItemClick(AdapterView.java:310)</st>
+            <st ob="" eb="" sr="" id="4.12">        at android.widget.AbsListView.performItemClick(AbsListView.java:1145)</st>
+            <st ob="" eb="" sr="" id="4.13">        at android.widget.AbsListView$PerformClick.run(AbsListView.java:3042)</st>
+            <st ob="" eb="" sr="" id="4.14">        at android.widget.AbsListView$3.run(AbsListView.java:3879)</st>
+            <st ob="" eb="" sr="" id="4.15">        at android.os.Handler.handleCallback(Handler.java:739)</st>
+            <st ob="" eb="" sr="" id="4.16">        at android.os.Handler.dispatchMessage(Handler.java:95)</st>
+            <st ob="" eb="" sr="" id="4.17">        at android.os.Looper.loop(Looper.java:148)</st>
+            <st ob="" eb="" sr="" id="4.18">        at android.app.ActivityThread.main(ActivityThread.java:5417)</st>
+            <st ob="" eb="" sr="" id="4.19">        at java.lang.reflect.Method.invoke(Native Method)</st>
+            <st ob="" eb="" sr="" id="4.20">        at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:726)</st>
+            <st ob="" eb="" sr="" id="4.21">        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:616)</st>
+            <st ob="" eb="" sr="" id="4.22">App Version: 1.5.8</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Device: Android 6.0 emulator</st>
+        </parg>
+    </desc>
+</bug>

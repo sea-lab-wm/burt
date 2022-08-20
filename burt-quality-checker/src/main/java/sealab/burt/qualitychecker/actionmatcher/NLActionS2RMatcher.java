@@ -1,5 +1,6 @@
 package sealab.burt.qualitychecker.actionmatcher;
 
+
 import com.googlecode.concurrenttrees.radix.node.concrete.DefaultCharSequenceNodeFactory;
 import com.googlecode.concurrenttrees.solver.LCSubstringSolver;
 import edu.semeru.android.core.entity.model.fusion.DynGuiComponent;
@@ -98,7 +99,8 @@ class NLActionS2RMatcher {
 
             try {
 
-                log.debug("Loading specific component types...");
+                //log.debug("Loading specific component types...");
+                System.out.println("Loading specific component types...");
 
                 String fileName = "general_component_types.txt";
 
@@ -126,7 +128,8 @@ class NLActionS2RMatcher {
                 allComponentTypes.sort((c1, c2) -> Integer.compare(c2.split(" ").length, c1.split(" ").length));
 
             } catch (Exception e) {
-                log.error("Could not load the component types", e);
+                //log.error("Could not load the component types", e);
+                System.out.println("Could not load the component types" + e);
             }
         }
     }
@@ -145,7 +148,8 @@ class NLActionS2RMatcher {
 
             try {
 
-                log.debug("Loading general action groups...");
+                //log.debug("Loading general action groups...");
+            	System.out.println("Loading general action groups...");
 
                 String fileName = "general_action_groups.txt";
 
@@ -172,7 +176,8 @@ class NLActionS2RMatcher {
                     }
                 }
             } catch (Exception e) {
-                log.error("Could not load the action groups", e);
+                //log.error("Could not load the action groups", e);
+            	System.out.println("Could not load the action groups" + e);
             }
         }
     }
@@ -185,7 +190,8 @@ class NLActionS2RMatcher {
 
             try {
 
-                log.debug("Loading synonyms...");
+                //log.debug("Loading synonyms...");
+                System.out.println("Loading synonyms...");
 
                 String fileName = "synonyms.txt";
 
@@ -207,7 +213,8 @@ class NLActionS2RMatcher {
 
                 }
             } catch (Exception e) {
-                log.error("Could not load the synonyms", e);
+                //log.error("Could not load the synonyms", e);
+            	System.out.println("Could not load the synonyms" + e);
             }
         }
 
@@ -221,7 +228,8 @@ class NLActionS2RMatcher {
 
             try {
 
-                log.debug("Loading component types...");
+                //log.debug("Loading component types...");
+            	System.out.println("Loading component types...");
 
                 String fileName = "general_component_types_classes.txt";
                 Path path = Paths.get(resourcesPath, fileName);
@@ -244,7 +252,8 @@ class NLActionS2RMatcher {
 
                 }
             } catch (Exception e) {
-                log.error("Could not load the component types", e);
+                //log.error("Could not load the component types", e);
+            	System.out.println("Could not load the component types" + e);
             }
         }
     }
@@ -285,13 +294,11 @@ class NLActionS2RMatcher {
             PreProcessedText preprocessedAll = preprocessText(String.format("%s %s %s", action, nlAction.getObject(),
                     nlAction.getObject2()));
             try {
-                componentFound = findComponent(currentScreen, preprocessedAll, JavaUtils.getSet(), false,
-                        true, noEvent);
+                componentFound = findComponent(currentScreen, preprocessedAll, JavaUtils.getSet(), false, true, noEvent);
             } catch (ActionMatchingException e2) {
                 preprocessedAll = preprocessText(action);
                 try {
-                    componentFound = findComponent(currentScreen, preprocessedAll, JavaUtils.getSet(), false,
-                            true, noEvent);
+                    componentFound = findComponent(currentScreen, preprocessedAll, JavaUtils.getSet(), false, true, noEvent);
                 } catch (ActionMatchingException e3) {
                 }
             }
@@ -408,6 +415,7 @@ class NLActionS2RMatcher {
         }
 
         if (DeviceUtils.isClick(event)) {
+        	System.out.println("Component to be resolved with click event... " + nlAction);
             componentFound = findComponentToClick(nlAction, currentScreen, event, skipFocused);
         } else if (DeviceUtils.isAnyType(event)) {
             componentFound = findComponentToType(nlAction, currentScreen, event, skipFocused);
@@ -577,8 +585,9 @@ class NLActionS2RMatcher {
                     //take the first component of the screen
                     componentFound = getEntry(currentScreen.get(1), 1d);
                 } else {
+                	System.out.println("case: click on 'xyz'........");
                     componentFound = findComponent(currentScreen, preprocessedObject2,
-                            componentTypes, false,
+                            componentTypes, true, //false,
                             true, event, skipFocused);
                 }
             } else {
@@ -595,7 +604,7 @@ class NLActionS2RMatcher {
                 //case: select 'xyz'
                 componentTypes = JavaUtils.getSet(ComponentType.CHECKED_COMPONENT);
             } else if (isPickerInAction(preprocessedObject) && anyPickerComponent(currentScreen)) {
-                componentTypes = JavaUtils.getSet(ComponentType.PICKER);
+            	componentTypes = JavaUtils.getSet(ComponentType.PICKER);
             }
 
             if ("screen".equals(preprocessedObject.lemmatized)) {
@@ -849,7 +858,8 @@ class NLActionS2RMatcher {
         List<Entry<AppGuiComponent, Double>> matchedComponents = getMatchedComponents(skipTextViews, textToMatch,
                 currentScreenComponents, allowedComponents, matchFirst);
 
-        log.debug("Component matches [" + matchedComponents.size() + "]: " + matchedComponents.toString());
+        //log.debug("Component matches [" + matchedComponents.size() + "]: " + matchedComponents.toString());
+        System.out.println("Component matches [" + matchedComponents.size() + "]: " + matchedComponents.toString());
 
         //---------------------------------------------------------
 
@@ -990,7 +1000,8 @@ class NLActionS2RMatcher {
             List<Entry<AppGuiComponent, Double>> matchList = nonZeroMatches.stream()
                     .filter(entry -> entry.getValue() >= 0.5).collect(Collectors.toList());
 
-            log.debug("LCS matches:" + matchList);
+            //log.debug("LCS matches:" + matchList);
+            System.out.println("LCS matches:" + matchList);
 
             matchedComponents = matchList.stream().filter(m -> m.getValue() >= 1).collect
                     (Collectors.toList());
@@ -1119,7 +1130,8 @@ class NLActionS2RMatcher {
                 }
 
             } catch (SQLException e) {
-                log.debug("Error", e);
+                //log.debug("Error", e);
+            	System.out.println("Error" + e);
             }
 
         } else if (componentType.endsWith("TextView") && DeviceUtils.isClick(event)) {
@@ -1140,7 +1152,8 @@ class NLActionS2RMatcher {
                 }
 
             } catch (SQLException e) {
-                log.debug("Error", e);
+                //log.debug("Error", e);
+            	System.out.println("Error" + e);
             }
         } else
             //hack: for FAB buttons, there may be a View that gives the floating aspect to the FAB, then we pick the
@@ -1175,7 +1188,8 @@ class NLActionS2RMatcher {
                                                                  List<AppGuiComponent> currentScreenComponents)
             throws ActionMatchingException {
 
-        log.debug("Handling multiple matched components...");
+        //log.debug("Handling multiple matched components...");
+    	System.out.println("Handling multiple matched components...");
 
         Entry<AppGuiComponent, Double> componentFound = null;
         for (Entry<AppGuiComponent, Double> entry : matchedComponents) {
@@ -1221,7 +1235,8 @@ class NLActionS2RMatcher {
                                     return matchSiblings(siblingsComponents, textToMatch, skipTextViews,
                                             allowedComponents, matchFirst);
                                 } catch (SQLException e) {
-                                    log.error("Error getting the sibling components of " + component);
+                                    //log.error("Error getting the sibling components of " + component);
+                                	System.out.println("Error getting the sibling components of " + component);
                                 }
 
                                 return 0.0;
@@ -1235,7 +1250,8 @@ class NLActionS2RMatcher {
                     .filter(entry -> entry.getValue() > 0.0)
                     .collect(Collectors.toList());
 
-            log.debug(String.format("Sibling matches (%s): %s", nonZeroMatches.size(), nonZeroMatches));
+            //log.debug(String.format("Sibling matches (%s): %s", nonZeroMatches.size(), nonZeroMatches));
+            System.out.println(String.format("Sibling matches (%s): %s", nonZeroMatches.size(), nonZeroMatches));
 
             if (!nonZeroMatches.isEmpty()) {
                 if (nonZeroMatches.size() == 1)
@@ -1298,13 +1314,15 @@ class NLActionS2RMatcher {
         //--------------------------------------------------
 
         if (componentFound == null) {
-            log.debug("Couldn't resolve multiple matched components");
+            //log.debug("Couldn't resolve multiple matched components");
+        	System.out.println("Couldn't resolve multiple matched components");
             throw new ActionMatchingException(MatchingResult.MULTIPLE_COMPONENTS_FOUND,
                     matchedComponents.stream()
                             .map(Entry::getKey)
                             .collect(Collectors.toList()));
         } else
-            log.debug("Selected component: " + componentFound);
+            //log.debug("Selected component: " + componentFound);
+        	System.out.println("Selected component: " + componentFound);
         return componentFound;
     }
 
@@ -1410,7 +1428,8 @@ class NLActionS2RMatcher {
                     q -> {
                         Set<String> synonymsForQuery = getTextSynonyms(q);
 
-                        log.debug(String.format("Synonyms of \"%s\": %s", q, synonymsForQuery));
+                        //log.debug(String.format("Synonyms of \"%s\": %s", q, synonymsForQuery));
+                        System.out.println(String.format("Synonyms of \"%s\": %s", q, synonymsForQuery));
                         if (synonymsForQuery == null)
                             return Stream.empty();
                         else {
@@ -1421,13 +1440,15 @@ class NLActionS2RMatcher {
 
             if (useTokenSynonyms) {
                 Set<String> tokenSynonyms = getTextSynonymsOfTokens(textToMatch.otherText);
-                log.debug(String.format("Token synonyms of \"%s\": %s", textToMatch.otherText, tokenSynonyms));
+                //log.debug(String.format("Token synonyms of \"%s\": %s", textToMatch.otherText, tokenSynonyms));
+                System.out.println(String.format("Token synonyms of \"%s\": %s", textToMatch.otherText, tokenSynonyms));
                 if (tokenSynonyms != null)
                     textSynonyms.addAll(tokenSynonyms);
             }
 
 
-            log.debug("Checking synonyms: " + textSynonyms);
+            //log.debug("Checking synonyms: " + textSynonyms);
+            System.out.println("Checking synonyms: " + textSynonyms);
 
             //--------------------------
 
@@ -1600,7 +1621,8 @@ class NLActionS2RMatcher {
 
         int MAX_CHARACTER = 221;
         if (allUniqueLemmas.size() > MAX_CHARACTER) {
-            log.warn("Big alphabet: " + allUniqueLemmas.size());
+            //log.warn("Big alphabet: " + allUniqueLemmas.size());
+        	System.out.println("Big alphabet: " + allUniqueLemmas.size());
         }
 
         //ASCII encoding

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1430</id>
+    <title ob="x" eb="" sr="">Crash after deleting a program that is in progress</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="x" eb="" sr="" id="1.1">If you start a program, then go to delete it without first stopping it, then the next time you go back into "Workout" the application will crash.</st>
+            <st ob="x" eb="" sr="" id="1.2">It will be stuck in a crash loop.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">To Reproduce</st>
+            <st ob="" eb="" sr="" id="2.2">Steps to reproduce the behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="x" id="3.1">1. Create a test program with any exercise.</st>
+            <st ob="" eb="" sr="x" id="3.2">2. Go to Workout -&gt; Program, select your new program and click "Start Program".</st>
+            <st ob="" eb="" sr="x" id="3.3">3. Go to Program list, select your test program and delete it.</st>
+            <st ob="" eb="" sr="x" id="3.4">4. Go back to Workout.</st>
+            <st ob="x" eb="" sr="" id="3.5">The application will crash.</st>
+            <st ob="" eb="" sr="" id="3.6">Expected behavior</st>
+            <st ob="" eb="x" sr="" id="3.7">If a workout that is in progress gets deleted, simply stop it.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Additional context</st>
+            <st ob="" eb="" sr="" id="4.2">I reproduced this one while playing around a bit.</st>
+            <st ob="" eb="" sr="" id="4.3">It looks like when you go back into the Workout page, there is a refresh that happens and it is trying to access a Program that does not exist anymore.</st>
+            <st ob="" eb="" sr="" id="4.4">Problem is that even if the program was deleted, it is still inside the mDbWorkoutHistory and set as running.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">I can look into this and fix it, it will help me familiarize myself with the code.</st>
+        </parg>
+    </desc>
+</bug>

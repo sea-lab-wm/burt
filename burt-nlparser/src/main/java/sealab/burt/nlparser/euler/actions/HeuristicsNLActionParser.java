@@ -2,6 +2,9 @@ package sealab.burt.nlparser.euler.actions;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import sealab.burt.nlparser.euler.actions.nl.ActionType;
 import sealab.burt.nlparser.euler.actions.nl.BugScenario;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
@@ -47,6 +50,7 @@ class HeuristicsNLActionParser extends NLActionParser {
     private static HashMap<String, NLActionPatternParser> patternParsers = new HashMap<>();
     static private List<PatternMatcher> paragraphPMs = new ArrayList<>();
     static private List<PatternMatcher> sentencePMs = new ArrayList<>();
+    private static final Logger log = LoggerFactory.getLogger(HeuristicsNLActionParser.class);
 
     public HeuristicsNLActionParser() {
         loadParsers(null, null, null);

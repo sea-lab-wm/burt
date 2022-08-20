@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>53</id>
+    <title ob="x" eb="" sr="">New file dialogue always says Type: Markdown rather than previous type used</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">1. Create a new file, change type to e.g. todo.txt, save it</st>
+            <st ob="" eb="" sr="x" id="2.2">2. Create another new file</st>
+            <st ob="" eb="" sr="x" id="2.3">3. Observe the dialogue correctly remembers .todo.txt as the previously used file extension, but below that it says Type: Markdown</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="x" eb="" sr="" id="3.1">This appears to be a cosmetic issue only - the second new file is named something.todo.txt, so the app is correctly remembering the user's last settings, but nonetheless it looks odd and confusing to the user.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">It also makes it harder when you want to make a Markdown file as you have to choose something other than Markdown then choose Markdown again before the file extension will change to .</st>
+            <st ob="" eb="" sr="" id="4.2">md.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Version 2.3.2 from F-Droid.</st>
+        </parg>
+    </desc>
+</bug>

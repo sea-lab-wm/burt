@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>209</id>
+    <title ob="x" eb="" sr="">Bug: Long pressing the amount input brings up QWERTY keyboard</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce the behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">1. Navigate to Transactions screen</st>
+            <st ob="" eb="" sr="x" id="2.2">2. Tap the Add button</st>
+            <st ob="" eb="" sr="x" id="2.3">3. Enter Description (optional)</st>
+            <st ob="" eb="" sr="x" id="2.4">4. Focus the Amount input</st>
+            <st ob="" eb="" sr="x" id="2.5">5. Long press to bring up the context menu</st>
+            <st ob="" eb="" sr="" id="2.6">Expected behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="x" sr="" id="3.1">See the context menu</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Actual behaviour</st>
+            <st ob="" eb="" sr="" id="4.2">Software specifications</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">GnuCash Android version: 2.2.0</st>
+            <st ob="" eb="" sr="" id="5.2">System Android version: 6.0</st>
+            <st ob="" eb="" sr="" id="5.3">Device type: Motorola Moto G (2nd Generation)</st>
+        </parg>
+    </desc>
+</bug>

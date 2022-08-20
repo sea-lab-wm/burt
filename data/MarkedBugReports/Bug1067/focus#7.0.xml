@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1067</id>
+    <title ob="x" eb="" sr="">Home screen tips toggle improperly indented</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">1. Open Settings</st>
+            <st ob="" eb="" sr="x" id="2.2">2. Open Mozilla menu</st>
+            <st ob="" eb="" sr="" id="2.3">Expected behavior</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="x" sr="" id="3.1">"Show homescreen tips" is left aligned with the rest of the buttons</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Actual behavior</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="x" eb="" sr="" id="5.1">"Show homescreen tips" is indented</st>
+        </parg>
+    </desc>
+</bug>

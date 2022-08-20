@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1399</id>
+    <title ob="x" eb="" sr="">redundant camera dialog</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Actual Behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="x" eb="" sr="" id="2.1">after resetting the settings, a dialog appears while opening up the camera settings for the first time which navigates to the camera.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Expected Behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="x" sr="" id="4.1">after resetting camera settings should be displayed directly without any dialog.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Steps to reproduce it</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="x" id="6.1">reset the settings.</st>
+            <st ob="" eb="" sr="x" id="6.2">navigate to camera settings.</st>
+            <st ob="" eb="" sr="x" id="6.3">a dialog would appear which directs to camera on clicking ok.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Would you like to work on the issue?</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">yes.</st>
+        </parg>
+    </desc>
+</bug>

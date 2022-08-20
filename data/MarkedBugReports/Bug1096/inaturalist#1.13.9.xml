@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1096</id>
+    <title ob="x" eb="" sr="">Going back while recording sound causes endless loading (or crash)</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Pixel 3</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">Create new observation</st>
+            <st ob="" eb="" sr="x" id="2.2">Record a sound record the sound</st>
+            <st ob="" eb="" sr="x" id="2.3">Don't press done, but go back (eg because the sound was not good and you want to re-record)</st>
+            <st ob="" eb="" sr="x" id="2.4">try to record a new sound</st>
+            <st ob="" eb="" sr="x" id="2.5">press done</st>
+            <st ob="" eb="" sr="x" id="2.6">get an endless Loading screen</st>
+            <st ob="" eb="" sr="x" id="2.7">unable to go back</st>
+            <st ob="" eb="" sr="x" id="2.8">have to force close iNat app</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="x" id="3.1">Same issue if you have an existing observation</st>
+            <st ob="" eb="" sr="x" id="3.2">Record a sound, but don't press done, just go back to re-record.</st>
+            <st ob="x" eb="" sr="x" id="3.3">Record the sound, press done, and endless Loading screen.</st>
+            <st ob="" eb="" sr="" id="3.4">Note that I believe she is using the built-in sound recorder.</st>
+            <st ob="" eb="" sr="" id="3.5">There are some large crash logs in slack: https://inaturalist.slack.com/archives/G041A2Z1W/p1571388239011300</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="x" eb="" sr="" id="4.1">When I try to replicate given the steps above (on a Pixel 3), I just get a crash immediately after tapping the back button in the left side of the header.</st>
+        </parg>
+    </desc>
+</bug>

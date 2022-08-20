@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1066</id>
+    <title ob="x" eb="" sr="">URL bar text sometimes cleared when pressing near url bar</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">open focus</st>
+            <st ob="" eb="" sr="x" id="2.2">With url bar focused, enter two words ("master chief")</st>
+            <st ob="" eb="" sr="x" id="2.3">Click to move your cursor between the two words</st>
+            <st ob="" eb="" sr="x" id="2.4">Click the system status bar</st>
+            <st ob="" eb="" sr="x" id="2.5">Repeat moving cursor and clicking system status bar</st>
+            <st ob="" eb="" sr="" id="2.6">Expected behavior</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="x" sr="" id="3.1">Text stays</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Actual behavior</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="x" eb="" sr="" id="5.1">Text clears</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Device information</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Android device: Pixel 2</st>
+            <st ob="" eb="" sr="" id="7.2">Focus version: 7.0, local build from a few days ago</st>
+            <st ob="" eb="" sr="" id="7.3">In a more practical example, this happens to me when I moved the cursor to adjust what I typed.</st>
+            <st ob="" eb="" sr="" id="7.4">I've seen similar behavior in previous versions of Focus.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">Video of reproduce: device-2018-08-17-062905.mp4.zip</st>
+        </parg>
+    </desc>
+</bug>

@@ -1,9 +1,14 @@
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.view.mxGraph;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import org.javatuples.Triplet;
 import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
 import sealab.burt.BurtConfigPaths;
 import sealab.burt.qualitychecker.JSONGraphReader;
@@ -26,24 +31,59 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
 
+
 public
 @Slf4j
 class MainJSONGraphGenerator {
 
-    private static final Set<ImmutablePair<String, String>> ALL_SYSTEMS = JavaUtils.getSet(
-            new ImmutablePair<>("gnucash", "2.1.3"),
-            new ImmutablePair<>("mileage", "3.1.1"),
-            new ImmutablePair<>("droidweight", "1.5.4"),
-            new ImmutablePair<>("GnuCash", "1.0.3"),
-            new ImmutablePair<>("AntennaPod", "1.6.2.3"),
-            new ImmutablePair<>("ATimeTracker", "0.20"),
-            new ImmutablePair<>("growtracker", "2.3.1"),
-            new ImmutablePair<>("androidtoken", "2.10")
+//    private static final Set<ImmutablePair<String, String, String>> ALL_SYSTEMS = JavaUtils.getSet(
+////            new ImmutablePair<>("gnucash", "2.1.3"),
+////            new ImmutablePair<>("mileage", "3.1.1"),
+////            new ImmutablePair<>("droidweight", "1.5.4"),
+////            new ImmutablePair<>("GnuCash", "1.0.3"),
+////            new ImmutablePair<>("AntennaPod", "1.6.2.3"),
+////            new ImmutablePair<>("ATimeTracker", "0.20"),
+////            new ImmutablePair<>("growtracker", "2.3.1"),
+////            new ImmutablePair<>("androidtoken", "2.10")
+//    		new ImmutablePair<>("familyfinance", "1.5.5-DEBUG"),
+//    		new ImmutablePair<>("trickytripper", "1.6.0")
+//    );
+
+    private static final Set<Triplet<String, String, String>> ALL_SYSTEMS = JavaUtils.getSet(
+            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"), new Triplet<>("8", "trickytripper", "1.6.0"),
+            new Triplet<>("10","files", "1.0.0-beta.11"), new Triplet<>("18","calendula", "2.5.7"),
+            new Triplet<>("19","streetcomplete", "5.2"), new Triplet<>("21","atimetracker", "0.51.1"),
+            new Triplet<>("44","omninotes", "5.5.2"), new Triplet<>("53","markor", "2.3.1"),
+            new Triplet<>("71","kiss", "3.13.5"), new Triplet<>("117","openfoodfacts", "2.9.8"),
+            new Triplet<>("128","andotp", "0.7.1.1-dev"), new Triplet<>("129","andotp", "0.7.0-dev"),
+            new Triplet<>("130","andotp", "0.6.3.1-dev"), new Triplet<>("135","commons", "2.9.0-debug"),
+            new Triplet<>("191","anuto", "0.2-1"), new Triplet<>("201","inaturalist", "1.5.1"),
+            new Triplet<>("206","gnucash", "2.1.3"), new Triplet<>("209","gnucash", "2.2.0"),
+            new Triplet<>("256","gnucash", "2.1.4"), new Triplet<>("1066","focus", "7.0"),
+            new Triplet<>("1067","focus", "7.0"), new Triplet<>("1073","focus", "5.2"),
+            new Triplet<>("1096","inaturalist", "1.13.9"), new Triplet<>("1145","gpstest", "3.8.1"),
+            new Triplet<>("1146","gpstest", "3.8.0"), new Triplet<>("1147","gpstest", "3.0.0"),
+            new Triplet<>("1149","gpstest", "3.2.11"), new Triplet<>("1151","gpstest", "3.0.1"),
+            new Triplet<>("1152","gpstest", "3.0.2"), new Triplet<>("1202","createpdf", "6.6.0"),
+            new Triplet<>("1205","createpdf", "8.5.7"), new Triplet<>("1207","andotp", "0.4.0.1"),
+            new Triplet<>("1214","andotp", "0.7.1.1"), new Triplet<>("1215","andotp", "0.7.1.1"),
+            new Triplet<>("1223","gnucash", "2.2.0"), new Triplet<>("1224","gnucash", "2.1.3"),
+            new Triplet<>("1226","gnucash", "2.1.4"), new Triplet<>("1299","fieldbook", "4.3.3"),
+            new Triplet<>("1399","phimpme", "1.4.0"), new Triplet<>("1406","phimpme", "1.4.0"),
+            new Triplet<>("1430","fastnfitness", "0.19.0.1"), new Triplet<>("1441","anglerslog", "1.2.5"),
+            new Triplet<>("1445","anglerslog", "1.3.1"), new Triplet<>("1481","hex", "0.1.0"),
+            new Triplet<>("1645","trainerapp", "1.0")
     );
 
     private static final String outFolder = Path.of("..", "data", "graphs_json_data").toString();
+    private static final Logger log = LoggerFactory.getLogger(MainJSONGraphGenerator.class);
 
     public static void main(String[] args) throws Exception {
+
+//    	String[] bugIDs = {"2", "8", "10", "18", "19", "21", "44", "53", "71", "117", "128", "129", "130",
+//				"135", "191", "201", "206", "209", "256", "1066", "1067", "1073", "1096", "1145", "1146",
+//				"1147", "1149", "1151", "1152", "1202", "1205", "1207", "1214", "1215", "1223", "1224",
+//				"1226", "1299", "1399", "1406", "1430", "1441", "1445", "1481", "1645"};
 
         int nThreads = 1;
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
@@ -51,17 +91,21 @@ class MainJSONGraphGenerator {
         //list of all futures
         List<CompletableFuture<Boolean>> futures = new ArrayList<>();
         try {
-
-                for (ImmutablePair<String, String> system : ALL_SYSTEMS) {
-                    futures.add(CompletableFuture.supplyAsync(new Supplier<>() {
-                        @SneakyThrows
-                        @Override
-                        public Boolean get() {
+            for (Triplet<String, String, String> system : ALL_SYSTEMS) {
+                futures.add(CompletableFuture.supplyAsync(new Supplier<>() {
+                    @SneakyThrows
+                    @Override
+                    public Boolean get() {
+                        try {
                             generateAndSaveGraph(system);
-                            return true;
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
                         }
-                    }, executor));
-                }
+                        return true;
+                    }
+                }, executor));
+            }
 
 
             log.debug("Waiting for futures: " + futures.size());
@@ -70,9 +114,9 @@ class MainJSONGraphGenerator {
             CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new))
                     .thenAccept(ignored -> log.debug("All systems were processed")
                     ).exceptionally(exception -> {
-                log.error("There was an error: " + exception.getMessage(), exception);
-                return null;
-            }).join();
+                        log.error("There was an error: " + exception.getMessage(), exception);
+                        return null;
+                    }).join();
 
         } finally {
             executor.shutdown();
@@ -82,10 +126,12 @@ class MainJSONGraphGenerator {
 
     }
 
-    private static void generateAndSaveGraph(ImmutablePair<String, String> system) throws Exception {
+    private static void generateAndSaveGraph(Triplet<String, String, String> system) throws Exception {
         log.debug("Processing system: " + system);
 
-        AppGraphInfo graphInfo = JSONGraphReader.getGraph(system.getLeft(), system.getRight());
+        //AppGraphInfo graphInfo = JSONGraphReader.getGraph(system.getLeft(), system.getRight(), bugID);
+
+        AppGraphInfo graphInfo = JSONGraphReader.getGraph(system.getValue1(), system.getValue2(),system.getValue0());
 
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         Appl app = graphInfo.getApp();
@@ -94,7 +140,7 @@ class MainJSONGraphGenerator {
 
         String sysString = File.separator + app.getId() + "-" + app.getPackageName() + "-" + app.getVersion();
 
-        File sysFolder = new File(outFolder + File.separator + sysString);
+        File sysFolder = new File(outFolder + File.separator + "Bug" + system.getValue0() + File.separator +sysString);
 
         if (sysFolder.exists()) {
             FileUtils.deleteDirectory(sysFolder);
@@ -139,12 +185,19 @@ class MainJSONGraphGenerator {
                 continue;
             }
 
+//            String dataLocation =
+//                    Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName, app.getVersion())).toString();
+
             String dataLocation =
-                    Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName, app.getVersion())).toString();
+                    Paths.get(BurtConfigPaths.crashScopeDataPath + "/CS" +system.getValue0(), String.join("-", packageName, app.getVersion())).toString();
+
             if (edge.getDataSource().equals(GraphDataSource.TR))
+//                dataLocation =
+//                        Paths.get(BurtConfigPaths.traceReplayerDataPath + "/TR2", String.join("-", packageName,
+//                                app.getVersion())).toString();
+
                 dataLocation =
-                        Paths.get(BurtConfigPaths.traceReplayerDataPath, String.join("-", packageName,
-                                app.getVersion())).toString();
+                        Paths.get(BurtConfigPaths.traceReplayerDataPath + "/TR" + system.getValue0()).toString();
 
             File srcFileStep = Path.of(dataLocation, "screenshots", screenshotFile).toFile();
             File srcFileState =

@@ -1,0 +1,1412 @@
+--------- beginning of main
+07-07 23:40:05.305 28398 28398 I MicroDetectionWorker: #updateMicroDetector [detectionMode: [mDetectionMode: [1]]]
+07-07 23:40:05.306 28398 28398 I MicroDetectionWorker: #startMicroDetector [speakerMode: 0]
+07-07 23:40:05.306 28398 28398 I AudioController: Using mInputStreamFactoryBuilder
+07-07 23:40:05.307 28398 28398 I MicroDetectionWorker: onReady
+07-07 23:40:05.308 28398 19033 I MicroRecognitionRunner: Starting detection.
+07-07 23:40:05.309 28398 19032 I MicrophoneInputStream: mic_starting com.google.android.apps.gsa.staticplugins.aa.c@b5c3d6b
+07-07 23:40:05.309  1523  1523 W ServiceManager: Permission failure: android.permission.RECORD_AUDIO from uid=10032 pid=28398
+07-07 23:40:05.309  1523  1523 E         : Request requires android.permission.RECORD_AUDIO
+07-07 23:40:05.309  1523  1523 E         : android.permission.CAPTURE_AUDIO_HOTWORD
+07-07 23:40:05.309 28398 19032 E AudioRecord: Could not get audio input for session 3649, record source 1999, sample rate 16000, format 0x1, channel mask 0x10, flags 0
+07-07 23:40:05.309 28398 19032 E AudioRecord-JNI: Error creating AudioRecord instance: initialization check failed with status -22.
+07-07 23:40:05.310 28398 19032 E android.media.AudioRecord: Error code -20 when initializing native AudioRecord object.
+07-07 23:40:05.310 28398 19032 I MicrophoneInputStream: mic_started com.google.android.apps.gsa.staticplugins.aa.c@b5c3d6b
+07-07 23:40:05.314 28398 19032 I MicrophoneInputStream: mic_close com.google.android.apps.gsa.staticplugins.aa.c@b5c3d6b
+07-07 23:40:05.314 28398 19033 I MicroRecognitionRunner: Detection finished
+07-07 23:40:05.314 28398 19033 W ErrorReporter: reportError [type: 211, code: 524300]: Error reading from input stream
+07-07 23:40:05.314 28398 28454 I MicroRecognitionRunner: Stopping hotword detection.
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: onFatalError, processing error from engine(4)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: com.google.android.apps.gsa.shared.speech.b.g: Error reading from input stream
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.a.a(SourceFile:28)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.b.run(SourceFile:15)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ag.run(Unknown Source:4)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bo.run(SourceFile:4)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bo.run(SourceFile:4)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1162)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:636)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.lang.Thread.run(Thread.java:764)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ak.run(SourceFile:6)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: Caused by: com.google.android.apps.gsa.shared.exception.GsaIOException: Error code: 393238 | Buffer overflow, no available space.
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.Tee.f(SourceFile:103)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.au.read(SourceFile:2)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at java.io.InputStream.read(InputStream.java:101)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.ao.run(SourceFile:18)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.an.run(SourceFile:2)
+07-07 23:40:05.315 28398 19033 W ErrorProcessor: 	... 11 more
+07-07 23:40:05.315 28398 19033 I AudioController: internalShutdown
+07-07 23:40:05.329 28398 28398 I MicroDetectionWorker: onReady
+07-07 23:40:05.329 28398 28398 I MicroDetector: Keeping mic open: false
+07-07 23:40:05.329 28398 28398 I MicroDetectionWorker: #onError(false)
+07-07 23:40:05.329 28398 19028 I DeviceStateChecker: DeviceStateChecker cancelled
+07-07 23:40:06.434 19160 19160 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:06.485 19160 19160 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:06.487 19160 19160 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:06.503 19160 19160 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+--------- beginning of system
+07-07 23:40:06.505  1648  1663 I ActivityManager: Force stopping fr.free.nrw.commons appid=10151 user=-1: deletePackageX
+07-07 23:40:06.591  1527  1527 I keystore: clear_uid 10151
+07-07 23:40:06.592  1648  1675 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:06.592  1648  1675 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:06.636  1648  1675 I zygote  : Explicit concurrent copying GC freed 27573(1414KB) AllocSpace objects, 8(288KB) LOS objects, 37% free, 9MB/15MB, paused 14us total 44.327ms
+07-07 23:40:06.643 19160 19160 I app_process: System.exit called, status: 0
+07-07 23:40:06.643 19160 19160 I AndroidRuntime: VM exiting with result code 0.
+07-07 23:40:06.645 19160 19169 W MessageQueue: Handler (android.os.Handler) {c64451d} sending message to a Handler on a dead thread
+07-07 23:40:06.645 19160 19169 W MessageQueue: java.lang.IllegalStateException: Handler (android.os.Handler) {c64451d} sending message to a Handler on a dead thread
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at android.os.MessageQueue.enqueueMessage(MessageQueue.java:545)
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at android.os.Handler.enqueueMessage(Handler.java:662)
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at android.os.Handler.sendMessageAtTime(Handler.java:631)
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at android.os.Handler.sendMessageDelayed(Handler.java:601)
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at android.os.Handler.post(Handler.java:357)
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at android.os.ResultReceiver$MyResultReceiver.send(ResultReceiver.java:57)
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at com.android.internal.os.IResultReceiver$Stub.onTransact(IResultReceiver.java:58)
+07-07 23:40:06.645 19160 19169 W MessageQueue: 	at android.os.Binder.execTransact(Binder.java:697)
+07-07 23:40:06.654 19175 19175 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:06.654  1648  1675 I ActivityManager: Start proc 19175:com.android.defcontainer/u0a8 for service com.android.defcontainer/.DefaultContainerService
+07-07 23:40:06.654  1648  1675 I ActivityManager: Force stopping fr.free.nrw.commons appid=10151 user=0: pkg removed
+07-07 23:40:06.665  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+07-07 23:40:06.665  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+07-07 23:40:06.665  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+07-07 23:40:06.666  1648  1712 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-07 23:40:06.678  1648  1648 I ActivityManager: Start proc 19189:com.android.keychain/1000 for service com.android.keychain/.KeyChainService
+07-07 23:40:06.682 19189 19189 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:06.690 19175 19175 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:06.693  1876  1876 D CarrierSvcBindHelper: No carrier app for: 0
+07-07 23:40:06.693  1648  1675 D KernelUidCpuTimeReader: Removing uids 10151-10151
+07-07 23:40:06.694  1648  1648 D ZenLog  : config: removeAutomaticZenRules,ZenModeConfig[user=0,allowCalls=true,allowRepeatCallers=false,allowMessages=false,allowCallsFrom=contacts,allowMessagesFrom=contacts,allowReminders=true,allowEvents=true,allowWhenScreenOff=true,allowWhenScreenOn=true,automaticRules={EVENTS_DEFAULT_RULE=ZenRule[enabled=false,snoozing=false,name=Event,zenMode=ZEN_MODE_ALARMS,conditionId=condition://android/event?userId=-10000&calendar=&reply=1,condition=Condition[id=condition://android/event?userId=-10000&calendar=&reply=1,summary=...,line1=...,line2=...,icon=0,state=STATE_FALSE,flags=2],component=ComponentInfo{android/com.android.server.notification.EventConditionProvider},id=EVENTS_DEFAULT_RULE,creationTime=1629221005391,enabler=null], SCHEDULED_DEFAULT_RULE_1=ZenRule[enabled=false,snoozing=false,name=Weeknight,zenMode=ZEN_MODE_ALARMS,conditionId=condition://android/schedule?days=1.2.3.4.5&start=22.0&end=7.0&exitAtAlarm=false,condition=Condition[id=condition://android/schedule?days=1.2.3.4.5&start=22.0&end=7.0&exitAtAlarm=false,summary=...,line1=...,line2=...,icon=0,state=STATE_TRUE,flags=2],component=ComponentInfo{android/com.android.server.notification.ScheduleConditionProvider},id=SCHEDULED_DEFAULT_RULE_1,creationTime=1629221005391,enabler=null], SCHEDULED_DEFAULT_RULE_2=ZenRule[enabled=false,snoozing=false,name=Weekend,zenMode=ZEN_MODE_ALARMS,conditionId=condition://android/schedule?days=6.7&start=23.30&end=10.0&exitAtAlarm=false,condition=Condition[id=condition://android/schedule?days=6.7&start=23.30&end=10.0&exitAtAlarm=false,summary=...,line1=...,line2=...,icon=0,state=STATE_FALSE,flags=2],component=ComponentInfo{android/com.android.server.notification.ScheduleConditionProvider},id=SCHEDULED_DEFAULT_RULE_2,creationTime=1629221005391,enabler=null]},manualRule=null],Diff[]
+07-07 23:40:06.694  1648  1648 I ConditionProviders: Disallowing condition provider fr.free.nrw.commons
+07-07 23:40:06.703 19210 19210 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:06.704  1648  1663 I ActivityManager: Start proc 19210:com.android.documentsui/u0a12 for broadcast com.android.documentsui/.PackageReceiver
+07-07 23:40:06.705  2056  2056 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_ALL packageName=fr.free.nrw.commons]
+07-07 23:40:06.725 19189 19189 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:06.730 19230 19230 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:06.733  1648  3975 I ActivityManager: Start proc 19230:com.google.android.gms.ui/u0a14 for service com.google.android.gms/.chimera.UiIntentOperationService
+07-07 23:40:06.737  1648  1721 D RecurrenceRule: Resolving using anchor 2022-07-07T23:40:06.737-04:00[America/New_York]
+07-07 23:40:06.738  1648  1721 D RecurrenceRule: Resolving using anchor 2022-07-07T23:40:06.738-04:00[America/New_York]
+07-07 23:40:06.739  1648  1721 D RecurrenceRule: Cycle 17 from 2022-06-17T00:00-04:00[America/New_York] to 2022-07-17T00:00-04:00[America/New_York]
+07-07 23:40:06.739  1648  1721 D NetworkStats: Resolving plan for NetworkTemplate: matchRule=MOBILE_ALL, subscriberId=310260..., matchSubscriberIds=[310260...]
+07-07 23:40:06.744  2056 19220 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+07-07 23:40:06.747  1648  1721 D NetworkStats: Found active matching subId 1
+07-07 23:40:06.748 19210 19210 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:06.749  1648  1648 D ZenLog  : set_zen_mode: off,removeAutomaticZenRules
+07-07 23:40:06.750 19230 19230 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:06.767  1648  1721 D NetworkStats: Resolved to plan null
+07-07 23:40:06.751 19230 19230 I chatty  : uid=10014 com.google.android.gms.ui identical 1 line
+07-07 23:40:06.752 19230 19230 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:06.767  2220  9318 I Icing   : doRemovePackageData fr.free.nrw.commons
+07-07 23:40:06.772  2220  9367 I ContentMaintenance: Internal cache bytes used: 0; limit: 40626585; download size: 0
+07-07 23:40:06.795  2220  9367 I RealtimeCacheCleanup: Beginning Realtime garbage collection.
+07-07 23:40:06.797  2220  9367 I RealtimeCacheCleanup: Finished Realtime garbage collection.
+07-07 23:40:06.806  2220  4173 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+07-07 23:40:06.811  1648  1664 D AutofillUI: destroySaveUiUiThread(): already destroyed
+07-07 23:40:06.812  1648  1662 D AutofillManagerServiceImpl: Set component for user 0 as ServiceInfo{9b7a892 com.google.android.gms.autofill.service.AutofillService}
+07-07 23:40:06.819 19271 19271 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:06.823  1648  2273 I ActivityManager: Start proc 19271:com.google.android.apps.docs/u0a51 for content provider com.google.android.apps.docs/.storagebackend.StorageBackendContentProvider
+07-07 23:40:06.837  2220  9367 W Icing   : No valid account for uploading user actions
+07-07 23:40:06.841 19271 19271 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:06.858  2220  4173 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+07-07 23:40:06.869 19230 19230 W DynamiteModule: Local module descriptor class for providerinstaller not found.
+07-07 23:40:06.873 19230 19230 W ProviderHelper: Unknown dynamite feature providerinstaller
+07-07 23:40:06.877 19230 19230 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0
+07-07 23:40:06.878 19230 19230 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.
+07-07 23:40:06.878 19271 19271 E zygote  : The String#value field is not present on Android versions >= 6.0
+07-07 23:40:06.880 19230 19230 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 286 native methods...
+07-07 23:40:06.894 19230 19230 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+07-07 23:40:06.895 19230 19230 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+07-07 23:40:06.895 19230 19230 I Safeboot: Checking safeboot...
+07-07 23:40:06.895 19230 19230 I Safeboot: Not entering safeboot; wrong process.
+07-07 23:40:06.901  2220  9367 I Icing   : Usage reports ok 2, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:06.907  2220  9367 W Icing   : No valid account for uploading user actions
+07-07 23:40:06.926  2220  9367 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:06.938 19271 19295 I GAv4    : Google Analytics 11.9.10 is starting up. To enable debug logging on a device run:
+07-07 23:40:06.938 19271 19295 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
+07-07 23:40:06.938 19271 19295 I GAv4    :   adb logcat -s GAv4
+07-07 23:40:06.941  2220  9367 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-07 23:40:06.947 19271 19295 W TaskScheduler0-CoreComponentFactoryImpl: RetainedComponent will not be retained if  eec does not inherit FragmentActivity and fulfill lfi contract.
+07-07 23:40:06.949 19271 19271 W main-FieldDefinition: Ignoring isIndexed constraint as field also has uniqueness constraint (on just this field, and therefore SQLite will have to create an index on that. For field: com.google.android.apps.docs.database.common.FieldDefinition$a@2ff4ced
+07-07 23:40:06.952 19230 19230 I bezb    : Primes not initialized, returning default (no-op) Primes instance which will ignore all calls. Please call Primes.initialize(...) before using any Primes API.
+07-07 23:40:06.953 19271 19301 W GAv4    : CampaignTrackingReceiver is not registered, not exported or is disabled. Installation campaign tracking is not possible. See http://goo.gl/8Rd3yj for instructions.
+07-07 23:40:06.969  2220  9367 I Icing   : Indexing done com.google.android.gms-apps
+07-07 23:40:07.031 19210 19210 I ProvidersCache: Updating roots due to change at content://com.google.android.apps.docs.storage/root
+07-07 23:40:07.038  2056  2056 W SystemServiceRegistry: No service published for: persistent_data_block
+07-07 23:40:07.043 19210 19266 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+07-07 23:40:07.057 19210 19313 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+07-07 23:40:08.167  1648  1675 I PackageManager.DexOptimizer: Running dexopt (dexoptNeeded=1) on: /data/app/fr.free.nrw.commons-h2u50KnNjbTQEjkSO6AaTw==/base.apk pkg=fr.free.nrw.commons isa=x86 dexoptFlags=boot_complete,debuggable,public target-filter=quicken oatDir=/data/app/fr.free.nrw.commons-h2u50KnNjbTQEjkSO6AaTw==/oat sharedLibraries=PCL[]
+07-07 23:40:08.182 19319 19319 W dex2oat : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:08.183 19319 19319 W dex2oat : Mismatch between dex2oat instruction set features (ISA: X86 Feature string: -ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) and those of dex2oat executable (ISA: X86 Feature string: ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) for the command line:
+07-07 23:40:08.183 19319 19319 W dex2oat : /system/bin/dex2oat --zip-fd=8 --zip-location=base.apk --input-vdex-fd=-1 --output-vdex-fd=10 --oat-fd=9 --oat-location=/data/app/fr.free.nrw.commons-h2u50KnNjbTQEjkSO6AaTw==/oat/x86/base.odex --instruction-set=x86 --instruction-set-variant=x86 --instruction-set-features=default --runtime-arg -Xms64m --runtime-arg -Xmx512m --compiler-filter=quicken --swap-fd=11 --debuggable --classpath-dir=/data/app/fr.free.nrw.commons-h2u50KnNjbTQEjkSO6AaTw== --class-loader-context=PCL[]
+07-07 23:40:08.183 19319 19319 I dex2oat : /system/bin/dex2oat --input-vdex-fd=-1 --output-vdex-fd=10 --compiler-filter=quicken --debuggable --classpath-dir=/data/app/fr.free.nrw.commons-h2u50KnNjbTQEjkSO6AaTw== --class-loader-context=PCL[]
+07-07 23:40:08.624 19319 19319 I dex2oat : dex2oat took 441.839ms (956.753ms cpu) (threads: 4) arena alloc=603KB (618408B) java alloc=4MB (4563192B) native alloc=5MB (5460824B) free=4MB (4500648B)
+07-07 23:40:08.662  1526  1691 D installd: Applied hard quotas for 10152
+07-07 23:40:08.664  1648  1675 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:08.664  1648  1675 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:08.668  1648  1675 V BackupManagerService: restoreAtInstall pkg=fr.free.nrw.commons token=c restoreSet=0
+07-07 23:40:08.668  1648  1675 V BackupManagerService: Finishing install immediately
+07-07 23:40:08.669  1526  1691 E         : Couldn't opendir /data/app/vmdl289918622.tmp: No such file or directory
+07-07 23:40:08.669  1526  1691 E installd: Failed to delete /data/app/vmdl289918622.tmp: No such file or directory
+07-07 23:40:08.678  1648  1712 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-07 23:40:08.679  1648  3442 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+07-07 23:40:08.679  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+07-07 23:40:08.679  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+07-07 23:40:08.679  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+07-07 23:40:08.679  1876  1876 D ImsResolver: maybeAddedImsService, packageName: fr.free.nrw.commons
+07-07 23:40:08.695  2056 19245 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-07 23:40:08.695  2056 19225 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-07 23:40:08.701  1648  1659 W ActivityManager: Unable to start service Intent { act=com.google.android.gms.auth.key.retrieval.service.START pkg=com.google.android.gms } U=0: not found
+07-07 23:40:08.701  2220 19254 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+07-07 23:40:08.702  2220 19255 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+07-07 23:40:08.703  2220 19254 I FontLog : Package fr.free.nrw.commons has no metadata [CONTEXT service_id=132 ]
+07-07 23:40:08.710  1876  1876 D CarrierSvcBindHelper: No carrier app for: 0
+07-07 23:40:08.716  1648  2273 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@4d9ee26
+07-07 23:40:08.716  2220  2426 E GmsClient: unable to connect to service: com.google.android.gms.auth.key.retrieval.service.START on com.google.android.gms
+07-07 23:40:08.728 19210 19325 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+07-07 23:40:08.731  1876  1876 D CarrierConfigLoader: mHandler: 9 phoneId: 0
+07-07 23:40:08.757  2220 19254 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: pay:-1
+07-07 23:40:08.758  2220 19254 E ConfigFileUtils: Failed to read config file: /data/user_de/0/com.google.android.gms/app_chimera/next_container.pb (No such file or directory)
+07-07 23:40:08.765  1648  1648 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@APA
+07-07 23:40:08.780  1648  1658 I zygote  : Background concurrent copying GC freed 56303(3MB) AllocSpace objects, 33(1540KB) LOS objects, 33% free, 11MB/17MB, paused 50us total 111.168ms
+07-07 23:40:08.781  1648  1664 D AutofillUI: destroySaveUiUiThread(): already destroyed
+07-07 23:40:08.784  1648  1662 D AutofillManagerServiceImpl: Set component for user 0 as ServiceInfo{a6ce7e0 com.google.android.gms.autofill.service.AutofillService}
+07-07 23:40:08.796  2220 19255 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://1KrE52AQwYXnymfSlsDvPMZCrPCUqHZ1BDldu3YaBVLj_14X2GPKNUhYkAauDZ_a-dWIHKg5i5lwvP4k1Ma8Jw==@fr.free.nrw.commons/ was not found. Marking affiliation data as stale...
+07-07 23:40:08.822  2220 19254 I ChmraDebugLogger: [73] 1801
+07-07 23:40:08.824  2220 19254 I ChmraDebugLogger: [30] [Pay.optional:202414020000] permitMetered=true,
+07-07 23:40:08.834  2220 19254 W ChimeraConfigService: Retry attempt was throttled.
+07-07 23:40:08.863  2220  2231 I zygote  : Background concurrent copying GC freed 24153(1414KB) AllocSpace objects, 12(496KB) LOS objects, 38% free, 9MB/15MB, paused 21us total 147.056ms
+07-07 23:40:08.864  2220 19330 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 181
+07-07 23:40:08.867 19333 19333 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:08.869 19333 19333 W app_process: Could not reserve sentinel fault page
+07-07 23:40:08.872  2220 19330 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-07 23:40:08.878  2220 19330 I Icing   : Indexing done com.google.android.gms-apps
+07-07 23:40:08.905 19333 19333 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:08.907 19333 19333 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:08.920 19333 19333 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+07-07 23:40:08.922 19333 19333 W Monkey  : args: [-p, fr.free.nrw.commons, -c, android.intent.category.LAUNCHER, 1]
+07-07 23:40:08.923 19333 19333 W Monkey  :  arg: "-p"
+07-07 23:40:08.923 19333 19333 W Monkey  :  arg: "fr.free.nrw.commons"
+07-07 23:40:08.923 19333 19333 W Monkey  :  arg: "-c"
+07-07 23:40:08.923 19333 19333 W Monkey  :  arg: "android.intent.category.LAUNCHER"
+07-07 23:40:08.923 19333 19333 W Monkey  :  arg: "1"
+07-07 23:40:08.924 19333 19333 W Monkey  : data="fr.free.nrw.commons"
+07-07 23:40:08.924 19333 19333 W Monkey  : data="android.intent.category.LAUNCHER"
+07-07 23:40:08.931  1648  1663 W BroadcastQueue: Skipping deliver [background] BroadcastRecord{9fa0910 u-1 android.net.conn.CONNECTIVITY_CHANGE} to ReceiverList{98ec09 19333 (unknown name)/2000/u-1 remote:b2997c2}: process gone or crashing
+07-07 23:40:08.934  1648  2273 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=fr.free.nrw.commons/.auth.LoginActivity} from uid 2000
+07-07 23:40:08.937  1648  2273 W Binder  : Outgoing transactions from this process must be FLAG_ONEWAY
+07-07 23:40:08.937  1648  2273 W Binder  : java.lang.Throwable
+07-07 23:40:08.937  1648  2273 W Binder  : 	at android.os.BinderProxy.transact(Binder.java:752)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at android.app.IActivityController$Stub$Proxy.activityStarting(IActivityController.java:172)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at com.android.server.am.ActivityStarter.startActivity(ActivityStarter.java:449)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at com.android.server.am.ActivityStarter.startActivityLocked(ActivityStarter.java:278)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at com.android.server.am.ActivityStarter.startActivityMayWait(ActivityStarter.java:817)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at com.android.server.am.ActivityManagerService.startActivityAsUser(ActivityManagerService.java:4532)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at com.android.server.am.ActivityManagerService.startActivity(ActivityManagerService.java:4519)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:121)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2919)
+07-07 23:40:08.937  1648  2273 W Binder  : 	at android.os.Binder.execTransact(Binder.java:697)
+07-07 23:40:08.942 19333 19333 I Monkey  : Events injected: 1
+07-07 23:40:08.956  1648 14017 I ActivityManager: Start proc 19344:fr.free.nrw.commons/u0a152 for activity fr.free.nrw.commons/.auth.LoginActivity
+07-07 23:40:08.957 19344 19344 I zygote  : Not late-enabling -Xcheck:jni (already on)
+07-07 23:40:08.960 19333 19333 I Monkey  : ## Network stats: elapsed time=15ms (0ms mobile, 0ms wifi, 15ms not connected)
+07-07 23:40:08.962 19333 19333 I com.android.commands.monkey: System.exit called, status: 0
+07-07 23:40:08.962 19333 19333 I AndroidRuntime: VM exiting with result code 0.
+07-07 23:40:08.963  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:08.964 19344 19344 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:08.973  1648  1694 D         : HostConnection::get() New Host Connection established 0xc664f1c0, tid 1694
+07-07 23:40:09.009 19344 19344 W System.err: java.io.FileNotFoundException: /jacoco.exec (Read-only file system)
+07-07 23:40:09.009 19344 19344 W System.err: 	at java.io.FileOutputStream.open0(Native Method)
+07-07 23:40:09.009 19344 19344 W System.err: 	at java.io.FileOutputStream.open(FileOutputStream.java:287)
+07-07 23:40:09.009 19344 19344 W System.err: 	at java.io.FileOutputStream.<init>(FileOutputStream.java:223)
+07-07 23:40:09.009 19344 19344 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.output.FileOutput.openFile(FileOutput.java:67)
+07-07 23:40:09.009 19344 19344 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.output.FileOutput.startup(FileOutput.java:49)
+07-07 23:40:09.009 19344 19344 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Agent.startup(Agent.java:122)
+07-07 23:40:09.009 19344 19344 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Agent.getInstance(Agent.java:50)
+07-07 23:40:09.009 19344 19344 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Offline.<clinit>(Offline.java:31)
+07-07 23:40:09.009 19344 19344 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Offline.getProbes(Offline.java:51)
+07-07 23:40:09.009 19344 19344 W System.err: 	at fr.free.nrw.commons.CommonsApplication.$jacocoInit(Unknown Source:13)
+07-07 23:40:09.009 19344 19344 W System.err: 	at fr.free.nrw.commons.CommonsApplication.<init>(Unknown Source:0)
+07-07 23:40:09.009 19344 19344 W System.err: 	at java.lang.Class.newInstance(Native Method)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.app.Instrumentation.newApplication(Instrumentation.java:1102)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.app.Instrumentation.newApplication(Instrumentation.java:1087)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.app.LoadedApk.makeApplication(LoadedApk.java:983)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5715)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.app.ActivityThread.-wrap1(Unknown Source:0)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1656)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.os.Looper.loop(Looper.java:164)
+07-07 23:40:09.010 19344 19344 W System.err: 	at android.app.ActivityThread.main(ActivityThread.java:6494)
+07-07 23:40:09.010 19344 19344 W System.err: 	at java.lang.reflect.Method.invoke(Native Method)
+07-07 23:40:09.010 19344 19344 W System.err: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:438)
+07-07 23:40:09.010 19344 19344 W System.err: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:807)
+07-07 23:40:09.018 28398 28428 D EGL_emulation: eglMakeCurrent: 0xdc0c49c0: ver 3 0 (tinfo 0xdc083750)
+07-07 23:40:09.021  1449  1713 D         : HostConnection::get() New Host Connection established 0xf20218c0, tid 1713
+07-07 23:40:09.021  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.022  1449  1713 D         : HostConnection::get() New Host Connection established 0xf20218c0, tid 1713
+07-07 23:40:09.022  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.022  1449  1713 D         : HostConnection::get() New Host Connection established 0xf20218c0, tid 1713
+07-07 23:40:09.022  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.022  1449  1713 D         : HostConnection::get() New Host Connection established 0xf20218c0, tid 1713
+07-07 23:40:09.023  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.024  2280  2396 D EGL_emulation: eglMakeCurrent: 0xc9672fa0: ver 3 0 (tinfo 0xc95e2bb0)
+07-07 23:40:09.039 19344 19344 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+07-07 23:40:09.075 19344 19344 D SoLoader: init start
+07-07 23:40:09.076 19344 19344 D SoLoader: adding system library source: /vendor/lib
+07-07 23:40:09.076 19344 19344 D SoLoader: adding system library source: /system/lib
+07-07 23:40:09.076 19344 19344 D SoLoader: adding application source: com.facebook.soloader.DirectorySoSource[root = /data/app/fr.free.nrw.commons-h2u50KnNjbTQEjkSO6AaTw==/lib/x86 flags = 0]
+07-07 23:40:09.076 19344 19344 D SoLoader: adding backup  source: com.facebook.soloader.ApkSoSource[root = /data/data/fr.free.nrw.commons/lib-main flags = 1]
+07-07 23:40:09.076 19344 19344 D SoLoader: Preparing SO source: com.facebook.soloader.DirectorySoSource[root = /system/lib flags = 2]
+07-07 23:40:09.076 19344 19344 D SoLoader: Preparing SO source: com.facebook.soloader.DirectorySoSource[root = /vendor/lib flags = 2]
+07-07 23:40:09.076 19344 19344 D SoLoader: Preparing SO source: com.facebook.soloader.DirectorySoSource[root = /data/app/fr.free.nrw.commons-h2u50KnNjbTQEjkSO6AaTw==/lib/x86 flags = 0]
+07-07 23:40:09.076 19344 19344 D SoLoader: Preparing SO source: com.facebook.soloader.ApkSoSource[root = /data/data/fr.free.nrw.commons/lib-main flags = 1]
+07-07 23:40:09.077 19344 19344 V fb-UnpackingSoSource: locked dso store /data/user/0/fr.free.nrw.commons/lib-main
+07-07 23:40:09.078 19344 19344 V fb-UnpackingSoSource: deps mismatch on deps store: regenerating
+07-07 23:40:09.078 19344 19344 V fb-UnpackingSoSource: so store dirty: regenerating
+07-07 23:40:09.130 19344 19350 I zygote  : Do partial code cache collection, code=29KB, data=18KB
+07-07 23:40:09.132 19344 19350 I zygote  : After code cache collection, code=29KB, data=18KB
+07-07 23:40:09.132 19344 19350 I zygote  : Increasing code cache capacity to 128KB
+07-07 23:40:09.144 19344 19344 D ApkSoSource: not allowing consideration of lib/x86/libimagepipeline.so: deferring to libdir
+07-07 23:40:09.144 19344 19344 D ApkSoSource: not allowing consideration of lib/x86/libmapbox-gl.so: deferring to libdir
+07-07 23:40:09.144 19344 19344 V fb-UnpackingSoSource: regenerating DSO store com.facebook.soloader.ApkSoSource
+07-07 23:40:09.145 19344 19344 V fb-UnpackingSoSource: Finished regenerating DSO store com.facebook.soloader.ApkSoSource
+07-07 23:40:09.146 19344 19344 V fb-UnpackingSoSource: starting syncer worker
+07-07 23:40:09.152 19344 19344 V fb-UnpackingSoSource: releasing dso store lock for /data/user/0/fr.free.nrw.commons/lib-main (from syncer thread)
+07-07 23:40:09.152 19344 19344 V fb-UnpackingSoSource: not releasing dso store lock for /data/user/0/fr.free.nrw.commons/lib-main (syncer thread started)
+07-07 23:40:09.152 19344 19344 D SoLoader: init finish: 4 SO sources prepared
+07-07 23:40:09.152 19344 19344 D SoLoader: init exiting
+07-07 23:40:09.162 19344 19344 I ACRA    : Migrating unsent ACRA reports to new file locations
+07-07 23:40:09.163 19344 19344 I ACRA    : Migrated 0 unsent reports
+07-07 23:40:09.163 19344 19344 I ACRA    : Converting unsent ACRA reports to json
+07-07 23:40:09.164 19344 19344 I ACRA    : Converted 0 unsent reports
+07-07 23:40:09.164 19344 19344 I ACRA    : ACRA is enabled for fr.free.nrw.commons, initializing...
+07-07 23:40:09.169 19344 19369 I stetho  : Listening on @stetho_fr.free.nrw.commons_devtools_remote
+07-07 23:40:09.171  1648  7381 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:09.171  1648  7381 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:09.171  1648  7381 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:09.171  1648  7381 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:09.174  1648  7381 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:09.174  1648  7381 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:09.262  1648 14017 I ActivityManager: START u0 {cmp=fr.free.nrw.commons/.WelcomeActivity} from uid 10152
+07-07 23:40:09.272  1449  1713 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-07 23:40:09.273 19344 19373 D OpenGLRenderer: HWUI GL Pipeline
+07-07 23:40:09.289 19344 19350 I zygote  : Do partial code cache collection, code=52KB, data=43KB
+07-07 23:40:09.290 19344 19350 I zygote  : After code cache collection, code=52KB, data=43KB
+07-07 23:40:09.290 19344 19350 I zygote  : Increasing code cache capacity to 256KB
+07-07 23:40:09.293 19344 19350 I zygote  : JIT allocated 71KB for compiled code of void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+07-07 23:40:09.293 19344 19350 I zygote  : Compiler allocated 4MB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+07-07 23:40:09.297 19344 19350 I zygote  : Do full code cache collection, code=124KB, data=61KB
+07-07 23:40:09.298 19344 19350 I zygote  : After code cache collection, code=74KB, data=24KB
+07-07 23:40:09.316 19344 19373 D         : HostConnection::get() New Host Connection established 0xd96e2cc0, tid 19373
+07-07 23:40:09.316  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:09.320 19344 19373 I zygote  : android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+07-07 23:40:09.320 19344 19373 I OpenGLRenderer: Initialized EGL, version 1.4
+07-07 23:40:09.320 19344 19373 D OpenGLRenderer: Swap behavior 1
+07-07 23:40:09.320 19344 19373 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+07-07 23:40:09.320 19344 19373 D OpenGLRenderer: Swap behavior 0
+07-07 23:40:09.322  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:09.323 19344 19373 D EGL_emulation: eglCreateContext: 0xdc0983c0: maj 3 min 0 rcv 3
+07-07 23:40:09.327  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:09.332 19344 19373 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832f0)
+07-07 23:40:09.335  1449  1713 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-07 23:40:09.411 19344 19373 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832f0)
+07-07 23:40:09.457  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.457  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.457  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.458  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.458  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:09.458  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.459  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.459  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.459  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.459  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.459  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.459  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.465  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:09.470  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.474  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:09.541 19344 19373 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832f0)
+07-07 23:40:09.542  1449  1713 D         : HostConnection::get() New Host Connection established 0xf2021400, tid 1713
+07-07 23:40:09.543  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.543  1449  1713 D         : HostConnection::get() New Host Connection established 0xf2021400, tid 1713
+07-07 23:40:09.543  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.544  1449  1713 D         : HostConnection::get() New Host Connection established 0xf2021400, tid 1713
+07-07 23:40:09.544  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.544  1449  1713 D         : HostConnection::get() New Host Connection established 0xf2021400, tid 1713
+07-07 23:40:09.544  1449  1713 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.593 19344 19344 D android.widget.GridLayout: vertical constraints: y2-y0>=630, y2-y1<=310, y1-y0<=310 are inconsistent; permanently removing: y2-y1<=310. 
+07-07 23:40:09.604  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:09.608 19344 19350 I zygote  : Do partial code cache collection, code=125KB, data=75KB
+07-07 23:40:09.609 19344 19350 I zygote  : After code cache collection, code=125KB, data=75KB
+07-07 23:40:09.609 19344 19350 I zygote  : Increasing code cache capacity to 512KB
+07-07 23:40:09.610  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:09.614  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:09.637 19344 19373 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832f0)
+07-07 23:40:09.658  1648  1670 I ActivityManager: Displayed fr.free.nrw.commons/.WelcomeActivity: +289ms (total +707ms)
+07-07 23:40:09.672  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.672  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.672  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.676  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.776  1449  1449 W SurfaceFlinger: couldn't log to binary event log: overflow.
+07-07 23:40:09.847  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.847  1648  1694 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.848  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.848  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.851  1648  1694 D         : HostConnection::get() New Host Connection established 0xc664f1c0, tid 1694
+07-07 23:40:09.853  1648  1694 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:09.855  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:09.864 28398 19366 I PBSessionCacheImpl: Deleted sessionId[291450418921] from persistence.
+07-07 23:40:09.867 28398 28398 W SearchService: Abort, client detached.
+07-07 23:40:09.905  2056 19116 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:09.905  2056 19116 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:09.918  2056 19039 I LogUtils: [Places]: ?: PlacesBleScanner stop() [CONTEXT service_id=253 ]
+07-07 23:40:09.921  2056  2056 I BeaconBle: Scan : No clients left, canceling alarm. [CONTEXT service_id=111 ]
+07-07 23:40:09.921  2056  2056 I BeaconBle: Scan canceled successfully. [CONTEXT service_id=111 ]
+07-07 23:40:09.924  2056 19039 I PlacesLogger: [PlaceInferenceEngine]: [anon] Changed inference mode: 0 [CONTEXT service_id=253 ]
+07-07 23:40:09.930  2056 19380 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:09.931  2056  8740 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:09.934  2056  2056 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_BY_PENDING_INTENT pendingIntent=PendingIntent[creatorPackage=com.google.android.gms], packageName=com.google.android.gms]
+07-07 23:40:09.960 19271 19299 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:09.960 19271 19299 I chatty  : uid=10051(com.google.android.apps.docs) TaskSchedulerLo identical 1 line
+07-07 23:40:09.961 19271 19299 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:09.965 19271 19299 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 286 native methods...
+07-07 23:40:09.980 19271 19299 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+07-07 23:40:09.981 19271 19299 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+07-07 23:40:11.845 19271 19285 I zygote  : Waiting for a blocking GC ProfileSaver
+07-07 23:40:14.875 28398 19384 I EventLogSendingHelper: Sending log events.
+07-07 23:40:14.885  1648  1773 I WifiService: getConnectionInfo uid=10032
+07-07 23:40:14.886  1648  1773 I WifiService: getWifiEnabledState uid=10032
+07-07 23:40:14.886 28398 19366 W Settings: Setting mobile_data has moved from android.provider.Settings.Secure to android.provider.Settings.Global.
+07-07 23:40:14.899 28398 19036 I zygote  : Deoptimizing int[] com.google.common.n.g.ae(java.util.Collection) due to JIT inline cache
+07-07 23:40:14.905 28398 19036 I zygote  : Deoptimizing com.google.common.collect.dh com.google.common.collect.dh.ae(java.util.Map) due to JIT inline cache
+07-07 23:40:14.916  1648  1773 I WifiService: getConnectionInfo uid=10032
+07-07 23:40:14.918  1648  1773 I WifiService: getWifiEnabledState uid=10032
+07-07 23:40:14.918 28398 19367 W Settings: Setting mobile_data has moved from android.provider.Settings.Secure to android.provider.Settings.Global.
+07-07 23:40:14.924  2056  2056 I BeaconBle: Scan : No clients left, canceling alarm. [CONTEXT service_id=111 ]
+07-07 23:40:14.929 28398 19036 I WebViewFactory: Loading com.android.chrome version 69.0.3497.100 (code 349710017)
+07-07 23:40:14.949 28398 19036 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:15.017 28398 19036 I zygote  : Rejecting re-init on previously-failed class java.lang.Class<uJ>: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/webkit/TracingController;
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:453)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getWebViewProviderClass(java.lang.ClassLoader) (WebViewFactory.java:128)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getProviderClass() (WebViewFactory.java:402)
+07-07 23:40:15.017 28398 19036 I zygote  :   at android.webkit.WebViewFactoryProvider android.webkit.WebViewFactory.getProvider() (WebViewFactory.java:194)
+07-07 23:40:15.017 28398 19036 I zygote  :   at android.webkit.CookieManager android.webkit.CookieManager.getInstance() (CookieManager.java:39)
+07-07 23:40:15.017 28398 19036 I zygote  :   at boolean com.google.android.apps.gsa.search.core.o.a.a.l.RS() (SourceFile:28)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fj(java.lang.String) (SourceFile:87)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fd(java.lang.String) (SourceFile:51)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.a.a.l.fe(java.lang.String) (SourceFile:80)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.o.Rw() (SourceFile:13)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.ap.Rw() (SourceFile:22)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.bd.Rw() (SourceFile:35)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequestUnbuffered(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:32)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequest(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:34)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.google.b.g com.google.android.apps.gsa.search.core.google.b.h.e(com.google.android.apps.gsa.shared.search.Query, boolean) (SourceFile:27)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.taskgraph.Done com.google.android.apps.gsa.searchbox.client.gsa.a.f.amB() (SourceFile:24)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Object com.google.android.apps.gsa.searchbox.client.gsa.a.f.call() (SourceFile:43)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Object java.util.concurrent.Executors$RunnableAdapter.call() (Executors.java:457)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ag.run() ((null):4)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor.runWorker(java.util.concurrent.ThreadPoolExecutor$Worker) (ThreadPoolExecutor.java:1162)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor$Worker.run() (ThreadPoolExecutor.java:636)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.lang.Thread.run() (Thread.java:764)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ak.run() (SourceFile:6)
+07-07 23:40:15.017 28398 19036 I zygote  : Caused by: java.lang.ClassNotFoundException: Didn't find class "android.webkit.TracingController" on path: DexPathList[[zip file "/system/app/Chrome/Chrome.apk"],nativeLibraryDirectories=[/system/app/Chrome/lib/x86, /system/app/Chrome/Chrome.apk!/lib/x86, /system/lib, /vendor/lib, /system/lib, /vendor/lib]]
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:125)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:379)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:453)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getWebViewProviderClass(java.lang.ClassLoader) (WebViewFactory.java:128)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getProviderClass() (WebViewFactory.java:402)
+07-07 23:40:15.017 28398 19036 I zygote  :   at android.webkit.WebViewFactoryProvider android.webkit.WebViewFactory.getProvider() (WebViewFactory.java:194)
+07-07 23:40:15.017 28398 19036 I zygote  :   at android.webkit.CookieManager android.webkit.CookieManager.getInstance() (CookieManager.java:39)
+07-07 23:40:15.017 28398 19036 I zygote  :   at boolean com.google.android.apps.gsa.search.core.o.a.a.l.RS() (SourceFile:28)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fj(java.lang.String) (SourceFile:87)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fd(java.lang.String) (SourceFile:51)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.a.a.l.fe(java.lang.String) (SourceFile:80)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.o.Rw() (SourceFile:13)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.ap.Rw() (SourceFile:22)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.bd.Rw() (SourceFile:35)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequestUnbuffered(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:32)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequest(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:34)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.google.b.g com.google.android.apps.gsa.search.core.google.b.h.e(com.google.android.apps.gsa.shared.search.Query, boolean) (SourceFile:27)
+07-07 23:40:15.017 28398 19036 I zygote  :   at com.google.android.apps.gsa.taskgraph.Done com.google.android.apps.gsa.searchbox.client.gsa.a.f.amB() (SourceFile:24)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Object com.google.android.apps.gsa.searchbox.client.gsa.a.f.call() (SourceFile:43)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.017 28398 19036 I zygote  :   at java.lang.Object java.util.concurrent.Executors$RunnableAdapter.call() (Executors.java:457)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ag.run() ((null):4)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor.runWorker(java.util.concurrent.ThreadPoolExecutor$Worker) (ThreadPoolExecutor.java:1162)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor$Worker.run() (ThreadPoolExecutor.java:636)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void java.lang.Thread.run() (Thread.java:764)
+07-07 23:40:15.017 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ak.run() (SourceFile:6)
+07-07 23:40:15.017 28398 19036 I zygote  : 
+07-07 23:40:15.018 28398 19036 I zygote  : Rejecting re-init on previously-failed class java.lang.Class<uJ>: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/webkit/TracingController;
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:453)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getWebViewProviderClass(java.lang.ClassLoader) (WebViewFactory.java:128)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getProviderClass() (WebViewFactory.java:402)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.WebViewFactoryProvider android.webkit.WebViewFactory.getProvider() (WebViewFactory.java:194)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.CookieManager android.webkit.CookieManager.getInstance() (CookieManager.java:39)
+07-07 23:40:15.018 28398 19036 I zygote  :   at boolean com.google.android.apps.gsa.search.core.o.a.a.l.RS() (SourceFile:28)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fj(java.lang.String) (SourceFile:87)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fd(java.lang.String) (SourceFile:51)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.a.a.l.fe(java.lang.String) (SourceFile:80)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.o.Rw() (SourceFile:13)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.ap.Rw() (SourceFile:22)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.bd.Rw() (SourceFile:35)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequestUnbuffered(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:32)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequest(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:34)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.google.b.g com.google.android.apps.gsa.search.core.google.b.h.e(com.google.android.apps.gsa.shared.search.Query, boolean) (SourceFile:27)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.taskgraph.Done com.google.android.apps.gsa.searchbox.client.gsa.a.f.amB() (SourceFile:24)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object com.google.android.apps.gsa.searchbox.client.gsa.a.f.call() (SourceFile:43)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object java.util.concurrent.Executors$RunnableAdapter.call() (Executors.java:457)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ag.run() ((null):4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor.runWorker(java.util.concurrent.ThreadPoolExecutor$Worker) (ThreadPoolExecutor.java:1162)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor$Worker.run() (ThreadPoolExecutor.java:636)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.lang.Thread.run() (Thread.java:764)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ak.run() (SourceFile:6)
+07-07 23:40:15.018 28398 19036 I zygote  : Caused by: java.lang.ClassNotFoundException: Didn't find class "android.webkit.TracingController" on path: DexPathList[[zip file "/system/app/Chrome/Chrome.apk"],nativeLibraryDirectories=[/system/app/Chrome/lib/x86, /system/app/Chrome/Chrome.apk!/lib/x86, /system/lib, /vendor/lib, /system/lib, /vendor/lib]]
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:125)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:379)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:453)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getWebViewProviderClass(java.lang.ClassLoader) (WebViewFactory.java:128)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getProviderClass() (WebViewFactory.java:402)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.WebViewFactoryProvider android.webkit.WebViewFactory.getProvider() (WebViewFactory.java:194)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.CookieManager android.webkit.CookieManager.getInstance() (CookieManager.java:39)
+07-07 23:40:15.018 28398 19036 I zygote  :   at boolean com.google.android.apps.gsa.search.core.o.a.a.l.RS() (SourceFile:28)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fj(java.lang.String) (SourceFile:87)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fd(java.lang.String) (SourceFile:51)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.a.a.l.fe(java.lang.String) (SourceFile:80)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.o.Rw() (SourceFile:13)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.ap.Rw() (SourceFile:22)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.bd.Rw() (SourceFile:35)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequestUnbuffered(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:32)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequest(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:34)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.google.b.g com.google.android.apps.gsa.search.core.google.b.h.e(com.google.android.apps.gsa.shared.search.Query, boolean) (SourceFile:27)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.taskgraph.Done com.google.android.apps.gsa.searchbox.client.gsa.a.f.amB() (SourceFile:24)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object com.google.android.apps.gsa.searchbox.client.gsa.a.f.call() (SourceFile:43)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object java.util.concurrent.Executors$RunnableAdapter.call() (Executors.java:457)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ag.run() ((null):4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor.runWorker(java.util.concurrent.ThreadPoolExecutor$Worker) (ThreadPoolExecutor.java:1162)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor$Worker.run() (ThreadPoolExecutor.java:636)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.lang.Thread.run() (Thread.java:764)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ak.run() (SourceFile:6)
+07-07 23:40:15.018 28398 19036 I zygote  : 
+07-07 23:40:15.018 28398 19036 I zygote  : Rejecting re-init on previously-failed class java.lang.Class<uJ>: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/webkit/TracingController;
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:453)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getWebViewProviderClass(java.lang.ClassLoader) (WebViewFactory.java:128)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getProviderClass() (WebViewFactory.java:402)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.WebViewFactoryProvider android.webkit.WebViewFactory.getProvider() (WebViewFactory.java:194)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.CookieManager android.webkit.CookieManager.getInstance() (CookieManager.java:39)
+07-07 23:40:15.018 28398 19036 I zygote  :   at boolean com.google.android.apps.gsa.search.core.o.a.a.l.RS() (SourceFile:28)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fj(java.lang.String) (SourceFile:87)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fd(java.lang.String) (SourceFile:51)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.a.a.l.fe(java.lang.String) (SourceFile:80)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.o.Rw() (SourceFile:13)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.ap.Rw() (SourceFile:22)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.bd.Rw() (SourceFile:35)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequestUnbuffered(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:32)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequest(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:34)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.google.b.g com.google.android.apps.gsa.search.core.google.b.h.e(com.google.android.apps.gsa.shared.search.Query, boolean) (SourceFile:27)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.taskgraph.Done com.google.android.apps.gsa.searchbox.client.gsa.a.f.amB() (SourceFile:24)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object com.google.android.apps.gsa.searchbox.client.gsa.a.f.call() (SourceFile:43)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object java.util.concurrent.Executors$RunnableAdapter.call() (Executors.java:457)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ag.run() ((null):4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor.runWorker(java.util.concurrent.ThreadPoolExecutor$Worker) (ThreadPoolExecutor.java:1162)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor$Worker.run() (ThreadPoolExecutor.java:636)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.lang.Thread.run() (Thread.java:764)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ak.run() (SourceFile:6)
+07-07 23:40:15.018 28398 19036 I zygote  : Caused by: java.lang.ClassNotFoundException: Didn't find class "android.webkit.TracingController" on path: DexPathList[[zip file "/system/app/Chrome/Chrome.apk"],nativeLibraryDirectories=[/system/app/Chrome/lib/x86, /system/app/Chrome/Chrome.apk!/lib/x86, /system/lib, /vendor/lib, /system/lib, /vendor/lib]]
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:125)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:379)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:453)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getWebViewProviderClass(java.lang.ClassLoader) (WebViewFactory.java:128)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Class android.webkit.WebViewFactory.getProviderClass() (WebViewFactory.java:402)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.WebViewFactoryProvider android.webkit.WebViewFactory.getProvider() (WebViewFactory.java:194)
+07-07 23:40:15.018 28398 19036 I zygote  :   at android.webkit.CookieManager android.webkit.CookieManager.getInstance() (CookieManager.java:39)
+07-07 23:40:15.018 28398 19036 I zygote  :   at boolean com.google.android.apps.gsa.search.core.o.a.a.l.RS() (SourceFile:28)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fj(java.lang.String) (SourceFile:87)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.o.a.a com.google.android.apps.gsa.search.core.o.a.a.l.fd(java.lang.String) (SourceFile:51)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.a.a.l.fe(java.lang.String) (SourceFile:80)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.o.Rw() (SourceFile:13)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.ap.Rw() (SourceFile:22)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.bd.Rw() (SourceFile:35)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequestUnbuffered(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:32)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.common.util.concurrent.ListenableFuture com.google.android.apps.gsa.search.core.o.av.executeRequest(com.google.android.apps.gsa.shared.io.HttpRequestData, com.google.android.apps.gsa.shared.io.DataSource, com.google.android.apps.gsa.shared.io.ConnectivityContext) (SourceFile:34)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.search.core.google.b.g com.google.android.apps.gsa.search.core.google.b.h.e(com.google.android.apps.gsa.shared.search.Query, boolean) (SourceFile:27)
+07-07 23:40:15.018 28398 19036 I zygote  :   at com.google.android.apps.gsa.taskgraph.Done com.google.android.apps.gsa.searchbox.client.gsa.a.f.amB() (SourceFile:24)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object com.google.android.apps.gsa.searchbox.client.gsa.a.f.call() (SourceFile:43)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at java.lang.Object java.util.concurrent.Executors$RunnableAdapter.call() (Executors.java:457)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.FutureTask.run() (FutureTask.java:266)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ag.run() ((null):4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.bo.run() (SourceFile:4)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor.runWorker(java.util.concurrent.ThreadPoolExecutor$Worker) (ThreadPoolExecutor.java:1162)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.util.concurrent.ThreadPoolExecutor$Worker.run() (ThreadPoolExecutor.java:636)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void java.lang.Thread.run() (Thread.java:764)
+07-07 23:40:15.018 28398 19036 I zygote  :   at void com.google.android.apps.gsa.shared.util.concurrent.a.ak.run() (SourceFile:6)
+07-07 23:40:15.018 28398 19036 I zygote  : 
+07-07 23:40:15.030 28398 19036 I cr_LibraryLoader: Time to load native libraries: 6 ms (timestamps 3191-3197)
+07-07 23:40:15.034 28398 19036 I chromium: [INFO:library_loader_hooks.cc(36)] Chromium logging enabled: level = 0, default verbosity = 0
+07-07 23:40:15.034 28398 19036 I cr_LibraryLoader: Expected native library version number "69.0.3497.100", actual native library version number "69.0.3497.100"
+07-07 23:40:15.035 28398 19391 E cr_VariationsUtils: Failed reading seed file "/data/user/0/com.google.android.googlequicksearchbox/app_webview/variations_seed": /data/user/0/com.google.android.googlequicksearchbox/app_webview/variations_seed (No such file or directory)
+07-07 23:40:15.042 19395 19395 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:15.047  1648  2273 I ActivityManager: Start proc 19395:com.android.chrome:webview_service/u0a48 for service com.android.chrome/org.chromium.android_webview.services.VariationsSeedServer
+07-07 23:40:15.055 19395 19395 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:15.064 28398 19367 I cr_CronetLibraryLoader: Cronet version: 61.0.3160.0, arch: i686
+07-07 23:40:15.067  1648  2273 I ActivityManager: Killing 2386:com.google.android.apps.messaging:rcs/u0a68 (adj 906): empty #17
+07-07 23:40:15.067 19395 19414 E cr_VariationsUtils: Failed reading seed file "/data/user/0/com.android.chrome/app_webview/variations_seed": /data/user/0/com.android.chrome/app_webview/variations_seed (No such file or directory)
+07-07 23:40:15.073  1648  1665 W zygote  : kill(-2386, 9) failed: No such process
+07-07 23:40:15.086  1648  1666 I WifiService: requestActivityInfo uid=1000
+07-07 23:40:15.086  1648  1666 I WifiService: reportActivityInfo uid=1000
+07-07 23:40:15.086  1648  1666 I WifiService: getSupportedFeatures uid=1000
+07-07 23:40:15.114  1648  1665 W zygote  : kill(-2386, 9) failed: No such process
+07-07 23:40:15.136  1648  1773 W ActivityManager: Scheduling restart of crashed service com.google.android.apps.messaging/com.google.android.ims.service.JibeService in 1000ms
+07-07 23:40:15.153  1648  1665 W zygote  : kill(-2386, 9) failed: No such process
+07-07 23:40:15.154  1648  1665 I zygote  : Successfully killed process cgroup uid 10068 pid 2386 in 81ms
+07-07 23:40:15.159 28398 19419 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+07-07 23:40:16.152 19425 19425 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:16.152  1648  1663 I ActivityManager: Start proc 19425:com.google.android.apps.messaging:rcs/u0a68 for service com.google.android.apps.messaging/com.google.android.ims.service.JibeService
+07-07 23:40:16.175 19425 19425 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:16.181 19425 19425 I MultiDex: VM with version 2.1.0 has multidex support
+07-07 23:40:16.181 19425 19425 I MultiDex: install
+07-07 23:40:16.181 19425 19425 I MultiDex: VM has multidex support, MultiDex support library is disabled.
+07-07 23:40:16.188 19425 19425 I CarrierServices: [2] a.a: Initializing Carrier Services Library.
+07-07 23:40:16.191 19425 19441 I Bugle   : GServicesValues:
+07-07 23:40:16.191 19425 19441 I Bugle   : bugle_enable_primes_crash_metrics: true
+07-07 23:40:16.191 19425 19441 I Bugle   : bugle_max_telemetry_upload_retries: 10
+07-07 23:40:16.191 19425 19441 I Bugle   : bugle_sticker_set_list_version: 3
+07-07 23:40:16.202 19425 19425 I CarrierServices: [2] a.c: Initializing Carrier Services Logging.
+07-07 23:40:16.207 19425 19425 I com.google.android.ims.util.z: LogSaver new instance with filename: carrier_services
+07-07 23:40:16.215 19425 19425 I CarrierServices: [2] zzbgb$zza.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+07-07 23:40:16.218 19425 19425 W CarrierServices: [2] zzbgb$zza.C: Carrier Services Apk was not found.
+07-07 23:40:16.218 19425 19425 W CarrierServices: [2] zzbgb$zza.a: CarrierServices.apk was not found, not pre-loaded or is disabled.
+07-07 23:40:16.218 19425 19425 I CarrierServices: [2] t.c: Using AndroidNetworkFactory
+07-07 23:40:16.220 19425 19425 I CarrierServices: [2] zzbgb$zza.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+07-07 23:40:16.221 19425 19425 W CarrierServices: [2] zzbgb$zza.C: Carrier Services Apk was not found.
+07-07 23:40:16.221 19425 19425 W CarrierServices: [2] zzbgb$zza.a: CarrierServices.apk was not found, not pre-loaded or is disabled.
+07-07 23:40:16.238 19425 19425 V RcsProvisioning: No legacy config file found, migration not necessary
+07-07 23:40:16.240 19425 19425 W RcsProvisioning: Failed to read configuration: /data/user/0/com.google.android.apps.messaging/files/rcsconfig (No such file or directory)
+07-07 23:40:16.240 19425 19425 D RcsProvisioning: Retrieving backup token
+07-07 23:40:16.347 19425 19425 D RcsProvisioning: No backup token found
+07-07 23:40:16.352 19425 19425 W CarrierServices: [2] zzbgb$zza.av: No config URL. RCS will be disabled!
+07-07 23:40:16.360 19425 19425 W DynamiteModule: Local module descriptor class for com.google.android.gms.googlecertificates not found.
+07-07 23:40:16.367 19425 19425 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:16.367 19425 19425 I chatty  : uid=10068 com.google.android.apps.messaging:rcs identical 1 line
+07-07 23:40:16.369 19425 19425 I zygote  : The ClassLoaderContext is a special shared library.
+07-07 23:40:16.372 19425 19425 I DynamiteModule: Considering local module com.google.android.gms.googlecertificates:0 and remote module com.google.android.gms.googlecertificates:4
+07-07 23:40:16.372 19425 19425 I DynamiteModule: Selected remote version of com.google.android.gms.googlecertificates, version >= 4
+07-07 23:40:16.382 19425 19425 W zygote  : Unsupported class loader
+07-07 23:40:16.401 19425 19425 W zygote  : Skipping duplicate class check due to unsupported classloader
+07-07 23:40:16.406 19425 19425 D GoogleCertificates: com.google.android.gms.googlecertificates module is loaded
+07-07 23:40:16.416 19425 19425 D CarrierServices: log_saver already enabled
+07-07 23:40:16.421  1648  1773 I ActivityManager: Killing 2332:com.google.android.apps.messaging/u0a68 (adj 906): empty #17
+07-07 23:40:16.422  1648  1665 W zygote  : kill(-2332, 9) failed: No such process
+07-07 23:40:16.422 19425 19425 I CarrierServices: [2] e.onReceive: intent=Intent { act=android.net.conn.CONNECTIVITY_CHANGE flg=0x4000010 (has extras) }, isDeviceIdleMode=false
+07-07 23:40:16.423 19425 19425 W CarrierServices: [2] zzbgb$zza.C: Carrier Services Apk was not found.
+07-07 23:40:16.423 19425 19425 W CarrierServices: [2] zzbgb$zza.a: CarrierServices.apk was not found, not pre-loaded or is disabled.
+07-07 23:40:16.463  1648  1665 W zygote  : kill(-2332, 9) failed: No such process
+07-07 23:40:16.481 19425 19425 I CarrierServices: [2] p.g: RCS provisioning stopped!!
+07-07 23:40:16.505  1648  1665 W zygote  : kill(-2332, 9) failed: No such process
+07-07 23:40:16.506  1648  1665 I zygote  : Successfully killed process cgroup uid 10068 pid 2332 in 84ms
+07-07 23:40:17.845  1648  3802 D WificondControl: Scan result ready event
+07-07 23:40:18.195  1648  2239 I ActivityManager: Killing 13864:com.google.android.apps.docs:UploadToFolder/u0a51 (adj 906): empty #17
+07-07 23:40:18.196  1648  1665 W zygote  : kill(-13864, 9) failed: No such process
+07-07 23:40:18.234  1648  1665 I chatty  : uid=1000(system) ActivityManager identical 1 line
+07-07 23:40:18.273  1648  1665 W zygote  : kill(-13864, 9) failed: No such process
+07-07 23:40:18.274  1648  1665 I zygote  : Successfully killed process cgroup uid 10051 pid 13864 in 77ms
+07-07 23:40:19.221  1648  1712 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-07 23:40:19.230  2056 19453 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:fr.free.nrw.commons flg=0x45000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+07-07 23:40:19.244  1876  1876 D CarrierSvcBindHelper: No carrier app for: 0
+07-07 23:40:19.244  1876  1876 D ImsResolver: maybeAddedImsService, packageName: fr.free.nrw.commons
+07-07 23:40:19.246  2056 19460 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+07-07 23:40:19.251 19210 19266 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+07-07 23:40:19.258  1648  1648 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@APE
+07-07 23:40:19.264  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:19.264  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:19.281  2220  4173 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+07-07 23:40:19.287  2220 19331 W Icing   : No valid account for uploading user actions
+07-07 23:40:19.290  2220  2844 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+07-07 23:40:19.304  2220 19331 I Icing   : Usage reports ok 2, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:19.306  2220 19331 W Icing   : No valid account for uploading user actions
+07-07 23:40:19.316  2220 19331 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:19.317  2220 19331 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 181
+07-07 23:40:19.318  2220 19331 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 181
+07-07 23:40:19.324  2220 19331 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-07 23:40:19.336  2220 19331 I Icing   : Indexing done com.google.android.gms-apps
+07-07 23:40:24.051  1447  1447 I boot-pipe: done populating /dev/random
+07-07 23:40:24.109 19465 19465 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:24.148 19465 19465 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:24.150 19465 19465 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:24.162 19465 19465 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-07 23:40:24.165 19465 19465 D AndroidRuntime: Shutting down VM
+07-07 23:40:24.294 19475 19475 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:24.322 19475 19475 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:24.324 19475 19475 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:24.336 19475 19475 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-07 23:40:24.339 19475 19475 D AndroidRuntime: Shutting down VM
+07-07 23:40:24.380  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:40:24.380  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:40:25.201 19506 19506 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:25.204 19506 19506 W app_process: Could not reserve sentinel fault page
+07-07 23:40:25.231 19506 19506 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:25.234 19506 19506 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:25.235 19506 19506 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:25.246 19506 19506 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:26.279 19506 19506 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b17e; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:26.282 19506 19506 W AccessibilityNodeInfoDumper: Fetch time: 5ms
+07-07 23:40:26.283  1648  2251 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@e9a1c29
+07-07 23:40:26.287 19506 19506 D AndroidRuntime: Shutting down VM
+07-07 23:40:26.551 19526 19526 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:26.554 19526 19526 W app_process: Could not reserve sentinel fault page
+07-07 23:40:26.582 19526 19526 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:26.583 19526 19526 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:26.584 19526 19526 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:26.594 19526 19526 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:27.627 19526 19526 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b18f; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:27.627 19526 19526 W AccessibilityNodeInfoDumper: Fetch time: 4ms
+07-07 23:40:27.628  1648  2239 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@9f44d4f
+07-07 23:40:27.633 19526 19526 D AndroidRuntime: Shutting down VM
+07-07 23:40:28.471 19554 19554 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:28.499 19554 19554 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:28.501 19554 19554 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:28.501 19554 19554 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:28.514 19554 19554 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:29.540 19554 19554 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b198; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:29.540 19554 19554 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:40:29.542  1648  3644 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@98f51e5
+07-07 23:40:29.547 19554 19554 D AndroidRuntime: Shutting down VM
+07-07 23:40:29.921  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:29.921  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:30.264  1648  1666 I WifiService: requestActivityInfo uid=1000
+07-07 23:40:30.264  1648  1666 I WifiService: reportActivityInfo uid=1000
+07-07 23:40:30.264  1648  1666 I WifiService: getSupportedFeatures uid=1000
+07-07 23:40:30.447 19590 19590 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:30.475 19590 19590 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:30.476 19590 19590 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:30.476 19590 19590 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:30.489 19590 19590 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:31.516 19590 19590 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1a5; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:31.516 19590 19590 W AccessibilityNodeInfoDumper: Fetch time: 5ms
+07-07 23:40:31.517  1648  2251 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@3d26f6b
+07-07 23:40:31.520 19590 19590 D AndroidRuntime: Shutting down VM
+07-07 23:40:31.765 19611 19611 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:31.767 19611 19611 W app_process: Could not reserve sentinel fault page
+07-07 23:40:31.793 19611 19611 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:31.796 19611 19611 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:31.797 19611 19611 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:31.809 19611 19611 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:32.831 19611 19611 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1ae; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:32.832 19611 19611 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:40:32.833  1648  3644 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@3e82761
+07-07 23:40:32.836 19611 19611 D AndroidRuntime: Shutting down VM
+07-07 23:40:32.962  1449  1957 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-07 23:40:32.969  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:32.977 19623 19623 D         : HostConnection::get() New Host Connection established 0xea7c8240, tid 19623
+07-07 23:40:32.979  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2021040, tid 1957
+07-07 23:40:32.982  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:32.983  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2021040, tid 1957
+07-07 23:40:32.983  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:33.109  4474  4474 D MediaScannerReceiver: action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/screen.png
+07-07 23:40:34.933  1648  3644 I ActivityManager: Killing 13842:android:ui/1000 (adj 906): empty #17
+07-07 23:40:34.934  1648  1665 W zygote  : kill(-13842, 9) failed: No such process
+07-07 23:40:34.979  1648  1670 W ActivityManager: setHasOverlayUi called on unknown pid: 13842
+07-07 23:40:34.974  1648  1665 I chatty  : uid=1000(system) ActivityManager identical 1 line
+07-07 23:40:35.013  1648  1665 W zygote  : kill(-13842, 9) failed: No such process
+07-07 23:40:35.013  1648  1665 I zygote  : Successfully killed process cgroup uid 1000 pid 13842 in 79ms
+07-07 23:40:35.293 19636 19636 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:35.295 19636 19636 W app_process: Could not reserve sentinel fault page
+07-07 23:40:35.326 19636 19636 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:35.327 19636 19636 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:35.327 19636 19636 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:35.338 19636 19636 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:36.365 19636 19636 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1b8; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:36.365 19636 19636 W AccessibilityNodeInfoDumper: Fetch time: 4ms
+07-07 23:40:36.366  1648  1660 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@e9ed89d
+07-07 23:40:36.369 19636 19636 D AndroidRuntime: Shutting down VM
+07-07 23:40:36.829  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:36.829  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:36.840  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:36.840  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:36.848  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:36.848  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:36.850  2056  8740 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.icing.service.IcingGcmTaskService started execution. cause:4 exec_start_elapsed_seconds: 6985 [CONTEXT service_id=218 ]
+07-07 23:40:36.853  2056 19116 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.icing.service.IcingGcmTaskService finished executing. cause:4 result: 1 elapsed_millis: 10 uptime_millis: 10 exec_start_elapsed_seconds: 6985 [CONTEXT service_id=218 ]
+07-07 23:40:36.874  2056 19116 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.stats.PlatformStatsCollectorService started execution. cause:5 exec_start_elapsed_seconds: 6985 [CONTEXT service_id=218 ]
+07-07 23:40:36.882  2056 19116 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.checkin.EventLogService started execution. cause:5 exec_start_elapsed_seconds: 6985 [CONTEXT service_id=218 ]
+07-07 23:40:36.885  2220 19330 I Checkin : [EventLogChimeraService] Opted in for usage reporting: false
+07-07 23:40:36.885  2220 19330 I Checkin : [EventLogChimeraService] Aggregate from 1657249504109 (log), 1657249504109 (data)
+07-07 23:40:36.887  2056 19116 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.stats.PlatformStatsCollectorService finished executing. cause:5 result: 1 elapsed_millis: 20 uptime_millis: 20 exec_start_elapsed_seconds: 6985 [CONTEXT service_id=218 ]
+07-07 23:40:36.904  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver
+07-07 23:40:36.904  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+07-07 23:40:36.913  2056  8911 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.checkin.EventLogService finished executing. cause:5 result: 1 elapsed_millis: 37 uptime_millis: 37 exec_start_elapsed_seconds: 6985 [CONTEXT service_id=218 ]
+07-07 23:40:38.470  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:40:38.472  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:40:38.788 19664 19664 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:38.841 19664 19664 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:38.843 19664 19664 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:38.843 19664 19664 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:38.857 19664 19664 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:39.887 19664 19664 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1c4; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:39.887 19664 19664 W AccessibilityNodeInfoDumper: Fetch time: 5ms
+07-07 23:40:39.887  1648 15792 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@5efa6c5
+07-07 23:40:39.893 19664 19664 D AndroidRuntime: Shutting down VM
+07-07 23:40:39.907 28398 19028 W GmsLocationProvider: Error removing location updates: 16
+07-07 23:40:40.736 19692 19692 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:40.771 19692 19692 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:40.773 19692 19692 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:40.773 19692 19692 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:40.785 19692 19692 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:41.807 19692 19692 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1cf; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:41.808 19692 19692 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:40:41.809  1648  1660 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@23ff4b
+07-07 23:40:41.812 19692 19692 D AndroidRuntime: Shutting down VM
+07-07 23:40:42.035 19711 19711 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:42.064 19711 19711 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:42.066 19711 19711 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:42.066 19711 19711 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:42.079 19711 19711 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:43.103 19711 19711 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1da; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:43.104 19711 19711 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:40:43.105  1648  3644 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@da8ea41
+07-07 23:40:43.108 19711 19711 D AndroidRuntime: Shutting down VM
+07-07 23:40:43.279  7306  7338 W native  : jpeg_io.cc:108 File's first two bytes does not match the sequence ÿ216
+07-07 23:40:43.952 19740 19740 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:43.980 19740 19740 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:43.983 19740 19740 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:43.983 19740 19740 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:43.995 19740 19740 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:44.308  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:44.308  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:45.018 19740 19740 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1e4; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:45.019 19740 19740 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:40:45.020  1648  3802 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@df610f
+07-07 23:40:45.024 19740 19740 D AndroidRuntime: Shutting down VM
+07-07 23:40:45.031  1440  1461 D hwcomposer: hw_composer sent 126 syncs in 60s
+07-07 23:40:45.920 19775 19775 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:45.950 19775 19775 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:45.952 19775 19775 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:45.952 19775 19775 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:45.959  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:45.959  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:45.968 19775 19775 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:40:45.969  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:45.969  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:46.961  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:46.962  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:46.986 19775 19775 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b1f0; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:40:46.987 19775 19775 W AccessibilityNodeInfoDumper: Fetch time: 4ms
+07-07 23:40:46.987  1648  3959 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@b449d21
+07-07 23:40:46.991 19775 19775 D AndroidRuntime: Shutting down VM
+07-07 23:40:47.330 19805 19805 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:47.358 19805 19805 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:47.359 19805 19805 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:47.370 19805 19805 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+07-07 23:40:47.374  1648  1663 I ActivityManager: Force stopping fr.free.nrw.commons appid=10152 user=-1: deletePackageX
+07-07 23:40:47.374  1648  1663 I ActivityManager: Killing 19344:fr.free.nrw.commons/u0a152 (adj 0): stop fr.free.nrw.commons
+07-07 23:40:47.375  1648  1665 W zygote  : kill(-19344, 9) failed: No such process
+07-07 23:40:47.376  1648  1663 W ActivityManager: Force removing ActivityRecord{c21f29c u0 fr.free.nrw.commons/.WelcomeActivity t159}: app died, no saved state
+07-07 23:40:47.379  1648  1663 I WindowManager: Failed to capture screenshot of Token{30804a5 ActivityRecord{c21f29c u0 fr.free.nrw.commons/.WelcomeActivity t159 f}} appWin=Window{3f39859 u0 fr.free.nrw.commons/fr.free.nrw.commons.WelcomeActivity} drawState=4
+07-07 23:40:47.384  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:47.385  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:47.386  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:47.386  1648  1663 E ActivityManager: Failure starting process fr.free.nrw.commons
+07-07 23:40:47.386  1648  1663 E ActivityManager: java.lang.SecurityException: Package fr.free.nrw.commons is currently frozen!
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.pm.PackageManagerService.checkPackageStartable(PackageManagerService.java:3895)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3801)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3761)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService.startProcessLocked(ActivityManagerService.java:3650)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.startSpecificActivityLocked(ActivityStackSupervisor.java:1590)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityStack.resumeTopActivityInnerLocked(ActivityStack.java:2726)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityStack.resumeTopActivityUncheckedLocked(ActivityStack.java:2255)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.resumeFocusedStackTopActivityLocked(ActivityStackSupervisor.java:2098)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityStackSupervisor.resumeFocusedStackTopActivityLocked(ActivityStackSupervisor.java:2082)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService.handleAppDiedLocked(ActivityManagerService.java:5303)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService.removeProcessLocked(ActivityManagerService.java:6839)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService.killPackageProcessesLocked(ActivityManagerService.java:6484)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService.forceStopPackageLocked(ActivityManagerService.java:6616)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.am.ActivityManagerService$MainHandler.handleMessage(ActivityManagerService.java:2055)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at android.os.Looper.loop(Looper.java:164)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at android.os.HandlerThread.run(HandlerThread.java:65)
+07-07 23:40:47.386  1648  1663 E ActivityManager: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+07-07 23:40:47.387  1648  1663 I ActivityManager: Force stopping fr.free.nrw.commons appid=10152 user=0: start failure
+07-07 23:40:47.388  1648  1663 I ActivityManager:   Force finishing activity ActivityRecord{3db3fc5 u0 fr.free.nrw.commons/.auth.LoginActivity t159}
+07-07 23:40:47.390  1648  1663 I ActivityManager:   Force finishing activity ActivityRecord{3db3fc5 u0 fr.free.nrw.commons/.auth.LoginActivity t159 f}
+07-07 23:40:47.390  1648  1663 W ActivityManager: Duplicate finish request for ActivityRecord{3db3fc5 u0 fr.free.nrw.commons/.auth.LoginActivity t159 f}
+07-07 23:40:47.392  1648  1663 I ActivityManager:   Force finishing activity ActivityRecord{3db3fc5 u0 fr.free.nrw.commons/.auth.LoginActivity t159 f}
+07-07 23:40:47.393  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:47.393  1648  1663 W ActivityManager: Duplicate finish request for ActivityRecord{3db3fc5 u0 fr.free.nrw.commons/.auth.LoginActivity t159 f}
+07-07 23:40:47.420  1648  1665 W zygote  : kill(-19344, 9) failed: No such process
+07-07 23:40:47.444  1648  1711 W InputDispatcher: channel '6194621 fr.free.nrw.commons/fr.free.nrw.commons.auth.LoginActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+07-07 23:40:47.444  1648  1711 E InputDispatcher: channel '6194621 fr.free.nrw.commons/fr.free.nrw.commons.auth.LoginActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+07-07 23:40:47.448  1648  2273 I WindowManager: WIN DEATH: Window{6194621 u0 fr.free.nrw.commons/fr.free.nrw.commons.auth.LoginActivity}
+07-07 23:40:47.448  1648  2273 W InputDispatcher: Attempted to unregister already unregistered input channel '6194621 fr.free.nrw.commons/fr.free.nrw.commons.auth.LoginActivity (server)'
+07-07 23:40:47.454  1527  1527 I keystore: clear_uid 10152
+07-07 23:40:47.455  1648  1675 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:47.455  1648  1675 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:47.463  1648  1665 W zygote  : kill(-19344, 9) failed: No such process
+07-07 23:40:47.463  1648  1665 I zygote  : Successfully killed process cgroup uid 10152 pid 19344 in 88ms
+07-07 23:40:47.464  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:47.469  1648  1663 I ActivityManager: Exiting empty application process 0:fr.free.nrw.commons/u0a152 (null)
+07-07 23:40:47.473  1449  1713 D         : HostConnection::get() New Host Connection established 0xf2021400, tid 1713
+07-07 23:40:47.474  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:47.474  1648  1670 W ActivityManager: setHasOverlayUi called on unknown pid: 19344
+07-07 23:40:47.480  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:47.482  1449  1449 D SurfaceFlinger: duplicate layer name: changing com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity to com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity#1
+07-07 23:40:47.486  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:47.491  1763  1786 E RecentsTaskLoader: Unexpected null component name or activity info: ComponentInfo{fr.free.nrw.commons/fr.free.nrw.commons.auth.LoginActivity}, null
+07-07 23:40:47.492  1763  1786 I chatty  : uid=10029(com.android.systemui) Binder:1763_2 identical 1 line
+07-07 23:40:47.492  1763  1786 E RecentsTaskLoader: Unexpected null component name or activity info: ComponentInfo{fr.free.nrw.commons/fr.free.nrw.commons.auth.LoginActivity}, null
+07-07 23:40:47.493  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:47.497  1763  1786 E RecentsTaskLoader: Unexpected null component name or activity info: ComponentInfo{fr.free.nrw.commons/fr.free.nrw.commons.auth.LoginActivity}, null
+07-07 23:40:47.499  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:47.518  1648  1675 I zygote  : Explicit concurrent copying GC freed 50976(3MB) AllocSpace objects, 29(708KB) LOS objects, 36% free, 10MB/16MB, paused 19us total 62.541ms
+07-07 23:40:47.520  2280  2396 D EGL_emulation: eglMakeCurrent: 0xc9672fa0: ver 3 0 (tinfo 0xc95e2bb0)
+07-07 23:40:47.521 28398 28428 D EGL_emulation: eglMakeCurrent: 0xdc0c49c0: ver 3 0 (tinfo 0xdc083750)
+07-07 23:40:47.532 19805 19814 W MessageQueue: Handler (android.os.Handler) {86effee} sending message to a Handler on a dead thread
+07-07 23:40:47.532 19805 19814 W MessageQueue: java.lang.IllegalStateException: Handler (android.os.Handler) {86effee} sending message to a Handler on a dead thread
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at android.os.MessageQueue.enqueueMessage(MessageQueue.java:545)
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at android.os.Handler.enqueueMessage(Handler.java:662)
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at android.os.Handler.sendMessageAtTime(Handler.java:631)
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at android.os.Handler.sendMessageDelayed(Handler.java:601)
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at android.os.Handler.post(Handler.java:357)
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at android.os.ResultReceiver$MyResultReceiver.send(ResultReceiver.java:57)
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at com.android.internal.os.IResultReceiver$Stub.onTransact(IResultReceiver.java:58)
+07-07 23:40:47.532 19805 19814 W MessageQueue: 	at android.os.Binder.execTransact(Binder.java:697)
+07-07 23:40:47.533 19805 19805 I app_process: System.exit called, status: 0
+07-07 23:40:47.533 19805 19805 I AndroidRuntime: VM exiting with result code 0.
+07-07 23:40:47.534  1648  1675 I ActivityManager: Force stopping fr.free.nrw.commons appid=10152 user=0: pkg removed
+07-07 23:40:47.539  1648  1675 D KernelUidCpuTimeReader: Removing uids 10152-10152
+07-07 23:40:47.543  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:47.549  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+07-07 23:40:47.549  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+07-07 23:40:47.549  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_REMOVED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+07-07 23:40:47.554  2056  2056 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_ALL packageName=fr.free.nrw.commons]
+07-07 23:40:47.555  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:47.564  1648  1721 D RecurrenceRule: Resolving using anchor 2022-07-07T23:40:47.564-04:00[America/New_York]
+07-07 23:40:47.565  1648  1721 D RecurrenceRule: Resolving using anchor 2022-07-07T23:40:47.565-04:00[America/New_York]
+07-07 23:40:47.566  1648  1712 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-07 23:40:47.566  1648  1721 D RecurrenceRule: Cycle 17 from 2022-06-17T00:00-04:00[America/New_York] to 2022-07-17T00:00-04:00[America/New_York]
+07-07 23:40:47.566  1648  1721 D NetworkStats: Resolving plan for NetworkTemplate: matchRule=MOBILE_ALL, subscriberId=310260..., matchSubscriberIds=[310260...]
+07-07 23:40:47.566  1648  1721 D NetworkStats: Found active matching subId 1
+07-07 23:40:47.578  2056 19824 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+07-07 23:40:47.585  1648  1721 D NetworkStats: Resolved to plan null
+07-07 23:40:47.593 28398 28398 W SessionLifecycleManager: Handover failed. Creating new session controller.
+07-07 23:40:47.595  1648  1648 D ZenLog  : config: removeAutomaticZenRules,ZenModeConfig[user=0,allowCalls=true,allowRepeatCallers=false,allowMessages=false,allowCallsFrom=contacts,allowMessagesFrom=contacts,allowReminders=true,allowEvents=true,allowWhenScreenOff=true,allowWhenScreenOn=true,automaticRules={EVENTS_DEFAULT_RULE=ZenRule[enabled=false,snoozing=false,name=Event,zenMode=ZEN_MODE_ALARMS,conditionId=condition://android/event?userId=-10000&calendar=&reply=1,condition=Condition[id=condition://android/event?userId=-10000&calendar=&reply=1,summary=...,line1=...,line2=...,icon=0,state=STATE_FALSE,flags=2],component=ComponentInfo{android/com.android.server.notification.EventConditionProvider},id=EVENTS_DEFAULT_RULE,creationTime=1629221005391,enabler=null], SCHEDULED_DEFAULT_RULE_1=ZenRule[enabled=false,snoozing=false,name=Weeknight,zenMode=ZEN_MODE_ALARMS,conditionId=condition://android/schedule?days=1.2.3.4.5&start=22.0&end=7.0&exitAtAlarm=false,condition=Condition[id=condition://android/schedule?days=1.2.3.4.5&start=22.0&end=7.0&exitAtAlarm=false,summary=...,line1=...,line2=...,icon=0,state=STATE_TRUE,flags=2],component=ComponentInfo{android/com.android.server.notification.ScheduleConditionProvider},id=SCHEDULED_DEFAULT_RULE_1,creationTime=1629221005391,enabler=null], SCHEDULED_DEFAULT_RULE_2=ZenRule[enabled=false,snoozing=false,name=Weekend,zenMode=ZEN_MODE_ALARMS,conditionId=condition://android/schedule?days=6.7&start=23.30&end=10.0&exitAtAlarm=false,condition=Condition[id=condition://android/schedule?days=6.7&start=23.30&end=10.0&exitAtAlarm=false,summary=...,line1=...,line2=...,icon=0,state=STATE_FALSE,flags=2],component=ComponentInfo{android/com.android.server.notification.ScheduleConditionProvider},id=SCHEDULED_DEFAULT_RULE_2,creationTime=1629221005391,enabler=null]},manualRule=null],Diff[]
+07-07 23:40:47.595  1648  1648 I ConditionProviders: Disallowing condition provider fr.free.nrw.commons
+07-07 23:40:47.595  1876  1876 D CarrierSvcBindHelper: No carrier app for: 0
+07-07 23:40:47.599 28398 28398 I OptInState: There is a new client and it does not support opt-in. Dropping request.
+07-07 23:40:47.603  1648  1660 I WifiService: getConnectionInfo uid=10032
+07-07 23:40:47.605  1648  1660 I WifiService: getWifiEnabledState uid=10032
+07-07 23:40:47.605 28398 19367 W Settings: Setting mobile_data has moved from android.provider.Settings.Secure to android.provider.Settings.Global.
+07-07 23:40:47.608  2220 19330 I ContentMaintenance: Internal cache bytes used: 0; limit: 40626585; download size: 0
+07-07 23:40:47.609 28398 19036 W LocationOracle: No location history returned by ContextManager
+07-07 23:40:47.610 28398 28398 I MicroDetectionWorker: #updateMicroDetector [detectionMode: [mDetectionMode: [1]]]
+07-07 23:40:47.610 28398 28398 I MicroDetectionWorker: #startMicroDetector [speakerMode: 0]
+07-07 23:40:47.610 28398 28398 I AudioController: Using mInputStreamFactoryBuilder
+07-07 23:40:47.615 28398 19384 I MicroRecognitionRunner: Starting detection.
+07-07 23:40:47.616 28398 19379 I MicrophoneInputStream: mic_starting com.google.android.apps.gsa.staticplugins.aa.c@79c6f07
+07-07 23:40:47.617  1523  1523 W ServiceManager: Permission failure: android.permission.RECORD_AUDIO from uid=10032 pid=28398
+07-07 23:40:47.617  1523  1523 E         : Request requires android.permission.RECORD_AUDIO
+07-07 23:40:47.617  1523  1523 E         : android.permission.CAPTURE_AUDIO_HOTWORD
+07-07 23:40:47.617 28398 19379 E AudioRecord: Could not get audio input for session 3657, record source 1999, sample rate 16000, format 0x1, channel mask 0x10, flags 0
+07-07 23:40:47.621 28398 19379 E AudioRecord-JNI: Error creating AudioRecord instance: initialization check failed with status -22.
+07-07 23:40:47.621 28398 19379 E android.media.AudioRecord: Error code -20 when initializing native AudioRecord object.
+07-07 23:40:47.621 28398 19379 I MicrophoneInputStream: mic_started com.google.android.apps.gsa.staticplugins.aa.c@79c6f07
+07-07 23:40:47.621 28398 28398 I MicroDetectionWorker: onReady
+07-07 23:40:47.621 28398 19379 E ActivityThread: Failed to find provider info for com.google.android.apps.gsa.testing.ui.audio.recorded
+07-07 23:40:47.624 28398 19379 I MicrophoneInputStream: mic_close com.google.android.apps.gsa.staticplugins.aa.c@79c6f07
+07-07 23:40:47.626 28398 19384 I MicroRecognitionRunner: Detection finished
+07-07 23:40:47.626 28398 19384 W ErrorReporter: reportError [type: 211, code: 524300]: Error reading from input stream
+07-07 23:40:47.626 28398 28454 I MicroRecognitionRunner: Stopping hotword detection.
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: onFatalError, processing error from engine(4)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: com.google.android.apps.gsa.shared.speech.b.g: Error reading from input stream
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.a.a(SourceFile:28)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.b.run(SourceFile:15)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ag.run(Unknown Source:4)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bo.run(SourceFile:4)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bo.run(SourceFile:4)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1162)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:636)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.lang.Thread.run(Thread.java:764)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ak.run(SourceFile:6)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: Caused by: com.google.android.apps.gsa.shared.exception.GsaIOException: Error code: 393238 | Buffer overflow, no available space.
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.Tee.f(SourceFile:103)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.au.read(SourceFile:2)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at java.io.InputStream.read(InputStream.java:101)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.ao.run(SourceFile:18)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.an.run(SourceFile:2)
+07-07 23:40:47.626 28398 19384 W ErrorProcessor: 	... 11 more
+07-07 23:40:47.626 28398 19384 I AudioController: internalShutdown
+07-07 23:40:47.626 28398 28398 I MicroDetectionWorker: onReady
+07-07 23:40:47.629 19210 19819 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+07-07 23:40:47.638  2220  9367 I Icing   : doRemovePackageData fr.free.nrw.commons
+07-07 23:40:47.657  1648  1648 D ZenLog  : set_zen_mode: off,removeAutomaticZenRules
+07-07 23:40:47.661 28398 28398 I MicroDetector: Keeping mic open: false
+07-07 23:40:47.661 28398 28398 I MicroDetectionWorker: #onError(false)
+07-07 23:40:47.668 28398 19036 I DeviceStateChecker: DeviceStateChecker cancelled
+07-07 23:40:47.668  2220 19330 I RealtimeCacheCleanup: Beginning Realtime garbage collection.
+07-07 23:40:47.668  2220 19330 I RealtimeCacheCleanup: Finished Realtime garbage collection.
+07-07 23:40:47.671  2220  4173 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+07-07 23:40:47.672  1763  1776 D         : HostConnection::get() New Host Connection established 0xc8bc74c0, tid 1776
+07-07 23:40:47.672  1763  1776 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:47.672  1763  1776 D         : HostConnection::get() New Host Connection established 0xc8bc74c0, tid 1776
+07-07 23:40:47.672  1763  1776 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:47.681  1648  1664 D AutofillUI: destroySaveUiUiThread(): already destroyed
+07-07 23:40:47.682  1648  1662 D AutofillManagerServiceImpl: Set component for user 0 as ServiceInfo{f5f7c5a com.google.android.gms.autofill.service.AutofillService}
+07-07 23:40:47.698  2220 19330 W Icing   : No valid account for uploading user actions
+07-07 23:40:47.708  2056 19116 W ctxmgr  : [AclManager] No 3 for (accnt=account#-517948760#, com.google.android.gms(10014):UserVelocityProducer, vrsn=202414022, 0, 3pPkg = null ,  3pMdlId = null ,  pid = 2056). Was: 3 for 1, account#-517948760# [CONTEXT service_id=47 ]
+07-07 23:40:47.724 28398 28407 E ReloadingLock: Finalizing LOCKED Token[shortcuts 2022-07-07 23:40:47.626]
+07-07 23:40:47.725 28398 28409 I zygote  : Background concurrent copying GC freed 15128(1033KB) AllocSpace objects, 3(732KB) LOS objects, 50% free, 5MB/10MB, paused 164us total 101.906ms
+07-07 23:40:47.740  1648  1660 I GnssLocationProvider: WakeLock acquired by sendMessage(SET_REQUEST, 0, com.android.server.location.GnssLocationProvider$GpsRequest@a984647)
+07-07 23:40:47.741 28398 28403 I zygote  : Do full code cache collection, code=1010KB, data=623KB
+07-07 23:40:47.743  1648  1662 I GnssLocationProvider: WakeLock released by handleMessage(SET_REQUEST, 0, com.android.server.location.GnssLocationProvider$GpsRequest@a984647)
+07-07 23:40:47.745 28398 28403 I zygote  : After code cache collection, code=1005KB, data=585KB
+07-07 23:40:47.746  2220 19330 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:47.754  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:47.759  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:47.763  2220  2844 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+07-07 23:40:47.763  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.768  2220 19330 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-07 23:40:47.775  2220 19330 W Icing   : No valid account for uploading user actions
+07-07 23:40:47.781  2220 19330 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:47.781  2220 19330 I Icing   : Indexing done com.google.android.gms-apps
+07-07 23:40:47.800  2056  2056 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_BY_PENDING_INTENT pendingIntent=PendingIntent[creatorPackage=com.google.android.gms], packageName=com.google.android.gms]
+07-07 23:40:47.801  2056  2056 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_BY_PENDING_INTENT pendingIntent=PendingIntent[creatorPackage=com.google.android.gms], packageName=com.google.android.gms]
+07-07 23:40:47.809  2056 19851 I PlacesLogger: [PlaceInferenceEngine]: [anon] Changed inference mode: 0 [CONTEXT service_id=253 ]
+07-07 23:40:47.808  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.810  2056 19849 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.837  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.844  2056 19116 I ctxmgr  : [ProducerStatusImpl] updateStateForNewContextData: inactive, contextName=7 [CONTEXT service_id=47 ]
+07-07 23:40:47.844  2056  2068 I zygote  : Background concurrent copying GC freed 38772(2MB) AllocSpace objects, 0(0B) LOS objects, 39% free, 9MB/15MB, paused 28us total 147.558ms
+07-07 23:40:47.855  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.855  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.867  2056 19851 I LogUtils: [Places]: ?: PlacesBleScanner start() with priority 2 [CONTEXT service_id=253 ]
+07-07 23:40:47.867  2056 19851 I PlacesLogger: [PlaceInferenceEngine]: [anon] Changed inference mode: 1 [CONTEXT service_id=253 ]
+07-07 23:40:47.870  2056  2056 E BeaconBle: Missing BluetoothAdapter [CONTEXT service_id=111 ]
+07-07 23:40:47.870  2056  2056 I BeaconBle: BLE 'KK+' software access layer enabled [CONTEXT service_id=111 ]
+07-07 23:40:47.876  2056  2056 I BeaconBle: Client requested scan, settings=BleSettings [scanMode=ZERO_POWER, callbackType=ALL_MATCHES, reportDelayMillis=0, 1 filters, 0 clients, callingClientName=Places] [CONTEXT service_id=111 ]
+07-07 23:40:47.876  2056  2056 I BeaconBle: Scan : No clients left, canceling alarm. [CONTEXT service_id=111 ]
+07-07 23:40:47.878  2056  2056 E BeaconBle: Scan couldn't start for Places [CONTEXT service_id=111 ]
+07-07 23:40:47.878  2056  2056 W Places  : BLE failure while scanning - code 5
+07-07 23:40:47.902  2056 19851 I Places  : Converted 1 out of 1 WiFi scans
+07-07 23:40:47.902  1648  3959 I WifiService: getConnectionInfo uid=10014
+07-07 23:40:47.905  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.905  2056 19851 I PlacesLogger: [PlaceInferenceEngine]: [anon] Changed inference mode: 1 [CONTEXT service_id=253 ]
+07-07 23:40:47.905  2056 19849 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.908  2056 19116 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.920  2056 19116 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:47.921  2056 19849 I PlacesLogger: [PlaceInferenceEngine]: No beacon scan available - ignoring candidates. [CONTEXT service_id=253 ]
+07-07 23:40:47.947  2056 19849 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:48.029  2280  2396 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+07-07 23:40:48.563  1648  1675 I PackageManager.DexOptimizer: Running dexopt (dexoptNeeded=1) on: /data/app/fr.free.nrw.commons-URKKDQt5CMnexy5TnRAhRA==/base.apk pkg=fr.free.nrw.commons isa=x86 dexoptFlags=boot_complete,debuggable,public target-filter=quicken oatDir=/data/app/fr.free.nrw.commons-URKKDQt5CMnexy5TnRAhRA==/oat sharedLibraries=PCL[]
+07-07 23:40:48.571 19855 19855 W dex2oat : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:48.571 19855 19855 W dex2oat : Mismatch between dex2oat instruction set features (ISA: X86 Feature string: -ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) and those of dex2oat executable (ISA: X86 Feature string: ssse3,-sse4.1,-sse4.2,-avx,-avx2,-popcnt) for the command line:
+07-07 23:40:48.571 19855 19855 W dex2oat : /system/bin/dex2oat --zip-fd=8 --zip-location=base.apk --input-vdex-fd=-1 --output-vdex-fd=10 --oat-fd=9 --oat-location=/data/app/fr.free.nrw.commons-URKKDQt5CMnexy5TnRAhRA==/oat/x86/base.odex --instruction-set=x86 --instruction-set-variant=x86 --instruction-set-features=default --runtime-arg -Xms64m --runtime-arg -Xmx512m --compiler-filter=quicken --swap-fd=11 --debuggable --classpath-dir=/data/app/fr.free.nrw.commons-URKKDQt5CMnexy5TnRAhRA== --class-loader-context=PCL[]
+07-07 23:40:48.571 19855 19855 I dex2oat : /system/bin/dex2oat --input-vdex-fd=-1 --output-vdex-fd=10 --compiler-filter=quicken --debuggable --classpath-dir=/data/app/fr.free.nrw.commons-URKKDQt5CMnexy5TnRAhRA== --class-loader-context=PCL[]
+07-07 23:40:48.910 19855 19855 I dex2oat : dex2oat took 339.185ms (814.466ms cpu) (threads: 4) arena alloc=602KB (616928B) java alloc=4MB (4530424B) native alloc=5MB (5445520B) free=4MB (4515952B)
+07-07 23:40:48.943  1526  1691 D installd: Applied hard quotas for 10153
+07-07 23:40:48.944  1648  1675 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:48.944  1648  1675 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:48.945  1648  1675 V BackupManagerService: restoreAtInstall pkg=fr.free.nrw.commons token=d restoreSet=0
+07-07 23:40:48.945  1648  1675 V BackupManagerService: Finishing install immediately
+07-07 23:40:48.955  1526  1691 E         : Couldn't opendir /data/app/vmdl173533029.tmp: No such file or directory
+07-07 23:40:48.955  1526  1691 E installd: Failed to delete /data/app/vmdl173533029.tmp: No such file or directory
+07-07 23:40:48.963  1876  1876 D ImsResolver: maybeAddedImsService, packageName: fr.free.nrw.commons
+07-07 23:40:48.964  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+07-07 23:40:48.964  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+07-07 23:40:48.964  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+07-07 23:40:48.964  1648  1663 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+07-07 23:40:48.984  1648  1712 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-07 23:40:48.990  2056 19829 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-07 23:40:48.996  2056 19824 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+07-07 23:40:49.000  2220 19827 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+07-07 23:40:49.000  2220 19834 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:fr.free.nrw.commons flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+07-07 23:40:49.004  1648  2273 W ActivityManager: Unable to start service Intent { act=com.google.android.gms.auth.key.retrieval.service.START pkg=com.google.android.gms } U=0: not found
+07-07 23:40:49.005  1648  1660 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@f6faf15
+07-07 23:40:49.005  2220  2426 E GmsClient: unable to connect to service: com.google.android.gms.auth.key.retrieval.service.START on com.google.android.gms
+07-07 23:40:49.010  2220 19838 I FontLog : Package fr.free.nrw.commons has no metadata [CONTEXT service_id=132 ]
+07-07 23:40:49.027 19210 19860 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+07-07 23:40:49.046  1876  1876 D CarrierSvcBindHelper: No carrier app for: 0
+07-07 23:40:49.058  2220 19839 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: pay:-1
+07-07 23:40:49.058  2220 19839 E ConfigFileUtils: Failed to read config file: /data/user_de/0/com.google.android.gms/app_chimera/next_container.pb (No such file or directory)
+07-07 23:40:49.060  1876  1876 D CarrierConfigLoader: mHandler: 9 phoneId: 0
+07-07 23:40:49.062  1648  1648 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@APc
+07-07 23:40:49.062  2220 19834 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://1KrE52AQwYXnymfSlsDvPMZCrPCUqHZ1BDldu3YaBVLj_14X2GPKNUhYkAauDZ_a-dWIHKg5i5lwvP4k1Ma8Jw==@fr.free.nrw.commons/ was not found. Marking affiliation data as stale...
+07-07 23:40:49.084  2220 19839 I ChmraDebugLogger: [73] 1801
+07-07 23:40:49.086  2220 19839 I ChmraDebugLogger: [30] [Pay.optional:202414020000] permitMetered=true,
+07-07 23:40:49.088  2220 19839 W ChimeraConfigService: Retry attempt was throttled.
+07-07 23:40:49.113  1648  1664 D AutofillUI: destroySaveUiUiThread(): already destroyed
+07-07 23:40:49.113  1648  1662 D AutofillManagerServiceImpl: Set component for user 0 as ServiceInfo{5662760 com.google.android.gms.autofill.service.AutofillService}
+07-07 23:40:49.116  2220 15820 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 181
+07-07 23:40:49.132  2220 15820 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-07 23:40:49.132 19864 19864 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:40:49.141  2220 15820 I Icing   : Indexing done com.google.android.gms-apps
+07-07 23:40:49.176 19864 19864 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:49.176 19864 19864 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:40:49.190 19864 19864 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+07-07 23:40:49.191 19864 19864 W Monkey  : args: [-p, fr.free.nrw.commons, -c, android.intent.category.LAUNCHER, 1]
+07-07 23:40:49.192 19864 19864 W Monkey  :  arg: "-p"
+07-07 23:40:49.192 19864 19864 W Monkey  :  arg: "fr.free.nrw.commons"
+07-07 23:40:49.192 19864 19864 W Monkey  :  arg: "-c"
+07-07 23:40:49.193 19864 19864 W Monkey  :  arg: "android.intent.category.LAUNCHER"
+07-07 23:40:49.193 19864 19864 W Monkey  :  arg: "1"
+07-07 23:40:49.193 19864 19864 W Monkey  : data="fr.free.nrw.commons"
+07-07 23:40:49.193 19864 19864 W Monkey  : data="android.intent.category.LAUNCHER"
+07-07 23:40:49.203  1648  1663 W BroadcastQueue: Skipping deliver [background] BroadcastRecord{7087ebf u-1 android.net.conn.CONNECTIVITY_CHANGE} to ReceiverList{bf6598c 19864 (unknown name)/2000/u-1 remote:be3419}: process gone or crashing
+07-07 23:40:49.207  1648  4380 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=fr.free.nrw.commons/.auth.LoginActivity} from uid 2000
+07-07 23:40:49.207  1648  4380 W Binder  : Outgoing transactions from this process must be FLAG_ONEWAY
+07-07 23:40:49.207  1648  4380 W Binder  : java.lang.Throwable
+07-07 23:40:49.207  1648  4380 W Binder  : 	at android.os.BinderProxy.transact(Binder.java:752)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at android.app.IActivityController$Stub$Proxy.activityStarting(IActivityController.java:172)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at com.android.server.am.ActivityStarter.startActivity(ActivityStarter.java:449)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at com.android.server.am.ActivityStarter.startActivityLocked(ActivityStarter.java:278)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at com.android.server.am.ActivityStarter.startActivityMayWait(ActivityStarter.java:817)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at com.android.server.am.ActivityManagerService.startActivityAsUser(ActivityManagerService.java:4532)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at com.android.server.am.ActivityManagerService.startActivity(ActivityManagerService.java:4519)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:121)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2919)
+07-07 23:40:49.207  1648  4380 W Binder  : 	at android.os.Binder.execTransact(Binder.java:697)
+07-07 23:40:49.212 19864 19864 I Monkey  : Events injected: 1
+07-07 23:40:49.218 19876 19876 I zygote  : Not late-enabling -Xcheck:jni (already on)
+07-07 23:40:49.223  1648  2256 I ActivityManager: Start proc 19876:fr.free.nrw.commons/u0a153 for activity fr.free.nrw.commons/.auth.LoginActivity
+07-07 23:40:49.227 19876 19876 W zygote  : Unexpected CPU variant for X86 using defaults: x86
+07-07 23:40:49.228 19864 19864 I Monkey  : ## Network stats: elapsed time=7ms (0ms mobile, 0ms wifi, 7ms not connected)
+07-07 23:40:49.228 19864 19864 I com.android.commands.monkey: System.exit called, status: 0
+07-07 23:40:49.228 19864 19864 I AndroidRuntime: VM exiting with result code 0.
+07-07 23:40:49.240  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:49.246  1648  1694 D         : HostConnection::get() New Host Connection established 0xdc0a6180, tid 1694
+07-07 23:40:49.256 19876 19876 W System.err: java.io.FileNotFoundException: /jacoco.exec (Read-only file system)
+07-07 23:40:49.256 19876 19876 W System.err: 	at java.io.FileOutputStream.open0(Native Method)
+07-07 23:40:49.256 19876 19876 W System.err: 	at java.io.FileOutputStream.open(FileOutputStream.java:287)
+07-07 23:40:49.256 19876 19876 W System.err: 	at java.io.FileOutputStream.<init>(FileOutputStream.java:223)
+07-07 23:40:49.256 19876 19876 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.output.FileOutput.openFile(FileOutput.java:67)
+07-07 23:40:49.256 19876 19876 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.output.FileOutput.startup(FileOutput.java:49)
+07-07 23:40:49.256 19876 19876 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Agent.startup(Agent.java:122)
+07-07 23:40:49.256 19876 19876 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Agent.getInstance(Agent.java:50)
+07-07 23:40:49.256 19876 19876 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Offline.<clinit>(Offline.java:31)
+07-07 23:40:49.256 19876 19876 W System.err: 	at org.jacoco.agent.rt.internal_8ff85ea.Offline.getProbes(Offline.java:51)
+07-07 23:40:49.256 19876 19876 W System.err: 	at fr.free.nrw.commons.CommonsApplication.$jacocoInit(Unknown Source:13)
+07-07 23:40:49.256 19876 19876 W System.err: 	at fr.free.nrw.commons.CommonsApplication.<init>(Unknown Source:0)
+07-07 23:40:49.256 19876 19876 W System.err: 	at java.lang.Class.newInstance(Native Method)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.app.Instrumentation.newApplication(Instrumentation.java:1102)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.app.Instrumentation.newApplication(Instrumentation.java:1087)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.app.LoadedApk.makeApplication(LoadedApk.java:983)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5715)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.app.ActivityThread.-wrap1(Unknown Source:0)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1656)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+07-07 23:40:49.256 19876 19876 W System.err: 	at android.os.Looper.loop(Looper.java:164)
+07-07 23:40:49.257 19876 19876 W System.err: 	at android.app.ActivityThread.main(ActivityThread.java:6494)
+07-07 23:40:49.257 19876 19876 W System.err: 	at java.lang.reflect.Method.invoke(Native Method)
+07-07 23:40:49.257 19876 19876 W System.err: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:438)
+07-07 23:40:49.257 19876 19876 W System.err: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:807)
+07-07 23:40:49.282 28398 28428 D EGL_emulation: eglMakeCurrent: 0xdc0c49c0: ver 3 0 (tinfo 0xdc083750)
+07-07 23:40:49.284  1449  1470 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.284  1449  1470 D         : HostConnection::get() New Host Connection established 0xf2352c80, tid 1470
+07-07 23:40:49.284  1449  1470 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.285  1449  1470 D         : HostConnection::get() New Host Connection established 0xf2352c80, tid 1470
+07-07 23:40:49.285  1449  1470 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.285  1449  1470 D         : HostConnection::get() New Host Connection established 0xf2352c80, tid 1470
+07-07 23:40:49.285  1449  1470 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.288  2280  2396 D EGL_emulation: eglMakeCurrent: 0xc9672fa0: ver 3 0 (tinfo 0xc95e2bb0)
+07-07 23:40:49.293 19876 19876 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+07-07 23:40:49.323 19876 19876 D SoLoader: init start
+07-07 23:40:49.324 19876 19876 D SoLoader: adding system library source: /vendor/lib
+07-07 23:40:49.324 19876 19876 D SoLoader: adding system library source: /system/lib
+07-07 23:40:49.324 19876 19876 D SoLoader: adding application source: com.facebook.soloader.DirectorySoSource[root = /data/app/fr.free.nrw.commons-URKKDQt5CMnexy5TnRAhRA==/lib/x86 flags = 0]
+07-07 23:40:49.324 19876 19876 D SoLoader: adding backup  source: com.facebook.soloader.ApkSoSource[root = /data/data/fr.free.nrw.commons/lib-main flags = 1]
+07-07 23:40:49.324 19876 19876 D SoLoader: Preparing SO source: com.facebook.soloader.DirectorySoSource[root = /system/lib flags = 2]
+07-07 23:40:49.324 19876 19876 D SoLoader: Preparing SO source: com.facebook.soloader.DirectorySoSource[root = /vendor/lib flags = 2]
+07-07 23:40:49.324 19876 19876 D SoLoader: Preparing SO source: com.facebook.soloader.DirectorySoSource[root = /data/app/fr.free.nrw.commons-URKKDQt5CMnexy5TnRAhRA==/lib/x86 flags = 0]
+07-07 23:40:49.324 19876 19876 D SoLoader: Preparing SO source: com.facebook.soloader.ApkSoSource[root = /data/data/fr.free.nrw.commons/lib-main flags = 1]
+07-07 23:40:49.324 19876 19876 V fb-UnpackingSoSource: locked dso store /data/user/0/fr.free.nrw.commons/lib-main
+07-07 23:40:49.326 19876 19876 V fb-UnpackingSoSource: deps mismatch on deps store: regenerating
+07-07 23:40:49.326 19876 19876 V fb-UnpackingSoSource: so store dirty: regenerating
+07-07 23:40:49.379 19876 19881 I zygote  : Do partial code cache collection, code=29KB, data=18KB
+07-07 23:40:49.380 19876 19881 I zygote  : After code cache collection, code=29KB, data=18KB
+07-07 23:40:49.380 19876 19881 I zygote  : Increasing code cache capacity to 128KB
+07-07 23:40:49.390 19876 19876 D ApkSoSource: not allowing consideration of lib/x86/libimagepipeline.so: deferring to libdir
+07-07 23:40:49.390 19876 19876 D ApkSoSource: not allowing consideration of lib/x86/libmapbox-gl.so: deferring to libdir
+07-07 23:40:49.390 19876 19876 V fb-UnpackingSoSource: regenerating DSO store com.facebook.soloader.ApkSoSource
+07-07 23:40:49.390 19876 19876 V fb-UnpackingSoSource: Finished regenerating DSO store com.facebook.soloader.ApkSoSource
+07-07 23:40:49.390 19876 19876 V fb-UnpackingSoSource: starting syncer worker
+07-07 23:40:49.396 19876 19876 V fb-UnpackingSoSource: releasing dso store lock for /data/user/0/fr.free.nrw.commons/lib-main (from syncer thread)
+07-07 23:40:49.396 19876 19876 V fb-UnpackingSoSource: not releasing dso store lock for /data/user/0/fr.free.nrw.commons/lib-main (syncer thread started)
+07-07 23:40:49.396 19876 19876 D SoLoader: init finish: 4 SO sources prepared
+07-07 23:40:49.396 19876 19876 D SoLoader: init exiting
+07-07 23:40:49.406 19876 19876 I ACRA    : Migrating unsent ACRA reports to new file locations
+07-07 23:40:49.406 19876 19876 I ACRA    : Migrated 0 unsent reports
+07-07 23:40:49.407 19876 19876 I ACRA    : Converting unsent ACRA reports to json
+07-07 23:40:49.407 19876 19876 I ACRA    : Converted 0 unsent reports
+07-07 23:40:49.408 19876 19876 I ACRA    : ACRA is enabled for fr.free.nrw.commons, initializing...
+07-07 23:40:49.413 19876 19899 I stetho  : Listening on @stetho_fr.free.nrw.commons_devtools_remote
+07-07 23:40:49.415  1648  3959 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:49.415  1648  3959 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:49.415  1648  3959 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:49.415  1648  3959 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:49.420  1648  2256 D PackageManager: Ephemeral installer not found with new action; try old one
+07-07 23:40:49.420  1648  2256 D PackageManager: Clear ephemeral installer activity
+07-07 23:40:49.504  1648  2256 I ActivityManager: START u0 {cmp=fr.free.nrw.commons/.WelcomeActivity} from uid 10153
+07-07 23:40:49.511  1449  1515 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-07 23:40:49.512 19876 19903 D OpenGLRenderer: HWUI GL Pipeline
+07-07 23:40:49.529 19876 19881 I zygote  : Do partial code cache collection, code=53KB, data=43KB
+07-07 23:40:49.531 19876 19881 I zygote  : After code cache collection, code=53KB, data=43KB
+07-07 23:40:49.531 19876 19881 I zygote  : Increasing code cache capacity to 256KB
+07-07 23:40:49.535 19876 19881 I zygote  : Do full code cache collection, code=53KB, data=61KB
+07-07 23:40:49.537 19876 19881 I zygote  : After code cache collection, code=2332B, data=23KB
+07-07 23:40:49.562  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:49.563 19876 19903 D         : HostConnection::get() New Host Connection established 0xc99b8280, tid 19903
+07-07 23:40:49.568  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:49.568 19876 19903 I zygote  : android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+07-07 23:40:49.568 19876 19903 I OpenGLRenderer: Initialized EGL, version 1.4
+07-07 23:40:49.568 19876 19903 D OpenGLRenderer: Swap behavior 1
+07-07 23:40:49.568 19876 19903 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+07-07 23:40:49.568 19876 19903 D OpenGLRenderer: Swap behavior 0
+07-07 23:40:49.574 19876 19903 D EGL_emulation: eglCreateContext: 0xdc0983c0: maj 3 min 0 rcv 3
+07-07 23:40:49.574  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:49.580 19876 19903 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832e0)
+07-07 23:40:49.583  1449  1515 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-07 23:40:49.624 19876 19903 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832e0)
+07-07 23:40:49.729  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.729  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:49.729  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.730  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:49.730  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.730  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:49.730  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.731  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:49.731  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.731  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:49.731  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.735  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:49.736  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:49.739 19876 19903 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832e0)
+07-07 23:40:49.740  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2021b00, tid 1957
+07-07 23:40:49.740  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.741  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2021b00, tid 1957
+07-07 23:40:49.741  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.741  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2021b00, tid 1957
+07-07 23:40:49.741  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.742  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2021b00, tid 1957
+07-07 23:40:49.742  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.745  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:49.788 19876 19876 D android.widget.GridLayout: vertical constraints: y2-y0>=630, y2-y1<=310, y1-y0<=310 are inconsistent; permanently removing: y2-y1<=310. 
+07-07 23:40:49.808  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:49.812  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2352a40, tid 1957
+07-07 23:40:49.813  1439 24704 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:49.818  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:40:49.841 19876 19903 D EGL_emulation: eglMakeCurrent: 0xdc0983c0: ver 3 0 (tinfo 0xdc0832e0)
+07-07 23:40:49.859  1648  1670 I ActivityManager: Displayed fr.free.nrw.commons/.WelcomeActivity: +242ms (total +642ms)
+07-07 23:40:49.925  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.926  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:49.926  1440 18953 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:49.931  1440 18953 D         : HostConnection::get() New Host Connection established 0xe8123a80, tid 18953
+07-07 23:40:50.051  1449  1449 W SurfaceFlinger: couldn't log to binary event log: overflow.
+07-07 23:40:50.054  1440  1440 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:50.056  1440  1440 D         : HostConnection::get() New Host Connection established 0xe8123900, tid 1440
+07-07 23:40:50.057  1440  1440 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:50.057  1648  1694 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:50.059  1648  1694 D         : HostConnection::get() New Host Connection established 0xdc0a6180, tid 1694
+07-07 23:40:50.059  1648  1694 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:40:50.062  1440  1440 D         : HostConnection::get() New Host Connection established 0xe8123900, tid 1440
+07-07 23:40:50.129 28398 19367 I PBSessionCacheImpl: Deleted sessionId[291450423420] from persistence.
+07-07 23:40:50.131 28398 28398 W SearchService: Abort, client detached.
+07-07 23:40:55.139 28398 19028 I EventLogSendingHelper: Sending log events.
+07-07 23:40:55.145  1648  4380 I GnssLocationProvider: WakeLock acquired by sendMessage(SET_REQUEST, 0, com.android.server.location.GnssLocationProvider$GpsRequest@63a827f)
+07-07 23:40:55.146  1648  1662 I GnssLocationProvider: WakeLock released by handleMessage(SET_REQUEST, 0, com.android.server.location.GnssLocationProvider$GpsRequest@63a827f)
+07-07 23:40:55.151  1763  1984 D EGL_emulation: eglMakeCurrent: 0xc8784620: ver 3 0 (tinfo 0xc8e07640)
+07-07 23:40:55.152  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:55.155  2056  8911 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:55.164  2056 19851 I LogUtils: [Places]: ?: PlacesBleScanner stop() [CONTEXT service_id=253 ]
+07-07 23:40:55.164  2056  2056 I BeaconBle: Scan : No clients left, canceling alarm. [CONTEXT service_id=111 ]
+07-07 23:40:55.165  2056  2056 I BeaconBle: Scan canceled successfully. [CONTEXT service_id=111 ]
+07-07 23:40:55.170  2056 19851 I PlacesLogger: [PlaceInferenceEngine]: [anon] Changed inference mode: 0 [CONTEXT service_id=253 ]
+07-07 23:40:55.175  2056 19116 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:55.176  2056 19850 I LogUtils: [Places]: ?: Couldn't find platform key file. [CONTEXT service_id=253 ]
+07-07 23:40:55.179  2056  2056 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_BY_PENDING_INTENT pendingIntent=PendingIntent[creatorPackage=com.google.android.gms], packageName=com.google.android.gms]
+07-07 23:40:59.463  1648  1712 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-07 23:40:59.476  1648  1648 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@APg
+07-07 23:40:59.477  2056 19913 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:fr.free.nrw.commons flg=0x45000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+07-07 23:40:59.480 19210 19911 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+07-07 23:40:59.482  2056 19913 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+07-07 23:40:59.486  1876  1876 D CarrierSvcBindHelper: No carrier app for: 0
+07-07 23:40:59.486  1876  1876 D ImsResolver: maybeAddedImsService, packageName: fr.free.nrw.commons
+07-07 23:40:59.495  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:40:59.495  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:40:59.523  2220  2844 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+07-07 23:40:59.529  2220 19331 W Icing   : No valid account for uploading user actions
+07-07 23:40:59.532  2220  4173 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+07-07 23:40:59.547  2220 19331 I Icing   : Usage reports ok 2, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:59.549  2220 19331 W Icing   : No valid account for uploading user actions
+07-07 23:40:59.553  2220 19331 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-07 23:40:59.554  2220 19331 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 181
+07-07 23:40:59.555  2220 19331 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 181
+07-07 23:40:59.561  2220 19331 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-07 23:40:59.573  2220 19331 I Icing   : Indexing done com.google.android.gms-apps
+07-07 23:41:00.169  2056  2056 I BeaconBle: Scan : No clients left, canceling alarm. [CONTEXT service_id=111 ]
+07-07 23:41:04.366 19928 19928 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:04.396 19928 19928 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:04.398 19928 19928 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:04.409 19928 19928 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-07 23:41:04.414 19928 19928 D AndroidRuntime: Shutting down VM
+07-07 23:41:04.539 19938 19938 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:04.542 19938 19938 W app_process: Could not reserve sentinel fault page
+07-07 23:41:04.568 19938 19938 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:04.569 19938 19938 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:04.581 19938 19938 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+07-07 23:41:04.584 19938 19938 D AndroidRuntime: Shutting down VM
+07-07 23:41:04.623  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:41:04.624  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:41:05.410 19969 19969 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:05.438 19969 19969 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:05.440 19969 19969 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:05.440 19969 19969 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:05.452 19969 19969 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:06.488 19969 19969 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b200; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:06.489 19969 19969 W AccessibilityNodeInfoDumper: Fetch time: 2ms
+07-07 23:41:06.490  1648 15792 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@c7fefa4
+07-07 23:41:06.493 19969 19969 D AndroidRuntime: Shutting down VM
+07-07 23:41:06.720 19988 19988 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:06.748 19988 19988 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:06.750 19988 19988 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:06.750 19988 19988 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:06.764 19988 19988 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:07.826 19988 19988 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b203; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:07.827 19988 19988 W AccessibilityNodeInfoDumper: Fetch time: 8ms
+07-07 23:41:07.829  1648  2256 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@84608c2
+07-07 23:41:07.842 19988 19988 D AndroidRuntime: Shutting down VM
+07-07 23:41:08.835 20016 20016 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:08.881 20016 20016 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:08.882 20016 20016 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:08.884 20016 20016 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:08.898 20016 20016 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:09.929 20016 20016 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b213; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:09.930 20016 20016 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:41:09.930  1648  3644 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@89e6210
+07-07 23:41:09.936 20016 20016 D AndroidRuntime: Shutting down VM
+07-07 23:41:10.025  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:41:10.025  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:41:10.836 20051 20051 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:10.866 20051 20051 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:10.869 20051 20051 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:10.869 20051 20051 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:10.881 20051 20051 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:11.908 20051 20051 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b21c; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:11.909 20051 20051 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:41:11.909  1648  2232 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@1efef0e
+07-07 23:41:11.913 20051 20051 D AndroidRuntime: Shutting down VM
+07-07 23:41:12.162 20072 20072 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:12.192 20072 20072 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:12.194 20072 20072 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:12.194 20072 20072 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:12.205 20072 20072 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:13.232 20072 20072 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b22c; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:13.233 20072 20072 W AccessibilityNodeInfoDumper: Fetch time: 4ms
+07-07 23:41:13.234  1648 15792 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@7ef8f3c
+07-07 23:41:13.239 20072 20072 D AndroidRuntime: Shutting down VM
+07-07 23:41:13.360  1449  1957 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+07-07 23:41:13.367  1439  1481 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 8298496
+07-07 23:41:13.372 20084 20084 D         : HostConnection::get() New Host Connection established 0xf03c8240, tid 20084
+07-07 23:41:13.386  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:41:13.387  1449  1957 D         : HostConnection::get() New Host Connection established 0xf2352a40, tid 1957
+07-07 23:41:13.387  1449  1957 D gralloc_ranchu: gralloc_unregister_buffer: exiting HostConnection (is buffer-handling thread)
+07-07 23:41:13.516  4474  4474 D MediaScannerReceiver: action: android.intent.action.MEDIA_SCANNER_SCAN_FILE path: /storage/emulated/0/screen.png
+07-07 23:41:15.703 20096 20096 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:15.733 20096 20096 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:15.736 20096 20096 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:15.736 20096 20096 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:15.747 20096 20096 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:16.766 20096 20096 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b22e; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:16.766 20096 20096 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:41:16.767  1648  2273 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@8c46328
+07-07 23:41:16.773 20096 20096 D AndroidRuntime: Shutting down VM
+07-07 23:41:18.046  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:41:18.046  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:41:18.844  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:41:18.844  1748  1748 W LstmExtension: no lmDescriptor could be found for en_US/20170411
+07-07 23:41:19.015 20118 20118 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:19.043 20118 20118 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:19.044 20118 20118 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:19.045 20118 20118 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:19.045  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:41:19.045  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:41:19.057 20118 20118 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:20.079 20118 20118 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b23f; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:20.080 20118 20118 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:41:20.080  1648 15792 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@f5ed1e6
+07-07 23:41:20.083 20118 20118 D AndroidRuntime: Shutting down VM
+07-07 23:41:20.921 20146 20146 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:20.950 20146 20146 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:20.951 20146 20146 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:20.952 20146 20146 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:20.965 20146 20146 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:21.981 19876 19881 I zygote  : Do partial code cache collection, code=122KB, data=97KB
+07-07 23:41:21.982 19876 19881 I zygote  : After code cache collection, code=122KB, data=97KB
+07-07 23:41:21.982 19876 19881 I zygote  : Increasing code cache capacity to 512KB
+07-07 23:41:21.991 20146 20146 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b24d; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:21.992 20146 20146 W AccessibilityNodeInfoDumper: Fetch time: 2ms
+07-07 23:41:21.992  1648  2232 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@b9089d4
+07-07 23:41:21.996 20146 20146 D AndroidRuntime: Shutting down VM
+07-07 23:41:22.216 20164 20164 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:22.245 20164 20164 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:22.246 20164 20164 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:22.247 20164 20164 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:22.258 20164 20164 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:23.277 20164 20164 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b254; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:23.278 20164 20164 W AccessibilityNodeInfoDumper: Fetch time: 3ms
+07-07 23:41:23.278  1648 15792 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@5362672
+07-07 23:41:23.281 20164 20164 D AndroidRuntime: Shutting down VM
+07-07 23:41:23.707  7306  7339 W native  : jpeg_io.cc:108 File's first two bytes does not match the sequence ÿ216
+07-07 23:41:24.051  1447  1447 I boot-pipe: done populating /dev/random
+07-07 23:41:24.116 20193 20193 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:24.144 20193 20193 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:24.146 20193 20193 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:24.147 20193 20193 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:24.159 20193 20193 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:24.736  1648  1662 E memtrack: Couldn't load memtrack module
+07-07 23:41:24.736  1648  1662 W android.os.Debug: failed to get memory consumption info: -1
+07-07 23:41:25.182 20193 20193 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b261; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:25.183 20193 20193 W AccessibilityNodeInfoDumper: Fetch time: 2ms
+07-07 23:41:25.184  1648  1660 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@2dd8234
+07-07 23:41:25.187 20193 20193 D AndroidRuntime: Shutting down VM
+07-07 23:41:26.080 20228 20228 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-07 23:41:26.109 20228 20228 W app_process: Unexpected CPU variant for X86 using defaults: x86
+07-07 23:41:26.111 20228 20228 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:26.111 20228 20228 I app_process: The ClassLoaderContext is a special shared library.
+07-07 23:41:26.123 20228 20228 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+07-07 23:41:27.145 20228 20228 I AccessibilityNodeInfoDumper: Skipping invisible child: android.view.accessibility.AccessibilityNodeInfo@b269; boundsInParent: Rect(0, 0 - 1080, 1731); boundsInScreen: Rect(1080, 63 - 1080, 1794); packageName: fr.free.nrw.commons; className: android.widget.RelativeLayout; text: null; error: null; maxTextLength: -1; contentDescription: null; viewIdResName: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; importantForAccessibility: false; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]
+07-07 23:41:27.146 20228 20228 W AccessibilityNodeInfoDumper: Fetch time: 5ms
+07-07 23:41:27.146  1648  2273 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@3826d1e
+07-07 23:41:27.149 20228 20228 D AndroidRuntime: Shutting down VM
+Elapsed Time: 83572

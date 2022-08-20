@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1151</id>
+    <title ob="x" eb="" sr="">Current application of Dark and Light theme is confusing</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Summary:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">Discussed in https://groups.google.com/d/msg/gpstest_android/wlIi9jBVncQ/BY7rPUx7BgAJ.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="x" eb="" sr="" id="3.1">When you switch from Light to Dark theme or Dark to Light by checking/unchecking the checkbox in Settings, the theme is immediately applied to the Preferences Activity, and in the process the main GpsTestActivity is finished so the user doesn't return to that Activity after exiting the Preferences Activity and see it with the old theme.</st>
+            <st ob="x" eb="" sr="" id="3.2">However, this is confusing from the user's perspective, as they expect to see the main GpsTestActivity when leaving the Preferences Activity.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="x" sr="" id="4.1">We should make this behavior clearer through an informational message, or change the theme to apply to the GpsTestActivity and still allow the user to return to it.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Steps to reproduce:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="x" id="6.1">Go to Settings and check or uncheck the "Use Dark Theme" setting, and then press the back button</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Expected behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="x" sr="" id="8.1">I should see the main GpsTestActivity, or the app should explain why I'm not seeing it</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">Observed behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="10">
+            <st ob="x" eb="" sr="" id="10.1">The main GpsTestActivity disappears without any info message saying why.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="11">
+            <st ob="" eb="" sr="" id="11.1">Device and Android version:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="12">
+            <st ob="" eb="" sr="" id="12.1">N/A</st>
+        </parg>
+    </desc>
+</bug>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>71</id>
+    <title ob="x" eb="" sr="">Favorites bar doesn't appear under specific UI settings</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Describe the bug</st>
+            <st ob="x" eb="" sr="" id="1.2">After updating to a newer version of KISS launcher, I am no longer able to make the shortcut bar appear.</st>
+            <st ob="x" eb="" sr="" id="1.3">The cause seems to be the "Hide favorites bar initially" setting.</st>
+            <st ob="x" eb="" sr="" id="1.4">When enabled, the favorites bar will not appear when I try to tap on the screen.</st>
+            <st ob="x" eb="" sr="" id="1.5">When disabled, the favorites bar will stay present and not disappear until the search bar or the KISS button is pressed.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">To Reproduce</st>
+            <st ob="" eb="" sr="" id="2.2">Steps to reproduce the behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="x" id="3.1">1. Set an app as a favorite.</st>
+            <st ob="" eb="" sr="x" id="3.2">2. Enable "Show favorites above search bar" under Favorites settings.</st>
+            <st ob="" eb="" sr="x" id="3.3">3. Enable Minimalistic UI under User experience.</st>
+            <st ob="" eb="" sr="x" id="3.4">4. Enable "Hide favorites bar initially" under Minimalistic UI.</st>
+            <st ob="x" eb="" sr="x" id="3.5">5. Check home screen to see there is no favorites bar, even after tapping the screen.</st>
+            <st ob="" eb="" sr="" id="3.6">Expected behavior</st>
+            <st ob="" eb="x" sr="" id="3.7">Previously, I had set up KISS launcher to display my favorites bar when I tapped anywhere on the main screen.</st>
+            <st ob="" eb="x" sr="" id="3.8">Now, I can't make the favorites bar appear at all without changing my settings.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Additional information</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">App version: 3.13.5</st>
+            <st ob="" eb="" sr="" id="5.2">App installed via: F-Droid</st>
+        </parg>
+    </desc>
+</bug>

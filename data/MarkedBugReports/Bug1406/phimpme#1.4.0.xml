@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1406</id>
+    <title ob="x" eb="" sr="">Favourite photos edit option issue.</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Actual Behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="x" eb="" sr="" id="2.1">Suppose the user opens an image in the favourite collection and clicks on the edit option, then aborts the edit operation and slides to the next image and again clicks on the edit option, then the previous/first image opened for edit operation is displayed instead of the presently selected image.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Expected Behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="x" sr="" id="4.1">The presently selected image should be displayed in the edit mode rather than the previous image.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Steps to reproduce it</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="x" id="6.1">Open an image in the favourites, click on the edit option then abort the edit operation and slide to the next image, again click on the edit option.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Would you like to work on the issue?</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">Yes.</st>
+        </parg>
+    </desc>
+</bug>

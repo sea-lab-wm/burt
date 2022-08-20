@@ -29,22 +29,22 @@ class NewS2RChecker {
 
 
 
-    public NewS2RChecker(String appName, String appVersion) throws Exception {
+    public NewS2RChecker(String appName, String appVersion, String bugID) throws Exception {
         this.appName = appName;
         this.appVersion = appVersion;
 
         resolver = new NewStepResolver(GRAPH_MAX_DEPTH_CHECK);
 
-        readGraph();
+        readGraph(bugID);
         this.currentState = GraphState.START_STATE;
     }
 
 
-    private void readGraph() throws Exception {
+    private void readGraph(String bugID) throws Exception {
         if (BurtConfigPaths.crashScopeDataPath == null)
-            executionGraph = DBGraphReader.getGraph(appName, appVersion);
+            executionGraph = DBGraphReader.getGraph(appName, appVersion, bugID);
         else
-            executionGraph = JSONGraphReader.getGraph(appName, appVersion);
+            executionGraph = JSONGraphReader.getGraph(appName, appVersion, bugID);
     }
 
 

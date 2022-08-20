@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1430</id>
+    <title ob="x" eb="" sr="">Can't edit dates for a Trip</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Reproduction Steps</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">Create Trip</st>
+            <st ob="" eb="" sr="x" id="2.2">Edit Trip</st>
+            <st ob="" eb="" sr="x" id="2.3">Modify date</st>
+            <st ob="" eb="" sr="x" id="2.4">Press Save</st>
+            <st ob="x" eb="" sr="" id="2.5">Observe error</st>
+        </parg>
+    </desc>
+</bug>

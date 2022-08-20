@@ -16,7 +16,8 @@ class NLParser {
 
     public static List<NLAction> parseText(String baseFolder, String app, String text) throws Exception {
         text = preprocessText(text);
-        log.debug("Parsing text: " + text);
+        //log.debug("Parsing text: " + text);
+        System.out.println("Parsing text: " + text);
 
         ParsedBugReport bugReport = new ParsedBugReport(null, text, null);
         List<BugScenario> scenarios = new HeuristicsNLActionParser(baseFolder).parseActions(app, bugReport);
@@ -24,7 +25,8 @@ class NLParser {
         if (scenarios.isEmpty()) return new ArrayList<>();
 
         LinkedList<NLAction> actions = scenarios.get(0).getActions();
-        log.debug("Parsed actions: " + actions);
+        //log.debug("Parsed actions: " + actions);
+        System.out.println("Parsed actions: " + actions);
 
         return actions;
     }

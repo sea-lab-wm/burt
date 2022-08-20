@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>2</id>
+    <title ob="x" eb="" sr="">app crash when change view by in report section</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">EXPECTED BEHAVIOR</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="x" sr="" id="2.1">when the user changes the appearance of the report from "view value" to "use percent value" this application will still work properly and will display report data in accordance with the wishes of the user</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">ACTUAL BEHAVIOR</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="x" eb="" sr="" id="4.1">when the user changes the appearance of the report from "view value" to "use percent value" this application will crash and stop working</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">STEPS TO REPRODUCE</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="x" id="6.1">install and open the app</st>
+            <st ob="" eb="" sr="x" id="6.2">click "report" option</st>
+            <st ob="" eb="" sr="x" id="6.3">scroll to the right side to "incomes by articles or expenses by articles</st>
+            <st ob="" eb="" sr="x" id="6.4">click eye icon change view by "view values" to "use percent values"</st>
+            <st ob="x" eb="" sr="" id="6.5">see errors</st>
+            <st ob="" eb="" sr="" id="6.6">devices</st>
+            <st ob="" eb="" sr="" id="6.7">phone models: oppo neo 7</st>
+            <st ob="" eb="" sr="" id="6.8">os : android 6.1</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">BUG RECORDING</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">https://www.youtube.com/watch?v=MYMrVP3fQ_g&gt;feature=youtu.be logcat</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">Process: io.github.zwieback.familyfinance, PID: 13191 java.lang.NullPointerException: Attempt to invoke virtual method 'void com.github.mikephil.charting.data.PieData.setDrawValues(boolean)' on a null object reference</st>
+            <st ob="" eb="" sr="" id="9.2">  at io.github.zwieback.familyfinance.business.chart.fragment.PieChartFragment.onApplyDisplay(PieChartFragment.java:160)</st>
+            <st ob="" eb="" sr="" id="9.3">  at io.github.zwieback.familyfinance.business.chart.fragment.PieChartFragment.onApplyDisplay(PieChartFragment.java:40)</st>
+            <st ob="" eb="" sr="" id="9.4">  at io.github.zwieback.familyfinance.business.chart.activity.ChartActivity.onApplyDisplay(ChartActivity.java:150)</st>
+            <st ob="" eb="" sr="" id="9.5">  at io.github.zwieback.familyfinance.business.chart.dialog.ChartDisplayDialog.lambda$onCreateDialog$0(ChartDisplayDialog.java:53)</st>
+            <st ob="" eb="" sr="" id="9.6">at io.github.zwieback.familyfinance.business.chart.dialog.</st>
+            <st ob="" eb="" sr="" id="9.7">-$$Lambda$ChartDisplayDialog$3JuCWsAV3m9zaJu55iVYBsSndyU.</st>
+            <st ob="" eb="" sr="" id="9.8">onClick(lambda)</st>
+            <st ob="" eb="" sr="" id="9.9">  at android.support.v7.app.AlertController$ButtonHandler.handleMessage(AlertController.java:167)</st>
+            <st ob="" eb="" sr="" id="9.10">  at android.os.Handler.dispatchMessage(Handler.java:111)</st>
+            <st ob="" eb="" sr="" id="9.11">  at android.os.Looper.loop(Looper.java:218)</st>
+            <st ob="" eb="" sr="" id="9.12">  at android.app.ActivityThread.main(ActivityThread.java:5657)</st>
+            <st ob="" eb="" sr="" id="9.13">  at java.lang.reflect.Method.invoke(Native Method)</st>
+            <st ob="" eb="" sr="" id="9.14">  at java.lang.reflect.Method.invoke(Method.java:372)</st>
+            <st ob="" eb="" sr="" id="9.15">  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:990)</st>
+            <st ob="" eb="" sr="" id="9.16">  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:785)```</st>
+        </parg>
+    </desc>
+</bug>

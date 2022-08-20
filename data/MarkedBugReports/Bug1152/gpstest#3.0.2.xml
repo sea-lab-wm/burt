@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1152</id>
+    <title ob="x" eb="" sr="">Help text is cut off</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Summary:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="x" eb="" sr="" id="2.1">The "Help" text is currently cut off:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Steps to reproduce:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="x" id="4.1">Go to Navigation Drawer "Help"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Expected behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="x" sr="" id="6.1">Show an explanation of all fields</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Observed behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="x" eb="" sr="" id="8.1">Help text cuts off in the middle of "Acc"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">Device and Android version:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="10">
+            <st ob="" eb="" sr="" id="10.1">Pixel 2 emulator w/ Android 8.0</st>
+        </parg>
+    </desc>
+</bug>

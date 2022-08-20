@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>201</id>
+    <title ob="x" eb="" sr="">Snackbar Disappears During Auto-Upload</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce bug:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">Create an observation (preferably with a lot of photos)</st>
+            <st ob="" eb="" sr="x" id="2.2">When in the ob list view, tap "Stop"</st>
+            <st ob="x" eb="" sr="x" id="2.3">Notice the "Resume" button and snackbar are present for a few seconds and then disappear.</st>
+            <st ob="x" eb="" sr="x" id="2.4">The obs are left in "Waiting to Upload..." state without a way to upload them.</st>
+            <st ob="x" eb="" sr="x" id="2.5">Even going to other sections of the app and coming back to not initiate uploads.</st>
+            <st ob="" eb="" sr="" id="2.6">Expected Behavior</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="x" sr="" id="3.1">After tapping "Stop" the snackbar and "Resume" button remain there until "Resume" is tapped.</st>
+            <st ob="" eb="x" sr="" id="3.2">This means tapping "Stop" is sort of like turning off auto-upload, except tapping "Resume" turns auto-upload on again.</st>
+        </parg>
+    </desc>
+</bug>

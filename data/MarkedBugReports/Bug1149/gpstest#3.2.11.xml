@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1149</id>
+    <title ob="x" eb="" sr="">Update Help for Status to say "estimated" horizontal/vertical accuracy</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Summary:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="x" eb="" sr="" id="2.1">As mentioned in #320 (comment), the new "E" for horizontal/vertical accuracy isn't explained in the Help text.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">My notes from #320 (comment):</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="x" eb="" sr="" id="4.1">"E" does stand for "estimated" in the context of horizontal and vertical error.</st>
+            <st ob="x" eb="" sr="" id="4.2">I added this when I added the "Accuracy" feature to GPSTest to try and differentiate between the actual and estimated accuracy values.</st>
+            <st ob="x" eb="" sr="" id="4.3">In other words, I didn't want someone to set a ground truth value in Accuracy and then come back to Status and think that real accuracy was being displayed in Status.</st>
+            <st ob="x" eb="" sr="" id="4.4">Confusion between estimated and actual accuracy is a huge problem and this was my small attempt in a limited timeframe to address it.</st>
+            <st ob="" eb="" sr="" id="4.5">I'd welcome better ideas for this in #176.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">And you're right, this isn't in the Help/About section, so I need to update that.</st>
+            <st ob="" eb="" sr="" id="5.2">Steps to reproduce:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="x" id="6.1">Look at "Help-&gt;About"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Expected behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="x" sr="" id="8.1">Explain the "E"</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="" sr="" id="9.1">Observed behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="10">
+            <st ob="x" eb="" sr="" id="10.1">No "E" explanation</st>
+        </parg>
+    </desc>
+</bug>

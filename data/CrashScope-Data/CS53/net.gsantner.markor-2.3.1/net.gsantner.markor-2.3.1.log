@@ -1,0 +1,160 @@
+--------- beginning of system
+06-29 02:16:04.209  1705  1716 W ActivityManager: Background start not allowed: service Intent { cmp=com.google.android.apps.photos/com.google.android.libraries.social.async.BackgroundTaskService } to com.google.android.apps.photos/com.google.android.libraries.social.async.BackgroundTaskService from pid=5269 uid=10067 pkg=com.google.android.apps.photos
+--------- beginning of main
+06-29 02:30:42.735  3453  3453 I MicroDetectionWorker: #updateMicroDetector [detectionMode: [mDetectionMode: [1]]]
+06-29 02:30:42.735  3453  3453 I MicroDetectionWorker: #startMicroDetector [speakerMode: 0]
+06-29 02:30:42.736  3453  3453 I AudioController: Using mInputStreamFactoryBuilder
+06-29 02:30:42.737  3453  3453 I MicroDetectionWorker: onReady
+06-29 02:30:42.738  3453 22982 I MicroRecognitionRunner: Starting detection.
+06-29 02:30:42.739  3453 25508 I MicrophoneInputStream: mic_starting com.google.android.apps.gsa.staticplugins.aa.c@c256c2
+06-29 02:30:42.742  1550 25657 I AudioFlinger: AudioFlinger's thread 0xe7183a80 tid=25657 ready to run
+06-29 02:30:42.742  1550  1550 W ServiceManager: Permission failure: android.permission.RECORD_AUDIO from uid=10030 pid=-1
+06-29 02:30:42.742  1550  1550 E         : Request requires android.permission.RECORD_AUDIO
+06-29 02:30:42.742  1550  1550 E AudioFlinger: openRecord() permission denied: recording not allowed
+06-29 02:30:42.742  3453 25508 E AudioRecord: AudioFlinger could not create record track, status: -1
+06-29 02:30:42.744  3453 25508 E AudioRecord-JNI: Error creating AudioRecord instance: initialization check failed with status -1.
+06-29 02:30:42.744  3453 25508 E android.media.AudioRecord: Error code -20 when initializing native AudioRecord object.
+06-29 02:30:42.744  3453 25508 I MicrophoneInputStream: mic_started com.google.android.apps.gsa.staticplugins.aa.c@c256c2
+06-29 02:30:42.745  3453  3453 I MicroDetectionWorker: onReady
+06-29 02:30:42.755  3453 25508 I MicrophoneInputStream: mic_close com.google.android.apps.gsa.staticplugins.aa.c@c256c2
+06-29 02:30:42.755  3453 22982 I MicroRecognitionRunner: Detection finished
+06-29 02:30:42.755  3453 22982 W ErrorReporter: reportError [type: 211, code: 524300]: Error reading from input stream
+06-29 02:30:42.755  3453  3609 I MicroRecognitionRunner: Stopping hotword detection.
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: onFatalError, processing error from engine(4)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: com.google.android.apps.gsa.shared.speech.b.g: Error reading from input stream
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.a.a(SourceFile:28)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.b.run(SourceFile:15)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ax.run(SourceFile:14)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1162)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:636)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at java.lang.Thread.run(Thread.java:764)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ai.run(SourceFile:6)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: Caused by: com.google.android.apps.gsa.shared.exception.GsaIOException: Error code: 393238 | Buffer overflow, no available space.
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.Tee.f(SourceFile:103)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.au.read(SourceFile:2)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at java.io.InputStream.read(InputStream.java:101)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.ao.run(SourceFile:18)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.an.run(SourceFile:2)
+06-29 02:30:42.755  3453 22982 W ErrorProcessor: 	... 9 more
+06-29 02:30:42.755  3453 22982 I AudioController: internalShutdown
+06-29 02:30:42.756  3453  3453 I MicroDetector: Keeping mic open: false
+06-29 02:30:42.756  3453  3453 I MicroDetectionWorker: #onError(false)
+06-29 02:30:42.756  3453 25512 I DeviceStateChecker: DeviceStateChecker cancelled
+06-29 02:30:43.771 25671 25671 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+06-29 02:30:43.813 25671 25671 W app_process: Unexpected CPU variant for X86 using defaults: x86_64
+06-29 02:30:43.829 25671 25671 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+06-29 02:30:43.833 25671 25680 W MessageQueue: Handler (android.os.Handler) {9800462} sending message to a Handler on a dead thread
+06-29 02:30:43.833 25671 25680 W MessageQueue: java.lang.IllegalStateException: Handler (android.os.Handler) {9800462} sending message to a Handler on a dead thread
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at android.os.MessageQueue.enqueueMessage(MessageQueue.java:545)
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at android.os.Handler.enqueueMessage(Handler.java:661)
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at android.os.Handler.sendMessageAtTime(Handler.java:630)
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at android.os.Handler.sendMessageDelayed(Handler.java:600)
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at android.os.Handler.post(Handler.java:356)
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at android.os.ResultReceiver$MyResultReceiver.send(ResultReceiver.java:57)
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at com.android.internal.os.IResultReceiver$Stub.onTransact(IResultReceiver.java:58)
+06-29 02:30:43.833 25671 25680 W MessageQueue: 	at android.os.Binder.execTransact(Binder.java:674)
+06-29 02:30:43.834 25671 25671 I app_process: System.exit called, status: 0
+06-29 02:30:43.834 25671 25671 I AndroidRuntime: VM exiting with result code 0.
+06-29 02:30:44.268  1705  1733 I ActivityManager: Killing 3502:com.google.android.calendar/u0a42 (adj 904): empty for 1826s
+06-29 02:30:44.271  1705  1733 I ActivityManager: Killing 13663:com.android.mtp/u0a9 (adj 904): empty for 1827s
+06-29 02:30:44.272  1705  1733 I ActivityManager: Killing 13641:com.android.externalstorage/u0a10 (adj 904): empty for 1827s
+06-29 02:30:44.295  1705  1733 I PackageManager.DexOptimizer: Running dexopt (dexoptNeeded=1) on: /data/app/vmdl189739231.tmp/base.apk pkg=net.gsantner.markor isa=x86_64 dexoptFlags=boot_complete,public target-filter=quicken oatDir=/data/app/vmdl189739231.tmp/oat sharedLibraries=null
+06-29 02:30:44.304 25689 25689 W dex2oat : Unexpected CPU variant for X86 using defaults: x86_64
+06-29 02:30:44.306 25689 25689 I dex2oat : /system/bin/dex2oat --input-vdex-fd=-1 --output-vdex-fd=10 --compiler-filter=quicken --classpath-dir=/data/app/vmdl189739231.tmp
+06-29 02:30:44.326  1442  1461 D hwcomposer: hw_composer sent 7 syncs in 82s
+06-29 02:30:44.889 25689 25689 I dex2oat : dex2oat took 584.902ms (1.740s cpu) (threads: 4) arena alloc=20KB (20824B) java alloc=6MB (6546432B) native alloc=9MB (9520968B) free=2MB (2930872B)
+06-29 02:30:44.921  1553  1555 D installd: Applied hard quotas for 10081
+06-29 02:30:44.921  1705  1733 D PackageManager: Ephemeral installer not found with new action; try old one
+06-29 02:30:44.921  1705  1733 D PackageManager: Clear ephemeral installer activity
+06-29 02:30:44.922  1705  1733 V BackupManagerService: restoreAtInstall pkg=net.gsantner.markor token=5 restoreSet=0
+06-29 02:30:44.922  1705  1733 V BackupManagerService: Finishing install immediately
+06-29 02:30:44.922  1553  1555 E         : Couldn't opendir /data/app/vmdl189739231.tmp: No such file or directory
+06-29 02:30:44.922  1553  1555 E installd: Failed to delete /data/app/vmdl189739231.tmp: No such file or directory
+06-29 02:30:44.949  1705  1768 I InputReader: Reconfiguring input devices.  changes=0x00000010
+06-29 02:30:44.949  1705  2575 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:net.gsantner.markor flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+06-29 02:30:44.949  1705  1720 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:net.gsantner.markor flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+06-29 02:30:44.949  1705  1720 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:net.gsantner.markor flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+06-29 02:30:44.949  1705  1720 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:net.gsantner.markor flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+06-29 02:30:44.950  2004  2004 D CarrierSvcBindHelper: No carrier app for: 0
+06-29 02:30:44.954  2004  2004 D ImsResolver: maybeAddedImsService, packageName: net.gsantner.markor
+06-29 02:30:44.954  2004  2004 D CarrierConfigLoader: mHandler: 9 phoneId: 0
+06-29 02:30:44.962  1818 25703 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:net.gsantner.markor flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+06-29 02:30:44.968  1818 25704 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:net.gsantner.markor flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+06-29 02:30:44.970  2243 25707 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+06-29 02:30:44.972  1705  2575 W ActivityManager: Unable to start service Intent { act=com.google.android.gms.auth.key.retrieval.service.START pkg=com.google.android.gms } U=0: not found
+06-29 02:30:44.973  1705  1847 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@ead07cf
+06-29 02:30:44.974  2243  2819 E GmsClient: unable to connect to service: com.google.android.gms.auth.key.retrieval.service.START on com.google.android.gms
+06-29 02:30:44.975  2243 25708 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:net.gsantner.markor flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+06-29 02:30:44.978  2243 25706 I FontLog : Package net.gsantner.markor has no metadata [CONTEXT service_id=132 ]
+06-29 02:30:44.979 13597 25696 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+06-29 02:30:44.985  1705  1705 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@AKI
+06-29 02:30:44.992  2243 25708 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://I147qJNco60BL4W4Zm-iMzrz0u3yhe4bSTGuDo8vCKlLEYFeVH9tHkJxn1vWGEDy5NxY0P3nXJuenLh24rKDCQ==@net.gsantner.markor/ was not found. Marking affiliation data as stale...
+06-29 02:30:45.008  2243 25700 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: pay:-1
+06-29 02:30:45.009  2243 25700 E ConfigFileUtils: Failed to read config file: /data/user_de/0/com.google.android.gms/app_chimera/next_container.pb (No such file or directory)
+06-29 02:30:45.041  2243  2871 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+06-29 02:30:45.043  2243  2248 I zygote64: Do full code cache collection, code=1526KB, data=1045KB
+06-29 02:30:45.049  2243 24388 W Icing   : No valid account for uploading user actions
+06-29 02:30:45.054  2243 25700 I ChmraDebugLogger: [73] 1801
+06-29 02:30:45.055  2243 25700 I ChmraDebugLogger: [30] [Pay.optional:202414020000] permitMetered=true,
+06-29 02:30:45.060  2243 25700 W ChimeraConfigService: Retry attempt was throttled.
+06-29 02:30:45.061  2243  2248 I zygote64: After code cache collection, code=1407KB, data=890KB
+06-29 02:30:45.080  2243  2963 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+06-29 02:30:45.081  2243 24388 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+06-29 02:30:45.082  2243  2963 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=36
+06-29 02:30:45.083  2243 24388 W Icing   : No valid account for uploading user actions
+06-29 02:30:45.087  2243 24388 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+06-29 02:30:45.089  2243 24388 W Icing   : No valid account for uploading user actions
+06-29 02:30:45.092  2243 24388 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+06-29 02:30:45.093  2243 24388 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+06-29 02:30:45.103  2243 24388 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms
+06-29 02:30:45.106  2243 24388 I Icing   : Indexing done com.google.android.gms-apps
+06-29 02:30:45.107  2243 24388 I Icing   : Indexing done com.google.android.gms-internal.3p:MobileApplication
+06-29 02:30:47.763  3453  3453 I MicroDetectionWorker: #updateMicroDetector [detectionMode: [mDetectionMode: [1]]]
+06-29 02:30:47.764  3453  3453 I MicroDetectionWorker: #startMicroDetector [speakerMode: 0]
+06-29 02:30:47.764  3453  3453 I AudioController: Using mInputStreamFactoryBuilder
+06-29 02:30:47.765  3453  3453 I MicroDetectionWorker: onReady
+06-29 02:30:47.767  3453 25512 I MicroRecognitionRunner: Starting detection.
+06-29 02:30:47.767  3453 25508 I MicrophoneInputStream: mic_starting com.google.android.apps.gsa.staticplugins.aa.c@fee2128
+06-29 02:30:47.769  1550 25718 I AudioFlinger: AudioFlinger's thread 0xe7183c00 tid=25718 ready to run
+06-29 02:30:47.769  1550  1550 W ServiceManager: Permission failure: android.permission.RECORD_AUDIO from uid=10030 pid=-1
+06-29 02:30:47.769  1550  1550 E         : Request requires android.permission.RECORD_AUDIO
+06-29 02:30:47.769  1550  1550 E AudioFlinger: openRecord() permission denied: recording not allowed
+06-29 02:30:47.769  3453 25508 E AudioRecord: AudioFlinger could not create record track, status: -1
+06-29 02:30:47.771  3453 25508 E AudioRecord-JNI: Error creating AudioRecord instance: initialization check failed with status -1.
+06-29 02:30:47.771  3453 25508 E android.media.AudioRecord: Error code -20 when initializing native AudioRecord object.
+06-29 02:30:47.772  3453 25508 I MicrophoneInputStream: mic_started com.google.android.apps.gsa.staticplugins.aa.c@fee2128
+06-29 02:30:47.772  3453 25508 E ActivityThread: Failed to find provider info for com.google.android.apps.gsa.testing.ui.audio.recorded
+06-29 02:30:47.773  3453  3453 I MicroDetectionWorker: onReady
+06-29 02:30:47.777  3453 25508 I MicrophoneInputStream: mic_close com.google.android.apps.gsa.staticplugins.aa.c@fee2128
+06-29 02:30:47.777  3453 25512 I MicroRecognitionRunner: Detection finished
+06-29 02:30:47.777  3453 25512 W ErrorReporter: reportError [type: 211, code: 524300]: Error reading from input stream
+06-29 02:30:47.778  3453  3609 I MicroRecognitionRunner: Stopping hotword detection.
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: onFatalError, processing error from engine(4)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: com.google.android.apps.gsa.shared.speech.b.g: Error reading from input stream
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.a.a(SourceFile:28)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.b.run(SourceFile:15)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ax.run(SourceFile:14)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1162)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:636)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at java.lang.Thread.run(Thread.java:764)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ai.run(SourceFile:6)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: Caused by: com.google.android.apps.gsa.shared.exception.GsaIOException: Error code: 393238 | Buffer overflow, no available space.
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.Tee.f(SourceFile:103)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.au.read(SourceFile:2)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at java.io.InputStream.read(InputStream.java:101)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.ao.run(SourceFile:18)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.an.run(SourceFile:2)
+06-29 02:30:47.778  3453 25512 W ErrorProcessor: 	... 9 more
+06-29 02:30:47.778  3453 25512 I AudioController: internalShutdown
+06-29 02:30:47.779  3453  3453 I MicroDetector: Keeping mic open: false
+06-29 02:30:47.779  3453 22982 I DeviceStateChecker: DeviceStateChecker cancelled
+06-29 02:30:47.779  3453  3453 I MicroDetectionWorker: #onError(false)
+Elapsed Time: 1122157

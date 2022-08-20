@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1441</id>
+    <title ob="x" eb="" sr="">Issue manually entering fishing spot coordinates</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Problem</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="x" eb="" sr="" id="2.1">If the "sync" icon isn't clicked after manually entering coordinates, the fishing spot's coordinates aren't updated accordingly.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Reproduction steps</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="x" id="4.1">1. Create a new, or edit an existing location</st>
+            <st ob="" eb="" sr="x" id="4.2">2. Add fishing spot</st>
+            <st ob="" eb="" sr="x" id="4.3">3. Manually enter coordinates (do not click the sync button)</st>
+            <st ob="" eb="" sr="x" id="4.4">4. Save</st>
+            <st ob="x" eb="" sr="x" id="4.5">5. In the edit location screen the coordinates are not correct</st>
+            <st ob="" eb="" sr="" id="4.6">Solution</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="x" sr="" id="5.1">The add fishing spot screen should get and validate its coordinates from the TextView widgets, not the middle of the map.</st>
+            <st ob="" eb="x" sr="" id="5.2">If the coordinates are invalid, the user should see a dialog (this may already be implemented).</st>
+        </parg>
+    </desc>
+</bug>

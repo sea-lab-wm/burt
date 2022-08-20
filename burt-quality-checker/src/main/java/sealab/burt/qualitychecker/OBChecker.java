@@ -64,15 +64,16 @@ class OBChecker {
         return matchActions(nlActions);
     }
 
-    private void readGraph() throws Exception {
+    private void readGraph(String bugID) throws Exception {
         if (BurtConfigPaths.crashScopeDataPath == null)
-            executionGraph = DBGraphReader.getGraph(appName, appVersion);
+            executionGraph = DBGraphReader.getGraph(appName, appVersion,bugID);
         else
-            executionGraph = JSONGraphReader.getGraph(appName, appVersion);
+            executionGraph = JSONGraphReader.getGraph(appName, appVersion, bugID);
     }
 
     private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
-        readGraph();
+        String bugID = "";
+        readGraph(bugID);
 
         if (currentState == null)
             currentState = GraphState.START_STATE;

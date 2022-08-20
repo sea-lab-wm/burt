@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1202</id>
+    <title ob="x" eb="" sr="">[Filter Images] Toast to save current is displayed even when image is saved</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">Select few images.</st>
+            <st ob="" eb="" sr="x" id="2.2">Go to Filter images</st>
+            <st ob="" eb="" sr="x" id="2.3">Don't add any effect.</st>
+            <st ob="" eb="" sr="x" id="2.4">Select Brush option.</st>
+            <st ob="" eb="" sr="x" id="2.5">Draw something.</st>
+            <st ob="" eb="" sr="x" id="2.6">Select Save current</st>
+            <st ob="" eb="" sr="x" id="2.7">Now, press right arrow icon.</st>
+            <st ob="x" eb="" sr="" id="2.8">The toast is displayed Save current first</st>
+            <st ob="" eb="" sr="" id="2.9">Expected behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="x" sr="" id="3.1">Toast shouldn't be displayed, when image is saved</st>
+        </parg>
+    </desc>
+</bug>

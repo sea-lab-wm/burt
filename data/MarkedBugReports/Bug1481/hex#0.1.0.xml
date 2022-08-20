@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1481</id>
+    <title ob="x" eb="" sr="">Back behaviour broken for Article WebView</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">1. Open an article.</st>
+            <st ob="" eb="" sr="x" id="2.2">2. Select a link in the article, allowing the next page to load in the WebView.</st>
+            <st ob="" eb="" sr="x" id="2.3">3. Hit back.</st>
+            <st ob="x" eb="" sr="" id="2.4">Observe the the user is taken back to the front page rather than navigating back a page in the WebView.</st>
+        </parg>
+    </desc>
+</bug>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>128</id>
+    <title ob="x" eb="" sr="">Switching language is not working.</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">General information</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">App version: 0.7.1.1</st>
+            <st ob="" eb="" sr="" id="2.2">App source: GitHub</st>
+            <st ob="" eb="" sr="" id="2.3">Android Version: 6</st>
+            <st ob="" eb="" sr="" id="2.4">Expected result</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">What is expected?</st>
+            <st ob="" eb="x" sr="" id="3.2">When switching language, the UI should display the right language</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">What does happen instead?</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="x" eb="" sr="" id="5.1">The app is falling back to english</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="x" id="7.1">I think that the app should use values-ar values-fr etc instead of the regionalized values-rLangRegion</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="" id="8.1">This can be disabled on Crowdin.</st>
+        </parg>
+    </desc>
+</bug>

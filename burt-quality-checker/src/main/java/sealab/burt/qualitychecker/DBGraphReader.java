@@ -16,10 +16,10 @@ class DBGraphReader {
 
     private static final ConcurrentHashMap<String, AppGraphInfo> graphs = new ConcurrentHashMap<>();
 
-    public static AppGraphInfo getGraph(String appName, String appVersion) throws Exception {
+    public static AppGraphInfo getGraph(String appName, String appVersion, String bugID) throws Exception {
         AppGraphInfo graph = graphs.get(getKey(appName, appVersion));
         if (graph == null) {
-            readGraph(appName, appVersion);
+            readGraph(appName, appVersion, bugID);
             graph = graphs.get(getKey(appName, appVersion));
         }
         return graph;
@@ -29,7 +29,7 @@ class DBGraphReader {
         return MessageFormat.format("{0}-{1}", app, appVersion);
     }
 
-    private static void readGraph(String appName, String appVersion) throws Exception {
+    private static void readGraph(String appName, String appVersion, String bugID) throws Exception {
         String key = getKey(appName, appVersion);
         log.debug("Reading graph from DB for " + key);
         EntityManager em = DBUtils.createEntityManager(DBUtils.DEFAULT_EM);

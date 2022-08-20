@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>130</id>
+    <title ob="x" eb="" sr="">Onboarding issues: Third "Let's get started" slide show the wrong encryption method</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">General information</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">App version: 0.6.3.1-play</st>
+            <st ob="" eb="" sr="" id="2.2">App source: Google Play</st>
+            <st ob="" eb="" sr="" id="2.3">Android Version: 8.0.0</st>
+            <st ob="" eb="" sr="" id="2.4">Custom ROM: Samsung</st>
+            <st ob="" eb="" sr="" id="2.5">Expected result</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="x" id="3.1">The first slide says "read carefully", so I did.</st>
+            <st ob="" eb="" sr="x" id="3.2">I left the second slide unchanged (the dropdown defaulted to "Password / PIN").</st>
+            <st ob="" eb="" sr="x" id="3.3">On the third slide the text said</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="x" id="4.1">Since you have chosen Android KeyStore as encryption method this is optional.</st>
+            <st ob="" eb="" sr="" id="4.2">which got me confused.</st>
+            <st ob="x=" eb="" sr="x" id="4.3">The dropdown on the third slide has "None" and "Device credentials" greyed out, so I guess the text is just a UI bug.</st>
+            <st ob="x" eb="" sr="x" id="4.4">I went back to the second slide and double checked, it still says "Password / PIN".</st>
+            <st ob="" eb="" sr="x" id="4.5">Selecting "Android KeyStore" and then back to "Password / PIN" updates the text on the third slide.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="x" id="5.1">However, here's a second issue: if I explicitly select "Android KeyStore" then the third slide still has a red text saying "Please set a password to continue".</st>
+            <st ob="" eb="" sr="" id="5.2">Which is odd, because the text at the top says "Since you have chosen Android KeyStore as encryption method this is optional."</st>
+            <st ob="" eb="" sr="" id="5.3">.</st>
+            <st ob="" eb="" sr="" id="5.4">But the red text indicates it is not optional.</st>
+            <st ob="" eb="" sr="" id="5.5">I think this is just a UX bug and an unfortunate coincidence that "Password" is still the default even though "Android KeyStore" was selected.</st>
+            <st ob="" eb="" sr="" id="5.6">Maybe it should default to "None" to align with what the text says?</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="x" id="7.1">Read carefully what the onboarding screens say.</st>
+            <st ob="" eb="" sr="" id="7.2">I still haven't finished the onboarding and can reproduce the behavior every single time I open the app and restart the process.</st>
+        </parg>
+    </desc>
+</bug>

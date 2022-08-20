@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>256</id>
+    <title ob="x" eb="" sr="">App crashes when trying modify account if default transaction account no longer exist.</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce the behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">1. Use double entry mode.</st>
+            <st ob="" eb="" sr="x" id="2.2">2. Create account A and B.</st>
+            <st ob="" eb="" sr="x" id="2.3">3. Set B's default transaction account to A.</st>
+            <st ob="" eb="" sr="x" id="2.4">4. Remove account A.</st>
+            <st ob="x" eb="" sr="x" id="2.5">5. Modify account B, crash occurred.</st>
+            <st ob="" eb="" sr="" id="2.6">Expected behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="x" sr="" id="3.1">Open account modifying interface.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Actual behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="x" eb="" sr="" id="5.1">App crashed.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Software specifications</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">GnuCash Android version: 2.1.4</st>
+            <st ob="" eb="" sr="" id="7.2">System Android version: Nougat 7.1.1</st>
+            <st ob="" eb="" sr="" id="7.3">Device type: Google Pixel</st>
+        </parg>
+    </desc>
+</bug>

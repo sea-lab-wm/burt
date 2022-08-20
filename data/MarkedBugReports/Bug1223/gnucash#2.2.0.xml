@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1223</id>
+    <title ob="x" eb="" sr="">Split memos disappear</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Steps to reproduce the behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="x" id="2.1">1. Click on transaction</st>
+            <st ob="" eb="" sr="x" id="2.2">2. Click on edit FAB button</st>
+            <st ob="" eb="" sr="x" id="2.3">3. Click on split icon</st>
+            <st ob="" eb="" sr="x" id="2.4">4. Add memo to 1 or more splits</st>
+            <st ob="" eb="" sr="x" id="2.5">5. Click "save"</st>
+            <st ob="" eb="" sr="x" id="2.6">6. Click "save" again</st>
+            <st ob="" eb="" sr="x" id="2.7">7. Click on edit FAB button</st>
+            <st ob="" eb="" sr="x" id="2.8">8. Click on split icon</st>
+            <st ob="" eb="" sr="" id="2.9">Expected behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="x" sr="" id="3.1">Splits have their memos.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">Actual behaviour</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="x" eb="" sr="" id="5.1">Split do not have their memos anymore.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Software specifications</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">GnuCash Android version: 2.2.0</st>
+            <st ob="" eb="" sr="" id="7.2">System Android version: 6.0</st>
+            <st ob="" eb="" sr="" id="7.3">Device type: Any</st>
+        </parg>
+    </desc>
+</bug>

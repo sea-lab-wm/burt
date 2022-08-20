@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>1147</id>
+    <title ob="x" eb="" sr="">Nav drawer selection color for dark theme isn't right</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">Summary:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="x" eb="" sr="" id="2.1">The current selection color for the navigation drawer selected item (e.g., "Status" when the status screen is shown) should be darker - it's currently not set as part of the Dark theme (i.e., navdrawer_background_color_selected_dark isn't used).</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="x" eb="" sr="" id="3.1">This boils down to trying to set the Theme/Style dynamically on the layout for the nav drawer item, and I haven't gotten this working yet.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">WIP branch at https://github.com/barbeau/gpstest/tree/nav-drawer-dark-selected.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">Here's the main code:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">if (Application.getPrefs().</st>
+            <st ob="" eb="" sr="" id="6.2">getBoolean(getString(R.string.pref_key_dark_theme), false)</st>
+            <st ob="" eb="" sr="" id="6.3">&gt;&gt; layoutToInflate == R.layout.navdrawer_item) {</st>
+            <st ob="" eb="" sr="" id="6.4">// Dark theme</st>
+            <st ob="" eb="" sr="" id="6.5">Context context = new ContextThemeWrapper(getActivity(), R.style.NavDrawerListItem_Dark);</st>
+            <st ob="" eb="" sr="" id="6.6">LayoutInflater layoutInflater = getActivity().</st>
+            <st ob="" eb="" sr="" id="6.7">getLayoutInflater().</st>
+            <st ob="" eb="" sr="" id="6.8">cloneInContext(context);</st>
+            <st ob="" eb="" sr="" id="6.9">view = layoutInflater.inflate(layoutToInflate, container, false);</st>
+            <st ob="" eb="" sr="" id="6.10">} else {</st>
+            <st ob="" eb="" sr="" id="6.11">// Light theme view = getActivity().</st>
+            <st ob="" eb="" sr="" id="6.12">getLayoutInflater().</st>
+            <st ob="" eb="" sr="" id="6.13">inflate(layoutToInflate, container, false);</st>
+            <st ob="" eb="" sr="" id="6.14">}</st>
+            <st ob="" eb="" sr="" id="6.15">It currently looks like the below, with only the area immediately surrounding the icon and text being black, the rest being navdrawer_background_color_selected_light, which is the color for the light style set in the XML:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">Steps to reproduce:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="x" id="8.1">1. Enable Dark theme via Settings</st>
+            <st ob="" eb="" sr="x" id="8.2">2. Open navigation drawer</st>
+            <st ob="" eb="" sr="" id="8.3">Expected behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="9">
+            <st ob="" eb="x" sr="" id="9.1">Selected item in navigation drawer should have a darker highlighted color to make it easier to see (i.e., should use navdrawer_background_color_selected_dark.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="10">
+            <st ob="" eb="" sr="" id="10.1">Observed behavior:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="11">
+            <st ob="x" eb="" sr="" id="11.1">The lighter navdrawer_background_color_selected_light color is used for the selected item</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="12">
+            <st ob="" eb="" sr="" id="12.1">Device and Android version:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="13">
+            <st ob="" eb="" sr="" id="13.1">Samsung Galaxy S8+ w/ Android 8.0 beta</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="14">
+            <st ob="" eb="" sr="" id="14.1">Screenshots:</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="15">
+            <st ob="" eb="" sr="" id="15.1">See above</st>
+        </parg>
+    </desc>
+</bug>

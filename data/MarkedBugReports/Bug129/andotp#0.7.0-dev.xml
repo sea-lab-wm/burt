@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bug>
+    <id>129</id>
+    <title ob="x" eb="" sr="">App crashes if incorrect secret is entered</title>
+    <desc>
+        <parg ob="" eb="" sr="" id="1">
+            <st ob="" eb="" sr="" id="1.1">General information</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="2">
+            <st ob="" eb="" sr="" id="2.1">App version: 0.7.0</st>
+            <st ob="" eb="" sr="" id="2.2">App source: built from sources</st>
+            <st ob="" eb="" sr="" id="2.3">Android Version: Android 9</st>
+            <st ob="" eb="" sr="" id="2.4">Custom ROM: emulator</st>
+            <st ob="" eb="" sr="" id="2.5">Same crash on actual devices with app 0.7.0 and 0.6.3.1 from F-Droid.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="3">
+            <st ob="" eb="" sr="" id="3.1">Expected result</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="4">
+            <st ob="" eb="" sr="" id="4.1">What is expected?</st>
+            <st ob="" eb="x" sr="" id="4.2">An error message is displayed.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="5">
+            <st ob="" eb="" sr="" id="5.1">What does happen instead?</st>
+            <st ob="x" eb="" sr="" id="5.2">App crashes.</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="6">
+            <st ob="" eb="" sr="" id="6.1">Logcat</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="7">
+            <st ob="" eb="" sr="" id="7.1">org.shadowice.flocke.andotp.dev E/AndroidRuntime: FATAL EXCEPTION: main</st>
+            <st ob="" eb="" sr="" id="7.2">Process: org.shadowice.flocke.andotp.dev, PID: 3414 java.lang.IllegalArgumentException: Last encoded character (before the paddings if any) is a valid base 32 alphabet but not a possible value.</st>
+            <st ob="" eb="" sr="" id="7.3">Expected the discarded bits to be zero.</st>
+            <st ob="" eb="" sr="" id="7.4">        at org.apache.commons.codec.binary.Base32.validateCharacter(Base32.java:577)</st>
+            <st ob="" eb="" sr="" id="7.5">        at org.apache.commons.codec.binary.Base32.decode(Base32.java:404)</st>
+            <st ob="" eb="" sr="" id="7.6">        at org.apache.commons.codec.binary.BaseNCodec.decode(BaseNCodec.java:482)</st>
+            <st ob="" eb="" sr="" id="7.7">        at org.apache.commons.codec.binary.BaseNCodec.decode(BaseNCodec.java:465)</st>
+            <st ob="" eb="" sr="" id="7.8">        at org.shadowice.flocke.andotp.Database.Entry.&lt;init&gt;(Entry.java:90)</st>
+            <st ob="" eb="" sr="" id="7.9">        at org.shadowice.flocke.andotp.Dialogs.ManualEntryDialog$7.onClick(ManualEntryDialog.java:210)</st>
+            <st ob="" eb="" sr="" id="7.10">        at com.android.internal.app.AlertController$ButtonHandler.handleMessage(AlertController.java:172)</st>
+            <st ob="" eb="" sr="" id="7.11">        at android.os.Handler.dispatchMessage(Handler.java:106)</st>
+            <st ob="" eb="" sr="" id="7.12">        at android.os.Looper.loop(Looper.java:193)</st>
+            <st ob="" eb="" sr="" id="7.13">        at android.app.ActivityThread.main(ActivityThread.java:6669)</st>
+            <st ob="" eb="" sr="" id="7.14">        at java.lang.reflect.Method.invoke(Native Method)</st>
+            <st ob="" eb="" sr="" id="7.15">        at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)</st>
+            <st ob="" eb="" sr="" id="7.16">        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)</st>
+            <st ob="" eb="" sr="" id="7.17">Steps to reproduce</st>
+        </parg>
+        <parg ob="" eb="" sr="" id="8">
+            <st ob="" eb="" sr="x" id="8.1">Open entry creation dialog ("+" -&gt; Enter details).</st>
+            <st ob="" eb="" sr="x" id="8.2">Enter "test" in the "Secret" field (and fill other required fields).</st>
+            <st ob="" eb="" sr="x" id="8.3">Press "Save".</st>
+        </parg>
+    </desc>
+</bug>
