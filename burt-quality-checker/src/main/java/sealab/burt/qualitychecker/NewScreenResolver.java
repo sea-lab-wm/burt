@@ -48,7 +48,7 @@ class NewScreenResolver {
         Set<GraphTransition> outgoingEdges = executionGraph.outgoingEdgesOf(currentState);
         final Set<GraphState> nextStates = outgoingEdges.stream().map(GraphTransition::getTargetState)
                 .collect(Collectors.toCollection(HashSet::new));
-        nextStates.remove(currentState);
+        nextStates.remove(currentState); // QUESTION: why do we remove this state?
 
         for (GraphState state : nextStates) {
             getCandidateGraphStates(executionGraph, stateCandidates, state, currentDistance + 1, maxDistanceToCheck);
@@ -67,7 +67,6 @@ class NewScreenResolver {
         stateCandidates.remove(GraphState.START_STATE);
 
         log.debug("State candidates (" + stateCandidates.size() + "): " + stateCandidates);
-        System.out.println("State candidates (" + stateCandidates.size() + "): " + stateCandidates);
 
 
         int nThreads = 6;
@@ -92,7 +91,6 @@ class NewScreenResolver {
         }
 
         log.debug("Waiting for futures: " + futures.size());
-        System.out.println("Waiting for futures: " + futures.size());
 
         // wait until all futures finish, and then continue with the processing
         try {
@@ -119,8 +117,6 @@ class NewScreenResolver {
 
     private List<ImmutablePair<GraphState, Double>> rankMatchedStates(List<ImmutablePair<GraphState, Double>> matchedStates) {
         log.debug("Matched states (" + matchedStates.size() + "):" + matchedStates);
-        
-        System.out.println("Matched states (" + matchedStates.size() + "):" + matchedStates);
 
 
         //---------------------------------------------
@@ -194,11 +190,6 @@ class NewScreenResolver {
         List<Double> scores =  EmbeddingSimilarityComputer.computeSimilarities(ObDescription, phrases);
 
         log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
-                "Checking candidate state/screen: " + candidateState.getUniqueHash() + "\n" +
-                "Checking candidate phrases " + phrases.toString() + "\n" +
-                "Checking matched scores " + scores.toString());
-        
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
                 "Checking candidate state/screen: " + candidateState.getUniqueHash() + "\n" +
                 "Checking candidate phrases " + phrases.toString() + "\n" +
                 "Checking matched scores " + scores.toString());

@@ -1,0 +1,46 @@
+ID;GitHub Issue;user or dev;failure type;Buggy Application State;Sequece Step;Revised Sequence Step;Crash;TraceReplayer Step;Comments
+2;https://github.com/zwieback/FamilyFinance/issues/1;USER;crash;-560313656;41;;-1483261479;;
+8;https://github.com/koelleChristian/trickytripper/issues/42;USER;crash;1084950948;14;;-1483261479;;
+10;https://github.com/zhanghai/MaterialFiles/issues/184;USER;output;-1890183026;15;;;outlier: app close/on;
+18;https://github.com/citiususc/calendula/issues/134;USER;crash;658595597;21;;1437969854;;
+19;https://github.com/streetcomplete/StreetComplete/issues/1093;USER;cosmetic;-1360369064;8;7;;not the correct state. But this one is closely related.;
+21;https://github.com/netmackan/ATimeTracker/issues/121;USER;navigation;-697343002;12;;;;XML issue
+44;https://github.com/federicoiosue/Omni-Notes/issues/634;USER;output;-2142231540;22;21;;;
+53;https://github.com/gsantner/markor/issues/1020;USER;cosmetic;-1236146120;19;;;;
+71;https://github.com/Neamar/KISS/issues/1481;USER;output;(-106012129, 965936953, 471498532);10;;;;Home screen bug
+117;https://github.com/openfoodfacts/openfoodfacts-androidapp/issues/2087;USER;cosmetic;2132718311;11;;;;
+128;https://github.com/andOTP/andOTP/issues/567;USER;output;(1237792366, 310762316);28;;;;
+129;https://github.com/andOTP/andOTP/issues/500;USER;crash;1336926763;52;;;;
+130;https://github.com/andOTP/andOTP/issues/486;USER;cosmetic;-29424041;15;;;there can be more final app states;Nested class issue error
+135;https://github.com/commons-app/apps-android-commons/issues/2088;USER;navigation;-1904355051;15;;;;
+191;https://github.com/reloZid/android-anuto/issues/68;USER;output;1615631188;6;;;;Needs more investigation
+201;https://github.com/inaturalist/iNaturalistAndroid/issues/302;USER;cosmetic;233105557;11;;;;
+206;https://github.com/codinguser/gnucash-android/issues/615;USER;cosmetic;-6302601;15;;;;nested class issue
+209;https://github.com/codinguser/gnucash-android/issues/689;USER;navigation;957754428;53;;;not the correct state. But this one is closely related.;
+256;https://github.com/codinguser/gnucash-android/issues/654;USER;crash;964742698;19;;;;
+1066;https://github.com/mozilla-mobile/focus-android/issues/3152;DEV;output;(1770584443, 23795554);5;;;;XML issue
+1067;https://github.com/mozilla-mobile/focus-android/issues/3304;DEV;cosmetic;1819986140;10;;;;XML issue
+1073;https://github.com/mozilla-mobile/focus-android/issues/2879;DEV;navigation;170813981;9;;;;
+1096;https://github.com/inaturalist/iNaturalistAndroid/issues/722;DEV;crash;411379245;14;;1437969854;;
+1145;https://github.com/barbeau/gpstest/issues/436;DEV;cosmetic;null;;;;;XML issue
+1146;https://github.com/barbeau/gpstest/issues/434;DEV;output;-1649118866;3;;;not the correct state. But this one is closely related.;
+1147;https://github.com/barbeau/gpstest/issues/119;DEV;cosmetic;-1478844228;8;;;;Needs investigation
+1149;https://github.com/barbeau/gpstest/issues/330;DEV;cosmetic;-1356003409;10;;;;XML issue
+1151;https://github.com/barbeau/gpstest/issues/127;DEV;cosmetic;-1697176963;17;;;;
+1152;https://github.com/barbeau/gpstest/issues/133;DEV;cosmetic;null;;;;;XML issue
+1202;https://github.com/Swati4star/Images-to-PDF/issues/384;DEV;navigation;164409849;18;;;;
+1205;https://github.com/Swati4star/Images-to-PDF/issues/602;DEV;navigation;(-216144461/-850451593/-1452222840/-2018771725);22;;;there can be more final app states;
+1207;https://github.com/andOTP/andOTP/issues/135;DEV;crash;-1486269566;13;;1437969854;;
+1214;https://github.com/andOTP/andOTP/issues/580;DEV;output;-1960858024;12;;;;here activity is null
+1215;https://github.com/andOTP/andOTP/issues/569;DEV;crash;-1128824322;28;;;bug might not be reproduced. However, this is the screen where entering a value initiate the crash;here activity is null
+1223;https://github.com/codinguser/gnucash-android/issues/701;DEV;output;-1456928293;77;;;;
+1224;https://github.com/codinguser/gnucash-android/issues/620;DEV;output;(-1294931745/-415893334/-638948281);38;;;there can be more final app states;
+1226;https://github.com/codinguser/gnucash-android/issues/663;DEV;crash;1006317146;43;;;not the correct state. But this one is closely related.;
+1299;https://github.com/PhenoApps/Field-Book/issues/146;DEV;crash;725627353;20;;;;
+1399;https://github.com/fossasia/phimpme-android/issues/2416;DEV;navigation;992092840;15;;;;
+1406;https://github.com/fossasia/phimpme-android/issues/1858;DEV;navigation;-1218922637;20;;;;
+1430;https://github.com/brodeurlv/fastnfitness/issues/142;DEV;crash;(-1589521620/1964956963);21;;;;
+1441;https://github.com/cohenadair/anglers-log/issues/151;DEV;output;-200778862;19;;;;
+1445;https://github.com/cohenadair/anglers-log/issues/347;DEV;output;-1556075131;14;;;not the correct state. But this one is closely related.;
+1481;https://github.com/longdivision/hex/issues/4;DEV;navigation;-392052975;58;;;there can be more final app states;A new method is added here. Code is not updated
+1645;https://github.com/TheMHMoritz3/Trainer-App/issues/7;DEV;crash;(-1187738202/1295846135);24;;;;here activity is null

@@ -79,8 +79,7 @@ public @Slf4j class JSONGraphReader {
 		String dataLocation = Paths.get(BurtConfigPaths.crashScopeDataPath, "CS" + bugID, String.join("-", packageName, appVersion)).toString();
 
 		String key = getKey(appName, appVersion);
-		// log.debug("Reading graph from JSON files for " + key);
-		System.out.println("Reading graph from JSON files for " + key);
+		log.debug("Reading graph from JSON files for " + key);
 
 		List<Execution> crashScopeExecutions = readExecutions(dataLocation);
 		GraphGenerator generator = new GraphGenerator();
