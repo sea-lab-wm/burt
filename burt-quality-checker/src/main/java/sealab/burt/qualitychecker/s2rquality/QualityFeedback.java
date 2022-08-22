@@ -64,9 +64,14 @@ public class QualityFeedback {
         this.qualityAssessments = qualityAssessments;
     }
 
-    public List<S2RQualityCategory> getAssessmentResults() {
+    public List<S2RQualityCategory> getAssessmentCategory() {
         return this.qualityAssessments.stream()
                 .map(S2RQualityAssessment::getCategory)
                 .collect(Collectors.toList());
     }
+
+    public List<S2RQualityAssessment> getAssessmentResults() {
+        return this.qualityAssessments;
+    }
+
 }

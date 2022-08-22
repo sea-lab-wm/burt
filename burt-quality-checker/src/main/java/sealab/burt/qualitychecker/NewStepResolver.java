@@ -16,6 +16,7 @@ import java.util.concurrent.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.javatuples.Triplet;
 
 /**
  * @author KevinMoran
@@ -52,7 +53,7 @@ class NewStepResolver {
         Set<GraphTransition> outgoingEdges = executionGraph.outgoingEdgesOf(currentState);
         final Set<GraphState> nextStates = outgoingEdges.stream().map(GraphTransition::getTargetState)
                 .collect(Collectors.toCollection(HashSet::new));
-        nextStates.remove(currentState);
+        nextStates.remove(currentState); //QUESTION: why remove this state?
 
         for (GraphState state : nextStates) {
             getCandidateGraphStates(executionGraph, stateCandidates, state, currentDistance + 1, maxDistanceToCheck);
@@ -103,35 +104,35 @@ class NewStepResolver {
 
 
 
-    public List<ImmutablePair<AppStep, Double>>  resolveActionInGraphConcurrent(String S2RDescription, AppGraphInfo executionGraph,
+    public List<Triplet<AppStep, String, Double>>  resolveActionInGraphConcurrent(LinkedList<String> allS2RSentences, AppGraphInfo executionGraph,
                                                GraphState currentState) throws Exception {
         Appl app = executionGraph.getApp();
 
-        List<ImmutablePair<AppStep, Double>> matchedAppSteps = new ArrayList<>();
+        List<Triplet<AppStep, String, Double>> matchedAppSteps = new ArrayList<>();
 
 
 
         //-----------------------
-        // 1. Get all considered nodes that are in range of GRAPH_MAX_DEPTH_CHECK
+        // 1. Get all considered nodes (candidateStates) that are in range of GRAPH_MAX_DEPTH_CHECK
         // TODO: check previously executed or seen states
 
         // TODO: deal with go back
 
-        List<String> gobackPhrases = new ArrayList<>(Arrays.asList("go back", "go back to previous screen", "click the back button",
-                "tap the back button"));
-
-        List<Double> scores = EmbeddingSimilarityComputer.computeSimilarities(S2RDescription, gobackPhrases);
-        if (Collections.max(scores) > 0.7) {
-            AppStep appStep;
-            appStep = new AppStep(DeviceActions.BACK, null, app.getPackageName());
-            appStep.setScreenshotFile(null); //FIXME: change the screenshot file
-            appStep.setCurrentState(currentState);
-
-            matchedAppSteps.add(new ImmutablePair<>(appStep, Collections.max(scores)));
-
-            return matchedAppSteps;
-
-        }
+//        List<String> gobackPhrases = new ArrayList<>(Arrays.asList("go back", "go back to previous screen", "click the back button",
+//                "tap the back button"));
+//
+//        List<Double> scores = EmbeddingSimilarityComputer.computeSimilarities(S2RDescription, gobackPhrases);
+//        if (Collections.max(scores) > 0.7) {
+//            AppStep appStep;
+//            appStep = new AppStep(DeviceActions.BACK, null, app.getPackageName());
+//            appStep.setScreenshotFile(null); //FIXME: change the screenshot file
+//            appStep.setCurrentState(currentState);
+//
+//            matchedAppSteps.add(new ImmutablePair<>(appStep, Collections.max(scores)));
+//
+//            return matchedAppSteps;
+//
+//        }
 
 
 
@@ -170,12 +171,12 @@ class NewStepResolver {
 
         //list of all futures
 
-        List<CompletableFuture<ImmutablePair<AppStep, Double>>> futures = new ArrayList<>();
+        List<CompletableFuture<List<Triplet<AppStep, String, Double>>>> futures = new ArrayList<>();
         for (ImmutablePair<AppStep, Integer> candidateEntry : candidateSteps) {
             futures.add(CompletableFuture.supplyAsync(() ->
             {
                 try {
-                    return processCandidateTransition(S2RDescription, candidateEntry);
+                    return processCandidateTransition(allS2RSentences, candidateEntry);
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new CompletionException(e);
@@ -194,10 +195,10 @@ class NewStepResolver {
             //--------------------------------------------
 
             //aggregate results
-            for (CompletableFuture<ImmutablePair<AppStep, Double>> future : futures) {
-                ImmutablePair<AppStep, Double> match = future.get();
+            for (CompletableFuture<List<Triplet<AppStep, String, Double>>> future : futures) {
+                List<Triplet<AppStep, String, Double>> match = future.get();
                 if (match != null) {
-                    matchedAppSteps.add(match);
+                    matchedAppSteps.addAll(match);
                 }
             }
         }
@@ -213,7 +214,7 @@ class NewStepResolver {
 
 
         // rank the steps
-        matchedAppSteps.sort((a, b) -> b.right.compareTo(a.right));
+        matchedAppSteps.sort((a, b) -> b.getValue2().compareTo(a.getValue2()));
         if( matchedAppSteps.size() > 5){
             return matchedAppSteps.stream().limit(5).collect(Collectors.toList());
         }
@@ -222,36 +223,44 @@ class NewStepResolver {
 
     }
 
-    private ImmutablePair<AppStep, Double> processCandidateTransition(String S2RDescription,  ImmutablePair<AppStep,Integer> candidateEntry) throws Exception {
+    private List<Triplet<AppStep, String, Double>> processCandidateTransition(LinkedList<String> allS2RSentences,  ImmutablePair<AppStep,Integer> candidateEntry) throws Exception {
 
 
         AppStep step = candidateEntry.getLeft();
+        List<Triplet<AppStep, String, Double>> matchedSteps = new ArrayList<>();
 
         if (step.getPhrases() != null && !step.getPhrases().isEmpty()) {
             List<String> phrases = step.getPhrases();
+            Set<String> set = new HashSet<>();
 
 
-            List<Double> scores = EmbeddingSimilarityComputer.computeSimilarities(S2RDescription, phrases);
 
-            if (step.getTransition() != null) {
-                log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
-                        "Checking candidate step " + step.getTransition().getId() + "\n" +
-                        "Checking candidate step phrases " + phrases.toString() + "\n" +
-                        "Checking matched scores " + scores.toString());
+            for (String S2RDescription : allS2RSentences) {
+                List<Double> scores = EmbeddingSimilarityComputer.computeSimilarities(S2RDescription, phrases);
+//                if (step.getTransition() != null) {
+//                    log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
+//                            "Checking candidate step " + step.getTransition().getId() + "\n" +
+//                            "Checking candidate step phrases " + phrases.toString() + "\n" +
+//                            "Checking matched scores " + scores.toString());
+//                }
+                if (Collections.max(scores) > 0.4) {
+                    log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
+                            "Checking candidate step " + step.getTransition().getId() + "\n" +
+                            "Checking candidate step phrases " + phrases.toString() + "\n" +
+                            "Checking matched scores " + scores.toString() + "\n" +
+                            "Checking matchedS2RDescription " + S2RDescription);
+
+                    matchedSteps.add(new Triplet<>(step, S2RDescription, Collections.max(scores) / (candidateEntry.getRight() + 1)));
+                    return matchedSteps;
+
+                }
             }
+            return null;
 
-            if (Collections.max(scores) > 0.6) {
-
-
-                return new ImmutablePair<>(step, Collections.max(scores) / (candidateEntry.getRight() + 1));
-
-            } else {
-
-                return null;
-            }
-        }else{
+        } else {
             return null;
         }
     }
+
 
 }

@@ -7,9 +7,9 @@ ID;GitHub Issue;user or dev;failure type;Buggy Application State;Sequece Step;Re
 21;https://github.com/netmackan/ATimeTracker/issues/121;USER;navigation;-697343002;12;;;;XML issue
 44;https://github.com/federicoiosue/Omni-Notes/issues/634;USER;output;-2142231540;22;21;;;
 53;https://github.com/gsantner/markor/issues/1020;USER;cosmetic;-1236146120;19;;;;
-71;https://github.com/Neamar/KISS/issues/1481;USER;output;(-106012129, 965936953, 471498532);10;;;;Home screen bug
+71;https://github.com/Neamar/KISS/issues/1481;USER;output;(-106012129/ 965936953/471498532);10;;;;Home screen bug
 117;https://github.com/openfoodfacts/openfoodfacts-androidapp/issues/2087;USER;cosmetic;2132718311;11;;;;
-128;https://github.com/andOTP/andOTP/issues/567;USER;output;(1237792366, 310762316);28;;;;
+128;https://github.com/andOTP/andOTP/issues/567;USER;output;(1237792366/310762316);28;;;;
 129;https://github.com/andOTP/andOTP/issues/500;USER;crash;1336926763;52;;;;
 130;https://github.com/andOTP/andOTP/issues/486;USER;cosmetic;-29424041;15;;;there can be more final app states;Nested class issue error
 135;https://github.com/commons-app/apps-android-commons/issues/2088;USER;navigation;-1904355051;15;;;;
@@ -18,7 +18,7 @@ ID;GitHub Issue;user or dev;failure type;Buggy Application State;Sequece Step;Re
 206;https://github.com/codinguser/gnucash-android/issues/615;USER;cosmetic;-6302601;15;;;;nested class issue
 209;https://github.com/codinguser/gnucash-android/issues/689;USER;navigation;957754428;53;;;not the correct state. But this one is closely related.;
 256;https://github.com/codinguser/gnucash-android/issues/654;USER;crash;964742698;19;;;;
-1066;https://github.com/mozilla-mobile/focus-android/issues/3152;DEV;output;(1770584443, 23795554);5;;;;XML issue
+1066;https://github.com/mozilla-mobile/focus-android/issues/3152;DEV;output;(1770584443/23795554);5;;;;XML issue
 1067;https://github.com/mozilla-mobile/focus-android/issues/3304;DEV;cosmetic;1819986140;10;;;;XML issue
 1073;https://github.com/mozilla-mobile/focus-android/issues/2879;DEV;navigation;170813981;9;;;;
 1096;https://github.com/inaturalist/iNaturalistAndroid/issues/722;DEV;crash;411379245;14;;1437969854;;

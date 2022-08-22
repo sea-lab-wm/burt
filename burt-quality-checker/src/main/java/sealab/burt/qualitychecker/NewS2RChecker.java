@@ -3,6 +3,7 @@ package sealab.burt.qualitychecker;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.javatuples.Triplet;
 import sealab.burt.BurtConfigPaths;
 
 import sealab.burt.qualitychecker.graph.*;
@@ -48,12 +49,12 @@ class NewS2RChecker {
     }
 
 
-    public QualityFeedback checkS2R(String S2RDescription) throws Exception {
-        return checkS2R(S2RDescription, null);
+    public QualityFeedback checkS2R(LinkedList<String> allS2RSentences) throws Exception {
+        return checkS2R(allS2RSentences, null);
     }
 
 
-    public QualityFeedback checkS2R(String S2RDescription, Integer currentStateId) throws Exception {
+    public QualityFeedback checkS2R(LinkedList<String> allS2RSentences, Integer currentStateId) throws Exception {
 
         if (this.currentState == null)
             this.currentState = GraphState.START_STATE;
@@ -67,7 +68,7 @@ class NewS2RChecker {
 
         QualityFeedback qualityFeedback = new QualityFeedback();
 
-        resolveS2R(S2RDescription, currentState, qualityFeedback);
+        resolveS2R(allS2RSentences, currentState, qualityFeedback);
 
 
         return qualityFeedback;
@@ -75,11 +76,12 @@ class NewS2RChecker {
 
 
 
-    private void resolveS2R(String S2RDescription, GraphState currentState, QualityFeedback s2rQA) throws Exception {
+    private void resolveS2R(LinkedList<String> allS2RSentences, GraphState currentState, QualityFeedback s2rQA) throws Exception {
 
 
         // First try to match with a Step in the graph
-        List<ImmutablePair<AppStep, Double>> result = resolver.resolveActionInGraphConcurrent(S2RDescription, executionGraph, currentState);
+        // result is the returned matched appsteps
+        List<Triplet<AppStep, String, Double>> result = resolver.resolveActionInGraphConcurrent(allS2RSentences, executionGraph, currentState);
 
         if (result == null || result.isEmpty()){
             s2rQA.addQualityAssessment(new S2RQualityAssessment(LOW_Q_VOCAB_MISMATCH));
@@ -88,14 +90,14 @@ class NewS2RChecker {
         else
             {
             if (result.size() == 1){
-                AppStep step = result.get(0).getLeft();
+                AppStep step = result.get(0).getValue0();
                 S2RQualityAssessment qualityAssessment = new S2RQualityAssessment(HIGH_QUALITY);
                 qualityAssessment.addMatchedStep(step);
                 s2rQA.addQualityAssessment(qualityAssessment);
 
             }else {
                 S2RQualityAssessment qualityAssessment = new S2RQualityAssessment(LOW_Q_AMBIGUOUS);
-                result.forEach(s -> qualityAssessment.addMatchedStep(s.getLeft()));
+                result.forEach(s -> qualityAssessment.addMatchedStep(s.getValue0()));
                 s2rQA.addQualityAssessment(qualityAssessment);
 
             }

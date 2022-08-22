@@ -1,9 +1,6 @@
 package sealab.burt.qualitychecker;
 
-import commonj.sdo.DataObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.javatuples.Triplet;
@@ -13,8 +10,11 @@ import org.junit.platform.commons.util.StringUtils;
 
 import com.opencsv.CSVWriter;
 
+import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
+import sealab.burt.qualitychecker.s2rquality.S2RQualityAssessment;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
 import seers.appcore.utils.JavaUtils;
 import seers.appcore.xml.XMLHelper;
@@ -28,7 +28,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import static java.util.Map.entry;
+
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Slf4j
@@ -65,7 +65,7 @@ class QualityCheckerTestBugReports {
         HashMap<String, List<String>> mapBugToState = new HashMap<>();
         try {
 
-            BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(groundTruth)));//换成你的文件名
+            BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(groundTruth)));
             reader.readLine();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -74,10 +74,10 @@ class QualityCheckerTestBugReports {
                 String states = item[4];
                 if (states.contains("/")){
 
-                    states = states.substring( 1, states.length() - 1);
-                    List<String> bugList = List.of(states.split("/"));
+                    String clean_states = states.substring( 1, states.length() - 1);
+                    List<String> stateList = List.of(clean_states.split("/"));
 
-                    mapBugToState.put(bugId, bugList);
+                    mapBugToState.put(bugId, stateList);
                 }else{
                     List<String> bugList = new ArrayList<>();
                     bugList.add(states);
@@ -89,28 +89,50 @@ class QualityCheckerTestBugReports {
         }
 
         Set<Triplet<String, String, String>> ALL_SYSTEMS = JavaUtils.getSet(
-    	  		new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"), new Triplet<>("8", "trickytripper", "1.6.0"),
-    	  		new Triplet<>("10","files", "1.0.0-beta.11"), new Triplet<>("18","calendula", "2.5.7"),
-    	  		new Triplet<>("19","streetcomplete", "5.2"), new Triplet<>("21","atimetracker", "0.51.1"),
-    	  		new Triplet<>("44","omninotes", "5.5.2"), new Triplet<>("53","markor", "2.3.1"),
-    	  		new Triplet<>("71","kiss", "3.13.5"), new Triplet<>("117","openfoodfacts", "2.9.8"),
-    	  		new Triplet<>("128","andotp", "0.7.1.1-dev"), new Triplet<>("129","andotp", "0.7.0-dev"),
-    	  		new Triplet<>("130","andotp", "0.6.3.1-dev"), new Triplet<>("135","commons", "2.9.0-debug"),
-    	  		new Triplet<>("191","anuto", "0.2-1"), new Triplet<>("201","inaturalist", "1.5.1"),
-    	  		new Triplet<>("206","gnucash", "2.1.3"), new Triplet<>("209","gnucash", "2.2.0"),
-    	  		new Triplet<>("256","gnucash", "2.1.4"), new Triplet<>("1066","focus", "7.0"),
-    	  		new Triplet<>("1067","focus", "7.0"), new Triplet<>("1073","focus", "5.2"),
-    	  		new Triplet<>("1096","inaturalist", "1.13.9"), new Triplet<>("1145","gpstest", "3.8.1"),
-    	  		new Triplet<>("1146","gpstest", "3.8.0"), new Triplet<>("1147","gpstest", "3.0.0"),
-    	  		new Triplet<>("1149","gpstest", "3.2.11"), new Triplet<>("1151","gpstest", "3.0.1"),
-    	  		new Triplet<>("1152","gpstest", "3.0.2"), new Triplet<>("1202","createpdf", "6.6.0"),
-    	  		new Triplet<>("1205","createpdf", "8.5.7"), new Triplet<>("1207","andotp", "0.4.0.1"),
-    	  		new Triplet<>("1214","andotp", "0.7.1.1"), new Triplet<>("1215","andotp", "0.7.1.1"),
-    	  		new Triplet<>("1223","gnucash", "2.2.0"), new Triplet<>("1224","gnucash", "2.1.3"),
-    	  		new Triplet<>("1226","gnucash", "2.1.4"), new Triplet<>("1299","fieldbook", "4.3.3"),
-    	  		new Triplet<>("1399","phimpme", "1.4.0"), new Triplet<>("1406","phimpme", "1.4.0"),
-    	  		new Triplet<>("1430","fastnfitness", "0.19.0.1"), new Triplet<>("1441","anglerslog", "1.2.5"),
-    	  		new Triplet<>("1445","anglerslog", "1.3.1"), new Triplet<>("1481","hex", "0.1.0"),
+    	  		new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"),
+    	  		new Triplet<>("8", "trickytripper", "1.6.0"),
+    	  		new Triplet<>("10","files", "1.0.0-beta.11"),
+              new Triplet<>("18","calendula", "2.5.7"),
+    	  		new Triplet<>("19","streetcomplete", "5.2"),
+    	  		new Triplet<>("21","atimetracker", "0.51.1"),
+    	  		new Triplet<>("44","omninotes", "5.5.2"),
+    	  		new Triplet<>("53","markor", "2.3.1"),
+    	  		new Triplet<>("71","kiss", "3.13.5"),
+    	  		new Triplet<>("117","openfoodfacts", "2.9.8"),
+    	  		new Triplet<>("128","andotp", "0.7.1.1-dev"),
+    	  		new Triplet<>("129","andotp", "0.7.0-dev"),
+    	  		new Triplet<>("130","andotp", "0.6.3.1-dev"),
+    	  		new Triplet<>("135","commons", "2.9.0-debug"),
+    	  		new Triplet<>("191","anuto", "0.2-1"),
+    	  		new Triplet<>("201","inaturalist", "1.5.1"),
+    	  		new Triplet<>("206","gnucash", "2.1.3"),
+    	  		new Triplet<>("209","gnucash", "2.2.0"),
+    	  		new Triplet<>("256","gnucash", "2.1.4"),
+    	  		new Triplet<>("1066","focus", "7.0"),
+    	  		new Triplet<>("1067","focus", "7.0"),
+    	  		new Triplet<>("1073","focus", "5.2"),
+    	  		new Triplet<>("1096","inaturalist", "1.13.9"),
+    	  		new Triplet<>("1145","gpstest", "3.8.1"),
+    	  		new Triplet<>("1146","gpstest", "3.8.0"),
+    	  		new Triplet<>("1147","gpstest", "3.0.0"),
+    	  		new Triplet<>("1149","gpstest", "3.2.11"),
+    	  		new Triplet<>("1151","gpstest", "3.0.1"),
+    	  		new Triplet<>("1152","gpstest", "3.0.2"),
+    	  		new Triplet<>("1202","createpdf", "6.6.0"),
+    	  		new Triplet<>("1205","createpdf", "8.5.7"),
+    	  		new Triplet<>("1207","andotp", "0.4.0.1"),
+    	  		new Triplet<>("1214","andotp", "0.7.1.1"),
+    	  		new Triplet<>("1215","andotp", "0.7.1.1"),
+    	  		new Triplet<>("1223","gnucash", "2.2.0"),
+    	  		new Triplet<>("1224","gnucash", "2.1.3"),
+    	  		new Triplet<>("1226","gnucash", "2.1.4"),
+    	  		new Triplet<>("1299","fieldbook", "4.3.3"),
+    	  		new Triplet<>("1399","phimpme", "1.4.0"),
+    	  		new Triplet<>("1406","phimpme", "1.4.0"),
+    	  		new Triplet<>("1430","fastnfitness", "0.19.0.1"),
+    	  		new Triplet<>("1441","anglerslog", "1.2.5"),
+    	  		new Triplet<>("1445","anglerslog", "1.3.1"),
+    	  		new Triplet<>("1481","hex", "0.1.0"),
     	  		new Triplet<>("1645","trainerapp", "1.0")
     	  );
     	
@@ -126,6 +148,7 @@ class QualityCheckerTestBugReports {
 //        };
         
     	List<String[]> data = new ArrayList<>();
+        List<String[]> dataS2R = new ArrayList<>();
 
         HashMap<String, Integer> matchedStateMap = new HashMap<>();
 
@@ -141,6 +164,8 @@ class QualityCheckerTestBugReports {
             String bugID = app.getValue0();
 
             List<String> matchedStates = mapBugToState.get(bugID);
+            log.debug("bugID: " + bugID);
+
 
             try (Stream<Path> stream = Files.walk(Paths.get(String.valueOf(parsedBugReportsPath),"Bug" + bugID))) {
                 List<Path> scenarioFiles = stream.filter(Files::isRegularFile)
@@ -160,19 +185,81 @@ class QualityCheckerTestBugReports {
                             bugReportFile.toFile());
 
                     LinkedList<String> allS2RSentences = getS2RSentences(bugReport);
+                    QualityFeedback qualityResultS2R = s2RChecker.checkS2R(allS2RSentences);
+                    List<S2RQualityAssessment> assessmentResults = qualityResultS2R.getAssessmentResults();
 
+                    S2RQualityAssessment assessmentResult = assessmentResults.get(0);
+                    if (assessmentResult.getCategory() != S2RQualityCategory.LOW_Q_VOCAB_MISMATCH) {
+
+
+                        List<AppStep> matchedSteps = assessmentResult.getMatchedSteps();
+                        List<Integer> uniqueHashesS2R = new ArrayList<>();
+
+                        for (AppStep step : matchedSteps) {
+                            GraphTransition transition = step.getTransition();
+                            GraphState targetState = transition.getTargetState();
+                            if (matchedStates.contains(targetState.getUniqueHash().toString())) {
+                                if (!matchedStateMap.containsKey(bugID)) {
+                                    matchedStateMap.put(bugID, 1);
+                                }
+                            }
+                            uniqueHashesS2R.add(targetState.getUniqueHash());
+
+                        }
+                        dataS2R.add(new String[] {bugID, appName, String.valueOf(uniqueHashesS2R)});
+                    }
+
+
+
+//                        log.debug("S2R quality results: " + assessmentResults.toString());
+
+
+//                        if (Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED).equals(assessmentResults))
+//                            log.warn(S2RQualityCategory.LOW_Q_NOT_PARSED.toString());
+
+
+
+
+                    /*
                     for (String s2rSentence : allS2RSentences) {
 
                         log.debug("S2R sentence: " + s2rSentence);
 
                         QualityFeedback qualityResult = s2RChecker.checkS2R(s2rSentence);
 
-                        List<S2RQualityCategory> assessmentResults = qualityResult.getAssessmentResults();
-                        log.debug("S2R quality results: " + assessmentResults.toString());
+                        List<S2RQualityAssessment> assessmentResults = qualityResult.getAssessmentResults();
 
-                        if (Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED).equals(assessmentResults))
-                            log.warn(S2RQualityCategory.LOW_Q_NOT_PARSED.toString());
+                        S2RQualityAssessment assessmentResult = assessmentResults.get(0);
+                        if (assessmentResult.getCategory() == S2RQualityCategory.LOW_Q_VOCAB_MISMATCH){
+                            continue;
+                        }
+                        List<AppStep> matchedSteps = assessmentResult.getMatchedSteps();
+                        List<Integer> uniqueHashesS2R = new ArrayList<>();
+
+                        for (AppStep step : matchedSteps) {
+                            GraphTransition transition = step.getTransition();
+                            GraphState targetState = transition.getTargetState();
+                            if (matchedStates.contains(targetState.getUniqueHash().toString())) {
+                                if (!matchedStateMap.containsKey(bugID)) {
+                                    matchedStateMap.put(bugID, 1);
+                                }
+//                                }else{
+//                                    matchedStateMap.put(bugID, matchedStateMap.get(bugID) + 1);
+//                                }
+                            }
+                            uniqueHashesS2R.add(targetState.getUniqueHash());
+
+                        }
+                        dataS2R.add(new String[] {bugID, appName, s2rSentence, String.valueOf(uniqueHashesS2R)});
+
+
+//                        log.debug("S2R quality results: " + assessmentResults.toString());
+
+
+//                        if (Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED).equals(assessmentResults))
+//                            log.warn(S2RQualityCategory.LOW_Q_NOT_PARSED.toString());
                     }
+                     */
 //
 //                    //---------------------------------------
 
@@ -214,6 +301,8 @@ class QualityCheckerTestBugReports {
 
         new File(String.valueOf(resultsPath)).mkdirs();
 //        writeMathcedStates(resultsPath + File.separator + "matched_states.csv", data);
+        writeMathcedStates(resultsPath + File.separator + "matched_states_s2r.csv", dataS2R);
+
         writeMathcedStates(resultsPath + File.separator + "matched_states_stat.csv", matchedStateMapData);
 
     }

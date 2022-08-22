@@ -7,16 +7,12 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
 import sealab.burt.nlparser.euler.actions.nl.ActionType;
 import sealab.burt.nlparser.euler.actions.nl.BugScenario;
 import sealab.burt.nlparser.euler.actions.nl.NLAction;
 import sealab.burt.nlparser.euler.actions.utils.DataReader;
 import sealab.burt.qualitychecker.s2rquality.QualityFeedback;
 import sealab.burt.qualitychecker.s2rquality.S2RQualityCategory;
-import seers.appcore.xml.XMLHelper;
-import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledBugReport;
-import seers.bugrepcompl.entity.shortcodingparse.ShortLabeledDescriptionSentence;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,7 +54,7 @@ class S2RCheckerTestIdealScenarios {
 
         QualityFeedback feedback = checker.checkS2R(s2r);
 
-        log.debug(feedback.getAssessmentResults().toString());
+        log.debug(feedback.getAssessmentCategory().toString());
 
     }
 
@@ -186,7 +182,7 @@ class S2RCheckerTestIdealScenarios {
             log.debug("S2R: " + s2r);
             QualityFeedback qualityResult = checker.checkS2R(s2r);
 
-            List<S2RQualityCategory> assessmentResults = qualityResult.getAssessmentResults();
+            List<S2RQualityCategory> assessmentResults = qualityResult.getAssessmentCategory();
             log.debug(assessmentResults.toString());
             assertNotEquals(Collections.singletonList(S2RQualityCategory.LOW_Q_NOT_PARSED), assessmentResults);
         }
