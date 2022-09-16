@@ -25,4 +25,7 @@ public class BurtConfigPaths {
 
     public static final String matchedRecordFilePath = Paths.get(metricsPath, "matched.csv").toString();
     public static final String recommendationsRecordFilePath = Paths.get(metricsPath, "recommendations.csv").toString();
+
+    public static final String userScreenshotPath = Paths.get("user_screenshots").toString();
+    public static final String fullUserScreenshotPath = Paths.get("..", "data", "user_screenshots").toString();
 }

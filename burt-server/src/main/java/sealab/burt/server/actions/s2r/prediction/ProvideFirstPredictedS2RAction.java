@@ -6,6 +6,7 @@ import sealab.burt.qualitychecker.S2RChecker;
 import sealab.burt.qualitychecker.graph.AppGraph;
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.graph.GraphDataSource;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.qualitychecker.graph.db.DeviceUtils;
 import sealab.burt.server.StateVariable;
@@ -93,6 +94,13 @@ public class ProvideFirstPredictedS2RAction extends ChatBotAction {
         }
 
         obState = (GraphState) obReportElement.getOriginalElement();
+
+        //if OB state is a user screenshot, we don't have data sufficent to predict with
+        if (GraphDataSource.US.equals(obState.getDataSource())) {
+            if (noStepsReportedYet)
+                return getFirstStepMessages(state);
+            return getNextStepMessage(state);
+        }
 
         //-----------------------------------------------
 

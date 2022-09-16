@@ -3,6 +3,7 @@ package sealab.burt.server.actions.ob;
 import lombok.extern.slf4j.Slf4j;
 import sealab.burt.qualitychecker.QualityResult;
 import sealab.burt.qualitychecker.graph.GraphState;
+import sealab.burt.qualitychecker.graph.GraphDataSource;
 import sealab.burt.qualitychecker.graph.GraphTransition;
 import sealab.burt.server.StateVariable;
 import sealab.burt.server.actions.ChatBotAction;
@@ -13,6 +14,10 @@ import sealab.burt.server.output.MetricsRecorder;
 
 import java.util.Collections;
 import java.util.List;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.io.File;
+import java.util.UUID;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.PROVIDE_EB;
@@ -165,13 +170,41 @@ class ConfirmOBScreenSelectedAction extends ChatBotAction {
                 return createChatBotMessages(
                         new ChatBotMessage(messageObj, options));
             }
+        } else if (UPLOAD.equals(message.getMessage())) {
+            startEBChecker(state);
+            this.setNextExpectedIntents(Collections.singletonList(Intent.EB_DESCRIPTION));
+
+            if (this.image != null) {
+                Path folderPath = Paths.get("../data/user_screenshots").toAbsolutePath();
+                Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".png").toAbsolutePath();
+
+                // Creates new file in location where the image is going to be saved
+                File outputFile = new File(imagePath.toString());
+
+                // Copys the file to it's new location                
+                image.transferTo(outputFile);
+
+                // Updates the screenshot path for the step
+                // and saves it to a US (user screenshot) graph state
+                GraphState selectedState = new GraphState();
+                selectedState.setName("UserScreenshot");
+                selectedState.setDataSource(GraphDataSource.US);
+                selectedState.setScreenshotPath(folderPath.relativize(imagePath).toString());
+
+                state.getStateUpdater().updateOBState(state, selectedState);
+            } else {
+                state.getStateUpdater().updateOBState(state, null);
+            }
+
+            return createChatBotMessages("Your photo has been uploaded.",
+                    "Please tell me how the app is <b>supposed to work</b>"
+            );
         } else {
             state.remove(CONFIRM_END_CONVERSATION_NEGATIVE);
             return getDefaultMessage();
         }
 
     }
-
 
     private List<ChatBotMessage> getDefaultMessage() {
         this.nextExpectedIntents = Collections.singletonList(Intent.OB_SCREEN_SELECTED);

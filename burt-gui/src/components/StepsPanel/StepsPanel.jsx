@@ -21,7 +21,8 @@ const StepsPanel = ({
                         actionProvider,
                         sessionId,
                         messagesState,
-                        setState
+                        setState,
+                        setStepsState
                     }) => {
 
     const stepsContainer = useRef(null);
@@ -48,6 +49,8 @@ const StepsPanel = ({
                 messagesState={messagesState}
                 setStateMsgs={setState}
                 sessionId={sessionId}
+                stepsState={stepsState}
+                setStepsState={setStepsState}
             />
             }
         )
@@ -64,7 +67,7 @@ const StepsPanel = ({
         }
         const subLen = lastThreeSteps.length;
         return lastThreeSteps.map((step, index) => {
-            let stepImage = config.serverEndpoint + step.value2;
+            let stepImage = step.value2;
             let stepIndex = numOfSteps - subLen + index + 1;
             return <div key={index} className="screenshot-display">
                 <img className="screenshot" src={stepImage} alt=""/>

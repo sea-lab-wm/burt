@@ -22,9 +22,10 @@ class ApiClient {
      *  answers).
      *
      * messageObj should be an object as used in the chatbot framework
+     * imageObj should be an image file (optional argument)
      * selectedValues should be an array
      */
-    static processUserMessage(messageObj) {
+    static processUserMessage(messageObj, imageObj) {
         const sessionId = SessionManager.getSessionId();
 
         const data = {
@@ -32,7 +33,17 @@ class ApiClient {
             messages: [messageObj]
         }
 
-        return axios.post(config.serverEndpoint + config.processMessageService, data);
+        const formData = new FormData();
+        formData.append("userResponse", new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }));
+
+        // If an image is provided, send it as part of the request
+        if (arguments.length == 2) {
+            formData.append("image", imageObj);
+        }
+
+        return axios.post(config.serverEndpoint + config.processMessageService, formData);
     }
 
     static processStepsHistory() {

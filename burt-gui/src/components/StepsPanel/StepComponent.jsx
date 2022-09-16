@@ -22,6 +22,9 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         borderRadius: '5px',
     },
+    modalButton: {
+        margin: '.2em',
+    },
 }
 Modal.setAppElement('#root');
 
@@ -31,14 +34,16 @@ class StepComponent extends React.Component {
         super(props);
 
         // console.log("Constructor")
-        this.stepImage = this.props.config.serverEndpoint + this.props.step.value2;
         this.stepNumber = this.props.index + 1
+        // For user uploaded file
+        this.fileInput = React.createRef();
 
         this.editableComponentRef = React.createRef();
         this.state = {
             modalIsOpens: Array(this.props.stepsSize).fill(false),
             fullStepDescription: this.props.step.value1,
-            currentStepDescription: this.getCroppedDescription(this.props.step.value1)
+            currentStepDescription: this.getCroppedDescription(this.props.step.value1),
+            stepImage: this.props.step.value2
         }
     }
 
@@ -64,6 +69,10 @@ class StepComponent extends React.Component {
     //--------------------------------
 
     openModal(event) {
+        if (event.target == this.fileInput.current) {
+            // Default behavior is necessary here to open system's file dialog box
+            return
+        }
         window.onbeforeunload = null;
         event.preventDefault();
         this.setIsOpen(this.props.index, true);
@@ -151,6 +160,7 @@ class StepComponent extends React.Component {
                 selectedValues: [this.props.index]
             }]
         }
+
         const responsePromise = axios.post(endPoint, data);
         responsePromise.then(response => {
 
@@ -166,6 +176,67 @@ class StepComponent extends React.Component {
             console.error(`There was an unexpected error: ${error}`);
         })
 
+    }
+
+    updateImage = (imageFile) => {
+        // Get image update endpoint
+        const endPoint = this.props.config.serverEndpoint + this.props.config.updateImageService;
+
+        // Prepare data
+        const sessionId = this.props.sessionId;
+        const data = {
+            sessionId: sessionId,
+            messages: [{
+                message: this.state.fullStepDescription,
+                selectedValues: [this.props.index]
+            }]
+        }
+
+        const formData = new FormData();
+        formData.append("req", new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }));
+        formData.append("image", imageFile);
+
+        // Send and process post request
+        const responsePromise = axios.post(endPoint, formData);
+        responsePromise.then(response => {
+
+            let result = response.data;
+            if (!result) {
+                console.error(`The image was not updated: ` + this.props.index);
+            }
+        }).catch(error => {
+            console.error(`There was an unexpected error: ${error}`);
+        })
+
+    }
+
+    onImageInputButtonClick = () => {
+        // `current` points to the mounted file input element
+        this.fileInput.current.click();
+    };
+
+    onImageInputChange = (event) => {
+        // If a file was provided
+        if (event.target.files[0]) {
+            // Update the image on the server
+            this.updateImage(event.target.files[0]);
+
+            // Update the image in the local state
+            const imageUrl = URL.createObjectURL(event.target.files[0]);
+
+            this.setState({stepImage: imageUrl});
+            
+            // Update the image in the parent components states
+            // Have to recreate the stepState object because it won't trigger the hook unless its updated with a new reference
+            let tempSteps = {};
+            tempSteps.steps = this.props.stepsState.steps;
+            tempSteps.steps[this.props.index].value2 = imageUrl;            
+            this.props.setStepsState(tempSteps)
+
+            this.updateStep(this.state.fullStepDescription);
+        }
     }
 
     //------------------------
@@ -184,7 +255,7 @@ class StepComponent extends React.Component {
                     onFocus={this.onFocusFn}
                     onBlur={this.onBlurFn}
                 />
-                <a href={this.stepImage} title={"See a screenshot of this step"}
+                <a href={this.state.stepImage} title={"See a screenshot of this step"}
                    onClick={event => this.openModal(event)}>
                     <Modal
                         isOpen={this.state.modalIsOpens[this.props.index]}
@@ -197,12 +268,15 @@ class StepComponent extends React.Component {
                         <div className="popup-display">
                             <div className="popup-title"
                                  title={this.state.fullStepDescription}>{this.state.fullStepDescription}</div>
-                            <img height="533px" width="300px" src={this.stepImage}
+                            <img height="533px" width="300px" src={this.state.stepImage}
                                  alt={this.state.fullStepDescription}/>
-                            <button onClick={event => this.closeModal(event)}>close</button>
+                            <div>
+                                <button onClick={this.onImageInputButtonClick} style={customStyles.modalButton}>Upload Image</button>
+                                <input type='file' id='imageFileInp' ref={this.fileInput}  onChange={this.onImageInputChange} accept="image/*" style={{display: 'none'}}/>
+                                <button onClick={event => this.closeModal(event)} style={customStyles.modalButton}>Close</button>
+                            </div>
                         </div>
                     </Modal>
-
 
                     <span className="label label-left label-info">
                     <ShowScreenshotStepIcon1 className="bi bi-file-earmark-image"/>
