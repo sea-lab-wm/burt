@@ -47,8 +47,6 @@ class GenerateBugReportAction extends ChatBotAction {
 
         return createChatBotMessages("Okay, great!",
 //                "At this point, please <b>stop the stopwatch</b> and provide the <b>elapsed time</b> in the survey",
-                "The <b>bug report ID</b> that you need to provide in the survey is:",
-                String.format("<b>%s</b>", reportName),
                 chatBotMessage,
                 "Thank you for using BURT"
         );
