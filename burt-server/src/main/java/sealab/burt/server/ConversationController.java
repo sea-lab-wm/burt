@@ -22,7 +22,7 @@ import sealab.burt.server.statecheckers.DefaultActionStateChecker;
 import sealab.burt.server.statecheckers.StateChecker;
 import sealab.burt.server.statecheckers.eb.EBDescriptionStateChecker;
 import sealab.burt.server.statecheckers.ob.OBDescriptionStateChecker;
-import sealab.burt.server.statecheckers.participant.ParticipantIdStateChecker;
+import sealab.burt.server.statecheckers.participant.ParticipantNameStateChecker;
 import sealab.burt.server.statecheckers.s2r.*;
 import sealab.burt.server.statecheckers.yesno.AffirmativeAnswerStateChecker;
 import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
@@ -31,7 +31,6 @@ import seers.textanalyzer.TextProcessor;
 import java.io.File;
 import java.nio.file.Paths;
 import java.nio.file.Path;
-import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,7 +53,8 @@ class ConversationController {
 
     public final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
 //        put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
-        put(PARTICIPANT_PROVIDED, new ParticipantIdStateChecker());
+        put(PARTICIPANT_PROVIDED, new ParticipantNameStateChecker());
+
         //--------------------
         put(APP_SELECTED, new DefaultActionStateChecker(CONFIRM_APP));
         put(AFFIRMATIVE_ANSWER, new AffirmativeAnswerStateChecker());

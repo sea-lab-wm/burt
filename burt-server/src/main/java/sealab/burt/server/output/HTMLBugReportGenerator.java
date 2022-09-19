@@ -44,7 +44,13 @@ class HTMLBugReportGenerator {
         List<BugReportElement> EBList = (List<BugReportElement>) state.get(REPORT_EB);
         List<BugReportElement> S2RList = (List<BugReportElement>) state.get(REPORT_S2R);
 
+        content.append("<div class=\"row-fluid\" id=\"repoter\">");
+
+
         content.append("<div class=\"row-fluid\" id=\"obeb\">");
+
+        Element reporterNameRow = doc.getElementById("repoter");
+        reporterNameRow.append("<h2> Reporter : "+ state.get(PARTICIPANT_NAME) +"</h2>");
         Element obebRow = doc.getElementById("obeb");
         //OB
         if (OBList != null) {
