@@ -1,9 +1,12 @@
 #!/bin/bash
 set -x #echo on
 
+export JAVA_HOME=`/usr/libexec/java_home -v 12.0.2`
+
 export CUR_DIR=`pwd`
 # export REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
-export REPOSITORIES_PATH=/Users/yangsong/csci-435-burt/
+#export REPOSITORIES_PATH=/Users/yangsong/csci-435-burt/
+export REPOSITORIES_PATH=/Users/ojcchar/repositories/Projects
 
 #
 #

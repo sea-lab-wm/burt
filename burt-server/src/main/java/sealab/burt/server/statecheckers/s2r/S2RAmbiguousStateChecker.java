@@ -17,7 +17,7 @@ import sealab.burt.server.conversation.entity.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;;
+import java.util.stream.Collectors;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.msgparsing.Intent.S2R_DESCRIPTION;
