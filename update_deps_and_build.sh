@@ -1,9 +1,12 @@
 #!/bin/bash
 set -x #echo on
 
+export JAVA_HOME=`/usr/libexec/java_home -v 12.0.2`
+
 export CUR_DIR=`pwd`
 # export REPOSITORIES_PATH=C:\Users\ojcch\Documents\Repositories\projects
-export REPOSITORIES_PATH=/Users/yangsong/csci-435-burt/
+#export REPOSITORIES_PATH=/Users/yangsong/csci-435-burt/
+export REPOSITORIES_PATH=/Users/ojcchar/repositories/Projects
 
 #
 #
@@ -33,7 +36,7 @@ cd $BUG_REPORT_COMPLETION_REPO_PATH/code/bug_report_parser/bugparser && ./gradle
 
 cd $CUR_DIR
 
-cd ../burt-nlparser && mvn clean install -DskipTests
+cd burt-nlparser && mvn clean install -DskipTests
 cd ../trace-replayer/lib && ./0_install-maven-deps.sh
 cd ../../trace-replayer && mvn clean install -DskipTests
 cd ../crashscope && mvn clean install -DskipTests
@@ -41,4 +44,3 @@ cd ../burt-quality-checker && mvn clean install -DskipTests
 cd $CUR_DIR
 
 
-./mvnw spring-boot:run
