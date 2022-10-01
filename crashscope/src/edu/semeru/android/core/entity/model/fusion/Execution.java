@@ -29,6 +29,7 @@
 package edu.semeru.android.core.entity.model.fusion;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -101,6 +102,15 @@ public class Execution implements Serializable {
     private String mainActivity;
     @Column(name = "ANDROID_VERSION")
     private String androidVersion;
+    private Path executionFile;
+
+    public Path getExecutionFile() {
+        return executionFile;
+    }
+
+    public void setExecutionFile(Path executionFile) {
+        this.executionFile = executionFile;
+    }
 
     @OneToMany(mappedBy = "execution", cascade = CascadeType.ALL)
     @OrderBy("sequenceStep ASC")

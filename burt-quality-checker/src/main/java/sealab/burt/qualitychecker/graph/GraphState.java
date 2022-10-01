@@ -3,6 +3,7 @@ package sealab.burt.qualitychecker.graph;
 import edu.semeru.android.core.entity.model.fusion.Screen;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -26,6 +27,24 @@ public class GraphState implements Serializable {
     private String unformattedXml;
     private Screen screen;
     private String screenshotPath;
+    private Path executionPath;
+    private Path xmlPath;
+
+    public Path getXmlPath() {
+        return xmlPath;
+    }
+
+    public void setXmlPath(Path xmlPath) {
+        this.xmlPath = xmlPath;
+    }
+
+    public Path getExecutionPath() {
+        return executionPath;
+    }
+
+    public void setExecutionPath(Path executionPath) {
+        this.executionPath = executionPath;
+    }
 
     private GraphDataSource dataSource;
 

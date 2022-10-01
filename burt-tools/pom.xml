@@ -15,6 +15,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+		<dependency>
 			<groupId>sealab.burt</groupId>
 			<artifactId>burt-quality-checker</artifactId>
 			<version>0.0.1</version>

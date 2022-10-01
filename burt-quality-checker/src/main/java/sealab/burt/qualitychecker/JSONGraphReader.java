@@ -24,7 +24,6 @@ import sealab.burt.qualitychecker.graph.db.GraphGenerator;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -32,6 +31,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -43,9 +43,14 @@ public @Slf4j class JSONGraphReader {
 	private static final ConcurrentHashMap<String, AppGraphInfo> graphs = new ConcurrentHashMap<>();
 
 	public static AppGraphInfo getGraph(String appName, String appVersion, String bugID) throws Exception {
+		return getGraph(appName, appVersion, bugID, GraphDataSource.BOTH);
+	}
+
+	public static AppGraphInfo getGraph(String appName, String appVersion, String bugID, GraphDataSource dataSource) 
+	throws Exception {
 		AppGraphInfo graph = graphs.get(getKey(appName, appVersion));
 		if (graph == null) {
-			readGraph(appName, appVersion, bugID);
+			readGraph(appName, appVersion, bugID, dataSource);
 			graph = graphs.get(getKey(appName, appVersion));
 		}
 		return graph;
@@ -71,7 +76,10 @@ public @Slf4j class JSONGraphReader {
 		return packages.get(0);
 	}
 
-	public static void readGraph(String appName, String appVersion, String bugID) throws Exception {
+	public static void readGraph(String appName, String appVersion, String bugID, GraphDataSource dataSource) throws Exception {
+
+		if(!Arrays.asList(GraphDataSource.CS, GraphDataSource.BOTH).contains(dataSource))
+			throw new RuntimeException("The CrashScope data is required to generate the graph");
 
 		String packageName = getFirstPackageName(appName, bugID);
 		// String dataLocation = Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName, appVersion)).toString();
@@ -84,32 +92,36 @@ public @Slf4j class JSONGraphReader {
 		List<Execution> crashScopeExecutions = readExecutions(dataLocation);
 		GraphGenerator generator = new GraphGenerator();
 
+		AppGraphInfo finalGraph = null;
 		// check if crashScopeExecutions is empty
 		if (!crashScopeExecutions.isEmpty()) {
 			App app = crashScopeExecutions.get(0).getApp();
-			generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
+			finalGraph = generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
 		}
 
 		/// -------------------------------------------------
 
-		// 1. read execution files for TraceReplayer
-		String traceReplayerFolder = BurtConfigPaths.traceReplayerDataPath;
+		//check if we need to process TraceReplayer data
+		if(Arrays.asList(GraphDataSource.TR, GraphDataSource.BOTH).contains(dataSource)){
 
-//		String traceReplayerDataLocation = Paths.get(traceReplayerFolder + "/TR2", String.join("-", packageName, appVersion))
-//				.toString();
-		
-		String traceReplayerDataLocation = Paths.get(traceReplayerFolder, "TR" + bugID).toString();
-		
-		List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
+			// 1. read execution files for TraceReplayer
+			String traceReplayerFolder = BurtConfigPaths.traceReplayerDataPath;
+			
+			String traceReplayerDataLocation = Paths.get(traceReplayerFolder, "TR" + bugID).toString();
+			
+			List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
 
-		// 2. update the graph (update the weights, and create new GraphStates and
-		// Transitions if needed)
+			// 2. update the graph (update the weights, and create new GraphStates and
+			// Transitions if needed)
 
-		AppGraphInfo finalGraph = null;
-		if (!traceReplayerExecutions.isEmpty()) {
-			App app = traceReplayerExecutions.get(0).getApp();
-			finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+			if (!traceReplayerExecutions.isEmpty()) {
+				App app = traceReplayerExecutions.get(0).getApp();
+				finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
+			}
+
 		}
+
+		//--------------------
 
 		if (finalGraph == null || finalGraph.getGraph().vertexSet().isEmpty())
 			throw new RuntimeException("The graph is empty");
@@ -191,8 +203,10 @@ public @Slf4j class JSONGraphReader {
 
 				// De-serialize the Execution object.
 				Execution execution = gson.fromJson(reader, Execution.class);
+				
 				//Execution execution = gson.fromJson(new FileReader(executionFile.toString()), Execution.class);
 				execution.setId((long) i);
+				execution.setExecutionFile(executionFile);
 				if(execution.getExecutionType()==null) {
 					if(execution.getBottomUp()) {
 						execution.setExecutionType("Expected-Bottom_Up-");
@@ -224,13 +238,12 @@ public @Slf4j class JSONGraphReader {
 //									execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
 //									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
 //							.toString();
-					String xmlPath = Path
+					Path xmlPath = Path
 							.of(dataLocation, "Augmented-XML", String.join("-", execution.getApp().getPackageName(),
 									execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
-									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
-							.toString();
+									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml");
 					
-					File xmlFile = new File(xmlPath);
+					File xmlFile = new File(xmlPath.toString());
 					if(!xmlFile.exists()) {
 						continue;
 					}
@@ -240,7 +253,7 @@ public @Slf4j class JSONGraphReader {
 						// the visitNodes
 						// method.
 						UiHierarchyXmlLoader loader = new UiHierarchyXmlLoader();
-						BasicTreeNode tree = loader.parseXml(xmlPath);
+						BasicTreeNode tree = loader.parseXml(xmlPath.toString());
 						StringBuilder builder = new StringBuilder();
 						ArrayList<DynGuiComponentVO> currComps = new ArrayList<>();
 
@@ -253,6 +266,8 @@ public @Slf4j class JSONGraphReader {
 
 						List<DynGuiComponent> guiComponents = convertVOstoGUIComps(currComps, screen, componentId);
 						screen.setDynGuiComponents(guiComponents);
+						screen.setXmlPath(xmlPath);
+
 					} catch (Exception e) {
 						// log.debug(String.format("Error parsing step: %s - %s", executionFile,
 						// xmlPath), e);

@@ -24,6 +24,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayInputStream;
 import java.io.StringWriter;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -158,12 +159,15 @@ class GraphGenerator {
 
         getTransitions().forEach((k, transition) -> {
             GraphState sourceState = transition.getSourceState();
-            String screenshotFile = transition.getStep().getScreenshotFile();
+            AppStep step = transition.getStep();
+            String screenshotFile = step.getScreenshotFile();
 
             if ((sourceState.getScreenshotPath() == null || GraphDataSource.TR.equals(transition.getDataSource()))
                     && screenshotFile != null) {
                 String nonAugmentedScreenshotPath = getNonAugmentedScreenshotPath(screenshotFile);
                 sourceState.setScreenshotPath(nonAugmentedScreenshotPath);
+                sourceState.setExecutionPath(step.getExecutionPath());
+                sourceState.setXmlPath(step.getXmlPath());
 //                if(sourceState.getUniqueHash().equals(1863964359)){
 //                    log.debug(sourceState.getScreenshotPath());
 //                }
@@ -208,10 +212,10 @@ class GraphGenerator {
     }
 
     private List<AppStep> processExecution(Execution execution) throws Exception {
-        return updateGraph(execution.getId(), execution.getSteps(), GraphState.END_STATE);
+        return updateGraph(execution.getId(), execution.getSteps(), GraphState.END_STATE, execution.getExecutionFile());
     }
 
-    private List<AppStep> updateGraph(Long executionId, List<Step> steps, GraphState endState)
+    private List<AppStep> updateGraph(Long executionId, List<Step> steps, GraphState endState, Path executionPath)
             throws Exception {
 
         List<AppStep> appSteps = new ArrayList<>();
@@ -246,6 +250,7 @@ class GraphGenerator {
             final Step step = steps.get(i);
             final Step nextStep = steps.get(i + 1);
             final Long executionId1 = executionId != null ? executionId : step.getExecution().getId();
+            final Path executionPath1 = executionPath != null ? executionPath : step.getExecution().getExecutionFile();
             final int stepAction = step.getAction();
 
             //----------------------------------------
@@ -302,10 +307,10 @@ class GraphGenerator {
             //----------------------------------------
             //add states and transition
 
-            GraphState sourceState = getStepState(step, stepScreens, sourceScreen);
-            GraphState targetState = getStepState(nextStep, stepScreens, tgtScreen);
+            GraphState sourceState = getStepState(step, stepScreens, sourceScreen, executionPath1);
+            GraphState targetState = getStepState(nextStep, stepScreens, tgtScreen, executionPath1);
 
-            addGraphTransition(executionId1, appSteps, sourceState, targetState, step);
+            addGraphTransition(executionId1, appSteps, sourceState, targetState, step, executionPath1, sourceState.getXmlPath());
 
             //----------------------------------------
             //save the first state
@@ -328,6 +333,7 @@ class GraphGenerator {
         Integer stepAction = lastStep.getAction();
         Screen sourceScreen = lastStep.getScreen();
         final Long executionId1 = executionId != null ? executionId : lastStep.getExecution().getId();
+        final Path executionPath1 = executionPath != null ? executionPath : lastStep.getExecution().getExecutionFile();
 
         boolean skipLastStep = false;
         if (endState == null) {
@@ -358,8 +364,8 @@ class GraphGenerator {
         			 GeneralUtils.getEventName(lastStep.getAction())));
         } else {
             states.putIfAbsent(endState.getUniqueHash(), endState);
-            GraphState sourceState = getStepState(lastStep, stepScreens, sourceScreen);
-            addGraphTransition(executionId1, appSteps, sourceState, endState, lastStep);
+            GraphState sourceState = getStepState(lastStep, stepScreens, sourceScreen, executionPath1);
+            addGraphTransition(executionId1, appSteps, sourceState, endState, lastStep, executionPath1, sourceState.getXmlPath());
 
             if (firstCreatedState == null) {
                 firstCreatedState = sourceState;
@@ -379,7 +385,8 @@ class GraphGenerator {
             startAppStep.setSequenceStep(0);
 
             final long executionId2 = executionId != null ? executionId : 0L;
-            addGraphTransition(executionId2, appSteps, sourceState, firstCreatedState, startAppStep);
+            addGraphTransition(executionId2, appSteps, sourceState, firstCreatedState, startAppStep, executionPath1, 
+                            sourceState.getXmlPath());
         }
 
         // ---------------------------------------------------
@@ -388,17 +395,17 @@ class GraphGenerator {
     }
 
     private GraphState getStepState(Step step, HashMap<Long, ImmutablePair<Screen, GraphState>> stepScreens,
-                                    Screen screen) {
+                                    Screen screen, Path executionPath1) {
         final ImmutablePair<Screen, GraphState> screenPair = stepScreens.get(step.getId());
         if (screenPair != null)
             return screenPair.right;
 
-        final GraphState graphState = addGraphState(screen);
+        final GraphState graphState = addGraphState(screen, executionPath1);
         stepScreens.put(step.getId(), new ImmutablePair<>(screen, graphState));
         return graphState;
     }
 
-    private GraphState addGraphState(Screen screen) {
+    private GraphState addGraphState(Screen screen, Path executionPath1) {
         List<DynGuiComponent> screenComponents = screen.getDynGuiComponents();
 
 //        HierarchyNode node = getUniqueState2(screenComponents);
@@ -419,7 +426,7 @@ class GraphGenerator {
             currentState = states.get(hashCode);
         } else {
             // Get the GraphSate node
-            currentState = getGraphState(screen, hashCode);
+            currentState = getGraphState(screen, hashCode, executionPath1);
 
             // System.out.println("S - " + newState.toString() + ": " +
             // builder.toString());
@@ -429,7 +436,7 @@ class GraphGenerator {
     }
 
     private void addGraphTransition(Long executionId, List<AppStep> appSteps, GraphState sourceState,
-                                    GraphState targetState, Step step) throws Exception {
+                                    GraphState targetState, Step step, Path executionPath, Path xmlPath) throws Exception {
 
         // System.out.print("Step #" + executionId + "-" +
         // previousStep.getSequenceStep());
@@ -440,7 +447,7 @@ class GraphGenerator {
         AppGuiComponent component = Transform.getGuiComponent(step.getDynGuiComponent(), null);
 
         // Transform a Step to AppStep
-        List<AppStep> newAppSteps = getAppSteps(executionId, step, component);
+        List<AppStep> newAppSteps = getAppSteps(executionId, step, component, executionPath, xmlPath);
         for (AppStep appStep : newAppSteps) {
 
             appStep.setCurrentState(sourceState);
@@ -520,26 +527,28 @@ class GraphGenerator {
         return transition;
     }
 
-    private List<AppStep> getAppSteps(Long executionId, Step step, AppGuiComponent component) {
+    private List<AppStep> getAppSteps(Long executionId, Step step, AppGuiComponent component, Path executionPath, Path xmlPath) {
         List<AppStep> appSteps = new ArrayList<>();
 
         final int stepAction = step.getAction();
 
         if (DeviceActions.CLICK_TYPE == stepAction) {
 //            appSteps.add(getNewStep(executionId, previousStep, component, DeviceActions.CLICK));
-            appSteps.add(getNewStep(executionId, step, component, DeviceActions.TYPE));
+            appSteps.add(getNewStep(executionId, step, component, DeviceActions.TYPE,executionPath, xmlPath));
         } else {
-            appSteps.add(getNewStep(executionId, step, component, stepAction));
+            appSteps.add(getNewStep(executionId, step, component, stepAction,executionPath, xmlPath));
         }
 
         return appSteps;
     }
 
-    private AppStep getNewStep(Long executionId, Step previousStep, AppGuiComponent component, int stepAction) {
+    private AppStep getNewStep(Long executionId, Step previousStep, AppGuiComponent component, int stepAction, Path executionPath, Path xmlPath) {
         AppStep appStep = new AppStep();
         appStep.setAction(stepAction);
         appStep.setComponent(component);
         appStep.setExecution(executionId);
+        appStep.setExecutionPath(executionPath);
+        appStep.setXmlPath(xmlPath);
         appStep.setSequence(previousStep.getSequenceStep());
         appStep.setText(getStepText(previousStep));
         appStep.setException(previousStep.getExceptions());
@@ -604,7 +613,7 @@ class GraphGenerator {
         return stateName;
     }
 
-    private GraphState getGraphState(Screen screen, int pHashCode) {
+    private GraphState getGraphState(Screen screen, int pHashCode, Path executionPath1) {
         List<DynGuiComponent> components = screen.getDynGuiComponents();
 
         DynGuiComponent root = findRootComponent(components);
@@ -621,6 +630,8 @@ class GraphGenerator {
         currentState.setUniqueHash(hashCode);
         currentState.setName(stateName);
         currentState.setScreen(screen);
+        currentState.setExecutionPath(executionPath1);
+        currentState.setXmlPath(screen.getXmlPath());
 
         // Transform components
         final List<AppGuiComponent> guiComponents = Transform.getGuiComponents(components);

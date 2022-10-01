@@ -29,6 +29,7 @@
 package edu.semeru.android.core.entity.model.fusion;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,12 +82,22 @@ public class Screen implements Serializable, Comparable<Screen> {
     @OneToOne
     @JoinColumn(name = "ID_STEP")
     private transient Step step;
+
+    private Path xmlPath;
     
     // bi-directional many-to-one association to Screenshot
     // @OneToOne(mappedBy = "step")
     // private Screenshot screenshot;
 
 	// bi-directional many-to-one association to Screenshot
+
+    public Path getXmlPath() {
+        return xmlPath;
+    }
+
+    public void setXmlPath(Path xmlPath) {
+        this.xmlPath = xmlPath;
+    }
 
     public Screen() {
     }

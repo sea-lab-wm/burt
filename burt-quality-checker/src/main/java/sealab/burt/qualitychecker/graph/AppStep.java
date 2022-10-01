@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import sealab.burt.nlparser.euler.actions.utils.GeneralUtils;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class AppStep implements Serializable {
     private Integer action;
     private Integer sequence;
     private Long execution;
+    private Path executionPath;
+    private Path xmlPath;
+
     private AppGuiComponent component;
     @Expose(serialize = false)
     private GraphTransition transition;
@@ -55,6 +59,21 @@ public class AppStep implements Serializable {
 //        this.text = text;
 //    }
 
+    public Path getXmlPath() {
+        return xmlPath;
+    }
+
+    public void setXmlPath(Path xmlPath) {
+        this.xmlPath = xmlPath;
+    }
+
+    public Path getExecutionPath() {
+        return executionPath;
+    }
+
+    public void setExecutionPath(Path executionPath) {
+        this.executionPath = executionPath;
+    }
 
     /**
      * @return the id
