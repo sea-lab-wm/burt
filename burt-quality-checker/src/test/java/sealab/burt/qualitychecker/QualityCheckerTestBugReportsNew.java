@@ -1,6 +1,5 @@
 package sealab.burt.qualitychecker;
 
-import com.opencsv.CSVWriter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -8,6 +7,9 @@ import org.javatuples.Triplet;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
+
+import com.opencsv.CSVWriter;
+
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
@@ -27,16 +29,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class QualityCheckerTestBugReports {
-}
-@Slf4j
-class QualityCheckerTestBugReportsOriginalBurt {
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-    //    private final Path parsedBugReportsPath = Path.of("..", "data",
+@Slf4j
+class QualityCheckerTestBugReportsNew {
+
+//    private final Path parsedBugReportsPath = Path.of("..", "data",
 //            "euler_data", "4_s2r_in_bug_reports_oracle");
 //    private final Path parsedBugReportsPath = Path.of("../..", "data",
 //            "BugReportsS2R", "Bug2");
-    private final Path parsedBugReportsPath =  Path.of("..", "data", "MarkedBugReports");
+	private final Path parsedBugReportsPath =  Path.of("..", "data", "MarkedBugReports");
     private final Path resultsPath = Path.of("..", "data", "MatchedStates");
 
 
@@ -87,44 +89,44 @@ class QualityCheckerTestBugReportsOriginalBurt {
         }
 
         Set<Triplet<String, String, String>> ALL_SYSTEMS = JavaUtils.getSet(
-                new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"),
-                new Triplet<>("8", "trickytripper", "1.6.0"),
-                new Triplet<>("10","files", "1.0.0-beta.11"),
+    	  		new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"),
+    	  		new Triplet<>("8", "trickytripper", "1.6.0"),
+    	  		new Triplet<>("10","files", "1.0.0-beta.11"),
                 new Triplet<>("18","calendula", "2.5.7"),
-                new Triplet<>("19","streetcomplete", "5.2"),
-                new Triplet<>("44","omninotes", "5.5.2"),
-                new Triplet<>("53","markor", "2.3.1"),
-                new Triplet<>("71","kiss", "3.13.5"),
-                new Triplet<>("117","openfoodfacts", "2.9.8"),
-                new Triplet<>("128","andotp", "0.7.1.1-dev"),
-                new Triplet<>("129","andotp", "0.7.0-dev"),
-                new Triplet<>("130","andotp", "0.6.3.1-dev"),
-                new Triplet<>("135","commons", "2.9.0-debug"),
-                new Triplet<>("191","anuto", "0.2-1"),
-                new Triplet<>("201","inaturalist", "1.5.1"),
-                new Triplet<>("206","gnucash", "2.1.3"),
-                new Triplet<>("209","gnucash", "2.2.0"),
-                new Triplet<>("256","gnucash", "2.1.4"),
-                new Triplet<>("1073","focus", "5.2"),
-                new Triplet<>("1096","inaturalist", "1.13.9"),
-                new Triplet<>("1146","gpstest", "3.8.0"),
-                new Triplet<>("1147","gpstest", "3.0.0"),
-                new Triplet<>("1151","gpstest", "3.0.1"),
-                new Triplet<>("1202","createpdf", "6.6.0"),
-                new Triplet<>("1205","createpdf", "8.5.7"),
-                new Triplet<>("1207","andotp", "0.4.0.1"),
-                new Triplet<>("1223","gnucash", "2.2.0"),
-                new Triplet<>("1224","gnucash", "2.1.3"),
-                new Triplet<>("1226","gnucash", "2.1.4"),
-                new Triplet<>("1299","fieldbook", "4.3.3"),
-                new Triplet<>("1399","phimpme", "1.4.0"),
-                new Triplet<>("1406","phimpme", "1.4.0"),
-                new Triplet<>("1430","fastnfitness", "0.19.0.1"),
-                new Triplet<>("1441","anglerslog", "1.2.5"),
-                new Triplet<>("1445","anglerslog", "1.3.1"),
-                new Triplet<>("1481","hex", "0.1.0")
-        );
-
+    	  		new Triplet<>("19","streetcomplete", "5.2"),
+    	  		new Triplet<>("44","omninotes", "5.5.2"),
+    	  		new Triplet<>("53","markor", "2.3.1"),
+    	  		new Triplet<>("71","kiss", "3.13.5"),
+    	  		new Triplet<>("117","openfoodfacts", "2.9.8"),
+    	  		new Triplet<>("128","andotp", "0.7.1.1-dev"),
+    	  		new Triplet<>("129","andotp", "0.7.0-dev"),
+    	  		new Triplet<>("130","andotp", "0.6.3.1-dev"),
+    	  		new Triplet<>("135","commons", "2.9.0-debug"),
+    	  		new Triplet<>("191","anuto", "0.2-1"),
+    	  		new Triplet<>("201","inaturalist", "1.5.1"),
+    	  		new Triplet<>("206","gnucash", "2.1.3"),
+    	  		new Triplet<>("209","gnucash", "2.2.0"),
+    	  		new Triplet<>("256","gnucash", "2.1.4"),
+    	  		new Triplet<>("1073","focus", "5.2"),
+    	  		new Triplet<>("1096","inaturalist", "1.13.9"),
+    	  		new Triplet<>("1146","gpstest", "3.8.0"),
+    	  		new Triplet<>("1147","gpstest", "3.0.0"),
+    	  		new Triplet<>("1151","gpstest", "3.0.1"),
+    	  		new Triplet<>("1202","createpdf", "6.6.0"),
+    	  		new Triplet<>("1205","createpdf", "8.5.7"),
+    	  		new Triplet<>("1207","andotp", "0.4.0.1"),
+    	  		new Triplet<>("1223","gnucash", "2.2.0"),
+    	  		new Triplet<>("1224","gnucash", "2.1.3"),
+    	  		new Triplet<>("1226","gnucash", "2.1.4"),
+    	  		new Triplet<>("1299","fieldbook", "4.3.3"),
+    	  		new Triplet<>("1399","phimpme", "1.4.0"),
+    	  		new Triplet<>("1406","phimpme", "1.4.0"),
+    	  		new Triplet<>("1430","fastnfitness", "0.19.0.1"),
+    	  		new Triplet<>("1441","anglerslog", "1.2.5"),
+    	  		new Triplet<>("1445","anglerslog", "1.3.1"),
+    	  		new Triplet<>("1481","hex", "0.1.0")
+    	  );
+    	
 //        List<Pair<String, String>> apps = new LinkedList<>() {
 //            {
 //                add(new ImmutablePair<>("gnucash-android", "2.1.3"));
@@ -135,8 +137,8 @@ class QualityCheckerTestBugReportsOriginalBurt {
 //            	  add(new ImmutablePair<>("trickytripper", "1.6.0"));
 //            }
 //        };
-
-        List<String[]> data = new ArrayList<>();
+        
+    	List<String[]> data = new ArrayList<>();
         List<String[]> dataS2R = new ArrayList<>();
         dataS2R.add(new String[] {"bugID", "appName","matchedStates", "rankedPredictedStatesS2R"});
         List<String[]> dataOB = new ArrayList<>();
@@ -286,26 +288,26 @@ class QualityCheckerTestBugReportsOriginalBurt {
 //        writeMathcedStates(resultsPath + File.separator + "matched_states_stat.csv", matchedStateMapData);
 
     }
-
+ 
     // https://www.geeksforgeeks.org/writing-a-csv-file-in-java-using-opencsv/
     public static void writeMathcedStates(String filePath, List<String[]> data)
     {
-
+      
         // first create file object for file placed at location
         // specified by filepath
         File file = new File(filePath);
-
+      
         try {
             // create FileWriter object with file as parameter
             FileWriter outputfile = new FileWriter(file);
-
+      
             // create CSVWriter object filewriter object as parameter
             CSVWriter writer = new CSVWriter(outputfile);
-
+      
             // create a List which contains String array
-
+            
             writer.writeAll(data);
-
+      
             // closing writer connection
             writer.close();
         }

@@ -171,7 +171,7 @@ class NewStepResolver {
 
         //list of all futures
 
-        List<CompletableFuture<List<Triplet<AppStep, String, Double>>>> futures = new ArrayList<>();
+        List<CompletableFuture<Triplet<AppStep, String, Double>>> futures = new ArrayList<>();
         for (ImmutablePair<AppStep, Integer> candidateEntry : candidateSteps) {
             futures.add(CompletableFuture.supplyAsync(() ->
             {
@@ -195,10 +195,10 @@ class NewStepResolver {
             //--------------------------------------------
 
             //aggregate results
-            for (CompletableFuture<List<Triplet<AppStep, String, Double>>> future : futures) {
-                List<Triplet<AppStep, String, Double>> match = future.get();
+            for (CompletableFuture<Triplet<AppStep, String, Double>> future : futures) {
+                Triplet<AppStep, String, Double> match = future.get();
                 if (match != null) {
-                    matchedAppSteps.addAll(match);
+                    matchedAppSteps.add(match);
                 }
             }
         }
@@ -216,14 +216,16 @@ class NewStepResolver {
         // rank the steps
         matchedAppSteps.sort((a, b) -> b.getValue2().compareTo(a.getValue2()));
         if( matchedAppSteps.size() > 5){
+            log.debug("matchedAppSteps" + matchedAppSteps);
+
             return matchedAppSteps.stream().limit(5).collect(Collectors.toList());
         }
-
+        log.debug("matchedAppSteps" + matchedAppSteps);
         return matchedAppSteps;
 
     }
 
-    private List<Triplet<AppStep, String, Double>> processCandidateTransition(LinkedList<String> allS2RSentences,  ImmutablePair<AppStep,Integer> candidateEntry) throws Exception {
+    private Triplet<AppStep, String, Double> processCandidateTransition(LinkedList<String> allS2RSentences,  ImmutablePair<AppStep,Integer> candidateEntry) throws Exception {
 
 
         AppStep step = candidateEntry.getLeft();
@@ -231,8 +233,6 @@ class NewStepResolver {
 
         if (step.getPhrases() != null && !step.getPhrases().isEmpty()) {
             List<String> phrases = step.getPhrases();
-            Set<String> set = new HashSet<>();
-
 
 
             for (String S2RDescription : allS2RSentences) {
@@ -244,22 +244,27 @@ class NewStepResolver {
 //                            "Checking matched scores " + scores.toString());
 //                }
                 if (Collections.max(scores) > 0.4) {
+
                     log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
                             "Checking candidate step " + step.getTransition().getId() + "\n" +
                             "Checking candidate step phrases " + phrases.toString() + "\n" +
                             "Checking matched scores " + scores.toString() + "\n" +
                             "Checking matchedS2RDescription " + S2RDescription);
 
-                    matchedSteps.add(new Triplet<>(step, S2RDescription, Collections.max(scores) / (candidateEntry.getRight() + 1)));
-                    return matchedSteps;
-
+                    matchedSteps.add(new Triplet<>(step, S2RDescription, Collections.max(scores)));
                 }
-            }
-            return null;
 
-        } else {
-            return null;
+            }
+            // TODO: only return one matched S2RSentence
+            matchedSteps.sort((a, b) -> b.getValue2().compareTo(a.getValue2()));
+
+            if (!matchedSteps.isEmpty()){
+                return matchedSteps.get(0);
+            }
+
+
         }
+        return null;
     }
 
 

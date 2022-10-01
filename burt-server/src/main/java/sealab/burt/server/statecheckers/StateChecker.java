@@ -13,6 +13,9 @@ import sealab.burt.server.conversation.state.ConversationState;
 import sealab.burt.server.conversation.entity.MessageObj;
 import sealab.burt.server.conversation.entity.UserResponse;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static sealab.burt.server.StateVariable.*;
 
 public @Data
@@ -31,7 +34,7 @@ abstract class StateChecker {
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         NewS2RChecker checker = (NewS2RChecker) state.get(S2R_CHECKER);
         MessageObj messageObj = userResponse.getFirstMessage();
-        QualityFeedback qualityResult = checker.checkS2R(messageObj.getMessage());
+        QualityFeedback qualityResult = checker.checkS2R(new LinkedList<>(List.of(messageObj.getMessage())), null);
         state.put(S2R_QUALITY_RESULT, qualityResult);
         log.debug("S2R quality result: " + qualityResult.getAssessmentResults());
         return qualityResult;
@@ -40,7 +43,7 @@ abstract class StateChecker {
     protected QualityResult runOBQualityCheck(ConversationState state) throws Exception {
         UserResponse userResponse = (UserResponse) state.get(CURRENT_MESSAGE);
         NewOBChecker obChecker = (NewOBChecker) state.get(OB_CHECKER);
-        QualityResult result = obChecker.checkOb(userResponse.getFirstMessage().getMessage());
+        QualityResult result = obChecker.checkOb(List.of(userResponse.getFirstMessage().getMessage()), null);
         state.put(OB_QUALITY_RESULT, result);
         log.debug("OB quality check: " + result);
         return result;

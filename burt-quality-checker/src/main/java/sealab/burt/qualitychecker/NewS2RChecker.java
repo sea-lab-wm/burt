@@ -2,7 +2,6 @@ package sealab.burt.qualitychecker;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.javatuples.Triplet;
 import sealab.burt.BurtConfigPaths;
 
@@ -80,24 +79,25 @@ class NewS2RChecker {
 
 
         // First try to match with a Step in the graph
-        // result is the returned matched appsteps
-        List<Triplet<AppStep, String, Double>> result = resolver.resolveActionInGraphConcurrent(allS2RSentences, executionGraph, currentState);
 
-        if (result == null || result.isEmpty()){
+        // allMatchedSteps is the list of matched appsteps
+        List<Triplet<AppStep, String, Double>> allMatchedSteps = resolver.resolveActionInGraphConcurrent(allS2RSentences, executionGraph, currentState);
+
+        if (allMatchedSteps == null || allMatchedSteps.isEmpty()){
             s2rQA.addQualityAssessment(new S2RQualityAssessment(LOW_Q_VOCAB_MISMATCH));
             log.debug("Could not match the step" );
         }
         else
             {
-            if (result.size() == 1){
-                AppStep step = result.get(0).getValue0();
+            if (allMatchedSteps.size() == 1){
+                AppStep step = allMatchedSteps.get(0).getValue0();
                 S2RQualityAssessment qualityAssessment = new S2RQualityAssessment(HIGH_QUALITY);
                 qualityAssessment.addMatchedStep(step);
                 s2rQA.addQualityAssessment(qualityAssessment);
 
             }else {
                 S2RQualityAssessment qualityAssessment = new S2RQualityAssessment(LOW_Q_AMBIGUOUS);
-                result.forEach(s -> qualityAssessment.addMatchedStep(s.getValue0()));
+                allMatchedSteps.forEach(s -> qualityAssessment.addMatchedStep(s.getValue0()));
                 s2rQA.addQualityAssessment(qualityAssessment);
 
             }

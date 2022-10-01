@@ -3,6 +3,7 @@ package sealab.burt.qualitychecker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.math3.linear.IllConditionedOperatorException;
+import org.javatuples.Triplet;
 import sealab.burt.qualitychecker.actionmatcher.ActionMatchingException;
 import sealab.burt.qualitychecker.actionmatcher.NLActionS2RMatcher;
 import sealab.burt.qualitychecker.graph.*;
@@ -57,7 +58,7 @@ class NewScreenResolver {
     }
 
 
-    public List<ImmutablePair<GraphState, Double>> resolveStateInAugmentedGraph(String obDescription,
+    public List<Triplet<GraphState, String, Double>> resolveStateInAugmentedGraph(List<String> obDescriptions,
                                                                                 AppGraphInfo executionGraph,
                                                                                 GraphState currentState) throws Exception {
 
@@ -72,16 +73,16 @@ class NewScreenResolver {
         int nThreads = 6;
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
 
-        List<ImmutablePair<GraphState, Double>> matchedStates = new ArrayList<>();
+        List<Triplet<GraphState, String, Double>> matchedStates = new ArrayList<>();
 
         //list of all futures
 
-        List<CompletableFuture<ImmutablePair<GraphState, Double>>> futures = new ArrayList<>();
+        List<CompletableFuture<Triplet<GraphState, String, Double>>> futures = new ArrayList<>();
         for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
             futures.add(CompletableFuture.supplyAsync(() ->
             {
                 try {
-                    return processCandidateState(obDescription, candidateEntry);
+                    return processCandidateState(obDescriptions, candidateEntry);
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new CompletionException(e);
@@ -94,23 +95,36 @@ class NewScreenResolver {
 
         // wait until all futures finish, and then continue with the processing
         try {
-
                 CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
 
                 //--------------------------------------------
 
                 //aggregate results
-                for (CompletableFuture<ImmutablePair<GraphState, Double>> future : futures) {
-                    ImmutablePair<GraphState, Double> match = future.get();
+                for (CompletableFuture<Triplet<GraphState, String, Double>> future : futures) {
+                    Triplet<GraphState, String, Double> match = future.get();
                     if (match != null) {
                         matchedStates.add(match);
                     }
                 }
 
-            } finally {
-                 executor.shutdown();
             }
-        return rankMatchedStates(matchedStates);
+        catch(Exception e){
+            e.printStackTrace();
+            log.debug(e.getMessage());
+        }
+        finally{
+            executor.shutdown();
+        }
+
+        // rank the steps
+        matchedStates.sort((a, b) -> b.getValue2().compareTo(a.getValue2()));
+        if( matchedStates.size() > 5){
+            log.debug("matchedStates" + matchedStates.subList(0, 4));
+            return matchedStates.stream().limit(5).collect(Collectors.toList());
+        }
+        log.debug("matchedStates" + matchedStates);
+
+        return matchedStates;
 
     }
 
@@ -139,7 +153,7 @@ class NewScreenResolver {
     }
 
     // new code
-    private ImmutablePair<GraphState, Double> processCandidateState(String ObDescription,
+    private Triplet<GraphState, String, Double> processCandidateState(List<String> ObDescriptions,
                                                                     Map.Entry<GraphState, Integer> candidateEntry) throws Exception {
         final GraphState candidateState = candidateEntry.getKey();
         final Integer distance = candidateEntry.getValue();
@@ -169,32 +183,42 @@ class NewScreenResolver {
 
         stateComponents.forEach(e -> phrases.addAll(e.getPhrases()));
 
-        //-------------------------------------
-
-
-        double score = determineComponentForOb(ObDescription,
-                phrases, candidateState);
-
-        if (score > 0.35){
-            return new ImmutablePair<>(candidateState, score);
+        if (phrases.isEmpty()){
+            return null;
         }
 
-        return null;
+        //-------------------------------------
+
+        // try to match one state
+
+        return determineComponentForOb(ObDescriptions,
+                phrases, candidateState);
 
     }
 
 
-    public double determineComponentForOb(String ObDescription, List<String> phrases, GraphState candidateState)
+    public  Triplet<GraphState, String, Double> determineComponentForOb(List<String> ObDescriptions, List<String> phrases, GraphState candidateState)
             throws Exception {
 
-        List<Double> scores =  EmbeddingSimilarityComputer.computeSimilarities(ObDescription, phrases);
+        List<Triplet<GraphState, String, Double>> matchedStatesForEachCandidateState = new ArrayList<>();
 
-        log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
-                "Checking candidate state/screen: " + candidateState.getUniqueHash() + "\n" +
-                "Checking candidate phrases " + phrases.toString() + "\n" +
-                "Checking matched scores " + scores.toString());
+        for (String ObDescription : ObDescriptions) {
+            List<Double> scores = EmbeddingSimilarityComputer.computeSimilarities(ObDescription, phrases);
+            if (Collections.max(scores) > 0.35) {
+                log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
+                        "Checking candidate state/screen: " + candidateState.getUniqueHash() + "\n" +
+                        "Checking candidate phrases " + phrases.toString() + "\n" +
+                        "Checking matched scores " + scores.toString());
 
-        return Collections.max(scores);
+                matchedStatesForEachCandidateState.add(new Triplet<>(candidateState, ObDescription, Collections.max(scores)));
+            }
+        }
+        matchedStatesForEachCandidateState.sort((a, b) -> b.getValue2().compareTo(a.getValue2()));
+        if ( !matchedStatesForEachCandidateState.isEmpty()) {
+            return matchedStatesForEachCandidateState.get(0);
+
+        }
+        return null;
 
     }
 
