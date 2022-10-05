@@ -34,8 +34,8 @@ class S2RChecker {
     private AppGraphInfo executionGraph;
     private final HashMap<Integer, Integer> statesExecuted = new HashMap<>();
 
-    public S2RChecker(String appName, String appVersion) throws Exception {
-        String bugId = "";
+    public S2RChecker(String appName, String appVersion, String bugID) throws Exception {
+//        String bugId = "";
         this.appName = appName;
         this.appVersion = appVersion;
         this.parsersBaseFolder = BurtConfigPaths.nlParsersBaseFolder;
@@ -43,7 +43,7 @@ class S2RChecker {
         s2rMatcher = new NLActionS2RMatcher(BurtConfigPaths.qualityCheckerResourcesPath, true, appName);
         resolver = new StepResolver(s2rMatcher, GRAPH_MAX_DEPTH_CHECK);
 
-        readGraph(bugId);
+        readGraph(bugID);
         this.currentState = GraphState.START_STATE;
     }
 

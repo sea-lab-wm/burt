@@ -52,7 +52,7 @@ class OBChecker {
         resolver = new ScreenResolver(s2rParser, GRAPH_MAX_DEPTH_CHECK);
     }*/
 
-    public QualityResult checkOb(String obDescription) throws Exception {
+    public QualityResult checkOb(String obDescription,String bugID) throws Exception {
         List<NLAction> nlActions = NLParser.parseText(parsersBaseFolder, appName, obDescription);
         if (nlActions.isEmpty()) return new QualityResult(NOT_PARSED);
 
@@ -61,7 +61,7 @@ class OBChecker {
             return new QualityResult(NO_MATCH, Collections.emptyList());
 
         if (nlActions.stream().noneMatch(NLAction::isOBAction)) return new QualityResult(NOT_PARSED);
-        return matchActions(nlActions);
+        return matchActions(nlActions, bugID);
     }
 
     private void readGraph(String bugID) throws Exception {
@@ -71,8 +71,7 @@ class OBChecker {
             executionGraph = JSONGraphReader.getGraph(appName, appVersion, bugID);
     }
 
-    private QualityResult matchActions(List<NLAction> nlActions) throws Exception {
-        String bugID = "";
+    private QualityResult matchActions(List<NLAction> nlActions, String bugID) throws Exception {
         readGraph(bugID);
 
         if (currentState == null)

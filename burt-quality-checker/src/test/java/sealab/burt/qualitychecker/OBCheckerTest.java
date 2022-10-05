@@ -41,7 +41,7 @@ class OBCheckerTest {
 
         var checker = new OBChecker(app.getKey(), app.getValue());
 
-        QualityResult result = checker.checkOb(ob);
+        QualityResult result = checker.checkOb(ob, null);
 
         log.debug(result.toString());
 
@@ -72,7 +72,7 @@ class OBCheckerTest {
 
         for (String sentence : allObSentences) {
             log.debug(sentence);
-            QualityResult result = checker.checkOb(sentence);
+            QualityResult result = checker.checkOb(sentence,null);
             log.debug(result.toString());
 
             for (GraphState matchedState : result.getMatchedStates()) {

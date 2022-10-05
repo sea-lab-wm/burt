@@ -1,6 +1,5 @@
 package sealab.burt.qualitychecker;
 
-import com.opencsv.CSVWriter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -8,6 +7,9 @@ import org.javatuples.Triplet;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
+
+import com.opencsv.CSVWriter;
+
 import sealab.burt.qualitychecker.graph.AppStep;
 import sealab.burt.qualitychecker.graph.GraphState;
 import sealab.burt.qualitychecker.graph.GraphTransition;
@@ -27,17 +29,17 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class QualityCheckerTestBugReports {
-}
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 @Slf4j
-class QualityCheckerTestBugReportsOriginalBurt {
+class QualityCheckerTestBugReports{
 
     //    private final Path parsedBugReportsPath = Path.of("..", "data",
 //            "euler_data", "4_s2r_in_bug_reports_oracle");
 //    private final Path parsedBugReportsPath = Path.of("../..", "data",
 //            "BugReportsS2R", "Bug2");
     private final Path parsedBugReportsPath =  Path.of("..", "data", "MarkedBugReports");
-    private final Path resultsPath = Path.of("..", "data", "MatchedStates");
+    private final Path resultsPath = Path.of("..", "data", "MatchedStates", "original");
 
 
 
@@ -174,30 +176,35 @@ class QualityCheckerTestBugReportsOriginalBurt {
                     log.debug("-------------------------------------------------------------");
                     log.debug("Processing: " + bugReportFile);
 
-                    NewS2RChecker s2RChecker = new NewS2RChecker(appName, appVersion, bugID);
+                    S2RChecker s2RChecker = new S2RChecker(appName, appVersion, bugID);
 
                     ShortLabeledBugReport bugReport = XMLHelper.readXML(ShortLabeledBugReport.class,
                             bugReportFile.toFile());
 
                     LinkedList<String> allS2RSentences = getS2RSentences(bugReport);
-                    QualityFeedback qualityResultS2R = s2RChecker.checkS2R(allS2RSentences);
-                    List<S2RQualityAssessment> assessmentResults = qualityResultS2R.getAssessmentResults();
-
-                    S2RQualityAssessment assessmentResult = assessmentResults.get(0);
-                    if (assessmentResult.getCategory() != S2RQualityCategory.LOW_Q_VOCAB_MISMATCH) {
+                    for (String S2RSentence: allS2RSentences) {
+                        QualityFeedback qualityResultS2R = s2RChecker.checkS2R(S2RSentence);
 
 
-                        List<AppStep> matchedSteps = assessmentResult.getMatchedSteps();
+                        List<S2RQualityAssessment> assessmentResults = qualityResultS2R.getAssessmentResults();
 
-                        for (AppStep step : matchedSteps) {
-                            GraphTransition transition = step.getTransition();
-                            GraphState targetState = transition.getTargetState(); // get target state of the matched step as the result
-                            candidateStatesS2R.add(targetState.getUniqueHash().toString()); // with ranking
+                        for (S2RQualityAssessment assessmentResult: assessmentResults){
+                            if (assessmentResult.getCategory() == S2RQualityCategory.HIGH_QUALITY){
+                                List<AppStep> matchedSteps = assessmentResult.getMatchedSteps();
 
+                                for (AppStep step : matchedSteps) {
+                                    GraphTransition transition = step.getTransition();
+                                    GraphState targetState = transition.getTargetState(); // get target state of the matched step as the result
+                                    candidateStatesS2R.add(targetState.getUniqueHash().toString()); // with ranking
 
+                                }
+                            }
                         }
-                        dataS2R.add(new String[] {bugID, appName, String.valueOf(matchedStates), String.valueOf(candidateStatesS2R)});
+
+
+                        dataS2R.add(new String[]{bugID, appName, String.valueOf(matchedStates), String.valueOf(candidateStatesS2R)});
                     }
+
 
 
 
@@ -253,19 +260,23 @@ class QualityCheckerTestBugReportsOriginalBurt {
 //
 //                    //---------------------------------------
 
-                    NewOBChecker obChecker = new NewOBChecker(appName, appVersion);
+                    OBChecker obChecker = new OBChecker(appName, appVersion);
 
                     LinkedList<String> allObSentences = getObSentences(bugReport);
+                    for (String ObSentence: allObSentences) {
+                        QualityResult qualityResult = obChecker.checkOb(ObSentence, bugID);
+                        if (qualityResult.getResult() == QualityResult.Result.MATCH || qualityResult.getResult() == QualityResult.Result.MULTIPLE_MATCH) {
+                            log.debug("OB sentence: " + ObSentence);
 
-
-                    log.debug("OB sentence: " + allObSentences);
-                    QualityResult qualityResult = obChecker.checkOb(allObSentences, bugID);
-                    log.debug("Matched States OB: " + qualityResult.getMatchedStates());
-                    log.debug("OB quality results: " + qualityResult.getResult());
-//                        List<Integer> uniqueHashes = new ArrayList<>();
-                    for (GraphState state: qualityResult.getMatchedStates()){
-                        candidateStatesOB.add(state.getUniqueHash().toString()); // with ranking
+                            log.debug("Matched States OB: " + qualityResult.getMatchedStates());
+                            log.debug("OB quality results: " + qualityResult.getResult());
+                            for (GraphState state : qualityResult.getMatchedStates()) {
+                                candidateStatesOB.add(state.getUniqueHash().toString()); // with ranking
+                            }
+                        }
                     }
+
+
                     dataOB.add(new String[] {bugID, appName, String.valueOf(matchedStates), String.valueOf(candidateStatesOB)});
 
 

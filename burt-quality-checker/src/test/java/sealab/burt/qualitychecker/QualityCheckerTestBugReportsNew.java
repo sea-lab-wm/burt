@@ -39,7 +39,7 @@ class QualityCheckerTestBugReportsNew {
 //    private final Path parsedBugReportsPath = Path.of("../..", "data",
 //            "BugReportsS2R", "Bug2");
 	private final Path parsedBugReportsPath =  Path.of("..", "data", "MarkedBugReports");
-    private final Path resultsPath = Path.of("..", "data", "MatchedStates");
+    private final Path resultsPath = Path.of("..", "data", "MatchedStates", "new");
 
 
 
