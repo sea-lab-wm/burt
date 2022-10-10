@@ -32,6 +32,7 @@ const config = {
     getTipsService: "/getTips",
     updateStepService: "/updateStep",
     updateImageService: "/updateImage",
+    addAppService: "/addApp",
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
         createChatBotMessage("I'll assist you in reporting any problem with your app"),

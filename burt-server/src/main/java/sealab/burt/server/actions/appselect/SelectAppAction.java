@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.APP_ASKED;
-import static sealab.burt.server.StateVariable.PARTICIPANT_ID;
+import static sealab.burt.server.StateVariable.PARTICIPANT_NAME;
 
 public @Slf4j
 class SelectAppAction extends ChatBotAction {
@@ -108,7 +108,7 @@ class SelectAppAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
         state.put(APP_ASKED, true);
-        String participant = state.get(PARTICIPANT_ID).toString();
+        String participant = state.get(PARTICIPANT_NAME).toString();
         MessageObj messageObj = new MessageObj(
                 "Hi " +participant + ", please <b>select the app</b> that is having the problem",
                 WidgetName.AppSelector, false);
