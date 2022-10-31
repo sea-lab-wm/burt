@@ -8,12 +8,16 @@ import ChatBotMessageWithWidget from "../ChatbotMessageWithWidget/ChatbotMessage
 import { botMessage, createChatMessage } from "./chatUtils";
 
 import  {ReactComponent as ChatIcon} from "../../assets/icons/paper-plane.svg"
+import  {ReactComponent as SettingsIcon} from "../../assets/icons/settings-icon.svg"
 import  {ReactComponent as HelpIcon} from "../../assets/icons/help.svg"
-import "./Chat.css";
 import {ReactComponent as ChatbotIcon}  from "../../assets/icons/chatbot-2.svg";
+import "./Chat.css";
+
+import NewAppPanel from "../NewAppPanel/NewAppPanel";
 
 const Chat = ({
   state,
+  sessionId,
   setState,
   widgetRegistry,
   messageParser,
@@ -30,6 +34,7 @@ const Chat = ({
   const chatContainerRef = useRef(null);
 
   const [input, setInputValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const scrollIntoView = () => {
     setTimeout(() => {
@@ -191,6 +196,11 @@ const Chat = ({
       inputElement.current.focus();
     }
   }, []);
+
+  const openNewAppOpen = () => {
+    setOpenModal(!openModal);
+  };
+
   return (
     <div className="react-chatbot-kit-chat-container App screen-center">
       <div className="react-chatbot-kit-chat-inner-container">
@@ -208,10 +218,21 @@ const Chat = ({
               " user guide"} onClick={() => openHelp(config)} >
                 <HelpIcon width="35px" />
               </a>
+              <a style={{height:'20px'}} title={"Open the" +
+                  " Add App Panel"} onClick={() => openNewAppOpen()} >
+                <SettingsIcon height="20px" width="35px" />
+              </a>
+              {/*<button className={"btn-primary btn-sm"} onClick={() => openNewAppOpen()}>+App</button>*/}
             </div>
           }
         />
 
+        {openModal &&
+            <NewAppPanel
+                config={config}
+                sessionId={sessionId}
+                isOpenAppPanel={openModal}/>
+        }
         <div
           className="react-chatbot-kit-chat-message-container"
           // this div element is referred as chatContainerRef

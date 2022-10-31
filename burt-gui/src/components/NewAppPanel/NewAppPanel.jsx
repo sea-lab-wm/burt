@@ -1,11 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './NewAppPanel.css'
-import {ReactComponent as LastStepsIcon} from "../../assets/icons/phone.svg";
-import {func} from "prop-types";
 import Modal from "react-modal";
 import axios from "axios";
-import {isOpera} from "sockjs-client/lib/utils/browser";
+
 
 const customStyles = {
     content: {
@@ -19,15 +17,16 @@ const customStyles = {
     },
     modalButton: {
         margin: '.2em',
-    },
+    }
+
 }
 
 class NewAppPanel extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log(this.props.showPanel)
-        // console.log("Constructor")
+        // preserve the initial state in a new object
+        this.baseState = this.state
     }
 
     state = {
@@ -35,9 +34,14 @@ class NewAppPanel extends React.Component {
         appName: "",
         appVersion: "",
         isOpen: false,
+        isOpenAppPanel: this.props.isOpenAppPanel,
         selectedIcon: 'none',
         selectedCrashscopeFile: 'none',
-        selectedTracereplayerFile: 'none'
+        selectedTracereplayerFile: 'none',
+        fileUploaded: false,
+        fileUploadSubmitted: false,
+        isValid: false,
+        isError: false
     }
 
     showHidePasswordField() {
@@ -80,16 +84,34 @@ class NewAppPanel extends React.Component {
         var defaultPassword = "test"
         if (this.state.password === defaultPassword) {
             this.toggleModal()
+            this.toggleAddNewAppModal()
         } else {
-            alert("Password NON Matched")
+            alert("Password Not Matched")
         }
     };
 
+    toggleAddNewAppModal = () => {
+        this.setState({
+            isOpenAppPanel: !this.state.isOpenAppPanel
+        })
+    }
+
+    validateSubmitButton = () => {
+        return this.state.selectedIcon !== 'none' && this.state.selectedCrashscopeFile !== 'none'
+    }
+
 
     submitNewApp = () => {
+
         // Get new App Add endpoint
-        console.log(this.props.config)
         const endPoint = this.props.config.serverEndpoint + this.props.config.addAppService;
+
+
+        // if (!this.state.isError) {
+
+        this.setState({
+            fileUploadSubmitted: true
+        })
 
         // Prepare data
         const sessionId = this.props.sessionId;
@@ -101,12 +123,11 @@ class NewAppPanel extends React.Component {
             }]
         }
 
+
         const formData = new FormData();
         formData.append("req", new Blob([JSON.stringify(data)], {
             type: "application/json"
         }));
-        formData.append("appName", this.state.appName);
-        formData.append("appVersion", this.state.appVersion);
         formData.append("image", this.state.selectedIcon);
         formData.append("crashScopeZip", this.state.selectedCrashscopeFile);
         formData.append("traceReplayerZip", this.state.selectedTracereplayerFile);
@@ -118,9 +139,17 @@ class NewAppPanel extends React.Component {
             let result = response.data;
             if (!result) {
                 console.error(`The New App Data was not updated: ` + this.props.index);
+            } else {
+                this.setState({
+                    fileUploaded: true
+                })
+                this.close()
+                alert("Files Uploaded Successfully! Please Restart the Conversation to see the new App")
+
             }
         }).catch(error => {
             console.error(`There was an unexpected error: ${error}`);
+
         })
 
     }
@@ -137,7 +166,8 @@ class NewAppPanel extends React.Component {
     changeCrashscopeHandler = event => {
         this.setState({
             selectedCrashscopeFile: event.target.files[0]
-        })
+        }, () => console.log("Crash Scope File", this.state.selectedCrashscopeFile.name))
+
     }
 
     changeTracereplayerHandler = event => {
@@ -152,108 +182,123 @@ class NewAppPanel extends React.Component {
         });
     }
 
-    close(){
-        this.setState({ isOpen: false });
+    close = () => {
+        this.setState(this.baseState)
     }
 
-    open(){
+    open() {
         console.log(this.state.isOpen)
-        this.setState({ isOpen: true });
+        this.setState({isOpen: true});
+    }
+
+    validateAppNameWithFile = (file) => {
+        let appName = this.state.appName.concat("-").concat(this.state.appVersion)
+        if (file === this.state.selectedCrashscopeFile) {
+            this.setState({
+                isError: true
+            })
+        } else {
+            this.setState({
+                isError: true
+            })
+        }
     }
 
     render() {
         return (
-            <div className="last-steps">
-                <div className="subpanel-header">
-                    Developer Panel
-                </div>
-                <div className="addNewApp" style={{paddingBottom: '5px'}}>
-                    <button className={"btn btn-primary btn-sm action-btn"}
-                            onClick={e => this.showHidePasswordField(e)}>Add New App
-                    </button>
-                    <div id={"name"} style={{display: 'none', paddingBottom: '5px'}}>
-                        <input type={"password"} placeholder={"Enter password"} value={this.state.password}
-                               onChange={this.handleChange}/>
-                        <button className={"btn-primary"}  onClick={this.validatePassword}>Submit</button>
-
+            <div>
+                <Modal
+                    isOpen={this.state.isOpenAppPanel}
+                    contentLabel="My dialog"
+                    onRequestClose={this.toggleAddNewAppModal}
+                    style={customStyles}
+                    backdrop="static"
+                    keyboard={false}
+                    closeTimeoutMS={10}>
+                    <div className={"popup-display"}>
+                        <div className="subpanel-header">
+                            Developer Panel
+                        </div>
+                        <div id={"name"} className="addNewApp" style={{padding: '5px'}}>
+                            <input type={"password"} placeholder={"Enter password"} value={this.state.password}
+                                   onChange={this.handleChange}/>
+                            <button className={"btn-primary"} onClick={this.validatePassword}>Submit</button>
+                        </div>
                     </div>
-                    <Modal
-                        isOpen={this.state.isOpen}
-                        onRequestClose={this.toggleModal}
-                        contentLabel="My dialog"
-                        style={customStyles}
-                        backdrop="static"
-                        keyboard={false}
-                        closeTimeoutMS={10}>
-                        <div className={"popup-display"}>
-                            <div>
-                                <div className="form-label"><h3>App Details</h3></div>
-                                <div className="container">
-                                    <div className={"row"}>
-                                        <div className={"col-5"}>
-                                            <label htmlFor="appName">App Name</label>
-                                        </div>
-                                        <div className={"col-7"}>
-                                            <input type="text" className="form-control" id="appName"
-                                                   placeholder="Enter App Name"
-                                                   value={this.state.appName}
-                                                   onChange={this.handleAppNameChange}/>
-                                        </div>
-                                    </div>
+                </Modal>
 
-                                    <div className={"row"}>
-                                        <div className={"col-5"}>
-                                            <label htmlFor="appVersion">App Version</label>
-                                        </div>
-                                        <div className={"col-7"}>
-                                            <input type="text" className="form-control" id="appVersion"
-                                                   placeholder="Enter App Version"
-                                                   value={this.state.appVersion}
-                                                   onChange={this.handleAppVersionChange}/>
-                                        </div>
-                                    </div>
 
-                                    <div className={"row"}>
-                                        <div className={"col-5"}>
-                                            <label htmlFor="appIcon">App icon</label>
-                                        </div>
-                                        <div className={"col-7"}>
-                                            <input type="file" className="form-control-file"
-                                                   onChange={this.changeIconHandler} accept="image/*" id="appIcon"/>
-                                        </div>
-                                    </div>
+                <Modal
+                    isOpen={this.state.isOpen}
+                    onRequestClose={this.toggleModal}
+                    contentLabel="My dialog"
+                    style={customStyles}
+                    backdrop="static"
+                    keyboard={false}
+                    closeTimeoutMS={10}>
+                    <div className={"popup-display"}>
+                        <div>
+                            <div className="form-label"><h3>App Details</h3></div>
+                            <div className="container">
+                                <p>
+                                    <span style={{color: 'red', fontSize: '20px'}}>* </span>
+                                    indicates a required field
+                                </p>
 
-                                    <div className={"row"}>
-                                        <div className={"col-5"}>
-                                            <label htmlFor="crashScopeFile">CrashScope Zip File</label>
-                                        </div>
-                                        <div className={"col-7"}>
-                                            <input type="file" className="form-control-file"
-                                                   onChange={this.changeCrashscopeHandler} accept=".zip"
-                                                   id="crashScopeFile"/>
-                                        </div>
+                                <div className={"form-group row"}>
+                                    <label htmlFor="appIcon" className={"col-sm-4 col-form-label form-label"}>App icon
+                                        <span style={{color: 'red', fontSize: '20px'}}>*</span></label>
+                                    <div className={"col-sm-8"}>
+                                        <input type="file" className="form-control-file"
+                                               onChange={this.changeIconHandler} accept="image/*" id="appIcon"/>
                                     </div>
-                                    <div className={"row"}>
-                                        <div className={"col-5"}>
-                                            <label htmlFor="traceReplayerFile">TraceReplayer Zip File</label>
-                                        </div>
-                                        <div className={"col-7"}>
-                                            <input type="file" className="form-control-file"
-                                                   onChange={this.changeTracereplayerHandler} accept=".zip"
-                                                   id="traceReplayerFile"/>
-                                        </div>
-                                    </div>
-                                    <button className={"btn btn-primary mb-2"} onClick={this.submitNewApp}>Submit
-                                    </button>
-                                    <button className={"btn btn-danger mb-2"} onClick={this.toggleModal}>Cancel
-                                    </button>
                                 </div>
 
+                                <div className={"form-group row"}>
+                                    <label htmlFor="crashScopeFile" className={"col-sm-4 col-form-label form-label"}>CrashScope
+                                        Zip File
+                                        <span style={{color: 'red', fontSize: '20px'}}>*</span></label>
 
+                                    <div className={"col-sm-8"}>
+                                        <input type="file" className="form-control-file"
+                                               onChange={this.changeCrashscopeHandler} accept=".zip"
+                                               id="crashScopeFile"/>
+                                    </div>
+                                </div>
+                                <div className={"form-group row"}>
+                                    <label htmlFor="traceReplayerFile" className={"col-sm-4 col-form-label form-label"}>
+                                        TraceReplayer ZipFile
+                                    </label>
+                                    <div className={"col-sm-8"}>
+                                        <input type="file" className="form-control-file"
+                                               onChange={this.changeTracereplayerHandler} accept=".zip"
+                                               id="traceReplayerFile"/>
+                                    </div>
+                                </div>
+
+                                <div className={"form-group row"}>
+                                    <div className={"col-sm-2"}>
+                                        <button className={"btn btn-danger btn-sm"} onClick={this.close}>Cancel
+                                        </button>
+                                    </div>
+                                    <div className={"col-sm-4 submitButton"}>
+                                        <button className={"btn btn-primary btn-sm"}
+                                                disabled={!this.validateSubmitButton()}
+                                                onClick={this.submitNewApp}>Submit
+                                            {
+                                                this.state.fileUploadSubmitted && !this.state.fileUploaded &&
+                                                <span className="spinner-border spinner-border-sm"
+                                                      style={{marginLeft: '10px'}}
+                                                      role="status"
+                                                      aria-hidden="true"></span>
+                                            }
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </Modal>
-                </div>
+                    </div>
+                </Modal>
             </div>
         )
     }

@@ -1,0 +1,14 @@
+.submitButton {
+    margin-left: -20px;
+    margin-top: -5px;
+}
+.form-label {
+    font-size: 15px;
+}
+.inline-errormsg {
+    color: red;
+    font-size: 12px;
+}
+.hidden {
+    display: none;
+}

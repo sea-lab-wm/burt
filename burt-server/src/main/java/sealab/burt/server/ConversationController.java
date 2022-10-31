@@ -1,6 +1,7 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.actions.appselect.SelectAppAction;
 import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
@@ -28,15 +30,14 @@ import sealab.burt.server.statecheckers.yesno.AffirmativeAnswerStateChecker;
 import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
 
-import java.io.File;
-import java.nio.file.Paths;
-import java.nio.file.Path;
+import java.io.*;
+import java.nio.file.*;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
@@ -507,10 +508,10 @@ class ConversationController {
     }
 
     @PostMapping(value = "/addApp", consumes = "multipart/form-data")
-    public boolean updateImage(@RequestPart UserResponse req, String appName, String appVersion,
+    public boolean updateImage(@RequestPart UserResponse req,
                                @RequestPart final MultipartFile image,
                                @RequestPart final MultipartFile crashScopeZip,
-                               @RequestPart final MultipartFile traceReplayerZip ) {
+                               final MultipartFile traceReplayerZip ) {
         String msg = "Updating Data files in the server...";
         log.debug(msg);
 
@@ -520,14 +521,7 @@ class ConversationController {
             return false;
         }
 
-//        ConversationState state = conversationStates.get(sessionId);
-//        if (state == null) {
-//            log.debug("No conversation state associated to: " + sessionId);
-//            return false;
-//        }
-
         try {
-            MessageObj firstMessage = req.getFirstMessage();
 
             if (image != null) {
                 log.debug("Downloading App Logos Data to server");
@@ -544,7 +538,8 @@ class ConversationController {
                 Path zipPath = Paths.get("../data/TraceReplayer-Data").toAbsolutePath();
                 File outputFile = new File(zipPath + "/" + traceReplayerZip.getOriginalFilename());
                 traceReplayerZip.transferTo(outputFile);
-                unzipFile(Path.of(outputFile.getPath()), appName, appVersion);
+                String fileName = FilenameUtils.removeExtension(outputFile.getName());
+                unzipFile(Path.of(outputFile.getPath()), fileName.split("-")[0], fileName.split("-")[1]);
                 outputFile.delete();
             }
 
@@ -554,10 +549,13 @@ class ConversationController {
                 Path zipPath = Paths.get("../data/CrashScope-Data").toAbsolutePath();
                 File outputFile = new File(zipPath + "/" + crashScopeZip.getOriginalFilename());
                 crashScopeZip.transferTo(outputFile);
-                unzipFile(Path.of(outputFile.getPath()), appName, appVersion);
+                String fileName = FilenameUtils.removeExtension(outputFile.getName());
+                unzipFile(Path.of(outputFile.getPath()), fileName.split("-")[0], fileName.split("-")[1]);
                 outputFile.delete();
             }
 
+            // Load Apps
+            new SelectAppAction(APP_SELECTED);
             return true;
         } catch (Exception e) {
             log.error("Error updating the step: " + req, e);

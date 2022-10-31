@@ -29,10 +29,10 @@ public @Slf4j
 class SelectAppAction extends ChatBotAction {
 
 
-    public static final List<KeyValues> ALL_APPS;
+    public static List<KeyValues> ALL_APPS = null;
     private static final String NO_APP_LOGO = "NO_APP_LOGO.png";
 
-    static {
+    private static void generateAppData() {
         Path crashScopeDataPath = Paths.get(BurtConfigPaths.crashScopeDataPath);
         Path appLogosPath = Paths.get(BurtConfigPaths.appLogosPath);
 
@@ -70,6 +70,7 @@ class SelectAppAction extends ChatBotAction {
 
     public SelectAppAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
+        generateAppData();
     }
 
     private static String getLogoFileName(Path appLogosPath, Path appDir) {

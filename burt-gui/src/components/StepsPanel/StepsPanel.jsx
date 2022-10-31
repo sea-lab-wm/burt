@@ -13,7 +13,6 @@ import  {ReactComponent as DeleteStepIcon} from "../../assets/icons/delete_step_
 import  {ReactComponent as ShowScreenshotStepIcon1} from "../../assets/icons/show_screenshot_step_icon1.svg"
 import  {ReactComponent as ShowScreenshotStepIcon2} from "../../assets/icons/show_screenshot_step_icon2.svg"
 import StepComponent from "./StepComponent";
-import NewAppPanel from "../NewAppPanel/NewAppPanel";
 
 
 const StepsPanel = ({
@@ -101,13 +100,6 @@ const StepsPanel = ({
                     {renderScreenshots()}
                 </div>
             </div>
-            <NewAppPanel
-                config={config}
-                stepsState ={stepsState}
-                sessionId={sessionId}
-                messagesState={messagesState}
-                setState={setState}
-                setStepsState={setStepsState}/>
         </div>
     )
 }
