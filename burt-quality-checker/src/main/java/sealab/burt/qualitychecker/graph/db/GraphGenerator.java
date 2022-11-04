@@ -124,8 +124,8 @@ class GraphGenerator {
                     // System.out.println("====================");
                 }
             } catch (Exception e) {
-                //log.error("Error for execution " + execution.getId(), e);
-            	System.out.println("Error for execution " + execution.getId() + e);
+                log.error("Error for execution " + execution.getId(), e);
+            	//System.out.println("Error for execution " + execution.getId() + e);
                 throw e;
             }
             // }
@@ -664,6 +664,9 @@ class GraphGenerator {
     private StringBuilder getUniqueState(DynGuiComponent root) {
 
         StringBuilder builder = new StringBuilder();
+
+        if(root.getChildren().isEmpty())
+            log.error("The root node has not children!");
 
         final DynGuiComponent firstComponent = root.getChildren().get(0);
         builder.append(String.format("<w>%s</w><h>%s</h>",

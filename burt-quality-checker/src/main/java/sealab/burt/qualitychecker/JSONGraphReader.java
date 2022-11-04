@@ -48,16 +48,16 @@ public @Slf4j class JSONGraphReader {
 
 	public static AppGraphInfo getGraph(String appName, String appVersion, String bugID, GraphDataSource dataSource) 
 	throws Exception {
-		AppGraphInfo graph = graphs.get(getKey(appName, appVersion));
+		AppGraphInfo graph = graphs.get(getKey(appName, appVersion, bugID));
 		if (graph == null) {
 			readGraph(appName, appVersion, bugID, dataSource);
-			graph = graphs.get(getKey(appName, appVersion));
+			graph = graphs.get(getKey(appName, appVersion, bugID));
 		}
 		return graph;
 	}
 
-	public static String getKey(String app, String appVersion) {
-		return MessageFormat.format("{0}-{1}", app, appVersion);
+	private static String getKey(String app, String appVersion, String bugID) {
+		return MessageFormat.format("{0}-{1}-{2}", app, appVersion, bugID);
 	}
 
 	public static String getFirstPackageName(String appName, String bugID) {
@@ -86,7 +86,7 @@ public @Slf4j class JSONGraphReader {
 				
 		String dataLocation = Paths.get(BurtConfigPaths.crashScopeDataPath, "CS" + bugID, String.join("-", packageName, appVersion)).toString();
 
-		String key = getKey(appName, appVersion);
+		String key = getKey(appName, appVersion, bugID);
 		log.debug("Reading graph from JSON files for " + key);
 
 		List<Execution> crashScopeExecutions = readExecutions(dataLocation);
@@ -171,7 +171,7 @@ public @Slf4j class JSONGraphReader {
 		if (folder.exists()) {
 			executionFiles = Files
 					.find(Paths.get(dataLocation), 1,
-							(path, attr) -> path.toFile().getName().startsWith("Augmented-Execution-"))
+							(path, attr) -> path.toFile().getName().startsWith("Execution-"))
 					.collect(Collectors.toList());
 		}
 		// ------ check if the path exists---------------//
@@ -239,14 +239,14 @@ public @Slf4j class JSONGraphReader {
 //									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
 //							.toString();
 					Path xmlPath = Path
-							.of(dataLocation, "Augmented-XML", String.join("-", execution.getApp().getPackageName(),
+							.of(dataLocation, "xmls",  String.join("-", execution.getApp().getPackageName(),
 									execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
 									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml");
 					
-					File xmlFile = new File(xmlPath.toString());
-					if(!xmlFile.exists()) {
-						continue;
-					}
+					// File xmlFile = new File(xmlPath.toString());
+					// if(!xmlFile.exists()) {
+					// 	continue;
+					// }
 					try {
 
 						// Parse the xml file into a BasicTreeNode and then set up variables required by

@@ -65,7 +65,8 @@ class MainJSONGraphGenerator {
             new Triplet<>("191","anuto", "0.2-1"), new Triplet<>("201","inaturalist", "1.5.1"),
             new Triplet<>("206","gnucash", "2.1.3"), new Triplet<>("209","gnucash", "2.2.0"),
             new Triplet<>("256","gnucash", "2.1.4"), new Triplet<>("1066","focus", "7.0"),
-            new Triplet<>("1067","focus", "7.0"), new Triplet<>("1073","focus", "5.2"),
+            new Triplet<>("1067","focus", "7.0")
+            , new Triplet<>("1073","focus", "5.2"),
             new Triplet<>("1096","inaturalist", "1.13.9"), new Triplet<>("1145","gpstest", "3.8.1"),
             new Triplet<>("1146","gpstest", "3.8.0"), new Triplet<>("1147","gpstest", "3.0.0"),
             new Triplet<>("1149","gpstest", "3.2.11"), new Triplet<>("1151","gpstest", "3.0.1"),
@@ -99,8 +100,7 @@ class MainJSONGraphGenerator {
                         try {
                             generateAndSaveGraph(system);
                         } catch (Exception e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
+                           log.error("Unexpected error", e);
                         }
                         return true;
                     }
