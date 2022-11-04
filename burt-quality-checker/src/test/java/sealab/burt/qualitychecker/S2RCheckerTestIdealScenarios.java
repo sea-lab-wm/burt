@@ -50,7 +50,7 @@ class S2RCheckerTestIdealScenarios {
         String s2r = "go back to last screen";
         var app = new ImmutablePair<>("gnucash", "1.0.3");
 
-        S2RChecker checker = new S2RChecker(app.getKey(), app.getValue());
+        S2RChecker checker = new S2RChecker(app.getKey(), app.getValue(), null);
 
         QualityFeedback feedback = checker.checkS2R(s2r);
 
@@ -160,7 +160,7 @@ class S2RCheckerTestIdealScenarios {
         log.debug("-------------------------------------------------------------");
         log.debug("Processing: " + scenarioFile);
 
-        S2RChecker checker = new S2RChecker(appName, appVersion);
+        S2RChecker checker = new S2RChecker(appName, appVersion, null);
 
         List<BugScenario> bugScenarios = DataReader.readScenarios(scenarioFile.toString());
 

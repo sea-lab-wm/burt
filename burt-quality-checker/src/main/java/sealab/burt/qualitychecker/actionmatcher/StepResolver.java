@@ -179,10 +179,9 @@ class StepResolver {
         } catch (ActionMatchingException e) {
             //ok
         }
-
+        AppStep appStep;
         //check for open app
         final boolean isOpenApp = DeviceUtils.isOpenApp(event);
-        AppStep appStep;
         if (isOpenApp) {
             appStep = new AppStep(event, null, app.getPackageName());
             appStep.setScreenshotFile(null); //FIXME: change the screenshot file for "open app"
@@ -199,6 +198,7 @@ class StepResolver {
         }
 
         //check for close app or click back button
+
         final boolean isCloseEvent = DeviceUtils.isCloseApp(event);
         final boolean isAppWord = GeneralUtils.isAppWord(currNLAction.getObject(), app.getName(),
                 app.getPackageName());
@@ -236,7 +236,7 @@ class StepResolver {
             List<CompletableFuture<MatchingS2RResult>> futures = new ArrayList<>();
             for (Map.Entry<GraphState, Integer> candidateEntry : candidateStates.entrySet()) {
                 futures.add(CompletableFuture.supplyAsync(() ->
-                        processCandidateState(currNLAction, executionGraph, app, candidateEntry), executor));
+                        processCandidateState(currNLAction, executionGraph, app, candidateEntry), executor)); //process each candidate graph state
             }
 
 

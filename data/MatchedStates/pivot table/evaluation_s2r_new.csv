@@ -1,0 +1,2 @@
+Count of bug_id;Average of first_rank;Average of recip_rank;Average of avg_precision;Average of h@1;Average of h@2;Average of h@3;Average of h@4;Average of h@5
+30;0.733333333;0.145555556;0.288888889;0.1;0.1;0.166666667;0.233333333;0.266666667
