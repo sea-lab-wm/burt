@@ -20,10 +20,6 @@ def first_rank(ranks):
 def reciprocal_rank(first_rank):
     return 0 if pd.isna(first_rank) else 1 / first_rank
 
-def mrr(data_frame):
-    print(data_frame)
-    return data_frame["recip_rank"].mean()
-
 def average_precision(ground_truth_states_str, ranks):
 
     ground_truth_states = list(map(lambda x: x.strip(), ground_truth_states_str[1:-1].split(",")))
