@@ -171,9 +171,9 @@ public @Slf4j class JSONGraphReader {
 		if (folder.exists()) {
 			executionFiles = Files
 					.find(Paths.get(dataLocation), 1,
-							(path, attr) -> path.toFile().getName().startsWith("Execution-"))
+							(path, attr) -> path.toFile().getName().startsWith("Augmented-Execution-"))
 					.collect(Collectors.toList());
-		}
+		} 
 		// ------ check if the path exists---------------//
 
 		if (executionFiles.isEmpty())
@@ -239,7 +239,7 @@ public @Slf4j class JSONGraphReader {
 //									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
 //							.toString();
 					Path xmlPath = Path
-							.of(dataLocation, "xmls",  String.join("-", execution.getApp().getPackageName(),
+							.of(dataLocation, "Augmented-XML",  String.join("-", execution.getApp().getPackageName(),
 									execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
 									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml");
 					

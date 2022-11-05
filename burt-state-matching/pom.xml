@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>sealab.burt</groupId>
+	<artifactId>burt-state-matching</artifactId>
+	<version>0.0.1</version>
+	<name>burt-state-matching</name>
+	<description>BURT state matching for bug localization</description>
+	<properties>
+		<java.version>12</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>sealab.burt</groupId>
+			<artifactId>burt-nlparser</artifactId>
+			<version>0.0.1</version>
+
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>sealab.burt</groupId>
+			<artifactId>burt-quality-checker</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.javatuples</groupId>
+			<artifactId>javatuples</artifactId>
+			<version>1.2</version>
+			<!-- <scope>system</scope>
+			<systemPath>${project.basedir}/lib/javatuples-1.2.jar</systemPath> -->
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.8</version>
+			<!-- <scope>system</scope>
+			<systemPath>${project.basedir}/lib/opencsv-3.8.jar</systemPath> -->
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
+					<source>12</source>
+					<target>12</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
