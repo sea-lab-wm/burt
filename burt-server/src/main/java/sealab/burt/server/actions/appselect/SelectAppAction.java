@@ -23,16 +23,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static sealab.burt.server.StateVariable.APP_ASKED;
-import static sealab.burt.server.StateVariable.PARTICIPANT_ID;
+import static sealab.burt.server.StateVariable.PARTICIPANT_NAME;
 
 public @Slf4j
 class SelectAppAction extends ChatBotAction {
 
 
-    public static final List<KeyValues> ALL_APPS;
+    public static List<KeyValues> ALL_APPS = null;
     private static final String NO_APP_LOGO = "NO_APP_LOGO.png";
 
-    static {
+    private static void generateAppData() {
         Path crashScopeDataPath = Paths.get(BurtConfigPaths.crashScopeDataPath);
         Path appLogosPath = Paths.get(BurtConfigPaths.appLogosPath);
 
@@ -70,6 +70,7 @@ class SelectAppAction extends ChatBotAction {
 
     public SelectAppAction(Intent nextExpectedIntent) {
         super(nextExpectedIntent);
+        generateAppData();
     }
 
     private static String getLogoFileName(Path appLogosPath, Path appDir) {
@@ -108,7 +109,7 @@ class SelectAppAction extends ChatBotAction {
     @Override
     public List<ChatBotMessage> execute(ConversationState state) {
         state.put(APP_ASKED, true);
-        String participant = state.get(PARTICIPANT_ID).toString();
+        String participant = state.get(PARTICIPANT_NAME).toString();
         MessageObj messageObj = new MessageObj(
                 "Hi " +participant + ", please <b>select the app</b> that is having the problem",
                 WidgetName.AppSelector, false);

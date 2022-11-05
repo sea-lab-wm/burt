@@ -140,6 +140,7 @@ const Chatbot = ({
             <div className="span6">
             <Chat
               state={state}
+              sessionId={sessionId}
               setState={setState}
               widgetRegistry={widgetRegistry}
               actionProvider={actionProv}

@@ -1,6 +1,7 @@
 package sealab.burt.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
+import sealab.burt.server.actions.appselect.SelectAppAction;
 import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
@@ -28,15 +30,14 @@ import sealab.burt.server.statecheckers.yesno.AffirmativeAnswerStateChecker;
 import sealab.burt.server.statecheckers.yesno.NegativeAnswerStateChecker;
 import seers.textanalyzer.TextProcessor;
 
-import java.io.File;
-import java.nio.file.Paths;
-import java.nio.file.Path;
+import java.io.*;
+import java.nio.file.*;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import static sealab.burt.server.StateVariable.*;
 import static sealab.burt.server.actions.ActionName.*;
@@ -505,6 +506,117 @@ class ConversationController {
 
         return sessionId;
     }
+
+    @PostMapping(value = "/addApp", consumes = "multipart/form-data")
+    public boolean updateImage(@RequestPart UserResponse req,
+                               @RequestPart final MultipartFile image,
+                               @RequestPart final MultipartFile crashScopeZip,
+                               final MultipartFile traceReplayerZip ) {
+        String msg = "Updating Data files in the server...";
+        log.debug(msg);
+
+        String sessionId = req.getSessionId();
+        if (sessionId == null) {
+            log.debug("No session ID provided");
+            return false;
+        }
+
+        try {
+
+            if (image != null) {
+                log.debug("Downloading App Logos Data to server");
+                // Gets appropriate paths and creates a file location for the App Logos Data to be saved
+                Path zipPath = Paths.get("../data/app_logos").toAbsolutePath();
+                // Creates new file in location where the app logos Data is going to be saved
+                File outputFile = new File(zipPath + "/" + image.getOriginalFilename());
+                // Copys the file to it's new location
+                image.transferTo(outputFile);
+            }
+
+            if (traceReplayerZip != null) {
+                log.debug("Downloading TraceReplayer Data to server");
+                Path zipPath = Paths.get("../data/TraceReplayer-Data").toAbsolutePath();
+                File outputFile = new File(zipPath + "/" + traceReplayerZip.getOriginalFilename());
+                traceReplayerZip.transferTo(outputFile);
+                String fileName = FilenameUtils.removeExtension(outputFile.getName());
+                unzipFile(Path.of(outputFile.getPath()), fileName.split("-")[0], fileName.split("-")[1]);
+                outputFile.delete();
+            }
+
+
+            if (crashScopeZip != null) {
+                log.debug("Downloading CrashScope Data to server");
+                Path zipPath = Paths.get("../data/CrashScope-Data").toAbsolutePath();
+                File outputFile = new File(zipPath + "/" + crashScopeZip.getOriginalFilename());
+                crashScopeZip.transferTo(outputFile);
+                String fileName = FilenameUtils.removeExtension(outputFile.getName());
+                unzipFile(Path.of(outputFile.getPath()), fileName.split("-")[0], fileName.split("-")[1]);
+                outputFile.delete();
+            }
+
+            // Load Apps
+            new SelectAppAction(APP_SELECTED);
+            return true;
+        } catch (Exception e) {
+            log.error("Error updating the step: " + req, e);
+            return false;
+        }
+    }
+
+    public static void unzipFile(Path filePathToUnzip, String appName, String appVersion) {
+        Path parentDir = filePathToUnzip.getParent();
+        String fileName = appName + "-" +appVersion;
+        Path targetDir = parentDir.resolve(fileName);
+
+        //Open the file
+        try (ZipFile zip = new ZipFile(filePathToUnzip.toFile())) {
+
+            FileSystem fileSystem = FileSystems.getDefault();
+            Enumeration<? extends ZipEntry> entries = zip.entries();
+
+            //We will unzip files in this folder
+            if (!targetDir.toFile().isDirectory()
+                    && !targetDir.toFile().mkdirs()) {
+                throw new IOException("failed to create directory " + targetDir);
+            }
+
+            //Iterate over entries
+            while (entries.hasMoreElements()) {
+                ZipEntry entry = entries.nextElement();
+
+                File f = new File(targetDir.resolve(Path.of(entry.getName())).toString());
+
+                //If directory then create a new directory in uncompressed folder
+                if (entry.isDirectory()) {
+                    if (!f.isDirectory() && !f.mkdirs()) {
+                        throw new IOException("failed to create directory " + f);
+                    }
+                }
+
+                //Else create the file
+                else {
+                    File parent = f.getParentFile();
+                    if (!parent.isDirectory() && !parent.mkdirs()) {
+                        throw new IOException("failed to create directory " + parent);
+                    }
+
+                    try(InputStream in = zip.getInputStream(entry)) {
+                        if (!f.exists()) {
+                            Files.copy(in, f.toPath());
+                        }
+                    }
+
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
 
     @PostMapping("/end")
     public int endConversation(@RequestBody UserResponse req) {
