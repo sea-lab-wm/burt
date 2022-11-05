@@ -5,12 +5,7 @@ import numpy as np
 def compute_ranks(ground_truth_states_str, retrieved_states_str):
     
     ground_truth_states = list(map(lambda x: x.strip(), ground_truth_states_str[1:-1].split(",")))
-    #ground_truth_states = list(map(lambda x: int(x), ground_truth_states))
-
     retrieved_states = list(map(lambda x: x.strip(), retrieved_states_str[1:-1].split(",")))
-    #retrieved_states = list(map(lambda x: int(x), retrieved_states))
-
-    #print(ground_truth_states, retrieved_states)
 
     ranks = []
     for state in ground_truth_states:
@@ -56,17 +51,6 @@ if __name__ == "__main__":
     retrieval_data.to_csv("retrieval_data_test_indiv_metrics.csv")
 
     # ----------
-
-    # results_summary = pd.DataFrame({
-    #     "config" : [],
-    #     "num_queries" : [],
-    #     "mrr" : [],
-    #     "map" : [],
-    #     "hit1" : [],
-    #     "hit2" : []
-    # })
-
-    # print(results_summary)
 
     results_summary = retrieval_data.groupby('config').apply(
         lambda x: pd.Series({
