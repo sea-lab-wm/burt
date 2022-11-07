@@ -201,6 +201,10 @@ const Chat = ({
     setOpenModal(!openModal);
   };
 
+  const changeModelOpenStatus = (openModel) => {
+    setOpenModal(openModel)
+  };
+
   return (
     <div className="react-chatbot-kit-chat-container App screen-center">
       <div className="react-chatbot-kit-chat-inner-container">
@@ -220,9 +224,8 @@ const Chat = ({
               </a>
               <a style={{height:'20px'}} title={"Open the" +
                   " Add App Panel"} onClick={() => openNewAppOpen()} >
-                <SettingsIcon height="20px" width="35px" />
+                <SettingsIcon height="28px" width="28px" />
               </a>
-              {/*<button className={"btn-primary btn-sm"} onClick={() => openNewAppOpen()}>+App</button>*/}
             </div>
           }
         />
@@ -231,7 +234,8 @@ const Chat = ({
             <NewAppPanel
                 config={config}
                 sessionId={sessionId}
-                isOpenAppPanel={openModal}/>
+                isOpenAppPanel={openModal}
+                changeModelOpenStatus={changeModelOpenStatus}/>
         }
         <div
           className="react-chatbot-kit-chat-message-container"

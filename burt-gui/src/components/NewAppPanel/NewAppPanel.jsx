@@ -25,8 +25,6 @@ class NewAppPanel extends React.Component {
 
     constructor(props) {
         super(props)
-        // preserve the initial state in a new object
-        this.baseState = this.state
     }
 
     state = {
@@ -94,6 +92,7 @@ class NewAppPanel extends React.Component {
         this.setState({
             isOpenAppPanel: !this.state.isOpenAppPanel
         })
+        this.props.changeModelOpenStatus(this.state.isOpenAppPanel);
     }
 
     validateSubmitButton = () => {
@@ -144,7 +143,7 @@ class NewAppPanel extends React.Component {
                     fileUploaded: true
                 })
                 this.close()
-                alert("Files Uploaded Successfully! Please Restart the Conversation to see the new App")
+                alert("Files Uploaded Successfully!")
 
             }
         }).catch(error => {
@@ -183,6 +182,7 @@ class NewAppPanel extends React.Component {
     }
 
     close = () => {
+        this.props.changeModelOpenStatus(this.state.isOpenAppPanel);
         this.setState(this.baseState)
     }
 
@@ -238,7 +238,7 @@ class NewAppPanel extends React.Component {
                     closeTimeoutMS={10}>
                     <div className={"popup-display"}>
                         <div>
-                            <div className="form-label"><h3>App Details</h3></div>
+                            <div className="form-label form-title"><h3>App Details</h3></div>
                             <div className="container">
                                 <p>
                                     <span style={{color: 'red', fontSize: '20px'}}>* </span>
@@ -248,7 +248,7 @@ class NewAppPanel extends React.Component {
                                 <div className={"form-group row"}>
                                     <label htmlFor="appIcon" className={"col-sm-4 col-form-label form-label"}>App icon
                                         <span style={{color: 'red', fontSize: '20px'}}>*</span></label>
-                                    <div className={"col-sm-8"}>
+                                    <div className={"col-sm-8 col-form-label"}>
                                         <input type="file" className="form-control-file"
                                                onChange={this.changeIconHandler} accept="image/*" id="appIcon"/>
                                     </div>
@@ -259,7 +259,7 @@ class NewAppPanel extends React.Component {
                                         Zip File
                                         <span style={{color: 'red', fontSize: '20px'}}>*</span></label>
 
-                                    <div className={"col-sm-8"}>
+                                    <div className={"col-sm-8 col-form-label"}>
                                         <input type="file" className="form-control-file"
                                                onChange={this.changeCrashscopeHandler} accept=".zip"
                                                id="crashScopeFile"/>
@@ -269,7 +269,7 @@ class NewAppPanel extends React.Component {
                                     <label htmlFor="traceReplayerFile" className={"col-sm-4 col-form-label form-label"}>
                                         TraceReplayer ZipFile
                                     </label>
-                                    <div className={"col-sm-8"}>
+                                    <div className={"col-sm-8 col-form-label"}>
                                         <input type="file" className="form-control-file"
                                                onChange={this.changeTracereplayerHandler} accept=".zip"
                                                id="traceReplayerFile"/>
@@ -277,22 +277,24 @@ class NewAppPanel extends React.Component {
                                 </div>
 
                                 <div className={"form-group row"}>
-                                    <div className={"col-sm-2"}>
-                                        <button className={"btn btn-danger btn-sm"} onClick={this.close}>Cancel
-                                        </button>
-                                    </div>
-                                    <div className={"col-sm-4 submitButton"}>
-                                        <button className={"btn btn-primary btn-sm"}
-                                                disabled={!this.validateSubmitButton()}
-                                                onClick={this.submitNewApp}>Submit
-                                            {
-                                                this.state.fileUploadSubmitted && !this.state.fileUploaded &&
-                                                <span className="spinner-border spinner-border-sm"
-                                                      style={{marginLeft: '10px'}}
-                                                      role="status"
-                                                      aria-hidden="true"></span>
-                                            }
-                                        </button>
+                                    <div className={"button-panel"}>
+                                        <div className={"button"}>
+                                            <button className={"btn btn-danger"} onClick={this.close}>Cancel
+                                            </button>
+                                        </div>
+                                        <div className={"button"}>
+                                            <button className={"btn btn-primary"}
+                                                    disabled={!this.validateSubmitButton()}
+                                                    onClick={this.submitNewApp}>Submit
+                                                {
+                                                    this.state.fileUploadSubmitted && !this.state.fileUploaded &&
+                                                    <span className="spinner-border spinner-border-sm"
+                                                          style={{marginLeft: '10px'}}
+                                                          role="status"
+                                                          aria-hidden="true"></span>
+                                                }
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
