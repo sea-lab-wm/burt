@@ -1,9 +1,22 @@
-.submitButton {
-    margin-left: -20px;
-    margin-top: -5px;
+.button {
+    padding-right: calc(0.35em);
+}
+.closebutton {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 .form-label {
     font-size: 15px;
+}
+.form-title {
+    text-align: center;
+}
+.button-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .inline-errormsg {
     color: red;
