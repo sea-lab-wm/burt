@@ -10,7 +10,9 @@
 	<name>burt-quality-checker</name>
 	<description>BURT quality checker</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>12</java.version>
+		<maven.compiler.source>12</maven.compiler.source>
+		<maven.compiler.target>12</maven.compiler.target>
 	</properties>
 
 	<dependencies>
@@ -95,8 +97,8 @@
 				<version>3.8.1</version>
 				<configuration>
 					<forceJavacCompilerUse>true</forceJavacCompilerUse>
-					<source>11</source>
-					<target>11</target>
+					<source>12</source>
+					<target>12</target>
 				</configuration>
 			</plugin>
 		</plugins>

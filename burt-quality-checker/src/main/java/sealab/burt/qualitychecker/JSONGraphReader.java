@@ -79,9 +79,10 @@ class JSONGraphReader {
         GraphGenerator generator = new GraphGenerator();
 
         // check if crashScopeExecutions is empty
+        AppGraphInfo finalGraph = null;
         if (!crashScopeExecutions.isEmpty()) {
             App app = crashScopeExecutions.get(0).getApp();
-            generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
+            finalGraph = generator.generateGraph(crashScopeExecutions, app, GraphDataSource.CS);
         }
 
         ///-------------------------------------------------
@@ -94,8 +95,6 @@ class JSONGraphReader {
         List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
 
         //2. update the graph (update the weights, and create new GraphStates and Transitions if needed)
-
-        AppGraphInfo finalGraph = null;
         if (!traceReplayerExecutions.isEmpty()) {
             App app = traceReplayerExecutions.get(0).getApp();
             finalGraph = generator.updateGraphWithWeights(app, traceReplayerExecutions, GraphDataSource.TR);
@@ -192,20 +191,24 @@ class JSONGraphReader {
                 //----------------------------------------
 
                 //This for loop reads in the list of DynGuiComponentVOs for each screen
-                for (Step currStep : execution.getSteps()) {
+				for (int j = 0; j < execution.getSteps().size(); j++) {
+					Step currStep = execution.getSteps().get(j);
 
                     // Get the current screen and read in the corresponding xml file.
-                    String xmlPath = Path.of(dataLocation, String.join("-",
+                    Path xmlPath = Path.of(dataLocation, String.join("-",
                                     execution.getApp().getPackageName(),
                                     execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
-                                    execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
-                            .toString();
+                                    execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml");
+                    if(!xmlPath.toFile().exists()) {
+                        if(j == execution.getSteps().size() - 1) //if it is the last step, we can continue
+                                continue;
+                    }
                     try {
 
                         //Parse the xml file into a BasicTreeNode and then set up variables required by the visitNodes
                         // method.
                         UiHierarchyXmlLoader loader = new UiHierarchyXmlLoader();
-                        BasicTreeNode tree = loader.parseXml(xmlPath);
+                        BasicTreeNode tree = loader.parseXml(xmlPath.toString());
                         StringBuilder builder = new StringBuilder();
                         ArrayList<DynGuiComponentVO> currComps = new ArrayList<>();
 

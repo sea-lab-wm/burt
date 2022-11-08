@@ -148,7 +148,6 @@ class NewAppPanel extends React.Component {
             }
         }).catch(error => {
             console.error(`There was an unexpected error: ${error}`);
-
         })
 
     }

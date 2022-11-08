@@ -12,9 +12,11 @@
     <artifactId>burt-server</artifactId>
     <version>0.0.1</version>
     <name>burt-server</name>
-    <description>BURT&apos;s web interface</description>
+    <description>BURT&apos;s backend server</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>12</java.version>
+		<maven.compiler.source>12</maven.compiler.source>
+		<maven.compiler.target>12</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>

@@ -1,8 +1,11 @@
 #!/bin/bash
 set -x #echo on
 
+export JAVA_HOME=`/usr/libexec/java_home -v 12.0.2`
+
 export CUR_DIR=`pwd`
-export REPOSITORIES_PATH=/Users/yangsong/435-burt-project/
+#export REPOSITORIES_PATH=/Users/yangsong/435-burt-project/
+export REPOSITORIES_PATH=/Users/ojcchar/repositories/Projects
 
 #
 #

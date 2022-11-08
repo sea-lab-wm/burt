@@ -32,7 +32,8 @@ class SelectAppAction extends ChatBotAction {
     public static List<KeyValues> ALL_APPS = null;
     private static final String NO_APP_LOGO = "NO_APP_LOGO.png";
 
-    private static void generateAppData() {
+    public static void generateAppData() {
+
         Path crashScopeDataPath = Paths.get(BurtConfigPaths.crashScopeDataPath);
         Path appLogosPath = Paths.get(BurtConfigPaths.appLogosPath);
 

@@ -37,7 +37,13 @@ class MainJSONGraphGenerator {
 //            new ImmutablePair<>("GnuCash", "1.0.3"),
 //            new ImmutablePair<>("AntennaPod", "1.6.2.3"),
 //            new ImmutablePair<>("ATimeTracker", "0.20"),
-            new ImmutablePair<>("growtracker", "2.3.1")
+            // new ImmutablePair<>("growtracker", "2.3.1")
+            // new ImmutablePair<>("omninotes", "5.5.2")
+            // new ImmutablePair<>("anglerslog", "1.3.1")
+            // new ImmutablePair<>("gpstest", "3.8.0")
+            // new ImmutablePair<>("fieldbook", "4.3.3")
+            // new ImmutablePair<>("files", "1.0.0-beta.11")
+            new ImmutablePair<>("phimpme", "1.4.0")
 //            new ImmutablePair<>("androidtoken", "2.10")
     );
 

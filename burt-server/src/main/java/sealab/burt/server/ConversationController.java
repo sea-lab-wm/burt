@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
+import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.appselect.SelectAppAction;
@@ -36,6 +38,7 @@ import java.text.MessageFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
@@ -546,16 +549,18 @@ class ConversationController {
 
             if (crashScopeZip != null) {
                 log.debug("Downloading CrashScope Data to server");
-                Path zipPath = Paths.get("../data/CrashScope-Data").toAbsolutePath();
-                File outputFile = new File(zipPath + "/" + crashScopeZip.getOriginalFilename());
+                Path zipPath = Paths.get(BurtConfigPaths.crashScopeDataPath).toAbsolutePath();
+                File outputFile = Paths.get(zipPath.toString(), crashScopeZip.getOriginalFilename()).toFile();
                 crashScopeZip.transferTo(outputFile);
+                
                 String fileName = FilenameUtils.removeExtension(outputFile.getName());
                 unzipFile(Path.of(outputFile.getPath()), fileName.split("-")[0], fileName.split("-")[1]);
+                
                 outputFile.delete();
             }
 
             // Load Apps
-            new SelectAppAction(APP_SELECTED);
+            SelectAppAction.generateAppData();
             return true;
         } catch (Exception e) {
             log.error("Error updating the step: " + req, e);
@@ -563,33 +568,51 @@ class ConversationController {
         }
     }
 
-    public static void unzipFile(Path filePathToUnzip, String appName, String appVersion) {
+    public static void unzipFile(Path filePathToUnzip, String appName, String appVersion) throws ZipException, IOException {
         Path parentDir = filePathToUnzip.getParent();
-        String fileName = appName + "-" +appVersion;
-        Path targetDir = parentDir.resolve(fileName);
+        String directoryName = appName + "-" +appVersion;
 
         //Open the file
         try (ZipFile zip = new ZipFile(filePathToUnzip.toFile())) {
 
-            FileSystem fileSystem = FileSystems.getDefault();
-            Enumeration<? extends ZipEntry> entries = zip.entries();
+            ZipEntry firstEntry = zip.entries().nextElement();
 
-            //We will unzip files in this folder
-            if (!targetDir.toFile().isDirectory()
-                    && !targetDir.toFile().mkdirs()) {
-                throw new IOException("failed to create directory " + targetDir);
+            log.debug("First entry:  " + firstEntry.getName());
+            log.debug("Directory name: " + directoryName);
+
+            Path targetDir = parentDir;
+
+            //if the first entry is not the a directory named appName-appVersion, create the directory
+            if(!firstEntry.getName().equals(directoryName) && !firstEntry.getName().equals(directoryName + File.separator)){
+                targetDir = parentDir.resolve(directoryName);
+                //We will unzip files in this folder
+                if (!targetDir.toFile().isDirectory()
+                        && !targetDir.toFile().mkdirs()) {
+                    throw new IOException("Failed to create directory " + targetDir);
+                }
             }
+
+            //--------------
+
+            Enumeration<? extends ZipEntry> entries = zip.entries();
 
             //Iterate over entries
             while (entries.hasMoreElements()) {
                 ZipEntry entry = entries.nextElement();
+
+                log.debug("Zip entry: " + entry.getName());
+
+                //don't process the MACOSX directory
+                if(entry.getName().contains("MACOSX")){
+                    continue; 
+                }
 
                 File f = new File(targetDir.resolve(Path.of(entry.getName())).toString());
 
                 //If directory then create a new directory in uncompressed folder
                 if (entry.isDirectory()) {
                     if (!f.isDirectory() && !f.mkdirs()) {
-                        throw new IOException("failed to create directory " + f);
+                        throw new IOException("Failed to create directory " + f);
                     }
                 }
 
@@ -597,7 +620,7 @@ class ConversationController {
                 else {
                     File parent = f.getParentFile();
                     if (!parent.isDirectory() && !parent.mkdirs()) {
-                        throw new IOException("failed to create directory " + parent);
+                        throw new IOException("Failed to create directory " + parent);
                     }
 
                     try(InputStream in = zip.getInputStream(entry)) {
@@ -608,12 +631,7 @@ class ConversationController {
 
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-
-
 
     }
 
