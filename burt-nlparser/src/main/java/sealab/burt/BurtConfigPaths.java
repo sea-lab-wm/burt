@@ -5,10 +5,10 @@ import java.nio.file.Paths;
 
 public class BurtConfigPaths {
 
-    public static final String crashScopeDataFolder = "CrashScope-Data";
-    public static final String crashScopeDataPath = Path.of("..", "data", crashScopeDataFolder).toString();
-    public static final String traceReplayerDataFolder = "TraceReplayer-Data";
-    public static final String traceReplayerDataPath = Path.of("..", "data", traceReplayerDataFolder).toString();
+    public static final String crashScopeDataFolderName = "CrashScope-Data";
+    public static final String crashScopeDataPath = Path.of("..", "data", crashScopeDataFolderName).toString();
+    public static final String traceReplayerDataFolderName = "TraceReplayer-Data";
+    public static final String traceReplayerDataPath = Path.of("..", "data", traceReplayerDataFolderName).toString();
 
     public static final String nlParsersBaseFolder = Path.of("..", "burt-nlparser").toString();
     public static final String qualityCheckerResourcesPath =
@@ -28,4 +28,6 @@ public class BurtConfigPaths {
 
     public static final String userScreenshotPath = Paths.get("user_screenshots").toString();
     public static final String fullUserScreenshotPath = Paths.get("..", "data", "user_screenshots").toString();
+
+    public static final String tempPath =  Paths.get("..", "tmp").toString();
 }

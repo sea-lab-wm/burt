@@ -15,6 +15,7 @@ import sealab.burt.BurtConfigPaths;
 import sealab.burt.server.actions.ActionName;
 import sealab.burt.server.actions.ChatBotAction;
 import sealab.burt.server.actions.appselect.SelectAppAction;
+import sealab.burt.server.actions.newapp.NewAppController;
 import sealab.burt.server.actions.others.GenerateBugReportAction;
 import sealab.burt.server.conversation.entity.*;
 import sealab.burt.server.conversation.state.ConversationState;
@@ -49,54 +50,58 @@ import static sealab.burt.server.msgparsing.Intent.EB_DESCRIPTION;
 import static sealab.burt.server.msgparsing.Intent.OB_DESCRIPTION;
 import static sealab.burt.server.msgparsing.Intent.*;
 
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 @RestController
-public
-@Slf4j
-class ConversationController {
+public @Slf4j class ConversationController {
 
-    public final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {{
-//        put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
-        put(PARTICIPANT_PROVIDED, new ParticipantNameStateChecker());
+    public final ConcurrentHashMap<Intent, StateChecker> stateCheckers = new ConcurrentHashMap<>() {
+        {
+            // put(GREETING, new DefaultActionStateChecker(PROVIDE_PARTICIPANT_ID));
+            put(PARTICIPANT_PROVIDED, new ParticipantNameStateChecker());
 
-        //--------------------
-        put(APP_SELECTED, new DefaultActionStateChecker(CONFIRM_APP));
-        put(AFFIRMATIVE_ANSWER, new AffirmativeAnswerStateChecker());
-        put(NEGATIVE_ANSWER, new NegativeAnswerStateChecker());
-        //--------OB---------------//
-        put(OB_DESCRIPTION, new OBDescriptionStateChecker());
-        put(Intent.OB_SCREEN_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_OB_SCREEN));
-        //--------EB-------------//
-        put(EB_DESCRIPTION, new EBDescriptionStateChecker());
-        //--------S2R-----------//
-        put(S2R_DESCRIPTION, new S2RDescriptionStateChecker());
+            // --------------------
+            put(APP_SELECTED, new DefaultActionStateChecker(CONFIRM_APP));
+            put(AFFIRMATIVE_ANSWER, new AffirmativeAnswerStateChecker());
+            put(NEGATIVE_ANSWER, new NegativeAnswerStateChecker());
+            // --------OB---------------//
+            put(OB_DESCRIPTION, new OBDescriptionStateChecker());
+            put(Intent.OB_SCREEN_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_OB_SCREEN));
+            // --------EB-------------//
+            put(EB_DESCRIPTION, new EBDescriptionStateChecker());
+            // --------S2R-----------//
+            put(S2R_DESCRIPTION, new S2RDescriptionStateChecker());
 
-//        put(S2R_PREDICTED_SELECTED, new NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
-        put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
-        put(NEW_PREDICTION_OR_TYPE_S2R, new NewPredictionOrTypeS2RStateChecker());
+            // put(S2R_PREDICTED_SELECTED, new
+            // NStateChecker(CONFIRM_PREDICTED_SELECTED_S2R_SCREENS));
+            put(S2R_PREDICTED_SELECTED, new S2RPredictionStateChecker());
+            put(NEW_PREDICTION_OR_TYPE_S2R, new NewPredictionOrTypeS2RStateChecker());
 
-//        put(S2R_MISSING_SELECTED, new DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
-        put(S2R_INPUT, new S2RInputStateChecker());
+            // put(S2R_MISSING_SELECTED, new
+            // DefaultActionStateChecker(CONFIRM_SELECTED_MISSING_S2R));
+            put(S2R_INPUT, new S2RInputStateChecker());
 
-        put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
-//        put(S2R_AMBIGUOUS_SELECTED, new NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
-        //--------Ending---------------//
-        put(CONFIRM_END_CONVERSATION, new DefaultActionStateChecker(CONFIRM_END_CONVERSATION_ACTION));
-        put(DELETE_LAST_STEP, new DeleteLastStepStateChecker());
-    }};
+            put(S2R_AMBIGUOUS_SELECTED, new S2RDescriptionStateChecker());
+            // put(S2R_AMBIGUOUS_SELECTED, new
+            // NStateChecker(CONFIRM_SELECTED_AMBIGUOUS_S2R));
+            // --------Ending---------------//
+            put(CONFIRM_END_CONVERSATION, new DefaultActionStateChecker(CONFIRM_END_CONVERSATION_ACTION));
+            put(DELETE_LAST_STEP, new DeleteLastStepStateChecker());
+        }
+    };
 
     ConcurrentHashMap<String, ConversationState> conversationStates = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
-        //this call is required to load the stanford corenlp library since the start of the server
-        //to avoid the long delay
+        // this call is required to load the stanford corenlp library since the start of
+        // the server
+        // to avoid the long delay
         TextProcessor.processTextFullPipeline("start", false);
         SpringApplication.run(ConversationController.class, args);
     }
 
-
     @PostMapping(value = "/processMessage", consumes = "multipart/form-data")
-    public ConversationResponse processMessage(@RequestPart UserResponse userResponse, @RequestPart(value="image", required=false) final MultipartFile image) {
+    public ConversationResponse processMessage(@RequestPart UserResponse userResponse,
+            @RequestPart(value = "image", required = false) final MultipartFile image) {
 
         ConversationResponse response = getConversationResponse(userResponse, image);
         log.debug("ChatBot response: " + response.toString());
@@ -116,7 +121,7 @@ class ConversationController {
             String sessionId = userResponse.getSessionId();
             if (sessionId == null) {
                 return ConversationResponse.createResponse("Thank you for using BURT. " +
-                                "Please reload the page and confirm the action to start a new conversation",
+                        "Please reload the page and confirm the action to start a new conversation",
                         ResponseCode.END_CONVERSATION);
             }
 
@@ -130,11 +135,11 @@ class ConversationController {
 
             conversationState.put(CURRENT_MESSAGE, userResponse);
 
-            //-----------------------------
+            // -----------------------------
 
             conversationState.addUserMessagesToHistory(userResponse.getMessages());
 
-            //-----------------------------
+            // -----------------------------
 
             Intent intent = MessageParser.getIntent(userResponse, conversationState);
             if (intent == null) {
@@ -184,12 +189,12 @@ class ConversationController {
 
             log.debug("Identified action: " + nextAction.getClass().getSimpleName());
 
-            // Need to provide the image to our processor class so it can be saved 
+            // Need to provide the image to our processor class so it can be saved
             // and updated in the Graph appropriately
             if (nextAction.getClass().getSimpleName().equals("ConfirmOBScreenSelectedAction")) {
                 nextAction.setImage(image);
             }
-            
+
             List<ChatBotMessage> nextMessages = nextAction.execute(conversationState);
             List<Intent> nextIntents = nextAction.nextExpectedIntents();
             conversationState.put(NEXT_INTENTS, nextIntents);
@@ -199,8 +204,8 @@ class ConversationController {
 
             log.debug("Expected next intent: " + nextIntents);
 
-//            log.debug("State: ");
-//            log.debug(conversationState.toString());
+            // log.debug("State: ");
+            // log.debug(conversationState.toString());
 
             ConversationResponse conversationResponse = new ConversationResponse(nextMessages, nextIntents, action,
                     ResponseCode.SUCCESS);
@@ -283,16 +288,17 @@ class ConversationController {
 
                 // Gets appropriate paths and creates a file location for the image to be saved
                 Path dataPath = Paths.get("../data").toAbsolutePath();
-                Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".png").toAbsolutePath();
-                
+                Path imagePath = Paths.get("../data/user_screenshots", UUID.randomUUID().toString() + ".png")
+                        .toAbsolutePath();
+
                 // Creates new file in location where the image is going to be saved
                 File outputFile = new File(imagePath.toString());
 
-                // Copys the file to it's new location                
+                // Copys the file to it's new location
                 image.transferTo(outputFile);
 
                 // Updates the screenshot path for the step
-                allSteps.get(stepIndex).setScreenshotPath("\\"+dataPath.relativize(imagePath).toString());
+                allSteps.get(stepIndex).setScreenshotPath("\\" + dataPath.relativize(imagePath).toString());
                 log.debug("Finished download and updated path");
             }
 
@@ -340,13 +346,13 @@ class ConversationController {
         String sessionId = req.getSessionId();
         if (sessionId == null) {
             log.debug("No session ID provided");
-            return null; //it should return null
+            return null; // it should return null
         }
 
         ConversationState state = conversationStates.get(sessionId);
         if (state == null) {
             log.debug("No conversation state associated to: " + sessionId);
-            return null; //it should return null
+            return null; // it should return null
         }
 
         return state.getFrontEndMessageHistory();
@@ -360,7 +366,7 @@ class ConversationController {
 
         if (sessionId == null) {
             return ConversationResponse.createResponse("The session is inactive. " +
-                            "Please (re)start the conversation.",
+                    "Please (re)start the conversation.",
                     ResponseCode.UNEXPECTED_ERROR);
         }
 
@@ -368,7 +374,8 @@ class ConversationController {
 
         // check if state has APP
         if (conversationState == null || (conversationState.containsKey(StateVariable.APP_ASKED)) ||
-                !conversationState.containsKey(StateVariable.APP_NAME) || !conversationState.containsKey(StateVariable.APP_VERSION) ||
+                !conversationState.containsKey(StateVariable.APP_NAME)
+                || !conversationState.containsKey(StateVariable.APP_VERSION) ||
                 !conversationState.containsKey(StateVariable.PARTICIPANT_ID)) {
             return ConversationResponse.createResponse(
                     "There is no enough information to generate the report at this moment.",
@@ -390,7 +397,7 @@ class ConversationController {
 
         if (sessionId == null) {
             return ConversationResponse.createResponse("The session is inactive. " +
-                            "Please (re)start the conversation.",
+                    "Please (re)start the conversation.",
                     ResponseCode.UNEXPECTED_ERROR);
         }
         ConversationState conversationState = conversationStates.get(sessionId);
@@ -410,8 +417,7 @@ class ConversationController {
             BugReportElement element = allSteps.get(i);
             stepOptions.add(new KeyValues(String.valueOf(i),
                     element.getStringElement(),
-                    HTMLBugReportGenerator.getLinkScreenshotPath(element.getScreenshotPath())
-            ));
+                    HTMLBugReportGenerator.getLinkScreenshotPath(element.getScreenshotPath())));
         }
 
         MessageObj messageObj = new MessageObj();
@@ -453,7 +459,7 @@ class ConversationController {
         String sessionId = req.getSessionId();
         if (sessionId == null) {
             return ConversationResponse.createResponse("The session is inactive. " +
-                            "Please (re)start the conversation.",
+                    "Please (re)start the conversation.",
                     ResponseCode.UNEXPECTED_ERROR);
         }
         ConversationState conversationState = conversationStates.get(sessionId);
@@ -472,8 +478,7 @@ class ConversationController {
             String tip = allTips.get(i);
             tipsOptions.add(new KeyValues(String.valueOf(i),
                     String.valueOf(i),
-                    tip)
-            );
+                    tip));
         }
         MessageObj messageObj = new MessageObj();
 
@@ -511,12 +516,12 @@ class ConversationController {
     }
 
     @PostMapping(value = "/addApp", consumes = "multipart/form-data")
-    public boolean updateImage(@RequestPart UserResponse req,
-                               @RequestPart final MultipartFile image,
-                               @RequestPart final MultipartFile crashScopeZip,
-                               final MultipartFile traceReplayerZip ) {
-        String msg = "Updating Data files in the server...";
-        log.debug(msg);
+    public boolean addApplication(@RequestPart UserResponse req,
+            @RequestPart final MultipartFile appIcon,
+            @RequestPart final MultipartFile crashScopeZip,
+            final MultipartFile traceReplayerZip) {
+
+        log.debug("Updating data files for adding new application...");
 
         String sessionId = req.getSessionId();
         if (sessionId == null) {
@@ -526,115 +531,19 @@ class ConversationController {
 
         try {
 
-            if (image != null) {
-                log.debug("Downloading App Logos Data to server");
-                // Gets appropriate paths and creates a file location for the App Logos Data to be saved
-                Path zipPath = Paths.get("../data/app_logos").toAbsolutePath();
-                // Creates new file in location where the app logos Data is going to be saved
-                File outputFile = new File(zipPath + "/" + image.getOriginalFilename());
-                // Copys the file to it's new location
-                image.transferTo(outputFile);
+            if (appIcon == null || crashScopeZip == null) {
+                log.error(String.format("Invalid img and CS zip parameters: %s - %s", appIcon, crashScopeZip));
+                return false;
             }
 
-            if (traceReplayerZip != null) {
-                log.debug("Downloading TraceReplayer Data to server");
-                Path zipPath = Paths.get("../data/TraceReplayer-Data").toAbsolutePath();
-                File outputFile = new File(zipPath + "/" + traceReplayerZip.getOriginalFilename());
-                traceReplayerZip.transferTo(outputFile);
-                String fileName = FilenameUtils.removeExtension(outputFile.getName());
-                unzipFile(Path.of(outputFile.getPath()), fileName.split("-")[0], fileName.split("-")[1]);
-                outputFile.delete();
-            }
-
-
-            if (crashScopeZip != null) {
-                log.debug("Downloading CrashScope Data to server");
-                Path zipPath = Paths.get(BurtConfigPaths.crashScopeDataPath).toAbsolutePath();
-                File outputFile = Paths.get(zipPath.toString(), crashScopeZip.getOriginalFilename()).toFile();
-                crashScopeZip.transferTo(outputFile);
-                
-                String fileName = FilenameUtils.removeExtension(outputFile.getName());
-                unzipFile(Path.of(outputFile.getPath()), fileName.split("-")[0], fileName.split("-")[1]);
-                
-                outputFile.delete();
-            }
-
-            // Load Apps
-            SelectAppAction.generateAppData();
+            NewAppController.addNewApp(sessionId, appIcon, crashScopeZip, traceReplayerZip);
             return true;
+
         } catch (Exception e) {
-            log.error("Error updating the step: " + req, e);
+            log.error("Error adding the new app: " + req, e);
             return false;
         }
     }
-
-    public static void unzipFile(Path filePathToUnzip, String appName, String appVersion) throws ZipException, IOException {
-        Path parentDir = filePathToUnzip.getParent();
-        String directoryName = appName + "-" +appVersion;
-
-        //Open the file
-        try (ZipFile zip = new ZipFile(filePathToUnzip.toFile())) {
-
-            ZipEntry firstEntry = zip.entries().nextElement();
-
-            log.debug("First entry:  " + firstEntry.getName());
-            log.debug("Directory name: " + directoryName);
-
-            Path targetDir = parentDir;
-
-            //if the first entry is not the a directory named appName-appVersion, create the directory
-            if(!firstEntry.getName().equals(directoryName) && !firstEntry.getName().equals(directoryName + File.separator)){
-                targetDir = parentDir.resolve(directoryName);
-                //We will unzip files in this folder
-                if (!targetDir.toFile().isDirectory()
-                        && !targetDir.toFile().mkdirs()) {
-                    throw new IOException("Failed to create directory " + targetDir);
-                }
-            }
-
-            //--------------
-
-            Enumeration<? extends ZipEntry> entries = zip.entries();
-
-            //Iterate over entries
-            while (entries.hasMoreElements()) {
-                ZipEntry entry = entries.nextElement();
-
-                log.debug("Zip entry: " + entry.getName());
-
-                //don't process the MACOSX directory
-                if(entry.getName().contains("MACOSX")){
-                    continue; 
-                }
-
-                File f = new File(targetDir.resolve(Path.of(entry.getName())).toString());
-
-                //If directory then create a new directory in uncompressed folder
-                if (entry.isDirectory()) {
-                    if (!f.isDirectory() && !f.mkdirs()) {
-                        throw new IOException("Failed to create directory " + f);
-                    }
-                }
-
-                //Else create the file
-                else {
-                    File parent = f.getParentFile();
-                    if (!parent.isDirectory() && !parent.mkdirs()) {
-                        throw new IOException("Failed to create directory " + parent);
-                    }
-
-                    try(InputStream in = zip.getInputStream(entry)) {
-                        if (!f.exists()) {
-                            Files.copy(in, f.toPath());
-                        }
-                    }
-
-                }
-            }
-        }
-
-    }
-
 
     @PostMapping("/end")
     public int endConversation(@RequestBody UserResponse req) {

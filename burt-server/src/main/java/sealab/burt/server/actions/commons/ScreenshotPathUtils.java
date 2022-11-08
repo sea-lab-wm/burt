@@ -44,9 +44,9 @@ class ScreenshotPathUtils {
         //--------------------------
 
         Path fullScreenshotPath = Path.of(BurtConfigPaths.crashScopeDataPath);
-        String prefix = BurtConfigPaths.crashScopeDataFolder;
+        String prefix = BurtConfigPaths.crashScopeDataFolderName;
         if (GraphDataSource.TR.equals(dataSource) && !screenshotPath.equals(Path.of(DEFAULT_SCREENSHOT))) {
-            prefix = BurtConfigPaths.traceReplayerDataFolder;
+            prefix = BurtConfigPaths.traceReplayerDataFolderName;
             fullScreenshotPath = Path.of(BurtConfigPaths.traceReplayerDataPath);
         } else if (GraphDataSource.US.equals(dataSource)) {
             screenshotPath = Path.of(inputScreenshotPath);
@@ -58,7 +58,7 @@ class ScreenshotPathUtils {
 
         if (!Files.exists(fullScreenshotPath)) {
             log.warn("Screenshot file does not exist: " + fullScreenshotPath);
-            prefix = BurtConfigPaths.crashScopeDataFolder;
+            prefix = BurtConfigPaths.crashScopeDataFolderName;
             screenshotPath = Path.of(DEFAULT_SCREENSHOT);
         }
 
@@ -70,7 +70,7 @@ class ScreenshotPathUtils {
     public static String getScreenshotPathForStep(AppStep step, ConversationState state) {
 
         if (DeviceUtils.isOpenApp(step.getAction())) {
-            return FilenameUtils.separatorsToUnix("/" + BurtConfigPaths.crashScopeDataFolder + "/" + OPEN_APP_SCREENSHOT);
+            return FilenameUtils.separatorsToUnix("/" + BurtConfigPaths.crashScopeDataFolderName + "/" + OPEN_APP_SCREENSHOT);
         }
 
         String stepScreenshotPath = step.getScreenshotFile();

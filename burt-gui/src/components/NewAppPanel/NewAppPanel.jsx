@@ -127,7 +127,7 @@ class NewAppPanel extends React.Component {
         formData.append("req", new Blob([JSON.stringify(data)], {
             type: "application/json"
         }));
-        formData.append("image", this.state.selectedIcon);
+        formData.append("appIcon", this.state.selectedIcon);
         formData.append("crashScopeZip", this.state.selectedCrashscopeFile);
         formData.append("traceReplayerZip", this.state.selectedTracereplayerFile);
 
