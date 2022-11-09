@@ -10,6 +10,7 @@ import {updateStepsHistory} from "../Chat/chatUtils";
 import ContentEditable from "react-contenteditable";
 import axios from "axios";
 import loadStepHistory from "../../logic/UpdateStepsHistory";
+import ImageUtils from "../../logic/ImageUtils";
 
 
 const customStyles = {
@@ -220,22 +221,46 @@ class StepComponent extends React.Component {
     onImageInputChange = (event) => {
         // If a file was provided
         if (event.target.files[0]) {
-            // Update the image on the server
-            this.updateImage(event.target.files[0]);
 
             // Update the image in the local state
             const imageUrl = URL.createObjectURL(event.target.files[0]);
 
-            this.setState({stepImage: imageUrl});
-            
-            // Update the image in the parent components states
-            // Have to recreate the stepState object because it won't trigger the hook unless its updated with a new reference
-            let tempSteps = {};
-            tempSteps.steps = this.props.stepsState.steps;
-            tempSteps.steps[this.props.index].value2 = imageUrl;            
-            this.props.setStepsState(tempSteps)
+            const img = new Image();
+            img.src = imageUrl
 
-            this.updateStep(this.state.fullStepDescription);
+            ImageUtils.resolutionCalculate(imageUrl,  (resolution) =>  {
+
+                var width = resolution[0]['width']
+                var height = resolution[0]['height']
+                //Check Key Existence
+                if (ImageUtils.resolution_width_height_map.hasOwnProperty(width)) {
+                    var height_values = ImageUtils.resolution_width_height_map[width]
+                    for (const value of height_values) {
+                        // If image height is a valid resolution
+                        if (height === value) {
+                            // Update the image on the server
+                            this.updateImage(event.target.files[0]);
+
+                            this.setState({stepImage: imageUrl});
+
+                            // Update the image in the parent components states
+                            // Have to recreate the stepState object because it won't trigger the hook unless its updated with a new reference
+                            let tempSteps = {};
+                            tempSteps.steps = this.props.stepsState.steps;
+                            tempSteps.steps[this.props.index].value2 = imageUrl;
+                            this.props.setStepsState(tempSteps)
+
+                            this.updateStep(this.state.fullStepDescription);
+                        } else {
+                            alert("Change height of the image to one of the values =>"+ ImageUtils.toString())
+                        }
+                    }
+                } else {
+                    alert("Change resolution of the image to one of the values =>" + ImageUtils.toString())
+                }
+            })
+
+
         }
     }
 

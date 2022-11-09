@@ -33,12 +33,18 @@ const config = {
     updateStepService: "/updateStep",
     updateImageService: "/updateImage",
     addAppService: "/addApp",
+    resolution_width_height_map: {
+        "360" : [800, 640],
+        "390" : [844],
+        "414" :[896],
+        "412" :[915]
+    },
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
         createChatBotMessage("I'll assist you in reporting any problem with your app"),
         // createChatBotMessage("Please <b>start a stopwatch from scratch</b> to time yourself during" +
         //     " this conversation"),
-        createChatBotMessage("To start, please provide your <b>Participant Name</b>"),
+        createChatBotMessage("To start, please provide your <b> Name</b>"),
     ],
     widgets: [
         {
