@@ -252,11 +252,11 @@ class StepComponent extends React.Component {
 
                             this.updateStep(this.state.fullStepDescription);
                         } else {
-                            alert("Change height of the image to one of the values =>"+ ImageUtils.toString())
+                            alert("Change height of the image to one of the values =>"+ ImageUtils.toString(ImageUtils.resolution_width_height_map))
                         }
                     }
                 } else {
-                    alert("Change resolution of the image to one of the values =>" + ImageUtils.toString())
+                    alert("Change resolution of the image to one of the values =>" + ImageUtils.toString(ImageUtils.resolution_width_height_map))
                 }
             })
 

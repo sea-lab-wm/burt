@@ -39,6 +39,18 @@ const config = {
         "414" :[896],
         "412" :[915]
     },
+    app_logo_resolution_map: {
+        "96" : [96],
+        "72" : [72],
+        "48" : [48],
+        "36" : [36],
+        "192" : [192],
+        "200" : [200],
+        "360" : [360],
+        "180" : [180],
+        "500" : [500],
+        "512" : [512]
+    },
     // SHA256 - Default Password => test
     adminPassword: "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
     initialMessages: [

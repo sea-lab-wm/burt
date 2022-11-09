@@ -174,8 +174,8 @@ class NewAppPanel extends React.Component {
             var height = resolution[0]['height']
 
             //Check Key Existence
-            if (ImageUtils.resolution_width_height_map.hasOwnProperty(width)) {
-                var height_values = ImageUtils.resolution_width_height_map[width]
+            if (ImageUtils.app_logo_resolution_map.hasOwnProperty(width)) {
+                var height_values = ImageUtils.app_logo_resolution_map[width]
                 for (const value of height_values) {
                     // If image height is a valid resolution
                     if (height === value) {
@@ -187,7 +187,7 @@ class NewAppPanel extends React.Component {
                         this.setState({
                             selectedIcon: 'none'
                         })
-                        alert("Change height of the image to one of the values =>" + ImageUtils.toString())
+                        alert("Change height of the image to one of the values =>" + ImageUtils.toString(ImageUtils.app_logo_resolution_map))
                     }
                 }
             } else {
@@ -195,7 +195,7 @@ class NewAppPanel extends React.Component {
                 this.setState({
                     selectedIcon: 'none'
                 })
-                alert("Change resolution of the image to one of the values =>" + ImageUtils.toString())
+                alert("Change resolution of the image to one of the values =>" + ImageUtils.toString(ImageUtils.app_logo_resolution_map))
             }
         })
 
