@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './NewAppPanel.css'
 import Modal from "react-modal";
 import axios from "axios";
+import ImageUtils from "../../logic/ImageUtils";
+import sha256 from 'crypto-js/sha256';
 
 
 const customStyles = {
@@ -21,11 +23,13 @@ const customStyles = {
 
 }
 
+
 class NewAppPanel extends React.Component {
 
     constructor(props) {
         super(props)
     }
+
 
     state = {
         password: "",
@@ -79,8 +83,10 @@ class NewAppPanel extends React.Component {
         })
 
         // TODO : default password change this functionality to backend
-        var defaultPassword = "test"
-        if (this.state.password === defaultPassword) {
+        var defaultPassword = this.props.config.adminPassword
+
+        // SHA256 encryption
+        if (sha256(this.state.password).toString() === defaultPassword) {
             this.toggleModal()
             this.toggleAddNewAppModal()
         } else {
@@ -152,13 +158,47 @@ class NewAppPanel extends React.Component {
 
     }
 
+    resetInput = (event) => {
+        event.target.value = null
+    };
 
     changeIconHandler = event => {
-        this.setState({
-            selectedIcon: event.target.files[0]
+
+        // Update the image in the local state
+        const imageUrl = URL.createObjectURL(event.target.files[0]);
+        const img = new Image();
+        img.src = imageUrl
+
+        ImageUtils.resolutionCalculate(imageUrl, (resolution) => {
+            var width = resolution[0]['width']
+            var height = resolution[0]['height']
+
+            //Check Key Existence
+            if (ImageUtils.resolution_width_height_map.hasOwnProperty(width)) {
+                var height_values = ImageUtils.resolution_width_height_map[width]
+                for (const value of height_values) {
+                    // If image height is a valid resolution
+                    if (height === value) {
+                        this.setState({
+                            selectedIcon: event.target.files[0]
+                        })
+                    } else {
+                        this.resetInput(event)
+                        this.setState({
+                            selectedIcon: 'none'
+                        })
+                        alert("Change height of the image to one of the values =>" + ImageUtils.toString())
+                    }
+                }
+            } else {
+                this.resetInput(event)
+                this.setState({
+                    selectedIcon: 'none'
+                })
+                alert("Change resolution of the image to one of the values =>" + ImageUtils.toString())
+            }
         })
 
-        console.log(this.state.selectedIcon)
     }
 
     changeCrashscopeHandler = event => {

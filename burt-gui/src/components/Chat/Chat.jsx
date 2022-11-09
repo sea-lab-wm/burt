@@ -222,7 +222,7 @@ const Chat = ({
               " user guide"} onClick={() => openHelp(config)} >
                 <HelpIcon width="35px" />
               </a>
-              <a style={{height:'20px'}} title={"Open the" +
+              <a className={"react-chatbot-kit-admin-panel"} title={"Open the" +
                   " Add App Panel"} onClick={() => openNewAppOpen()} >
                 <SettingsIcon height="28px" width="28px" />
               </a>
