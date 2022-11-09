@@ -45,6 +45,11 @@
   cursor: pointer;
 }
 
+.react-chatbot-kit-admin-panel {
+  height:20px;
+  cursor: pointer;
+}
+
 .bn632-hover {
   width: 82px;
   font-size: 0.65rem;
