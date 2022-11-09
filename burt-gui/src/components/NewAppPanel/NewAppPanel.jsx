@@ -4,6 +4,7 @@ import './NewAppPanel.css'
 import Modal from "react-modal";
 import axios from "axios";
 import ImageUtils from "../../logic/ImageUtils";
+import sha256 from 'crypto-js/sha256';
 
 
 const customStyles = {
@@ -27,6 +28,7 @@ class NewAppPanel extends React.Component {
 
     constructor(props) {
         super(props)
+        console.log("")
     }
 
 
@@ -82,8 +84,10 @@ class NewAppPanel extends React.Component {
         })
 
         // TODO : default password change this functionality to backend
-        var defaultPassword = "test"
-        if (this.state.password === defaultPassword) {
+        var defaultPassword = this.props.config.adminPassword
+
+        // SHA256 encryption
+        if (sha256(this.state.password).toString() === defaultPassword) {
             this.toggleModal()
             this.toggleAddNewAppModal()
         } else {

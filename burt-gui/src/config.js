@@ -39,6 +39,8 @@ const config = {
         "414" :[896],
         "412" :[915]
     },
+    // SHA256 - Default Password => test
+    adminPassword: "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
     initialMessages: [
         createChatBotMessage("Hi there, this is BURT"),
         createChatBotMessage("I'll assist you in reporting any problem with your app"),
