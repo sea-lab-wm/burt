@@ -59,6 +59,9 @@ public class ScreenshotModifier {
         //System.out.println(imagePath);    //For Debugging
         //System.out.println(outputPath);   //For Debugging
         BufferedImage img = ImageIO.read(new File(imagePath));
+        if (img==null) {
+        	return;
+        }
         int width = img.getWidth();
         int height = img.getHeight();
         int min = (width < height ? width : height);
@@ -105,6 +108,9 @@ public class ScreenshotModifier {
         //System.out.println(imagePath);    //For Debugging
         //System.out.println(outputPath);   //For Debugging
         BufferedImage img = ImageIO.read(new File(imagePath));
+        if (img==null) {
+        	return;
+        }
         int width = img.getWidth();
         int height = img.getHeight();
         int min = (width < height ? width : height);

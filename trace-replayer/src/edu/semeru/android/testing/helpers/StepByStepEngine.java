@@ -276,8 +276,8 @@ public class StepByStepEngine {
 
         try {
             Runtime rt = Runtime.getRuntime();
-            String command = pythonScriptsPath + File.separator + "partition_events.py " + eventLogPath;
-            // System.out.println(command);
+            String command = "python3 " + pythonScriptsPath + File.separator + "partition_events.py " + eventLogPath;
+            System.out.println(command);
             Process proc = rt.exec(command);
 
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
@@ -316,18 +316,32 @@ public class StepByStepEngine {
 
     public static String executeEvent(GUIEventVO vo, String androidRoot, String packageName, String executionType,
             boolean hideKeyboard, String device) {
-        String appTransitionState = null;
-        do {
-            System.out.println("-App State not Idle, waiting...");
-            appTransitionState = getAppTransitionState(androidRoot);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                // Catch Thread Interrupted Exception
-                e.printStackTrace();
-            }
-
-        } while (!appTransitionState.equals("APP_STATE_IDLE"));
+    	if (Utilities.getAndroidVersion(androidRoot).equals("10")) {
+        	String obscuringWindow = null;
+        	do {
+                System.out.println("-App State not Idle, waiting...");
+                obscuringWindow = StepByStepEngine.getObscuringWindow(androidRoot);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    // Catch Thread Interrupted Exception
+                    e.printStackTrace();
+                }
+            } while (obscuringWindow.equals("null"));
+        } else {
+	        String appTransitionState = null;
+	        do {
+	            System.out.println("-App State not Idle, waiting...");
+	            appTransitionState = getAppTransitionState(androidRoot);
+	            try {
+	                Thread.sleep(500);
+	            } catch (InterruptedException e) {
+	                // Catch Thread Interrupted Exception
+	                e.printStackTrace();
+	            }
+	
+	        } while (!appTransitionState.equals("APP_STATE_IDLE"));
+        }
         if (device == null || (device != null && device.isEmpty())) {
             device = "";
         } else {
@@ -397,6 +411,33 @@ public class StepByStepEngine {
             }
         }
         return command;
+    }
+    
+    /***********************************************************************************************************
+     * Method Name: getObscuringWindow
+     * 
+     * Description: This method gets the obscuring window.
+     * TODO: Add possible obscuring window Strings returned
+     * 
+     ***********************************************************************************************************/
+
+    public static String getObscuringWindow(String androidSDKPath) {
+
+        String androidToolsPath = androidSDKPath + File.separator + "platform-tools";
+
+        System.out.println("-Getting current Window Transition State...");
+        // System.out.println(androidToolsPath + File.separator + "adb -P " +
+        // adbPort + " -s " + avdAddress + " shell dumpsys window -a | grep
+        // 'mAppTransitionState'");
+        String terminalCommand = TerminalHelper.executeCommand(androidToolsPath + File.separator + "adb shell dumpsys window -a | grep 'mObscuringWindow'");
+
+        terminalCommand = terminalCommand.substring(terminalCommand.indexOf("mObscuringWindow=") + 20,
+                terminalCommand.length());
+
+        // System.out.println(terminalCommand);
+
+        return terminalCommand;
+
     }
 
     public static String getAppTransitionState(String androidSDKPath) {

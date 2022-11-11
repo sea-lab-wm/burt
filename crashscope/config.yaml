@@ -1,0 +1,10 @@
+apkFile: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/CrashScope/apps.txt
+aaptPath: /Users/junayed/Library/Android/sdk/build-tools/30.0.3
+outputFolder: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/CrashScope-testJar/Test1
+scriptsPath: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/CrashScope/lib/scripts
+androidSDKPath: /Users/junayed/Library/Android/sdk
+GUITraversal: ["top-down", "bottom-up"] #top-down or bottom-up or both
+textEntry: "expected-text" #"no-text" or "expected-text" or "unexpected-text"
+avdPort: 5554
+adbPort: 5037
+executionNum: 1

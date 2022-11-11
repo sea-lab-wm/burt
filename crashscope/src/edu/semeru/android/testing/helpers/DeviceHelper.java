@@ -36,7 +36,6 @@ package edu.semeru.android.testing.helpers;
 
 import edu.semeru.android.testing.helpers.UiAutoConnector;
 import edu.semeru.android.testing.helpers.UiAutoConnector.TypeDeviceEnum;
-import edu.semeru.android.testing.helpers.UiAutomatorBridge;
 import edu.semeru.android.core.model.DynGuiComponentVO;
 import edu.semeru.android.core.model.GUIEventVO;
 import edu.semeru.android.core.model.WindowVO;
@@ -136,7 +135,6 @@ public class DeviceHelper {
     }
 
     // TODO:Create a method build<TypeOfDevice> for all the devices because this method should be private
-    @Deprecated
     public DeviceHelper(UiAutoConnector.TypeDeviceEnum deviceType, String sdkPath, String devicePort, String adbPort) {
 
         androidSDKPath = sdkPath;
@@ -239,57 +237,7 @@ public class DeviceHelper {
     }
 
 
-    /***********************************************************************************************************
-     * Method Name: startAPK
-     * 
-     * Description: This method determines whether an application can be started on a given device. It 
-     * returns a boolean indicating whether or not the app could be started, true if yes, false if no.
-     * 
-     * @param packageName:
-     *            The package Name of the application to be stopped.
-     * 
-     * @param mainActivity:
-     *            The mainActivity of the app to be started. This will be the
-     *            activity started by this method.
-     * 
-     ***********************************************************************************************************/
-
-    public boolean checkifAPKLaunchable(UiAutomatorBridge bridge, String packageName, String mainActivity, int widthScreen, int heightScreen) {
-
-        boolean launchable = false;
-        boolean warning = false;
-
-        try {
-            System.out.println("-- Cleaning logcat before starting APK");
-            String androidToolsPath = androidSDKPath + File.separator + "platform-tools";
-            System.out.println("-- Starting " + packageName + " on the device");
-            TerminalHelper
-            .executeCommand(androidToolsPath + File.separator + "adb -P " + deviceCommand + " shell logcat -c");
-            TerminalHelper.executeCommand(androidToolsPath + File.separator + "adb -P " + deviceCommand
-                    + " shell am start -n " + packageName + "/" + mainActivity);
-            Thread.sleep(10000);
-        } catch (Exception ex) {
-            Logger.getLogger(DeviceHelper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        String currPackage = getCurrentActivityImproved();
-
-        //try{
-        warning = checkForWarning(bridge, packageName, mainActivity, widthScreen, heightScreen);
-        //}catch (Exception exp){
-        //return false;
-        //}
-
-        if(currPackage.contains(packageName) && !warning){
-            System.out.println("APK is launchable!!");
-            launchable = true;
-        }else{
-            System.out.println("APK is not launchable!!");
-        }
-
-        return launchable;
-
-    }
+    
 
     /***********************************************************************************************************
      * Method Name: executeInputCommand
@@ -1122,6 +1070,34 @@ public class DeviceHelper {
         return terminalCommand;
 
     }
+    
+    /***********************************************************************************************************
+     * Method Name: getObscuringWindow
+     * 
+     * Description: This method gets the obscuring window.
+     * TODO: Add possible obscuring window Strings returned
+     * 
+     ***********************************************************************************************************/
+
+    public String getObscuringWindow() {
+
+        String androidToolsPath = androidSDKPath + File.separator + "platform-tools";
+
+        System.out.println("-Getting current Window Transition State...");
+        // System.out.println(androidToolsPath + File.separator + "adb -P " +
+        // adbPort + " -s " + avdAddress + " shell dumpsys window -a | grep
+        // 'mAppTransitionState'");
+        String terminalCommand = TerminalHelper.executeCommand(androidToolsPath + File.separator + "adb -P "
+                + deviceCommand + " shell dumpsys window -a | grep 'mObscuringWindow'");
+
+        terminalCommand = terminalCommand.substring(terminalCommand.indexOf("mObscuringWindow=") + 20,
+                terminalCommand.length());
+
+        // System.out.println(terminalCommand);
+
+        return terminalCommand;
+
+    }
 
     /***********************************************************************************************************
      * Method Name: removeAppData
@@ -1345,46 +1321,6 @@ public class DeviceHelper {
     }
 
     /***********************************************************************************************************
-     * Method Name: checkForCrash
-     * 
-     * Description: This method checks to see whether the currently running
-     * application on a target device has crashed by detecting the Crash Dialog
-     * GUI object.
-     * 
-     * @param appPackage:
-     *            The package of the currently running application that you wish
-     *            to check the crash status.
-     * @param mainActivity:
-     *            The main activity of the app in question
-     * @param widthScreen:
-     *            The current width of the screen in pixels
-     * @param hieghtScreen:
-     *            The current height of the screen in pixels.
-     * @param uiDumpName:
-     *            The name of the UI xml file to be collected off the device
-     * @param close:
-     *            boolean to signal whether or not the crash dialog should be
-     *            closed.
-     * 
-     ***********************************************************************************************************/
-
-    public boolean checkForWarning(UiAutomatorBridge bridge, String appPackage, String mainActivity, int widthScreen, int heightScreen) {
-        // Check for Crash
-        boolean crash = false;
-        System.out.println("Checking for Warning...");
-        bridge.updateTree();
-        ArrayList<DynGuiComponentVO> nodes = bridge.getScreenInfo(widthScreen, heightScreen, true, false);
-        for (DynGuiComponentVO dynGuiComponent : nodes) {
-            // System.out.println(dynGuiComponent.getText());
-            if (dynGuiComponent.getText() != null && dynGuiComponent.getText().contains("Your device does not")) {
-                System.out.println("WARNING DIALOG");
-                crash = true;
-            }
-        }
-        return crash; 
-    }
-
-    /***********************************************************************************************************
      * Method Name: setAVDPortNumber
      * 
      * Description: This method checks to see whether the currently running
@@ -1497,9 +1433,16 @@ public class DeviceHelper {
         String result = "";
         try {
             String androidToolsPath = androidSDKPath + File.separator + "platform-tools" + File.separator;
-
-            String command = androidToolsPath + "adb -P " + deviceCommand
+            
+            String command = "";
+            
+            if(getAndroidVersion().equals("9") || getAndroidVersion().equals("10")) {
+            	command = androidToolsPath + "adb -P " + deviceCommand + " shell wm size | awk '{ print $3 }'";
+            } else {
+            	command = androidToolsPath + "adb -P " + deviceCommand
                     + " shell dumpsys window | grep \"mUnrestrictedScreen\"|  awk '{ print $2 }'";
+            }
+            
             return TerminalHelper.executeCommand(command);
         } catch (Exception ex) {
             Logger.getLogger(DeviceHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -1721,17 +1664,32 @@ public class DeviceHelper {
         long  startingTime = new Date().getTime();
         long currentTime = -1;
         final int TIME_LIMIT = 20000; //20 seconds
-        do {
-            System.out.println("-App State not Idle, waiting...");
-            appTransitionState = getAppTransitionState();
-            try {
-                Thread.sleep(waitMillis);
-            } catch (InterruptedException e) {
-                // Catch Thread Interrupted Exception
-                e.printStackTrace();
-            }
-            currentTime = new Date().getTime();
-        } while (!appTransitionState.contains("APP_STATE_IDLE") && (currentTime - startingTime) <= TIME_LIMIT);
+        
+        if (getAndroidVersion().equals("10")) {
+        	String obscuringWindow = null;
+        	do {
+                System.out.println("-App State not Idle, waiting...");
+                obscuringWindow = getObscuringWindow();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    // Catch Thread Interrupted Exception
+                    e.printStackTrace();
+                }
+            } while (obscuringWindow.equals("null") && (currentTime - startingTime) <= TIME_LIMIT);
+        } else {
+	        do {
+	            System.out.println("-App State not Idle, waiting...");
+	            appTransitionState = getAppTransitionState();
+	            try {
+	                Thread.sleep(waitMillis);
+	            } catch (InterruptedException e) {
+	                // Catch Thread Interrupted Exception
+	                e.printStackTrace();
+	            }
+	            currentTime = new Date().getTime();
+	        } while (!appTransitionState.contains("APP_STATE_IDLE") && (currentTime - startingTime) <= TIME_LIMIT);
+        }
 
         return command;
     }
@@ -1933,15 +1891,6 @@ public class DeviceHelper {
         // System.out.println("executeCommand: " + executeCommand);
 
     }
-    /***********************************************************************************************************
-     * Method Name: detectTypeofWindow
-     * 
-     * Description: overload for reverse-compatibility
-     * 
-     ***********************************************************************************************************/
-    public WindowVO detectTypeofWindow(int widthScreen, int heightScreen, String name) {
-        return detectTypeofWindow(widthScreen, heightScreen, name, null);
-    }
 
     /***********************************************************************************************************
      * Method Name: detectTypeofWindow
@@ -1950,19 +1899,34 @@ public class DeviceHelper {
      * 
      ***********************************************************************************************************/
 
-    public WindowVO detectTypeofWindow(int widthScreen, int heightScreen, String name, UiAutomatorBridge bridge) {
-        String appTransitionState = null;
-        do {
-            System.out.println("-App State not Idle, waiting...");
-            appTransitionState = getAppTransitionState();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                // Catch Thread Interrupted Exception
-                e.printStackTrace();
-            }
+    public WindowVO detectTypeofWindow(int widthScreen, int heightScreen, String name) {
+        if (getAndroidVersion().equals("10")) {
+        	String obscuringWindow = null;
+        	do {
+                System.out.println("-App State not Idle, waiting...");
+                obscuringWindow = getObscuringWindow();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    // Catch Thread Interrupted Exception
+                    e.printStackTrace();
+                }
+            } while (obscuringWindow.equals("null"));
+        } else {
+        	String appTransitionState = null;
+        	do {
+                System.out.println("-App State not Idle, waiting...");
+                appTransitionState = getAppTransitionState();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    // Catch Thread Interrupted Exception
+                    e.printStackTrace();
+                }
 
-        } while (!appTransitionState.equals("APP_STATE_IDLE"));
+            } while (!appTransitionState.equals("APP_STATE_IDLE"));
+        }
+        
 
         String androidToolsPath = androidSDKPath + File.separator + "platform-tools";
         WindowVO vo = new WindowVO();
@@ -1990,15 +1954,11 @@ public class DeviceHelper {
         // It's a normal activity or an AlertDialog
 
         DynGuiComponentVO root;
-        if (bridge == null) {
+       
             root = UiAutoConnector.getScreenInfoHierarchyGeneric(androidSDKPath, new StringBuilder(), widthScreen,
                     heightScreen, false, devicePort, adbPort, name, DEVICE_TYPE, UiAutoConnector.GENERIC_STRATEGY)
                     .getChildren().get(0);
-        }
-        else {
-            bridge.updateTree();
-            root = bridge.getScreenInfoHierarchy(androidSDKPath, new StringBuilder(), widthScreen, heightScreen).getChildren().get(0);
-        }
+       
         DynGuiComponentVO title = UiAutoConnector.getComponentByIdAndType("id/title", "TextView", root);
         if (title != null && title.getParent() != null && title.getParent().getName().endsWith("LinearLayout")
                 && title.getParent().getIdXml().isEmpty()) {

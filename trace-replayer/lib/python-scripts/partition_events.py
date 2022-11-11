@@ -31,10 +31,14 @@ was_finger_down = False
 finger_down = False
 events = []
 coords = []
+cnt = 0
 
 for line in input_file:
     #print(line)
     if line[0] != '[':
+        continue
+    info = re.match(pattern, line)
+    if info is None:
         continue
     time, device, type, code, value = re.match(pattern, line).groups()
     time = float(time)
@@ -58,7 +62,7 @@ for line in input_file:
         elif value == 0:
             duration = time - start_time
             #print str(duration)+','+str(start_time)+','+str(time)
-            print 'BACK'
+            print ('BACK')
             events = []
         elif value == 1:
             start_time = time
@@ -69,8 +73,8 @@ for line in input_file:
             x = value
         elif code in (ABS_Y, ABS_MT_POSITION_Y):
             y = value
-	elif code == ABS_MT_TRACKING_ID:
-            finger_down = value != 0xffffffff 
+        elif (code == ABS_MT_TRACKING_ID):
+            finger_down = (value != 0xffffffff) 
 
     # Sync.
     elif (type == EV_SYN and code == SYN_REPORT) :
@@ -93,25 +97,24 @@ for line in input_file:
                 event_type = 0;
                 
                 distance = math.sqrt(( (int(initial_location[0]) - int(last_location[0]))**2) + ((int(initial_location[1]) - int(last_location[1]))**2))
-                
-                		
+                        
                 if duration >=  LONG_CLICK_DURATION:
-                	event_label = "LONG_CLICK";
-                	event_type = 1;
-                	if distance > CLICK_RING:
-                		event_label = "SWIPE";
-                		event_type = 2;
-                		#print coords
+                    event_label = "LONG_CLICK";
+                    event_type = 1;
+                    if distance > CLICK_RING:
+                        event_label = "SWIPE";
+                        event_type = 2;
+                        #print coords
                 else:
-                	event_label = "CLICK";
-                	#print coords
-                	if distance > CLICK_RING:
-                		event_label = "SWIPE";
-                		event_type = 2;	
-                	
-                	
-                
-                print str(event_type)+'#'+event_label+'#'+str(distance)+'#'+str(duration)+'#'+str(initial_location)+'#'+str(last_location)
+                    event_label = "CLICK";
+                    #print coords
+                    if distance > CLICK_RING:
+                        event_label = "SWIPE";
+                        event_type = 2; 
+                    
+                cnt = cnt + 1
+                #print (cnt)
+                print (str(event_type)+'#'+event_label+'#'+str(distance)+'#'+str(duration)+'#'+str(initial_location)+'#'+str(last_location))
                 events = []
                 coords = []
 
@@ -125,4 +128,4 @@ for line in input_file:
         print ('BACK')
     else:
          print ('type:', type, 'code:', code)
-         raise Exception, 'unrecognized event: {}'.format(event)
+         raise Exception('unrecognized event: {}'.format(event))

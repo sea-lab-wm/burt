@@ -1,0 +1,9 @@
+androidSDKPath: /Users/junayed/Library/Android/sdk
+pythonScriptsPath: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/trace-replayer/lib/python-scripts
+aaptPath: /Users/junayed/Library/Android/sdk/build-tools/30.0.3
+apkPath: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/trace-replayer/test-apks/1215.apk
+getEventFile: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/trace-replayer/test-apks/getevent-1215.log
+outputFolder: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/JarTest/TR1215
+avdPort: 5554
+adbPort: 5037
+executionNum: 1

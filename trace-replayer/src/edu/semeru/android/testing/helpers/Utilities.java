@@ -403,11 +403,19 @@ public class Utilities {
         String androidToolsPath = androidSDKPath + File.separator + "platform-tools";
         ArrayList<Integer> dimensions = null;
 
-        String command = androidToolsPath + File.separator + "adb " + device + "shell dumpsys window | "
-                + "grep 'mUnrestrictedScreen' ";
+        String command = "";
+        		
+        if(getAndroidVersion(androidSDKPath).equals("9") || getAndroidVersion(androidSDKPath).equals("10")) {
+        	command = androidToolsPath + File.separator + "adb " + device + " shell wm size | awk '{ print $3 }'";
+        } else {
+        	command = androidToolsPath + File.separator + "adb " + device + "shell dumpsys window | "
+                    + "grep 'mUnrestrictedScreen' ";
+        }
+        
         String line = TerminalHelper.executeCommand(command);
-
-        line = line.substring(line.indexOf(")") + 2);
+        if(!getAndroidVersion(androidSDKPath).equals("9") && !getAndroidVersion(androidSDKPath).equals("10")) {
+        	line = line.substring(line.indexOf(")") + 2);
+        }
         String[] temp = line.split("x");
         dimensions = new ArrayList<Integer>();
         dimensions.add(new Integer(temp[0]));
@@ -499,8 +507,15 @@ public class Utilities {
         try {
             String androidToolsPath = androidSDKPath + File.separator + "platform-tools" + File.separator;
             Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec(new String[] { "/bin/sh", "-c", androidToolsPath + "adb " + device
-                    + "shell dumpsys window | grep \"mUnrestrictedScreen\"|  awk '{ print $2 }'" });
+            
+            Process proc;
+            if(getAndroidVersion(androidSDKPath).equals("9") || getAndroidVersion(androidSDKPath).equals("10")) {
+            	proc = rt.exec(new String[] { "/bin/sh", "-c", androidToolsPath + "adb " + device
+            			+ " shell wm size | awk '{ print $3 }'" });
+            } else {
+            	proc = rt.exec(new String[] { "/bin/sh", "-c", androidToolsPath + "adb " + device
+                        + "shell dumpsys window | grep \"mUnrestrictedScreen\"|  awk '{ print $2 }'" });
+            }
             proc.waitFor();
             return getStringFromInputStream(proc.getInputStream());
         } catch (Exception ex) {
@@ -1220,18 +1235,32 @@ public class Utilities {
 
     public static WindowVO detectTypeofWindow(String androidSDKPath, int widthScreen, int heightScreen,
             TypeDeviceEnum device, String devicePort, String adbPort) {
-        String appTransitionState = null;
-        do {
-            System.out.println("-App State not Idle, waiting...");
-            appTransitionState = StepByStepEngine.getAppTransitionState(androidSDKPath);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                // Catch Thread Interrupted Exception
-                e.printStackTrace();
-            }
-
-        } while (!appTransitionState.equals("APP_STATE_IDLE"));
+    	if (getAndroidVersion(androidSDKPath).equals("10")) {
+        	String obscuringWindow = null;
+        	do {
+                System.out.println("-App State not Idle, waiting...");
+                obscuringWindow = StepByStepEngine.getObscuringWindow(androidSDKPath);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    // Catch Thread Interrupted Exception
+                    e.printStackTrace();
+                }
+            } while (obscuringWindow.equals("null"));
+        } else {
+	        String appTransitionState = null;
+	        do {
+	            System.out.println("-App State not Idle, waiting...");
+	            appTransitionState = StepByStepEngine.getAppTransitionState(androidSDKPath);
+	            try {
+	                Thread.sleep(500);
+	            } catch (InterruptedException e) {
+	                // Catch Thread Interrupted Exception
+	                e.printStackTrace();
+	            }
+	
+	        } while (!appTransitionState.equals("APP_STATE_IDLE"));
+        }
         String deviceConnect = "";
         String androidToolsPath = androidSDKPath + File.separator + "platform-tools";
         if (devicePort != null && !devicePort.isEmpty()) {
@@ -1263,11 +1292,21 @@ public class Utilities {
         }
         WindowVO vo = new WindowVO();
         // System.out.println(activity);
-        String command = androidToolsPath + File.separator + "adb" + deviceConnect
+        
+        String command = "";
+        String result = "";
+        if (getAndroidVersion(androidSDKPath).equals("10")) {
+        	command = androidToolsPath + File.separator + "adb" + deviceConnect
+        			+ " shell dumpsys activity | grep -E 'mResumedActivity' | awk '{print $4 }'";
+        	result = TerminalHelper.executeCommand(command).replace("/", "");
+        } else {
+        	command = androidToolsPath + File.separator + "adb" + deviceConnect
                 + " shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp' | awk '{print $3 }'";
+        	result = TerminalHelper.executeCommand(command).split("\n")[0];
+            result = result.substring(0, result.length() - 1);
+        }
 
-        String result = TerminalHelper.executeCommand(command).split("\n")[0];
-        result = result.substring(0, result.length() - 1);
+        
         String activity = getCurrentActivityImproved(androidSDKPath, "", devicePort, adbPort, device);
         String window = "";
         if (result.contains(MENU_BOTTOM_AND_CONTEXTUAL)) {
