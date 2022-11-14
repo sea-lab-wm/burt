@@ -143,6 +143,8 @@ class NewAppPanel extends React.Component {
 
             let result = response.data;
             if (!result) {
+                this.close()
+                alert(`There was an unexpected error: ${error}`)
                 console.error(`The New App Data was not updated: ` + this.props.index);
             } else {
                 this.setState({
@@ -153,6 +155,8 @@ class NewAppPanel extends React.Component {
 
             }
         }).catch(error => {
+            this.close()
+            alert(`There was an unexpected error: ${error}`)
             console.error(`There was an unexpected error: ${error}`);
         })
 
@@ -322,7 +326,7 @@ class NewAppPanel extends React.Component {
                                             </button>
                                         </div>
                                         <div className={"button"}>
-                                            <button className={"btn btn-primary"}
+                                            <button className={"btn btn-primary submit"}
                                                     disabled={!this.validateSubmitButton()}
                                                     onClick={this.submitNewApp}>Submit
                                                 {

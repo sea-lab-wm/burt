@@ -7,6 +7,9 @@
     top: 0px;
     right: 0px;
 }
+.submit {
+    width: 130px;
+}
 .form-label {
     font-size: 15px;
 }
