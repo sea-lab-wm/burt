@@ -36,6 +36,10 @@ public class NewAppController {
     public static void addNewApp(String sessionId, MultipartFile appIcon, MultipartFile crashScopeZip,
             MultipartFile traceReplayerZip) throws Exception {
 
+        boolean error = true;
+        String packageName = "";
+        String appVersion = "";
+
         Paths.get(BurtConfigPaths.tempPath).toFile().mkdir();
 
         // ---------------
@@ -57,9 +61,9 @@ public class NewAppController {
             //validate basic information (package, name, version)
             List<Object> csAppInfo = validateAndGetAppInfo(csTargetDir);
 
-            String packageName = csAppInfo.get(0).toString();
+            packageName = csAppInfo.get(0).toString();
             String appName = csAppInfo.get(1).toString();
-            String appVersion = csAppInfo.get(2).toString();
+            appVersion = csAppInfo.get(2).toString();
 
             // ------------------
 
@@ -128,21 +132,56 @@ public class NewAppController {
             SelectAppAction.generateAppData();
             JSONGraphReader.getGraph(appName, appVersion); //this validates the execution data is correct
 
+            // Valid file uploaded successfully
+            error = false;
+
         } finally {
-            // clean up
-
-            List<Path> tempFiles = Files.find(Paths.get(BurtConfigPaths.tempPath), 1,
-                    (path, attr) -> path.toFile().getName().startsWith(sessionId))
-                    .collect(Collectors.toList());
-
-            for (Path tempFile : tempFiles) {
-                if(tempFile.toFile().isDirectory())
-                    FileUtils.deleteDirectory(tempFile.toFile());
-                else
-                    tempFile.toFile().delete();
+            // clean files/dir if corrupted file uploaded
+            if(error){
+                cleanFiles("corruptedAppLogoPath", sessionId, packageName, appVersion);
+                cleanFiles("corruptedCSPath", sessionId, packageName, appVersion);
+                cleanFiles("corruptedTRPath", sessionId, packageName, appVersion);
             }
+
+            // clean up temp files/dir
+            cleanFiles("tempPath", sessionId, packageName, appVersion);
         }
 
+    }
+
+    private static void cleanFiles(String pathType, String sessionId, String packageName, String appVersion) throws IOException {
+        List<Path> tempFiles = null;
+        StringBuilder sd = new StringBuilder();
+        sd.append(packageName).append("-").append(appVersion);
+        switch (pathType){
+            case "tempPath":
+                tempFiles = Files.find(Paths.get(BurtConfigPaths.tempPath), 1,
+                                (path, attr) -> path.toFile().getName().startsWith(sessionId))
+                        .collect(Collectors.toList());
+                break;
+            case "corruptedAppLogoPath":
+                tempFiles = Files.find(Paths.get(BurtConfigPaths.appLogosPath), 1,
+                                (path, attr) -> path.toFile().getName().startsWith(sd.toString()))
+                        .collect(Collectors.toList());
+                break;
+            case "corruptedCSPath":
+                tempFiles = Files.find(Paths.get(BurtConfigPaths.crashScopeDataPath), 1,
+                                (path, attr) -> path.toFile().getName().startsWith(sd.toString()))
+                        .collect(Collectors.toList());
+                break;
+            case "corruptedTRPath":
+                tempFiles = Files.find(Paths.get(BurtConfigPaths.traceReplayerDataPath), 1,
+                                (path, attr) -> path.toFile().getName().startsWith(sd.toString()))
+                        .collect(Collectors.toList());
+                break;
+        }
+
+        for (Path tempFile : tempFiles) {
+            if(tempFile.toFile().isDirectory())
+                FileUtils.deleteDirectory(tempFile.toFile());
+            else
+                tempFile.toFile().delete();
+        }
     }
 
     private static List<Object> validateAndGetAppInfo(Path targetDir) throws IOException {
