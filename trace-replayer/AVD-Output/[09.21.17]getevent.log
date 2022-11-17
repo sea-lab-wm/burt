@@ -1,0 +1,59 @@
+add device 1: /dev/input/event0
+  name:     "Power Button"
+add device 2: /dev/input/event1
+  name:     "qwerty2"
+could not get driver version for /dev/input/mice, Not a typewriter
+[    8191.953920] /dev/input/event1: 0003 0039 00000000
+[    8191.953920] /dev/input/event1: 0003 0030 0000000d
+[    8191.953920] /dev/input/event1: 0003 003a 00000081
+[    8191.953920] /dev/input/event1: 0003 0035 00001333
+[    8191.953920] /dev/input/event1: 0003 0036 00004fee
+[    8191.953920] /dev/input/event1: 0000 0000 00000000
+[    8192.086812] /dev/input/event1: 0003 003a 00000000
+[    8192.086812] /dev/input/event1: 0003 0039 ffffffff
+[    8192.086812] /dev/input/event1: 0000 0000 00000000
+[    8195.219681] /dev/input/event1: 0003 0039 00000000
+[    8195.219681] /dev/input/event1: 0003 0030 0000000e
+[    8195.219681] /dev/input/event1: 0003 003a 00000081
+[    8195.219681] /dev/input/event1: 0003 0035 00005cad
+[    8195.219681] /dev/input/event1: 0003 0036 000046aa
+[    8195.219681] /dev/input/event1: 0000 0000 00000000
+[    8195.336869] /dev/input/event1: 0003 003a 00000000
+[    8195.336869] /dev/input/event1: 0003 0039 ffffffff
+[    8195.336869] /dev/input/event1: 0000 0000 00000000
+[    8197.020536] /dev/input/event1: 0003 0039 00000000
+[    8197.020536] /dev/input/event1: 0003 0030 0000000f
+[    8197.020536] /dev/input/event1: 0003 003a 00000081
+[    8197.020536] /dev/input/event1: 0003 0035 00004b9c
+[    8197.020536] /dev/input/event1: 0003 0036 00001399
+[    8197.020536] /dev/input/event1: 0000 0000 00000000
+[    8197.153221] /dev/input/event1: 0003 003a 00000000
+[    8197.153221] /dev/input/event1: 0003 0039 ffffffff
+[    8197.153221] /dev/input/event1: 0000 0000 00000000
+[    8200.003776] /dev/input/event1: 0003 0039 00000000
+[    8200.003776] /dev/input/event1: 0003 0030 00000010
+[    8200.003776] /dev/input/event1: 0003 003a 00000081
+[    8200.003776] /dev/input/event1: 0003 0035 00000b23
+[    8200.003776] /dev/input/event1: 0003 0036 000008ff
+[    8200.003776] /dev/input/event1: 0000 0000 00000000
+[    8200.119447] /dev/input/event1: 0003 003a 00000000
+[    8200.119447] /dev/input/event1: 0003 0039 ffffffff
+[    8200.119447] /dev/input/event1: 0000 0000 00000000
+[    8201.719782] /dev/input/event1: 0003 0039 00000000
+[    8201.719782] /dev/input/event1: 0003 0030 00000011
+[    8201.719782] /dev/input/event1: 0003 003a 00000081
+[    8201.719782] /dev/input/event1: 0003 0035 0000371c
+[    8201.719782] /dev/input/event1: 0003 0036 00001abb
+[    8201.719782] /dev/input/event1: 0000 0000 00000000
+[    8201.852733] /dev/input/event1: 0003 003a 00000000
+[    8201.852733] /dev/input/event1: 0003 0039 ffffffff
+[    8201.852733] /dev/input/event1: 0000 0000 00000000
+[    8204.253707] /dev/input/event1: 0003 0039 00000000
+[    8204.253707] /dev/input/event1: 0003 0030 00000012
+[    8204.253707] /dev/input/event1: 0003 003a 00000081
+[    8204.253707] /dev/input/event1: 0003 0035 0000071c
+[    8204.253707] /dev/input/event1: 0003 0036 00000933
+[    8204.253707] /dev/input/event1: 0000 0000 00000000
+[    8204.370034] /dev/input/event1: 0003 003a 00000000
+[    8204.370034] /dev/input/event1: 0003 0039 ffffffff
+[    8204.370034] /dev/input/event1: 0000 0000 00000000

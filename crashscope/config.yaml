@@ -1,6 +1,6 @@
 apkFile: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/CrashScope/apps.txt
 aaptPath: /Users/junayed/Library/Android/sdk/build-tools/30.0.3
-outputFolder: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/CrashScope-testJar/Test1
+outputFolder: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/CrashScope/Output
 scriptsPath: /Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BURTTool/burt/CrashScope/lib/scripts
 androidSDKPath: /Users/junayed/Library/Android/sdk
 GUITraversal: ["top-down", "bottom-up"] #top-down or bottom-up or both

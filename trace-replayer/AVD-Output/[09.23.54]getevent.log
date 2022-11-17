@@ -1,0 +1,14 @@
+add device 1: /dev/input/event0
+  name:     "Power Button"
+add device 2: /dev/input/event1
+  name:     "qwerty2"
+could not get driver version for /dev/input/mice, Not a typewriter
+[    8349.167222] /dev/input/event1: 0003 0039 00000000
+[    8349.167222] /dev/input/event1: 0003 0030 00000017
+[    8349.167222] /dev/input/event1: 0003 003a 00000081
+[    8349.167222] /dev/input/event1: 0003 0035 00001536
+[    8349.167222] /dev/input/event1: 0003 0036 00004f87
+[    8349.167222] /dev/input/event1: 0000 0000 00000000
+[    8349.266607] /dev/input/event1: 0003 003a 00000000
+[    8349.266607] /dev/input/event1: 0003 0039 ffffffff
+[    8349.266607] /dev/input/event1: 0000 0000 00000000
