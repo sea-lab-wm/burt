@@ -1,7 +1,7 @@
 # TraceReplayer
 This directory contains the source code of TraceReplayer. 
 
-```AVT```: We can capture the app execution information from the app interactions made by humans. We can capture app recordings and getevent traces using the AVT tool. The detailed instructions for using this tool are [here](https://github.com/sea-lab-wm/burt/tree/tool-demo/trace-replayer/AVT-instruction.pdf). 
+```AVT```: We can capture the app execution information from the app interactions made by humans. We can capture app recordings and getevent traces using the AVT tool. The detailed instructions for using this tool are [here](https://github.com/sea-lab-wm/burt/tree/tool-demo/trace-replayer/AVT-instructions.pdf). 
 
 From an apk file and getevent traces, trace-replayer produces screenshots of apps, the components a user interacts with, and actions. In addition, the trace-replayer generates XML files containing GUI hierarchies and app execution information.
 
