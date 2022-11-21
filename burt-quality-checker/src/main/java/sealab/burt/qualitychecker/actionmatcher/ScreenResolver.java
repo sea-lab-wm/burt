@@ -77,7 +77,7 @@ class ScreenResolver {
 
         LinkedHashMap<GraphState, Integer> matchedStates = new LinkedHashMap<>();
         for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
-            ImmutablePair<GraphState, Integer> result = processCandidateState(currNLAction, candidateEntry);
+            ImmutablePair<GraphState, Integer> result = processCandidateState(currNLAction, candidateEntry, executionGraph.getApp());
             if (result != null)
                 matchedStates.put(result.left, result.right);
         }
@@ -102,6 +102,8 @@ class ScreenResolver {
         log.debug("State candidates (" + stateCandidates.size() + "): " + stateCandidates);
 
 
+        Appl app = executionGraph.getApp();
+
         int nThreads = 6;
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
 
@@ -112,7 +114,7 @@ class ScreenResolver {
             List<CompletableFuture<ImmutablePair<GraphState, Integer>>> futures = new ArrayList<>();
             for (Map.Entry<GraphState, Integer> candidateEntry : stateCandidates.entrySet()) {
                 futures.add(CompletableFuture.supplyAsync(() ->
-                        processCandidateState(currNLAction, candidateEntry), executor));
+                        processCandidateState(currNLAction, candidateEntry, app), executor));
             }
 
 
@@ -163,7 +165,7 @@ class ScreenResolver {
     }
 
     private ImmutablePair<GraphState, Integer> processCandidateState(NLAction currNLAction,
-                                                                     Map.Entry<GraphState, Integer> candidateEntry) {
+                                                                     Map.Entry<GraphState, Integer> candidateEntry, Appl app) {
         final GraphState candidateState = candidateEntry.getKey();
         final Integer distance = candidateEntry.getValue();
 
@@ -182,13 +184,29 @@ class ScreenResolver {
                 .filter(c -> c.getParent() != null || "NO_ID".equals(c.getIdXml()))
                 .collect(Collectors.toList());
 
+        //------------
+
+         // Determine event
+         Integer detectedEvent = null;
+         try {
+ 
+             log.debug("Resolving the event...");
+ 
+             detectedEvent = s2rParser.determineEvent(currNLAction, app, stateComponents);
+ 
+             log.debug(String.format("Resolved event: %s - %s", detectedEvent,
+                     GraphTransition.getAction(detectedEvent)));
+         } catch (ActionMatchingException e) {
+           //ok
+         }
+
         //-------------------------------------
         // Determine the component
         LinkedHashMap<GraphState, Integer> matchedStates = new LinkedHashMap<>();
         try {
             //FIXME: may need other device actions
             Map.Entry<AppGuiComponent, Double> component = s2rParser.determineComponentForOb(currNLAction,
-                    stateComponents, DeviceActions.CLICK, false);
+                    stateComponents, detectedEvent ==null ? DeviceActions.CLICK : detectedEvent, false);
             return new ImmutablePair<>(candidateState, distance);
         } catch (ActionMatchingException e) {
 //                log.debug("Could not find the component in the candidate state/screen: "

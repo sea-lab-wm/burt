@@ -358,6 +358,14 @@ class NLActionS2RMatcher {
                                                                   boolean skipFocused) throws ActionMatchingException {
 
         Entry<AppGuiComponent, Double> componentFound;
+        if (DeviceUtils.isOpenApp(event) || DeviceUtils.isClickBackButton(event)
+                || DeviceUtils.isChangeRotation(event)) {
+            DynGuiComponent temp = new DynGuiComponent();
+            temp.setId(0L);
+            return getEntry(temp, 1d);
+        }
+
+
         try {
             componentFound = findComponentToClick(nlAction, currentScreen, event, skipFocused);
             return componentFound;
