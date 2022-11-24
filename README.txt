@@ -1,1 +1,0 @@
-The README file is found in our GitHub repository: https://github.com/sea-lab-wm/burt/tree/fse-version

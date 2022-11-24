@@ -1,36 +1,29 @@
 <!-- <p align="center"> <img src="/code/burt-gui/src/assets/icons/chatbot-2.svg" width="50"></p> -->
-<h2 align="center"> <img src="https://dl.dropboxusercontent.com/s/ymqb1cjvd7fmdca/chatbot-2.svg?dl=0" width="35"> BURT: A task-oriented dialogue system for bug reporting </h2>
+<h2 align="center"> <img src="https://dl.dropboxusercontent.com/s/ymqb1cjvd7fmdca/chatbot-2.svg?dl=0" width="35"> BURT: A Chatbot for Interactive Bug Reporting </h2>
 
-[![DOI](https://zenodo.org/badge/342777003.svg)](https://zenodo.org/badge/latestdoi/342777003) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Overview
-
-**NOTE**: the tag of the replication package for the FSE’22 artifact review is: [BURT 1.1.0](https://github.com/sea-lab-wm/burt/releases/tag/v1.1.0)
-
-This repository contains the replication package of our ESEC/FSE'22 paper:
-
-
-> **Y. Song, J. Mahmud, Y. Zhou, O. Chaparro, K. Moran, A. Marcus, and D. Poshyvanyk, “Toward Interactive Bug Reporting for (Android App) End-Users,” in Proceedings of the 30th ACM Joint Meeting on the Foundations of Software Engineering (ESEC/FSE'22), 2022, to appear**
-
-
-This README will walk you through installing and using BURT. 
-
-This README also describes the content of our ESEC/FSE'22 replication package.
 
 ## What is BURT?
 
-BURT is a web-based task-oriented chatbot for interactive **BU**g **R**epor**T**ing (BURT), which offers a variety of features such as the ability to:
+BURT is a web-based task-oriented chatbot for interactive **BU**g **R**epor**T**ing (BURT), tailored for reporting Android app bugs, which offers a variety of features such as the ability to:
 * Guide the user in reporting essential bug report elements (i.e., the observed behavior or **OB**, expected behavior or **EB**, and steps to reproduce the bug or **S2Rs**);
 * Check the quality of these elements, offering instant feedback about element issues (e.g., ambiguities); and
 * Provide graphical suggestions (e.g., the next S2Rs at a given moment).
 
-You can watch a video demonstration of BURT <a href="https://tinyurl.com/bcbto">here</a>.
+You can watch a video demonstration of BURT <a href="https://youtu.be/SyfOXpHYGRo">here</a>.
 
 
-BURT is implemented as a web application with two major software components: **the backend server** and **the frontend (GUI)**. The backend server is implemented with Spring Boot (Java) and the frontend is implemented with the  React Chatbot Kit (Javascript, Node.js). The frontend comunicates with the backend server via REST messages.
+BURT is implemented as a web application with two major software components: **the backend server** and **the frontend (GUI)**. The backend server is implemented with Spring Boot (Java) and the frontend is implemented with the  React Chatbot Kit (Javascript, Node.js). The frontend communicates with the backend server via REST messages.
 
 This figure shows an overview of BURT's workflow:
 <p align="center"> <img src="https://dl.dropboxusercontent.com/s/gg84imhpleb38cv/Burt-Overview.png?dl=0" width="600"></p>
+
+## BURT's Research Paper
+
+BURT's algorithms and evaluation are described in detail in our original research [ESEC/FSE'22 paper](https://ojcchar.github.io/files/21-fse22-burt.pdf):
+
+> **Y. Song, J. Mahmud, Y. Zhou, O. Chaparro, K. Moran, A. Marcus, and D. Poshyvanyk, “Toward Interactive Bug Reporting for (Android App) End-Users,” in Proceedings of the 30th ACM Joint Meeting on the Foundations of Software Engineering (ESEC/FSE'22), pp. 344-356, 2022**
 
 ## Building and deploying BURT
 
@@ -74,11 +67,11 @@ Complete the following steps:
 
 1. Create an empty directory called `fse-burt-project` on your personal directory.
 2. Download the installation script and save it in the `fse-burt-project` directory:
-   [Windows](https://drive.google.com/drive/folders/1JHbEMk9km2CbK4Df_Iy7T-vFS9LU6vFV?usp=sharing)
-   or [Mac OS](https://drive.google.com/drive/folders/1hYaZsm4deZza3c9mZKRKqaNV05SHYnfK?usp=sharing).
+   [Windows](https://drive.google.com/file/d/1xV9CCCmvkBZKfn5ohnYdNq-v6xcYn3KU/view?usp=sharing)
+   or [Mac OS](https://drive.google.com/file/d/1TRyLqmvWxkMQZ6OsniVejmgwRJraQ0rm/view?usp=share_link).
 3. Open a terminal, go to the `fse-burt-project`, and run the build script:
-   1. **Windows**: run `run_server.bat`.
-   2. **Mac OS**: give permissions to the script (`chmod +x run_server.sh`) and then run the script (`./run_server.sh`).
+   1. **Windows**: run `run_server_tool_demo.bat`.
+   2. **Mac OS**: give permissions to the script (`chmod +x run_server_tool_demo.sh`) and then run the script (`./run_server_tool_demo.sh`).
    
    This step might take a while because the script will download all the dependencies needed to build BURT.
 4. Once the script finishes, you should see on the terminal multiple messages from SpringBoot. The last message should look like this: `"... Started ConversationController in 14.845 seconds..."`.
@@ -99,26 +92,22 @@ Complete the following steps:
 
 After you build/deploy BURT successfully, you can now report one or more bugs with BURT.
 
-**NOTE**: We recommend you to watch a short demostration video that explains how to use BURT via an example; the video can be found [here](https://tinyurl.com/bcbto). Feel free to read our [user guide](https://github.com/sea-lab-wm/burt/blob/master/data/BURT_User_Guide.pdf) to learn about BURT's GUI and how to use it.
+**NOTE**: We recommend you to watch a short demonstration video that explains how to use BURT via an example; the video can be found [here](https://youtu.be/SyfOXpHYGRo?t=78). Feel free to read our [user guide](https://github.com/sea-lab-wm/burt/blob/tool-demo/data/BURT_User_Guide.pdf) to learn about BURT's GUI and how to use it.
 
-To report a bug, you can enter **P20** as participant ID, then select an app, and then report a bug using BURT's GUI.
-We provide 12 bugs from six Android apps (see more details in our original paper), the bug videos can be found [here](https://github.com/sea-lab-wm/burt/tree/master/data/bug%20videos%20for%20evaluation). Feel free to watch one bug video and report it using BURT.
+To report a bug, you need to select an app, and follow BURT's guidance.
 
+For demonstration purposes, we provide 12 bugs from six Android apps (see more details in our original paper), the bug videos can be found [here](https://github.com/sea-lab-wm/burt/tree/tool-demo/data/bug%20videos%20for%20evaluation). Feel free to watch one bug video and report it using BURT.
 
-## ESEC/FSE'22 Replication Package
-
-Our ESEC/FSE'22 replication package contains three main parts: BURT's source code, BURT's app execution data, and BURT's evaluation artifacts. These parts are composed of multiple directories/folders that we describe next.
-
-### BURT's source code
+## BURT's source code
 
 BURT's source code is found in multiple sub-folders (i.e., Maven packages) and mainly consists of three parts:
 
-#### BURT's Front End
+### BURT's Front End
 * `burt-gui`: this folder contains the frontend code that implements BURT's chatbot interface via the React Chatbot Kit and the Bootstrap framework. The chat-related folders (`Chat`, `Chatbot`, `ChatbotMessage`, etc.) contain the code about the chat box,
   and the `StepsPanel` folder has the code that displays the S2Rs that end-users have reported. The `TipsOptions` code implements
   the dynamic display of recommendations to end-users on how to use BURT.
 
-#### BURT's Back End
+### BURT's Back End
 
 * `burt-server`: this folder contains BURT's back-end server implemented with Spring Boot. It implements BURT's **dialog manager** and the REST-based web services that allow the front end to interact with different BURT sub-components. The back-end server is made up of several Java packages: `actions`, `conversation`, `msgparsing`, `output`,
   `statecheckers`. In the `action` package, you will find different actions that the chatbot will perform, such as asking users to select an app or provide an OB, EB, or S2R. In the `conversation` package, you will find different kinds of message objects and states, necessary for BURT to keep track of the conversation flow. The `msgparsing` folder contains all defined intents (i.e., types of messages) and the code that obtains the intent in each round of the bug reporting dialogue. The `output` folder contains the code that generates the web-based bug reports. The `statecheckers` folder contains the code
@@ -126,20 +115,20 @@ BURT's source code is found in multiple sub-folders (i.e., Maven packages) and m
 
 * `burt-quality-checker`: this folder contains BURT's **app execution model**, which is a graph that stores the sequential GUI-level app interactions, and the **dialogue quality processor**, which checks the quality of the end-user's textual bug descriptions (i.e., the individual OB, EB, or S2Rs) and matches them to screens or transitions of the execution model.
 
-* `burt-nlparser`: this folder contains BURT's **natural language parser**, which parses the textual bug descriptions (i.e., the invididual OB, EB, and S2Rs) provided by end-users, using dependency parsing via Stanford CoreNLP toolkit.
+* `burt-nlparser`: this folder contains BURT's **natural language parser**, which parses the textual bug descriptions (i.e., the individual OB, EB, and S2Rs) provided by end-users, using dependency parsing via Stanford CoreNLP toolkit.
 
-#### Tools for Generating App Execution Data
+### Tools for Generating App Execution Data
 
 The following tools were used/implemented to generate the app
 execution data needed by BURT to build its app execution model.
 
-* `crashscope`: this folder contains CrashScope's code, which generates app execution data in the form of sequential interactions (e.g., taps or type events) by utilizing a set of systematic exploration strategies on Android apps (e.g. top-down and bottom-up exploration). The code generates an screenshot of each interaction, XML files with GUI hierarchies, and app execution information for each screen of the app (e.g., which component was interacted with).
+* [`crashscope`](https://github.com/sea-lab-wm/burt/tree/tool-demo/crashscope): this folder contains CrashScope's code, which generates app execution data in the form of sequential interactions (e.g., taps or type events) by utilizing a set of systematic exploration strategies on Android apps (e.g. top-down and bottom-up exploration). The code generates an screenshot of each interaction, XML files with GUI hierarchies, and app execution information for each screen of the app (e.g., which component was interacted with). 
 
-* `AVT`: this folder contains AVT, a custom screen-recording desktop app that we developed, which allows humans (e.g., end users or developers) to collect screen recordings and *getevent* traces from a mobile device or emulator by simply clicking a record button. The tool internally uses the Android screen recorder that is executed by Android’s ADB tool. The link to AVT is [here](https://github.com/sea-lab-wm/burt/tree/master/avt-tool).
+* [`avt-tool`](https://github.com/sea-lab-wm/burt/tree/tool-demo/avt-tool): this folder contains AVT, a custom screen-recording desktop app that we developed, which allows humans (e.g., end users or developers) to collect screen recordings and *getevent* traces from a mobile device or emulator by simply clicking a record button. The tool internally uses the Android screen recorder that is executed by Android’s ADB tool. The link to AVT is [here](https://github.com/sea-lab-wm/burt/tree/tool-demo/avt-tool).
 
-* `traceReplayer`: this folder contains the code that processes the app interactions made by humans to execute app features (i.e., the traces collected via AVT). The code generates app screenshots, XML GUI hierarchy files, and app execution information used by BURT to complement/augment the execution model (i.e., the graph).
+* [`trace-replayer`](https://github.com/sea-lab-wm/burt/tree/tool-demo/trace-replayer): this folder contains the code that processes the app interactions made by humans to execute app features (i.e., the traces collected via AVT). The code generates app screenshots, XML GUI hierarchy files, and app execution information used by BURT to complement/augment the execution model (i.e., the graph).
 
-### BURT's App Execution Data
+## BURT's App Execution Data
 
 The `data` directory contains the data used by BURT to build the app execution model. We describe the three main types of data stored in this directory:
 
@@ -147,29 +136,9 @@ The `data` directory contains the data used by BURT to build the app execution m
 
 * Crowdsourced app usage traces: We collected crowdsourced (i.e., human-based) usage traces from our six studied apps. These traces correspond to usages of the main features of the apps in our dataset. All the collected traces are stored in `data\Collected_traces_fixed`.
 
-* TraceReplayer data: The screenshot, XML GUI hierarchy, and app execution information are extracted from each of the screens of the collected human-based traces. We stored the trace replayer data in `data\TraceReplayer-Data`.
+* TraceReplayer data: The screenshot, XML GUI hierarchy, and app execution information are extracted from each of the screens of the collected human-based traces. We stored the TraceReplayer data in `data\TraceReplayer-Data`.
 
 
-### BURT's Evaluation Data and Code
+## BURT's Evaluation Data and Code
 
-Our package provides the data that we used and collected for BURT's evaluation. It also provides the source code used to process this data and generate the evaluation results that we provide in our ESEC/FSE'22 paper.
-
-#### Evaluation Data
-
-* Bug videos and app installers: `data\bug videos for evaluation` contains the videos given to the participants that demonstrate the observed and expected app behavior for the 12 bugs we selected for evaluation. This folder also contains the app installers (i.e., APKs) that contain the bugs.
-
-* Bug reports: the folder `evaluation\data\generated_bug_reports` stores all the bug reports generated by participants via BURT. The folder `evaluation\data\itrac_bug_reports` stores all the bug reports generated by participants via ITRAC (the template-based bug reporting system that we implemented via Qualtrics). Additionally, the Qualtrics reponses for ITRAC, in tabular format, are found in `evaluation\code\ITRAC-study_March.xlsx`.
-
-* BURT conversations: the folder `evaluation\data\conversation_dumps` stores the conversations that each participant had with BURT.
-
-* Questionnaire answers: `evaluation\code\BURT Evaluation Survey_August-Anonymous.xlsx` stores the participant responses to the online questionnaire that evaluated BURT's user experience.
-
-#### Evaluation Code
-
-* `evaluation\code\bug_assignment.py` contains the code that generated the random bug assignments to all participants.
-
-* `evaluation\code\qualtrics_data_analyzing` folder contains the code that we used to process the results from the participant responses to the Qualtrics survey and generated the stacked bar charts that display the usefulness/ease of use of BURT's features.
-
-* `burt_result_analysis.xlsx`, `itrac_result_analysis.xlsx` and `create_analysis_spreadsheet.py` in `evaluation` folder contain the code and xlsx that perform quality assessment analysis of the bug reports collected via BURT and ITRAC, see Table 3 and 4 in our original paper.
-
-* `evaluation\code\statistics_test` folder contains the code that runs the statistical analysis for comparing bug report quality between BURT and ITRAC. 
+The [replication package](https://github.com/sea-lab-wm/burt/tree/fse-version#burts-evaluation-data-and-code) of our [ESEC/FSE'22 paper](https://ojcchar.github.io/files/21-fse22-burt.pdf) provides the data that we used and collected for BURT's evaluation. It also provides the source code used to process this data and generate the evaluation results.
