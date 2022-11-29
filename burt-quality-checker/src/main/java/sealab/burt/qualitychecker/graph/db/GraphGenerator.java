@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 public @Slf4j
 class GraphGenerator {
 
-    private HashMap<Integer, GraphState> states;
+    private HashMap<String, GraphState> states;
     private HashMap<String, GraphTransition> transitions;
     private boolean updateWeights = false;
     private GraphDataSource currentDataSource;
@@ -412,7 +412,7 @@ class GraphGenerator {
 
         DynGuiComponent root = findRootComponent(screenComponents);
         StringBuilder builder = getUniqueState(root);
-        int hashCode = builder.toString().hashCode();
+        String hashCode = GraphState.generateSha256Hash(builder.toString());
 
         // StringBuilder builder = getUniqueState(screenComponents);
         // int hashCode = builder.toString().hashCode();
@@ -516,7 +516,6 @@ class GraphGenerator {
     private GraphTransition createNewGraphTransition(GraphState sourceState, GraphState targetState,
                                                      AppStep appStep, String hashTransition, double weight) {
         GraphTransition transition = new GraphTransition();
-        transition.setId(hashTransition.hashCode());
         transition.setSourceState(sourceState);
         transition.setTargetState(targetState);
         transition.setName(getTransitionName(appStep, sourceState, targetState));
@@ -560,7 +559,8 @@ class GraphGenerator {
     }
 
     private String getTransitionHash(GraphState currentState, GraphState newState, AppStep appStep) {
-        return currentState.getUniqueHash() + ":" + newState.getUniqueHash() + ":" + appStep.getUniqueHash();
+        String transitionStr = currentState.getUniqueHash() + ":" + newState.getUniqueHash() + ":" + appStep.getUniqueHash();
+        return GraphState.generateSha256Hash(transitionStr);
     }
 
     private String getTransitionName(AppStep appStep, GraphState srcState, GraphState tgtState) {
@@ -600,7 +600,7 @@ class GraphGenerator {
         return stringWriter.toString();
     }
 
-    private String getStateName(DynGuiComponent dynGuiComponent, int hashCode) {
+    private String getStateName(DynGuiComponent dynGuiComponent, String hashCode) {
         String stateName;
         if (dynGuiComponent != null) {
             String[] activityTokens = dynGuiComponent.getActivity().split("\\.");
@@ -613,14 +613,14 @@ class GraphGenerator {
         return stateName;
     }
 
-    private GraphState getGraphState(Screen screen, int pHashCode, Path executionPath1) {
+    private GraphState getGraphState(Screen screen, String pHashCode, Path executionPath1) {
         List<DynGuiComponent> components = screen.getDynGuiComponents();
 
         DynGuiComponent root = findRootComponent(components);
 //	    HierarchyNode node = getUniqueState2(components);
         StringBuilder builder = getUniqueState(root);
-        // Don't recompute the hashCode if it is -1
-        int hashCode = pHashCode == -1 ? builder.toString().hashCode() : pHashCode;
+        // Recompute the hashCode if it is null
+        String hashCode = pHashCode == null ? GraphState.generateSha256Hash(builder.toString()) : pHashCode;
 
         final DynGuiComponent firstComponent = root.getChildren().get(0);
         String stateName = getStateName(firstComponent, hashCode);
@@ -728,14 +728,14 @@ class GraphGenerator {
     /**
      * @return the states
      */
-    public HashMap<Integer, GraphState> getStates() {
+    public HashMap<String, GraphState> getStates() {
         return states;
     }
 
     /**
      * @param states the states to set
      */
-    public void setStates(HashMap<Integer, GraphState> states) {
+    public void setStates(HashMap<String, GraphState> states) {
         this.states = states;
     }
 

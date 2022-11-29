@@ -246,7 +246,7 @@ class NewStepResolver {
                 if (Collections.max(scores) > 0.4) {
 
                     log.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n" +
-                            "Checking candidate step " + step.getTransition().getId() + "\n" +
+                            "Checking candidate step " + step.getTransition().getUniqueHash() + "\n" +
                             "Checking candidate step phrases " + phrases.toString() + "\n" +
                             "Checking matched scores " + scores.toString() + "\n" +
                             "Checking matchedS2RDescription " + S2RDescription);

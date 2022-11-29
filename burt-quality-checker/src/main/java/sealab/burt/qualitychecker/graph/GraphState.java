@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
  * {Insert class description here}
  *
@@ -21,7 +23,7 @@ public class GraphState implements Serializable {
      */
     private static final long serialVersionUID = -3716915968428615126L;
     private String name;
-    private Integer uniqueHash;
+    private String uniqueHash;
     private List<AppGuiComponent> components;
     //	private String formattedXml;
     private String unformattedXml;
@@ -87,14 +89,14 @@ public class GraphState implements Serializable {
     /**
      * @return the uniqueHash
      */
-    public Integer getUniqueHash() {
+    public String getUniqueHash() {
         return uniqueHash;
     }
 
     /**
      * @param uniqueHash the uniqueHash to set
      */
-    public void setUniqueHash(Integer uniqueHash) {
+    public void setUniqueHash(String uniqueHash) {
         this.uniqueHash = uniqueHash;
     }
 
@@ -156,8 +158,12 @@ public class GraphState implements Serializable {
         this.screen = screen;
     }
 
+    public static String generateSha256Hash(String text){
+        return DigestUtils.sha256Hex(text);
+    }
+
     public static GraphState buildDummyState(String nameSuffixEnd) {
-        int hashCodeEnd = nameSuffixEnd.hashCode();
+        String hashCodeEnd = generateSha256Hash(nameSuffixEnd);
         String stateNameEnd = hashCodeEnd + ", " + nameSuffixEnd;
 
         GraphState endState = new GraphState();

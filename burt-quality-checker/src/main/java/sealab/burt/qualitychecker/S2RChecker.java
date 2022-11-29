@@ -32,7 +32,7 @@ class S2RChecker {
     private final String parsersBaseFolder;
     private GraphState currentState;
     private AppGraphInfo executionGraph;
-    private final HashMap<Integer, Integer> statesExecuted = new HashMap<>();
+    private final HashMap<String, Integer> statesExecuted = new HashMap<>();
 
     public S2RChecker(String appName, String appVersion, String bugID) throws Exception {
 //        String bugId = "";

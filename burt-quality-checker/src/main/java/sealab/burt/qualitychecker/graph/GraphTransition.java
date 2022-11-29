@@ -42,7 +42,6 @@ public class GraphTransition extends DefaultWeightedEdge implements Serializable
         ACTION_STRINGS.put(DeviceActions.MENU_BTN, "Tap the menu button");
     }
 
-    private Integer id;
     private GraphState sourceState;
     private GraphState targetState;
     private String name;
@@ -211,7 +210,7 @@ public class GraphTransition extends DefaultWeightedEdge implements Serializable
 
     @Override
     public String toString() {
-        return "t[" + id + ", " + dataSource + ", w="  + weight + "]";
+        return "t[" + uniqueHash + ", " + dataSource + ", w="  + weight + "]";
     }
 
     public AppStep getStep() {
@@ -220,14 +219,6 @@ public class GraphTransition extends DefaultWeightedEdge implements Serializable
 
     public void setStep(AppStep step) {
         this.step = step;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String toNaturalLanguage() {

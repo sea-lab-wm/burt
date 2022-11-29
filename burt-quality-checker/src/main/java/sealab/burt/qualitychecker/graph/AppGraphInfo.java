@@ -112,7 +112,7 @@ public class AppGraphInfo implements Serializable {
             numTransitions += transitions.size();
 
             transitions.forEach(t -> {
-                transitionsBuilder.append(t.getId()).append(": ")
+                transitionsBuilder.append(t.getUniqueHash()).append(": ")
                         .append(t.getName())
                         .append(" weight=")
                         .append(t.getWeight())

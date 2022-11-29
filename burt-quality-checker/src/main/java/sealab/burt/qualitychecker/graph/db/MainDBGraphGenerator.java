@@ -153,7 +153,7 @@ class MainDBGraphGenerator {
                         if (screenshotFile != null && screenshotFile.endsWith(".png") && srcFile.exists()
                                 && srcFile.isFile()) {
 
-                            File destFile = new File(pathnameTransitions + File.separator + edge.getId() + ".png");
+                            File destFile = new File(pathnameTransitions + File.separator + edge.getUniqueHash() + ".png");
                             FileUtils.copyFile(srcFile, destFile);
 
                             GraphState sourceState = edge.getSourceState();

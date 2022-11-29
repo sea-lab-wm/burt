@@ -180,7 +180,7 @@ public class AppStep implements Serializable {
     public String toString() {
         return "[id=" + id + ", ex=" + execution + ", sq=" + sequence + ", act=(" + action + ") " + GeneralUtils
                 .getEventName(action) + ", cp=" + component + ", txt=" + text + ", exp=" + getExceptionHash() + ", " +
-                "tr=" + (transition != null ? transition.getId() : null) + "]";
+                "tr=" + (transition != null ? transition.getUniqueHash() : null) + "]";
     }
 
     public String getUniqueHash() {

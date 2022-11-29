@@ -41,7 +41,8 @@ public
 class MainJSONGraphGenerator {
 
     private static final Set<Triplet<String, String, String>> ALL_SYSTEMS = JavaUtils.getSet(
-            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"), new Triplet<>("8", "trickytripper", "1.6.0"),
+            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"), 
+            new Triplet<>("8", "trickytripper", "1.6.0"),
             new Triplet<>("10","files", "1.0.0-beta.11")
             
             , new Triplet<>("18","calendula", "2.5.7"),
@@ -192,7 +193,7 @@ class MainJSONGraphGenerator {
                     Path.of(dataLocation, "screenshots", edge.getSourceState().getScreenshotPath()).toFile();
 
             if (screenshotFile.endsWith(".png") && srcFileStep.exists() && srcFileStep.isFile()) {
-                File destFile = new File(pathnameTransitions + File.separator + edge.getId() + ".png");
+                File destFile = new File(pathnameTransitions + File.separator + edge.getUniqueHash() + ".png");
                 FileUtils.copyFile(srcFileStep, destFile);
             }
 
@@ -203,7 +204,7 @@ class MainJSONGraphGenerator {
                 if (!destFile2.exists()) {
                     FileUtils.copyFile(srcFileState, destFile2);
 
-                    Integer screenId = sourceState.getUniqueHash();
+                    String screenId = sourceState.getUniqueHash();
                     Integer sequenceId = edge.getStep().getSequence();
                     String source = edge.getDataSource().toString();
                     Long executionId  = edge.getStep().getExecution();
