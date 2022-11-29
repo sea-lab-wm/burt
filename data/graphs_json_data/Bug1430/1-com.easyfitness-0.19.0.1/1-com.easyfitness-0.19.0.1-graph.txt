@@ -3,11 +3,11 @@ Transitions correctness: true
 Transitions (29):
 1533551583: (s:-1659243725,t:-2136801375): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=null ex=0
 
-1546544142: (s:-2136801375,t:-510987060): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=ImageButton, idx=mi_button_next, idnx=2, tx=, x=891, y=1605, h=147, w=147, dsc=Next], txt=, exp=-496531054, tr=null] weight=2.0 ds=TR sc=com.easyfitness.User-Trace.1.com.easyfitness_0.19.0.1_fastnfitness1_augmented.png ex=0
--842362364: (s:-2136801375,t:-2142752532): [id=2, ex=0, sq=3, act=(1) long click, cp=[, ty=ImageButton, idx=mi_button_next, idnx=2, tx=, x=891, y=1605, h=147, w=147, dsc=Next], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=null ex=0
+1546544142: (s:-2136801375,t:-510987060): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=ImageButton, idx=mi_button_next, idnx=2, tx=, x=891, y=1605, h=147, w=147, dsc=Next], txt=, exp=-315872169, tr=null] weight=2.0 ds=TR sc=com.easyfitness.User-Trace.1.com.easyfitness_0.19.0.1_fastnfitness1_augmented.png ex=0
+-842362364: (s:-2136801375,t:-2142752532): [id=2, ex=0, sq=3, act=(1) long click, cp=[, ty=ImageButton, idx=mi_button_next, idnx=2, tx=, x=891, y=1605, h=147, w=147, dsc=Next], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=null ex=0
 
 
-1026696114: (s:-510987060,t:-2136801375): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=ImageButton, idx=mi_button_skip, idnx=0, tx=, x=42, y=1605, h=147, w=147, dsc=Back], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=com.easyfitness.Top_Down.Expected..1.com.easyfitness_0.19.0.1_2_augmented.png ex=0
+1026696114: (s:-510987060,t:-2136801375): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=ImageButton, idx=mi_button_skip, idnx=0, tx=, x=42, y=1605, h=147, w=147, dsc=Back], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=com.easyfitness.Bottom_Up.Expected..1.com.easyfitness_0.19.0.1_2_augmented.png ex=0
 -803250368: (s:-510987060,t:-510987060): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=ImageButton, idx=mi_button_next, idnx=2, tx=, x=891, y=1605, h=147, w=147, dsc=Next], txt=, exp=, tr=null] weight=3.0 ds=TR sc=com.easyfitness.User-Trace.1.com.easyfitness_0.19.0.1_fastnfitness3_augmented.png ex=0
 1562201326: (s:-510987060,t:-1020581793): [id=3, ex=0, sq=4, act=(0) click, cp=[, ty=ImageButton, idx=mi_button_next, idnx=2, tx=, x=891, y=1605, h=147, w=147, dsc=Next], txt=, exp=, tr=null] weight=2.0 ds=TR sc=com.easyfitness.User-Trace.1.com.easyfitness_0.19.0.1_fastnfitness4_augmented.png ex=0
 

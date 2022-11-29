@@ -1,12 +1,31 @@
 Transitions correctness: true
 
-Transitions (46):
+Transitions (50):
 -264207: (s:-1659243725,t:-2061426090): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=null ex=0
 
-2121409534: (s:-2061426090,t:-2061426090): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=Button, idx=button3, idnx=0, tx=CLOSE, x=102, y=1280, h=126, w=174, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=com.android.gpstest.User-Trace.1.com.android.gpstest_3.0.0_gpstest1_augmented.png ex=0
+2121409534: (s:-2061426090,t:-2061426090): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=Button, idx=button3, idnx=0, tx=CLOSE, x=102, y=1280, h=126, w=174, dsc=], txt=, exp=-315872169, tr=null] weight=2.0 ds=TR sc=com.android.gpstest.User-Trace.1.com.android.gpstest_3.0.0_gpstest1_augmented.png ex=0
+1406171917: (s:-2061426090,t:-2061426090): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=•  New look - Tap main menu to switch screens
+•  Light and dark themes - See "Settings->Display" to change theme
+•  L1/L5 signal labels - Carrier frequencies (CF) supported on certain devices with Android 8.0 and up
+•  More SBAS - Inmarsat 3-F2 & 4-F3 and SES-5
+•  Remove unnecessary permissions - These are no longer required for Google Maps
+•  Bug fixes - See http://bit.ly/gpstest-releases, x=70, y=571, h=698, w=940, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=com.android.gpstest.Bottom_Up.Expected..1.com.android.gpstest_3.0.0_2_augmented.png ex=0
 187391178: (s:-2061426090,t:-2061426090): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=KeyButtonView, idx=BACK_MODAL, idnx=0, tx=, x=68, y=151, h=0, w=0, ], txt=, exp=, tr=null] weight=2.0 ds=TR sc=com.android.gpstest.User-Trace.1.com.android.gpstest_3.0.0_gpstest2_augmented.png ex=0
+195257249: (s:-2061426090,t:-2142752532): [id=2, ex=0, sq=3, act=(1) long click, cp=[, ty=TextView, idx=, idnx=0, tx=•  New look - Tap main menu to switch screens
+•  Light and dark themes - See "Settings->Display" to change theme
+•  L1/L5 signal labels - Carrier frequencies (CF) supported on certain devices with Android 8.0 and up
+•  More SBAS - Inmarsat 3-F2 & 4-F3 and SES-5
+•  Remove unnecessary permissions - These are no longer required for Google Maps
+•  Bug fixes - See http://bit.ly/gpstest-releases, x=70, y=571, h=698, w=940, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=null ex=0
 -769760865: (s:-2061426090,t:-1697176963): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=Button, idx=button3, idnx=0, tx=CLOSE, x=102, y=1280, h=126, w=174, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=com.android.gpstest.User-Trace.1.com.android.gpstest_3.0.0_gpstest3_augmented.png ex=0
 56927840: (s:-2061426090,t:307107753): [id=42, ex=0, sq=43, act=(0) click, cp=[, ty=Button, idx=button3, idnx=0, tx=CLOSE, x=102, y=1280, h=126, w=174, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=com.android.gpstest.User-Trace.1.com.android.gpstest_3.0.0_gpstest43_augmented.png ex=0
+1307485228: (s:-2061426090,t:-2061426090): [id=1, ex=1, sq=2, act=(1) long click, cp=[, ty=TextView, idx=, idnx=0, tx=•  New look - Tap main menu to switch screens
+•  Light and dark themes - See "Settings->Display" to change theme
+•  L1/L5 signal labels - Carrier frequencies (CF) supported on certain devices with Android 8.0 and up
+•  More SBAS - Inmarsat 3-F2 & 4-F3 and SES-5
+•  Remove unnecessary permissions - These are no longer required for Google Maps
+•  Bug fixes - See http://bit.ly/gpstest-releases, x=70, y=571, h=698, w=940, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=com.android.gpstest.Top_Down.Expected..1.com.android.gpstest_3.0.0_2_augmented.png ex=1
+-64155405: (s:-2061426090,t:-2142752532): [id=2, ex=1, sq=3, act=(0) click, cp=[, ty=Button, idx=button3, idnx=0, tx=CLOSE, x=102, y=1280, h=126, w=174, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=null ex=1
 
 827917632: (s:307107753,t:1239368559): [id=11, ex=0, sq=12, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open navigation drawer], txt=, exp=, tr=null] weight=2.0 ds=TR sc=com.android.gpstest.User-Trace.1.com.android.gpstest_3.0.0_gpstest12_augmented.png ex=0
 -2098710758: (s:307107753,t:307107753): [id=43, ex=0, sq=44, act=(0) click, cp=[, ty=ImageButton, idx=, idnx=0, tx=, x=0, y=63, h=147, w=147, dsc=Open navigation drawer], txt=, exp=, tr=null] weight=2.0 ds=TR sc=com.android.gpstest.User-Trace.1.com.android.gpstest_3.0.0_gpstest44_augmented.png ex=0
@@ -65,7 +84,7 @@ Transitions (46):
 
 States (16):
 -1659243725, Start state, TR, (null): null - null
--2061426090, GpsTestActivity(Window=Main), TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='com.android.gpstest:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix='com.android.gpstest:id/parentPanel'}, comp{id=7, n='android.widget.LinearLayout', t='', d='', ix='com.android.gpstest:id/topPanel'}, comp{id=8, n='android.widget.LinearLayout', t='', d='', ix='com.android.gpstest:id/title_template'}, comp{id=9, n='android.widget.ImageView', t='', d='', ix='android:id/icon'}, comp{id=10, n='android.widget.TextView', t='What's New?', d='', ix='com.android.gpstest:id/alertTitle'}, comp{id=11, n='android.widget.FrameLayout', t='', d='', ix='com.android.gpstest:id/customPanel'}, comp{id=12, n='android.widget.FrameLayout', t='', d='', ix='com.android.gpstest:id/custom'}, comp{id=13, n='android.widget.TextView', t='•  New look - Tap main menu to switch screens
+-2061426090, GpsTestActivity, TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='com.android.gpstest:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix='com.android.gpstest:id/parentPanel'}, comp{id=7, n='android.widget.LinearLayout', t='', d='', ix='com.android.gpstest:id/topPanel'}, comp{id=8, n='android.widget.LinearLayout', t='', d='', ix='com.android.gpstest:id/title_template'}, comp{id=9, n='android.widget.ImageView', t='', d='', ix='android:id/icon'}, comp{id=10, n='android.widget.TextView', t='What's New?', d='', ix='com.android.gpstest:id/alertTitle'}, comp{id=11, n='android.widget.FrameLayout', t='', d='', ix='com.android.gpstest:id/customPanel'}, comp{id=12, n='android.widget.FrameLayout', t='', d='', ix='com.android.gpstest:id/custom'}, comp{id=13, n='android.widget.TextView', t='•  New look - Tap main menu to switch screens
 •  Light and dark themes - See "Settings->Display" to change theme
 •  L1/L5 signal labels - Carrier frequencies (CF) supported on certain devices with Android 8.0 and up
 •  More SBAS - Inmarsat 3-F2 & 4-F3 and SES-5

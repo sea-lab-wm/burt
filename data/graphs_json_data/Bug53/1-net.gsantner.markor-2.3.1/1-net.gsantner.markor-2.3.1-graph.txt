@@ -1,16 +1,1136 @@
 Transitions correctness: true
 
-Transitions (88):
+Transitions (100):
 -1317658960: (s:-1659243725,t:-1609805778): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=null ex=0
 
-687743586: (s:-1609805778,t:411379245): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=ImageButton, idx=next, idnx=1, tx=, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-496531054, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor2_augmented.png ex=0
--2060794978: (s:-1609805778,t:-1609805778): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=ImageButton, idx=next, idnx=1, tx=, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-496531054, tr=null] weight=4.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor5_augmented.png ex=0
-1368418244: (s:-1609805778,t:-1984565432): [id=5, ex=0, sq=6, act=(0) click, cp=[, ty=ImageButton, idx=next, idnx=1, tx=, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-496531054, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor6_augmented.png ex=0
+687743586: (s:-1609805778,t:411379245): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=ImageButton, idx=next, idnx=1, tx=, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-315872169, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor2_augmented.png ex=0
+-2060794978: (s:-1609805778,t:-1609805778): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=ImageButton, idx=next, idnx=1, tx=, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-315872169, tr=null] weight=4.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor5_augmented.png ex=0
+1368418244: (s:-1609805778,t:-1984565432): [id=5, ex=0, sq=6, act=(0) click, cp=[, ty=ImageButton, idx=next, idnx=1, tx=, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-315872169, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor6_augmented.png ex=0
 
-319196570: (s:-1984565432,t:39954039): [id=6, ex=0, sq=7, act=(0) click, cp=[, ty=Button, idx=done, idnx=1, tx=DONE, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-496531054, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor7_augmented.png ex=0
+319196570: (s:-1984565432,t:39954039): [id=6, ex=0, sq=7, act=(0) click, cp=[, ty=Button, idx=done, idnx=1, tx=DONE, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-315872169, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor7_augmented.png ex=0
+1575077119: (s:-1984565432,t:-751063550): [id=6, ex=1, sq=7, act=(0) click, cp=[, ty=Button, idx=done, idnx=1, tx=DONE, x=796, y=1627, h=167, w=263, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_7_augmented.png ex=1
 
--2028252435: (s:39954039,t:649084109): [id=7, ex=0, sq=8, act=(0) click, cp=[, ty=Button, idx=button1, idnx=0, tx=OK, x=838, y=1614, h=126, w=168, dsc=], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_8_augmented.png ex=0
+-645945691: (s:-751063550,t:-751063550): [id=7, ex=1, sq=8, act=(0) click, cp=[, ty=CheckBox, idx=do_not_ask_checkbox, idnx=0, tx=Don't ask again, x=215, y=969, h=126, w=661, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_8_augmented.png ex=1
+514715454: (s:-751063550,t:39954039): [id=8, ex=1, sq=9, act=(0) click, cp=[, ty=Button, idx=permission_deny_button, idnx=0, tx=DENY, x=523, y=1074, h=126, w=168, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_9_augmented.png ex=1
+
+-2028252435: (s:39954039,t:649084109): [id=7, ex=0, sq=8, act=(0) click, cp=[, ty=Button, idx=button1, idnx=0, tx=OK, x=838, y=1614, h=126, w=168, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_8_augmented.png ex=0
 -838810465: (s:39954039,t:1740951905): [id=7, ex=0, sq=8, act=(0) click, cp=[, ty=Button, idx=button1, idnx=0, tx=OK, x=838, y=1614, h=126, w=168, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor8_augmented.png ex=0
+-1139945706: (s:39954039,t:39954039): [id=9, ex=1, sq=10, act=(0) click, cp=[, ty=TextView, idx=, idnx=0, tx=
+Copyright © 2017-2019 Gregor Santner 
+Official project sources: Website | Source code | F-Droid | Google Play
+
+
+Changelog
+
+v2.3 Blog Post
+• Add action to Move current selected line(s)/cursor text up/down
+• Add settings option for View-Mode link color
+• Improve table of contents - add border, disable underline
+• Long press toolbar to jump to top/bottom (edit & view mode)
+• Add search to View Mode
+• Accessibility improvements & Talkback support
+• Allow http protocol on Android>=9
+• Telegram file edit support
+• Markdown: Normal sized headers by default, increases performance
+• Disable highlighting on big files to improve edit performance
+• Don't sort non-document files in third group
+• Add Accordion (Click to expand) example and add action button
+• Tooltips for action buttons
+• For index.html files, show foldername at favourites/recents
+• todo.txt: Set completition date also when there is no creation date
+• Markdown: Configurable unordered list character
+• Custom order of action buttons
+• Markdown: Add alternative more performant heading highlighting
+• Fix foldername in Main toolbar not reloaded
+• Plaintext: Add extensions for AsciiDoc (.adoc), OrgMode (.org), Ledger (.dg .ledger), Diff (.diff .patch)
+• Remember last used file extension for new file creation
+• todo.txt: Preselect last used archive file by default for archiving
+• Markdown: Long press code to insert code block
+• todo.txt: Improved task sort functionalities
+• Add action button to expand selection of cursror to whole line
+• Markdown: Add Table of contents / Outline for Edit mode (Press toolbar)
+• Vertical Scrollbar now draggable at view & edit mode
+• todo.txt: Date&Time selection dialogs
+• Markdown: Auto update ordered list numbers
+
+v2.2 Blog Post
+• Added Presentations & Slides with Markdown
+• Added audio recording dialog which allows to add voice to documents. Manual interaction required to start & stop voice recording. Voice recording permission required for this feature
+• Added editor button to create Markdown tables
+• Markdown Footnotes support added
+• Added attachment button for all formats (insert color, link, image, file, audio, date)
+• Date/Time button long press now inserts text with last used format
+• Improved SD Card reading & writing
+• Added option to File-import-dialog to import to notebook instead of current folder
+• Reordered editor buttons so global actions are on same position at all formats
+• Source code highlighting for View mode
+• Added settings option to enable experimental features
+• New experimental feature: Convert epub to plaintext and replace current text with ebook
+• New experimental feature: Speed Reading for (text from) edit mode
+• New Special Keys option: Indent / Deindent current line
+• Copy textfile to clipboard from file browser
+• Added highlighting todo.txt due dates
+• Long press the todo.txt date button to insert due date
+• Sepia editor theme
+
+v2.1 Blog post | Code changes 
+• Improved editor, highlighting and overall performance
+• New file dialog: Templates
+• New format: KeyValue - highlighting for json, ini, csv, yaml, vcard, ics, toml and other simple key-value like syntax
+• Long click on main view plus button -> open favourites/recents
+• Use lightweight Markdown heading highlighting on non-highend devices
+• Show SD Card dialog when opening file that is under SAF
+• Share: Rename PDF -> Print/PDF 
+• Text action to sort todo by date
+• Keep view mode scroll position
+• Remove LinkBox from main screen to improve performance
+• Make filesystem selection dialog fill screen
+• Rework share into: Use file browser to select favourite/recent/popular files
+• Special keys added: Insert page break for PDF/Printing, ohm key, punctation mark arrows
+• Append linefeed on end when saving
+• Show error when trying to rename to existing file/folder
+• Add special handling for percent encoded filenames in nextcloud/owncloud folder
+• Link 'More->Help' to Project website FAQ
+• Debug Log settings option
+• Improve local/linked file opening when clicking link at preview
+• Add option to set font size in view mode
+• Share (multiple) files from file browser
+• PlaintextConverter: Put HTML into preview as is (allow to view html files)
+• Fix folder title not visible sometimes
+• Enable hex color highlighting for various prefix/postfixes (like colon, quote, ...)
+
+v2.0 Blog post | Code changes 
+• Recursive file & folder search
+• Search button in editor, viewer and file browser
+• Always export PDF and images with light theme and white background (improves printing)
+• Show dialog on for textfiles to choose open in Markor or other app
+• Setting to set file extensions to always load in Markor
+• Always view files starting with "index."
+• Setting to configure wrap mode (=line breaking)
+• Menu option for reload file (editor/viewer)
+• Menu option for hiding files & folders starting with a dot
+• Setting to set tab width
+• Improve back button when always start view mode is set
+• Keep file browser sort order
+• Improve inline code highlighting
+• Add new line when archiving tasks
+
+v1.8 Blog post | Code changes 
+• Show app intro at first start 
+• All new file navigation 
+• Add favourite files 
+• Add quick navigiation options (to notebook, sdcard, AppData and more) 
+• Add option to set Navigation-Bar color 
+• Combine edit & view mode to one fragment, show view as overlay 
+• Add horizontal scrolling for code blocks in view mode 
+• More efficient undo/redo 
+• Option to enable/disable swipe to change mode 
+• WikiLinks: Disable default escaped characters, so subfolder path is not converted to hyphen 
+• Added fonts: Source Pro, DejaVu Sans Mono, Ubuntu, Lato 
+• Scan storage Fonts folder for custom fonts 
+• Add word count to document info dialog 
+
+v1.7 Blog post 
+• Improved app color theme for better readability 
+• Load custom fonts from file 
+  • Markor bundles 5 additional open fonts
+- Copy custom fonts to folder: 'Notebook/.app/fonts/' 
+• Links shared from e.g. browsers are automatically converted to Markdown syntax if possible 
+• LinkBox is now listed on the main view bottom bar 
+• LinkBox defaults on new installations to LinkBox.md as filename 
+• Default to last used date/time format at dialog 
+• Apply todo.txt format only for .txt files 
+• L/R Swipe in edit/representation mode to change mode 
+• Open link textaction: Don't include trailing ')' in parsed URL, which is common for markdown 
+• Added App Shortcuts, requires Android 7.1+ 
+• Markdown: Enable WikiLink style to reference [[file]] relative 
+• Strip #ref from URL in representation to determine if another file should be opened on click 
+• Option to set app start tab (Notebook / ToDo / QuickNote / LinkBox / More) 
+
+v1.6 Blog post
+New:
+• TextAction: Insert date/time 
+• Add website title when sharing into Markor, if browser supports it 
+  • Website title + URL formatted in Markdown format if possible
+
+Improved:
+• Automatically create ToDo/linkbox/QuickNote and parent folders when using respective launcher 
+• KaTex/Math: Improve inline math 
+• Close virtual keyboard after creating new file 
+• Language selection: Load system's most important language as system hint 
+• Markdown + Jekyll: Replace {{ site.baseurl }} with .. in representation 
+• More padding at settings on older devices 
+• Use the new file dialog for sharing into new documents
+• Filesystem dialog now shows images / textfiles only at respective file selection 
+
+Fixed:
+• New file dialog: Jekyll option on older devices 
+• Title not updated when swiping 
+
+v1.5 Blog post
+New:
+• App-wide 
+  • Settings option: Keep screen on
+• Editor 
+  • Open multiple Windows 
+• Document browser 
+  • Completly new 'New file' dialog 
+• Text Actions 
+  • Sort todo.txt files
+- Tasks support in Markdown 
+
+Improved:
+• Document browser 
+  • Replace 'Reload button' with pull down to refresh
+- Added 'Last modified' to File information dialog 
+• Editor 
+  • Added greenscale basic editor colors 
+• Representation 
+  • Set inital background color before loading document
+- Math/KaTex: Show inline when single dollar is used
+
+v1.4
+New:
+• App-wide 
+  • Add popular documents to 'share into' 
+• Editor 
+  • Settings options for editor background and foreground color
+- todo.txt: Highlight multiple levels of context/projects (@@/++) 
+• Text Actions 
+  • Add zero-width space character to 'special characters'
+- Add color picker 
+
+Improved:
+• TextActions 
+  • Markdown: Multiline textaction for header/quote/list 
+• Editor 
+  • More space for document title
+- Harden automatic file naming and moving 
+• Representation 
+  • Enable block rendering for KaTex (math) 
+• App-wide 
+  • Natural scrolling in dialogs 
+
+Fixed:
+• Filesystem 
+  • Discard selection when leaving filesystem view 
+
+v1.3
+New:
+• App-wide 
+  • Add 'Auto' theme, switch light/dark theme by current hour
+- Support for Chrome Custom Tabs
+• Editor
+  • Start document at the recent cursor position (jump to bottom on new documents and at special files)
+- Enable link highlighting in plaintext format (especially easier to distinguish title and links in linkbox) 
+• Text Actions 
+  • Markdown: Long press image adds img-src with max-height
+- Long press 'Special key' jumps to top/bottom
+- Long press 'Open external' opens content search
+Improved: 
+• TextActions 
+  • Don't list empty lines in simple search
+- Edit picture supports now relative filepaths too
+- Show import dialog for selected pictures too (like in file selection) 
+• Representation 
+  • Renamed from Preview - Performance improvement for TOC & Math - only use when text contains headers/math
+- Markdown: Underline h2 too (like h1, more common for two levels)
+- ToDo: Add alternative naming for contexts/projects 
+• App-wide 
+  • 
+
+Fixed:
+• Editor
+  • Disable 'History disable' performance option for data integrity
+• App-wide
+  • Special files: When app launcher was used, create file if not exists 
+
+v1.2 Blog post
+New: • General
+  • Launchers to directly open LinkBox/ToDo/QuickNote (opt-in)
+• Text Actions
+  • Search/filter lines by input (available in special-keys button menu) - Todo: context aware search for projects,contexts (longpress project/context button)
+• Preview
+  • Table of contents (opt-in)) - Math using KaTex (opt-in)
+
+Improved: • Converter
+  • Markdown: More features enabled, notably GFM like table parsing and underlined h1
+• Settings
+  • More spacing between categories
+
+Fixed: • Editor
+  • File saving
+
+v1.1 Blog post
+New:
+• Text Module Actions
+  • Markdown Picture Dialog - Load picture from gallery - Take picture with camera - Edit picture with graphics app
+
+Improved:
+• Formats
+  • Load Markdown Format for .md.txt files
+
+Fixed:
+• Editor
+  • Change default lineheight back to 100% - Not connects multiple lines anymore
+• Filesystem view
+  • More checks for storage access and the yellow info box
+
+v1.0.1
+New:
+• Add popular files (most used files by access count)
+• Add popular & recent files as virtual folder under /storage/
+  • Selectable e.g. for widgets
+
+Improved:
+• Text-Module-Actions
+  • More safety checks at execution
+• Highlighting
+  • MD: Better code readability - MD: Better unordered list readability
+
+v1.0.0
+New:
+• ShareInto
+  • Added export: calendar appointment
+
+Improved:
+• Widget
+  • Added shortcuts to ToDo, QuickNote and LinkBox
+• SD Card handling and permission errors
+  • Show warning when opening a file on not writeable path - Add shortcuts to writeable SD card folders - Mark unwriteable files red in selection dialog
+• ShareInto
+  • Better separator placement
+
+Fixed:
+• Widget
+  • Open selected file
+• Editor
+  • Markdown header highlighting padding
+• Share to app
+  • Fix view intent not starting on some devices
+• Filesystem view
+  • Allow to view Details for folder too
+
+v0.3.10
+New:
+• ShareInto
+  • Show "open in browser" option if text contains link - Prepend separator to all existing documents
+• Settings / Preview
+  • User customizeable CSS/JS injection option (for preview) - Configureable in settings - Contains some (uncommented) modification lines for important elements - like font size, font type, script to load when page loaded etc.
+
+Improved:
+• Inherit font size from global font preference
+
+Fixed:
+• Recents working without having opened anything yet
+
+v0.3.9
+Improved:
+• Translation updated
+• Updated project description
+• Slightly modified adaptive icon
+
+Fixed:
+• Editor-Rotation: Creates new file again when editing before
+• Create folder: Screen rotation
+
+v0.3.8
+New:
+• Recently viewed documents
+  • Start editing of recent documents, button in the toolbar of main view - Allow sharing into recend documents - Queue containing the 10 last viewed files
+• Keep scroll position when reloading document list (Notebook)
+• Document/File Info: Dialog showing information about selected file
+  • Openable at main views toolbar when one item is selected
+
+Improved:
+• Overall better performance 
+  • Faster document loading - Decreased memory usage
+• Reduce edit history size (undo/redo) to 5 for lower memory usage
+• Preview/Rendering (All):
+  • Rework of theme, font-size and font injection
+• Preview/Rendering (Markdown):
+  • Blockquote theme based styling - Blockquote RTL compatibility
+
+Fixed:
+• Crash when Markor put to background and huge file is loaded
+  • Document contents are not stored into resume cache anymore if they are too big - Make no major differences for huge files, just undo/redo history is cleared when switchting away
+
+v0.3.7
+• Option to disable spellchecking-underline
+• More file managers and sync clients supported (notably: seafile)
+• Improve default settings
+• Limit history size to improve performance
+• Support UTF8 local filename references
+
+v0.3.6
+• Decrease padding of textmoduleactions for more fitting elements
+• Add delete action for all formats
+• Add open link in browser moduleaction
+• Fix actionmode icon color
+• Share into:: Add LinkBox option
+• Share into:: Fix re-sharing of text
+
+v0.3.5
+• All new More section
+• All new "Share into" handling
+• Fix: Keep dates when priority is assigned
+• Mod: Disable colored,underlined header text
+• Add: Enable zoom gestures in Preview
+• Mod: md::link/image filesystem selection in working directory
+• Remove MoreFragment and AboutActivity
+• Share into:: Editable text
+• Share into:: Re-Share option
+• Share into:: Copy to clipboard option
+• Share into:: Landscape support
+• Update settings
+• Improve permission checking
+
+v0.3.4
+• Replace commonmark markdown parser with flexmark
+• Various smaller bug fixes
+• Updated translations
+• Settings option: Edit in screen center
+• Add ".." in folder selection to go up
+
+v0.3.3
+• Add support for editing files from most file managers
+• Allow to open from Own/NextCloud
+• Hints about using Markor with Dropbox
+• Allow to set document folder outside of internal storage
+• Fix import dialog orientation crash
+• Add option to start editing on bottom
+• md: moduleaction: end line with 2 spaces
+• Improve project icon
+• Trim share-into text
+• Improved exporting/sharing
+
+v0.3.2
+• Todotxt: Support delete, archive tasks
+• Todotxt: Try to keep cursor position
+• Translation updates :)
+
+v0.3.1
+• Option for custom line height
+• Remember cursor position when switching away from app
+• Special keyboard actions (Page up, Tab,..)
+
+v0.3.0
+• New project icon
+• Settings ordered in subscreens
+• Additional syntax information
+
+v0.2.5
+• Improve highlighter performance
+• Improve default highlighter settings
+• Added new highlting settings options
+• Preference support lib for settings
+
+v0.2.4
+• Abstract highlighting, converter and text module actions
+• Added: Support for todo.txt
+• Added: Icons to settings
+• Added: Hex-Color-Code underlining
+• Added: Changelog dialog
+
+v0.2.3
+• Select file/image from filesystem
+• Fix relative web local file loading
+• Added: manually save option
+• Added: Launcher shortcuts
+• Filesystem: Add refresh menu option
+
+v0.2.2
+• Show document and file amount below folders
+• Settings toolbar option
+• Highlight line-endings with two spaces (MD line break)
+• Translation updates
+
+v0.2.1
+• Translation update
+• Widget and document list fixes
+• Improve editor actions
+
+v0.2.0
+• Rework of core functionalities of the app
+• Added QuickNote
+• Redo/Undo editing
+• Separate Preview/Edit by fragments, unify functions
+• Rewrite storage/handling of documents
+• Improved sharing into the app, allow appending
+• Added bottom navigation
+• New font chooser in settings
+
+v0.1.6
+• Added: Many new supported languages
+• More supported markdown elements in highlighter
+• More markdown file extensions supported
+• Improved language selection
+• Share as image fixed
+
+v0.1.5
+• Added: Translation: Brazilian, Polish, Hindi, French, Russian, Ukrainian, Italian
+• Added: Sort files
+• Added: Replace markdown charbar with actions
+• Improved: Syntax highlighting
+
+v0.1.4
+• Fixed: replaced Uri.fromFile with FileProvider
+• Added: Share as file, share as PDF
+• Use commonmark-java instead of AndDown markdown parser
+• Added: Spanish translation (#26
+• Added: More font size options
+
+v0.1.3
+• Fix: Renaming case sensitive
+• Mod: Syntax highlighting
+• Fix: Widget
+• Added: Copyright notices
+• Changed: Translation license
+
+v0.1.2
+• Overall refactoring
+• Remove startup ""authentication""
+• Remove slow animations
+• FilesystemDialog from scratch
+• Save only if title/content changed
+• Rework most callbacks and broadcasts
+• Rework settings
+
+v0.1.1
+• Fix import (#2)
+• Use appcompat in dialogs
+• Change cursor in editor
+• Fix resizing with fullscreen in editor
+• Dialogs in dark
+
+v0.1.0
+• Initial release
+• Start of community project Markor
+• Fork of writeily-pro
+• Different branding
+• New initial features
+
+v
+New:
+- 
+Improved:
+- 
+Fixed:
+-
+
+
+Licenses
+
+The MIT License (MIT)
+
+• writeily and writeily-pro
+   Copyright (c) 2014 Jeff Martin
+   Copyright (c) 2015 Pedro Lafuente 
+   Markor was initally forked of writeily-pro, but most parts were completly rewritten. Parts that were not modified or not rewitten from scratch are placed in the thirdparty directory and licensed under MIT. 
+• KaTex
+   Copyright KaTex authors 
+---------------
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--------------- 
+
+
+Apache License
+
+Version 2.0, January 2004
+
+• Material design icons
+   Copyright Google 
+• Android support library / appcompat
+   Copyright (C) 2011 The Android Open Source Project 
+• adapter-kit
+   Copyright 2013 Mobs & Geeks 
+• Butterknife
+   Copyright 2013 Jake Wharton 
+• Commons IO
+   Copyright Apache Foundation 
+• gene-rate
+   Copyright 2017 Pixplicity 
+---------------
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at 
+http://www.apache.org/licenses/LICENSE-2.0 
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+--------------- 
+
+
+BSD 2-clause "Simplified"
+
+
+• flexmark-java
+   Copyright (c) 2015-2016 Atlassian and others    Copyright (c) 2016-2018, Vladimir Schneider 
+---------------
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+• Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer. 
+• Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+--------------- 
+, x=84, y=105, h=1498, w=912, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_10_augmented.png ex=1
+1641647477: (s:39954039,t:39954039): [id=10, ex=1, sq=11, act=(1) long click, cp=[, ty=TextView, idx=, idnx=0, tx=
+Copyright © 2017-2019 Gregor Santner 
+Official project sources: Website | Source code | F-Droid | Google Play
+
+
+Changelog
+
+v2.3 Blog Post
+• Add action to Move current selected line(s)/cursor text up/down
+• Add settings option for View-Mode link color
+• Improve table of contents - add border, disable underline
+• Long press toolbar to jump to top/bottom (edit & view mode)
+• Add search to View Mode
+• Accessibility improvements & Talkback support
+• Allow http protocol on Android>=9
+• Telegram file edit support
+• Markdown: Normal sized headers by default, increases performance
+• Disable highlighting on big files to improve edit performance
+• Don't sort non-document files in third group
+• Add Accordion (Click to expand) example and add action button
+• Tooltips for action buttons
+• For index.html files, show foldername at favourites/recents
+• todo.txt: Set completition date also when there is no creation date
+• Markdown: Configurable unordered list character
+• Custom order of action buttons
+• Markdown: Add alternative more performant heading highlighting
+• Fix foldername in Main toolbar not reloaded
+• Plaintext: Add extensions for AsciiDoc (.adoc), OrgMode (.org), Ledger (.dg .ledger), Diff (.diff .patch)
+• Remember last used file extension for new file creation
+• todo.txt: Preselect last used archive file by default for archiving
+• Markdown: Long press code to insert code block
+• todo.txt: Improved task sort functionalities
+• Add action button to expand selection of cursror to whole line
+• Markdown: Add Table of contents / Outline for Edit mode (Press toolbar)
+• Vertical Scrollbar now draggable at view & edit mode
+• todo.txt: Date&Time selection dialogs
+• Markdown: Auto update ordered list numbers
+
+v2.2 Blog Post
+• Added Presentations & Slides with Markdown
+• Added audio recording dialog which allows to add voice to documents. Manual interaction required to start & stop voice recording. Voice recording permission required for this feature
+• Added editor button to create Markdown tables
+• Markdown Footnotes support added
+• Added attachment button for all formats (insert color, link, image, file, audio, date)
+• Date/Time button long press now inserts text with last used format
+• Improved SD Card reading & writing
+• Added option to File-import-dialog to import to notebook instead of current folder
+• Reordered editor buttons so global actions are on same position at all formats
+• Source code highlighting for View mode
+• Added settings option to enable experimental features
+• New experimental feature: Convert epub to plaintext and replace current text with ebook
+• New experimental feature: Speed Reading for (text from) edit mode
+• New Special Keys option: Indent / Deindent current line
+• Copy textfile to clipboard from file browser
+• Added highlighting todo.txt due dates
+• Long press the todo.txt date button to insert due date
+• Sepia editor theme
+
+v2.1 Blog post | Code changes 
+• Improved editor, highlighting and overall performance
+• New file dialog: Templates
+• New format: KeyValue - highlighting for json, ini, csv, yaml, vcard, ics, toml and other simple key-value like syntax
+• Long click on main view plus button -> open favourites/recents
+• Use lightweight Markdown heading highlighting on non-highend devices
+• Show SD Card dialog when opening file that is under SAF
+• Share: Rename PDF -> Print/PDF 
+• Text action to sort todo by date
+• Keep view mode scroll position
+• Remove LinkBox from main screen to improve performance
+• Make filesystem selection dialog fill screen
+• Rework share into: Use file browser to select favourite/recent/popular files
+• Special keys added: Insert page break for PDF/Printing, ohm key, punctation mark arrows
+• Append linefeed on end when saving
+• Show error when trying to rename to existing file/folder
+• Add special handling for percent encoded filenames in nextcloud/owncloud folder
+• Link 'More->Help' to Project website FAQ
+• Debug Log settings option
+• Improve local/linked file opening when clicking link at preview
+• Add option to set font size in view mode
+• Share (multiple) files from file browser
+• PlaintextConverter: Put HTML into preview as is (allow to view html files)
+• Fix folder title not visible sometimes
+• Enable hex color highlighting for various prefix/postfixes (like colon, quote, ...)
+
+v2.0 Blog post | Code changes 
+• Recursive file & folder search
+• Search button in editor, viewer and file browser
+• Always export PDF and images with light theme and white background (improves printing)
+• Show dialog on for textfiles to choose open in Markor or other app
+• Setting to set file extensions to always load in Markor
+• Always view files starting with "index."
+• Setting to configure wrap mode (=line breaking)
+• Menu option for reload file (editor/viewer)
+• Menu option for hiding files & folders starting with a dot
+• Setting to set tab width
+• Improve back button when always start view mode is set
+• Keep file browser sort order
+• Improve inline code highlighting
+• Add new line when archiving tasks
+
+v1.8 Blog post | Code changes 
+• Show app intro at first start 
+• All new file navigation 
+• Add favourite files 
+• Add quick navigiation options (to notebook, sdcard, AppData and more) 
+• Add option to set Navigation-Bar color 
+• Combine edit & view mode to one fragment, show view as overlay 
+• Add horizontal scrolling for code blocks in view mode 
+• More efficient undo/redo 
+• Option to enable/disable swipe to change mode 
+• WikiLinks: Disable default escaped characters, so subfolder path is not converted to hyphen 
+• Added fonts: Source Pro, DejaVu Sans Mono, Ubuntu, Lato 
+• Scan storage Fonts folder for custom fonts 
+• Add word count to document info dialog 
+
+v1.7 Blog post 
+• Improved app color theme for better readability 
+• Load custom fonts from file 
+  • Markor bundles 5 additional open fonts
+- Copy custom fonts to folder: 'Notebook/.app/fonts/' 
+• Links shared from e.g. browsers are automatically converted to Markdown syntax if possible 
+• LinkBox is now listed on the main view bottom bar 
+• LinkBox defaults on new installations to LinkBox.md as filename 
+• Default to last used date/time format at dialog 
+• Apply todo.txt format only for .txt files 
+• L/R Swipe in edit/representation mode to change mode 
+• Open link textaction: Don't include trailing ')' in parsed URL, which is common for markdown 
+• Added App Shortcuts, requires Android 7.1+ 
+• Markdown: Enable WikiLink style to reference [[file]] relative 
+• Strip #ref from URL in representation to determine if another file should be opened on click 
+• Option to set app start tab (Notebook / ToDo / QuickNote / LinkBox / More) 
+
+v1.6 Blog post
+New:
+• TextAction: Insert date/time 
+• Add website title when sharing into Markor, if browser supports it 
+  • Website title + URL formatted in Markdown format if possible
+
+Improved:
+• Automatically create ToDo/linkbox/QuickNote and parent folders when using respective launcher 
+• KaTex/Math: Improve inline math 
+• Close virtual keyboard after creating new file 
+• Language selection: Load system's most important language as system hint 
+• Markdown + Jekyll: Replace {{ site.baseurl }} with .. in representation 
+• More padding at settings on older devices 
+• Use the new file dialog for sharing into new documents
+• Filesystem dialog now shows images / textfiles only at respective file selection 
+
+Fixed:
+• New file dialog: Jekyll option on older devices 
+• Title not updated when swiping 
+
+v1.5 Blog post
+New:
+• App-wide 
+  • Settings option: Keep screen on
+• Editor 
+  • Open multiple Windows 
+• Document browser 
+  • Completly new 'New file' dialog 
+• Text Actions 
+  • Sort todo.txt files
+- Tasks support in Markdown 
+
+Improved:
+• Document browser 
+  • Replace 'Reload button' with pull down to refresh
+- Added 'Last modified' to File information dialog 
+• Editor 
+  • Added greenscale basic editor colors 
+• Representation 
+  • Set inital background color before loading document
+- Math/KaTex: Show inline when single dollar is used
+
+v1.4
+New:
+• App-wide 
+  • Add popular documents to 'share into' 
+• Editor 
+  • Settings options for editor background and foreground color
+- todo.txt: Highlight multiple levels of context/projects (@@/++) 
+• Text Actions 
+  • Add zero-width space character to 'special characters'
+- Add color picker 
+
+Improved:
+• TextActions 
+  • Markdown: Multiline textaction for header/quote/list 
+• Editor 
+  • More space for document title
+- Harden automatic file naming and moving 
+• Representation 
+  • Enable block rendering for KaTex (math) 
+• App-wide 
+  • Natural scrolling in dialogs 
+
+Fixed:
+• Filesystem 
+  • Discard selection when leaving filesystem view 
+
+v1.3
+New:
+• App-wide 
+  • Add 'Auto' theme, switch light/dark theme by current hour
+- Support for Chrome Custom Tabs
+• Editor
+  • Start document at the recent cursor position (jump to bottom on new documents and at special files)
+- Enable link highlighting in plaintext format (especially easier to distinguish title and links in linkbox) 
+• Text Actions 
+  • Markdown: Long press image adds img-src with max-height
+- Long press 'Special key' jumps to top/bottom
+- Long press 'Open external' opens content search
+Improved: 
+• TextActions 
+  • Don't list empty lines in simple search
+- Edit picture supports now relative filepaths too
+- Show import dialog for selected pictures too (like in file selection) 
+• Representation 
+  • Renamed from Preview - Performance improvement for TOC & Math - only use when text contains headers/math
+- Markdown: Underline h2 too (like h1, more common for two levels)
+- ToDo: Add alternative naming for contexts/projects 
+• App-wide 
+  • 
+
+Fixed:
+• Editor
+  • Disable 'History disable' performance option for data integrity
+• App-wide
+  • Special files: When app launcher was used, create file if not exists 
+
+v1.2 Blog post
+New: • General
+  • Launchers to directly open LinkBox/ToDo/QuickNote (opt-in)
+• Text Actions
+  • Search/filter lines by input (available in special-keys button menu) - Todo: context aware search for projects,contexts (longpress project/context button)
+• Preview
+  • Table of contents (opt-in)) - Math using KaTex (opt-in)
+
+Improved: • Converter
+  • Markdown: More features enabled, notably GFM like table parsing and underlined h1
+• Settings
+  • More spacing between categories
+
+Fixed: • Editor
+  • File saving
+
+v1.1 Blog post
+New:
+• Text Module Actions
+  • Markdown Picture Dialog - Load picture from gallery - Take picture with camera - Edit picture with graphics app
+
+Improved:
+• Formats
+  • Load Markdown Format for .md.txt files
+
+Fixed:
+• Editor
+  • Change default lineheight back to 100% - Not connects multiple lines anymore
+• Filesystem view
+  • More checks for storage access and the yellow info box
+
+v1.0.1
+New:
+• Add popular files (most used files by access count)
+• Add popular & recent files as virtual folder under /storage/
+  • Selectable e.g. for widgets
+
+Improved:
+• Text-Module-Actions
+  • More safety checks at execution
+• Highlighting
+  • MD: Better code readability - MD: Better unordered list readability
+
+v1.0.0
+New:
+• ShareInto
+  • Added export: calendar appointment
+
+Improved:
+• Widget
+  • Added shortcuts to ToDo, QuickNote and LinkBox
+• SD Card handling and permission errors
+  • Show warning when opening a file on not writeable path - Add shortcuts to writeable SD card folders - Mark unwriteable files red in selection dialog
+• ShareInto
+  • Better separator placement
+
+Fixed:
+• Widget
+  • Open selected file
+• Editor
+  • Markdown header highlighting padding
+• Share to app
+  • Fix view intent not starting on some devices
+• Filesystem view
+  • Allow to view Details for folder too
+
+v0.3.10
+New:
+• ShareInto
+  • Show "open in browser" option if text contains link - Prepend separator to all existing documents
+• Settings / Preview
+  • User customizeable CSS/JS injection option (for preview) - Configureable in settings - Contains some (uncommented) modification lines for important elements - like font size, font type, script to load when page loaded etc.
+
+Improved:
+• Inherit font size from global font preference
+
+Fixed:
+• Recents working without having opened anything yet
+
+v0.3.9
+Improved:
+• Translation updated
+• Updated project description
+• Slightly modified adaptive icon
+
+Fixed:
+• Editor-Rotation: Creates new file again when editing before
+• Create folder: Screen rotation
+
+v0.3.8
+New:
+• Recently viewed documents
+  • Start editing of recent documents, button in the toolbar of main view - Allow sharing into recend documents - Queue containing the 10 last viewed files
+• Keep scroll position when reloading document list (Notebook)
+• Document/File Info: Dialog showing information about selected file
+  • Openable at main views toolbar when one item is selected
+
+Improved:
+• Overall better performance 
+  • Faster document loading - Decreased memory usage
+• Reduce edit history size (undo/redo) to 5 for lower memory usage
+• Preview/Rendering (All):
+  • Rework of theme, font-size and font injection
+• Preview/Rendering (Markdown):
+  • Blockquote theme based styling - Blockquote RTL compatibility
+
+Fixed:
+• Crash when Markor put to background and huge file is loaded
+  • Document contents are not stored into resume cache anymore if they are too big - Make no major differences for huge files, just undo/redo history is cleared when switchting away
+
+v0.3.7
+• Option to disable spellchecking-underline
+• More file managers and sync clients supported (notably: seafile)
+• Improve default settings
+• Limit history size to improve performance
+• Support UTF8 local filename references
+
+v0.3.6
+• Decrease padding of textmoduleactions for more fitting elements
+• Add delete action for all formats
+• Add open link in browser moduleaction
+• Fix actionmode icon color
+• Share into:: Add LinkBox option
+• Share into:: Fix re-sharing of text
+
+v0.3.5
+• All new More section
+• All new "Share into" handling
+• Fix: Keep dates when priority is assigned
+• Mod: Disable colored,underlined header text
+• Add: Enable zoom gestures in Preview
+• Mod: md::link/image filesystem selection in working directory
+• Remove MoreFragment and AboutActivity
+• Share into:: Editable text
+• Share into:: Re-Share option
+• Share into:: Copy to clipboard option
+• Share into:: Landscape support
+• Update settings
+• Improve permission checking
+
+v0.3.4
+• Replace commonmark markdown parser with flexmark
+• Various smaller bug fixes
+• Updated translations
+• Settings option: Edit in screen center
+• Add ".." in folder selection to go up
+
+v0.3.3
+• Add support for editing files from most file managers
+• Allow to open from Own/NextCloud
+• Hints about using Markor with Dropbox
+• Allow to set document folder outside of internal storage
+• Fix import dialog orientation crash
+• Add option to start editing on bottom
+• md: moduleaction: end line with 2 spaces
+• Improve project icon
+• Trim share-into text
+• Improved exporting/sharing
+
+v0.3.2
+• Todotxt: Support delete, archive tasks
+• Todotxt: Try to keep cursor position
+• Translation updates :)
+
+v0.3.1
+• Option for custom line height
+• Remember cursor position when switching away from app
+• Special keyboard actions (Page up, Tab,..)
+
+v0.3.0
+• New project icon
+• Settings ordered in subscreens
+• Additional syntax information
+
+v0.2.5
+• Improve highlighter performance
+• Improve default highlighter settings
+• Added new highlting settings options
+• Preference support lib for settings
+
+v0.2.4
+• Abstract highlighting, converter and text module actions
+• Added: Support for todo.txt
+• Added: Icons to settings
+• Added: Hex-Color-Code underlining
+• Added: Changelog dialog
+
+v0.2.3
+• Select file/image from filesystem
+• Fix relative web local file loading
+• Added: manually save option
+• Added: Launcher shortcuts
+• Filesystem: Add refresh menu option
+
+v0.2.2
+• Show document and file amount below folders
+• Settings toolbar option
+• Highlight line-endings with two spaces (MD line break)
+• Translation updates
+
+v0.2.1
+• Translation update
+• Widget and document list fixes
+• Improve editor actions
+
+v0.2.0
+• Rework of core functionalities of the app
+• Added QuickNote
+• Redo/Undo editing
+• Separate Preview/Edit by fragments, unify functions
+• Rewrite storage/handling of documents
+• Improved sharing into the app, allow appending
+• Added bottom navigation
+• New font chooser in settings
+
+v0.1.6
+• Added: Many new supported languages
+• More supported markdown elements in highlighter
+• More markdown file extensions supported
+• Improved language selection
+• Share as image fixed
+
+v0.1.5
+• Added: Translation: Brazilian, Polish, Hindi, French, Russian, Ukrainian, Italian
+• Added: Sort files
+• Added: Replace markdown charbar with actions
+• Improved: Syntax highlighting
+
+v0.1.4
+• Fixed: replaced Uri.fromFile with FileProvider
+• Added: Share as file, share as PDF
+• Use commonmark-java instead of AndDown markdown parser
+• Added: Spanish translation (#26
+• Added: More font size options
+
+v0.1.3
+• Fix: Renaming case sensitive
+• Mod: Syntax highlighting
+• Fix: Widget
+• Added: Copyright notices
+• Changed: Translation license
+
+v0.1.2
+• Overall refactoring
+• Remove startup ""authentication""
+• Remove slow animations
+• FilesystemDialog from scratch
+• Save only if title/content changed
+• Rework most callbacks and broadcasts
+• Rework settings
+
+v0.1.1
+• Fix import (#2)
+• Use appcompat in dialogs
+• Change cursor in editor
+• Fix resizing with fullscreen in editor
+• Dialogs in dark
+
+v0.1.0
+• Initial release
+• Start of community project Markor
+• Fork of writeily-pro
+• Different branding
+• New initial features
+
+v
+New:
+- 
+Improved:
+- 
+Fixed:
+-
+
+
+Licenses
+
+The MIT License (MIT)
+
+• writeily and writeily-pro
+   Copyright (c) 2014 Jeff Martin
+   Copyright (c) 2015 Pedro Lafuente 
+   Markor was initally forked of writeily-pro, but most parts were completly rewritten. Parts that were not modified or not rewitten from scratch are placed in the thirdparty directory and licensed under MIT. 
+• KaTex
+   Copyright KaTex authors 
+---------------
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--------------- 
+
+
+Apache License
+
+Version 2.0, January 2004
+
+• Material design icons
+   Copyright Google 
+• Android support library / appcompat
+   Copyright (C) 2011 The Android Open Source Project 
+• adapter-kit
+   Copyright 2013 Mobs & Geeks 
+• Butterknife
+   Copyright 2013 Jake Wharton 
+• Commons IO
+   Copyright Apache Foundation 
+• gene-rate
+   Copyright 2017 Pixplicity 
+---------------
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at 
+http://www.apache.org/licenses/LICENSE-2.0 
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+--------------- 
+
+
+BSD 2-clause "Simplified"
+
+
+• flexmark-java
+   Copyright (c) 2015-2016 Atlassian and others    Copyright (c) 2016-2018, Vladimir Schneider 
+---------------
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+• Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer. 
+• Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+--------------- 
+, x=84, y=105, h=1498, w=912, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_11_augmented.png ex=1
 
 1255937101: (s:1740951905,t:-1236146120): [id=8, ex=0, sq=9, act=(0) click, cp=[, ty=ImageButton, idx=fab_add_new_item, idnx=0, tx=, x=849, y=1479, h=147, w=147, dsc=Create a new file or folder], txt=, exp=, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor9_augmented.png ex=0
 
@@ -119,23 +1239,32 @@ Transitions (88):
 
 1047909166: (s:-703507165,t:-1236146120): [id=11, ex=0, sq=12, act=(0) click, cp=[, ty=TextView, idx=text1, idnx=2, tx=todo.txt, x=84, y=666, h=126, w=786, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor12_augmented.png ex=0
 
--1043646986: (s:649084109,t:649084109): [id=8, ex=0, sq=9, act=(0) click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=233, h=74, w=74, dsc=], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_9_augmented.png ex=0
--2013937993: (s:649084109,t:649084109): [id=9, ex=0, sq=10, act=(1) long click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=233, h=74, w=74, dsc=], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_10_augmented.png ex=0
--1018115469: (s:649084109,t:873691881): [id=10, ex=0, sq=11, act=(0) click, cp=[, ty=LinearLayout, idx=ui__filesystem_item__root, idnx=0, tx=, x=0, y=210, h=120, w=1080, dsc=File .. /storage/emulated/0/Do...], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_11_augmented.png ex=0
+-1043646986: (s:649084109,t:649084109): [id=8, ex=0, sq=9, act=(0) click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=233, h=74, w=74, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_9_augmented.png ex=0
+-2013937993: (s:649084109,t:649084109): [id=9, ex=0, sq=10, act=(1) long click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=233, h=74, w=74, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_10_augmented.png ex=0
+1234953003: (s:649084109,t:-1814250401): [id=10, ex=0, sq=11, act=(0) click, cp=[, ty=LinearLayout, idx=ui__filesystem_item__root, idnx=0, tx=, x=0, y=210, h=120, w=1080, dsc=File .. /storage/emulated/0/Do...], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_11_augmented.png ex=0
+1364197456: (s:649084109,t:481605527): [id=12, ex=1, sq=13, act=(0) click, cp=[, ty=ImageButton, idx=fab_add_new_item, idnx=0, tx=, x=849, y=1479, h=147, w=147, dsc=Create a new file or folder], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_13_augmented.png ex=1
+-1076424303: (s:649084109,t:481605527): [id=14, ex=1, sq=15, act=(1) long click, cp=[, ty=ImageButton, idx=fab_add_new_item, idnx=0, tx=, x=849, y=1479, h=147, w=147, dsc=Create a new file or folder], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_15_augmented.png ex=1
+-1032063367: (s:649084109,t:649084109): [id=16, ex=1, sq=17, act=(0) click, cp=[, ty=FrameLayout, idx=nav_notebook, idnx=0, tx=, x=0, y=1647, h=147, w=270, dsc=Files], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_17_augmented.png ex=1
+-1256927937: (s:649084109,t:-2142752532): [id=17, ex=1, sq=18, act=(0) click, cp=[, ty=FrameLayout, idx=nav_todo, idnx=1, tx=, x=270, y=1647, h=147, w=270, dsc=To-Do], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_18_augmented.png ex=1
 
-839371931: (s:873691881,t:873691881): [id=11, ex=0, sq=12, act=(0) click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=377, h=74, w=74, dsc=], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_12_augmented.png ex=0
--130919076: (s:873691881,t:873691881): [id=12, ex=0, sq=13, act=(1) long click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=377, h=74, w=74, dsc=], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_13_augmented.png ex=0
-1267837526: (s:873691881,t:1593561585): [id=13, ex=0, sq=14, act=(0) click, cp=[, ty=LinearLayout, idx=ui__filesystem_item__root, idnx=1, tx=, x=0, y=354, h=120, w=1080, dsc=Folder markor 6/29/2022, 2:44 ...], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_14_augmented.png ex=0
+1852511057: (s:481605527,t:649084109): [id=13, ex=1, sq=14, act=(0) click, cp=[, ty=Button, idx=button2, idnx=0, tx=CANCEL, x=608, y=942, h=126, w=202, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_14_augmented.png ex=1
+134678329: (s:481605527,t:649084109): [id=15, ex=1, sq=16, act=(0) click, cp=[, ty=Button, idx=button1, idnx=1, tx=OK, x=810, y=942, h=126, w=168, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_16_augmented.png ex=1
 
-800649280: (s:1593561585,t:1593561585): [id=14, ex=0, sq=15, act=(1) long click, cp=[, ty=LinearLayout, idx=ui__filesystem_item__root, idnx=0, tx=, x=0, y=210, h=120, w=1080, dsc=File .. /storage/emulated/0/Do...], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_15_augmented.png ex=0
-1170128955: (s:1593561585,t:-2142752532): [id=15, ex=0, sq=16, act=(0) click, cp=[, ty=ImageView, idx=, idnx=3, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_16_augmented.png ex=0
+1690912203: (s:-1814250401,t:-1814250401): [id=11, ex=0, sq=12, act=(0) click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=377, h=74, w=74, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_12_augmented.png ex=0
+720621196: (s:-1814250401,t:-1814250401): [id=12, ex=0, sq=13, act=(1) long click, cp=[, ty=ImageView, idx=ui__filesystem_item__image, idnx=0, tx=, x=42, y=377, h=74, w=74, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_13_augmented.png ex=0
+-1444465058: (s:-1814250401,t:1593561585): [id=13, ex=0, sq=14, act=(0) click, cp=[, ty=LinearLayout, idx=ui__filesystem_item__root, idnx=1, tx=, x=0, y=354, h=120, w=1080, dsc=Folder markor 11/9/2022, 11:53...], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_14_augmented.png ex=0
 
-1783365146: (s:411379245,t:-1609805778): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=Button, idx=permission_allow_button, idnx=1, tx=ALLOW, x=691, y=1017, h=126, w=185, dsc=], txt=, exp=-496531054, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor3_augmented.png ex=0
+800649280: (s:1593561585,t:1593561585): [id=14, ex=0, sq=15, act=(1) long click, cp=[, ty=LinearLayout, idx=ui__filesystem_item__root, idnx=0, tx=, x=0, y=210, h=120, w=1080, dsc=File .. /storage/emulated/0/Do...], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_15_augmented.png ex=0
+1170128955: (s:1593561585,t:-2142752532): [id=15, ex=0, sq=16, act=(0) click, cp=[, ty=ImageView, idx=, idnx=3, tx=, x=975, y=73, h=126, w=105, dsc=More options], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_16_augmented.png ex=0
 
-States (43):
+1783365146: (s:411379245,t:-1609805778): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=Button, idx=permission_allow_button, idnx=1, tx=ALLOW, x=691, y=1017, h=126, w=185, dsc=], txt=, exp=-315872169, tr=null] weight=2.0 ds=TR sc=net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor3_augmented.png ex=0
+2046167232: (s:411379245,t:-1609805778): [id=2, ex=1, sq=3, act=(0) click, cp=[, ty=Button, idx=permission_deny_button, idnx=0, tx=DENY, x=523, y=1017, h=126, w=168, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_3_augmented.png ex=1
+
+States (45):
 -1659243725, Start state, TR, (null): null - null
 -1609805778, IntroActivity, TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.widget.RelativeLayout', t='', d='', ix=''}, comp{id=7, n='android.support.v4.view.ViewPager', t='', d='', ix='net.gsantner.markor:id/view_pager'}, comp{id=8, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/main'}, comp{id=9, n='android.widget.TextView', t='Main View', d='', ix='net.gsantner.markor:id/title'}, comp{id=10, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=11, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/image'}, comp{id=12, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=13, n='android.widget.TextView', t='Notebook is the folder that Markor loads in the file browser when the app is started. It is the home folder of your files.', d='', ix='net.gsantner.markor:id/description'}, comp{id=14, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/bottom'}, comp{id=15, n='android.widget.TextView', t='', d='', ix='net.gsantner.markor:id/bottom_separator'}, comp{id=16, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/bottomContainer'}, comp{id=17, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/indicator_container'}, comp{id=18, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=19, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=20, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=21, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=22, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=23, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=24, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=25, n='android.widget.ImageButton', t='', d='', ix='net.gsantner.markor:id/next'}, comp{id=26, n='android.view.View', t='', d='', ix='android:id/statusBarBackground'}, comp{id=27, n='android.view.View', t='', d='', ix='android:id/navigationBarBackground'}]}}): <w>1080</w><h>1794</h><x>0</x><y>0</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_net.gsantner.markor:action_bar_root_><android.widget.FrameLayout_android:content_><android.widget.RelativeLayout__><android.support.v4.view.ViewPager_net.gsantner.markor:view_pager_><android.widget.LinearLayout_net.gsantner.markor:main_><android.widget.TextView_net.gsantner.markor:title_></android.widget.TextView_net.gsantner.markor:title_><android.widget.LinearLayout__><android.widget.ImageView_net.gsantner.markor:image_></android.widget.ImageView_net.gsantner.markor:image_></android.widget.LinearLayout__><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:description_></android.widget.TextView_net.gsantner.markor:description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:main_></android.support.v4.view.ViewPager_net.gsantner.markor:view_pager_><android.widget.LinearLayout_net.gsantner.markor:bottom_><android.widget.TextView_net.gsantner.markor:bottom_separator_></android.widget.TextView_net.gsantner.markor:bottom_separator_><android.widget.FrameLayout_net.gsantner.markor:bottomContainer_><android.widget.FrameLayout_net.gsantner.markor:indicator_container_><android.widget.LinearLayout__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__></android.widget.LinearLayout__></android.widget.FrameLayout_net.gsantner.markor:indicator_container_><android.widget.ImageButton_net.gsantner.markor:next_></android.widget.ImageButton_net.gsantner.markor:next_></android.widget.FrameLayout_net.gsantner.markor:bottomContainer_></android.widget.LinearLayout_net.gsantner.markor:bottom_></android.widget.RelativeLayout__></android.widget.FrameLayout_android:content_></android.widget.FrameLayout_net.gsantner.markor:action_bar_root_></android.widget.FrameLayout__></android.widget.FrameLayout__><android.view.View_android:statusBarBackground_></android.view.View_android:statusBarBackground_><android.view.View_android:navigationBarBackground_></android.view.View_android:navigationBarBackground_></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor5.png
 -1984565432, IntroActivity, TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.widget.RelativeLayout', t='', d='', ix=''}, comp{id=7, n='android.support.v4.view.ViewPager', t='', d='', ix='net.gsantner.markor:id/view_pager'}, comp{id=8, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/main'}, comp{id=9, n='android.widget.TextView', t='QuickNote', d='', ix='net.gsantner.markor:id/title'}, comp{id=10, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=11, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/image'}, comp{id=12, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=13, n='android.widget.TextView', t='QuickNote is the fastest option to write down notes. It is a file in Markdown format with default location >Notebook/QuickNote.md<, you can set a custom filepath in the settings.', d='', ix='net.gsantner.markor:id/description'}, comp{id=14, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/bottom'}, comp{id=15, n='android.widget.TextView', t='', d='', ix='net.gsantner.markor:id/bottom_separator'}, comp{id=16, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/bottomContainer'}, comp{id=17, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/indicator_container'}, comp{id=18, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=19, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=20, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=21, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=22, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=23, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=24, n='android.widget.ImageView', t='', d='', ix=''}, comp{id=25, n='android.widget.Button', t='DONE', d='', ix='net.gsantner.markor:id/done'}, comp{id=26, n='android.view.View', t='', d='', ix='android:id/statusBarBackground'}, comp{id=27, n='android.view.View', t='', d='', ix='android:id/navigationBarBackground'}]}}): <w>1080</w><h>1794</h><x>0</x><y>0</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_net.gsantner.markor:action_bar_root_><android.widget.FrameLayout_android:content_><android.widget.RelativeLayout__><android.support.v4.view.ViewPager_net.gsantner.markor:view_pager_><android.widget.LinearLayout_net.gsantner.markor:main_><android.widget.TextView_net.gsantner.markor:title_></android.widget.TextView_net.gsantner.markor:title_><android.widget.LinearLayout__><android.widget.ImageView_net.gsantner.markor:image_></android.widget.ImageView_net.gsantner.markor:image_></android.widget.LinearLayout__><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:description_></android.widget.TextView_net.gsantner.markor:description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:main_></android.support.v4.view.ViewPager_net.gsantner.markor:view_pager_><android.widget.LinearLayout_net.gsantner.markor:bottom_><android.widget.TextView_net.gsantner.markor:bottom_separator_></android.widget.TextView_net.gsantner.markor:bottom_separator_><android.widget.FrameLayout_net.gsantner.markor:bottomContainer_><android.widget.FrameLayout_net.gsantner.markor:indicator_container_><android.widget.LinearLayout__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__><android.widget.ImageView__></android.widget.ImageView__></android.widget.LinearLayout__></android.widget.FrameLayout_net.gsantner.markor:indicator_container_><android.widget.Button_net.gsantner.markor:done_></android.widget.Button_net.gsantner.markor:done_></android.widget.FrameLayout_net.gsantner.markor:bottomContainer_></android.widget.LinearLayout_net.gsantner.markor:bottom_></android.widget.RelativeLayout__></android.widget.FrameLayout_android:content_></android.widget.FrameLayout_net.gsantner.markor:action_bar_root_></android.widget.FrameLayout__></android.widget.FrameLayout__><android.view.View_android:statusBarBackground_></android.view.View_android:statusBarBackground_><android.view.View_android:navigationBarBackground_></android.view.View_android:navigationBarBackground_></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor6.png
+-751063550, GrantPermissionsActivity, CS, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=4, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=5, n='android.widget.ScrollView', t='', d='', ix=''}, comp{id=6, n='android.widget.LinearLayout', t='', d='', ix='com.android.packageinstaller:id/dialog_container'}, comp{id=7, n='android.widget.FrameLayout', t='', d='', ix='com.android.packageinstaller:id/desc_container'}, comp{id=8, n='android.widget.LinearLayout', t='', d='', ix='com.android.packageinstaller:id/perm_desc_root'}, comp{id=9, n='android.widget.ImageView', t='', d='', ix='com.android.packageinstaller:id/permission_icon'}, comp{id=10, n='android.widget.TextView', t='Allow Markor to access photos, media, and files on your device?', d='', ix='com.android.packageinstaller:id/permission_message'}, comp{id=11, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=12, n='android.widget.CheckBox', t='Don't ask again', d='', ix='com.android.packageinstaller:id/do_not_ask_checkbox'}, comp{id=13, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=14, n='android.widget.LinearLayout', t='', d='', ix='com.android.packageinstaller:id/button_group'}, comp{id=15, n='android.widget.Button', t='DENY', d='', ix='com.android.packageinstaller:id/permission_deny_button'}, comp{id=16, n='android.widget.Button', t='ALLOW', d='', ix='com.android.packageinstaller:id/permission_allow_button'}]}}): <w>840</w><h>1730</h><x>120</x><y>63</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_android:content_><android.view.ViewGroup__><android.widget.ScrollView__><android.widget.LinearLayout_com.android.packageinstaller:dialog_container_><android.widget.FrameLayout_com.android.packageinstaller:desc_container_><android.widget.LinearLayout_com.android.packageinstaller:perm_desc_root_><android.widget.ImageView_com.android.packageinstaller:permission_icon_></android.widget.ImageView_com.android.packageinstaller:permission_icon_><android.widget.TextView_com.android.packageinstaller:permission_message_></android.widget.TextView_com.android.packageinstaller:permission_message_></android.widget.LinearLayout_com.android.packageinstaller:perm_desc_root_></android.widget.FrameLayout_com.android.packageinstaller:desc_container_><android.widget.LinearLayout__><android.widget.CheckBox_com.android.packageinstaller:do_not_ask_checkbox_></android.widget.CheckBox_com.android.packageinstaller:do_not_ask_checkbox_><android.widget.LinearLayout__><android.widget.LinearLayout_com.android.packageinstaller:button_group_><android.widget.Button_com.android.packageinstaller:permission_deny_button_></android.widget.Button_com.android.packageinstaller:permission_deny_button_><android.widget.Button_com.android.packageinstaller:permission_allow_button_></android.widget.Button_com.android.packageinstaller:permission_allow_button_></android.widget.LinearLayout_com.android.packageinstaller:button_group_></android.widget.LinearLayout__></android.widget.LinearLayout__></android.widget.LinearLayout_com.android.packageinstaller:dialog_container_></android.widget.ScrollView__></android.view.ViewGroup__></android.widget.FrameLayout_android:content_></android.widget.FrameLayout__></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_7.png
 39954039, MainActivity, TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix='net.gsantner.markor:id/parentPanel'}, comp{id=7, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/customPanel'}, comp{id=8, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/custom'}, comp{id=9, n='android.widget.ScrollView', t='', d='', ix=''}, comp{id=10, n='android.widget.TextView', t='
 Copyright © 2017-2019 Gregor Santner 
 Official project sources: Website | Source code | F-Droid | Google Play
@@ -747,7 +1876,8 @@ function onPageLoaded(){
 -1072681533, DocumentActivity(Window=Popup Menu), TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.ListView', t='', d='', ix=''}, comp{id=4, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=5, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/content'}, comp{id=6, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=7, n='android.widget.RelativeLayout', t='', d='', ix=''}, comp{id=8, n='android.widget.TextView', t='Save', d='', ix='net.gsantner.markor:id/title'}, comp{id=9, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=10, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/content'}, comp{id=11, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=12, n='android.widget.RelativeLayout', t='', d='', ix=''}, comp{id=13, n='android.widget.TextView', t='Share', d='', ix='net.gsantner.markor:id/title'}, comp{id=14, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/submenuarrow'}, comp{id=15, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=16, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/content'}, comp{id=17, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=18, n='android.widget.RelativeLayout', t='', d='', ix=''}, comp{id=19, n='android.widget.TextView', t='Format', d='', ix='net.gsantner.markor:id/title'}, comp{id=20, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/submenuarrow'}, comp{id=21, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=22, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/content'}, comp{id=23, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=24, n='android.widget.RelativeLayout', t='', d='', ix=''}, comp{id=25, n='android.widget.TextView', t='Reload', d='', ix='net.gsantner.markor:id/title'}]}}): <w>515</w><h>504</h><x>555</x><y>73</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.ListView__><android.widget.LinearLayout__><android.widget.LinearLayout_net.gsantner.markor:content_><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.widget.RelativeLayout__><android.widget.TextView_net.gsantner.markor:title_></android.widget.TextView_net.gsantner.markor:title_></android.widget.RelativeLayout__></android.widget.LinearLayout_net.gsantner.markor:content_></android.widget.LinearLayout__><android.widget.LinearLayout__><android.widget.LinearLayout_net.gsantner.markor:content_><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.widget.RelativeLayout__><android.widget.TextView_net.gsantner.markor:title_></android.widget.TextView_net.gsantner.markor:title_></android.widget.RelativeLayout__><android.widget.ImageView_net.gsantner.markor:submenuarrow_></android.widget.ImageView_net.gsantner.markor:submenuarrow_></android.widget.LinearLayout_net.gsantner.markor:content_></android.widget.LinearLayout__><android.widget.LinearLayout__><android.widget.LinearLayout_net.gsantner.markor:content_><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.widget.RelativeLayout__><android.widget.TextView_net.gsantner.markor:title_></android.widget.TextView_net.gsantner.markor:title_></android.widget.RelativeLayout__><android.widget.ImageView_net.gsantner.markor:submenuarrow_></android.widget.ImageView_net.gsantner.markor:submenuarrow_></android.widget.LinearLayout_net.gsantner.markor:content_></android.widget.LinearLayout__><android.widget.LinearLayout__><android.widget.LinearLayout_net.gsantner.markor:content_><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.widget.RelativeLayout__><android.widget.TextView_net.gsantner.markor:title_></android.widget.TextView_net.gsantner.markor:title_></android.widget.RelativeLayout__></android.widget.LinearLayout_net.gsantner.markor:content_></android.widget.LinearLayout__></android.widget.ListView__></android.widget.FrameLayout__></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor15.png
 -703507165, MainActivity(Window=Popup Menu), TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.ListView', t='', d='', ix=''}, comp{id=4, n='android.widget.TextView', t='Markdown', d='', ix='android:id/text1'}, comp{id=5, n='android.widget.TextView', t='Plain Text', d='', ix='android:id/text1'}, comp{id=6, n='android.widget.TextView', t='todo.txt', d='', ix='android:id/text1'}, comp{id=7, n='android.widget.TextView', t='None', d='', ix='android:id/text1'}]}}): <w>786</w><h>504</h><x>84</x><y>414</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.ListView__><android.widget.TextView_android:text1_></android.widget.TextView_android:text1_><android.widget.TextView_android:text1_></android.widget.TextView_android:text1_><android.widget.TextView_android:text1_></android.widget.TextView_android:text1_><android.widget.TextView_android:text1_></android.widget.TextView_android:text1_></android.widget.ListView__></android.widget.FrameLayout__></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor11.png
 649084109, MainActivity, CS, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/main_content'}, comp{id=7, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/main_bottom_stuff'}, comp{id=8, n='android.widget.ImageButton', t='', d='Create a new file or folder', ix='net.gsantner.markor:id/fab_add_new_item'}, comp{id=9, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/bottom_navigation_bar'}, comp{id=10, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=11, n='android.widget.FrameLayout', t='', d='Files', ix='net.gsantner.markor:id/nav_notebook'}, comp{id=12, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=13, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=14, n='android.widget.TextView', t='Files', d='', ix='net.gsantner.markor:id/largeLabel'}, comp{id=15, n='android.widget.FrameLayout', t='', d='To-Do', ix='net.gsantner.markor:id/nav_todo'}, comp{id=16, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=17, n='android.widget.TextView', t='To-Do', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=18, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=19, n='android.widget.FrameLayout', t='', d='QuickNote', ix='net.gsantner.markor:id/nav_quicknote'}, comp{id=20, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=21, n='android.widget.TextView', t='QuickNote', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=22, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=23, n='android.widget.FrameLayout', t='', d='More', ix='net.gsantner.markor:id/nav_more'}, comp{id=24, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=25, n='android.widget.TextView', t='More', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=26, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=27, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/appbar'}, comp{id=28, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/toolbar'}, comp{id=29, n='android.widget.TextView', t='markor', d='', ix=''}, comp{id=30, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix=''}, comp{id=31, n='android.widget.TextView', t='', d='Go to', ix='net.gsantner.markor:id/action_go_to'}, comp{id=32, n='android.widget.TextView', t='', d='Sort by', ix='net.gsantner.markor:id/action_sort'}, comp{id=33, n='android.widget.TextView', t='', d='Search', ix='net.gsantner.markor:id/action_search'}, comp{id=34, n='android.widget.ImageView', t='', d='More options', ix=''}, comp{id=35, n='android.support.v4.view.ViewPager', t='', d='', ix='net.gsantner.markor:id/main__view_pager_container'}, comp{id=36, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__root'}, comp{id=37, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/pull_to_refresh'}, comp{id=38, n='android.support.v7.widget.RecyclerView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__list'}, comp{id=39, n='android.widget.LinearLayout', t='', d='File .. /storage/emulated/0/Documents', ix='net.gsantner.markor:id/ui__filesystem_item__root'}, comp{id=40, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_item__image'}, comp{id=41, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=42, n='android.widget.TextView', t='..', d='', ix='net.gsantner.markor:id/ui__filesystem_item__title'}, comp{id=43, n='android.widget.TextView', t='/storage/emulated/0/Documents', d='', ix='net.gsantner.markor:id/ui__filesystem_item__description'}, comp{id=44, n='android.widget.TextView', t='¯\_(ツ)_/¯', d='', ix='net.gsantner.markor:id/empty_hint'}, comp{id=45, n='android.view.View', t='', d='', ix='android:id/statusBarBackground'}, comp{id=46, n='android.view.View', t='', d='', ix='android:id/navigationBarBackground'}]}}): <w>1080</w><h>1794</h><x>0</x><y>0</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_net.gsantner.markor:action_bar_root_><android.widget.FrameLayout_android:content_><android.view.ViewGroup_net.gsantner.markor:main_content_><android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder></android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder><android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_><android.view.ViewGroup__><android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:largeLabel_></android.widget.TextView_net.gsantner.markor:largeLabel_></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.widget.FrameLayout_net.gsantner.markor:nav_more_More><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_more_More></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_></android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.LinearLayout_net.gsantner.markor:appbar_><android.view.ViewGroup_net.gsantner.markor:toolbar_><android.widget.TextView__></android.widget.TextView__><android.support.v7.widget.LinearLayoutCompat__><android.widget.TextView_net.gsantner.markor:action_go_to_Go to></android.widget.TextView_net.gsantner.markor:action_go_to_Go to><android.widget.TextView_net.gsantner.markor:action_sort_Sort by></android.widget.TextView_net.gsantner.markor:action_sort_Sort by><android.widget.TextView_net.gsantner.markor:action_search_Search></android.widget.TextView_net.gsantner.markor:action_search_Search><android.widget.ImageView__More options></android.widget.ImageView__More options></android.support.v7.widget.LinearLayoutCompat__></android.view.ViewGroup_net.gsantner.markor:toolbar_></android.widget.LinearLayout_net.gsantner.markor:appbar_><android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_><android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_><android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_><android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_><android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_File .. /storage/emulated/0/Documents><android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_></android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_File .. /storage/emulated/0/Documents></android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_></android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_><android.widget.TextView_net.gsantner.markor:empty_hint_></android.widget.TextView_net.gsantner.markor:empty_hint_></android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_></android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_></android.view.ViewGroup_net.gsantner.markor:main_content_></android.widget.FrameLayout_android:content_></android.widget.FrameLayout_net.gsantner.markor:action_bar_root_></android.widget.FrameLayout__></android.widget.FrameLayout__><android.view.View_android:statusBarBackground_></android.view.View_android:statusBarBackground_><android.view.View_android:navigationBarBackground_></android.view.View_android:navigationBarBackground_></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_8.png
-873691881, MainActivity, CS, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/main_content'}, comp{id=7, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/main_bottom_stuff'}, comp{id=8, n='android.widget.ImageButton', t='', d='Create a new file or folder', ix='net.gsantner.markor:id/fab_add_new_item'}, comp{id=9, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/bottom_navigation_bar'}, comp{id=10, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=11, n='android.widget.FrameLayout', t='', d='Files', ix='net.gsantner.markor:id/nav_notebook'}, comp{id=12, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=13, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=14, n='android.widget.TextView', t='Files', d='', ix='net.gsantner.markor:id/largeLabel'}, comp{id=15, n='android.widget.FrameLayout', t='', d='To-Do', ix='net.gsantner.markor:id/nav_todo'}, comp{id=16, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=17, n='android.widget.TextView', t='To-Do', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=18, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=19, n='android.widget.FrameLayout', t='', d='QuickNote', ix='net.gsantner.markor:id/nav_quicknote'}, comp{id=20, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=21, n='android.widget.TextView', t='QuickNote', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=22, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=23, n='android.widget.FrameLayout', t='', d='More', ix='net.gsantner.markor:id/nav_more'}, comp{id=24, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=25, n='android.widget.TextView', t='More', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=26, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=27, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/appbar'}, comp{id=28, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/toolbar'}, comp{id=29, n='android.widget.TextView', t='Documents', d='', ix=''}, comp{id=30, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix=''}, comp{id=31, n='android.widget.TextView', t='', d='Go to', ix='net.gsantner.markor:id/action_go_to'}, comp{id=32, n='android.widget.TextView', t='', d='Sort by', ix='net.gsantner.markor:id/action_sort'}, comp{id=33, n='android.widget.TextView', t='', d='Search', ix='net.gsantner.markor:id/action_search'}, comp{id=34, n='android.widget.ImageView', t='', d='More options', ix=''}, comp{id=35, n='android.support.v4.view.ViewPager', t='', d='', ix='net.gsantner.markor:id/main__view_pager_container'}, comp{id=36, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__root'}, comp{id=37, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/pull_to_refresh'}, comp{id=38, n='android.support.v7.widget.RecyclerView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__list'}, comp{id=39, n='android.widget.LinearLayout', t='', d='Folder .. /storage/emulated/0', ix='net.gsantner.markor:id/ui__filesystem_item__root'}, comp{id=40, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_item__image'}, comp{id=41, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=42, n='android.widget.TextView', t='..', d='', ix='net.gsantner.markor:id/ui__filesystem_item__title'}, comp{id=43, n='android.widget.TextView', t='/storage/emulated/0', d='', ix='net.gsantner.markor:id/ui__filesystem_item__description'}, comp{id=44, n='android.widget.LinearLayout', t='', d='Folder markor 6/29/2022, 2:44 AM', ix='net.gsantner.markor:id/ui__filesystem_item__root'}, comp{id=45, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_item__image'}, comp{id=46, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=47, n='android.widget.TextView', t='markor', d='', ix='net.gsantner.markor:id/ui__filesystem_item__title'}, comp{id=48, n='android.widget.TextView', t='6/29/2022, 2:44 AM', d='', ix='net.gsantner.markor:id/ui__filesystem_item__description'}, comp{id=49, n='android.view.View', t='', d='', ix='android:id/statusBarBackground'}, comp{id=50, n='android.view.View', t='', d='', ix='android:id/navigationBarBackground'}]}}): <w>1080</w><h>1794</h><x>0</x><y>0</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_net.gsantner.markor:action_bar_root_><android.widget.FrameLayout_android:content_><android.view.ViewGroup_net.gsantner.markor:main_content_><android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder></android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder><android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_><android.view.ViewGroup__><android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:largeLabel_></android.widget.TextView_net.gsantner.markor:largeLabel_></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.widget.FrameLayout_net.gsantner.markor:nav_more_More><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_more_More></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_></android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.LinearLayout_net.gsantner.markor:appbar_><android.view.ViewGroup_net.gsantner.markor:toolbar_><android.widget.TextView__></android.widget.TextView__><android.support.v7.widget.LinearLayoutCompat__><android.widget.TextView_net.gsantner.markor:action_go_to_Go to></android.widget.TextView_net.gsantner.markor:action_go_to_Go to><android.widget.TextView_net.gsantner.markor:action_sort_Sort by></android.widget.TextView_net.gsantner.markor:action_sort_Sort by><android.widget.TextView_net.gsantner.markor:action_search_Search></android.widget.TextView_net.gsantner.markor:action_search_Search><android.widget.ImageView__More options></android.widget.ImageView__More options></android.support.v7.widget.LinearLayoutCompat__></android.view.ViewGroup_net.gsantner.markor:toolbar_></android.widget.LinearLayout_net.gsantner.markor:appbar_><android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_><android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_><android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_><android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_><android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder .. /storage/emulated/0><android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_></android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder .. /storage/emulated/0><android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder markor 6/29/2022, 2:44 AM><android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_></android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder markor 6/29/2022, 2:44 AM></android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_></android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_></android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_></android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_></android.view.ViewGroup_net.gsantner.markor:main_content_></android.widget.FrameLayout_android:content_></android.widget.FrameLayout_net.gsantner.markor:action_bar_root_></android.widget.FrameLayout__></android.widget.FrameLayout__><android.view.View_android:statusBarBackground_></android.view.View_android:statusBarBackground_><android.view.View_android:navigationBarBackground_></android.view.View_android:navigationBarBackground_></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_11.png
+481605527, MainActivity, CS, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix='net.gsantner.markor:id/parentPanel'}, comp{id=7, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/contentPanel'}, comp{id=8, n='android.widget.ScrollView', t='', d='', ix='net.gsantner.markor:id/scrollView'}, comp{id=9, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=10, n='android.view.View', t='', d='', ix='net.gsantner.markor:id/textSpacerNoTitle'}, comp{id=11, n='android.widget.TextView', t='Need permission for storage to save documents', d='', ix='android:id/message'}, comp{id=12, n='android.widget.ScrollView', t='', d='', ix='net.gsantner.markor:id/buttonPanel'}, comp{id=13, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=14, n='android.widget.Button', t='CANCEL', d='', ix='android:id/button2'}, comp{id=15, n='android.widget.Button', t='OK', d='', ix='android:id/button1'}]}}): <w>1024</w><h>385</h><x>28</x><y>736</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_net.gsantner.markor:action_bar_root_><android.widget.FrameLayout_android:content_><android.support.v7.widget.LinearLayoutCompat_net.gsantner.markor:parentPanel_><android.widget.FrameLayout_net.gsantner.markor:contentPanel_><android.widget.ScrollView_net.gsantner.markor:scrollView_><android.widget.LinearLayout__><android.view.View_net.gsantner.markor:textSpacerNoTitle_></android.view.View_net.gsantner.markor:textSpacerNoTitle_><android.widget.TextView_android:message_></android.widget.TextView_android:message_></android.widget.LinearLayout__></android.widget.ScrollView_net.gsantner.markor:scrollView_></android.widget.FrameLayout_net.gsantner.markor:contentPanel_><android.widget.ScrollView_net.gsantner.markor:buttonPanel_><android.widget.LinearLayout__><android.widget.Button_android:button2_></android.widget.Button_android:button2_><android.widget.Button_android:button1_></android.widget.Button_android:button1_></android.widget.LinearLayout__></android.widget.ScrollView_net.gsantner.markor:buttonPanel_></android.support.v7.widget.LinearLayoutCompat_net.gsantner.markor:parentPanel_></android.widget.FrameLayout_android:content_></android.widget.FrameLayout_net.gsantner.markor:action_bar_root_></android.widget.FrameLayout__></android.widget.FrameLayout__></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.Top_Down.Expected..1.net.gsantner.markor_2.3.1_13.png
+-1814250401, MainActivity, CS, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/main_content'}, comp{id=7, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/main_bottom_stuff'}, comp{id=8, n='android.widget.ImageButton', t='', d='Create a new file or folder', ix='net.gsantner.markor:id/fab_add_new_item'}, comp{id=9, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/bottom_navigation_bar'}, comp{id=10, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=11, n='android.widget.FrameLayout', t='', d='Files', ix='net.gsantner.markor:id/nav_notebook'}, comp{id=12, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=13, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=14, n='android.widget.TextView', t='Files', d='', ix='net.gsantner.markor:id/largeLabel'}, comp{id=15, n='android.widget.FrameLayout', t='', d='To-Do', ix='net.gsantner.markor:id/nav_todo'}, comp{id=16, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=17, n='android.widget.TextView', t='To-Do', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=18, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=19, n='android.widget.FrameLayout', t='', d='QuickNote', ix='net.gsantner.markor:id/nav_quicknote'}, comp{id=20, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=21, n='android.widget.TextView', t='QuickNote', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=22, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=23, n='android.widget.FrameLayout', t='', d='More', ix='net.gsantner.markor:id/nav_more'}, comp{id=24, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=25, n='android.widget.TextView', t='More', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=26, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=27, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/appbar'}, comp{id=28, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/toolbar'}, comp{id=29, n='android.widget.TextView', t='Documents', d='', ix=''}, comp{id=30, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix=''}, comp{id=31, n='android.widget.TextView', t='', d='Go to', ix='net.gsantner.markor:id/action_go_to'}, comp{id=32, n='android.widget.TextView', t='', d='Sort by', ix='net.gsantner.markor:id/action_sort'}, comp{id=33, n='android.widget.TextView', t='', d='Search', ix='net.gsantner.markor:id/action_search'}, comp{id=34, n='android.widget.ImageView', t='', d='More options', ix=''}, comp{id=35, n='android.support.v4.view.ViewPager', t='', d='', ix='net.gsantner.markor:id/main__view_pager_container'}, comp{id=36, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__root'}, comp{id=37, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/pull_to_refresh'}, comp{id=38, n='android.support.v7.widget.RecyclerView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__list'}, comp{id=39, n='android.widget.LinearLayout', t='', d='Folder .. /storage/emulated/0', ix='net.gsantner.markor:id/ui__filesystem_item__root'}, comp{id=40, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_item__image'}, comp{id=41, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=42, n='android.widget.TextView', t='..', d='', ix='net.gsantner.markor:id/ui__filesystem_item__title'}, comp{id=43, n='android.widget.TextView', t='/storage/emulated/0', d='', ix='net.gsantner.markor:id/ui__filesystem_item__description'}, comp{id=44, n='android.widget.LinearLayout', t='', d='Folder markor 11/9/2022, 11:53 PM', ix='net.gsantner.markor:id/ui__filesystem_item__root'}, comp{id=45, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_item__image'}, comp{id=46, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=47, n='android.widget.TextView', t='markor', d='', ix='net.gsantner.markor:id/ui__filesystem_item__title'}, comp{id=48, n='android.widget.TextView', t='11/9/2022, 11:53 PM', d='', ix='net.gsantner.markor:id/ui__filesystem_item__description'}, comp{id=49, n='android.view.View', t='', d='', ix='android:id/statusBarBackground'}, comp{id=50, n='android.view.View', t='', d='', ix='android:id/navigationBarBackground'}]}}): <w>1080</w><h>1794</h><x>0</x><y>0</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_net.gsantner.markor:action_bar_root_><android.widget.FrameLayout_android:content_><android.view.ViewGroup_net.gsantner.markor:main_content_><android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder></android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder><android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_><android.view.ViewGroup__><android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:largeLabel_></android.widget.TextView_net.gsantner.markor:largeLabel_></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.widget.FrameLayout_net.gsantner.markor:nav_more_More><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_more_More></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_></android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.LinearLayout_net.gsantner.markor:appbar_><android.view.ViewGroup_net.gsantner.markor:toolbar_><android.widget.TextView__></android.widget.TextView__><android.support.v7.widget.LinearLayoutCompat__><android.widget.TextView_net.gsantner.markor:action_go_to_Go to></android.widget.TextView_net.gsantner.markor:action_go_to_Go to><android.widget.TextView_net.gsantner.markor:action_sort_Sort by></android.widget.TextView_net.gsantner.markor:action_sort_Sort by><android.widget.TextView_net.gsantner.markor:action_search_Search></android.widget.TextView_net.gsantner.markor:action_search_Search><android.widget.ImageView__More options></android.widget.ImageView__More options></android.support.v7.widget.LinearLayoutCompat__></android.view.ViewGroup_net.gsantner.markor:toolbar_></android.widget.LinearLayout_net.gsantner.markor:appbar_><android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_><android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_><android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_><android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_><android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder .. /storage/emulated/0><android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_></android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder .. /storage/emulated/0><android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder markor 11/9/2022, 11:53 PM><android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_></android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder markor 11/9/2022, 11:53 PM></android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_></android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_></android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_></android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_></android.view.ViewGroup_net.gsantner.markor:main_content_></android.widget.FrameLayout_android:content_></android.widget.FrameLayout_net.gsantner.markor:action_bar_root_></android.widget.FrameLayout__></android.widget.FrameLayout__><android.view.View_android:statusBarBackground_></android.view.View_android:statusBarBackground_><android.view.View_android:navigationBarBackground_></android.view.View_android:navigationBarBackground_></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_11.png
 1593561585, MainActivity, CS, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=4, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/action_bar_root'}, comp{id=5, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=6, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/main_content'}, comp{id=7, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/main_bottom_stuff'}, comp{id=8, n='android.widget.ImageButton', t='', d='Create a new file or folder', ix='net.gsantner.markor:id/fab_add_new_item'}, comp{id=9, n='android.widget.FrameLayout', t='', d='', ix='net.gsantner.markor:id/bottom_navigation_bar'}, comp{id=10, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=11, n='android.widget.FrameLayout', t='', d='Files', ix='net.gsantner.markor:id/nav_notebook'}, comp{id=12, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=13, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=14, n='android.widget.TextView', t='Files', d='', ix='net.gsantner.markor:id/largeLabel'}, comp{id=15, n='android.widget.FrameLayout', t='', d='To-Do', ix='net.gsantner.markor:id/nav_todo'}, comp{id=16, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=17, n='android.widget.TextView', t='To-Do', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=18, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=19, n='android.widget.FrameLayout', t='', d='QuickNote', ix='net.gsantner.markor:id/nav_quicknote'}, comp{id=20, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=21, n='android.widget.TextView', t='QuickNote', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=22, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=23, n='android.widget.FrameLayout', t='', d='More', ix='net.gsantner.markor:id/nav_more'}, comp{id=24, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=25, n='android.widget.TextView', t='More', d='', ix='net.gsantner.markor:id/smallLabel'}, comp{id=26, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/icon'}, comp{id=27, n='android.widget.LinearLayout', t='', d='', ix='net.gsantner.markor:id/appbar'}, comp{id=28, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/toolbar'}, comp{id=29, n='android.widget.TextView', t='markor', d='', ix=''}, comp{id=30, n='android.support.v7.widget.LinearLayoutCompat', t='', d='', ix=''}, comp{id=31, n='android.widget.TextView', t='', d='Go to', ix='net.gsantner.markor:id/action_go_to'}, comp{id=32, n='android.widget.TextView', t='', d='Sort by', ix='net.gsantner.markor:id/action_sort'}, comp{id=33, n='android.widget.TextView', t='', d='Search', ix='net.gsantner.markor:id/action_search'}, comp{id=34, n='android.widget.ImageView', t='', d='More options', ix=''}, comp{id=35, n='android.support.v4.view.ViewPager', t='', d='', ix='net.gsantner.markor:id/main__view_pager_container'}, comp{id=36, n='android.widget.RelativeLayout', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__root'}, comp{id=37, n='android.view.ViewGroup', t='', d='', ix='net.gsantner.markor:id/pull_to_refresh'}, comp{id=38, n='android.support.v7.widget.RecyclerView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_dialog__list'}, comp{id=39, n='android.widget.LinearLayout', t='', d='Folder .. /storage/emulated/0/Documents', ix='net.gsantner.markor:id/ui__filesystem_item__root'}, comp{id=40, n='android.widget.ImageView', t='', d='', ix='net.gsantner.markor:id/ui__filesystem_item__image'}, comp{id=41, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=42, n='android.widget.TextView', t='..', d='', ix='net.gsantner.markor:id/ui__filesystem_item__title'}, comp{id=43, n='android.widget.TextView', t='/storage/emulated/0/Documents', d='', ix='net.gsantner.markor:id/ui__filesystem_item__description'}, comp{id=44, n='android.widget.TextView', t='¯\_(ツ)_/¯', d='', ix='net.gsantner.markor:id/empty_hint'}, comp{id=45, n='android.view.View', t='', d='', ix='android:id/statusBarBackground'}, comp{id=46, n='android.view.View', t='', d='', ix='android:id/navigationBarBackground'}]}}): <w>1080</w><h>1794</h><x>0</x><y>0</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_net.gsantner.markor:action_bar_root_><android.widget.FrameLayout_android:content_><android.view.ViewGroup_net.gsantner.markor:main_content_><android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder></android.widget.ImageButton_net.gsantner.markor:fab_add_new_item_Create a new file or folder><android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_><android.view.ViewGroup__><android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:largeLabel_></android.widget.TextView_net.gsantner.markor:largeLabel_></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:nav_notebook_Files><android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_todo_To-Do><android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_quicknote_QuickNote><android.widget.FrameLayout_net.gsantner.markor:nav_more_More><android.view.ViewGroup__><android.widget.TextView_net.gsantner.markor:smallLabel_></android.widget.TextView_net.gsantner.markor:smallLabel_></android.view.ViewGroup__><android.widget.ImageView_net.gsantner.markor:icon_></android.widget.ImageView_net.gsantner.markor:icon_></android.widget.FrameLayout_net.gsantner.markor:nav_more_More></android.view.ViewGroup__></android.widget.FrameLayout_net.gsantner.markor:bottom_navigation_bar_></android.widget.RelativeLayout_net.gsantner.markor:main_bottom_stuff_><android.widget.LinearLayout_net.gsantner.markor:appbar_><android.view.ViewGroup_net.gsantner.markor:toolbar_><android.widget.TextView__></android.widget.TextView__><android.support.v7.widget.LinearLayoutCompat__><android.widget.TextView_net.gsantner.markor:action_go_to_Go to></android.widget.TextView_net.gsantner.markor:action_go_to_Go to><android.widget.TextView_net.gsantner.markor:action_sort_Sort by></android.widget.TextView_net.gsantner.markor:action_sort_Sort by><android.widget.TextView_net.gsantner.markor:action_search_Search></android.widget.TextView_net.gsantner.markor:action_search_Search><android.widget.ImageView__More options></android.widget.ImageView__More options></android.support.v7.widget.LinearLayoutCompat__></android.view.ViewGroup_net.gsantner.markor:toolbar_></android.widget.LinearLayout_net.gsantner.markor:appbar_><android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_><android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_><android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_><android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_><android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder .. /storage/emulated/0/Documents><android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_></android.widget.ImageView_net.gsantner.markor:ui__filesystem_item__image_><android.widget.LinearLayout__><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__title_><android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.TextView_net.gsantner.markor:ui__filesystem_item__description_></android.widget.LinearLayout__></android.widget.LinearLayout_net.gsantner.markor:ui__filesystem_item__root_Folder .. /storage/emulated/0/Documents></android.support.v7.widget.RecyclerView_net.gsantner.markor:ui__filesystem_dialog__list_></android.view.ViewGroup_net.gsantner.markor:pull_to_refresh_><android.widget.TextView_net.gsantner.markor:empty_hint_></android.widget.TextView_net.gsantner.markor:empty_hint_></android.widget.RelativeLayout_net.gsantner.markor:ui__filesystem_dialog__root_></android.support.v4.view.ViewPager_net.gsantner.markor:main__view_pager_container_></android.view.ViewGroup_net.gsantner.markor:main_content_></android.widget.FrameLayout_android:content_></android.widget.FrameLayout_net.gsantner.markor:action_bar_root_></android.widget.FrameLayout__></android.widget.FrameLayout__><android.view.View_android:statusBarBackground_></android.view.View_android:statusBarBackground_><android.view.View_android:navigationBarBackground_></android.view.View_android:navigationBarBackground_></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.Bottom_Up.Expected..1.net.gsantner.markor_2.3.1_14.png
 411379245, GrantPermissionsActivity, TR, ({"Screen" :{"id":"null", "screenshot":"null", "dynGuiComponents":[comp{id=0, n='', t='null', d='null', ix='NO_ID'}, comp{id=1, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=2, n='android.widget.FrameLayout', t='', d='', ix=''}, comp{id=3, n='android.widget.FrameLayout', t='', d='', ix='android:id/content'}, comp{id=4, n='android.view.ViewGroup', t='', d='', ix=''}, comp{id=5, n='android.widget.ScrollView', t='', d='', ix=''}, comp{id=6, n='android.widget.LinearLayout', t='', d='', ix='com.android.packageinstaller:id/dialog_container'}, comp{id=7, n='android.widget.FrameLayout', t='', d='', ix='com.android.packageinstaller:id/desc_container'}, comp{id=8, n='android.widget.LinearLayout', t='', d='', ix='com.android.packageinstaller:id/perm_desc_root'}, comp{id=9, n='android.widget.ImageView', t='', d='', ix='com.android.packageinstaller:id/permission_icon'}, comp{id=10, n='android.widget.TextView', t='Allow Markor to access photos, media, and files on your device?', d='', ix='com.android.packageinstaller:id/permission_message'}, comp{id=11, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=12, n='android.widget.LinearLayout', t='', d='', ix=''}, comp{id=13, n='android.widget.LinearLayout', t='', d='', ix='com.android.packageinstaller:id/button_group'}, comp{id=14, n='android.widget.Button', t='DENY', d='', ix='com.android.packageinstaller:id/permission_deny_button'}, comp{id=15, n='android.widget.Button', t='ALLOW', d='', ix='com.android.packageinstaller:id/permission_allow_button'}]}}): <w>840</w><h>1730</h><x>120</x><y>63</y><_NO_ID_null><android.widget.FrameLayout__><android.widget.FrameLayout__><android.widget.FrameLayout_android:content_><android.view.ViewGroup__><android.widget.ScrollView__><android.widget.LinearLayout_com.android.packageinstaller:dialog_container_><android.widget.FrameLayout_com.android.packageinstaller:desc_container_><android.widget.LinearLayout_com.android.packageinstaller:perm_desc_root_><android.widget.ImageView_com.android.packageinstaller:permission_icon_></android.widget.ImageView_com.android.packageinstaller:permission_icon_><android.widget.TextView_com.android.packageinstaller:permission_message_></android.widget.TextView_com.android.packageinstaller:permission_message_></android.widget.LinearLayout_com.android.packageinstaller:perm_desc_root_></android.widget.FrameLayout_com.android.packageinstaller:desc_container_><android.widget.LinearLayout__><android.widget.LinearLayout__><android.widget.LinearLayout_com.android.packageinstaller:button_group_><android.widget.Button_com.android.packageinstaller:permission_deny_button_></android.widget.Button_com.android.packageinstaller:permission_deny_button_><android.widget.Button_com.android.packageinstaller:permission_allow_button_></android.widget.Button_com.android.packageinstaller:permission_allow_button_></android.widget.LinearLayout_com.android.packageinstaller:button_group_></android.widget.LinearLayout__></android.widget.LinearLayout__></android.widget.LinearLayout_com.android.packageinstaller:dialog_container_></android.widget.ScrollView__></android.view.ViewGroup__></android.widget.FrameLayout_android:content_></android.widget.FrameLayout__></android.widget.FrameLayout__></_NO_ID_null> - net.gsantner.markor.User-Trace.1.net.gsantner.markor_2.3.1_markor2.png
 

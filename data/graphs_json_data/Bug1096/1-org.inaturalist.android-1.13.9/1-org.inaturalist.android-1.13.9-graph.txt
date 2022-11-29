@@ -3,7 +3,7 @@ Transitions correctness: true
 Transitions (57):
 -361579755: (s:-1659243725,t:-2106442353): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=null ex=0
 
--135228139: (s:-2106442353,t:-2142752532): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=LinearLayout, idx=swipe_container, idnx=1, tx=, x=0, y=1412, h=85, w=1080, dsc=], txt=, exp=-496531054, tr=null] weight=1.0 ds=CS sc=null ex=0
+-135228139: (s:-2106442353,t:-2142752532): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=LinearLayout, idx=swipe_container, idnx=1, tx=, x=0, y=1412, h=85, w=1080, dsc=], txt=, exp=-315872169, tr=null] weight=1.0 ds=CS sc=null ex=0
 1442232378: (s:-2106442353,t:1857964199): [id=0, ex=0, sq=1, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=org.inaturalist.android.User-Trace.1.org.inaturalist.android_1.13.9_inaturalist1_augmented.png ex=0
 
 -192575224: (s:1857964199,t:1857964199): [id=1, ex=0, sq=2, act=(23) swipe left, cp=null, txt=, exp=, tr=null] weight=4.0 ds=TR sc=org.inaturalist.android.User-Trace.1.org.inaturalist.android_1.13.9_inaturalist4_augmented.png ex=0
