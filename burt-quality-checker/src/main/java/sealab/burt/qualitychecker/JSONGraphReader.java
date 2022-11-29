@@ -107,7 +107,7 @@ public @Slf4j class JSONGraphReader {
 			// 1. read execution files for TraceReplayer
 			String traceReplayerFolder = BurtConfigPaths.traceReplayerDataPath;
 			
-			String traceReplayerDataLocation = Paths.get(traceReplayerFolder, "TR" + bugID).toString();
+			String traceReplayerDataLocation = Paths.get(traceReplayerFolder, "TR" + bugID, String.join("-", packageName, appVersion) ).toString();
 			
 			List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
 
@@ -143,7 +143,7 @@ public @Slf4j class JSONGraphReader {
 
 			if (screenshotFile == null) {
 				if (!DeviceUtils.isOpenApp(edge.getStep().getAction()))
-					// log.warn("Step has no screenshot: " + edge.getName());
+					log.warn("Step has no screenshot: " + edge.getName());
 					continue;
 			}
 
@@ -158,7 +158,7 @@ public @Slf4j class JSONGraphReader {
 			File srcFileStep = Path.of(dataLocation, "screenshots", screenshotFile).toFile();
 
 			if (!screenshotFile.endsWith(".png") || !srcFileStep.exists() || !srcFileStep.isFile()) {
-				// log.warn("The screenshot file may not exist: " + srcFileStep);
+			 	log.warn("The screenshot file may not exist: " + srcFileStep);
 			}
 		}
 	}
@@ -171,17 +171,18 @@ public @Slf4j class JSONGraphReader {
 		if (folder.exists()) {
 			executionFiles = Files
 					.find(Paths.get(dataLocation), 1,
-							(path, attr) -> path.toFile().getName().startsWith("Augmented-Execution-"))
+							// (path, attr) -> path.toFile().getName().startsWith("Augmented-Execution-"))
+							(path, attr) -> path.toFile().getName().startsWith("Execution-"))
 					.collect(Collectors.toList());
 		} 
 		// ------ check if the path exists---------------//
 
 		if (executionFiles.isEmpty())
-			// log.debug("There are no execution files in " + dataLocation);
-			System.out.println("There are no execution files in " + dataLocation);
+			log.debug("There are no execution files in " + dataLocation);
+			//System.out.println("There are no execution files in " + dataLocation);
 
-		// log.debug("Reading execution data from : " + executionFiles);
-		System.out.println("Reading execution data from : " + executionFiles);
+		log.debug("Reading execution data from : " + executionFiles);
+		//System.out.println("Reading execution data from : " + executionFiles);
 
 		// ----------------------
 		List<Execution> executions = new ArrayList<>();
@@ -193,7 +194,7 @@ public @Slf4j class JSONGraphReader {
 				   .setDateFormat("MMM dd, yyyy HH:mm:ss aa").create();
 		for (int i = 0; i < executionFiles.size(); i++) {
 			Path executionFile = executionFiles.get(i);
-			System.out.println(executionFile.toString());
+			log.debug(executionFile.toString());
 			try {
 
 				// Set up a new Gson object
@@ -230,23 +231,20 @@ public @Slf4j class JSONGraphReader {
 				// ----------------------------------------
 
 				// This for loop reads in the list of DynGuiComponentVOs for each screen
-				for (Step currStep : execution.getSteps()) {
+				for (int j = 0; j < execution.getSteps().size(); j++) {
+					Step currStep = execution.getSteps().get(j);
 
-					// Get the current screen and read in the corresponding xml file.
-//					String xmlPath = Path
-//							.of(dataLocation, "Augmented-XML", String.join("-", execution.getApp().getPackageName(),
-//									execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
-//									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml")
-//							.toString();
 					Path xmlPath = Path
-							.of(dataLocation, "Augmented-XML",  String.join("-", execution.getApp().getPackageName(),
+							.of(dataLocation,  
+							//"Augmented-XML", 
+							 String.join("-", execution.getApp().getPackageName(),
 									execution.getApp().getVersion(), String.valueOf(execution.getExecutionNum()),
 									execution.getExecutionType() + (currStep.getSequenceStep() - 1)) + ".xml");
 					
-					// File xmlFile = new File(xmlPath.toString());
-					// if(!xmlFile.exists()) {
-					// 	continue;
-					// }
+					if(!xmlPath.toFile().exists()) {
+						if(j == execution.getSteps().size() - 1) //if it is the last step, we can continue
+							 continue;
+					}
 					try {
 
 						// Parse the xml file into a BasicTreeNode and then set up variables required by
@@ -269,24 +267,23 @@ public @Slf4j class JSONGraphReader {
 						screen.setXmlPath(xmlPath);
 
 					} catch (Exception e) {
-						// log.debug(String.format("Error parsing step: %s - %s", executionFile,
-						// xmlPath), e);
-						System.out.println(String.format("Error parsing step: %s - %s", executionFile, xmlPath) + e);
+						log.debug(String.format("Error parsing step: %s - %s", executionFile, xmlPath), e);
+						// System.out.println(String.format("Error parsing step: %s - %s", executionFile, xmlPath) + e);
 					}
 
 					// System.out.println(guiComponents);
 				}
 				executions.add(execution);
 			} catch (Exception e) {
-				// log.debug("Error trying to read execution: " + executionFile.toString(), e);
-				System.out.println("Error trying to read execution: " + executionFile.toString() + e);
+				log.debug("Error trying to read execution: " + executionFile.toString(), e);
+				//System.out.println("Error trying to read execution: " + executionFile.toString() + e);
 			}
 		}
 
 		if (executions.isEmpty())
-//            throw new RuntimeException("There is no execution data to build the graph");
+            throw new RuntimeException("There is no execution data to build the graph");
 			// log.debug("There is no execution data to build the graph");
-			System.out.println("There is no execution data to build the graph");
+			//System.out.println("There is no execution data to build the graph");
 
 		return executions;
 

@@ -78,6 +78,8 @@ public @Slf4j class MainStateMatcher {
 
         }
 
+        log.debug(String.format("Saving retrieval data on %s. # of records: $s",  outputFilePath.toFile().getAbsolutePath(), retrievalData.size()));
+
         //save retrieval data
         try(CSVWriter writer = new CSVWriter(new FileWriter(outputFilePath.toFile()))) {
             writer.writeAll(retrievalData);

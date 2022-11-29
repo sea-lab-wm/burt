@@ -666,7 +666,7 @@ class GraphGenerator {
         StringBuilder builder = new StringBuilder();
 
         if(root.getChildren().isEmpty())
-            log.error("The root node has not children!");
+            log.error("The root node has no children!");
 
         final DynGuiComponent firstComponent = root.getChildren().get(0);
         builder.append(String.format("<w>%s</w><h>%s</h>",

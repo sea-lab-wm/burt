@@ -1,0 +1,28 @@
+{
+    "date": "Nov 9, 2022 2:25:04 PM",
+    "deviceDimensions": "1080x1920",
+    "executionType": "Expected-Top_Down-",
+    "topDown": true,
+    "bottomUp": false,
+    "noText": false,
+    "expectedText": true,
+    "unexpectedText": false,
+    "contextFeatsEnabled": false,
+    "contextFeatsDisabled": false,
+    "executionNum": 1,
+    "crash": false,
+    "deviceName": "Android SDK built for x86",
+    "elapsedTime": 1499749,
+    "orientation": 0,
+    "mainActivity": "fr.free.nrw.commons.auth.LoginActivity",
+    "androidVersion": "8.1.0",
+    "steps": [],
+    "app":
+    {
+        "name": "commons",
+        "packageName": "fr.free.nrw.commons",
+        "mainActivity": "fr.free.nrw.commons.auth.LoginActivity",
+        "version": "2.9.0-debug",
+        "apkPath": "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BugLocalization/FaultLocalizationCode/data/apks/135.apk"
+    }
+}
