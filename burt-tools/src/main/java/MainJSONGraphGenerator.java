@@ -210,9 +210,11 @@ class MainJSONGraphGenerator {
                     Integer sequenceId = edge.getStep().getSequence();
                     String source = edge.getDataSource().toString();
                     Long executionId  = edge.getStep().getExecution();
-                    String statePath = srcFileState.getPath();
-                    String executionPath  = FilenameUtils.separatorsToUnix(sourceState.getExecutionPath().toString()); //using unix paths
-                    String xmlPath = sourceState.getXmlPath().toString();
+
+                    //using unix paths
+                    String statePath = FilenameUtils.separatorsToUnix(srcFileState.getPath());
+                    String executionPath  = FilenameUtils.separatorsToUnix(sourceState.getExecutionPath().toString()); 
+                    String xmlPath = FilenameUtils.separatorsToUnix(sourceState.getXmlPath().toString());
 
                     nodeSources.add(Arrays.asList(screenId.toString(), sequenceId.toString(), source, executionId.toString(), statePath, executionPath, xmlPath));
                 } 
