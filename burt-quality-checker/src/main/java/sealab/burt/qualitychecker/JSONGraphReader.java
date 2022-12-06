@@ -32,6 +32,7 @@ import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -183,6 +184,9 @@ public @Slf4j class JSONGraphReader {
 
 		log.debug("Reading execution data from : " + executionFiles);
 		//System.out.println("Reading execution data from : " + executionFiles);
+
+		//this call is needed to ensure the same order of states/transitions in the graph that will be built later
+		executionFiles.sort(Comparator.comparing(Path::toString));
 
 		// ----------------------
 		List<Execution> executions = new ArrayList<>();
