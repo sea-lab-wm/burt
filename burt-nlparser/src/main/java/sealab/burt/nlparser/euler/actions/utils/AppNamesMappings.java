@@ -90,6 +90,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "openmap")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "odkcollect")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "cgeo")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "trebleshot")));
 
     }
 
@@ -197,7 +198,10 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("openmap", Arrays.asList("org.osmdroid"));
         APP_NAMES_PACKAGES.put("odkcollect", Arrays.asList("org.odk.collect.android"));
         APP_NAMES_PACKAGES.put("cgeo", Arrays.asList("cgeo.geocaching"));
-        
+        APP_NAMES_PACKAGES.put("pdfconverter", Arrays.asList("swati4star.createpdf"));
+        APP_NAMES_PACKAGES.put("ankidroid", Arrays.asList("com.ichi2.anki"));
+        APP_NAMES_PACKAGES.put("trebleshot", Arrays.asList("com.genonbeta.TrebleShot"));
+            
         //APP_NAMES_PACKAGES.put("focus", Arrays.asList("focus"));
         //APP_NAMES_PACKAGES.put("gpstest", Arrays.asList("gpstest"));
         //APP_NAMES_PACKAGES.put("markor", Arrays.asList("markor"));

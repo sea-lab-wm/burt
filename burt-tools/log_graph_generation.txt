@@ -1,0 +1,306 @@
+(base) ojcchar@Oscars-MacBook-Pro burt-tools %  cd /Users/ojcchar/repositories/Projects/burt/burt-tools ; /usr/bin/env /Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk/Contents/Home/bin/
+java @/var/folders/5x/kb6j2lkd5453gkcsbwk2cfk00000gn/T/cp_9qfmm32657c8nndd5zocwxm13.argfile MainJSONGraphGenerator 
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/ojcchar/.m2/repository/org/slf4j/slf4j-log4j12/1.7.25/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/ojcchar/.m2/repository/ch/qos/logback/logback-classic/1.2.11/logback-classic-1.2.11.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+DEBUG [07 Mar 2023 18:27:02,749] (MainJSONGraphGenerator:156) - Waiting for futures: 33
+DEBUG [07 Mar 2023 18:27:02,749] (MainJSONGraphGenerator:175) - Processing system: [200, inaturalist, 1.4.6]
+DEBUG [07 Mar 2023 18:27:02,801] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for inaturalist-1.4.6-200
+DEBUG [07 Mar 2023 18:27:02,814] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS200/org.inaturalist.android-1.4.6/Execution-2.json, ../data/CrashScope-Data/CS200/org.inaturalist.android-1.4.6/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:02,921] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS200/org.inaturalist.android-1.4.6/Execution-2.json
+DEBUG [07 Mar 2023 18:27:03,048] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS200/org.inaturalist.android-1.4.6/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:03,614] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR200/org.inaturalist.android-1.4.6/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:03,615] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR200/org.inaturalist.android-1.4.6/Execution-1.json
+DEBUG [07 Mar 2023 18:27:03,910] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:07,487] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:07,491] (MainJSONGraphGenerator:175) - Processing system: [199, inaturalist, 1.4.6]
+DEBUG [07 Mar 2023 18:27:07,495] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for inaturalist-1.4.6-199
+DEBUG [07 Mar 2023 18:27:07,499] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS199/org.inaturalist.android-1.4.6/Execution-2.json, ../data/CrashScope-Data/CS199/org.inaturalist.android-1.4.6/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:07,501] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS199/org.inaturalist.android-1.4.6/Execution-2.json
+DEBUG [07 Mar 2023 18:27:07,518] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS199/org.inaturalist.android-1.4.6/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:07,632] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR199/org.inaturalist.android-1.4.6/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:07,635] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR199/org.inaturalist.android-1.4.6/Execution-1.json
+DEBUG [07 Mar 2023 18:27:07,892] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:13,885] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:13,890] (MainJSONGraphGenerator:175) - Processing system: [1197, pdfconverter, 2.5]
+DEBUG [07 Mar 2023 18:27:13,893] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for pdfconverter-2.5-1197
+DEBUG [07 Mar 2023 18:27:13,897] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1197/swati4star.createpdf-2.5/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1197/swati4star.createpdf-2.5/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:13,899] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1197/swati4star.createpdf-2.5/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:13,988] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1197/swati4star.createpdf-2.5/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:14,029] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1197/swati4star.createpdf-2.5/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:14,029] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1197/swati4star.createpdf-2.5/Execution-1.json
+DEBUG [07 Mar 2023 18:27:14,219] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:16,265] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:16,267] (MainJSONGraphGenerator:175) - Processing system: [1563, lrkfm, 1.8.0]
+DEBUG [07 Mar 2023 18:27:16,270] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for lrkfm-1.8.0-1563
+DEBUG [07 Mar 2023 18:27:16,276] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1563/io.lerk.lrkFM-1.8.0/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1563/io.lerk.lrkFM-1.8.0/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:16,278] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1563/io.lerk.lrkFM-1.8.0/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:16,345] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1563/io.lerk.lrkFM-1.8.0/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:16,375] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1563/io.lerk.lrkFM-1.8.0/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:16,375] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1563/io.lerk.lrkFM-1.8.0/Execution-1.json
+DEBUG [07 Mar 2023 18:27:16,421] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:17,147] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:17,147] (MainJSONGraphGenerator:175) - Processing system: [1153, gpstest, 3.1.0]
+DEBUG [07 Mar 2023 18:27:17,148] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for gpstest-3.1.0-1153
+DEBUG [07 Mar 2023 18:27:17,148] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1153/com.android.gpstest-3.1.0/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1153/com.android.gpstest-3.1.0/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:17,149] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1153/com.android.gpstest-3.1.0/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:17,184] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1153/com.android.gpstest-3.1.0/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:17,205] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1153/com.android.gpstest-3.1.0/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:17,205] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1153/com.android.gpstest-3.1.0/Execution-1.json
+DEBUG [07 Mar 2023 18:27:17,349] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:17,501] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:17,501] (MainJSONGraphGenerator:175) - Processing system: [1198, pdfconverter, 2.5]
+DEBUG [07 Mar 2023 18:27:17,502] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for pdfconverter-2.5-1198
+DEBUG [07 Mar 2023 18:27:17,507] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1198/swati4star.createpdf-2.5/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1198/swati4star.createpdf-2.5/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:17,508] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1198/swati4star.createpdf-2.5/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:17,559] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1198/swati4star.createpdf-2.5/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:17,595] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1198/swati4star.createpdf-2.5/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:17,595] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1198/swati4star.createpdf-2.5/Execution-1.json
+DEBUG [07 Mar 2023 18:27:17,762] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:20,359] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:20,362] (MainJSONGraphGenerator:175) - Processing system: [1641, trainerapp, 1902-89]
+DEBUG [07 Mar 2023 18:27:20,366] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for trainerapp-1902-89-1641
+DEBUG [07 Mar 2023 18:27:20,366] (sealab.burt.qualitychecker.JSONGraphReader:190) - There are no execution files in ../data/CrashScope-Data/CS1641/com.german_software_engineers.trainerapp-1902-89
+DEBUG [07 Mar 2023 18:27:20,366] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : []
+DEBUG [07 Mar 2023 18:27:20,372] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1641/com.german_software_engineers.trainerapp-1902-89/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:20,374] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1641/com.german_software_engineers.trainerapp-1902-89/Execution-1.json
+DEBUG [07 Mar 2023 18:27:20,583] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:21,953] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:21,954] (MainJSONGraphGenerator:175) - Processing system: [45, omninotes, 6.0.4]
+DEBUG [07 Mar 2023 18:27:21,954] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for omninotes-6.0.4-45
+DEBUG [07 Mar 2023 18:27:21,957] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS45/it.feio.android.omninotes-6.0.4/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS45/it.feio.android.omninotes-6.0.4/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:21,958] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS45/it.feio.android.omninotes-6.0.4/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:22,139] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS45/it.feio.android.omninotes-6.0.4/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:22,201] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR45/it.feio.android.omninotes-6.0.4/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:22,201] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR45/it.feio.android.omninotes-6.0.4/Execution-1.json
+DEBUG [07 Mar 2023 18:27:22,353] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:30,068] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:30,072] (MainJSONGraphGenerator:175) - Processing system: [178, pedometer, 1.0.3]
+DEBUG [07 Mar 2023 18:27:30,076] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for pedometer-1.0.3-178
+DEBUG [07 Mar 2023 18:27:30,083] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS178/org.secuso.privacyfriendlyactivitytracker-1.0.3/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS178/org.secuso.privacyfriendlyactivitytracker-1.0.3/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:30,085] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS178/org.secuso.privacyfriendlyactivitytracker-1.0.3/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:30,470] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS178/org.secuso.privacyfriendlyactivitytracker-1.0.3/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:30,570] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR178/org.secuso.privacyfriendlyactivitytracker-1.0.3/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:30,570] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR178/org.secuso.privacyfriendlyactivitytracker-1.0.3/Execution-1.json
+DEBUG [07 Mar 2023 18:27:30,708] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:32,702] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:32,706] (MainJSONGraphGenerator:175) - Processing system: [92, wifianalyzer, 2.0.3]
+DEBUG [07 Mar 2023 18:27:32,708] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for wifianalyzer-2.0.3-92
+DEBUG [07 Mar 2023 18:27:32,712] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS92/com.vrem.wifianalyzer-2.0.3/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS92/com.vrem.wifianalyzer-2.0.3/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:32,713] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS92/com.vrem.wifianalyzer-2.0.3/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:32,792] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS92/com.vrem.wifianalyzer-2.0.3/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:32,915] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR92/com.vrem.wifianalyzer-2.0.3/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:32,917] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR92/com.vrem.wifianalyzer-2.0.3/Execution-1.json
+DEBUG [07 Mar 2023 18:27:33,140] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:47,942] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:47,947] (MainJSONGraphGenerator:175) - Processing system: [162, k-9mail, 5.403]
+DEBUG [07 Mar 2023 18:27:47,950] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for k-9mail-5.403-162
+DEBUG [07 Mar 2023 18:27:47,956] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS162/com.fsck.k9-5.403/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS162/com.fsck.k9-5.403/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:47,960] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS162/com.fsck.k9-5.403/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:48,069] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS162/com.fsck.k9-5.403/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:48,098] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR162/com.fsck.k9-5.403/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:48,098] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR162/com.fsck.k9-5.403/Execution-1.json
+DEBUG [07 Mar 2023 18:27:48,238] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:50,309] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:50,313] (MainJSONGraphGenerator:175) - Processing system: [198, transistor, 2.3.1]
+DEBUG [07 Mar 2023 18:27:50,315] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for transistor-2.3.1-198
+DEBUG [07 Mar 2023 18:27:50,315] (sealab.burt.qualitychecker.JSONGraphReader:190) - There are no execution files in ../data/CrashScope-Data/CS198/org.y20k.transistor-2.3.1
+DEBUG [07 Mar 2023 18:27:50,315] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : []
+DEBUG [07 Mar 2023 18:27:50,322] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR198/org.y20k.transistor-2.3.1/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:50,323] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR198/org.y20k.transistor-2.3.1/Execution-1.json
+DEBUG [07 Mar 2023 18:27:50,661] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:51,476] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:51,476] (MainJSONGraphGenerator:175) - Processing system: [1033, ankidroid, 2.9alpha18]
+DEBUG [07 Mar 2023 18:27:51,478] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for ankidroid-2.9alpha18-1033
+DEBUG [07 Mar 2023 18:27:51,480] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1033/com.ichi2.anki-2.9alpha18/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1033/com.ichi2.anki-2.9alpha18/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:51,482] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1033/com.ichi2.anki-2.9alpha18/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:51,522] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1033/com.ichi2.anki-2.9alpha18/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:51,578] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1033/com.ichi2.anki-2.9alpha18/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:51,578] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1033/com.ichi2.anki-2.9alpha18/Execution-1.json
+DEBUG [07 Mar 2023 18:27:51,669] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:54,356] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:54,360] (MainJSONGraphGenerator:175) - Processing system: [1201, pdfconverter, 6.1.0]
+DEBUG [07 Mar 2023 18:27:54,362] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for pdfconverter-6.1.0-1201
+DEBUG [07 Mar 2023 18:27:54,363] (sealab.burt.qualitychecker.JSONGraphReader:190) - There are no execution files in ../data/CrashScope-Data/CS1201/swati4star.createpdf-6.1.0
+DEBUG [07 Mar 2023 18:27:54,363] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : []
+DEBUG [07 Mar 2023 18:27:54,369] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1201/swati4star.createpdf-6.1.0/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:54,370] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1201/swati4star.createpdf-6.1.0/Execution-1.json
+DEBUG [07 Mar 2023 18:27:54,466] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:27:55,038] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:27:55,039] (MainJSONGraphGenerator:175) - Processing system: [106, vinyl, 0.21.0]
+DEBUG [07 Mar 2023 18:27:55,040] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for vinyl-0.21.0-106
+DEBUG [07 Mar 2023 18:27:55,041] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS106/com.poupa.vinylmusicplayer.debug-0.21.0/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS106/com.poupa.vinylmusicplayer.debug-0.21.0/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:27:55,041] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS106/com.poupa.vinylmusicplayer.debug-0.21.0/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:27:55,063] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS106/com.poupa.vinylmusicplayer.debug-0.21.0/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:27:55,155] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR106/com.poupa.vinylmusicplayer.debug-0.21.0/Execution-1.json]
+DEBUG [07 Mar 2023 18:27:55,156] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR106/com.poupa.vinylmusicplayer.debug-0.21.0/Execution-1.json
+DEBUG [07 Mar 2023 18:27:55,323] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:03,219] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:03,223] (MainJSONGraphGenerator:175) - Processing system: [101, openmap, 6.0.1]
+DEBUG [07 Mar 2023 18:28:03,225] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for openmap-6.0.1-101
+DEBUG [07 Mar 2023 18:28:03,229] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS101/org.osmdroid-6.0.1/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS101/org.osmdroid-6.0.1/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:03,231] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS101/org.osmdroid-6.0.1/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:03,291] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS101/org.osmdroid-6.0.1/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:03,312] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR101/org.osmdroid-6.0.1/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:03,312] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR101/org.osmdroid-6.0.1/Execution-1.json
+DEBUG [07 Mar 2023 18:28:03,431] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:04,208] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:04,211] (MainJSONGraphGenerator:175) - Processing system: [248, odkcollect, v1.20.0]
+DEBUG [07 Mar 2023 18:28:04,213] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for odkcollect-v1.20.0-248
+DEBUG [07 Mar 2023 18:28:04,265] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS248/org.odk.collect.android-v1.20.0/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS248/org.odk.collect.android-v1.20.0/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:04,268] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS248/org.odk.collect.android-v1.20.0/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:04,367] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS248/org.odk.collect.android-v1.20.0/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:04,399] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR248/org.odk.collect.android-v1.20.0/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:04,399] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR248/org.odk.collect.android-v1.20.0/Execution-1.json
+DEBUG [07 Mar 2023 18:28:04,548] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:07,229] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:07,233] (MainJSONGraphGenerator:175) - Processing system: [1389, transistor, 1.2.3]
+DEBUG [07 Mar 2023 18:28:07,235] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for transistor-1.2.3-1389
+DEBUG [07 Mar 2023 18:28:07,239] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1389/org.y20k.transistor-1.2.3/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1389/org.y20k.transistor-1.2.3/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:07,240] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1389/org.y20k.transistor-1.2.3/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:07,282] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1389/org.y20k.transistor-1.2.3/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:07,306] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1389/org.y20k.transistor-1.2.3/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:07,306] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1389/org.y20k.transistor-1.2.3/Execution-1.json
+DEBUG [07 Mar 2023 18:28:07,354] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:07,622] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:07,622] (MainJSONGraphGenerator:175) - Processing system: [1568, lrkfm, 2.3.0]
+DEBUG [07 Mar 2023 18:28:07,622] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for lrkfm-2.3.0-1568
+DEBUG [07 Mar 2023 18:28:07,622] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1568/io.lerk.lrkFM-2.3.0/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1568/io.lerk.lrkFM-2.3.0/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:07,623] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1568/io.lerk.lrkFM-2.3.0/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:07,634] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1568/io.lerk.lrkFM-2.3.0/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:07,641] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1568/io.lerk.lrkFM-2.3.0/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:07,641] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1568/io.lerk.lrkFM-2.3.0/Execution-1.json
+DEBUG [07 Mar 2023 18:28:07,712] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:08,276] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:08,277] (MainJSONGraphGenerator:175) - Processing system: [1150, gpstest, 3.3.3]
+DEBUG [07 Mar 2023 18:28:08,277] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for gpstest-3.3.3-1150
+DEBUG [07 Mar 2023 18:28:08,278] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1150/com.android.gpstest-3.3.3/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1150/com.android.gpstest-3.3.3/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:08,278] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1150/com.android.gpstest-3.3.3/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:08,289] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1150/com.android.gpstest-3.3.3/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:08,303] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1150/com.android.gpstest-3.3.3/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:08,303] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1150/com.android.gpstest-3.3.3/Execution-1.json
+DEBUG [07 Mar 2023 18:28:08,339] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:09,059] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:09,059] (MainJSONGraphGenerator:175) - Processing system: [1446, anglerslog, 1.2.3]
+DEBUG [07 Mar 2023 18:28:09,059] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for anglerslog-1.2.3-1446
+DEBUG [07 Mar 2023 18:28:09,061] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1446/com.cohenadair.anglerslog-1.2.3/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1446/com.cohenadair.anglerslog-1.2.3/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:09,061] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1446/com.cohenadair.anglerslog-1.2.3/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:09,127] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1446/com.cohenadair.anglerslog-1.2.3/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:09,278] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1446/com.cohenadair.anglerslog-1.2.3/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:09,278] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1446/com.cohenadair.anglerslog-1.2.3/Execution-1.json
+DEBUG [07 Mar 2023 18:28:09,405] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:17,015] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:17,019] (MainJSONGraphGenerator:175) - Processing system: [1228, gnucash, 2.2.0]
+DEBUG [07 Mar 2023 18:28:17,021] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for gnucash-2.2.0-1228
+DEBUG [07 Mar 2023 18:28:17,027] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1228/org.gnucash.android-2.2.0/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1228/org.gnucash.android-2.2.0/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:17,028] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1228/org.gnucash.android-2.2.0/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:17,166] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1228/org.gnucash.android-2.2.0/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:17,324] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1228/org.gnucash.android-2.2.0/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:17,326] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1228/org.gnucash.android-2.2.0/Execution-1.json
+DEBUG [07 Mar 2023 18:28:17,552] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:28,061] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:28,066] (MainJSONGraphGenerator:175) - Processing system: [110, vinyl, 0.24.1]
+DEBUG [07 Mar 2023 18:28:28,068] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for vinyl-0.24.1-110
+DEBUG [07 Mar 2023 18:28:28,073] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS110/com.poupa.vinylmusicplayer.debug-0.24.1/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS110/com.poupa.vinylmusicplayer.debug-0.24.1/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:28,076] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS110/com.poupa.vinylmusicplayer.debug-0.24.1/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:28,123] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS110/com.poupa.vinylmusicplayer.debug-0.24.1/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:28,139] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR110/com.poupa.vinylmusicplayer.debug-0.24.1/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:28,142] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR110/com.poupa.vinylmusicplayer.debug-0.24.1/Execution-1.json
+DEBUG [07 Mar 2023 18:28:28,175] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:28,343] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:28,343] (MainJSONGraphGenerator:175) - Processing system: [76, trebleshot, 1.2.9]
+DEBUG [07 Mar 2023 18:28:28,343] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for trebleshot-1.2.9-76
+DEBUG [07 Mar 2023 18:28:28,344] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS76/com.genonbeta.TrebleShot-1.2.9/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS76/com.genonbeta.TrebleShot-1.2.9/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:28,345] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS76/com.genonbeta.TrebleShot-1.2.9/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:28,352] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS76/com.genonbeta.TrebleShot-1.2.9/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:28,362] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR76/com.genonbeta.TrebleShot-1.2.9/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:28,363] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR76/com.genonbeta.TrebleShot-1.2.9/Execution-1.json
+DEBUG [07 Mar 2023 18:28:28,590] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:30,099] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:30,100] (MainJSONGraphGenerator:175) - Processing system: [1425, fastnfitness, 0.19.3.1]
+DEBUG [07 Mar 2023 18:28:30,100] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for fastnfitness-0.19.3.1-1425
+DEBUG [07 Mar 2023 18:28:30,101] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS1425/com.easyfitness.debug-0.19.3.1/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS1425/com.easyfitness.debug-0.19.3.1/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:30,101] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1425/com.easyfitness.debug-0.19.3.1/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:30,111] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS1425/com.easyfitness.debug-0.19.3.1/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:30,118] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR1425/com.easyfitness.debug-0.19.3.1/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:30,119] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR1425/com.easyfitness.debug-0.19.3.1/Execution-1.json
+DEBUG [07 Mar 2023 18:28:30,222] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:31,479] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:31,480] (MainJSONGraphGenerator:175) - Processing system: [22, atimetracker, 0.51.1]
+DEBUG [07 Mar 2023 18:28:31,480] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for atimetracker-0.51.1-22
+DEBUG [07 Mar 2023 18:28:31,481] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS22/com.markuspage.android.atimetracker-0.51.1/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS22/com.markuspage.android.atimetracker-0.51.1/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:31,481] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS22/com.markuspage.android.atimetracker-0.51.1/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:31,500] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS22/com.markuspage.android.atimetracker-0.51.1/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:31,519] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR22/com.markuspage.android.atimetracker-0.51.1/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:31,519] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR22/com.markuspage.android.atimetracker-0.51.1/Execution-1.json
+DEBUG [07 Mar 2023 18:28:31,635] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:33,792] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:33,796] (MainJSONGraphGenerator:175) - Processing system: [192, markor, 0.2.4]
+DEBUG [07 Mar 2023 18:28:33,798] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for markor-0.2.4-192
+DEBUG [07 Mar 2023 18:28:33,802] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS192/net.gsantner.markor-0.2.4/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS192/net.gsantner.markor-0.2.4/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:33,810] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS192/net.gsantner.markor-0.2.4/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:33,856] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS192/net.gsantner.markor-0.2.4/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:33,970] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR192/net.gsantner.markor-0.2.4/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:33,970] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR192/net.gsantner.markor-0.2.4/Execution-1.json
+DEBUG [07 Mar 2023 18:28:34,062] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:36,438] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:36,442] (MainJSONGraphGenerator:175) - Processing system: [168, cgeo, 2019.02.23]
+DEBUG [07 Mar 2023 18:28:36,443] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for cgeo-2019.02.23-168
+DEBUG [07 Mar 2023 18:28:36,447] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS168/cgeo.geocaching-2019.02.23/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS168/cgeo.geocaching-2019.02.23/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:36,449] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS168/cgeo.geocaching-2019.02.23/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:36,496] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS168/cgeo.geocaching-2019.02.23/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:36,520] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR168/cgeo.geocaching-2019.02.23/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:36,521] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR168/cgeo.geocaching-2019.02.23/Execution-1.json
+DEBUG [07 Mar 2023 18:28:36,604] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:37,643] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:37,648] (MainJSONGraphGenerator:175) - Processing system: [91, wifianalyzer, 1.9.0.1-BETA]
+DEBUG [07 Mar 2023 18:28:37,650] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for wifianalyzer-1.9.0.1-BETA-91
+DEBUG [07 Mar 2023 18:28:37,655] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS91/com.vrem.wifianalyzer.BETA-1.9.0.1-BETA/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS91/com.vrem.wifianalyzer.BETA-1.9.0.1-BETA/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:37,657] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS91/com.vrem.wifianalyzer.BETA-1.9.0.1-BETA/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:37,834] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS91/com.vrem.wifianalyzer.BETA-1.9.0.1-BETA/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:37,952] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR91/com.vrem.wifianalyzer.BETA-1.9.0.1-BETA/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:37,953] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR91/com.vrem.wifianalyzer.BETA-1.9.0.1-BETA/Execution-1.json
+DEBUG [07 Mar 2023 18:28:38,083] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:40,331] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:40,335] (MainJSONGraphGenerator:175) - Processing system: [54, markor, 1.0.2]
+DEBUG [07 Mar 2023 18:28:40,337] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for markor-1.0.2-54
+DEBUG [07 Mar 2023 18:28:40,343] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS54/net.gsantner.markor-1.0.2/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS54/net.gsantner.markor-1.0.2/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:40,346] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS54/net.gsantner.markor-1.0.2/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:40,393] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS54/net.gsantner.markor-1.0.2/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:40,489] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR54/net.gsantner.markor-1.0.2/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:40,490] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR54/net.gsantner.markor-1.0.2/Execution-1.json
+DEBUG [07 Mar 2023 18:28:40,668] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:43,951] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:43,955] (MainJSONGraphGenerator:175) - Processing system: [160, ankidroid, 2.10beta3]
+DEBUG [07 Mar 2023 18:28:43,957] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for ankidroid-2.10beta3-160
+DEBUG [07 Mar 2023 18:28:43,961] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS160/com.ichi2.anki-2.10beta3/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS160/com.ichi2.anki-2.10beta3/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:43,964] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS160/com.ichi2.anki-2.10beta3/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:44,035] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS160/com.ichi2.anki-2.10beta3/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:44,080] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR160/com.ichi2.anki-2.10beta3/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:44,080] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR160/com.ichi2.anki-2.10beta3/Execution-1.json
+DEBUG [07 Mar 2023 18:28:44,216] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:49,395] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:49,399] (MainJSONGraphGenerator:175) - Processing system: [158, ankidroid, 2.9alpha52]
+DEBUG [07 Mar 2023 18:28:49,401] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for ankidroid-2.9alpha52-158
+DEBUG [07 Mar 2023 18:28:49,404] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS158/com.ichi2.anki-2.9alpha52/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS158/com.ichi2.anki-2.9alpha52/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:49,407] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS158/com.ichi2.anki-2.9alpha52/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:49,465] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS158/com.ichi2.anki-2.9alpha52/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:49,511] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR158/com.ichi2.anki-2.9alpha52/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:49,511] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR158/com.ichi2.anki-2.9alpha52/Execution-1.json
+DEBUG [07 Mar 2023 18:28:49,636] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:28:55,508] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:28:55,513] (MainJSONGraphGenerator:175) - Processing system: [228, gnucash, 2.1.7]
+DEBUG [07 Mar 2023 18:28:55,515] (sealab.burt.qualitychecker.JSONGraphReader:99) - Reading graph from JSON files for gnucash-2.1.7-228
+DEBUG [07 Mar 2023 18:28:55,520] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/CrashScope-Data/CS228/org.gnucash.android-2.1.7/Execution-Top_Down-Expected-1.json.tmp, ../data/CrashScope-Data/CS228/org.gnucash.android-2.1.7/Execution-Bottom_Up-Expected-1.json, ../data/CrashScope-Data/CS228/org.gnucash.android-2.1.7/Execution-Top_Down-Expected-1.json]
+DEBUG [07 Mar 2023 18:28:55,523] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS228/org.gnucash.android-2.1.7/Execution-Bottom_Up-Expected-1.json
+DEBUG [07 Mar 2023 18:28:55,664] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS228/org.gnucash.android-2.1.7/Execution-Top_Down-Expected-1.json
+DEBUG [07 Mar 2023 18:28:55,772] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/CrashScope-Data/CS228/org.gnucash.android-2.1.7/Execution-Top_Down-Expected-1.json.tmp
+DEBUG [07 Mar 2023 18:28:55,907] (sealab.burt.qualitychecker.JSONGraphReader:193) - Reading execution data from : [../data/TraceReplayer-Data/TR228/org.gnucash.android-2.1.7/Execution-1.json]
+DEBUG [07 Mar 2023 18:28:55,907] (sealab.burt.qualitychecker.JSONGraphReader:209) - ../data/TraceReplayer-Data/TR228/org.gnucash.android-2.1.7/Execution-1.json
+DEBUG [07 Mar 2023 18:28:56,074] (MainJSONGraphGenerator:290) - Saving image
+DEBUG [07 Mar 2023 18:29:03,694] (MainJSONGraphGenerator:297) - Done
+DEBUG [07 Mar 2023 18:29:03,701] (MainJSONGraphGenerator:160) - All systems were processed
+DEBUG [07 Mar 2023 18:29:03,710] (MainJSONGraphGenerator:170) - Reached end
+(base) ojcchar@Oscars-MacBook-Pro burt-tools % 

@@ -124,7 +124,7 @@ class GraphGenerator {
                     // System.out.println("====================");
                 }
             } catch (Exception e) {
-                log.error("Error for execution " + execution.getId(), e);
+                log.error("Error for execution " + execution.getId() + " App: " + app.toString(), e);
             	//System.out.println("Error for execution " + execution.getId() + e);
                 throw e;
             }

@@ -92,6 +92,7 @@ class MainJSONGraphGenerator {
             //------------------------------------------------------------------------------------
 
             new Triplet<>("200", "inaturalist", "1.4.6"),
+            new Triplet<>("199", "inaturalist", "1.4.6"),
             new Triplet<>("1197", "pdfconverter", "2.5"),
             new Triplet<>("1563", "lrkfm", "1.8.0"),
             new Triplet<>("1153", "gpstest", "3.1.0"),
@@ -106,7 +107,6 @@ class MainJSONGraphGenerator {
             new Triplet<>("1201", "pdfconverter", "6.1.0"),
             new Triplet<>("106", "vinyl", "0.21.0"),
             new Triplet<>("101", "openmap", "6.0.1"),
-            new Triplet<>("199", "inaturalist", "1.4.6"),
             new Triplet<>("248", "odkcollect", "v1.20.0"),
             new Triplet<>("1389", "transistor", "1.2.3"),
             new Triplet<>("1568", "lrkfm", "2.3.0"),
@@ -145,7 +145,7 @@ class MainJSONGraphGenerator {
                         try {
                             generateAndSaveGraph(system);
                         } catch (Exception e) {
-                           log.error("Unexpected error", e);
+                           log.error("Unexpected error for: " + system, e);
                         }
                         return true;
                     }

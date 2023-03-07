@@ -98,7 +98,7 @@ public @Slf4j class JSONGraphReader {
 		String key = getKey(appName, appVersion, bugID);
 		log.debug("Reading graph from JSON files for " + key);
 
-		List<Execution> crashScopeExecutions = readExecutions(dataLocation);
+		List<Execution> crashScopeExecutions = readExecutions(dataLocation, false);
 		GraphGenerator generator = new GraphGenerator();
 
 		AppGraphInfo finalGraph = null;
@@ -118,7 +118,7 @@ public @Slf4j class JSONGraphReader {
 			
 			String traceReplayerDataLocation = Paths.get(traceReplayerFolder, "TR" + bugID, String.join("-", packageName, appVersion) ).toString();
 			
-			List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation);
+			List<Execution> traceReplayerExecutions = readExecutions(traceReplayerDataLocation, true);
 
 			// 2. update the graph (update the weights, and create new GraphStates and
 			// Transitions if needed)
@@ -172,7 +172,7 @@ public @Slf4j class JSONGraphReader {
 		}
 	}
 
-	private static List<Execution> readExecutions(String dataLocation) throws Exception {
+	private static List<Execution> readExecutions(String dataLocation, boolean throwExcIfNoExecutions) throws Exception {
 
 		// ------ check if the path exists---------------//
 		List<Path> executionFiles = new ArrayList<>();
@@ -267,6 +267,9 @@ public @Slf4j class JSONGraphReader {
 						StringBuilder builder = new StringBuilder();
 						ArrayList<DynGuiComponentVO> currComps = new ArrayList<>();
 
+						if (tree == null)
+							throw new RuntimeException("Could not parse the xml file: " + xmlPath);
+
 						// Visit the nodes. The list of components should be returned in the "currComps"
 						// ArrayList as
 						// DynGUIComponentVOs.
@@ -292,7 +295,7 @@ public @Slf4j class JSONGraphReader {
 			}
 		}
 
-		if (executions.isEmpty())
+		if (throwExcIfNoExecutions && executions.isEmpty())
             throw new RuntimeException("There is no execution data to build the graph");
 			// log.debug("There is no execution data to build the graph");
 			//System.out.println("There is no execution data to build the graph");
