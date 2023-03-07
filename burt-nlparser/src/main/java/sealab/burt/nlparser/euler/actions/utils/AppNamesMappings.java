@@ -51,7 +51,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Tachiyomi", "tachiyomi")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Android D-B-MVP", "android-d-b-mvp")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("OCReader", "ocreader")));
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("AnkiDroid", "Anki-Android")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("AnkiDroid", "Anki-Android", "ankidroid")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("ScreenRecorder", "screenrecorder")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("growtracker", "Grow Tracker", "GrowTracker")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("familyfinance")));
@@ -79,6 +79,18 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("anglerslog")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("trainerapp")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("streetcomplete")));
+
+        //------------------------
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "lrkfm")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "pedometer")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "wifianalyzer")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "k-9mail")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "transistor")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "vinyl")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "openmap")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "odkcollect")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "cgeo")));
+
     }
 
     public static String normalizeAppName(String appName) {
@@ -174,11 +186,17 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("phimpme", Arrays.asList("org.fossasia.phimpme"));
         APP_NAMES_PACKAGES.put("simplenote", Arrays.asList("com.automattic.simplenote"));
         APP_NAMES_PACKAGES.put("trainerapp", Arrays.asList("com.german_software_engineers.trainerapp"));
-        APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness"));
+        APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness.debug"));
         APP_NAMES_PACKAGES.put("anglerslog", Arrays.asList("com.cohenadair.anglerslog"));
         
-        
-        
+        APP_NAMES_PACKAGES.put("lrkfm", Arrays.asList("io.lerk.lrkFM"));
+        APP_NAMES_PACKAGES.put("pedometer", Arrays.asList("org.secuso.privacyfriendlyactivitytracker"));
+        APP_NAMES_PACKAGES.put("wifianalyzer", Arrays.asList("com.vrem.wifianalyzer"));
+        APP_NAMES_PACKAGES.put("k-9mail", Arrays.asList("com.fsck.k9"));
+        APP_NAMES_PACKAGES.put("vinyl", Arrays.asList("com.poupa.vinylmusicplayer.debug"));
+        APP_NAMES_PACKAGES.put("openmap", Arrays.asList("org.osmdroid"));
+        APP_NAMES_PACKAGES.put("odkcollect", Arrays.asList("org.odk.collect.android"));
+        APP_NAMES_PACKAGES.put("cgeo", Arrays.asList("cgeo.geocaching"));
         
         //APP_NAMES_PACKAGES.put("focus", Arrays.asList("focus"));
         //APP_NAMES_PACKAGES.put("gpstest", Arrays.asList("gpstest"));

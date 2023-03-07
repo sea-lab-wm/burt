@@ -74,6 +74,9 @@ public @Slf4j class JSONGraphReader {
 		if(bugID.equals("128") || bugID.equals("129") || bugID.equals("130")) {
 			return packages.get(0) + ".dev";
 		}
+		if(bugID.equals("91") ) {
+			return packages.get(0) + ".BETA";
+		}
 		return packages.get(0);
 	}
 
@@ -86,6 +89,11 @@ public @Slf4j class JSONGraphReader {
 		// String dataLocation = Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName, appVersion)).toString();
 				
 		String dataLocation = Paths.get(BurtConfigPaths.crashScopeDataPath, "CS" + bugID, String.join("-", packageName, appVersion)).toString();
+
+		// //if the folder does not exist, then we do not have CrashScope data for this app
+		// if(!Files.exists(Paths.get(dataLocation))){
+		// 	throw new RuntimeException("The CrashScope data folder does not exist: " + dataLocation);
+		// }
 
 		String key = getKey(appName, appVersion, bugID);
 		log.debug("Reading graph from JSON files for " + key);
