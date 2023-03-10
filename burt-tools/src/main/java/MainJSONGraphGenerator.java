@@ -42,51 +42,51 @@ public
 class MainJSONGraphGenerator {
 
     private static final Set<Triplet<String, String, String>> ALL_SYSTEMS = JavaUtils.getSet(
-            // new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"), 
-            // new Triplet<>("8", "trickytripper", "1.6.0"),
-            // new Triplet<>("10","files", "1.0.0-beta.11"), 
-            // new Triplet<>("18","calendula", "2.5.7"),
-            // new Triplet<>("19","streetcomplete", "5.2"), 
-            // new Triplet<>("21","atimetracker", "0.51.1"),
-            // new Triplet<>("44","omninotes", "5.5.2"), 
-            // new Triplet<>("53","markor", "2.3.1"),
-            // new Triplet<>("71","kiss", "3.13.5"), 
-            // new Triplet<>("117","openfoodfacts", "2.9.8"),
-            // new Triplet<>("128","andotp", "0.7.1.1-dev"), 
-            // new Triplet<>("129","andotp", "0.7.0-dev"),
-            // new Triplet<>("130","andotp", "0.6.3.1-dev"), 
-            // new Triplet<>("135","commons", "2.9.0-debug"),
-            // new Triplet<>("191","anuto", "0.2-1"), 
-            // new Triplet<>("201","inaturalist", "1.5.1"),
-            // new Triplet<>("206","gnucash", "2.1.3"), 
-            // new Triplet<>("209","gnucash", "2.2.0"),
-            // new Triplet<>("256","gnucash", "2.1.4"), 
-            // new Triplet<>("1066","focus", "7.0"),
-            // new Triplet<>("1067","focus", "7.0"), 
-            // new Triplet<>("1073","focus", "5.2"),
-            // new Triplet<>("1096","inaturalist", "1.13.9"), 
-            // new Triplet<>("1145","gpstest", "3.8.1"),
-            // new Triplet<>("1146","gpstest", "3.8.0"), 
-            // new Triplet<>("1147","gpstest", "3.0.0"),
-            // new Triplet<>("1149","gpstest", "3.2.11"), 
-            // new Triplet<>("1151","gpstest", "3.0.1"),
-            // new Triplet<>("1152","gpstest", "3.0.2"), 
-            // new Triplet<>("1202","createpdf", "6.6.0"),
-            // new Triplet<>("1205","createpdf", "8.5.7"), 
-            // new Triplet<>("1207","andotp", "0.4.0.1"),
-            // new Triplet<>("1214","andotp", "0.7.1.1"), 
-            // new Triplet<>("1215","andotp", "0.7.1.1"),
-            // new Triplet<>("1223","gnucash", "2.2.0"), 
-            // new Triplet<>("1224","gnucash", "2.1.3"),
-            // new Triplet<>("1226","gnucash", "2.1.4"), 
-            // new Triplet<>("1299","fieldbook", "4.3.3"),
-            // new Triplet<>("1399","phimpme", "1.4.0"), 
-            // new Triplet<>("1406","phimpme", "1.4.0"),
-            // new Triplet<>("1430","fastnfitness", "0.19.0.1"), 
-            // new Triplet<>("1441","anglerslog", "1.2.5"),
-            // new Triplet<>("1445","anglerslog", "1.3.1"), 
-            // new Triplet<>("1481","hex", "0.1.0"),
-            // new Triplet<>("1645","trainerapp", "1.0")
+            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"), 
+            new Triplet<>("8", "trickytripper", "1.6.0"),
+            new Triplet<>("10","files", "1.0.0-beta.11"), 
+            new Triplet<>("18","calendula", "2.5.7"),
+            new Triplet<>("19","streetcomplete", "5.2"), 
+            new Triplet<>("21","atimetracker", "0.51.1"),
+            new Triplet<>("44","omninotes", "5.5.2"), 
+            new Triplet<>("53","markor", "2.3.1"),
+            new Triplet<>("71","kiss", "3.13.5"), 
+            new Triplet<>("117","openfoodfacts", "2.9.8"),
+            new Triplet<>("128","andotp", "0.7.1.1-dev"), 
+            new Triplet<>("129","andotp", "0.7.0-dev"),
+            new Triplet<>("130","andotp", "0.6.3.1-dev"), 
+            new Triplet<>("135","commons", "2.9.0-debug"),
+            new Triplet<>("191","anuto", "0.2-1"), 
+            new Triplet<>("201","inaturalist", "1.5.1"),
+            new Triplet<>("206","gnucash", "2.1.3"), 
+            new Triplet<>("209","gnucash", "2.2.0"),
+            new Triplet<>("256","gnucash", "2.1.4"), 
+            new Triplet<>("1066","focus", "7.0"),
+            new Triplet<>("1067","focus", "7.0"), 
+            new Triplet<>("1073","focus", "5.2"),
+            new Triplet<>("1096","inaturalist", "1.13.9"), 
+            new Triplet<>("1145","gpstest", "3.8.1"),
+            new Triplet<>("1146","gpstest", "3.8.0"), 
+            new Triplet<>("1147","gpstest", "3.0.0"),
+            new Triplet<>("1149","gpstest", "3.2.11"), 
+            new Triplet<>("1151","gpstest", "3.0.1"),
+            new Triplet<>("1152","gpstest", "3.0.2"), 
+            new Triplet<>("1202","createpdf", "6.6.0"),
+            new Triplet<>("1205","createpdf", "8.5.7"), 
+            new Triplet<>("1207","andotp", "0.4.0.1"),
+            new Triplet<>("1214","andotp", "0.7.1.1"), 
+            new Triplet<>("1215","andotp", "0.7.1.1"),
+            new Triplet<>("1223","gnucash", "2.2.0"), 
+            new Triplet<>("1224","gnucash", "2.1.3"),
+            new Triplet<>("1226","gnucash", "2.1.4"), 
+            new Triplet<>("1299","fieldbook", "4.3.3"),
+            new Triplet<>("1399","phimpme", "1.4.0"), 
+            new Triplet<>("1406","phimpme", "1.4.0"),
+            new Triplet<>("1430","fastnfitness", "0.19.0.1"), 
+            new Triplet<>("1441","anglerslog", "1.2.5"),
+            new Triplet<>("1445","anglerslog", "1.3.1"), 
+            new Triplet<>("1481","hex", "0.1.0"),
+            new Triplet<>("1645","trainerapp", "1.0"),
 
 
             //------------------------------------------------------------------------------------
@@ -229,19 +229,20 @@ class MainJSONGraphGenerator {
             String screenshotFile = edge.getStep().getScreenshotFile();
 
             if (screenshotFile == null) {
-//                log.error("Step has no screenshot: " + edge.getId());
+                //log.error("Step has no screenshot: " + edge.getUniqueHash() + " - " + edge.getStep().getId());
                 continue;
             }
 
 //            String dataLocation =
 //                    Paths.get(BurtConfigPaths.crashScopeDataPath, String.join("-", packageName, app.getVersion())).toString();
 
+            String appPackage = String.join("-", packageName, app.getVersion());
             String dataLocation =
-                    Paths.get(BurtConfigPaths.crashScopeDataPath + "/CS" +system.getValue0(), String.join("-", packageName, app.getVersion())).toString();
+                    Paths.get(BurtConfigPaths.crashScopeDataPath + "/CS" +system.getValue0(), appPackage).toString();
 
             if (edge.getDataSource().equals(GraphDataSource.TR))
                 dataLocation =
-                        Paths.get(BurtConfigPaths.traceReplayerDataPath + "/TR" + system.getValue0()).toString();
+                        Paths.get(BurtConfigPaths.traceReplayerDataPath + "/TR" + system.getValue0(), appPackage).toString();
 
             File srcFileStep = Path.of(dataLocation, "screenshots", screenshotFile).toFile();
             File srcFileState =
@@ -271,7 +272,12 @@ class MainJSONGraphGenerator {
 
                     nodeSources.add(Arrays.asList(screenId.toString(), sequenceId.toString(), source, executionId.toString(), statePath, executionPath, xmlPath));
                 } 
+                // else{
+                //     log.warn("Destination state file arleady exists: " + destFile2);
+                // }
 
+            }else{
+                log.error("Source state file does not exist: " + srcFileState);
             }
 
         }
