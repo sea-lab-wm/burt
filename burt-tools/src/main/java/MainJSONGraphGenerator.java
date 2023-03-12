@@ -277,7 +277,7 @@ class MainJSONGraphGenerator {
                 // }
 
             }else{
-                log.error("Source state file does not exist: " + srcFileState);
+                log.warn("Source state file does not exist: " + srcFileState);
             }
 
         }
