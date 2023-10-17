@@ -1,5 +1,6 @@
 export CUR_DIR=`pwd`
 
+export JAVA_HOME=`/usr/libexec/java_home -v 12.0.2`
 
 cd $CUR_DIR
 
