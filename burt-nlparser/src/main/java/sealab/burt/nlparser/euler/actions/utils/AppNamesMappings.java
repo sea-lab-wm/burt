@@ -92,6 +92,17 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "cgeo")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "trebleshot")));
 
+        //------------------------
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "aegis", "Aegis")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "phimp.me", "Phimp.me", "Phimp. Me")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "mementocalendar", "Mementocalendar", "Memento Calendar")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "c:geo", "C:geo")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "kissقاذفة", "Kiss", "kiss", "Kissقاذفة")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "vinyldebug", "Vinyldebug", "Vinyl Debug")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "ultrasonic", "Ultrasonic", "Ultra Sonic")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "chessclock", "Chessclock", "Chess Clock")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "noadplayer", "Noadplayer", "No Ad Player")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList( "trainingsschedule", "trainingsschedule", "Trainings Schedule")));
     }
 
     public static String normalizeAppName(String appName) {
@@ -201,6 +212,17 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("pdfconverter", Arrays.asList("swati4star.createpdf"));
         APP_NAMES_PACKAGES.put("ankidroid", Arrays.asList("com.ichi2.anki"));
         APP_NAMES_PACKAGES.put("trebleshot", Arrays.asList("com.genonbeta.TrebleShot"));
+
+        APP_NAMES_PACKAGES.put("aegis", Arrays.asList("com.beemdevelopment.aegis"));
+        APP_NAMES_PACKAGES.put("phimp.me", Arrays.asList("org.fossasia.phimpme"));
+        APP_NAMES_PACKAGES.put("mementocalendar", Arrays.asList("com.alexstyl.specialdates"));
+        APP_NAMES_PACKAGES.put("c:geo", Arrays.asList("cgeo.geocaching"));
+        APP_NAMES_PACKAGES.put("kissقاذفة", Arrays.asList("fr.neamar.kiss.debug"));
+        APP_NAMES_PACKAGES.put("vinyldebug", Arrays.asList("com.poupa.vinylmusicplayer.debug"));
+        APP_NAMES_PACKAGES.put("ultrasonic", Arrays.asList("org.moire.ultrasonic"));
+        APP_NAMES_PACKAGES.put("chessclock", Arrays.asList("com.chess.clock"));
+        APP_NAMES_PACKAGES.put("noadplayer", Arrays.asList("com.droidheat.musicplayer"));
+        APP_NAMES_PACKAGES.put("trainingsschedule", Arrays.asList("com.genonbeta.TrebleShot"));
             
         //APP_NAMES_PACKAGES.put("focus", Arrays.asList("focus"));
         //APP_NAMES_PACKAGES.put("gpstest", Arrays.asList("gpstest"));

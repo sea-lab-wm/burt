@@ -4,7 +4,7 @@ import shutil
 
 
 if __name__ == "__main__":
-    tr_data_folder = "/Users/ojcchar/repositories/Projects/burt/data/TraceReplayer-Data-new"
+    tr_data_folder = "../data/TraceReplayer-Data"
 
     #list folders in tr_data_folder
     folders = os.listdir(tr_data_folder)

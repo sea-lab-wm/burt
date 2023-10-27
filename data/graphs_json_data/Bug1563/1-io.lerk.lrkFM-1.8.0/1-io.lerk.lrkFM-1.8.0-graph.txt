@@ -1,11 +1,10 @@
 Transitions correctness: true
 
-Transitions (19):
+Transitions (17):
 e1a0425a193fe09f25faab0bba06c53324e557463503bcccf478cac5a0535ab1: (s:21c267ef898a5960eea0d8cc0c93ea6eb54b46d154921ccbd6255d36be1f406f,t:caec79fbb2df7c62cb19d13389c2ceba813fd82f4b21de53104077cd83c9cb57): [id=null, ex=0, sq=0, act=(6) open app, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=null ex=0
 
 9e977e5ab418c8c38427b22ea2ac08a8dbb8e6f02a580b85a901ce98b0efe99b: (s:caec79fbb2df7c62cb19d13389c2ceba813fd82f4b21de53104077cd83c9cb57,t:0de81c6ee546a153a5384b40f229b2d920375f82815897224de98af91a06ae94): [id=0, ex=0, sq=1, act=(0) click, cp=[, ty=ImageButton, idx=fab, idnx=2, tx=, x=891, y=400, h=147, w=147, dsc=], txt=, exp=-636174987, tr=null] weight=2.0 ds=TR sc=io.lerk.lrkFM.User-Trace.1.io.lerk.lrkFM_1.8.0_lrkfm1_augmented.png ex=0
 fcb885a64cf750f2bfee7bedd3efbec9ae77c1eef0ae23a4f8e5848646096dbd: (s:caec79fbb2df7c62cb19d13389c2ceba813fd82f4b21de53104077cd83c9cb57,t:c7036819e8914c0b9f9b36416e4945b7a1edc516f6670d5acc754fe3109b99a2): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=ImageButton, idx=fab, idnx=2, tx=, x=891, y=400, h=147, w=147, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=io.lerk.lrkFM.User-Trace.1.io.lerk.lrkFM_1.8.0_lrkfm3_augmented.png ex=0
-834438648ea1687b0554e650a49f1349f5c38349a61492e4ab3403dfba19d44e: (s:caec79fbb2df7c62cb19d13389c2ceba813fd82f4b21de53104077cd83c9cb57,t:d8d0fa8aa182e5e568bc75d79fa9133bbae8d4e22d90bc573f378c0d0ac9b896): [id=2, ex=1, sq=3, act=(0) click, cp=[, ty=ImageButton, idx=fab, idnx=2, tx=, x=891, y=400, h=147, w=147, dsc=], txt=, exp=-636174987, tr=null] weight=1.0 ds=CS sc=io.lerk.lrkFM.Top_Down.Expected..1.io.lerk.lrkFM_1.8.0_3_augmented.png ex=1
 
 8ad222002aa4c65886d32ba60a3bf3189e7c64ce99eb430e8e8cd7fcb10d0de1: (s:c7036819e8914c0b9f9b36416e4945b7a1edc516f6670d5acc754fe3109b99a2,t:792d7a817c63b79a58c769ffc6177b6ff7de1feebe1a23e1c4cb3beb07dce935): [id=3, ex=0, sq=4, act=(20) swipe up, cp=null, txt=, exp=, tr=null] weight=2.0 ds=TR sc=io.lerk.lrkFM.User-Trace.1.io.lerk.lrkFM_1.8.0_lrkfm4_augmented.png ex=0
 8bc6d6821840dd778606653f247c4693332b427e1825c1958580146d0ea62c35: (s:c7036819e8914c0b9f9b36416e4945b7a1edc516f6670d5acc754fe3109b99a2,t:d8d0fa8aa182e5e568bc75d79fa9133bbae8d4e22d90bc573f378c0d0ac9b896): [id=2, ex=0, sq=3, act=(0) click, cp=[, ty=ImageButton, idx=fab, idnx=2, tx=, x=891, y=1605, h=147, w=147, dsc=], txt=, exp=-636174987, tr=null] weight=2.0 ds=TR sc=io.lerk.lrkFM.User-Trace.1.io.lerk.lrkFM_1.8.0_lrkfm8_augmented.png ex=0
@@ -31,7 +30,6 @@ bbc6d704776feb6c33ff690b884a7e4b8607298f2727caa73a77c57a8e56ed64: (s:2e18a1ea384
 
 336cab0457714a51e8bb7938cbf9caf8eb0b0bbe6762b58b574c6123c4e1660c: (s:0de81c6ee546a153a5384b40f229b2d920375f82815897224de98af91a06ae94,t:c7036819e8914c0b9f9b36416e4945b7a1edc516f6670d5acc754fe3109b99a2): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=Button, idx=permission_allow_button, idnx=1, tx=ALLOW, x=691, y=986, h=126, w=185, dsc=], txt=, exp=-636174987, tr=null] weight=1.0 ds=CS sc=io.lerk.lrkFM.Bottom_Up.Expected..1.io.lerk.lrkFM_1.8.0_2_augmented.png ex=0
 8b0668b61c8e93bcc2cb034303183f97a495ab5f6fb9d96a2a641d35e87d3c10: (s:0de81c6ee546a153a5384b40f229b2d920375f82815897224de98af91a06ae94,t:caec79fbb2df7c62cb19d13389c2ceba813fd82f4b21de53104077cd83c9cb57): [id=1, ex=0, sq=2, act=(0) click, cp=[, ty=Button, idx=permission_allow_button, idnx=1, tx=ALLOW, x=691, y=986, h=126, w=185, dsc=], txt=, exp=, tr=null] weight=2.0 ds=TR sc=io.lerk.lrkFM.User-Trace.1.io.lerk.lrkFM_1.8.0_lrkfm2_augmented.png ex=0
-9c338fe46a5878cc10b3a0ec2b82af3cef72d23b192c1f6115351add1bd39406: (s:0de81c6ee546a153a5384b40f229b2d920375f82815897224de98af91a06ae94,t:caec79fbb2df7c62cb19d13389c2ceba813fd82f4b21de53104077cd83c9cb57): [id=1, ex=1, sq=2, act=(0) click, cp=[, ty=Button, idx=permission_deny_button, idnx=0, tx=DENY, x=523, y=986, h=126, w=168, dsc=], txt=, exp=-636174987, tr=null] weight=1.0 ds=CS sc=io.lerk.lrkFM.Top_Down.Expected..1.io.lerk.lrkFM_1.8.0_2_augmented.png ex=1
 
 States (13):
 21c267ef898a5960eea0d8cc0c93ea6eb54b46d154921ccbd6255d36be1f406f, Start state, TR, (null): null - null

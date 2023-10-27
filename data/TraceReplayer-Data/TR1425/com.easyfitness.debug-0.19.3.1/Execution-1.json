@@ -1,5 +1,5 @@
 {
-    "date": "Jan 16, 2023 1:05:47 AM",
+    "date": "Jan 16, 2023, 1:05:47 AM",
     "deviceDimensions": "1080x1920",
     "executionType": "User-Trace-",
     "executionNum": 1,
@@ -13,7 +13,7 @@
     {
         "action": 0,
         "sequenceStep": 1,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness1_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness1_augmented.png",
         "textEntry": "adb shell input tap 967 1679",
         "areaEdit": 0,
         "hashStep": "1341514454",
@@ -57,7 +57,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness1_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness1_gui.png",
             "idText": "com.easyfitness.debug:id/mi_button_next",
             "offset": 0,
             "drawTime": 0.0
@@ -621,7 +621,7 @@
     {
         "action": 0,
         "sequenceStep": 2,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness2_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness2_augmented.png",
         "textEntry": "adb shell input tap 967 1679",
         "areaEdit": 0,
         "hashStep": "1341514454",
@@ -665,7 +665,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness2_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness2_gui.png",
             "idText": "com.easyfitness.debug:id/mi_button_next",
             "offset": 0,
             "drawTime": 0.0
@@ -1258,7 +1258,7 @@
     {
         "action": 0,
         "sequenceStep": 3,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness3_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness3_augmented.png",
         "textEntry": "adb shell input tap 967 1679",
         "areaEdit": 0,
         "hashStep": "1341514454",
@@ -1302,7 +1302,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness3_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness3_gui.png",
             "idText": "com.easyfitness.debug:id/mi_button_next",
             "offset": 0,
             "drawTime": 0.0
@@ -1895,7 +1895,7 @@
     {
         "action": 0,
         "sequenceStep": 4,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness4_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness4_augmented.png",
         "textEntry": "adb shell input tap 967 1679",
         "areaEdit": 0,
         "hashStep": "1341514454",
@@ -1939,7 +1939,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness4_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness4_gui.png",
             "idText": "com.easyfitness.debug:id/mi_button_next",
             "offset": 0,
             "drawTime": 0.0
@@ -2532,7 +2532,7 @@
     {
         "action": 3,
         "sequenceStep": 5,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness5_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness5_augmented.png",
         "textEntry": "adb shell input tap 137 304",
         "areaEdit": 0,
         "hashStep": "645982239",
@@ -2576,7 +2576,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness5_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness5_gui.png",
             "idText": "com.easyfitness.debug:id/profileName",
             "offset": 0,
             "drawTime": 0.0
@@ -3488,7 +3488,7 @@
     {
         "action": 3,
         "sequenceStep": 6,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness6_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness6_augmented.png",
         "textEntry": "none",
         "areaEdit": 0,
         "hashStep": "645982239",
@@ -3531,7 +3531,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness6_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness6_gui.png",
             "idText": "com.easyfitness.debug:id/profileName",
             "offset": 0,
             "drawTime": 0.0
@@ -4414,7 +4414,7 @@
     {
         "action": 3,
         "sequenceStep": 7,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness7_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness7_augmented.png",
         "textEntry": "adb shell input tap 196 694",
         "areaEdit": 0,
         "hashStep": "-1312805520",
@@ -4458,7 +4458,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness7_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness7_gui.png",
             "idText": "com.easyfitness.debug:id/profileSize",
             "offset": 0,
             "drawTime": 0.0
@@ -5341,7 +5341,7 @@
     {
         "action": 3,
         "sequenceStep": 8,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness8_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness8_augmented.png",
         "textEntry": "none",
         "areaEdit": 0,
         "hashStep": "-1012447595",
@@ -5384,7 +5384,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness8_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness8_gui.png",
             "idText": "com.easyfitness.debug:id/profileSize",
             "offset": 0,
             "drawTime": 0.0
@@ -6267,7 +6267,7 @@
     {
         "action": 0,
         "sequenceStep": 9,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness9_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness9_augmented.png",
         "textEntry": "adb shell input tap 967 898",
         "areaEdit": 0,
         "hashStep": "625785679",
@@ -6311,7 +6311,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness9_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness9_gui.png",
             "idText": "com.easyfitness.debug:id/mi_button_next",
             "offset": 0,
             "drawTime": 0.0
@@ -7194,7 +7194,7 @@
     {
         "action": 0,
         "sequenceStep": 10,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness10_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness10_augmented.png",
         "textEntry": "adb shell input tap 562 1083",
         "areaEdit": 0,
         "hashStep": "1670500352",
@@ -7238,7 +7238,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness10_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness10_gui.png",
             "idText": "com.easyfitness.debug:id/confirm_button",
             "offset": 0,
             "drawTime": 0.0
@@ -7715,7 +7715,7 @@
     {
         "action": 0,
         "sequenceStep": 11,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness11_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness11_augmented.png",
         "textEntry": "adb shell input tap 70 123",
         "areaEdit": 0,
         "hashStep": "1234617316",
@@ -7759,7 +7759,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness11_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness11_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -11165,7 +11165,7 @@
     {
         "action": 0,
         "sequenceStep": 12,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness12_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness12_augmented.png",
         "textEntry": "adb shell input tap 272 640",
         "areaEdit": 0,
         "hashStep": "1739750391",
@@ -11209,7 +11209,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness12_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness12_gui.png",
             "idText": "com.easyfitness.debug:id/RepsInputView",
             "offset": 0,
             "drawTime": 0.0
@@ -15543,7 +15543,7 @@
     {
         "action": 0,
         "sequenceStep": 13,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness13_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness13_augmented.png",
         "textEntry": "adb shell input tap 272 377",
         "areaEdit": 0,
         "hashStep": "-1229182135",
@@ -15587,7 +15587,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness13_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness13_gui.png",
             "idText": "com.easyfitness.debug:id/weightInput",
             "offset": 0,
             "drawTime": 0.0
@@ -17369,7 +17369,7 @@
     {
         "action": 3,
         "sequenceStep": 14,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness14_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness14_augmented.png",
         "textEntry": "adb shell input tap 446 1008",
         "areaEdit": 0,
         "hashStep": "1871927667",
@@ -17413,7 +17413,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness14_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness14_gui.png",
             "idText": "com.easyfitness.debug:id/singlevalueinput_value",
             "offset": 0,
             "drawTime": 0.0
@@ -18122,7 +18122,7 @@
     {
         "action": 20,
         "sequenceStep": 15,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness15_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness15_augmented.png",
         "textEntry": "adb shell input touchscreen swipe  148 1193 148 1190 156",
         "areaEdit": 0,
         "hashStep": "1581",
@@ -18843,7 +18843,7 @@
     {
         "action": 0,
         "sequenceStep": 16,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness16_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness16_augmented.png",
         "textEntry": "adb shell input tap 663 637",
         "areaEdit": 0,
         "hashStep": "1440555043",
@@ -18887,7 +18887,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness16_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness16_gui.png",
             "idText": "com.easyfitness.debug:id/singlevalueinput_unitSpinner",
             "offset": 0,
             "drawTime": 0.0
@@ -19596,7 +19596,7 @@
     {
         "action": 0,
         "sequenceStep": 17,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness17_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness17_augmented.png",
         "textEntry": "adb shell input tap 601 752",
         "areaEdit": 0,
         "hashStep": "685429933",
@@ -19640,7 +19640,7 @@
             "itemList": true,
             "calendarWindow": false,
             "relativeLocation": "Center right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness17_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness17_gui.png",
             "idText": "android:id/text1",
             "offset": 0,
             "drawTime": 0.0
@@ -19827,7 +19827,7 @@
     {
         "action": 0,
         "sequenceStep": 18,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness18_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness18_augmented.png",
         "textEntry": "adb shell input tap 720 763",
         "areaEdit": 0,
         "hashStep": "549698804",
@@ -19871,7 +19871,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness18_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness18_gui.png",
             "idText": "com.easyfitness.debug:id/btn_update",
             "offset": 0,
             "drawTime": 0.0
@@ -20580,7 +20580,7 @@
     {
         "action": 0,
         "sequenceStep": 19,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness19_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness19_augmented.png",
         "textEntry": "adb shell input tap 352 1608",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -20624,7 +20624,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness19_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness19_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -22406,7 +22406,7 @@
     {
         "action": 21,
         "sequenceStep": 20,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness20_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness20_augmented.png",
         "textEntry": "adb shell input touchscreen swipe  576 1569 578 1569 223",
         "areaEdit": 0,
         "hashStep": "1612",
@@ -24200,7 +24200,7 @@
     {
         "action": 0,
         "sequenceStep": 21,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness21_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness21_augmented.png",
         "textEntry": "adb shell input tap 812 1615",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -24244,7 +24244,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness21_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness21_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -26026,7 +26026,7 @@
     {
         "action": 0,
         "sequenceStep": 22,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness22_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness22_augmented.png",
         "textEntry": "adb shell input tap 716 1493",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -26070,7 +26070,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness22_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness22_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -27852,7 +27852,7 @@
     {
         "action": 0,
         "sequenceStep": 23,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness23_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness23_augmented.png",
         "textEntry": "adb shell input tap 219 1410",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -27896,7 +27896,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness23_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness23_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -29678,7 +29678,7 @@
     {
         "action": 0,
         "sequenceStep": 24,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness24_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness24_augmented.png",
         "textEntry": "adb shell input tap 139 1596",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -29722,7 +29722,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness24_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness24_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -31504,7 +31504,7 @@
     {
         "action": 0,
         "sequenceStep": 25,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness25_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness25_augmented.png",
         "textEntry": "adb shell input tap 814 1492",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -31548,7 +31548,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness25_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness25_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -33330,7 +33330,7 @@
     {
         "action": 0,
         "sequenceStep": 26,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness26_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness26_augmented.png",
         "textEntry": "adb shell input tap 638 1619",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -33374,7 +33374,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness26_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness26_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -35156,7 +35156,7 @@
     {
         "action": 0,
         "sequenceStep": 27,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness27_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness27_augmented.png",
         "textEntry": "adb shell input tap 1025 139",
         "areaEdit": 0,
         "hashStep": "509721576",
@@ -35200,7 +35200,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness27_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness27_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -36982,7 +36982,7 @@
     {
         "action": 0,
         "sequenceStep": 28,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness28_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness28_augmented.png",
         "textEntry": "adb shell input tap 510 91",
         "areaEdit": 0,
         "hashStep": "1194060444",
@@ -37025,7 +37025,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness28_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness28_gui.png",
             "idText": "BACK_MODAL",
             "offset": 0,
             "drawTime": 0.0
@@ -37589,7 +37589,7 @@
     {
         "action": 0,
         "sequenceStep": 29,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness29_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness29_augmented.png",
         "textEntry": "adb shell input tap 800 130",
         "areaEdit": 0,
         "hashStep": "326770311",
@@ -37633,7 +37633,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness29_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness29_gui.png",
             "idText": "com.easyfitness.debug:id/imageProfile",
             "offset": 0,
             "drawTime": 0.0
@@ -39415,7 +39415,7 @@
     {
         "action": 0,
         "sequenceStep": 30,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness30_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness30_augmented.png",
         "textEntry": "adb shell input tap 661 102",
         "areaEdit": 0,
         "hashStep": "1232253680",
@@ -39458,7 +39458,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness30_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness30_gui.png",
             "idText": "BACK_MODAL",
             "offset": 0,
             "drawTime": 0.0
@@ -39993,7 +39993,7 @@
     {
         "action": 0,
         "sequenceStep": 31,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness31_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness31_augmented.png",
         "textEntry": "adb shell input tap 75 144",
         "areaEdit": 0,
         "hashStep": "1234617316",
@@ -40037,7 +40037,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness31_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness31_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -41819,7 +41819,7 @@
     {
         "action": 0,
         "sequenceStep": 32,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness32_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness32_augmented.png",
         "textEntry": "adb shell input tap 675 116",
         "areaEdit": 0,
         "hashStep": "-691290174",
@@ -41863,7 +41863,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness32_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness32_gui.png",
             "idText": "com.easyfitness.debug:id/actionToolbar",
             "offset": 0,
             "drawTime": 0.0
@@ -44573,7 +44573,7 @@
     {
         "action": 0,
         "sequenceStep": 33,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness33_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness33_augmented.png",
         "textEntry": "adb shell input tap 98 128",
         "areaEdit": 0,
         "hashStep": "1234617316",
@@ -44617,7 +44617,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness33_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness33_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -46399,7 +46399,7 @@
     {
         "action": 0,
         "sequenceStep": 34,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness34_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness34_augmented.png",
         "textEntry": "adb shell input tap 672 171",
         "areaEdit": 0,
         "hashStep": "-691290174",
@@ -46443,7 +46443,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness34_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness34_gui.png",
             "idText": "com.easyfitness.debug:id/actionToolbar",
             "offset": 0,
             "drawTime": 0.0
@@ -49153,7 +49153,7 @@
     {
         "action": 0,
         "sequenceStep": 35,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness35_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness35_augmented.png",
         "textEntry": "adb shell input tap 805 132",
         "areaEdit": 0,
         "hashStep": "326770311",
@@ -49197,7 +49197,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness35_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness35_gui.png",
             "idText": "com.easyfitness.debug:id/imageProfile",
             "offset": 0,
             "drawTime": 0.0
@@ -50979,7 +50979,7 @@
     {
         "action": 0,
         "sequenceStep": 36,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness36_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness36_augmented.png",
         "textEntry": "adb shell input tap 478 187",
         "areaEdit": 0,
         "hashStep": "366585628",
@@ -51022,7 +51022,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness36_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness36_gui.png",
             "idText": "BACK_MODAL",
             "offset": 0,
             "drawTime": 0.0
@@ -51557,7 +51557,7 @@
     {
         "action": 0,
         "sequenceStep": 37,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness37_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness37_augmented.png",
         "textEntry": "adb shell input tap 1022 146",
         "areaEdit": 0,
         "hashStep": "509721576",
@@ -51601,7 +51601,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness37_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness37_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -53383,7 +53383,7 @@
     {
         "action": 0,
         "sequenceStep": 38,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness38_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness38_augmented.png",
         "textEntry": "adb shell input tap 507 77",
         "areaEdit": 0,
         "hashStep": "1095243697",
@@ -53426,7 +53426,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness38_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness38_gui.png",
             "idText": "BACK_MODAL",
             "offset": 0,
             "drawTime": 0.0
@@ -53990,7 +53990,7 @@
     {
         "action": 0,
         "sequenceStep": 39,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness39_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness39_augmented.png",
         "textEntry": "adb shell input tap 814 144",
         "areaEdit": 0,
         "hashStep": "326770311",
@@ -54034,7 +54034,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Top right",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness39_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness39_gui.png",
             "idText": "com.easyfitness.debug:id/imageProfile",
             "offset": 0,
             "drawTime": 0.0
@@ -55816,7 +55816,7 @@
     {
         "action": 0,
         "sequenceStep": 40,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness40_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness40_augmented.png",
         "textEntry": "adb shell input tap 585 153",
         "areaEdit": 0,
         "hashStep": "-896462225",
@@ -55859,7 +55859,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Bottom left",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness40_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness40_gui.png",
             "idText": "BACK_MODAL",
             "offset": 0,
             "drawTime": 0.0
@@ -56394,7 +56394,7 @@
     {
         "action": 0,
         "sequenceStep": 41,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness41_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness41_augmented.png",
         "textEntry": "adb shell input tap 597 1453",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -56438,7 +56438,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness41_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness41_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -58220,7 +58220,7 @@
     {
         "action": 0,
         "sequenceStep": 42,
-        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness42_augmented.png",
+        "screenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness42_augmented.png",
         "textEntry": "adb shell input tap 260 1583",
         "areaEdit": 0,
         "hashStep": "968212728",
@@ -58264,7 +58264,7 @@
             "itemList": false,
             "calendarWindow": false,
             "relativeLocation": "Center",
-            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug_fastnfitness42_gui.png",
+            "guiScreenshot": "com.easyfitness.debug.User-Trace.1.com.easyfitness.debug_0.19.3.1_debug:fastnfitness42_gui.png",
             "idText": "",
             "offset": 0,
             "drawTime": 0.0
@@ -60045,7 +60045,7 @@
     }],
     "app":
     {
-        "name": "debug_fastnfitness",
+        "name": "debug:fastnfitness",
         "packageName": "com.easyfitness.debug",
         "mainActivity": "com.easyfitness.MainActivity",
         "version": "0.19.3.1",
