@@ -1,0 +1,124 @@
+--------- beginning of main
+03-19 21:46:27.860  4199  4199 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+03-19 21:46:27.963  4199  4199 W app_process: Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:28.009  4199  4199 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+03-19 21:46:28.079  1541  1541 I keystore: clear_uid 10118
+03-19 21:46:28.167  1696  1723 I zygote64: Explicit concurrent copying GC freed 79693(5MB) AllocSpace objects, 21(468KB) LOS objects, 34% free, 11MB/17MB, paused 417us total 86.077ms
+03-19 21:46:28.184  4199  4199 I app_process: System.exit called, status: 0
+03-19 21:46:28.185  4199  4199 I AndroidRuntime: VM exiting with result code 0.
+03-19 21:46:28.187  4199  4208 W MessageQueue: Handler (android.os.Handler) {e095cc2} sending message to a Handler on a dead thread
+03-19 21:46:28.187  4199  4208 W MessageQueue: java.lang.IllegalStateException: Handler (android.os.Handler) {e095cc2} sending message to a Handler on a dead thread
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at android.os.MessageQueue.enqueueMessage(MessageQueue.java:545)
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at android.os.Handler.enqueueMessage(Handler.java:661)
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at android.os.Handler.sendMessageAtTime(Handler.java:630)
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at android.os.Handler.sendMessageDelayed(Handler.java:600)
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at android.os.Handler.post(Handler.java:356)
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at android.os.ResultReceiver$MyResultReceiver.send(ResultReceiver.java:57)
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at com.android.internal.os.IResultReceiver$Stub.onTransact(IResultReceiver.java:58)
+03-19 21:46:28.187  4199  4208 W MessageQueue: 	at android.os.Binder.execTransact(Binder.java:674)
+03-19 21:46:28.204  4211  4211 W zygote64: Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:28.245  1696  1761 I InputReader: Reconfiguring input devices.  changes=0x00000010
+03-19 21:46:28.258  1937  1937 D CarrierSvcBindHelper: No carrier app for: 0
+03-19 21:46:28.262  1696  1710 E memtrack: Couldn't load memtrack module
+03-19 21:46:28.262  1696  1710 W android.os.Debug: failed to get memory consumption info: -1
+03-19 21:46:28.263  4228  4228 W zygote64: Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:28.283  4242  4242 W zygote64: Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:28.292  2111  2111 I GeofencerStateMachine: removeGeofences: removeRequest=RemoveGeofencingRequest[REMOVE_ALL packageName=com.android.gpstest]
+03-19 21:46:28.327  1819  1832 I zygote64: Background concurrent copying GC freed 7341(376KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 5MB/10MB, paused 4.326ms total 111.179ms
+03-19 21:46:28.349  4267  4267 W zygote64: Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:28.381  2111  4260 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+03-19 21:46:28.406  2318  7473 I ContentMaintenance: Internal cache bytes used: 0; limit: 100000000; download size: 0
+03-19 21:46:28.466  2318  6389 I Icing   : doRemovePackageData com.android.gpstest
+03-19 21:46:28.479  1441  1441 E lowmemorykiller: Error writing /proc/29883/oom_score_adj; errno=22
+03-19 21:46:28.511  2318  7473 I RealtimeCacheCleanup: Beginning Realtime garbage collection.
+03-19 21:46:28.545  2318  7473 I RealtimeCacheCleanup: Finished Realtime garbage collection.
+03-19 21:46:28.622  2318  3012 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=AppsCorpus serviceId=36
+03-19 21:46:28.645  2318  6389 W Icing   : No valid account for uploading user actions
+03-19 21:46:28.705  2318  3015 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=30
+03-19 21:46:28.730  4228  4279 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+03-19 21:46:28.769  4267  4267 W DynamiteModule: Local module descriptor class for providerinstaller not found.
+03-19 21:46:28.783  4267  4267 W ProviderHelper: Unknown dynamite feature providerinstaller
+03-19 21:46:28.808  4310  4310 W zygote64: Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:28.815  4267  4267 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0
+03-19 21:46:28.816  4267  4267 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.
+03-19 21:46:28.831  4267  4267 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 286 native methods...
+03-19 21:46:28.837  2318  6389 I Icing   : Usage reports ok 1, Failed Usage reports 0, indexed 0, rejected 0
+03-19 21:46:28.842  2318  6389 W Icing   : No valid account for uploading user actions
+03-19 21:46:28.850  2318  6389 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+03-19 21:46:28.858  4267  4267 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+03-19 21:46:28.862  2318  6389 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+03-19 21:46:28.865  4267  4267 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+03-19 21:46:28.865  4267  4267 I Safeboot: Checking safeboot...
+03-19 21:46:28.866  4267  4267 I Safeboot: Not entering safeboot; wrong process.
+03-19 21:46:28.868  2318  6389 I Icing   : Indexing done com.google.android.gms-apps
+03-19 21:46:28.948  4267  4267 I bezb    : Primes not initialized, returning default (no-op) Primes instance which will ignore all calls. Please call Primes.initialize(...) before using any Primes API.
+03-19 21:46:31.926  4360  4360 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+03-19 21:46:31.985  4360  4360 W app_process: Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:32.015  4360  4360 D AndroidRuntime: Calling main entry com.android.commands.pm.Pm
+03-19 21:46:32.027  4360  4369 W MessageQueue: Handler (android.os.Handler) {893c666} sending message to a Handler on a dead thread
+03-19 21:46:32.027  4360  4369 W MessageQueue: java.lang.IllegalStateException: Handler (android.os.Handler) {893c666} sending message to a Handler on a dead thread
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at android.os.MessageQueue.enqueueMessage(MessageQueue.java:545)
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at android.os.Handler.enqueueMessage(Handler.java:661)
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at android.os.Handler.sendMessageAtTime(Handler.java:630)
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at android.os.Handler.sendMessageDelayed(Handler.java:600)
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at android.os.Handler.post(Handler.java:356)
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at android.os.ResultReceiver$MyResultReceiver.send(ResultReceiver.java:57)
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at com.android.internal.os.IResultReceiver$Stub.onTransact(IResultReceiver.java:58)
+03-19 21:46:32.027  4360  4369 W MessageQueue: 	at android.os.Binder.execTransact(Binder.java:674)
+03-19 21:46:32.028  4360  4360 I app_process: System.exit called, status: 0
+03-19 21:46:32.028  4360  4360 I AndroidRuntime: VM exiting with result code 0.
+03-19 21:46:32.552  4377  4377 W zygote64: Unexpected CPU variant for X86 using defaults: x86_64
+--------- beginning of system
+03-19 21:46:32.554  1696  1723 I ActivityManager: Start proc 4377:com.android.defcontainer/u0a7 for service com.android.defcontainer/.DefaultContainerService
+03-19 21:46:32.596  1696  1723 I PackageManager.DexOptimizer: Running dexopt (dexoptNeeded=1) on: /data/app/vmdl1187341037.tmp/base.apk pkg=com.poupa.vinylmusicplayer.debug isa=x86_64 dexoptFlags=boot_complete,debuggable,public target-filter=quicken oatDir=/data/app/vmdl1187341037.tmp/oat sharedLibraries=null
+03-19 21:46:32.644  4398  4398 W dex2oat : Unexpected CPU variant for X86 using defaults: x86_64
+03-19 21:46:32.647  4398  4398 I dex2oat : /system/bin/dex2oat --input-vdex-fd=-1 --output-vdex-fd=10 --compiler-filter=quicken --debuggable --classpath-dir=/data/app/vmdl1187341037.tmp
+03-19 21:46:34.707  1696  1714 E BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+03-19 21:46:35.004  1696  1710 E memtrack: Couldn't load memtrack module
+03-19 21:46:35.004  1696  1710 W android.os.Debug: failed to get memory consumption info: -1
+03-19 21:46:35.021  1696  1710 E memtrack: Couldn't load memtrack module
+03-19 21:46:35.021  1696  1710 W android.os.Debug: failed to get memory consumption info: -1
+03-19 21:46:35.039  1696  1710 E memtrack: Couldn't load memtrack module
+03-19 21:46:35.039  1696  1710 W android.os.Debug: failed to get memory consumption info: -1
+03-19 21:46:35.047  1696  1710 E memtrack: Couldn't load memtrack module
+03-19 21:46:35.047  1696  1710 W android.os.Debug: failed to get memory consumption info: -1
+03-19 21:46:35.057  1696  1710 E memtrack: Couldn't load memtrack module
+03-19 21:46:35.057  1696  1710 W android.os.Debug: failed to get memory consumption info: -1
+03-19 21:46:35.130  4398  4398 I dex2oat : dex2oat took 2.487s (8.823s cpu) (threads: 4) arena alloc=7KB (8120B) java alloc=8MB (8524776B) native alloc=8MB (9219552B) free=2MB (3101216B)
+03-19 21:46:35.164  1540 13449 D installd: Applied hard quotas for 10119
+03-19 21:46:35.165  1696  1723 D PackageManager: Ephemeral installer not found with new action; try old one
+03-19 21:46:35.165  1696  1723 D PackageManager: Clear ephemeral installer activity
+03-19 21:46:35.167  1696  1723 V BackupManagerService: restoreAtInstall pkg=com.poupa.vinylmusicplayer.debug token=1a restoreSet=0
+03-19 21:46:35.167  1696  1723 V BackupManagerService: Finishing install immediately
+03-19 21:46:35.171  1540 13449 E         : Couldn't opendir /data/app/vmdl1187341037.tmp: No such file or directory
+03-19 21:46:35.171  1540 13449 E installd: Failed to delete /data/app/vmdl1187341037.tmp: No such file or directory
+03-19 21:46:35.185  1937  1937 D ImsResolver: maybeAddedImsService, packageName: com.poupa.vinylmusicplayer.debug
+03-19 21:46:35.187  1696  1761 I InputReader: Reconfiguring input devices.  changes=0x00000010
+03-19 21:46:35.222  1696 16249 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.poupa.vinylmusicplayer.debug flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
+03-19 21:46:35.222  1696  1711 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.poupa.vinylmusicplayer.debug flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
+03-19 21:46:35.223  1696  1711 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.poupa.vinylmusicplayer.debug flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+03-19 21:46:35.223  1696  1711 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.poupa.vinylmusicplayer.debug flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
+03-19 21:46:35.235  2111  4410 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.poupa.vinylmusicplayer.debug flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+03-19 21:46:35.238  2111  4278 W GCM     : Unexpected forwarded intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.poupa.vinylmusicplayer.debug flg=0x4000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) }
+03-19 21:46:35.243  1696  1696 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.google.android.dialer: DDC.oR@ARg
+03-19 21:46:35.250  2318  4413 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+03-19 21:46:35.252  1696  7050 W ActivityManager: Permission Denial: Accessing service ComponentInfo{com.google.android.music/com.google.android.music.dial.DialMediaRouteProviderService} from pid=5674, uid=10046 that is not exported from uid 10059
+03-19 21:46:35.256  2318  4414 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.poupa.vinylmusicplayer.debug flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+03-19 21:46:35.264  1696  7050 W ActivityManager: Unable to start service Intent { act=com.google.android.gms.auth.key.retrieval.service.START pkg=com.google.android.gms } U=0: not found
+03-19 21:46:35.268  1696  2436 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@961d8b6
+03-19 21:46:35.268  2318  2632 E GmsClient: unable to connect to service: com.google.android.gms.auth.key.retrieval.service.START on com.google.android.gms
+03-19 21:46:35.279  1937  1937 D CarrierSvcBindHelper: No carrier app for: 0
+03-19 21:46:35.310  1937  1937 D CarrierConfigLoader: mHandler: 9 phoneId: 0
+03-19 21:46:35.355  1696  1706 I zygote64: Background concurrent copying GC freed 50376(3MB) AllocSpace objects, 24(556KB) LOS objects, 32% free, 12MB/18MB, paused 1.665ms total 180.735ms
+03-19 21:46:35.370  2318  4415 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: pay:-1
+03-19 21:46:35.374  2318  4415 E ConfigFileUtils: Failed to read config file: /data/user_de/0/com.google.android.gms/app_chimera/next_container.pb (No such file or directory)
+03-19 21:46:35.432  2318  2330 I zygote64: Background concurrent copying GC freed 29051(1858KB) AllocSpace objects, 10(200KB) LOS objects, 42% free, 8MB/14MB, paused 7.913ms total 40.965ms
+03-19 21:46:35.439  1696 14684 I ActivityManager: Process com.android.documentsui (pid 4228) has died: cch+6CEM 
+03-19 21:46:35.463  2318  4415 I ChmraDebugLogger: [73] 1801
+03-19 21:46:35.476  2318  4415 I ChmraDebugLogger: [30] [Pay.optional:202414020000] permitMetered=true,
+03-19 21:46:35.487  2318  4415 W ChimeraConfigService: Retry attempt was throttled.
+03-19 21:46:35.519  2318  4414 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://sjaf-sMeDAg3eOHBpmFYh7W6X7_adwp93lzm4D-l-Q_WwZFPec-BNax100ej5lRI6ShX78VDocfVee9T6j0omA==@com.poupa.vinylmusicplayer.debug/ was not found. Marking affiliation data as stale...
+03-19 21:46:35.556  2318 22112 I Icing   : Indexing com.google.android.gms-internal.3p:MobileApplication from com.google.android.gms using seqno 69
+03-19 21:46:35.584  2318 22112 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+03-19 21:46:35.634  2318 22112 I Icing   : Indexing done com.google.android.gms-apps
+Elapsed Time: 3622938

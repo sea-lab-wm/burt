@@ -75,9 +75,9 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("phimpme")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("atimetracker")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("commons")));
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("fastnfitness")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("fastnfitness", "Fast N Fitness")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("anglerslog")));
-        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("trainerapp")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("trainerapp", "Trainer App", "TrainerApp", "Trainer-App")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("streetcomplete")));
 
         //------------------------
@@ -167,8 +167,10 @@ public class AppNamesMappings {
 
         APP_NAMES_PACKAGES.put("schedule-campfahrplan",
                 Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
-        APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod.debug"));
-        APP_NAMES_PACKAGES.put("antennapod", Arrays.asList("de.danoeh.antennapod.debug"));
+        //APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod.debug"));
+        //APP_NAMES_PACKAGES.put("antennapod", Arrays.asList("de.danoeh.antennapod.debug"));
+        APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod"));
+        APP_NAMES_PACKAGES.put("antennapod", Arrays.asList("de.danoeh.antennapod"));
         APP_NAMES_PACKAGES.put("Android Token", Arrays.asList("uk.co.bitethebullet.android.token"));
         APP_NAMES_PACKAGES.put("android token", Arrays.asList("uk.co.bitethebullet.android.token"));
         APP_NAMES_PACKAGES.put("Grow Tracker", Arrays.asList("me.anon.grow"));
@@ -198,9 +200,10 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("phimpme", Arrays.asList("org.fossasia.phimpme"));
         APP_NAMES_PACKAGES.put("simplenote", Arrays.asList("com.automattic.simplenote"));
         APP_NAMES_PACKAGES.put("trainerapp", Arrays.asList("com.german_software_engineers.trainerapp"));
-        APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness.debug"));
+        //APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness.debug"));
+        APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness"));
         APP_NAMES_PACKAGES.put("anglerslog", Arrays.asList("com.cohenadair.anglerslog"));
-        
+
         APP_NAMES_PACKAGES.put("lrkfm", Arrays.asList("io.lerk.lrkFM"));
         APP_NAMES_PACKAGES.put("pedometer", Arrays.asList("org.secuso.privacyfriendlyactivitytracker"));
         APP_NAMES_PACKAGES.put("wifianalyzer", Arrays.asList("com.vrem.wifianalyzer"));
@@ -223,7 +226,7 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("chessclock", Arrays.asList("com.chess.clock"));
         APP_NAMES_PACKAGES.put("noadplayer", Arrays.asList("com.droidheat.musicplayer"));
         APP_NAMES_PACKAGES.put("trainingsschedule", Arrays.asList("com.genonbeta.TrebleShot"));
-            
+
         //APP_NAMES_PACKAGES.put("focus", Arrays.asList("focus"));
         //APP_NAMES_PACKAGES.put("gpstest", Arrays.asList("gpstest"));
         //APP_NAMES_PACKAGES.put("markor", Arrays.asList("markor"));
@@ -249,7 +252,7 @@ public class AppNamesMappings {
     }
 
     public static List<String> getPackageNames(String appName){
-       return APP_NAMES_PACKAGES.get(appName);
+        return APP_NAMES_PACKAGES.get(appName);
     }
 
 
@@ -293,3 +296,5 @@ public class AppNamesMappings {
 
 
 }
+
+

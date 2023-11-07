@@ -1,0 +1,28 @@
+{
+    "date": "Nov 9, 2022 2:25:04 PM",
+    "deviceDimensions": "1080x1920",
+    "executionType": "Expected-Top_Down-",
+    "topDown": true,
+    "bottomUp": false,
+    "noText": false,
+    "expectedText": true,
+    "unexpectedText": false,
+    "contextFeatsEnabled": false,
+    "contextFeatsDisabled": false,
+    "executionNum": 1,
+    "crash": false,
+    "deviceName": "Android SDK built for x86",
+    "elapsedTime": 1499749,
+    "orientation": 0,
+    "mainActivity": "com.german_software_engineers.trainerapp.TrainingsSchedule",
+    "androidVersion": "10",
+    "steps": [],
+    "app":
+    {
+        "name": "trainingsschedule",
+        "packageName": "com.german_software_engineers.trainerapp",
+        "mainActivity": "com.german_software_engineers.trainerapp.TrainingsSchedule",
+        "version": "19.02.89",
+        "apkPath": "/Users/junayed/Documents/NecessaryDocs/GeorgeMasonUniversity/Research/Projects/BugReportReproductionStudy/2022_saner_bug_report_reproduction_study/apks/1641.apk"
+    }
+}
