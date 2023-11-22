@@ -666,15 +666,15 @@ public class UiAutoConnector {
             }
         }
         vo.setOffset(offset);
-        if ((vo.isClickable() || vo.isLongClickable() || vo.isCheckable()
-        // seek bar is not clickable nor longclickable nor checkeable
-                || (vo.getName().equals("android.widget.FrameLayout") || all)
-                || vo.getName().equals("android.widget.SeekBar"))
-                // discards the list view but includes children
-                && list != null && vo.getPositionY() < heightScreen
-                && (!vo.getName().equals("android.widget.ListView") || includeLists)) {
+        // if ((vo.isClickable() || vo.isLongClickable() || vo.isCheckable()
+        // // seek bar is not clickable nor longclickable nor checkeable
+        //         || (vo.getName().equals("android.widget.FrameLayout") || all)
+        //         || vo.getName().equals("android.widget.SeekBar"))
+        //         // discards the list view but includes children
+        //         && list != null && vo.getPositionY() < heightScreen
+        //         && (!vo.getName().equals("android.widget.ListView") || includeLists)) {
             list.add(vo);
-        }
+        // }
         // System.out.println("------------");
         switch (typeStrategy) {
         case GENERIC_STRATEGY:
