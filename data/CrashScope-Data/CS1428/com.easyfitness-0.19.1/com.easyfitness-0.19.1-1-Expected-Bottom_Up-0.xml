@@ -1,101 +1,178 @@
-<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <hierarchy rotation="0">
-    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.easyfitness" content-desc=""
-          checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false"
-          scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][1080,2274]">
-        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.easyfitness"
-              content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
-              focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
-              bounds="[0,0][1080,2274]">
-            <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.easyfitness"
-                  content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
-                  focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
-                  bounds="[0,63][1080,2274]">
-                <node index="0" text="" resource-id="com.easyfitness:id/action_bar_root"
-                      class="android.widget.LinearLayout" package="com.easyfitness" content-desc="" checkable="false"
-                      checked="false" clickable="false" enabled="true" focusable="false" focused="false"
-                      scrollable="false" long-clickable="false" password="false" selected="false"
-                      bounds="[0,63][1080,2274]">
-                    <node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout"
-                          package="com.easyfitness" content-desc="" checkable="false" checked="false" clickable="false"
-                          enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false"
-                          password="false" selected="false" bounds="[0,63][1080,2274]">
-                        <node index="0" text="" resource-id="com.easyfitness:id/mi_frame"
-                              class="android.widget.LinearLayout" package="com.easyfitness" content-desc=""
-                              checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
-                              focused="false" scrollable="false" long-clickable="false" password="false"
-                              selected="false" bounds="[0,63][1080,2274]">
-                            <node index="0" text="" resource-id="com.easyfitness:id/mi_pager"
-                                  class="androidx.viewpager.widget.ViewPager" package="com.easyfitness" content-desc=""
-                                  checkable="false" checked="false" clickable="false" enabled="true" focusable="true"
-                                  focused="false" scrollable="true" long-clickable="false" password="false"
-                                  selected="false" bounds="[0,63][1080,2043]">
-                                <node index="0" text="" resource-id="" class="android.widget.ScrollView"
-                                      package="com.easyfitness" content-desc="" checkable="false" checked="false"
-                                      clickable="false" enabled="true" focusable="true" focused="false"
-                                      scrollable="false" long-clickable="false" password="false" selected="false"
-                                      bounds="[0,63][1080,2043]">
-                                    <node index="0" text="" resource-id="" class="android.widget.LinearLayout"
-                                          package="com.easyfitness" content-desc="" checkable="false" checked="false"
-                                          clickable="false" enabled="true" focusable="false" focused="false"
-                                          scrollable="false" long-clickable="false" password="false" selected="false"
-                                          bounds="[0,467][1080,1638]">
-                                        <node index="0" text="" resource-id="com.easyfitness:id/mi_image"
-                                              class="android.widget.ImageView" package="com.easyfitness" content-desc=""
-                                              checkable="false" checked="false" clickable="false" enabled="true"
-                                              focusable="false" focused="false" scrollable="false"
-                                              long-clickable="false" password="false" selected="false"
-                                              bounds="[204,509][876,1181]"/>
-                                        <node index="1" text="Hello" resource-id="com.easyfitness:id/mi_title"
-                                              class="android.widget.TextView" package="com.easyfitness" content-desc=""
-                                              checkable="false" checked="false" clickable="false" enabled="true"
-                                              focusable="false" focused="false" scrollable="false"
-                                              long-clickable="false" password="false" selected="false"
-                                              bounds="[42,1265][1038,1350]"/>
-                                        <node index="2"
-                                              text="Welcome to Fast N Fitness! This application is a quick and simple way to record your program and follow your progression and the evolution of your body."
-                                              resource-id="com.easyfitness:id/mi_description"
-                                              class="android.widget.TextView" package="com.easyfitness" content-desc=""
-                                              checkable="false" checked="false" clickable="false" enabled="true"
-                                              focusable="false" focused="false" scrollable="false"
-                                              long-clickable="false" password="false" selected="false"
-                                              bounds="[42,1392][1038,1596]"/>
+      <node index="0" text="" resource-id="" class="android.widget.FrameLayout"
+            package="com.easyfitness" content-desc=""
+            checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+            focused="false"
+            scrollable="false" long-clickable="false" password="false" selected="false"
+            bounds="[0,0][1080,2274]">
+            <node index="0" text="" resource-id="" class="android.widget.LinearLayout"
+                  package="com.easyfitness"
+                  content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                  focusable="false"
+                  focused="false" scrollable="false" long-clickable="false" password="false"
+                  selected="false"
+                  bounds="[0,0][1080,2274]">
+                  <node index="0" text="" resource-id="" class="android.widget.FrameLayout"
+                        package="com.easyfitness"
+                        content-desc="" checkable="false" checked="false" clickable="false"
+                        enabled="true" focusable="false"
+                        focused="false" scrollable="false" long-clickable="false" password="false"
+                        selected="false"
+                        bounds="[0,63][1080,2274]">
+                        <node index="0" text="" resource-id="com.easyfitness:id/action_bar_root"
+                              class="android.widget.LinearLayout" package="com.easyfitness"
+                              content-desc="" checkable="false"
+                              checked="false" clickable="false" enabled="true" focusable="false"
+                              focused="false"
+                              scrollable="false" long-clickable="false" password="false"
+                              selected="false"
+                              bounds="[0,63][1080,2274]">
+                              <node index="0" text="" resource-id="android:id/content"
+                                    class="android.widget.FrameLayout"
+                                    package="com.easyfitness" content-desc="" checkable="false"
+                                    checked="false" clickable="false"
+                                    enabled="true" focusable="false" focused="false"
+                                    scrollable="false" long-clickable="false"
+                                    password="false" selected="false" bounds="[0,63][1080,2274]">
+                                    <node index="0" text=""
+                                          resource-id="com.easyfitness:id/mi_frame"
+                                          class="android.widget.LinearLayout"
+                                          package="com.easyfitness" content-desc=""
+                                          checkable="false" checked="false" clickable="false"
+                                          enabled="true" focusable="false"
+                                          focused="false" scrollable="false" long-clickable="false"
+                                          password="false"
+                                          selected="false" bounds="[0,63][1080,2274]">
+                                          <node index="0" text=""
+                                                resource-id="com.easyfitness:id/mi_pager"
+                                                class="androidx.viewpager.widget.ViewPager"
+                                                package="com.easyfitness" content-desc=""
+                                                checkable="false" checked="false" clickable="false"
+                                                enabled="true" focusable="true"
+                                                focused="false" scrollable="true"
+                                                long-clickable="false" password="false"
+                                                selected="false" bounds="[0,63][1080,2043]">
+                                                <node index="0" text="" resource-id=""
+                                                      class="android.widget.ScrollView"
+                                                      package="com.easyfitness" content-desc=""
+                                                      checkable="false" checked="false"
+                                                      clickable="false" enabled="true"
+                                                      focusable="true" focused="false"
+                                                      scrollable="false" long-clickable="false"
+                                                      password="false" selected="false"
+                                                      bounds="[0,63][1080,2043]">
+                                                      <node index="0" text="" resource-id=""
+                                                            class="android.widget.LinearLayout"
+                                                            package="com.easyfitness"
+                                                            content-desc="" checkable="false"
+                                                            checked="false"
+                                                            clickable="false" enabled="true"
+                                                            focusable="false" focused="false"
+                                                            scrollable="false"
+                                                            long-clickable="false" password="false"
+                                                            selected="false"
+                                                            bounds="[0,467][1080,1638]">
+                                                            <node index="0" text=""
+                                                                  resource-id="com.easyfitness:id/mi_image"
+                                                                  class="android.widget.ImageView"
+                                                                  package="com.easyfitness"
+                                                                  content-desc=""
+                                                                  checkable="false" checked="false"
+                                                                  clickable="false" enabled="true"
+                                                                  focusable="false" focused="false"
+                                                                  scrollable="false"
+                                                                  long-clickable="false"
+                                                                  password="false" selected="false"
+                                                                  bounds="[204,509][876,1181]" />
+                                                            <node index="1" text="Hello"
+                                                                  resource-id="com.easyfitness:id/mi_title"
+                                                                  class="android.widget.TextView"
+                                                                  package="com.easyfitness"
+                                                                  content-desc=""
+                                                                  checkable="false" checked="false"
+                                                                  clickable="false" enabled="true"
+                                                                  focusable="false" focused="false"
+                                                                  scrollable="false"
+                                                                  long-clickable="false"
+                                                                  password="false" selected="false"
+                                                                  bounds="[42,1265][1038,1350]" />
+                                                            <node index="2"
+                                                                  text="Welcome to Fast N Fitness! This application is a quick and simple way to record your program and follow your progression and the evolution of your body."
+                                                                  resource-id="com.easyfitness:id/mi_description"
+                                                                  class="android.widget.TextView"
+                                                                  package="com.easyfitness"
+                                                                  content-desc=""
+                                                                  checkable="false" checked="false"
+                                                                  clickable="false" enabled="true"
+                                                                  focusable="false" focused="false"
+                                                                  scrollable="false"
+                                                                  long-clickable="false"
+                                                                  password="false" selected="false"
+                                                                  bounds="[42,1392][1038,1596]" />
+                                                      </node>
+                                                </node>
+                                          </node>
+                                          <node index="1" text="" resource-id=""
+                                                class="android.widget.LinearLayout"
+                                                package="com.easyfitness" content-desc=""
+                                                checkable="false" checked="false"
+                                                clickable="false" enabled="true" focusable="false"
+                                                focused="false" scrollable="false"
+                                                long-clickable="false" password="false"
+                                                selected="false" bounds="[0,2043][1080,2274]">
+                                                <node index="1" text="" resource-id=""
+                                                      class="android.widget.LinearLayout"
+                                                      package="com.easyfitness" content-desc=""
+                                                      checkable="false" checked="false"
+                                                      clickable="false" enabled="true"
+                                                      focusable="false" focused="false"
+                                                      scrollable="false" long-clickable="false"
+                                                      password="false" selected="false"
+                                                      bounds="[231,2146][849,2274]">
+                                                      <node index="0" text=""
+                                                            resource-id="com.easyfitness:id/mi_pager_indicator"
+                                                            class="android.view.View"
+                                                            package="com.easyfitness"
+                                                            content-desc=""
+                                                            checkable="false" checked="false"
+                                                            clickable="false" enabled="true"
+                                                            focusable="false" focused="false"
+                                                            scrollable="false"
+                                                            long-clickable="false"
+                                                            password="false" selected="false"
+                                                            bounds="[231,2146][849,2172]" />
+                                                </node>
+                                                <node index="2" text=""
+                                                      resource-id="com.easyfitness:id/mi_button_next"
+                                                      class="android.widget.ImageButton"
+                                                      package="com.easyfitness" content-desc="Next"
+                                                      checkable="false" checked="false"
+                                                      clickable="true" enabled="true"
+                                                      focusable="true"
+                                                      focused="false" scrollable="false"
+                                                      long-clickable="true" password="false"
+                                                      selected="false"
+                                                      bounds="[891,2085][1038,2232]" />
+                                          </node>
                                     </node>
-                                </node>
-                            </node>
-                            <node index="1" text="" resource-id="" class="android.widget.LinearLayout"
-                                  package="com.easyfitness" content-desc="" checkable="false" checked="false"
-                                  clickable="false" enabled="true" focusable="false" focused="false" scrollable="false"
-                                  long-clickable="false" password="false" selected="false" bounds="[0,2043][1080,2274]">
-                                <node index="1" text="" resource-id="" class="android.widget.LinearLayout"
-                                      package="com.easyfitness" content-desc="" checkable="false" checked="false"
-                                      clickable="false" enabled="true" focusable="false" focused="false"
-                                      scrollable="false" long-clickable="false" password="false" selected="false"
-                                      bounds="[231,2146][849,2274]">
-                                    <node index="0" text="" resource-id="com.easyfitness:id/mi_pager_indicator"
-                                          class="android.view.View" package="com.easyfitness" content-desc=""
-                                          checkable="false" checked="false" clickable="false" enabled="true"
-                                          focusable="false" focused="false" scrollable="false" long-clickable="false"
-                                          password="false" selected="false" bounds="[231,2146][849,2172]"/>
-                                </node>
-                                <node index="2" text="" resource-id="com.easyfitness:id/mi_button_next"
-                                      class="android.widget.ImageButton" package="com.easyfitness" content-desc="Next"
-                                      checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
-                                      focused="false" scrollable="false" long-clickable="true" password="false"
-                                      selected="false" bounds="[891,2085][1038,2232]"/>
-                            </node>
+                              </node>
                         </node>
-                    </node>
-                </node>
+                  </node>
             </node>
-        </node>
-        <node index="1" text="" resource-id="android:id/statusBarBackground" class="android.view.View"
-              package="com.easyfitness" content-desc="" checkable="false" checked="false" clickable="false"
-              enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false"
-              password="false" selected="false" bounds="[0,0][1080,63]"/>
-        <node index="2" text="" resource-id="android:id/navigationBarBackground" class="android.view.View"
-              package="com.easyfitness" content-desc="" checkable="false" checked="false" clickable="false"
-              enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false"
-              password="false" selected="false" bounds="[0,0][0,0]"/>
-    </node>
+            <node index="1" text="" resource-id="android:id/statusBarBackground"
+                  class="android.view.View"
+                  package="com.easyfitness" content-desc="" checkable="false" checked="false"
+                  clickable="false"
+                  enabled="true" focusable="false" focused="false" scrollable="false"
+                  long-clickable="false"
+                  password="false" selected="false" bounds="[0,0][1080,63]" />
+            <node index="2" text="" resource-id="android:id/navigationBarBackground"
+                  class="android.view.View"
+                  package="com.easyfitness" content-desc="" checkable="false" checked="false"
+                  clickable="false"
+                  enabled="true" focusable="false" focused="false" scrollable="false"
+                  long-clickable="false"
+                  password="false" selected="false" bounds="[0,0][0,0]" />
+      </node>
 </hierarchy>

@@ -314,10 +314,10 @@ public @Slf4j class JSONGraphReader {
 			component.setScreen(screen);
 			component.setId(componentId++);
 
-			if(component.getId()!=null)
-			{
-				throw new RuntimeException("component.getId() is not null: " + component.getId());
-			}
+			// if(component.getId()!=null)
+			// {
+			// 	throw new RuntimeException("component.getId() is not null: " + component.getId());
+			// }
 
 			voComp.setId(component.getId());
 			cache.put(component.getId(), new ImmutablePair<>(voComp, component));

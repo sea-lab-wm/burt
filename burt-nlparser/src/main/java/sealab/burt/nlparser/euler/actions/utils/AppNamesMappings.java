@@ -76,6 +76,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("atimetracker")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("commons")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("fastnfitness", "Fast N Fitness")));
+        APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("fastnfitness2", "Fast N Fitness")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("anglerslog")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("trainerapp", "Trainer App", "TrainerApp", "Trainer-App")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("streetcomplete")));
@@ -200,7 +201,7 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("phimpme", Arrays.asList("org.fossasia.phimpme"));
         APP_NAMES_PACKAGES.put("simplenote", Arrays.asList("com.automattic.simplenote"));
         APP_NAMES_PACKAGES.put("trainerapp", Arrays.asList("com.german_software_engineers.trainerapp"));
-        //APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness.debug"));
+        APP_NAMES_PACKAGES.put("fastnfitness2", Arrays.asList("com.easyfitness.debug"));
         APP_NAMES_PACKAGES.put("fastnfitness", Arrays.asList("com.easyfitness"));
         APP_NAMES_PACKAGES.put("anglerslog", Arrays.asList("com.cohenadair.anglerslog"));
 
