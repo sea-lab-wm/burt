@@ -314,6 +314,11 @@ public @Slf4j class JSONGraphReader {
 			component.setScreen(screen);
 			component.setId(componentId++);
 
+			if(component.getId()!=null)
+			{
+				throw new RuntimeException("component.getId() is not null: " + component.getId());
+			}
+
 			voComp.setId(component.getId());
 			cache.put(component.getId(), new ImmutablePair<>(voComp, component));
 		}
@@ -321,7 +326,16 @@ public @Slf4j class JSONGraphReader {
 		cache.forEach((id, pair) -> {
 			DynGuiComponentVO voComp = pair.getKey();
 			List<DynGuiComponentVO> voChildren = voComp.getChildren();
-			List<DynGuiComponent> compChildren = voChildren.stream().map(vo -> cache.get(vo.getId()).getValue())
+//			if (voChildren == null){
+//				throw new RuntimeException("voChildren is null: " + voComp);;
+//			}
+			List<DynGuiComponent> compChildren = voChildren.stream().map(vo -> {
+						Pair<DynGuiComponentVO, DynGuiComponent>	pair2 =	cache.get(vo.getId());
+						if(pair2 == null){
+							throw new RuntimeException("pair2 is null: " + vo);
+						}
+						return pair2.getValue();
+			})
 					.collect(Collectors.toList());
 
 			// set children and parent
