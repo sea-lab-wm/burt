@@ -2,6 +2,8 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.view.mxGraph;
 import com.opencsv.CSVWriter;
 
+import edu.semeru.android.core.entity.model.fusion.Execution;
+import edu.semeru.android.core.entity.model.fusion.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,11 +37,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.io.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import com.google.gson.GsonBuilder;
 
 
 public
 @Slf4j
-class MainJSONGraphGenerator {
+class MainJSONGraphGenerator{
 
     private static final Set<Triplet<String, String, String>> ALL_SYSTEMS = JavaUtils.getSet(
 //            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"),
@@ -160,17 +166,33 @@ class MainJSONGraphGenerator {
 //           new Triplet<>("227", "gnucash", "2.2.1"),
 //           new Triplet<>("275", "aegis", "1.1.4"),
 
-            new Triplet<>("1213", "andotp", "0.8.0-beta1"),
-            new Triplet<>("1223", "gnucash", "2.2.0")
+//            new Triplet<>("1213", "andotp", "0.8.0-beta1"),
+//            new Triplet<>("1223", "gnucash", "2.2.0")
+
+            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"),
+            new Triplet<>("10","files", "1.0.0-beta.11"),
+            new Triplet<>("110", "vinyl", "0.24.1"),
+            new Triplet<>("117","openfoodfacts", "2.9.8"),
+            new Triplet<>("130","andotp", "0.6.3.1-dev"),
+            new Triplet<>("135","commons", "2.9.0-debug"),
+            new Triplet<>("248", "odkcollect", "v1.20.0"),
+            new Triplet<>("1299","fieldbook", "4.3.3"),
+//            new Triplet<>("1399","phimpme", "1.4.0"),
+//            new Triplet<>("1406","phimpme", "1.4.0"),
+            new Triplet<>("1563", "lrkfm", "1.8.0"),
+            new Triplet<>("1568", "lrkfm", "2.3.0")
     );
 
-    private static final String outFolder = Path.of("..", "data", "graphs_json_data").toString();
+    private static final String outFolder = Path.of("..", "data", "graphs_json_data_for_GPT_Project").toString();
     private static final Logger log = LoggerFactory.getLogger(MainJSONGraphGenerator.class);
 
+    // Use this main method for parallel processing
     public static void main(String[] args) throws Exception {
 
         int nThreads = 1;
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+
+        JsonObject allBugsJsonObj = new JsonObject();
 
         //list of all futures
         List<CompletableFuture<Boolean>> futures = new ArrayList<>();
@@ -181,7 +203,9 @@ class MainJSONGraphGenerator {
                     @Override
                     public Boolean get() {
                         try {
-                            generateAndSaveGraph(system);
+                            AppGraphInfo graphInfo = generateAndSaveGraph(system);
+                            JsonObject oneBugJsonObj = getMatchedStepsAndStates(graphInfo, system);
+                            allBugsJsonObj.add(system.getValue0(), oneBugJsonObj);
                         } catch (Exception e) {
                            log.error("Unexpected error for: " + system, e);
                         }
@@ -201,6 +225,8 @@ class MainJSONGraphGenerator {
                         return null;
                     }).join();
 
+            writeJsonToFile(allBugsJsonObj);
+
         } finally {
             executor.shutdown();
         }
@@ -209,16 +235,42 @@ class MainJSONGraphGenerator {
 
     }
 
-    private static void generateAndSaveGraph(Triplet<String, String, String> system) throws Exception {
+
+    // Use this main method for sequential processing
+//    public static void main(String[] args) {
+//        try {
+//            for (Triplet<String, String, String> system : ALL_SYSTEMS) {
+//                try {
+//                    generateAndSaveGraph(system);
+//                } catch (Exception e) {
+//                    log.error("Unexpected error for: " + system, e);
+//                }
+//            }
+//
+//            log.debug("All systems were processed");
+//
+//        } catch (Exception e) {
+//            log.error("There was an error: " + e.getMessage(), e);
+//        }
+//
+//        log.debug("Reached end");
+//    }
+
+    private static AppGraphInfo generateAndSaveGraph(Triplet<String, String, String> system) throws Exception {
         log.debug("Processing system: " + system);
 
         //AppGraphInfo graphInfo = JSONGraphReader.getGraph(system.getLeft(), system.getRight(), bugID);
 
-        AppGraphInfo graphInfo = JSONGraphReader.getGraph(system.getValue1(), system.getValue2(),system.getValue0(), 
-                                GraphDataSource.BOTH);
+        String bugID = system.getValue0();
+        String appName = system.getValue1();
+        String appVersion = system.getValue2();
+
+        AppGraphInfo graphInfo = JSONGraphReader.getGraph(appName, appVersion, bugID, GraphDataSource.BOTH);
 
         AppGraph<GraphState, GraphTransition> graph = graphInfo.getGraph();
         Appl app = graphInfo.getApp();
+
+        String packageName = app.getPackageName();
 
         //----------------------------------------
 
@@ -232,11 +284,31 @@ class MainJSONGraphGenerator {
 
         String pathname = sysFolder + File.separator + sysString;
 
+
         // ------------------------------------------------------
 
         File graphFile = new File(pathname + "-graph.txt");
         String graphStr = graphInfo.graphToString();
         FileUtils.write(graphFile, graphStr, StandardCharsets.UTF_8);
+
+        // ------------------------------------------------------
+        // save burt graph object
+
+//        File graphObjectFile = new File(pathname + ".ser");
+//
+//        try{
+//            FileOutputStream fileOutputStream = new FileOutputStream(graphObjectFile);
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+//            //Writing the graphInfo object
+//            objectOutputStream.writeObject(graphInfo);
+//            //Close the ObjectOutputStream
+//            objectOutputStream.close();
+//        }catch(IOException e){
+//            System.out.println("Exception Happened");
+//            e.printStackTrace();
+//        }
+
+        // ------------------------------------------------------
 
         // ------------------------------------------------------
 
@@ -249,8 +321,6 @@ class MainJSONGraphGenerator {
         FileUtils.write(ccFile, ccStr, StandardCharsets.UTF_8);
 
         // ------------------------------------------------------
-
-        String packageName = app.getPackageName();
 
         String pathnameStates = sysFolder + File.separator + "states";
         String pathnameTransitions = sysFolder + File.separator + "transitions";
@@ -339,6 +409,8 @@ class MainJSONGraphGenerator {
         ImageIO.write(image, "PNG", new File(pathname + ".png"));
 
         log.debug("Done");
+
+        return graphInfo;
     }
 
     private static String getConnectedComponentsStr(List<Set<GraphState>> stronglyConnectedSets) {
@@ -365,5 +437,173 @@ class MainJSONGraphGenerator {
 
         return builder.toString();
     }
+
+
+    private static JsonObject getMatchedStepsAndStates(AppGraphInfo graphInfo, Triplet<String, String, String> system) throws Exception {
+        // This method will identify the matched BURT graph steps and states for the script steps
+        String bugID = system.getValue0();
+        String appName = system.getValue1();
+        String appVersion = system.getValue2();
+
+        System.out.println("\n\nIdentifying matching steps and states for the bug: " + bugID);
+        System.out.println("---------------------------------");
+
+        JsonObject bugReportJsonObj = new JsonObject();
+        JsonArray scriptStepsJsonArray = new JsonArray();
+
+        List<AppStep> graphSteps = graphInfo.getSteps();
+        // System.out.println("Steps: " + graphSteps.size());
+
+        Set<GraphState> graphStates = graphInfo.getStates();
+        // System.out.println("States Size: " + graphStates.size());
+        // System.out.println("States: " + graphStates);
+
+        String scriptDataFolder = Path.of("..", "..", "GPT4BugReporting", "Data", "TR-Data").toString();
+        // System.out.println("Script Data Folder: " + scriptDataFolder);
+
+        String scriptDataLocation = Paths.get(scriptDataFolder, "TR" + bugID).toString();
+        // System.out.println("Script Data Location: " + scriptDataLocation);
+
+        List<Execution> scriptDataExecutions = JSONGraphReader.readExecutions(scriptDataLocation, true);
+
+        List<Step> scriptSteps = scriptDataExecutions.get(0).getSteps();
+
+        System.out.println("Steps: " + scriptSteps);
+        for (Step scriptStep : scriptSteps) {
+            JsonArray graphStepsJsonArray = new JsonArray();
+            JsonArray graphStatesJsonArray = new JsonArray();
+
+            int scriptStepActionId = scriptStep.getAction();
+            String scriptXmlId = "";
+            String scriptText = "";
+
+            if (scriptStep.getDynGuiComponent() != null){
+                scriptXmlId = scriptStep.getDynGuiComponent().getIdXml().toString();
+                scriptXmlId = scriptXmlId.substring(scriptXmlId.lastIndexOf('/') + 1);
+            }
+            if (scriptStep.getDynGuiComponent() != null){
+                scriptText = scriptStep.getDynGuiComponent().getText();
+            }
+
+            System.out.println("\nScript Step");
+            System.out.println("-----------");
+            System.out.println("Script Step ID: " + scriptStep.getId() + "\tAction ID: " + scriptStepActionId + "\tComponent XML ID: " + scriptXmlId + "\tComponent Text: " + scriptText);
+
+            System.out.println("Matched Graph Steps");
+            System.out.println("-------------------");
+
+            for (AppStep graphStep : graphSteps) {
+                Integer graphStepActionID = graphStep.getAction();
+                String graphStepXmlId = null;
+
+                if (graphStep.getComponent() != null){
+                    graphStepXmlId = graphStep.getComponent().getIdXml();
+                    graphStepXmlId = graphStepXmlId.substring(graphStepXmlId.lastIndexOf('/') + 1);
+                }
+
+                if (scriptXmlId == ""){
+                    if (scriptStepActionId == graphStepActionID){
+                        System.out.println("Graph Step ID: " + graphStep.getId() + "\tAction ID: " + graphStepActionID);
+
+                        JsonObject graphStepsJsonObj = new JsonObject();
+                        graphStepsJsonObj.addProperty("graph_step_id", graphStep.getId());
+                        graphStepsJsonObj.addProperty("action_id", graphStepActionID);
+
+                        graphStepsJsonArray.add(graphStepsJsonObj);
+                    }
+                }
+                else {
+                    if (scriptXmlId.equals(graphStepXmlId)){
+                        if (scriptStepActionId == graphStepActionID){
+                            if (scriptText.equals(graphStep.getComponent().getText())){
+                                System.out.println("Graph Step ID: " + graphStep.getId() + "\tAction ID: " + graphStepActionID + "\tComponent XML ID: " + graphStepXmlId + "\tComponent Text: " + graphStep.getComponent().getText());
+
+                                JsonObject graphStepsJsonObj = new JsonObject();
+                                graphStepsJsonObj.addProperty("graph_step_id", graphStep.getId());
+                                graphStepsJsonObj.addProperty("action_id", graphStepActionID);
+                                graphStepsJsonObj.addProperty("component_xml_id", graphStepXmlId);
+                                graphStepsJsonObj.addProperty("component_text", graphStep.getComponent().getText());
+
+                                graphStepsJsonArray.add(graphStepsJsonObj);
+                            }
+                        }
+                    }
+                }
+            }
+
+            System.out.println("Matched Graph States");
+            System.out.println("-------------------");
+
+            for (GraphState graphState : graphStates) {
+                String finalScriptXmlId = scriptXmlId;
+                // System.out.println("Graph State: " + graphState.getName());
+                if (scriptXmlId == ""){
+                    continue;
+                }
+
+                if (graphState.getScreen() != null){
+                    String finalScriptText = scriptText;
+                    graphState.getScreen().getDynGuiComponents().forEach(dynGuiComponent -> {
+                        if (dynGuiComponent.getIdXml() != null && dynGuiComponent.getText() != null){
+                            String graphStateXmlId = dynGuiComponent.getIdXml();
+                            graphStateXmlId = graphStateXmlId.substring(graphStateXmlId.lastIndexOf('/') + 1);
+
+                            if (finalScriptXmlId.equals(graphStateXmlId)){
+                                if (finalScriptText.equals(dynGuiComponent.getText())){
+                                    // System.out.println("Action ID: " + scriptStepActionId + "\tComponent XML ID: " + graphStateXmlId + "\tComponent Text: " + dynGuiComponent.getText());
+                                    System.out.println("Graph State: " + graphState.getName() + "\tComponent XML ID: " + graphStateXmlId + "\tComponent Text: " + dynGuiComponent.getText());
+
+                                    JsonObject graphStatesJsonObj = new JsonObject();
+                                    graphStatesJsonObj.addProperty("screen_id", graphState.getUniqueHash());
+                                    graphStatesJsonObj.addProperty("activity_name", graphState.getScreen().getActivity());
+                                    graphStatesJsonObj.addProperty("component_xml_id", graphStateXmlId);
+                                    graphStatesJsonObj.addProperty("component_text", dynGuiComponent.getText());
+
+                                    graphStatesJsonArray.add(graphStatesJsonObj);
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Create a new JsonObject
+            JsonObject scriptStepObject = new JsonObject();
+            scriptStepObject.addProperty("script_step_id", scriptStep.getId());
+            scriptStepObject.addProperty("action_id", scriptStepActionId);
+            scriptStepObject.addProperty("component_xml_id", scriptXmlId);
+            scriptStepObject.addProperty("component_text", scriptText);
+            scriptStepObject.add("graph_steps", graphStepsJsonArray);
+            scriptStepObject.add("graph_states", graphStatesJsonArray);
+
+            // Add the JsonObject to the JsonArray
+            scriptStepsJsonArray.add(scriptStepObject);
+
+            System.out.println("\n===========================");
+        }
+
+        bugReportJsonObj.addProperty("bug_id", bugID);
+        bugReportJsonObj.addProperty("app_name", appName);
+        bugReportJsonObj.addProperty("app_version", appVersion);
+        bugReportJsonObj.add("script_steps", scriptStepsJsonArray);
+        System.out.println("\n---------------------------------\n\n");
+
+        return bugReportJsonObj;
+    }
+
+    private static void writeJsonToFile(JsonObject JsonObj){
+        // Save the JSON object to a file with pretty printing
+        String jsonFilePath = Path.of("..", "..", "GPT4BugReporting", "Data", "S2R-Resolution-Data", "Matched_Script_and_Graph_Steps.json").toString();
+        try (FileWriter file = new FileWriter(jsonFilePath)) {
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.setPrettyPrinting();
+            String prettyJsonString = gsonBuilder.create().toJson(JsonObj);
+            file.write(prettyJsonString);
+            System.out.println("# of items in the Saved JSON file: " + JsonObj.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

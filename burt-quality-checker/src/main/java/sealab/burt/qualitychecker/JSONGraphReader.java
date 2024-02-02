@@ -172,7 +172,7 @@ public @Slf4j class JSONGraphReader {
 		}
 	}
 
-	private static List<Execution> readExecutions(String dataLocation, boolean throwExcIfNoExecutions) throws Exception {
+	public static List<Execution> readExecutions(String dataLocation, boolean throwExcIfNoExecutions) throws Exception {
 
 		// ------ check if the path exists---------------//
 		List<Path> executionFiles = new ArrayList<>();
