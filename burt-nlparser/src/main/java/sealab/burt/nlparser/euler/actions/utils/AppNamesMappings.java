@@ -27,7 +27,7 @@ public class AppNamesMappings {
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("NetMBuddy", "netmbuddy")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("NotePad", "notepad_banderlabs")));
         APP_NAMES.add(
-                new LinkedHashSet<>(Arrays.asList("Schedule", "schedule-campfahrplan", "31C3 Schedule", "Camp 2015")));
+                new LinkedHashSet<>(Arrays.asList("Schedule", "schedule-campfahrplan", "31C3 Schedule", "Camp 2015", "camp2015")));
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Android Comic Viewer", "droid-comic-viewer", "ACV")));
 
         APP_NAMES.add(new LinkedHashSet<>(Arrays.asList("Android Token", "Android-Token", "Android token",
@@ -166,8 +166,10 @@ public class AppNamesMappings {
         APP_NAMES_PACKAGES.put("Olam", Arrays.asList("com.olam"));
         APP_NAMES_PACKAGES.put("openintents", Arrays.asList("org.openintents.notepad"));
 
+//        APP_NAMES_PACKAGES.put("schedule-campfahrplan",
+//                Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
         APP_NAMES_PACKAGES.put("schedule-campfahrplan",
-                Arrays.asList("nerd.tuxmobil.fahrplan.camp", "nerd.tuxmobil.fahrplan.congress"));
+                Arrays.asList("nerd.tuxmobil.fahrplan.camp"));
         //APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod.debug"));
         //APP_NAMES_PACKAGES.put("antennapod", Arrays.asList("de.danoeh.antennapod.debug"));
         APP_NAMES_PACKAGES.put("AntennaPod", Arrays.asList("de.danoeh.antennapod"));

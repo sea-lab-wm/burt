@@ -9,6 +9,7 @@ if __name__ == "__main__":
     #bug_ids = [22, 45, 54, 76, 91, 92, 101, 106, 110, 158, 160, 162, 168, 178, 192, 198, 199, 200, 228, 248, 1033, 1150,
     #           1153, 1197, 1198, 1201, 1228, 1389, 1425, 1446, 1563, 1568, 1641]
 
+    # BL bug ids
     bug_ids = [11, 45, 55, 56, 71, 84, 87, 106, 110, 159, 168, 193, 201, 227, 248, 271, 275, 1028, 1089, 1130, 1146, 1147, 1151, 1205, 1213, 1222, 1223, 1402, 1403, 1406, 1428, 1445, 1563, 1640, 1641]
 
     # list folders in tr_data_folder
@@ -24,6 +25,7 @@ if __name__ == "__main__":
 
         # extract bug id from folder name
         # print(bug_folder.split("TR"))
+
         bug_id = int(bug_folder.split("TR")[1])
 
         # skip if not in bug_ids
@@ -32,9 +34,9 @@ if __name__ == "__main__":
             continue
 
         bug_folder_path = os.path.join(tr_data_folder, bug_folder)
-        #print(bug_folder_path)
+        # print(bug_folder_path)
         app_folders = os.listdir(bug_folder_path)
-        #print(app_folders)
+        # print(app_folders)
 
         for app_folder in app_folders:
             if app_folder.endswith(".DS_Store"):

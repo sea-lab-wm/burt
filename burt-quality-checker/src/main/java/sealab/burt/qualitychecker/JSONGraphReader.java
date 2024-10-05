@@ -68,6 +68,9 @@ public @Slf4j class JSONGraphReader {
 			throw new RuntimeException("Could not normalize app name: " + appName);
 
 		List<String> packages = AppNamesMappings.getPackageNames(normalizedAppName.toLowerCase());
+//		List<String> packages = new ArrayList<>();
+//		packages.add("nerd.tuxmobil.fahrplan.camp");
+
 		if (packages == null || packages.isEmpty()) {
 			throw new RuntimeException("No packages found for: " + appName);
 		}

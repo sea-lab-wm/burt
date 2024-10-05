@@ -169,21 +169,46 @@ class MainJSONGraphGenerator{
 //            new Triplet<>("1213", "andotp", "0.8.0-beta1"),
 //            new Triplet<>("1223", "gnucash", "2.2.0")
 
-            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"),
-            new Triplet<>("10","files", "1.0.0-beta.11"),
-            new Triplet<>("110", "vinyl", "0.24.1"),
-            new Triplet<>("117","openfoodfacts", "2.9.8"),
-            new Triplet<>("130","andotp", "0.6.3.1-dev"),
-            new Triplet<>("135","commons", "2.9.0-debug"),
-            new Triplet<>("248", "odkcollect", "v1.20.0"),
-            new Triplet<>("1299","fieldbook", "4.3.3"),
+//            new Triplet<>("2", "familyfinance", "1.5.5-DEBUG"),
+//            new Triplet<>("10","files", "1.0.0-beta.11"),
+//            new Triplet<>("110", "vinyl", "0.24.1"),
+//            new Triplet<>("117","openfoodfacts", "2.9.8"),
+//            new Triplet<>("130","andotp", "0.6.3.1-dev"),
+//            new Triplet<>("135","commons", "2.9.0-debug"),
+            new Triplet<>("248", "odkcollect", "v1.20.0")
+//            new Triplet<>("1299","fieldbook", "4.3.3"),
 //            new Triplet<>("1399","phimpme", "1.4.0"),
 //            new Triplet<>("1406","phimpme", "1.4.0"),
-            new Triplet<>("1563", "lrkfm", "1.8.0"),
-            new Triplet<>("1568", "lrkfm", "2.3.0")
-    );
+//            new Triplet<>("1563", "lrkfm", "1.8.0"),
+//            new Triplet<>("1568", "lrkfm", "2.3.0")
 
-    private static final String outFolder = Path.of("..", "data", "graphs_json_data_for_GPT_Project").toString();
+
+
+        // EULER Bugs
+        //new Triplet<>("616", "gnucash", "2.1.3")
+                    //new Triplet<>("620", "gnucash", "2.1.3"),
+                    //new Triplet<>("618", "gnucash", "2.1.3"),
+                    //new Triplet<>("10", "atimetracker", "0.15"),
+                    //new Triplet<>("154", "camp2015", "1.32.2"),
+                    //new Triplet<>("169", "camp2015", "1.32.2")
+                    //new Triplet<>("252", "droidweight", "1.5.4"),
+                    //new Triplet<>("251", "atimetracker", "0.17"),
+                    //new Triplet<>("35", "atimetracker", "0.20"),
+                    //new Triplet<>("701", "gnucash", "2.2.0"),
+                    //new Triplet<>("49", "mileage", "3.0.8"),
+                    //new Triplet<>("471", "gnucash", "2.0.4"),
+                    //new Triplet<>("633", "gnucash", "2.1.3"),
+                    //new Triplet<>("53", "mileage", "3.1.1"),
+                    //new Triplet<>("65", "mileage", "3.1.1"),
+                    //new Triplet<>("12", "droidweight", "1.3.3"),
+                    //new Triplet<>("64", "mileage", "3.1.1"),
+                    //new Triplet<>("615", "gnucash", "2.1.1"),
+                    //new Triplet<>("699", "gnucash", "2.2.0"),
+                    //new Triplet<>("46", "atimetracker", "0.20"),
+                    //new Triplet<>("663", "gnucash", "2.1.3")
+                    );
+
+    private static final String outFolder = Path.of("..", "data", "graphs_json_data").toString();
     private static final Logger log = LoggerFactory.getLogger(MainJSONGraphGenerator.class);
 
     // Use this main method for parallel processing
@@ -203,9 +228,10 @@ class MainJSONGraphGenerator{
                     @Override
                     public Boolean get() {
                         try {
-                            AppGraphInfo graphInfo = generateAndSaveGraph(system);
-                            JsonObject oneBugJsonObj = getMatchedStepsAndStates(graphInfo, system);
-                            allBugsJsonObj.add(system.getValue0(), oneBugJsonObj);
+                            generateAndSaveGraph(system);
+                            //AppGraphInfo graphInfo = generateAndSaveGraph(system);
+                            //JsonObject oneBugJsonObj = getMatchedStepsAndStates(graphInfo, system);
+                            //allBugsJsonObj.add(system.getValue0(), oneBugJsonObj);
                         } catch (Exception e) {
                            log.error("Unexpected error for: " + system, e);
                         }
@@ -506,6 +532,8 @@ class MainJSONGraphGenerator{
                         System.out.println("Graph Step ID: " + graphStep.getId() + "\tAction ID: " + graphStepActionID);
 
                         JsonObject graphStepsJsonObj = new JsonObject();
+                        graphStepsJsonObj.addProperty("graph_step_hash", graphStep.getTransition().getUniqueHash());
+                        graphStepsJsonObj.addProperty("graph_step_weight", graphStep.getTransition().getWeight());
                         graphStepsJsonObj.addProperty("graph_step_id", graphStep.getId());
                         graphStepsJsonObj.addProperty("action_id", graphStepActionID);
 
@@ -519,6 +547,8 @@ class MainJSONGraphGenerator{
                                 System.out.println("Graph Step ID: " + graphStep.getId() + "\tAction ID: " + graphStepActionID + "\tComponent XML ID: " + graphStepXmlId + "\tComponent Text: " + graphStep.getComponent().getText());
 
                                 JsonObject graphStepsJsonObj = new JsonObject();
+                                graphStepsJsonObj.addProperty("graph_step_hash", graphStep.getTransition().getUniqueHash());
+                                graphStepsJsonObj.addProperty("graph_step_weight", graphStep.getTransition().getWeight());
                                 graphStepsJsonObj.addProperty("graph_step_id", graphStep.getId());
                                 graphStepsJsonObj.addProperty("action_id", graphStepActionID);
                                 graphStepsJsonObj.addProperty("component_xml_id", graphStepXmlId);
@@ -569,7 +599,7 @@ class MainJSONGraphGenerator{
 
             // Create a new JsonObject
             JsonObject scriptStepObject = new JsonObject();
-            scriptStepObject.addProperty("script_step_id", scriptStep.getId());
+            scriptStepObject.addProperty("script_step_id", scriptStep.getSequenceStep());
             scriptStepObject.addProperty("action_id", scriptStepActionId);
             scriptStepObject.addProperty("component_xml_id", scriptXmlId);
             scriptStepObject.addProperty("component_text", scriptText);

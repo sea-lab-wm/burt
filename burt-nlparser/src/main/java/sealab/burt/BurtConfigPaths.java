@@ -10,6 +10,12 @@ public class BurtConfigPaths {
     public static final String traceReplayerDataFolder = "TraceReplayer-Data";
     public static final String traceReplayerDataPath = Path.of("..", "data", traceReplayerDataFolder).toString();
 
+    // These two paths are used for the EULER bugs
+//    public static final String crashScopeDataFolder = "CrashScope-Data-EULER";
+//    public static final String crashScopeDataPath = Path.of("..", "data", crashScopeDataFolder).toString();
+//    public static final String traceReplayerDataFolder = "TraceReplayer-Data-EULER";
+//    public static final String traceReplayerDataPath = Path.of("..", "data", traceReplayerDataFolder).toString();
+
     public static final String nlParsersBaseFolder = Path.of("..", "burt-nlparser").toString();
     public static final String qualityCheckerResourcesPath =
             Path.of("..", "burt-quality-checker", "src", "main", "resources").toString();

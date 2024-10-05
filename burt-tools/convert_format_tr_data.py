@@ -4,7 +4,10 @@ import shutil
 
 
 if __name__ == "__main__":
-    tr_data_folder = "../data/TraceReplayer-Data"
+    #tr_data_folder = "../data/TraceReplayer-Data"
+
+    # TR data for EULER
+    tr_data_folder = "../../GPT4BugReporting/Data/TR-data/Euler-Formatted"
 
     #list folders in tr_data_folder
     folders = os.listdir(tr_data_folder)
@@ -51,4 +54,3 @@ if __name__ == "__main__":
 
             #move file to app_folder
             shutil.move(file_path, app_folder)
-            
