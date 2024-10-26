@@ -60,7 +60,7 @@ class MainJSONGraphGenerator{
 //            new Triplet<>("117","openfoodfacts", "2.9.8"),
 //            new Triplet<>("128","andotp", "0.7.1.1-dev"),
 //            new Triplet<>("129","andotp", "0.7.0-dev"),
-//            new Triplet<>("130","andotp", "0.6.3.1-dev"),
+            new Triplet<>("130","andotp", "0.6.3.1-dev")
 //            new Triplet<>("135","commons", "2.9.0-debug"),
 //            new Triplet<>("191","anuto", "0.2-1"),
 //            new Triplet<>("201","inaturalist", "1.5.1"),
@@ -175,7 +175,7 @@ class MainJSONGraphGenerator{
 //            new Triplet<>("117","openfoodfacts", "2.9.8"),
 //            new Triplet<>("130","andotp", "0.6.3.1-dev"),
 //            new Triplet<>("135","commons", "2.9.0-debug"),
-            new Triplet<>("248", "odkcollect", "v1.20.0")
+//            new Triplet<>("248", "odkcollect", "v1.20.0")
 //            new Triplet<>("1299","fieldbook", "4.3.3"),
 //            new Triplet<>("1399","phimpme", "1.4.0"),
 //            new Triplet<>("1406","phimpme", "1.4.0"),
